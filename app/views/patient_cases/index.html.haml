@@ -1,0 +1,7 @@
+= simple_form_for :webgrouper_patient_case do |f|
+  = f.input :sex, :label => "Geschlecht", :placeholder => "W"
+  = f.input :age_years, :label => "Alter", :placeholder => "30"
+  = f.submit "Gruppieren"
+  
+%h2 Gruppierung
+%p= @result

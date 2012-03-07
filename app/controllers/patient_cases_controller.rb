@@ -1,6 +1,6 @@
 class PatientCasesController < ApplicationController
   
-  def new
+  def index
     @webgrouper_patient_case = WebgrouperPatientCase.new
   end
   
@@ -9,15 +9,17 @@ class PatientCasesController < ApplicationController
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
     else
-      render 'new'
+      @webgrouper_patient_case = WebgrouperPatientCase.new
+      render 'index'
     end  
   end
   
   def group(webgrouper_patient_case)
     patient_case = webgrouper_patient_case.wrapper_patient_case
-    kernel = GroupKernel.create("spec.bin")
+    kernel = org.swissdrg.grouper.kernel.GrouperKernel.create("spec.bin")
     @result = kernel.group(patient_case)
-    render 'new'
+    @webgrouper_patient_case = webgrouper_patient_case
+    render 'index'
   end
   
 end
