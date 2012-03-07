@@ -1,5 +1,7 @@
 Webgrouper::Application.routes.draw do
   resources :webgrouper_patient_cases
+  
+  root :to => 'patient_cases#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

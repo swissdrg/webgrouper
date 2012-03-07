@@ -17,7 +17,7 @@ class PatientCasesController < ApplicationController
     patient_case = webgrouper_patient_case.wrapper_patient_case
     kernel = GroupKernel.create("spec.bin")
     @result = kernel.group(patient_case)
-    
+    render 'new'
   end
   
 end
