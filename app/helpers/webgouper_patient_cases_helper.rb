@@ -1,0 +1,2 @@
+module WebgouperPatientCasesHelper
+end
