@@ -10,6 +10,7 @@ class PatientCasesController < ApplicationController
       group(@webgrouper_patient_case)
     else
       @webgrouper_patient_case = WebgrouperPatientCase.new
+      flash.now[:error] = "Die Validierung ist fehlgeschlagen."
       render 'index'
     end  
   end
