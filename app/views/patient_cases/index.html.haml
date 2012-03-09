@@ -1,5 +1,5 @@
 = simple_form_for :webgrouper_patient_case do |f|
-  = f.input :sex, :label => "Geschlecht", :placeholder => "W"
+  = f.input :sex, :label => "Geschlecht", :as => :radio_buttons, :collection => %w(Male Female Unknown)
   = f.input :age_years, :label => "Alter", :placeholder => "30"
   = f.submit "Gruppieren"
   

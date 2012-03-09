@@ -22,8 +22,8 @@ class WebgrouperPatientCase
                 :procedures
   
   #TODO: Add more validations
-  validates :age_years, :presence => true
-  validates :sex,       :presence => true
+  validates :age_years, :presence => true, :numericality => { :only_integer => true }
+  validates :sex,       :presence => true, :inclusion => {:in => %w(Male Female Unknown)}
   
   def initialize(attributes = {})
     attributes.each do |name, value|
