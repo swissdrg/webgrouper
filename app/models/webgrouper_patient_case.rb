@@ -27,7 +27,7 @@ class WebgrouperPatientCase
   validates :entry_date,      :presence => true
   validates :entry_date,      :presence => true
   validates :exit_date,       :presence => true
-  alidates :birth_date,       :presence => true
+  validates :birth_date,      :presence => true
   validates :leave_days,      :presence => true
   validates :age_years,       :presence => true
   validates :age_days,        :presence => true
@@ -35,11 +35,11 @@ class WebgrouperPatientCase
   validates :adm,             :presence => true
   validates :sep,             :presence => true
   validates :los,             :presence => true
-  validates :sdf,             :presence => true
-  validates :hmv,             :presence => true
-  validates :pdx,             :presence => true
-  validates :diagnoses,       :presence => true
-  validates :procedures,      :presence => true
+  # validates :sdf,             :presence => true
+  # validates :hmv,             :presence => true
+  # validates :pdx,             :presence => true
+  # validates :diagnoses,       :presence => true
+  # validates :procedures,      :presence => true
   
             
   def initialize(attributes = {})
