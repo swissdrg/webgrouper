@@ -14,7 +14,7 @@ class WebgrouperPatientCase < PatientCase
   validates :entry_date,      :presence => true
   validates :entry_date,      :presence => true
   validates :exit_date,       :presence => true
-  alidates :birth_date,       :presence => true
+  validates :birth_date,      :presence => true
   validates :leave_days,      :presence => true
   validates :age_years,       :presence => true
   validates :age_days,        :presence => true
@@ -32,22 +32,27 @@ class WebgrouperPatientCase < PatientCase
 	# prepares values of attribute hash for the ruby patient class.
   def initialize(attributes = {})
     super()
-    prepare_for_grouping(attributes = {}) do |name, value|
-      send("#{name}=", value)
+    attributes.each do |name, value|
+      if send(name).is_a? Fixnum
+        value = value.to_i 
+      end
+      if name == "diagnoses" || name == "procedures"
+        # value.is_a? Array ? (0..(value.size-1)).each { |i| send(name)[i] == value } : send(name, [value].to_java(:string))
+        #         return
+        temp = []
+        name == "procedures" ? length = 100 : length = 99
+        length.times {temp << nil}
+        tmp1 = temp.to_java(:string)
+        tmp = [value].to_java(:string)
+        
+        (0..(tmp.size-1)).each {|i| tmp1[i] = tmp[i]}
+        
+        # (1..98).each { |i| temp[i] = nil }
+        send("set_#{name}", tmp1)
+      end
+      send("#{name}=", value) unless name == "diagnoses" || name == "procedures"
     end
   end
-  
-  private
-  	
-	  # cleans up attribute values and if necessary corrects data type
-    def prepare_for_grouping(attributes = {}, &block)
-      attributes.each do |name, value|
-        if super.send(name).is_a? Fixnum
-          value = value.to_i 
-        end
-        yield name, value
-      end
-    end
   
   def persisted?
     false
