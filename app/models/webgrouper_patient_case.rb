@@ -39,6 +39,7 @@ class WebgrouperPatientCase < PatientCase
     else
       self.age_days = self.age
     end
+    
     attributes.each do |name, value|
       if send(name).is_a? Fixnum
         value = value.to_i 
