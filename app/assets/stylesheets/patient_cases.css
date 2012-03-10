@@ -3,6 +3,10 @@
   They will automatically be included in application.css.
 */
 
+.locales {
+	float: right;
+}
+
 .errors {
 	border: 6px groove red;
 	background-color: orange;
@@ -10,57 +14,69 @@
 
 /* ----- SimpleForm Styles ----- */
 
-.simple_form
-  div.input
-    margin-bottom: 10px
+.simple_form div.input {
+  margin-bottom: 10px;
+}
 
-  label
-    float: left
-    width: 100px
-    text-align: right
-    margin: 2px 10px
+.simple_form label {
+  float: left;
+  width: 100px;
+  text-align: right;
+  margin: 2px 10px;
+}
 
-  .error
-		background: red;
-    clear:   left
-    color:   black
-    display: block
-    margin-left: 120px
-    font-size:    12px
+div.boolean, .simple_form input[type='submit'] {
+  margin-left: 120px;
+}
 
-  .hint
-    clear: left
-    margin-left: 120px
-    font-size:    12px
-    color: #555
-    display: block
-    font-style: italic
+div.boolean label, label.collection_radio {
+  float: none;
+  margin: 0;
+}
 
-div.boolean, .simple_form input[type='submit']
-  margin-left: 120px
+label.collection_radio {
+  margin-right: 10px;
+  vertical-align: -2px;
+  margin-left:   2px;
+}
 
-div.boolean label, label.collection_radio
-  float: none
-  margin: 0
+.field_with_errors {
+	margin-top: 10px;
+	padding: 2px;
+	background-color: #c00;
+	display: table;
+}
 
-label.collection_radio
-  margin-right: 10px
-  vertical-align: -2px
-  margin-left:   2px
+.simple_form .error {
+  clear:   left;
+  color:   black;
+  display: block;
+  margin-left: 120px;
+  font-size:    12px;
+}
 
-.field_with_errors
-  background-color: #ff3333
+.simple_form .hint {
+  clear: left;
+  margin-left: 120px;
+  font-size:    12px;
+  color: #555;
+  display: block;
+  font-style: italic;
+}
 
-input.radio
-  margin-right: 5px
-  vertical-align: -3px
+input.radio {
+  margin-right: 5px;
+  vertical-align: -3px;
+}
 
-input.check_boxes
-  margin-left: 3px
-  vertical-align: -3px
+input.check_boxes {
+  margin-left: 3px;
+  vertical-align: -3px;
+}
 
-label.collection_check_boxes
-  float: none
-  margin: 0
-  vertical-align: -2px
-  margin-left:   2px
+label.collection_check_boxes {
+  float: none;
+  margin: 0;
+  vertical-align: -2px;
+  margin-left:   2px;
+}
