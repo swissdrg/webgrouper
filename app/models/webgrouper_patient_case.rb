@@ -9,8 +9,8 @@ class WebgrouperPatientCase < PatientCase
   extend ActiveModel::Naming
   
   #TODO: Add more validations
-  validates :age_years, :presence => true
-  validates :sex,       :presence => true
+  validates :age_years, :presence => true, :numericality => { :only_integer => true }
+  validates :sex,       :presence => true, :inclusion => {:in => %w(M W U)}
   
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.

@@ -1,6 +1,21 @@
+%h1 Webgrouper
 = simple_form_for :webgrouper_patient_case do |f|
-  = f.input :sex, :label => "Geschlecht", :placeholder => "W"
-  = f.input :age_years, :label => "Alter", :placeholder => "30"
+  = f.input :sex, :label => "Sex", :as => :radio_buttons, :collection => %w(M W U), :checked => "U"
+  = f.number_field :age_years, :label => "Age years", :value => "30"
+  = f.number_field :age_days, :label => "Age days"
+  = f.input :entry_date, :label => "Entry date"
+  = f.input :exit_date, :label => "Exit date"
+  = f.input :birth_date, :label => "Birth date"
+  = f.input :leave_days, :label => "Leave days"
+  = f.input :adm_weight, :label => "Admission weight"
+  = f.input :adm, :label => "Admission mode"
+  = f.input :sep, :label => "Separation mode"
+  = f.input :los, :label => "Length of stay"
+  = f.input :sdf, :label => "Search diagnosis field"
+  = f.input :hmv, :label => "hmv"
+  = f.input :pdx, :label => "pdx"
+  = f.input :diagnoses, :label => "Diagnoses"
+  = f.input :procedures, :label => "Procedures"
   = f.submit "Gruppieren"
   
 %h2 Gruppierung
