@@ -1,0 +1,8 @@
+- if @webgrouper_patient_case.errors.any?
+  #errors
+    %p
+      ="Please correct the following fields:"
+    %ul
+      - @webgrouper_patient_case.errors.full_messages.each do |message|
+        %li
+          = message
