@@ -5,9 +5,10 @@ class PatientCasesController < ApplicationController
   end
   
   def create
-    @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
+    attributes = params[:webgrouper_patient_case]
+    @webgrouper_patient_case = WebgrouperPatientCase.new(attributes)
     if @webgrouper_patient_case.valid?
-      group(@webgrouper_patient_case)
+      group(attributes)
     else
       @webgrouper_patient_case = WebgrouperPatientCase.new
       flash.now[:error] = "Die Validierung ist fehlgeschlagen."
@@ -15,11 +16,10 @@ class PatientCasesController < ApplicationController
     end  
   end
   
-  def group(webgrouper_patient_case)
-    patient_case = webgrouper_patient_case.wrapper_patient_case
+  def group(attributes)
+    patient_case = WebgrouperPatientCase.wrapper_patient_case_for(attributes)
     kernel = org.swissdrg.grouper.kernel.GrouperKernel.create("spec.bin")
     @result = kernel.group(patient_case)
-    @webgrouper_patient_case = webgrouper_patient_case
     render 'index'
   end
   

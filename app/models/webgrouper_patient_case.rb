@@ -5,7 +5,7 @@ class WebgrouperPatientCase
   extend ActiveModel::Naming
   
   attr_accessor :entry_date, 
-                :exit_date, 
+                :exit_date,
                 :birth_date, 
                 :leave_days, 
                 :age_years, 
@@ -18,7 +18,7 @@ class WebgrouperPatientCase
                 :sdf,
                 :hmv, 
                 :pdx, 
-                :diagnoses, 
+                :diagnoses,
                 :procedures
   
   #TODO: Add more validations
@@ -36,26 +36,23 @@ class WebgrouperPatientCase
   end
   
   #TODO: Find a cleaner and DRY way of matching a webgrouper patient case to a wrapper patient case
-  def wrapper_patient_case
+  def self.wrapper_patient_case_for(attributes = {})
     pc = PatientCase.new
-    pc.entry_date = entry_date unless entry_date.nil?
-    pc.exit_date = exit_date unless exit_date.nil?
-    pc.birth_date = birth_date unless birth_date.nil?
-    pc.leave_days = leave_days.to_i unless leave_days.nil?
-    pc.age_years = age_years.to_i unless age_years.nil?
-    pc.age_days = age_days.to_i unless age_days.nil?
-    pc.adm_weight = adm_weight unless adm_weight.nil?
-    pc.sex = sex unless sex.nil?
-    pc.adm = adm unless adm.nil?
-    pc.sep = sep unless sep.nil?
-    pc.los = los.to_i unless los.nil?
-    pc.sdf = sdf unless sdf.nil?
-    pc.hmv = hmv.to_i unless hmv.nil?
-    pc.pdx = pdx unless pdx.nil?
-    pc.diagnoses = diagnoses unless diagnoses.nil?
-    pc.procedures = procedures unless diagnoses.nil?
-    
+    prepare_for_grouping(pc, attributes) do |name, value|
+      pc.send("set_#{name}", value) unless value.nil?
+    end
     pc
   end
+  
+  private
+    
+    def self.prepare_for_grouping(patient_case, attributes = {}, &block)
+      attributes.each do |name, value|
+        if patient_case.send(name).is_a? Fixnum
+          value = value.to_i 
+        end
+        yield name, value
+      end
+    end
   
 end
