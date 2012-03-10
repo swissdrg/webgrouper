@@ -1,3 +1,4 @@
+%h1 Webgrouper
 = simple_form_for :webgrouper_patient_case do |f|
   = f.input :sex, :label => "Geschlecht", :as => :radio_buttons, :collection => %w(M W U)
   = f.input :age_years, :label => "Alter", :placeholder => "30"
