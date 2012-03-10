@@ -4,8 +4,8 @@
 
 = simple_form_for :webgrouper_patient_case do |f|
   = f.input :sex, :label => "Sex", :as => :radio_buttons, :collection => %w(M W U), :checked => "U"
-  = f.input :age_years, :label => "Age years", :value => "30"
-  = f.error :age_years, :id => 'age_years'
+  = f.input :age_years, :label => "Age years"
+  = f.error :age_years
   = f.input :age_days, :label => "Age days"
   = f.input :entry_date, :label => "Entry date"
   = f.input :exit_date, :label => "Exit date"

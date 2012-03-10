@@ -58,7 +58,7 @@ SimpleForm.setup do |config|
   config.button_class = 'btn'
 
   # Method used to tidy up errors.
-  # config.error_method = :first
+  config.error_method = :first
 
   # Default tag used for error notification helper.
   config.error_notification_tag = :div

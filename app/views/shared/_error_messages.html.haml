@@ -1,7 +1,7 @@
 - if @webgrouper_patient_case.errors.any?
-  #errors
-    %p
-      ="Please correct the following fields:"
+  .errors
+    %h4
+      ="You have the following errors:"
     %ul
       - @webgrouper_patient_case.errors.full_messages.each do |message|
         %li
