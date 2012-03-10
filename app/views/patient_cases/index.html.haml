@@ -4,7 +4,7 @@
 = render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
 
 = simple_form_for :webgrouper_patient_case do |f|
-  = f.input :sex, :label => "#{t_label 'sex'}", :as => :radio_buttons, :collection => %w(M W U), :checked => "U"
+  = f.input :sex, :label => "#{t_label 'sex'}", :collection => %w(M W U), :checked => "U", :include_blank => false
   = f.input :age_years, :label => "#{t_label 'age_years'}"
   = f.input :age_days, :label => "#{t_label 'age_days'}"
   = f.input :entry_date, :label => "#{t_label 'entry_date'}"
