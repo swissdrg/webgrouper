@@ -10,14 +10,14 @@ de:
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: 'Some errors were found, please take a look:'
+      default_message: 'Einige Fehler wurden gefunden, bitte kontrolliren Sie:'
     # Labels and hints examples
     labels:
       entry_date: 'Eingangsdatum:'
       exit_date: 'Austretungsdatum:'
       birth_date: 'Geburtsdatum:'
       leave_days: 'Verlassen_tag:'
-      age_years: 'Tage:'
+      age_years: 'Alter:'
       age_days: 'Tage:'
       adm_weight: '!ADM_WEIGHT_DE!:'
       sex: 'Geschlecht:'

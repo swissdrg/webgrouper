@@ -5,8 +5,8 @@
 
 = simple_form_for :webgrouper_patient_case do |f|
   = f.input :sex, :label => "#{t_label 'sex'}", :as => :radio_buttons, :collection => %w(M W U), :checked => "U"
-  = f.input :age_years, :label => "#{t_label 'age_years'}"
-  = f.input :age_days, :label => "#{t_label 'age_days'}"
+  = f.input :age, :label => "#{t_label 'age'}"
+  = f.input :age_mode, :label => "#{t_label 'age_mode'}", :as => :select, :collection => %w(years days), :include_blank => false
   = f.input :entry_date, :label => "#{t_label 'entry_date'}"
   = f.input :exit_date, :label => "#{t_label 'exit_date'}"
   = f.input :birth_date, :label => "#{t_label 'birth_date'}"

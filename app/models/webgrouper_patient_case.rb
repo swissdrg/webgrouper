@@ -8,9 +8,12 @@ class WebgrouperPatientCase < PatientCase
   include ActiveModel::Conversion
   extend ActiveModel::Naming
   
+  attr_accessor :age,
+                :age_mode
+                
   #TODO: Add more validations
   validates :sex,             :presence => true
-  validates :age_years,       :presence => true, :numericality => { :only_integer => true }
+  validates :age,             :presence => true, :numericality => { :only_integer => true }
   validates :entry_date,      :presence => true
   validates :entry_date,      :presence => true
   validates :exit_date,       :presence => true
@@ -32,6 +35,11 @@ class WebgrouperPatientCase < PatientCase
 	# prepares values of attribute hash for the ruby patient class.
   def initialize(attributes = {})
     super()
+    if age_mode == "years"
+      self.age_years = self.age
+    else
+      self.age_days = self.age
+    end
     attributes.each do |name, value|
       if send(name).is_a? Fixnum
         value = value.to_i 
