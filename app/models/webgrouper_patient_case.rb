@@ -35,14 +35,14 @@ class WebgrouperPatientCase
     false
   end
   
-  #TODO: Find a cleaner and DRY way of matching a webgrouper patient case to a wrapper patient case
   def self.wrapper_patient_case_for(attributes = {})
-    pc = PatientCase.new
-    prepare_for_grouping(pc, attributes) do |name, value|
-      pc.send("set_#{name}", value) unless value.nil?
+    patient_case = PatientCase.new
+    prepare_for_grouping(patient_case, attributes) do |name, value|
+      patient_case.send("set_#{name}", value) unless value.nil?
     end
-    pc
+    patient_case
   end
+  
   
   private
     
