@@ -15,7 +15,6 @@ class WebgrouperPatientCase < PatientCase
   validates :sex,             :presence => true
   validates :age,             :presence => true, :numericality => { :only_integer => true }
   validates :entry_date,      :presence => true
-  validates :entry_date,      :presence => true
   validates :exit_date,       :presence => true
   validates :birth_date,      :presence => true
   validates :leave_days,      :presence => true
@@ -45,17 +44,12 @@ class WebgrouperPatientCase < PatientCase
         value = value.to_i 
       end
       if name == "diagnoses" || name == "procedures"
-        # value.is_a? Array ? (0..(value.size-1)).each { |i| send(name)[i] == value } : send(name, [value].to_java(:string))
-        #         return
         temp = []
         name == "procedures" ? length = 100 : length = 99
         length.times {temp << nil}
         tmp1 = temp.to_java(:string)
         tmp = [value].to_java(:string)
-        
         (0..(tmp.size-1)).each {|i| tmp1[i] = tmp[i]}
-        
-        # (1..98).each { |i| temp[i] = nil }
         send("set_#{name}", tmp1)
       end
       send("#{name}=", value) unless name == "diagnoses" || name == "procedures"
