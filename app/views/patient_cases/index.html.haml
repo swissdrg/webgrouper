@@ -18,8 +18,9 @@
   = f.input :sdf, :label => "Search diagnosis field"
   = f.input :hmv, :label => "hmv"
   = f.input :pdx, :label => "Primary diagnose"
-  = f.input :diagnoses, :label => "Secondary diagnoses"
-  = f.input :procedures, :label => "Procedures"
+  = f.input :diagnoses, :label => "Secondary diagnose", :parameters => "webgrouper_patient_case[diagnoses][0]"
+  = f.input :diagnoses, :label => "Secondary diagnose", :parameters => "webgrouper_patient_case[diagnoses][1]"
+  = f.input :procedures, :label => "Procedure"
   = f.submit "Gruppieren"
   
 %h2 Gruppierung
