@@ -14,7 +14,7 @@ class WebgrouperPatientCase < PatientCase
   validates :entry_date,      :presence => true
   validates :entry_date,      :presence => true
   validates :exit_date,       :presence => true
-  alidates :birth_date,       :presence => true
+  validates :birth_date,      :presence => true
   validates :leave_days,      :presence => true
   validates :age_years,       :presence => true
   validates :age_days,        :presence => true
