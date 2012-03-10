@@ -1,5 +1,8 @@
 Webgrouper::Application.routes.draw do
-  resources :patient_cases, :only => [:index, :create, :destroy]
+
+  scope "/:locale" do
+    resources :patient_cases, :only => [:index, :create, :destroy]
+  end
   
   root :to => 'patient_cases#index'
 

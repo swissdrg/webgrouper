@@ -1,25 +1,25 @@
 %h1 Webgrouper
 
+
 = render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
 
 = simple_form_for :webgrouper_patient_case do |f|
-  = f.input :sex, :label => "Sex", :as => :radio_buttons, :collection => %w(M W U), :checked => "U"
-  = f.input :age_years, :label => "Age years"
-  = f.error :age_years
-  = f.input :age_days, :label => "Age days"
-  = f.input :entry_date, :label => "Entry date"
-  = f.input :exit_date, :label => "Exit date"
-  = f.input :birth_date, :label => "Birth date"
-  = f.input :leave_days, :label => "Leave days"
-  = f.input :adm_weight, :label => "Admission weight"
-  = f.input :adm, :label => "Admission mode"
-  = f.input :sep, :label => "Separation mode"
-  = f.input :los, :label => "Length of stay"
-  = f.input :sdf, :label => "Search diagnosis field"
-  = f.input :hmv, :label => "hmv"
-  = f.input :pdx, :label => "Primary diagnose"
-  = f.input :diagnoses, :label => "Secondary diagnoses"
-  = f.input :procedures, :label => "Procedures"
+  = f.input :sex, :label => "#{t_label 'sex'}", :as => :radio_buttons, :collection => %w(M W U), :checked => "U"
+  = f.input :age_years, :label => "#{t_label 'age_years'}"
+  = f.input :age_days, :label => "#{t_label 'age_days'}"
+  = f.input :entry_date, :label => "#{t_label 'entry_date'}"
+  = f.input :exit_date, :label => "#{t_label 'exit_date'}"
+  = f.input :birth_date, :label => "#{t_label 'birth_date'}"
+  = f.input :leave_days, :label => "#{t_label 'leave_days'}"
+  = f.input :adm_weight, :label => "#{t_label 'adm_weight'}"
+  = f.input :adm, :label => "#{t_label 'adm'}"
+  = f.input :sep, :label => "#{t_label 'sep'}"
+  = f.input :los, :label => "#{t_label 'los'}"
+  = f.input :sdf, :label => "#{t_label 'sdf'}"
+  = f.input :hmv, :label => "#{t_label 'hmv'}"
+  = f.input :pdx, :label => "#{t_label 'pdx'}"
+  = f.input :diagnoses, :label => "#{t_label 'diagnoses'}"
+  = f.input :procedures, :label => "#{t_label 'procedures'}"
   = f.submit "Gruppieren"
   
 %h2 Gruppierung

@@ -22,11 +22,11 @@ class WebgrouperPatientCase < PatientCase
   validates :adm,             :presence => true
   validates :sep,             :presence => true
   validates :los,             :presence => true
-  validates :sdf,             :presence => true
-  validates :hmv,             :presence => true
-  validates :pdx,             :presence => true
-  validates :diagnoses,       :presence => true
-  validates :procedures,      :presence => true
+  # validates :sdf,             :presence => true
+  # validates :hmv,             :presence => true
+  # validates :pdx,             :presence => true
+  # validates :diagnoses,       :presence => true
+  # validates :procedures,      :presence => true
   
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
