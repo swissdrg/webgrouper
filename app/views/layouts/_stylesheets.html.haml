@@ -1,6 +1,8 @@
-= stylesheet_link_tag "blueprint/screen", :media => 'screen, projection'
-= stylesheet_link_tag "blueprint/print", :media => 'print'
-<!--[if lt IE 8]>
-= stylesheet_link_tag "blueprint/ie.css", :media => "screen, projection"
-<![endif]-->
-= stylesheet_link_tag "application"
+/[if lt IE9]
+  %script
+    {:src => "http://html5.shiv.googlecode.com/svn/trunk/html5.js"}
+
+= stylesheet_link_tag 'blueprint/screen', :media => 'screen'
+= stylesheet_link_tag 'blueprint/print', :media => 'print'
+/[if lt IE8]
+  = stylesheet_link_tag 'blueprint/ie'
