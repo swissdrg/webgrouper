@@ -6,9 +6,9 @@
 = simple_form_for :webgrouper_patient_case do |f|
   %fieldset
     = f.input :sex, :label => "#{t_label 'sex'}", :collection => %w(M W U), :checked => "U", :include_blank => false
-    = f.error :age, :class => 'field_with_errors'
-    = f.input :age, :label => "#{t_label 'age'}"
-    = f.input :age_mode, :label => "#{t_label 'age_mode'}", :as => :select, :collection => %w(years days), :include_blank => false
+    .sameline
+      = f.input :age, :label => "#{t_label 'age'}"
+      = f.input :age_mode, :label => "#{t_label 'age_mode'}", :as => :select, :collection => %w(years days), :include_blank => false
     = f.input :birth_date, :label => "#{t_label 'birth_date'}"
     = f.input :adm_weight, :label => "#{t_label 'adm_weight'}"
   %fieldset

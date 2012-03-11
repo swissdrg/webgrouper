@@ -6,6 +6,13 @@
 .locales {
 	float: right;
 }
+
+.sameline {
+	/*
+	 * TODO: some css-magic
+	 */
+}
+
 /*
  * Using standard blueprint error for now
 .error {
