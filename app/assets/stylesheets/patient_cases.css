@@ -6,12 +6,13 @@
 .locales {
 	float: right;
 }
-
-.errors {
+/*
+ * Using standard blueprint error for now
+.error {
 	border: 6px groove red;
 	background-color: orange;
 }
-
+*/
 /* ----- SimpleForm Styles ----- */
 
 .simple_form div.input {
