@@ -8,4 +8,14 @@ $(document).ready(function() {
 		eles[form_id] = "d-dt-m-dt-Y";
 		datePickerController.createDatePicker({formElements: eles});
 	});
+	admWeightControl(0);
 });
+
+function admWeightControl(fade_time) {
+	if ($('[id$="age_mode"]').val() == "days") {
+		$("#admWeight").show(fade_time);
+	}
+	else {
+		$("#admWeight").hide(fade_time);
+	}
+}
