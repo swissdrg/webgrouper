@@ -2,10 +2,10 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function() {
 	//should find everything einding in "date"
-	$("[id$='_date']").each(function() {
+	$(".date_picker").each(function() {
 		var form_id = this.id;
 		var eles = {};
-		eles[form_id] = "d-m-Y";
+		eles[form_id] = "d-dt-m-dt-Y";
 		datePickerController.createDatePicker({formElements: eles});
 	});
 });

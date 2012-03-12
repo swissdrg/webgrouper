@@ -5,15 +5,17 @@
 
 = simple_form_for :webgrouper_patient_case do |f|
   %fieldset
+    System stuff
+  %fieldset
     = f.input :sex, :label => "#{t_label 'sex'}", :collection => %w(M W U), :checked => "U", :include_blank => false
     .sameline
       = f.input :age, :label => "#{t_label 'age'}"
       = f.input :age_mode, :label => "#{t_label 'age_mode'}", :as => :select, :collection => %w(years days), :include_blank => false
-    = f.input :birth_date, :label => "#{t_label 'birth_date'}"
+    = f.input :birth_date, :label => "#{t_label 'birth_date'}", :input_html => { :class => "date_picker" }
     = f.input :adm_weight, :label => "#{t_label 'adm_weight'}"
   %fieldset
-    = f.input :entry_date, :label => "#{t_label 'entry_date'}"
-    = f.input :exit_date, :label => "#{t_label 'exit_date'}"
+    = f.input :entry_date, :label => "#{t_label 'entry_date'}", :input_html => { :class => "date_picker" }
+    = f.input :exit_date, :label => "#{t_label 'exit_date'}", :input_html => { :class => "date_picker" }
     = f.input :leave_days, :label => "#{t_label 'leave_days'}"
     = f.input :adm, :label => "#{t_label 'adm'}", :as => :select, :collection => %w(11 00 06 99), :include_blank => false
     = f.input :sep, :label => "#{t_label 'sep'}", :as => :select, :collection => %w(06 04 00 07 99), :include_blank => false
