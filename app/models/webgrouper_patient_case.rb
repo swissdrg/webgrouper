@@ -13,19 +13,19 @@ class WebgrouperPatientCase < PatientCase
                 
   #TODO: Add more validations
   validates :sex,             :presence => true
-  validates :age,             :presence => true, :numericality => { :only_integer => true }
-  validates :entry_date,      :presence => true
-  validates :exit_date,       :presence => true
-  validates :birth_date,      :presence => true
-  validates :leave_days,      :presence => true
+  #validate_age
+  validates_date :entry_date,      :presence => true, :on_or_before => :today
+  validates_date :exit_date,       :presence => true, :on_or_before => :today, :after => :entry_date
+  validates_date :birth_date,      :on_or_before => :today
+  validates :leave_days,      :numericality => { :only_integer => true }
   validates :age_years,       :presence => true
   validates :age_days,        :presence => true
-  validates :adm_weight,      :presence => true
+  validates :adm_weight,      :presence => true, :numericality => { :only_integer => true, :in => 250..19999}
   validates :adm,             :presence => true
   validates :sep,             :presence => true
-  validates :los,             :presence => true
+  validates :los,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0}
   # validates :sdf,             :presence => true
-  # validates :hmv,             :presence => true
+  validates :hmv,             :numericality => { :only_integer => true, :greater_than => 0}
   # validates :pdx,             :presence => true
   # validates :diagnoses,       :presence => true
   # validates :procedures,      :presence => true
@@ -61,4 +61,13 @@ class WebgrouperPatientCase < PatientCase
     false
   end
   
+  def validate_age
+    if age_mode == "years"
+    validates :age,             :presence => true, :numericality => { :only_integer => true,
+       :in => 1..125}
+    else 
+    validates :age,             :presence => true, :numericality => { :only_integer => true,
+       :in => 1..366}
+    end
+  end
 end
