@@ -50,5 +50,8 @@ module Webgrouper
     
     # asset version
     config.assets.version = '1.0'
+    
+    #set timeliness to Euro
+    Timeliness.use_euro_formats
   end
 end
