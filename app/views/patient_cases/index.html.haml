@@ -14,10 +14,10 @@
     = f.input :birth_date, :label => "#{t_label 'birth_date'}", :input_html => { :class => "date_picker" }
     #admWeight
       = f.input :adm_weight, :label => "#{t_label 'adm_weight'}"
-  %fieldset
-    = f.input :entry_date, :label => "#{t_label 'entry_date'}", :input_html => { :class => "date_picker" }
-    = f.input :exit_date, :label => "#{t_label 'exit_date'}", :input_html => { :class => "date_picker" }
-    = f.input :leave_days, :label => "#{t_label 'leave_days'}"
+  %fieldset 
+    = f.input :entry_date, :label => "#{t_label 'entry_date'}", :input_html => { :class => "date_picker calc_los" }
+    = f.input :exit_date, :label => "#{t_label 'exit_date'}", :input_html => { :class => "date_picker calc_los" }
+    = f.input :leave_days, :label => "#{t_label 'leave_days'}", :input_html => { :class => "calc_los" }
     = f.input :adm, :label => "#{t_label 'adm'}", :as => :select, :collection => %w(11 00 06 99), :include_blank => false
     = f.input :sep, :label => "#{t_label 'sep'}", :as => :select, :collection => %w(06 04 00 07 99), :include_blank => false
     = f.input :los, :label => "#{t_label 'los'}"

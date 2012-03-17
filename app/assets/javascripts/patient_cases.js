@@ -6,6 +6,21 @@ $(document).ready(function() {
 	disableTabForLinks();
 });
 
+$(".calc_los").live("focus change", function() {
+	var first = parseDate($('#webgrouper_patient_case_entry_date').val())
+	var second = parseDate($('#webgrouper_patient_case_exit_date').val())
+	var leave_days = $('#webgrouper_patient_case_leave_days').val()
+	var diff = daydiff(first, second, leave_days);
+	if(diff < 0){
+		diff = ""
+		this.style.backgroundColor = "red"
+	}
+	else{
+		$('#webgrouper_patient_case_los').val(diff)
+		this.style.backgroundColor = "transparent"
+		
+	}
+});
 
 /**
  * Kinda funny, but doesn't work for all browsers
@@ -39,4 +54,13 @@ function admWeightControl(fade_time) {
 	else {
 		$("#admWeight").hide(fade_time);
 	}
+}
+
+function parseDate(str) {
+    var mdy = str.split('.')
+    return new Date(mdy[2], mdy[1], mdy[0]-1);
+}
+
+function daydiff(first, second, leave_days) {
+		return Math.floor(((second-first)/(1000*60*60*24))-leave_days)
 }
