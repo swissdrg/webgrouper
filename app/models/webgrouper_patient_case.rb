@@ -16,16 +16,16 @@ class WebgrouperPatientCase < PatientCase
   #validate_age
   validates_date :entry_date,      :presence => true, :on_or_before => :today
   validates_date :exit_date,       :presence => true, :on_or_before => :today, :after => :entry_date
-  validates_date :birth_date
+  validates_date :birth_date,      :on_or_before => :today
   validates :leave_days,      :numericality => { :only_integer => true }
   validates :age_years,       :presence => true
   validates :age_days,        :presence => true
-  validates :adm_weight,      :presence => true
+  validates :adm_weight,      :presence => true, :numericality => { :only_integer => true, :in => 250..19999}
   validates :adm,             :presence => true
   validates :sep,             :presence => true
   validates :los,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0}
   # validates :sdf,             :presence => true
-  # validates :hmv,             :presence => true
+  validates :hmv,             :numericality => { :only_integer => true, :greater_than => 0}
   # validates :pdx,             :presence => true
   # validates :diagnoses,       :presence => true
   # validates :procedures,      :presence => true
