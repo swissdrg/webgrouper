@@ -16,9 +16,10 @@ $(".calc_los").live("focus change", function() {
 		this.style.backgroundColor = "red"
 	}
 	else{
-		$('#webgrouper_patient_case_los').val(diff)
-		this.style.backgroundColor = "transparent"
-		
+		if (!(isNaN(diff))){
+			$('#webgrouper_patient_case_los').val(diff)
+			this.style.backgroundColor = "transparent"
+		}
 	}
 });
 
