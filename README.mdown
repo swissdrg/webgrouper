@@ -1,7 +1,7 @@
 # Welcome
 
 This is a new implementation in Ruby on Rails of the swissDRG webgrouper, 
-found at https://webgrouper.swissdrg.org/ . For further information, see [The PSE-Page](http://pym.unibe.ch/pse/wiki/doku.php?id=pse1:home)
+found at https://webgrouper.swissdrg.org/ . For further information, see [The PSE-Page](http://pym.unibe.ch/pse/wiki/doku.php?id=pse1:home).
 
 ## Installation
 
@@ -11,9 +11,11 @@ We use jRuby 1.6.6, which you can install by typing
 
 	rvm install jruby-1.6.6
 	
-Install the needed bundles in the project folder by running
+Install the needed bundles by running
 
-	rvm bundle install
+	bundle install
+	
+in the project folder.
 	
 ## Run
 
