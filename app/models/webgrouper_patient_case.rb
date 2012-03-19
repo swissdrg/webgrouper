@@ -36,7 +36,7 @@ class WebgrouperPatientCase < PatientCase
   validates :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 1, :less_than => 367}, :if => :age_mode_days?
   validates :age_years,       :presence => true
   validates :age_days,        :presence => true
-  validates :adm_weight,      :presence => true, :numericality => { :only_integer => true}, :inclusion => {:in => 250..19999}
+  validates :adm_weight,      :presence => true, :numericality => { :only_integer => true, :greater_than => 249, :less_than => 20000}
   validates :adm,             :presence => true
   validates :sep,             :presence => true
   validates :los,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0}
