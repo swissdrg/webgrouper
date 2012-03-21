@@ -17,8 +17,8 @@
     = f.input :entry_date, :input_html => { :class => "date_picker calc_los" }
     = f.input :exit_date, :input_html => { :class => "date_picker calc_los" }
     = f.input :leave_days, :input_html => { :class => "calc_los" }
-    = f.input :adm, :as => :select, :collection => [[:adm11,"11"], [:adm00, "00"], [:adm06, "06"], [:adm99, "99"]], :include_blank => false
-    = f.input :sep, :as => :select, :collection => %w(06 04 00 07 99), :include_blank => false
+    = f.input :adm, :as => :select, :collection => [[t(:adm11) ,"11"], [t(:adm00), "00"], [t(:adm06), "06"], [t(:adm99), "99"]], :include_blank => false
+    = f.input :sep, :as => :select, :collection => [[t(:sep06) ,"06"], [t(:sep04), "04"], [t(:sep00), "00"], [t(:sep07), "07"], [t(:sep99), "99"]], :include_blank => false
     = f.input :los
   %fieldset
     = f.input :hmv

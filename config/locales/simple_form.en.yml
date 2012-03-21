@@ -15,17 +15,6 @@ en:
           U: 'Unknown'
           M: 'Male'
           W: 'Female'
-        adm:
-          adm11: 'Transfered (Length of stay more than 24 hours in the transfering hospital)'
-          adm06: 'Transfered (Length of stay less than 24 hours in the transfering hospital)'
-          adm00: 'not transfered'
-          adm99: 'unknown'
-        sep:
-          sep99: 'unknown'
-          sep04: 'terminated against medical advice'
-          sep06: 'transfered to another hospital'
-          sep07: 'deceased'
-          sep00: 'normal'
         age_mode:
           years: 'Years'
           days: 'Days'
