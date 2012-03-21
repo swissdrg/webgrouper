@@ -1,6 +1,6 @@
 class WebgrouperPatientCasesController < ApplicationController
   
-  def new
+  def index
     @webgrouper_patient_case = WebgrouperPatientCase.new
   end
   
@@ -10,14 +10,14 @@ class WebgrouperPatientCasesController < ApplicationController
       group(@webgrouper_patient_case)
     else
       flash.now[:error] = @webgrouper_patient_case.errors.full_messages
-      render 'new'
+      render 'index'
     end  
   end
   
   def group(patient_case)
     kernel = org.swissdrg.grouper.kernel.GrouperKernel.create("spec.bin")
     @result = kernel.group(patient_case)
-    render 'new'
+    render 'index'
   end
   
 end
