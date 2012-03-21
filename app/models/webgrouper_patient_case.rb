@@ -7,6 +7,7 @@ class WebgrouperPatientCase < PatientCase
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
+  extend ActiveModel::Translation
   
   attr_accessor :age,
                 :age_mode
@@ -27,7 +28,6 @@ class WebgrouperPatientCase < PatientCase
   
   
   validates :sex,             :presence => true
-  #validate_age
   validates_date :entry_date,      :presence => true, :on_or_before => :today
   validates_date :exit_date,       :presence => true, :on_or_before => :today, :after => :entry_date
   validates_date :birth_date,      :on_or_before => :today
@@ -50,10 +50,10 @@ class WebgrouperPatientCase < PatientCase
 	# prepares values of attribute hash for the ruby patient class.
   def initialize(attributes = {})
     super()
-    if age_mode == "years"
-      self.age_years = self.age
-    else
+    if age_mode_days?
       self.age_days = self.age
+    else
+      self.age_years = self.age
     end
     
     attributes.each do |name, value|
