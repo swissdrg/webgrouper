@@ -2,33 +2,4 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-  # simple_form:
-  #   "yes": 'Yes'
-  #   "no": 'No'
-  #   required:
-  #     text: 'required'
-  #     mark: '*'
-  #     # You can uncomment the line below if you need to overwrite the whole required html.
-  #     # When using html, text and mark won't be used.
-  #     # html: '<abbr title="required">*</abbr>'
-  #   error_notification:
-  #     default_message: 'Some errors were found, please take a look:'
-  #   # Labels and hints examples
-  #   labels:
-  #     entry_date: 'Admission date:'
-  #     exit_date: 'Exit date:'
-  #     birth_date: 'Birthday:'
-  #     leave_days: 'Leave days:'
-  #     age_years: 'Days:'
-  #     age_days: 'Days:'
-  #     adm_weight: '!ADM_WEIGHT!:'
-  #     sex: 'Sex:'
-  #     adm: 'Admission mode:'
-  #     sep: 'Separation mode:'
-  #     los: 'Length of stay:'
-  #     sdf: '!SDF!:'
-  #     hmv: '!HMV!:'
-  #     pdx: '!PDX!:'
-  #     diagnoses: 'Secondary diagnoses:'
-  #     procedures: 'Procedures:'
+  blub: 'blub'

@@ -6,27 +6,27 @@
   %fieldset
     System stuff
   %fieldset
-    = f.input :sex, :label => "#{t_label 'sex'}", :collection => [["#{t_label 'sex_male'}", "M"], ["#{t_label 'sex_female'}", "W"], ["#{t_label 'sex_unknown'}", "U"]], :checked => "U", :include_blank => false
+    = f.input :sex, :collection => [:M , :W, :U], :checked => :U, :include_blank => false
     .sameline
-      = f.input :age, :label => "#{t_label 'age'}"
-      = f.input :age_mode, :label => "#{t_label 'age_mode'}", :as => :select, :collection => [["#{t_label 'years'}", "years"], ["#{t_label 'days'}", "days"]], :include_blank => false, :input_html => { :onchange => "admWeightControl(500)" }
-    = f.input :birth_date, :label => "#{t_label 'birth_date'}", :input_html => { :class => "date_picker" }
+      = f.input :age
+      = f.input :age_mode, :as => :select, :collection => [['years', "years"], ['days', "days"]], :include_blank => false, :input_html => { :onchange => "admWeightControl(500)" }
+    = f.input :birth_date, :label => 'birth_date', :input_html => { :class => "date_picker" }
     #admWeight
-      = f.input :adm_weight, :label => "#{t_label 'adm_weight'}"
+      = f.input :adm_weight
   %fieldset 
-    = f.input :entry_date, :label => "#{t_label 'entry_date'}", :input_html => { :class => "date_picker calc_los" }
-    = f.input :exit_date, :label => "#{t_label 'exit_date'}", :input_html => { :class => "date_picker calc_los" }
-    = f.input :leave_days, :label => "#{t_label 'leave_days'}", :input_html => { :class => "calc_los" }
-    = f.input :adm, :label => "#{t_label 'adm'}", :as => :select, :collection => %w(11 00 06 99), :include_blank => false
-    = f.input :sep, :label => "#{t_label 'sep'}", :as => :select, :collection => %w(06 04 00 07 99), :include_blank => false
-    = f.input :los, :label => "#{t_label 'los'}"
+    = f.input :entry_date, :input_html => { :class => "date_picker calc_los" }
+    = f.input :exit_date, :input_html => { :class => "date_picker calc_los" }
+    = f.input :leave_days, :input_html => { :class => "calc_los" }
+    = f.input :adm, :as => :select, :collection => %w(11 00 06 99), :include_blank => false
+    = f.input :sep, :as => :select, :collection => %w(06 04 00 07 99), :include_blank => false
+    = f.input :los
   %fieldset
-    = f.input :sdf, :label => "#{t_label 'sdf'}"
-    = f.input :hmv, :label => "#{t_label 'hmv'}"
-    = f.input :pdx, :label => "#{t_label 'pdx'}"
-    = f.input :diagnoses, :label => "#{t_label 'diagnoses'}"
-    = f.input :procedures, :label => "#{t_label 'procedures'}"
-  = f.submit "#{t_label 'group'}"
+    = f.input :sdf
+    = f.input :hmv
+    = f.input :pdx
+    = f.input :diagnoses
+    = f.input :procedures
+  = f.submit
   
 %h2 Gruppierung
 %p= @result
