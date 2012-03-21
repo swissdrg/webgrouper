@@ -1,7 +1,5 @@
 de:
   simple_form:
-    "yes": 'Ja'
-    "no": 'Nein'
     required:
       text: 'benötigt'
       mark: ''
@@ -10,26 +8,47 @@ de:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: 'Es wurden Fehler gefunden. Bitte überprüfen Sie:'
+        #Everything selectable:
+    options:
+      webgrouper_patient_case:
+        sex:
+          U: 'Unbekannt'
+          M: 'Männlich'
+          W: 'Weiblich'
+        adm:
+          adm11: 'Transfered (Length of stay more than 24 hours in the transfering hospital)'
+          adm06: 'Transfered (Length of stay less than 24 hours in the transfering hospital)'
+          adm00: 'not transfered'
+          adm99: 'unknown'
+        sep:
+          sep99: 'unknown'
+          sep04: 'terminated against medical advice'
+          sep06: 'transfered to another hospital'
+          sep07: 'deceased'
+          sep00: 'normal'
+        age_mode:
+          years: 'Jahre'
+          days: 'Tage'
     # Labels and hints examples
     labels:
-      entry_date: 'Aufnahmedatum:'
-      exit_date: 'Entlassdatum:'
-      birth_date: 'Geburtstag:'
-      leave_days: 'Urlaubstage:'
-      age: 'Alter:'
-      years: 'Jahre'
-      days: 'Tage'
-      adm_weight: 'Aufnahmegewicht:'
-      sex: 'Geschlecht:'
-      sex_male: 'männlich'
-      sex_female: 'weiblich'
-      sex_unknown: 'unbekannt'
-      adm: 'Aufnahmeart:'
-      sep: 'Entlassart:'
-      los: 'Verweildauer:'
-      sdf: '!SDF!:'
-      hmv: 'Beatmungszeit:'
-      pdx: 'Hauptdiagnosen:'
-      diagnoses: 'Nebendiagnosen:'
-      procedures: 'Prozeduren:'
-      group: 'Gruppieren'
+      webgrouper_patient_case:
+        entry_date: 'Aufnahmedatum:'
+        exit_date: 'Entlassdatum:'
+        birth_date: 'Geburtstag:'
+        leave_days: 'Urlaubstage:'
+        age: 'Alter:'
+        age_mode: 'asdf'
+        adm_weight: 'Aufnahmegewicht:'
+        sex: 'Geschlecht:'
+        adm: 'Aufnahmeart:'
+        sep: 'Entlassart:'
+        los: 'Verweildauer:'
+        hmv: 'Beatmungszeit:'
+        pdx: 'Hauptdiagnosen:'
+        diagnoses: 'Nebendiagnosen:'
+        procedures: 'Prozeduren:'
+  # Buttons
+  helpers:
+    submit:
+      webgrouper_patient_case:
+        create: 'Fall Gruppieren'
