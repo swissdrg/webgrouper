@@ -2,7 +2,7 @@
 
 = render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
 
-= simple_form_for @webgrouper_patient_case do |f|
+= simple_form_for @webgrouper_patient_case, :method => :post do |f|
   %fieldset
     System stuff
   %fieldset
