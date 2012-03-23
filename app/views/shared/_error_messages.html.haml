@@ -3,6 +3,6 @@
     %h4
       = t :found_errors
     %ul
-      - @webgrouper_patient_case.errors.full_messages.each do |message|
+      - @webgrouper_patient_case.errors.each do |message|
         %li
-          = message
+          = t("simple_form.labels.webgrouper_patient_case." + message[0].to_s) + " " + message[1]
