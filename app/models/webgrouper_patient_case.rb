@@ -28,20 +28,20 @@ class WebgrouperPatientCase < PatientCase
   
   
   validates :sex,             :presence => true
-  validates_date :entry_date,      :presence => true, :on_or_before => :today
-  validates_date :exit_date,       :presence => true, :on_or_before => :today, :after => :entry_date
+  validates_date :entry_date,      :on_or_before => :today
+  validates_date :exit_date,       :on_or_before => :today, :after => :entry_date
   validates_date :birth_date,      :on_or_before => :today
-  validates :leave_days,      :numericality => { :only_integer => true, :greater_than => -1}
-  validates :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 1, :less_than => 126}, :unless => :age_mode_days?
-  validates :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 1, :less_than => 367}, :if => :age_mode_days?
+  validates :leave_days,      :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
+  validates :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 125}, :unless => :age_mode_days?
+  validates :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 367}, :if => :age_mode_days?
   validates :age_years,       :presence => true
   validates :age_days,        :presence => true
-  validates :adm_weight,      :presence => true, :numericality => { :only_integer => true, :greater_than => 249, :less_than => 20000}
+  validates :adm_weight,      :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 250, :less_than_or_equal_to => 20000}, :if => :age_mode_days?
   validates :adm,             :presence => true
   validates :sep,             :presence => true
-  validates :los,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0}
+  validates :los,             :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
   # validates :sdf,             :presence => true
-  validates :hmv,             :numericality => { :only_integer => true, :greater_than => 0}
+  validates :hmv,             :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
   # validates :pdx,             :presence => true
   # validates :diagnoses,       :presence => true
   # validates :procedures,      :presence => true

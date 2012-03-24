@@ -17,20 +17,24 @@ $(".calc_los").live("focus change", function() {
 	}
 	else{
 		if (!(isNaN(diff))){
-			$('#webgrouper_patient_case_los').val(diff)
-			this.style.backgroundColor = "transparent"
+			$('#webgrouper_patient_case_los').val(diff);
+			$(".calc_los").each(function() {
+				this.style.backgroundColor = "transparent"
+			});
 		}
 	}
 });
 
-/**
- * Kinda funny, but doesn't work for all browsers
- */
-function disableTabForLinks() {
-	$('a').each(function() {
-	    this.setAttribute( 'tabindex', '-1' );
-	});
-}
+$("#webgrouper_patient_case_birth_date").live("focus change", function() {
+	var bd = parseDate($('#webgrouper_patient_case_birth_date').val());
+	var today = new Date();
+	var age = Math.floor(Math.ceil(today - bd) / (1000 * 60 * 60 * 24 * 365));
+	
+	if (!(isNaN(age)) && age > 0){
+			$('#webgrouper_patient_case_age').val(age);
+		}
+});
+
 /**
  * Adds date pickers to every input field of the class "date_picker"
  * The format of the date picker is eg 02.04.2011
@@ -43,6 +47,7 @@ function addDatePickers() {
 		datePickerController.createDatePicker({formElements: eles});
 	});
 }
+
 /**
  * Lets the id "admWeight" dissapear according to the
  * settings in the field age_mode
