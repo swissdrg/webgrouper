@@ -23,8 +23,11 @@
   %fieldset
     = f.input :hmv
     = f.input :pdx
-    = f.input :diagnoses
-    = f.input :procedures
+    / = f.input :diagnoses
+    / = f.input :procedures
+    .diagnoses
+      = render "shared/fields", :kind => "diagnoses", :count => 99
+    
   = f.submit
   
 %h2 Gruppierung

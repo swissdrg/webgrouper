@@ -62,6 +62,18 @@ function admWeightControl(fade_time) {
 	}
 }
 
+function showFields(fade_time, row_nr) {
+	$("#row_field_buttons_"+row_nr).toggle(false);
+	row_nr++;
+	$("#row_"+row_nr).toggle(true);
+}
+
+function hideFields(fade_time, row_nr) {
+	$("#row_"+row_nr).toggle(false);
+	row_nr--;
+	$("#row_field_buttons_"+row_nr).toggle(true);
+}
+
 function parseDate(str) {
     var mdy = str.split('.')
     return new Date(mdy[2], mdy[1], mdy[0]-1);

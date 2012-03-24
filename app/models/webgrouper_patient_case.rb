@@ -55,12 +55,13 @@ class WebgrouperPatientCase < PatientCase
       self.age_years = self.age
     end
     
+    # set attributes to display correct default values in view
     self.age = 40
     self.los = 10
     self.birth_date = (today - 10.days).strftime("%d%m%Y")
     self.entry_date = (today - 10.days).strftime("%d%m%Y")
     self.exit_date = today.strftime("%d%m%Y")
-    self.pdx = ""
+    self.adm_weight = 4000
     
     attributes.each do |name, value|
       if send(name).is_a? Fixnum
