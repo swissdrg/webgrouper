@@ -60,7 +60,7 @@ pickle-email-*.html
 # careful with GROUPER-KERNEL:
 *.dll
 *.lib
-*.so
+*.so*
 *.h
 *.bin
 

@@ -16,6 +16,10 @@ Install the needed bundles by running
 	bundle install
 	
 in the project folder.
+
+In this iteration, the real core was added. Because the core is confidental, it is not part of the 
+public repository. Download it from https://webapps.swissdrg.org/download/ and put it manually
+in the rails /lib folder. 
 	
 ## Run
 

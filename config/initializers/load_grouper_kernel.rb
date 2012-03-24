@@ -26,7 +26,7 @@ if java.lang.System.getProperty('os.name').downcase.include?('windows')
   file_extension = '.dll'
 else 
   lib_prequel = 'lib'
-  file_extension = '.so'
+  file_extension = '.so.1.0.0'
 end
 
 # The real grouper:
