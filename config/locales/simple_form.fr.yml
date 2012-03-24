@@ -32,7 +32,6 @@ fr:
         adm: "Mode d'admission:"
         sep: 'Mode de sortie:'
         los: 'Durée du séjour:'
-        sdf: '!SDF!:'
         hmv: 'Temps de respiration artificielle:'
         pdx: 'Diagnostic principal:'
         diagnoses: 'Diagnostics secondaires:'

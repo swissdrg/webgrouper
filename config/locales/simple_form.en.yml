@@ -32,7 +32,6 @@ en:
         adm: 'Admission mode:'
         sep: 'Separation mode:'
         los: 'Length of stay:'
-        sdf: '!SDF!:'
         hmv: 'Artificial respiration:'
         pdx: 'Primary diagnoses:'
         diagnoses: 'Secondary diagnoses:'
