@@ -11,11 +11,27 @@ import org.swissdrg.grouper.EffectiveCostWeight
 #For mock-grouper:
 #GROUPER = org.swissdrg.grouper.kernel.GrouperKernel.create("spec.bin")
 
-# TODO: Load other stuff depending on operating system
+# Load libraries according to system:
+# This is a bit complicated due to obscure naming convention.
+if java.lang.System.getProperty('os.arch').include?('64')
+  arch_bin = '64'
+  arch_lib = '64bit'
+else 
+  arch_bin = '32'
+  arch_lib = ''
+end
+
+if java.lang.System.getProperty('os.name').downcase.include?('windows')
+  lib_prequel = ''
+  file_extension = '.dll'
+else 
+  lib_prequel = 'lib'
+  file_extension = '.so'
+end
 
 # The real grouper:
-grouper_path = File.join(Rails.root, 'lib', 'libGrouperKernel64bit.so')
-spec_path = File.join(Rails.root, 'lib', 'Spec10billing64bit.bin')
+grouper_path = File.join(Rails.root, 'lib', lib_prequel + 'GrouperKernel' + arch_lib + file_extension)
+spec_path = File.join(Rails.root, 'lib', 'Spec10billing' + arch_bin + 'bit.bin')
 GROUPER = org.swissdrg.grouper.kernel.GrouperKernel.create(grouper_path, spec_path)
 # for source code and a description of all classes involved
 # Use Import -> Existing Project within Eclipse
