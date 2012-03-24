@@ -66,9 +66,11 @@ function addDatePickers() {
 function admWeightControl(fade_time) {
 	if ($('[id$="age_mode"]').val() == "days") {
 		$("#admWeight").show(fade_time);
+		$("#webgrouper_patient_case_adm_weight").attr("disabled", false)
 	}
 	else {
 		$("#admWeight").hide(fade_time);
+		$("#webgrouper_patient_case_adm_weight").attr("disabled", true)
 	}
 }
 
