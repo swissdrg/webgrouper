@@ -1,6 +1,6 @@
 - (count/5).times do |i|
   .field_row{:id => "row_#{i}", :style => i > 0 ? "display:none" : "display:block"}
-    = label_tag 'Diagnosen:'
+    = label_tag t kind
     - 5.times do |j|
       = text_field_tag "webgrouper_patient_case[#{kind}][#{i}][#{j}]"
     %span.row_field_buttons{:id => "row_field_buttons_#{i}"}

@@ -44,7 +44,7 @@ de:
         sep: 'Entlassart:'
         los: 'Verweildauer:'
         hmv: 'Beatmungszeit:'
-        pdx: 'Hauptdiagnosen:'
+        pdx: 'Hauptdiagnose:'
         diagnoses: 'Nebendiagnosen:'
         procedures: 'Prozeduren:'
   # Buttons

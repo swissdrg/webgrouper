@@ -8,8 +8,9 @@
   %fieldset
     = f.input :sex, :collection => [:M , :W, :U], :checked => :U, :include_blank => false
     .sameline
-      = f.input :age
-      = f.input :age_mode, :as => :select, :collection => [:years, :days], :include_blank => false, :input_html => { :onchange => "admWeightControl(500)" }
+      = f.input :age, :wrapper_tag => :span
+      = f.input :age_mode, :as => :select, :collection => [:years, :days], :include_blank => false, :input_html => { :onchange => "admWeightControl(500)" }, :label => false, :wrapper_tag => :span
+    
     = f.input :birth_date, :input_html => { :class => "date_picker" }
     #admWeight
       = f.input :adm_weight
@@ -22,11 +23,15 @@
     = f.input :los
   %fieldset
     = f.input :hmv
-    = f.input :pdx
     / = f.input :diagnoses
     / = f.input :procedures
+  %fieldset
     .diagnoses
+      = f.input :pdx
       = render "shared/fields", :kind => "diagnoses", :count => 99
+    %p
+    .procedures
+      = render "shared/fields", :kind => "procedures", :count => 100
     
   = f.submit
   

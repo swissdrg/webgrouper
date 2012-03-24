@@ -9,6 +9,9 @@ fr:
   sep06: 'transféré (dans un autre hôpital)'
   sep07: 'décédé'
   sep00: 'normal'
+  
+  diagnoses:  'Diagnostics secondaires:'
+  procedures: 'Procédures:'
 
   errors: &errors
     format: Le %{attribute} %{message}

@@ -13,3 +13,6 @@ en:
   sep06: 'transfered to another hospital'
   sep07: 'deceased'
   sep00: 'normal'
+  
+  diagnoses:  'Secondary Diagnoses:'
+  procedures: 'Procedures:'

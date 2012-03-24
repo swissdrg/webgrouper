@@ -10,6 +10,10 @@ de:
   sep07: 'Verstorben'
   sep00: 'Normal'
   
+  diagnoses:  'Nebendiagnosen:'
+  procedures: 'Prozeduren:'  
+  
+  
   found_errors: "Folgende Fehler wurden gefunden:"
   errors: &errors
     format: ! '%{attribute} %{message}'
