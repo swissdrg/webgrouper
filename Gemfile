@@ -7,3 +7,8 @@ gem 'haml', '3.1.4'
 gem 'haml-rails', '0.3.4'
 gem 'simple_form'
 gem 'validates_timeliness', '3.0.2'
+
+group :test do
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+end
