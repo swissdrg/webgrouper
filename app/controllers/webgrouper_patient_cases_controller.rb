@@ -15,8 +15,7 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def group(patient_case)
-    kernel = org.swissdrg.grouper.kernel.GrouperKernel.create("spec.bin")
-    @result = kernel.group(patient_case)
+    @result = GROUPER.group(patient_case)
     render 'index'
   end
   
