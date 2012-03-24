@@ -11,21 +11,7 @@ class WebgrouperPatientCase < PatientCase
   
   attr_accessor :age,
                 :age_mode
-                
-  #TODO: Add more validations
-  #   8. Falls Geburtsdatum und Aufnahmedatum angegegeben, wird das Alter errechnet.
-  
-  #   DONE- 1. Aufnahme- und Entlassdatum sind gültige Daten im Format 12.03.2012.
-  #   DONE- 2. Aufnahme- und Entlassdatum liegen nicht in der Zukunft.
-  #   DONE- 3. Urlaubstage ist positive Ganzzahl, leer oder 0.
-  #   DONE- 4. Verweildauer ist grösser gleich 1 und ganzzahlig.
-  #   DONE- 5. Falls Aufnahme- und Entlassdaten angegegeben sind, wird die Verweildauer berechnet (inklusive Abzug von Urlaub)
-  #   DONE- 6. Geburtstag ist gültiges Datum im Format 12.03.2012 und liegt nicht in der Zukunft.
-  #   DONE- 7. Alter: Wertbereich für Alter in Jahren: 1-124, Wetbereich für Alter in Tagen: 1-366.
-  #   DONE- 9. Aufnahmegeichtsfeld wird nur angezeigt, falls Alter in Tagen.
-  #   DONE- 10. Aufnahmegewicht Wertebereich: 250 - 19'999
-  #   DONE- 11. Beatmungszeit: positive Ganzzahl
-  
+
   
   validates :sex,             :presence => true
   validates_date :entry_date,      :on_or_before => :today, :allow_blank => true
