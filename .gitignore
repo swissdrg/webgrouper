@@ -56,3 +56,11 @@ pickle-email-*.html
 
 # Thumbnails
 ._*
+
+# careful with GROUPER-KERNEL:
+*.dll
+*.lib
+*.so*
+*.h
+*.bin
+

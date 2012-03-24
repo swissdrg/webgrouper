@@ -30,9 +30,19 @@ $("#webgrouper_patient_case_birth_date").live("focus change", function() {
 	var today = new Date();
 	var age = Math.floor(Math.ceil(today - bd) / (1000 * 60 * 60 * 24 * 365));
 	
-	if (!(isNaN(age)) && age > 0){
+	if (!(isNaN(age)) && bd < today) {
+		if (age >= 1) {
+			$('#webgrouper_patient_case_age_mode').val("year");
 			$('#webgrouper_patient_case_age').val(age);
 		}
+		else {
+			$('#webgrouper_patient_case_age_mode').val("days");
+			$('#webgrouper_patient_case_age').val(daydiff(bd, today, 0));
+		}
+	}
+	else {
+		$('#webgrouper_patient_case_age').val("");
+	}
 });
 
 /**
@@ -64,7 +74,7 @@ function admWeightControl(fade_time) {
 
 function parseDate(str) {
     var mdy = str.split('.')
-    return new Date(mdy[2], mdy[1], mdy[0]-1);
+    return new Date(mdy[2], mdy[1]-1, mdy[0]-1);
 }
 
 function daydiff(first, second, leave_days) {
