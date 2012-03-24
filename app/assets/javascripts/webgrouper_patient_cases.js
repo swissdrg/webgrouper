@@ -11,17 +11,8 @@ $(".calc_los").live("focus change", function() {
 	var second = parseDate($('#webgrouper_patient_case_exit_date').val())
 	var leave_days = $('#webgrouper_patient_case_leave_days').val()
 	var diff = daydiff(first, second, leave_days);
-	if(diff < 0){
-		diff = ""
-		this.style.backgroundColor = "red"
-	}
-	else{
-		if (!(isNaN(diff))){
-			$('#webgrouper_patient_case_los').val(diff);
-			$(".calc_los").each(function() {
-				this.style.backgroundColor = "transparent"
-			});
-		}
+	if (!(isNaN(diff))){
+		$('#webgrouper_patient_case_los').val(diff);
 	}
 });
 
