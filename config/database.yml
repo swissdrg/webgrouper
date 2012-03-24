@@ -1,0 +1,32 @@
+development:
+    database: webgrouper_development
+    adapter: jdbcmysql
+    encoding: utf8
+    reconnect: true
+    pool: 5
+    username: root
+    password: 
+    host: 127.0.0.1
+    socket: /tmp/mysql.sock
+
+test:
+    database: webgrouper_test
+    adapter: jdbcmysql
+    encoding: utf8
+    reconnect: false
+    pool: 5
+    username: root
+    password: 
+    host: 127.0.0.1
+    socket: /tmp/mysql.sock
+
+production:
+    database: webgrouper_production
+    adapter: jdbcmysql
+    encoding: utf8
+    reconnect: false
+    pool: 5
+    username: root
+    password: 
+    socket: /tmp/mysql.sock
+    host: 127.0.0.1
