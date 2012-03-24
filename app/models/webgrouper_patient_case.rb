@@ -56,6 +56,13 @@ class WebgrouperPatientCase < PatientCase
       self.age_years = self.age
     end
     
+    self.age = 40
+    self.los = 10
+    self.birth_date = (today - 10.days).strftime("%d%m%Y")
+    self.entry_date = (today - 10.days).strftime("%d%m%Y")
+    self.exit_date = today.strftime("%d%m%Y")
+    self.pdx = ""
+    
     attributes.each do |name, value|
       if send(name).is_a? Fixnum
         value = value.to_i 
@@ -77,7 +84,13 @@ class WebgrouperPatientCase < PatientCase
     false
   end
   
+  private
+  
   def age_mode_days?
     age_mode == 'days'
+  end
+  
+  def today
+    Time.now
   end
 end
