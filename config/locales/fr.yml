@@ -1,14 +1,6 @@
-fr:
-  adm11: "transféré (Séjour plus long que 24 heures dans l'hôpital transférant.)"
-  adm06: "transféré (Séjour plus court que 24 heures dans l'hôpital transférant.)"
-  adm00: 'normal'
-  adm99: 'inconnu'
-  
-  sep99: 'inconnu'
-  sep04: "terminé contre l'avis médical"
-  sep06: 'transféré (dans un autre hôpital)'
-  sep07: 'décédé'
-  sep00: 'normal'
+fr: 
+  diagnoses:  'Diagnostics secondaires:'
+  procedures: 'Procédures:'
 
   errors: &errors
     format: Le %{attribute} %{message}

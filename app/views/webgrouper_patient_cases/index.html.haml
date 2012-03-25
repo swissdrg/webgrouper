@@ -8,8 +8,11 @@
   %fieldset
     = f.input :sex, :collection => [:M , :W, :U], :checked => :U, :include_blank => false
     .sameline
-      = f.input :age
-      = f.input :age_mode, :as => :select, :collection => [:years, :days], :include_blank => false, :input_html => { :onchange => "admWeightControl(500)" }
+      = f.input :age, :wrapper_tag => :span
+      = f.input :age_mode, :as => :select, :collection => [:years, :days],
+        :include_blank => false, :input_html => { :onchange => "admWeightControl(500)" },
+        :label => false, :wrapper_tag => :span
+    
     = f.input :birth_date, :input_html => { :class => "date_picker" }
     #admWeight
       = f.input :adm_weight
@@ -17,14 +20,25 @@
     = f.input :entry_date, :input_html => { :class => "date_picker calc_los" }
     = f.input :exit_date, :input_html => { :class => "date_picker calc_los" }
     = f.input :leave_days, :input_html => { :class => "calc_los" }
-    = f.input :adm, :as => :select, :collection => [[t(:adm11) ,"11"], [t(:adm00), "00"], [t(:adm06), "06"], [t(:adm99), "99"]], :include_blank => false
-    = f.input :sep, :as => :select, :collection => [[t(:sep06) ,"06"], [t(:sep04), "04"], [t(:sep00), "00"], [t(:sep07), "07"], [t(:sep99), "99"]], :include_blank => false
+    = f.input :adm, :as => :select, :include_blank => false,
+      :collection => [[:adm11 ,"11"], [:adm00, "00"], [:adm06, "06"], [:adm99, "99"]],
+      :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.adm.#{el.first}" }
+    = f.input :sep, :as => :select, :include_blank => false,
+      :collection => [[:sep06 ,"06"], [:sep04, "04"], [:sep00, "00"], [:sep07, "07"], [:sep99, "99"]],
+      :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.sep.#{el.first}" }
     = f.input :los
   %fieldset
     = f.input :hmv
-    = f.input :pdx
-    = f.input :diagnoses
-    = f.input :procedures
+    / = f.input :diagnoses
+    / = f.input :procedures
+  %fieldset
+    .diagnoses
+      = f.input :pdx
+      / = render "shared/fields", :kind => "diagnoses", :count => 99
+    %p
+    .procedures
+      / = render "shared/fields", :kind => "procedures", :count => 100
+    
   = f.submit
   
 %h2 Gruppierung

@@ -1,4 +1,8 @@
 it:
+  
+  diagnoses:  'diagnosi secondarie:'
+  procedures: 'procedure:'
+  
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:

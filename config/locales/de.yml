@@ -1,14 +1,7 @@
 de:
-  adm11: 'Verlegt (Aufenthalt länger als 24 Stunden im verlegenden Spital)'
-  adm06: 'Verlegt (Aufenthalt kürzer als 24 Stunden im verlegenden Spital)'
-  adm00: 'Normal'
-  adm99: 'Unbekannt'
+  diagnoses:  'Nebendiagnosen:'
+  procedures: 'Prozeduren:'  
   
-  sep99: 'Unbekannt'
-  sep04: 'Gegen ärztlichen Rat beendet'
-  sep06: 'Verlegt (in anderes Spital)'
-  sep07: 'Verstorben'
-  sep00: 'Normal'
   
   found_errors: "Folgende Fehler wurden gefunden:"
   errors: &errors

@@ -1,0 +1,8 @@
+- (count/5).times do |i|
+  .field_row{:id => "row_#{i}", :style => i > 0 ? "display:none" : "display:block"}
+    = label_tag t kind
+    - 5.times do |j|
+      = text_field_tag "webgrouper_patient_case[#{kind}][#{i}][#{j}]"
+    %span.row_field_buttons{:id => "row_field_buttons_#{i}"}
+      = link_to image_tag("bullet_toggle_plus.png"), "javascript:showFields(30, #{i})" unless i > (count/5)-2
+      = link_to image_tag("bullet_toggle_minus.png"), "javascript:hideFields(30, #{i})" unless i < 1

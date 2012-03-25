@@ -15,6 +15,17 @@ fr:
           U: 'Inconnu'
           M: 'Masculin'
           W: 'Féminin'
+        adm:
+          adm11: "transféré (Séjour plus long que 24 heures dans l'hôpital transférant.)"
+          adm06: "transféré (Séjour plus court que 24 heures dans l'hôpital transférant.)"
+          adm00: 'normal'
+          adm99: 'inconnu'
+        sep:
+          sep99: 'inconnu'
+          sep04: "terminé contre l'avis médical"
+          sep06: 'transféré (dans un autre hôpital)'
+          sep07: 'décédé'
+          sep00: 'normal'
         age_mode:
           years: 'Ans'
           days: 'Jours'
@@ -32,7 +43,6 @@ fr:
         adm: "Mode d'admission:"
         sep: 'Mode de sortie:'
         los: 'Durée du séjour:'
-        sdf: '!SDF!:'
         hmv: 'Temps de respiration artificielle:'
         pdx: 'Diagnostic principal:'
         diagnoses: 'Diagnostics secondaires:'
