@@ -16,7 +16,7 @@ class WebgrouperPatientCase < PatientCase
   validates :sex,             :presence => true
   validates_date :entry_date,      :on_or_before => :today, :allow_blank => true
   validates_date :exit_date,       :on_or_before => :today, :after => :entry_date, :allow_blank => true
-  validates_date :birth_date,      :on_or_before => :today
+  validates_date :birth_date,      :on_or_before => :today, :allow_blank => true
   validates :leave_days,      :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
   validates :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 125}, :unless => :age_mode_days?
   validates :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 367}, :if => :age_mode_days?
@@ -44,10 +44,13 @@ class WebgrouperPatientCase < PatientCase
     # set attributes to display correct default values in view
     self.age = 40
     self.los = 10
-    self.birth_date = (today - 10.days).strftime("%d%m%Y")
+    self.birth_date = ""
     self.entry_date = (today - 10.days).strftime("%d%m%Y")
     self.exit_date = today.strftime("%d%m%Y")
     self.adm_weight = 4000
+	self.adm = "99"
+    self.sep = "99"
+    self.pdx = ""
     
     attributes.each do |name, value|
       if send(name).is_a? Fixnum

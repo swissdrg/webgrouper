@@ -3,7 +3,6 @@
 $(document).ready(function() {
 	addDatePickers()
 	admWeightControl(0);
-	disableTabForLinks();
 });
 
 $(".calc_los").live("focus change", function() {
@@ -19,17 +18,18 @@ $(".calc_los").live("focus change", function() {
 $("#webgrouper_patient_case_birth_date").live("focus change", function() {
 	var bd = parseDate($('#webgrouper_patient_case_birth_date').val());
 	var today = new Date();
-	var age = Math.floor(Math.ceil(today - bd) / (1000 * 60 * 60 * 24 * 365));
+	var year_diff = Math.floor(Math.ceil(today - bd) / (1000 * 60 * 60 * 24 * 365));
 	
-	if (!(isNaN(age)) && bd < today) {
-		if (age >= 1) {
+	if (!(isNaN(year_diff)) && bd < today) {
+		if (year_diff >= 1) {
 			$('#webgrouper_patient_case_age_mode').val("year");
-			$('#webgrouper_patient_case_age').val(age);
+			$('#webgrouper_patient_case_age').val(year_diff);
 		}
 		else {
 			$('#webgrouper_patient_case_age_mode').val("days");
 			$('#webgrouper_patient_case_age').val(daydiff(bd, today, 0));
 		}
+		admWeightControl(500);
 	}
 	else {
 		$('#webgrouper_patient_case_age').val("");

@@ -47,6 +47,8 @@ de:
         pdx: 'Hauptdiagnose:'
         diagnoses: 'Nebendiagnosen:'
         procedures: 'Prozeduren:'
+    hints: 
+      webgrouper_patient_case:
   # Buttons
   helpers:
     submit:
