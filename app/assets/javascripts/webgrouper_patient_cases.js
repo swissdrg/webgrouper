@@ -12,14 +12,17 @@ $(".calc_los").live("focus change", function() {
 	var diff = daydiff(first, second, leave_days);
 	if (!(isNaN(diff))){
 		$('#webgrouper_patient_case_los').val(diff);
+		doBGFade($("#webgrouper_patient_case_los"),[245,255,159],[255,255,255],'transparent',75,20,4 );
 	}
 });
 
 $("#webgrouper_patient_case_birth_date").live("focus change", function() {
+	if ($('#webgrouper_patient_case_birth_date').val() == "") {
+		return;
+	}
 	var bd = parseDate($('#webgrouper_patient_case_birth_date').val());
 	var today = new Date();
 	var year_diff = Math.floor(Math.ceil(today - bd) / (1000 * 60 * 60 * 24 * 365));
-	
 	if (!(isNaN(year_diff)) && bd < today) {
 		if (year_diff >= 1) {
 			$('#webgrouper_patient_case_age_mode').val("year");
@@ -34,6 +37,8 @@ $("#webgrouper_patient_case_birth_date").live("focus change", function() {
 	else {
 		$('#webgrouper_patient_case_age').val("");
 	}
+	doBGFade($("#webgrouper_patient_case_age_mode"),[245,255,159],[255,255,255],'transparent',75,20,4 );
+	doBGFade($("#webgrouper_patient_case_age"),[245,255,159],[255,255,255],'transparent',75,20,4 );
 });
 
 /**
@@ -82,4 +87,29 @@ function parseDate(str) {
 
 function daydiff(first, second, leave_days) {
 		return Math.floor(((second-first)/(1000*60*60*24))-leave_days)
+}
+
+function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
+    var delta = maxValue - minValue;
+    var stepp = minValue+(Math.pow(((1 / totalSteps)*actualStep),powr)*delta);
+    return Math.ceil(stepp)
+}
+
+function doBGFade(elem,startRGB,endRGB,finalColor,steps,intervals,powr) {
+    if (elem.bgFadeInt) window.clearInterval(elem.bgFadeInt);
+    var actStep = 0;
+    elem.bgFadeInt = window.setInterval(
+        function() {
+                elem.css("backgroundColor", "rgb("+
+                        easeInOut(startRGB[0],endRGB[0],steps,actStep,powr)+","+
+                        easeInOut(startRGB[1],endRGB[1],steps,actStep,powr)+","+
+                        easeInOut(startRGB[2],endRGB[2],steps,actStep,powr)+")"
+                );
+                actStep++;
+                if (actStep > steps) {
+                elem.css("backgroundColor", finalColor);
+                window.clearInterval(elem.bgFadeInt);
+                }
+        }
+        ,intervals)
 }

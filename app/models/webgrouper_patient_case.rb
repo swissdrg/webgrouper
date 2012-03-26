@@ -45,11 +45,11 @@ class WebgrouperPatientCase < PatientCase
     self.age = 40
     self.los = 10
     self.birth_date = ""
-    self.entry_date = (today - 10.days).strftime("%d%m%Y")
-    self.exit_date = today.strftime("%d%m%Y")
+    self.entry_date = ""
+    self.exit_date = ""
     self.adm_weight = 4000
-	self.adm = "99"
-    self.sep = "99"
+	  self.adm = "99" #aka unknown
+    self.sep = "99" #aka unknown
     self.pdx = ""
     
     attributes.each do |name, value|
