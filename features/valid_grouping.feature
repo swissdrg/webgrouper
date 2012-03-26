@@ -7,7 +7,7 @@ Feature: Group a valid patient case
     Given the form with initialized standard values
 
     When I enter some random (valid!) data
-    And I press on "group"
+    And I press on "Fall Gruppieren"
 
     Then the grouping should succeed
     And the result should be shown

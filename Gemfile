@@ -10,5 +10,4 @@ gem 'validates_timeliness', '3.0.2'
 
 group :test do
   gem 'cucumber-rails'
-  gem 'database_cleaner'
 end
