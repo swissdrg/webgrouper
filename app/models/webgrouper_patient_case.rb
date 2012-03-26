@@ -37,13 +37,7 @@ class WebgrouperPatientCase < PatientCase
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
   def initialize(attributes = {})
-    super()
-    if age_mode_days?
-      self.age_days = self.age
-    else
-      self.age_years = self.age
-    end
-    
+    super()  
     # initialize attributes to display correct default values in view
     self.age = 40
     self.los = 10
@@ -69,6 +63,12 @@ class WebgrouperPatientCase < PatientCase
         send("set_#{name}", tmp1)
       end
       send("#{name}=", value) unless name == "diagnoses" || name == "procedures"
+    end
+    
+    if age_mode_days?
+      self.age_days = self.age
+    else
+      self.age_years = self.age
     end
   end
   

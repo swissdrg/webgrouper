@@ -16,7 +16,7 @@ Then /^the grouping should succeed$/ do
 end
 
 Then /^the result should be shown$/ do
-  step %{I should see "(DRG: 960Z, MDC: 01, PCCL: 0)"}
+  step %{I should see "(DRG: B75B, MDC: 01, PCCL: 0)"}
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
