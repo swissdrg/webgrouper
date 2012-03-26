@@ -7,8 +7,7 @@ development:
     username: root
     password: 
     host: 127.0.0.1
-    socket: /tmp/mysql.sock
-
+    
 test:
     database: webgrouper_test
     adapter: jdbcmysql
@@ -18,7 +17,6 @@ test:
     username: root
     password: 
     host: 127.0.0.1
-    socket: /tmp/mysql.sock
 
 production:
     database: webgrouper_production
@@ -28,5 +26,4 @@ production:
     pool: 5
     username: root
     password: 
-    socket: /tmp/mysql.sock
     host: 127.0.0.1

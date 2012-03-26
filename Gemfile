@@ -1,6 +1,9 @@
 source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 gem 'mysql2', '~>0.3.0'
+gem "jdbc-mysql", "~> 5.1.13"
+gem "activerecord-jdbc-adapter", "~> 1.2.2"
+gem "activerecord-jdbcmysql-adapter", "~> 1.2.2"
 gem 'jruby-openssl'
 gem 'json'
 gem 'jquery-rails'
