@@ -11,7 +11,6 @@ class WebgrouperPatientCase < PatientCase
   
   attr_accessor :age,
                 :age_mode
-
   
   validates :sex,             :presence => true
   validates_date :entry_date,      :on_or_before => :today, :allow_blank => true
@@ -23,9 +22,13 @@ class WebgrouperPatientCase < PatientCase
   validates :age_years,       :presence => true
   validates :age_days,        :presence => true
   validates :adm_weight,      :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 250, :less_than_or_equal_to => 20000}, :if => :age_mode_days?
+  #Admission mode
   validates :adm,             :presence => true
+  #Separation mode
   validates :sep,             :presence => true
+  #Length of stay
   validates :los,             :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
+  #artificial respiration time
   validates :hmv,             :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
   # validates :pdx,             :presence => true
   # validates :diagnoses,       :presence => true
@@ -41,7 +44,7 @@ class WebgrouperPatientCase < PatientCase
       self.age_years = self.age
     end
     
-    # set attributes to display correct default values in view
+    # initialize attributes to display correct default values in view
     self.age = 40
     self.los = 10
     self.birth_date = ""
