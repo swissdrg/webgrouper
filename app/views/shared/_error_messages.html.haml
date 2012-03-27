@@ -1,0 +1,8 @@
+- if @webgrouper_patient_case.errors.any?
+  .errorflash
+    %h4
+      = t :found_errors
+    %ul
+      - @webgrouper_patient_case.errors.each do |message|
+        %li
+          = t("simple_form.labels.webgrouper_patient_case." + message[0].to_s) + " " + message[1]
