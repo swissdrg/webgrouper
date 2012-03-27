@@ -53,16 +53,8 @@ class WebgrouperPatientCase < PatientCase
       if send(name).is_a? Fixnum
         value = value.to_i 
       end
-      if name == "diagnoses" || name == "procedures"
-        temp = []
-        name == "procedures" ? length = 100 : length = 99
-        length.times {temp << nil}
-        tmp1 = temp.to_java(:string)
-        tmp = [value].to_java(:string)
-        (0..(tmp.size-1)).each {|i| tmp1[i] = tmp[i]}
-        send("set_#{name}", tmp1)
-      end
-      send("#{name}=", value) unless name == "diagnoses" || name == "procedures"
+
+      send("#{name}=", value) 
     end
     
     if age_mode_days?
@@ -75,6 +67,27 @@ class WebgrouperPatientCase < PatientCase
   def persisted?
     false
   end
+
+  def diagnoses=(diagnoses)
+	  set_diagnoses hash_to_java_array(diagnoses, 99)
+  end
+
+  def procedures=(procedures)
+		set_procedures hash_to_java_array(procedures, 100)
+  end
+  
+  def hash_to_java_array(hash, length)
+		result = []
+		tmp = []
+		length.times {result << nil}
+		result = result.to_java(:string)
+  	hash.each do |key, value| 
+			tmp << value unless value.blank? 
+		end
+		tmp_java_array = tmp.to_java(:string)
+		(0..(tmp_java_array.size-1)).each {|i| result[i] = tmp_java_array[i]}
+		result
+	end
   
   private
   
