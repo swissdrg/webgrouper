@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Webgrouper::Application.config.secret_token = '77489079423c9d26aa583d48579129a47c8ec5ea2f90e89b90abd715ba4fd169a80aaf9e5692862780a32ec4a4fa4f58d70af14319972d0bd40bf73441923663'
+Webgrouper::Application.config.secret_token = '6b5d69ebf77f5a5c9235a7533aaa8cf89465c6030a79dc146c59828e96afe3095aeb8d24d4336dc32dd8671d05c7f1435730ff6b9d908031a9b3ee155a660b8a'

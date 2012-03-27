@@ -1,3 +1,13 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+#
+# Install the MySQL driver:
+#   gem install activerecord-jdbcmysql-adapter
+#
+# Configure Using Gemfile
+# gem 'activerecord-jdbcmysql-adapter'
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
     database: webgrouper_development
     adapter: jdbcmysql
@@ -8,7 +18,7 @@ development:
     password: 
     host: 127.0.0.1
     
-test:
+test: &test
     database: webgrouper_test
     adapter: jdbcmysql
     encoding: utf8
@@ -27,3 +37,6 @@ production:
     username: root
     password: 
     host: 127.0.0.1
+
+cucumber:
+  <<: *test

@@ -58,7 +58,7 @@ SimpleForm.setup do |config|
   config.button_class = 'btn'
 
   # Method used to tidy up errors.
-  config.error_method = :first
+  # config.error_method = :first
 
   # Default tag used for error notification helper.
   config.error_notification_tag = :div
@@ -76,7 +76,7 @@ SimpleForm.setup do |config|
   # config.collection_value_methods = [ :id, :to_s ]
 
   # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
-  config.collection_wrapper_tag = :div
+  # config.collection_wrapper_tag = nil
 
   # You can define the class to use on all collection wrappers. Defaulting to none.
   # config.collection_wrapper_class = nil
@@ -102,7 +102,7 @@ SimpleForm.setup do |config|
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
 
   # Whether attributes are required by default (or not). Default is true.
-  config.required_by_default = false
+  # config.required_by_default = true
 
   # Tell browsers whether to use default HTML5 validations (novalidate option).
   # Default is enabled.
