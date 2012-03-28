@@ -4,7 +4,7 @@ class WebgrouperPatientCasesController < ApplicationController
     @webgrouper_patient_case = WebgrouperPatientCase.new
   end
   
-  def create
+  def create_query
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)

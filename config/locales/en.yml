@@ -2,6 +2,6 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  found_errors: "You have the following errors:"
-  diagnoses:  'Secondary Diagnoses:'
-  procedures: 'Procedures:'
+  found_errors: 'You have the following errors:'
+  diagnoses:    'Secondary Diagnoses:'
+  procedures:   'Procedures:'
