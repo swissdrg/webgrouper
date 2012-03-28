@@ -69,21 +69,34 @@ class WebgrouperPatientCase < PatientCase
   end
 
   def diagnoses=(diagnoses)
-	  set_diagnoses hash_to_java_array(diagnoses, 99)
+	  set_diagnoses hash_to_java_array(diagnoses, 99, true)
   end
 
   def procedures=(procedures)
-		set_procedures hash_to_java_array(procedures, 100)
+		set_procedures hash_to_java_array(procedures, 100, false)
   end
   
-  def hash_to_java_array(hash, length)
+  def hash_to_java_array(hash, length, is_diagnoses)
 		result = []
 		tmp = []
 		length.times {result << nil}
 		result = result.to_java(:string)
-  	hash.each do |key, value| 
-			tmp << value unless value.blank? 
+		
+		if is_diagnoses		
+			hash.each do |key, value| 
+				tmp << value unless value.blank? 
+			end
+		else
+			puts "bli bla blup"
+			hash.each do |key, value| 
+				tmptmp = ""				
+				value.each do |key2, value2|
+					tmptmp += value2				
+				end
+				tmp << tmptmp 
+			end
 		end
+
 		tmp_java_array = tmp.to_java(:string)
 		(0..(tmp_java_array.size-1)).each {|i| result[i] = tmp_java_array[i]}
 		result
