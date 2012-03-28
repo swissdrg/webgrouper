@@ -16,6 +16,20 @@ Install the needed bundles by running
 	bundle install
 	
 in the project folder.
+
+### Configuring the database
+
+Before configuring the database for the rails project, I assume that you have installed mysql.
+
+Enter
+	
+	mysql -u root -p
+
+in your command line tool and enter the password. (If no password was set for the root user, just press enter)
+If you see a mysql promt. you should have installed it correctly.
+
+
+
 	
 ## Run
 
