@@ -68,16 +68,16 @@ function admWeightControl(fade_time) {
 	}
 }
 
-function showFields(fade_time, row_nr) {
-	$("#row_field_buttons_"+row_nr).toggle(false);
+function showFields(row_nr, kind) {
+	$("#"+kind+"_row_field_buttons_"+row_nr).toggle(false);
 	row_nr++;
-	$("#row_"+row_nr).toggle(true);
+	$("#"+kind+"_row_"+row_nr).toggle(true);
 }
 
-function hideFields(fade_time, row_nr) {
-	$("#row_"+row_nr).toggle(false);
+function hideFields(row_nr, kind) {
+	$("#"+kind+"_row_"+row_nr).toggle(false);
 	row_nr--;
-	$("#row_field_buttons_"+row_nr).toggle(true);
+	$("#"+kind+"_row_field_buttons_"+row_nr).toggle(true);
 }
 
 function parseDate(str) {
