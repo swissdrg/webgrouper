@@ -25,8 +25,20 @@ Enter
 	
 	mysql -u root -p
 
-in your command line tool and enter the password. (If no password was set for the root user, just press enter)
+in your command line tool and enter your root password. (If no password was set for the root user, just press enter)
 If you see a mysql promt. you should have installed it correctly.
+
+Now cd into your webgrouper projects directory and check which branch your currently working on. If you're not on the 
+branch called 'database' commit your current changes and checkout to 'database'.
+
+	git fetch --all
+	git checkout -b database
+	git pull origin database
+	git push -u origin database
+
+Now, you'll need a file called 'database.yml'. Get it here: http://db.tt/jP59qSvN
+
+Copy it into your app/config/ directory
 
 
 
