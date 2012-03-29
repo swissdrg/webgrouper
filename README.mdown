@@ -45,7 +45,7 @@ Double check if the databases for all environments are called 'webgrouper'
 
 To create the empty databases for all environments use following command:
 
-  rake db:create:all
+	rake db:create:all
 
 
 	
