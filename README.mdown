@@ -40,6 +40,12 @@ Now, you'll need a file called 'database.yml'. Get it here: http://db.tt/jP59qSv
 
 Copy it into your app/config/ directory
 
+Modify it if necessary. (If you've set a password for mysql. Enter it there)
+Double check if the databases for all environments are called 'webgrouper'
+
+To create the empty databases for all environments use following command:
+
+  rake db:create:all
 
 
 	
