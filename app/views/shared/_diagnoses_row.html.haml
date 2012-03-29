@@ -1,0 +1,4 @@
+- 5.times do
+  = text_field_tag "webgrouper_patient_case[diagnoses][#{field_counter}]", @webgrouper_patient_case.send("#{kind}")[field_counter], :size => 7
+  - field_counter = field_counter+1
+%span.spacer

@@ -14,6 +14,8 @@
 /log/*.log
 /tmp
 
+config/database.yml
+
 # From github template for ruby:
 *.gem
 *.rbc
@@ -56,3 +58,11 @@ pickle-email-*.html
 
 # Thumbnails
 ._*
+
+# careful with GROUPER-KERNEL:
+*.dll
+*.lib
+*.so*
+*.h
+*.bin
+

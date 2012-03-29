@@ -2,7 +2,7 @@
 
 = render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
 
-= simple_form_for @webgrouper_patient_case, :method => :post do |f|
+= simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :get do |f|
   %fieldset
     System stuff
   %fieldset
@@ -30,11 +30,12 @@
   %fieldset
     .diagnoses
       = f.input :pdx
-      /= render "shared/fields", :kind => "diagnoses", :count => 99
+      = render "shared/fields", :kind => "diagnoses", :count => 99
     %p
     .procedures
-      /= render "shared/fields", :kind => "procedures", :count => 100
+      = render "shared/fields", :kind => "procedures", :count => 100
   = f.submit
+  = button_to "clear_form(needs translation)", webgrouper_patient_cases_path, :method => :get
   
 %h2 Gruppierung
 %p= @result
