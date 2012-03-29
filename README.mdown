@@ -43,6 +43,10 @@ Copy it into your app/config/ directory
 Modify it if necessary. (If you've set a password for mysql. Enter it there)
 Double check if the databases for all environments are called 'webgrouper'
 
+Before me move on, update the bundle
+
+	bundle install
+
 To create the empty databases for all environments use following command:
 
 	rake db:create:all
