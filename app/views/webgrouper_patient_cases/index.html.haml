@@ -14,7 +14,7 @@
               :input_html => { :class => "date_picker", :size => 10 }
     .sameline
       = f.input :age, 
-                :input_html => { :size => 6 }, 
+                :input_html => { :size => 10 }, 
                 :wrapper_tag => :span
       = f.input :age_mode, 
                 :as => :select, 
@@ -24,10 +24,10 @@
                 :label => false, 
                 :wrapper_tag => :span
     = f.input :hmv, 
-              :input_html => { :size => 6 }
+              :input_html => { :size => 10 }
     #admWeight
-      = f.input :adm_weight
-                :input_html => { :size => 6 }
+      = f.input :adm_weight,
+                :input_html => { :size => 10 }
   %fieldset 
     = f.input :entry_date, 
               :input_html => { :class => "date_picker calc_los" }
