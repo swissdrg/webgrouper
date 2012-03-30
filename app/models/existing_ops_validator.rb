@@ -1,25 +1,19 @@
 class ExistingOpsValidator < ActiveModel::EachValidator
 
-#will automatically be called if one should validate existing_icd as true
-attr_accessor :error_field
-
   def validate_each(record, attribute, value)
-    short_code = value.gsub(/\./, "").strip
-    record.errors[attribute] << "invalid" if procedure_checker(value)
+    procedure_checker(value)
   end
 
 private
-
-	def procedure_checker(value)
+	def procedure_checker(record, attribute, value)
 		error_happened = false
 		value.each do |item| 
-			original_string = item
-			short_code = item.gsub(/\$/, "").strip 
-			# finde  1. teil von item
-			error_happened = OPS.find_by_IcShort(short_code).nil?
-			if(error_happened) #save error in error_field, speichere item?
+			short_code = string.match(/(\w*)\$(\w*)\$(\w*)/)[1]
+			error_happened = OPS.find_by_OpShort(short_code).nil?
+			if(error_happened)
+				error_msg = ""
+				error_msg = short_code unless short_code.empty?
+				record.errors[attribute] << error_msg
+			end
 		end
-		
-		#save error msg
-		error_happened
 	end
