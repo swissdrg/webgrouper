@@ -1,0 +1,36 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.locales {
+	float: right;
+}
+
+.sameline {
+	margin-bottom: 1em;
+}
+
+.spacer {
+	margin-right: 1em;
+}
+
+/*
+ * Different fieldsets:
+ */
+
+fieldset#system {
+    
+}
+
+fieldset#stay {
+   //float: left;
+}
+
+fieldset#patient-data {
+    
+}
+
+fieldset#drg-proc {
+    
+}
