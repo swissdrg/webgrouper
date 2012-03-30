@@ -37,4 +37,4 @@
   = f.submit
   = button_to "clear_form(needs translation)", webgrouper_patient_cases_path, :method => :get
   
-= render "shared/result" unless @result.nil?
+= render "shared/result" unless @result.nil? || @result.getGst.nil?
