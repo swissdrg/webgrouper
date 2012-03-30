@@ -30,10 +30,10 @@
   %fieldset
     .diagnoses
       = f.input :pdx
-      = render "shared/fields", :kind => "diagnoses", :count => 99
+      = render "shared/fields", :kind => "diagnoses", :count => 99, :patient_case => @webgrouper_patient_case
     %p
     .procedures
-      = render "shared/fields", :kind => "procedures", :count => 100
+      = render "shared/fields", :kind => "procedures", :count => 100, :patient_case => @webgrouper_patient_case
   = f.submit
   = button_to "clear_form(needs translation)", webgrouper_patient_cases_path, :method => :get
   

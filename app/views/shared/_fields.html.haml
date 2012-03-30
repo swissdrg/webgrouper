@@ -3,7 +3,7 @@
 - (no_rows).times do |row_counter|
   .field_row{:id => "#{kind}_row_#{row_counter}", :style => row_counter > 0 ? "display:none" : "display:block"}
     = label_tag t kind
-    = render "shared/#{kind}_row", :kind => kind, :field_counter => field_counter
+    = render "shared/#{kind}_row", :kind => kind, :field_counter => field_counter, :patient_case => patient_case
     - field_counter += kind == "diagnoses" ? 5 : 3
       
     %span.row_field_buttons{:id => "#{kind}_row_field_buttons_#{row_counter}"}
