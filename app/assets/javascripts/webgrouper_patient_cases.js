@@ -75,7 +75,7 @@ function showFields(row_nr, kind) {
 }
 
 function hideFields(row_nr, kind) {
-	// $("#"+kind+"_row_"+row_nr+" > input").html() = "";
+	$("#"+kind+"_row_"+row_nr+" > input").val("");
 	$("#"+kind+"_row_"+row_nr).toggle(false);
 	row_nr--;
 	$("#"+kind+"_row_field_buttons_"+row_nr).toggle(true);
