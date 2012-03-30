@@ -28,7 +28,7 @@ class WebgrouperPatientCase < PatientCase
   validates :los,             :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
   #artificial respiration time
   validates :hmv,             :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
-  # validates :pdx,             :presence => true
+  validates :pdx,             :presence => true, :existing_icd => true
   # validates :diagnoses,       :presence => true
   # validates :procedures,      :presence => true
   
@@ -69,6 +69,14 @@ class WebgrouperPatientCase < PatientCase
 
   def diagnoses=(diagnoses)
 	  set_diagnoses hash_to_java_array(diagnoses, 99, true)
+  end
+  
+  def diagnoses
+    diagnoses = []
+    get_diagnoses.each do |d|
+      diagnoses << d unless d.nil?
+    end
+    diagnoses
   end
 
   def procedures=(procedures)
