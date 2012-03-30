@@ -19,29 +19,24 @@ in the project folder.
 
 ### Configuring the database
 
-Before configuring the database for the rails project, I assume that you have installed mysql.
+Before configuring the database for the rails project, I assume that you have installed mysql. On an Ubuntu derivative
+you can install this by running
 
-Enter
+	supo apt-get install mysql-server
+
+To check if it installed correctly, enter
 	
 	mysql -u root -p
 
-in your command line tool and enter your root password. (If no password was set for the root user, just press enter)
-If you see a mysql promt. you should have installed it correctly.
-
-Now cd into your webgrouper projects directory and check which branch your currently working on. If you're not on the 
-branch called 'database' commit your current changes and checkout to 'database'.
-
-	git fetch --all
-	git checkout -b database
-	git pull origin database
-	git push -u origin database
+in a terminal and enter your mysql-root password you set during the installation. 
+(If no password was set for the root user, just press enter)
+If you see a mysql promt, you should have installed it correctly.
 
 Now, you'll need a file called 'database.yml'. Get it here: http://db.tt/jP59qSvN
 
-Copy it into your app/config/ directory
+Copy it into your app/config/ directory and make the appropriate changes to the password entry in the file.
 
-
-
+TODO: How to put db-dump into database
 	
 ## Run
 
