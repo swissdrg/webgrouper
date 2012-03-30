@@ -1,6 +1,20 @@
 fr: 
   diagnoses:  'Diagnostics secondaires:'
   procedures: 'Procédures:'
+  
+  result:
+    grouperstatus: Statut du groupeur
+    grouperstatus_modes:
+      NORMAL_GROUP: Groupement normal
+      NO_DRG: Ensemble de données ne correspond à aucun critère d'une quelconque DRG
+      ICT_NOT_VALID_PDX: Diagnostic principal inadmissible
+      INVALID_OR_EMPTY_PDX: Diagnostic principal non valable ou manquant
+      INVALID_LOS: Durée du séjour non valable
+      INVALID_SDF: Valeur non valable dans la case Sameday
+      INVALID_SEP_OR_ADM: Raison d'admission ou de sortie non valable
+      INVALID_SEX: Sexe non valable
+      INVALID_AGE: Âge non valable
+      INVALID_ADMWEIGHT: Poids à l'admission non valable
 
   errors: &errors
     format: Le %{attribute} %{message}
