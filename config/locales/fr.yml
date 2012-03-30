@@ -3,7 +3,8 @@ fr:
   procedures: 'Procédures:'
   
   result:
-    grouperstatus:
+    grouperstatus: Statut du groupeur
+    grouperstatus_modes:
       NORMAL_GROUP: Groupement normal
       NO_DRG: Ensemble de données ne correspond à aucun critère d'une quelconque DRG
       ICT_NOT_VALID_PDX: Diagnostic principal inadmissible

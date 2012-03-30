@@ -3,30 +3,30 @@
   %table
     %tbody
       %tr
-        %td
-          MDC
+        %th
+          MDC:
         %td
           = @result.getMdc
         %td
           {DATABASE_LOOKUP}
       %tr
-        %td
-          DRG
+        %th
+          DRG:
         %td
           = @result.getDrg
         %td
           {DATABASE_LOOKUP}
       %tr
-        %td
-          PCCL
+        %th
+          PCCL:
         %td
           = @result.getPccl
         %td
           Complication and Comorbidity level of this case. (0-4)
       %tr
-        %td
-          Grouperstatus 
+        %th
+          = t("result.grouperstatus") + ":"
         %td
           = @result.getGst.ordinal
         %td
-          = t("result.grouperstatus." + @result.getGst.to_s)
+          = t("result.grouperstatus_modes." + @result.getGst.to_s)
