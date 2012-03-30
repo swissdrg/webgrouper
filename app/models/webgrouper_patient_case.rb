@@ -83,6 +83,14 @@ class WebgrouperPatientCase < PatientCase
 		set_procedures hash_to_java_array(procedures, 100, false)
   end
   
+  def procedures
+    procedures = []
+    get_procedures.each do |d|
+      procedures << d unless d.nil?
+    end
+    procedures
+  end
+  
   def hash_to_java_array(hash, length, is_diagnoses)
 		result = []
 		tmp = []
