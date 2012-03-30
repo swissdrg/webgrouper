@@ -1,6 +1,19 @@
 fr: 
   diagnoses:  'Diagnostics secondaires:'
   procedures: 'Procédures:'
+  
+  result:
+    grouperstatus:
+      NORMAL_GROUP: Groupement normal
+      NO_DRG: Datensatz entspricht keinem der Kriterien für eine DRG
+      ICT_NOT_VALID_PDX: Hauptdiagnose unzulässig
+      INVALID_OR_EMPTY_PDX: Ungültige oder fehlende Hauptdiagnose
+      INVALID_LOS: Ungültige Verweildauer
+      INVALID_SDF: Ungültiger Wert im Feld Sameday
+      INVALID_SEP_OR_ADM: Ungültiger Aufnahme- oder Entlassungsgrund
+      INVALID_SEX: Ungültiges Geschlecht
+      INVALID_AGE: Ungültiges Alter
+      INVALID_ADMWEIGHT: Ungültiges Aufnahmegewicht
 
   errors: &errors
     format: Le %{attribute} %{message}

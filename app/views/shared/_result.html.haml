@@ -1,0 +1,32 @@
+%h2 Gruppierung
+%fieldset
+  %table
+    %tbody
+      %tr
+        %td
+          MDC
+        %td
+          = @result.getMdc
+        %td
+          {DATABASE_LOOKUP}
+      %tr
+        %td
+          DRG
+        %td
+          = @result.getDrg
+        %td
+          {DATABASE_LOOKUP}
+      %tr
+        %td
+          PCCL
+        %td
+          = @result.getPccl
+        %td
+          Complication and Comorbidity level of this case. (0-4)
+      %tr
+        %td
+          Grouperstatus 
+        %td
+          = @result.getGst.ordinal
+        %td
+          = t("result.grouperstatus." + @result.getGst.to_s)
