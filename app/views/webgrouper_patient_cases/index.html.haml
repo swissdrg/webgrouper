@@ -36,10 +36,9 @@
               :checked => :U, 
               :include_blank => false
     = f.input :birth_date, 
-              :input_html => { :class => "date_picker", :size => 10 }
+              :input_html => { :class => "date_picker" }
     .sameline
-      = f.input :age, 
-                :input_html => { :size => 10 }, 
+      = f.input :age,
                 :wrapper_tag => :span
       = f.input :age_mode, 
                 :as => :select, 
@@ -48,11 +47,9 @@
                 :input_html => { :onchange => "admWeightControl(500)" },
                 :label => false, 
                 :wrapper_tag => :span
-    = f.input :hmv, 
-              :input_html => { :size => 10 }
+    = f.input :hmv
     #admWeight
-      = f.input :adm_weight,
-                :input_html => { :size => 10 }
+      = f.input :adm_weight
 
   %fieldset#drg-proc
     %legend

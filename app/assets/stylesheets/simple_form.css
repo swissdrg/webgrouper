@@ -4,8 +4,8 @@
   margin-bottom: 10px;
 }
 
-.simple_form input {
-  size: 15;
+.simple_form input.string {
+  width: 7em;
 }
 
 .simple_form label {
