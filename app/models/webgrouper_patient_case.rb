@@ -94,13 +94,14 @@ class WebgrouperPatientCase < PatientCase
 				tmp << value unless value.blank? 
 			end
 		else
-			puts "bli bla blup"
 			hash.each do |key, value| 
-				tmptmp = ""				
+				# tmp_procedure contains the current procedure value
+				tmp_procedure = ""				
 				value.each do |key2, value2|
-					tmptmp += value2				
+					# we use "$" as our string delimiter symbol
+					tmp_procedure += value2 + "$"				
 				end
-				tmp << tmptmp 
+				tmp << tmp_procedure
 			end
 		end
 
