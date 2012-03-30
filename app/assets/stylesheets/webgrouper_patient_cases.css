@@ -24,13 +24,21 @@ fieldset#system {
 }
 
 fieldset#stay {
-   //float: left;
+   float: left;
 }
 
 fieldset#patient-data {
-    
+   float: right;
 }
 
 fieldset#drg-proc {
-    
+    float: left;
+}
+
+fieldset#result {
+    float: left;
+}
+
+fieldset#debug {
+    float: left;
 }

@@ -5,7 +5,11 @@
 }
 
 .simple_form input.string {
-  width: 7em;
+  width: 11em;
+}
+
+.simple_form select {
+  max-width: 13em;
 }
 
 .simple_form label {
