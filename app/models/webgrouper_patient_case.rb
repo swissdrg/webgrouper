@@ -30,7 +30,7 @@ class WebgrouperPatientCase < PatientCase
   validates :hmv,             :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
   validates :pdx,             :presence => true, :existing_icd => true
   validates :diagnoses,       :existing_icd => true
-  # validates :procedures,      :presence => true
+  validates :procedures,      :existing_ops => true
   
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
