@@ -28,7 +28,7 @@ class WebgrouperPatientCase < PatientCase
   validates :los,             :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
   #artificial respiration time
   validates :hmv,             :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
-  # validates :pdx,             :presence => true
+  validates :pdx,             :presence => true, :existing_icd => true
   # validates :diagnoses,       :presence => true
   # validates :procedures,      :presence => true
   
@@ -70,9 +70,25 @@ class WebgrouperPatientCase < PatientCase
   def diagnoses=(diagnoses)
 	  set_diagnoses hash_to_java_array(diagnoses, 99, true)
   end
+  
+  def diagnoses
+    diagnoses = []
+    get_diagnoses.each do |d|
+      diagnoses << d unless d.nil?
+    end
+    diagnoses
+  end
 
   def procedures=(procedures)
 		set_procedures hash_to_java_array(procedures, 100, false)
+  end
+  
+  def procedures
+    procedures = []
+    get_procedures.each do |d|
+      procedures << d unless d.nil?
+    end
+    procedures
   end
   
   def hash_to_java_array(hash, length, is_diagnoses)
@@ -86,13 +102,14 @@ class WebgrouperPatientCase < PatientCase
 				tmp << value unless value.blank? 
 			end
 		else
-			puts "bli bla blup"
 			hash.each do |key, value| 
-				tmptmp = ""				
+				# tmp_procedure contains the current procedure value
+				tmp_procedure = ""				
 				value.each do |key2, value2|
-					tmptmp += value2				
+					# we use "$" as our string delimiter symbol
+					tmp_procedure += value2 + "$"				
 				end
-				tmp << tmptmp 
+				tmp << tmp_procedure
 			end
 		end
 
