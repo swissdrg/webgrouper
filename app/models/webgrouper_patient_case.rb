@@ -109,7 +109,7 @@ class WebgrouperPatientCase < PatientCase
 					# we use "$" as our string delimiter symbol
 					tmp_procedure += value2 + "$"				
 				end
-				tmp << tmp_procedure
+				tmp << tmp_procedure unless tmp_procedure == "$$$"
 			end
 		end
 
