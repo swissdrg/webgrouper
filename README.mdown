@@ -84,6 +84,9 @@ To generate models similar to that one enter following command in your shell:
 The most important part is to declare the 'self.table_name' method in the model. Just return the name
 of the table you'd like to refer to as a string. Take a look at the already existing DRG model. Just like that.
 
+### Important stuff considering our database
+
+* Do not execute rake db:migrate. This is not necessairy in this stage of the development.
 	
 ## Run
 
