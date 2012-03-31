@@ -30,9 +30,9 @@ class WebgrouperPatientCasesController < ApplicationController
 		weighting_relation.setTransferFlatrate(drg.transfer_flatrate)
 		weighting_relation.setUseTransferFlatrate(drg.transfer)
 		
-		@costWeight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
+		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
 
-		#puts "** Outout cost weight **" + (@cost_weight.getEffectiveCostWeight).to_s
+		puts "** Outout PENIS #{@cost_weight.getEffectiveCostWeight}"
     render 'index'
   end
   
