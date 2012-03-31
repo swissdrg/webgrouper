@@ -16,18 +16,23 @@ class WebgrouperPatientCasesController < ApplicationController
   
   def group(patient_case)
     @result = GROUPER.group(patient_case)
-		weighting_relation = WeightingRelation.new
-		weighting_relation.setDrg(@result.getDrg)
-<<<<<<< HEAD
-		avg_duration = DRG.find_by_DrCode(@result.getDrg).avg_duration
-		weighting_relation.setAvgDuration(avg_duration)
-		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
-		puts "** Outout cost weight **" + (@cost_weight.getEffectiveCostWeight).to_s
-=======
+
+		weighting_relation = WeightingRelation.new		
 		drg = DRG.find_by_DrCode(@result.getDrg)
+
+		weighting_relation.setDrg(@result.getDrg)
+		weighting_relation.setCostWeight(drg.cost_weight)
 		weighting_relation.setAvgDuration(drg.avg_duration)
+		weighting_relation.setFirstDayDiscount(drg.set_first_day_discount)
+		weighting_relation.setFirstDaySurcharge(drg.first_day_surcharge)
+		weighting_relation.setSurchargePerDay(drg.surcharge_per_day)
+		weighting_relation.setDiscountPerDay(drg.discount_per_day)
+		weighting_relation.setTransferFlatrate(drg.transfer_flatrate)
+		weighting_relation.setUseTransferFlatrate(drg.transfer)
+		
 		@costWeight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
->>>>>>> b4d2da98582dc6af64be57f30eeb81fedf30587f
+
+		#puts "** Outout cost weight **" + (@cost_weight.getEffectiveCostWeight).to_s
     render 'index'
   end
   
