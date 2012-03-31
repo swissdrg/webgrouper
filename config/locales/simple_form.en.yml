@@ -52,3 +52,4 @@ en:
     submit:
       webgrouper_patient_case:
         create: 'Group It'
+        clear_form: Clear form

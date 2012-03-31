@@ -57,6 +57,8 @@
     .procedures
       = render "shared/fields", :kind => "procedures", :count => 100, :patient_case => @webgrouper_patient_case
   = f.submit
-  = button_to "clear_form(needs translation)", webgrouper_patient_cases_path, :method => :get
+  = button_to t("helpers.submit.webgrouper_patient_case.clear_form"), 
+              webgrouper_patient_cases_path, 
+              :method => :get
 
 = render "shared/result" unless @result.nil? || @result.getGst.nil?

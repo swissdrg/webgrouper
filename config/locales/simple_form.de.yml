@@ -54,3 +54,4 @@ de:
     submit:
       webgrouper_patient_case:
         create: 'Fall Gruppieren'
+        clear_form: Maske leeren
