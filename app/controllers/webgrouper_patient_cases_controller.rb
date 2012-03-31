@@ -30,6 +30,7 @@ class WebgrouperPatientCasesController < ApplicationController
 		weighting_relation.setTransferFlatrate(drg.transfer_flatrate)
 		weighting_relation.setUseTransferFlatrate(drg.transfer)
 		
+		@base_cost_weight = drg.cost_weight
 		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
     render 'index'
   end

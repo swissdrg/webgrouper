@@ -1,33 +1,51 @@
 %fieldset#result
-  %legend
-    Resultat
+  %legend Resultat
   %table
     %tbody
       %tr
         %th
           MDC:
         %td
-          = @result.getMdc
+          = @result.get_mdc
         %td
           
       %tr
         %th
           DRG:
         %td
-          = @result.getDrg
+          = @result.get_drg
         %td
-          = (DRG.find_by_DrCode @result.getDrg).DrName
+          = (DRG.find_by_DrCode @result.get_drg).DrName
       %tr
         %th
           PCCL:
         %td
-          = @result.getPccl
+          = @result.get_pccl
         %td
           
       %tr
         %th
           = t("result.grouperstatus") + ":"
         %td
-          = @result.getGst.ordinal
+          = @result.get_gst.ordinal
         %td
-          = t("result.grouperstatus_modes." + @result.getGst.to_s)
+          = t("result.grouperstatus_modes." + @result.get_gst.to_s)
+
+%fieldset#cost-weight
+  %legend Cost weight
+  %table
+    %tbody
+      %tr
+        %th
+          Baserate:
+        %td
+          = @base_cost_weight
+        %td
+          
+      %tr
+        %th
+          Effective cost weight:
+        %td
+          = @cost_weight.get_effective_cost_weight
+        %td
+          = @cost_weight.get_case_flag
