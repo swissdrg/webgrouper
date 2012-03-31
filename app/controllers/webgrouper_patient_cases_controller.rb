@@ -20,7 +20,8 @@ class WebgrouperPatientCasesController < ApplicationController
 		weighting_relation.setDrg(@result.getDrg)
 		avg_duration = DRG.find_by_DrCode(@result.getDrg).avg_duration
 		weighting_relation.setAvgDuration(avg_duration)
-		@costWeight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
+		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
+		puts "** Outout cost weight **" + (@cost_weight.getEffectiveCostWeight).to_s
     render 'index'
   end
   
