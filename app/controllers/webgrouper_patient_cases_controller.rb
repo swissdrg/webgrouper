@@ -16,19 +16,11 @@ class WebgrouperPatientCasesController < ApplicationController
   
   def group(patient_case)
     @result = GROUPER.group(patient_case)
-
 		weighting_relation = WeightingRelation.new		
 		drg = DRG.find_by_DrCode(@result.getDrg)
     
-    puts "DORIS: #{drg}"
-    puts drg.cost_weight
-    puts drg.avg_duration
-    
-    puts @result.getDrg
-    
 		weighting_relation.setDrg(@result.getDrg)
 		
-		puts "BLA: #{weighting_relation.getDrg}"
 		weighting_relation.setCostWeight(drg.cost_weight)
 		weighting_relation.setAvgDuration(drg.avg_duration)
 		weighting_relation.setFirstDayDiscount(drg.first_day_discount)
@@ -39,8 +31,6 @@ class WebgrouperPatientCasesController < ApplicationController
 		weighting_relation.setUseTransferFlatrate(drg.transfer)
 		
 		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
-		puts "** Outout PENIS #{@cost_weight.getEffectiveCostWeight}"
-		puts weighting_relation.getDrg.nil?
     render 'index'
   end
   
