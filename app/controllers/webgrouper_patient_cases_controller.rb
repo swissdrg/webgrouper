@@ -17,9 +17,9 @@ class WebgrouperPatientCasesController < ApplicationController
   def group(patient_case)
     @result = GROUPER.group(patient_case)
 		weighting_relation = WeightingRelation.new
-		weighting_relation.setDrg(result.getDrg)
+		weighting_relation.setDrg(@result.getDrg)
 		avg_duration = DRG.find_by_DrCode(@result.getDrg).avg_duration
-		weight_relation.setAvgDuration(avg_duration)
+		weighting_relation.setAvgDuration(avg_duration)
 		@costWeight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
     render 'index'
   end
