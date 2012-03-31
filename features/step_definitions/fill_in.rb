@@ -7,6 +7,11 @@ When /^I enter some random \(valid!\) data$/ do
   step %{I fill in "webgrouper_patient_case_pdx" with "R560"}
 end
 
+When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
+  step %{I fill in "webgrouper_patient_case_pdx" with "pdx"}
+end
+
+
 When /^I press on "([^"]*)"$/ do |button|
   click_button(button)
 end
@@ -16,12 +21,16 @@ Then /^the grouping should succeed$/ do
 end
 
 Then /^the result should be shown$/ do
-  step %{I should see "(DRG: B75B, MDC: 01, PCCL: 0)"}
+  step %{I should see "B75B" in result}
+  step %{I should see "01" in result}
+  step %{I should see "0" in result}
 end
 
-Then /^(?:|I )should see "([^"]*)"$/ do |text|
+Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
   if page.respond_to? :should
-    page.should have_content(text)
+    within("fieldset#result") do
+      has_content? text
+    end
   else
     assert page.has_content?(text)
   end
