@@ -98,3 +98,15 @@ You can start the project by typing
 	rails s
 
 in the project folder. Be aware, that jruby & the bundles must be installed/active for this.
+
+## Run tests
+
+You can run our specs by entering the following:
+
+For rspec:
+
+	bundle exec autotest
+
+For cucumber:
+
+	bundle exec cucumber
