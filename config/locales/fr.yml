@@ -1,6 +1,11 @@
 fr: 
   diagnoses:  'Diagnostics secondaires:'
   procedures: 'Procédures:'
+  fieldsets:
+    system: 'Système'
+    stay: 'Séjour'
+    diagnoses_procedures: 'Diagnostics et Procédures'
+    patient_data: 'Données du patient'
   
   result:
     grouperstatus: Statut du groupeur
