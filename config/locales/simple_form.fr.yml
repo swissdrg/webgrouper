@@ -1,35 +1,55 @@
 fr:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
     required:
       text: 'required'
-      mark: '*'
+      mark: ''
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: 'Some errors were found, please take a look:'
-    # Labels and hints examples
+      default_message: 'Missing pls enter something!:'
+    #Everything selectable:
+    options:
+      webgrouper_patient_case:
+        sex:
+          U: 'Inconnu'
+          M: 'Masculin'
+          W: 'Féminin'
+        adm:
+          adm11: "transféré (Séjour plus long que 24 heures dans l'hôpital transférant.)"
+          adm06: "transféré (Séjour plus court que 24 heures dans l'hôpital transférant.)"
+          adm00: 'normal'
+          adm99: 'inconnu'
+        sep:
+          sep99: 'inconnu'
+          sep04: "terminé contre l'avis médical"
+          sep06: 'transféré (dans un autre hôpital)'
+          sep07: 'décédé'
+          sep00: 'normal'
+        age_mode:
+          years: 'Ans'
+          days: 'Jours'
+    # Labels
     labels:
-      entry_date: 'Admission Date:'
-      exit_date: 'Date of discharge:'
-      birth_date: 'Birthday:'
-      leave_days: 'Leave days:'
-      age: 'Age:'
-      years: 'Years'
-      days: 'Days'
-      adm_weight: 'Admission weight:'
-      sex: 'Sex:'
-      sex_male: 'male'
-      sex_female: 'female'
-      sex_unknown: 'unknown'
-      adm: 'Admission mode:'
-      sep: 'Separation mode:'
-      los: 'Length of stay:'
-      sdf: '!SDF!:'
-      hmv: 'Artificial respiration:'
-      pdx: 'Primary diagnoses:'
-      diagnoses: 'Secondary diagnoses:'
-      procedures: 'Procedures:'
-      group: 'Group It'
+      webgrouper_patient_case:
+        entry_date: "Date d'admission"
+        exit_date: 'Date of discharge:'
+        birth_date: 'Date de naissance:'
+        leave_days: 'Jours de congé:'
+        age: 'Âge:'
+        age_mode: 'Is this label necessary?'
+        adm_weight: "Poids à l'admission:"
+        sex: 'Sexe:'
+        adm: "Mode d'admission:"
+        sep: 'Mode de sortie:'
+        los: 'Durée du séjour:'
+        hmv: 'Temps de respiration artificielle:'
+        pdx: 'Diagnostic principal:'
+        diagnoses: 'Diagnostics secondaires:'
+        procedures: 'Procédures:'       
+  # Buttons
+  helpers:
+    submit:
+      webgrouper_patient_case:
+        create: 'Grouper'
+        clear_form: Vider le masque

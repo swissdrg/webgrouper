@@ -42,7 +42,7 @@ SimpleForm.setup do |config|
     ## Inputs
     b.use :label_input
     b.use :hint,  :wrap_with => { :tag => :span, :class => :hint }
-    b.use :error, :wrap_with => { :tag => :span, :class => :error }
+    # b.use :error, :wrap_with => { :tag => :span, :class => :error }
   end
 
   # The default wrapper to be used by the FormBuilder.
@@ -76,7 +76,7 @@ SimpleForm.setup do |config|
   # config.collection_value_methods = [ :id, :to_s ]
 
   # You can wrap a collection of radio/check boxes in a pre-defined tag, defaulting to none.
-  config.collection_wrapper_tag = :div
+  # config.collection_wrapper_tag = nil
 
   # You can define the class to use on all collection wrappers. Defaulting to none.
   # config.collection_wrapper_class = nil
@@ -93,7 +93,7 @@ SimpleForm.setup do |config|
   # config.label_text = lambda { |label, required| "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
-  config.label_class = 'control-label'
+  # config.label_class = 'control-label'
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form

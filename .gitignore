@@ -66,3 +66,6 @@ pickle-email-*.html
 *.h
 *.bin
 
+# Aptana:
+.project
+

@@ -1,2 +1,48 @@
 de:
-  hello: "Hallo Welt"
+  diagnoses:  'Nebendiagnosen:'
+  procedures: 'Prozeduren:'  
+  
+  result:
+    grouperstatus: Grouperstatus
+    grouperstatus_modes:
+      NORMAL_GROUP: Normale Gruppierung
+      NO_DRG: Datensatz entspricht keinem der Kriterien für eine DRG
+      ICT_NOT_VALID_PDX: Hauptdiagnose unzulässig
+      INVALID_OR_EMPTY_PDX: Ungültige oder fehlende Hauptdiagnose
+      INVALID_LOS: Ungültige Verweildauer
+      INVALID_SDF: Ungültiger Wert im Feld Sameday
+      INVALID_SEP_OR_ADM: Ungültiger Aufnahme- oder Entlassungsgrund
+      INVALID_SEX: Ungültiges Geschlecht
+      INVALID_AGE: Ungültiges Alter
+      INVALID_ADMWEIGHT: Ungültiges Aufnahmegewicht
+  
+  found_errors: "Folgende Fehler wurden gefunden:"
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: muss akzeptiert werden
+      blank: muss ausgefüllt werden
+      confirmation: stimmt nicht mit der Bestätigung überein
+      empty: muss ausgefüllt werden
+      equal_to: muss genau %{count} sein
+      even: muss gerade sein
+      exclusion: ist nicht verfügbar
+      greater_than: muss grösser als %{count} sein
+      greater_than_or_equal_to: muss grösser oder gleich %{count} sein
+      inclusion: ist kein gültiger Wert
+      invalid: ist nicht gültig
+      less_than: muss kleiner als %{count} sein
+      less_than_or_equal_to: muss kleiner oder gleich %{count} sein
+      not_a_number: ist keine Zahl
+      not_an_integer: muss ganzzahlig sein
+      odd: muss ungerade sein
+      record_invalid: ! 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
+      taken: ist bereits vergeben
+      too_long: ist zu lang (nicht mehr als %{count} Zeichen)
+      too_short: ist zu kurz (nicht weniger als %{count} Zeichen)
+      wrong_length: hat die falsche Länge (muss genau %{count} Zeichen haben)
+    template:
+      body: ! 'Bitte überprüfen Sie die folgenden Felder:'
+      header:
+        one: ! 'Konnte %{model} nicht speichern: ein Fehler.'
+        other: ! 'Konnte %{model} nicht speichern: %{count} Fehler.'

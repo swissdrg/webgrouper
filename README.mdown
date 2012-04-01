@@ -28,16 +28,69 @@ To check if it installed correctly, enter
 	
 	mysql -u root -p
 
-in a terminal and enter your mysql-root password you set during the installation. 
-(If no password was set for the root user, just press enter)
-If you see a mysql promt, you should have installed it correctly.
+in your command line tool and enter your mysql root password. (If no password was set for the root user, just press enter)
+If you see a mysql promt. you have installed it correctly.
+
+Now cd into your webgrouper projects directory and check which branch your currently working on. If you're not on the 
+branch called 'database' commit your current changes and checkout to 'database'.
+
+	git fetch --all
+	git checkout -b database
+	git pull origin database
+	git push -u origin database
 
 Now, you'll need a file called 'database.yml'. Get it here: http://db.tt/jP59qSvN
 
-Copy it into your app/config/ directory and make the appropriate changes to the password entry in the file.
+Copy it into your app/config/ directory
 
-TODO: How to put db-dump into database
+Modify it if necessary. (If you've set a password for mysql. Enter it there)
+Double check if the databases for all environments are called 'webgrouper'
+
+Before me move on, update the bundle
+
+	bundle install
+
+To create the empty databases for all environments use following command:
+
+	rake db:create:all
+
+This may take a while.
+
+After that, download and extract the database dump we got from Tim in an email called 'zweites meeting' and execute this command:
+
+	mysql -u root -p webgrouper < path_to_the_dump.sql
+
+Again, enter the password or just press enter when asked, depending on what you've set.
+Now all the data from the dump can be found in the webgrouper database in our project.
+
+We already have a model called 'DRG'. Start up the rails console:
 	
+	rails c
+
+and try entering
+
+	DRG
+
+This just display the table with all the attributes of DRG.
+
+	DRG.first
+
+for instance picks the very first DRG in the table.
+
+	
+Take a look at the file called 'drg.rb'
+
+To generate models similar to that one enter following command in your shell:
+
+	rails g model theNameOfTheModel --skip-migration
+
+The most important part is to declare the 'self.table_name' method in the model. Just return the name
+of the table you'd like to refer to as a string. Take a look at the already existing DRG model. Just like that.
+
+### Important stuff considering our database
+
+* Do not execute rake db:migrate. This is not necessary in this stage of the development.
+
 ## Run
 
 You can start the project by typing

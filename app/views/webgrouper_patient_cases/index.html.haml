@@ -1,0 +1,64 @@
+%h1 Webgrouper
+
+= render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
+
+= simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :get do |f|
+  %fieldset#system
+    %legend System stuff
+
+  %fieldset#stay
+    %legend Stay
+    = f.input :entry_date, 
+              :input_html => { :class => "date_picker calc_los" }
+    = f.input :exit_date, 
+              :input_html => { :class => "date_picker calc_los" }
+    = f.input :leave_days, 
+              :input_html => { :class => "calc_los" }
+    = f.input :adm, 
+              :as => :select, 
+              :include_blank => false,
+              :collection => [[:adm11 ,"11"], [:adm00, "00"], [:adm06, "06"], [:adm99, "99"]],
+              :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.adm.#{el.first}" }
+    = f.input :sep, 
+              :as => :select, 
+              :include_blank => false,
+              :collection => [[:sep06 ,"06"], [:sep04, "04"], [:sep00, "00"], [:sep07, "07"], [:sep99, "99"]],
+              :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.sep.#{el.first}" }
+    = f.input :los
+
+  %fieldset#patient-data
+    %legend Patient data
+    = f.input :sex, 
+              :collection => [:M , :W, :U], 
+              :checked => :U, 
+              :include_blank => false
+    = f.input :birth_date, 
+              :input_html => { :class => "date_picker" }
+    .sameline
+      = f.input :age,
+                :wrapper_tag => :span
+      = f.input :age_mode, 
+                :as => :select, 
+                :collection => [:years, :days],
+                :include_blank => false, 
+                :input_html => { :onchange => "admWeightControl(500)" },
+                :label => false, 
+                :wrapper_tag => :span
+    = f.input :hmv
+    #admWeight
+      = f.input :adm_weight
+
+  %fieldset#drg-proc
+    %legend Diagnoses and procedures
+    .diagnoses
+      = f.input :pdx
+      = render "shared/fields", :kind => "diagnoses", :count => 99, :patient_case => @webgrouper_patient_case
+    %p
+    .procedures
+      = render "shared/fields", :kind => "procedures", :count => 100, :patient_case => @webgrouper_patient_case
+  = f.submit
+  = button_to t("helpers.submit.webgrouper_patient_case.clear_form"), 
+              webgrouper_patient_cases_path, 
+              :method => :get
+              
+= render "shared/result" unless @result.nil? || @result.getGst.nil?

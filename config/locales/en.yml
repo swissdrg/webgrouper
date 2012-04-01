@@ -2,33 +2,20 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-  # simple_form:
-  #   "yes": 'Yes'
-  #   "no": 'No'
-  #   required:
-  #     text: 'required'
-  #     mark: '*'
-  #     # You can uncomment the line below if you need to overwrite the whole required html.
-  #     # When using html, text and mark won't be used.
-  #     # html: '<abbr title="required">*</abbr>'
-  #   error_notification:
-  #     default_message: 'Some errors were found, please take a look:'
-  #   # Labels and hints examples
-  #   labels:
-  #     entry_date: 'Admission date:'
-  #     exit_date: 'Exit date:'
-  #     birth_date: 'Birthday:'
-  #     leave_days: 'Leave days:'
-  #     age_years: 'Days:'
-  #     age_days: 'Days:'
-  #     adm_weight: '!ADM_WEIGHT!:'
-  #     sex: 'Sex:'
-  #     adm: 'Admission mode:'
-  #     sep: 'Separation mode:'
-  #     los: 'Length of stay:'
-  #     sdf: '!SDF!:'
-  #     hmv: '!HMV!:'
-  #     pdx: '!PDX!:'
-  #     diagnoses: 'Secondary diagnoses:'
-  #     procedures: 'Procedures:'
+  found_errors: 'You have the following errors:'
+  diagnoses:    'Secondary Diagnoses:'
+  procedures:   'Procedures:'
+  
+  result:
+    grouperstatus: Grouper status
+    grouperstatus_modes:
+      NORMAL_GROUP: Normal grouping
+      NO_DRG: data not matching criteria for any DRG
+      ICT_NOT_VALID_PDX: Is not valid as a primary diagnosis
+      INVALID_OR_EMPTY_PDX: Invalid or missing primary diagnosis
+      INVALID_LOS: Invalid length of stay
+      INVALID_SDF: Invalid value in the field Sameday
+      INVALID_SEP_OR_ADM: Invalid reason for admission or separation
+      INVALID_SEX: Invalid sex
+      INVALID_AGE: Invalid age
+      INVALID_ADMWEIGHT: Invalid admission weight

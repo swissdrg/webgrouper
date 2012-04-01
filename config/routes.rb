@@ -1,10 +1,11 @@
 Webgrouper::Application.routes.draw do
 
   scope "/:locale" do
-    resources :patient_cases, :only => [:index, :create, :destroy]
+    resources :webgrouper_patient_cases
+    get 'create_query' => 'webgrouper_patient_cases#create_query'
   end
   
-  root :to => 'patient_cases#index'
+  root :to => 'webgrouper_patient_cases#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

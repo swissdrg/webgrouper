@@ -1,39 +1,26 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
-
-.locales {
-	float: right;
-}
-
-.sameline {
-	/*
-	 * TODO: some css-magic
-	 */
-}
-
-/*
- * Using standard blueprint error for now
-.error {
-	border: 6px groove red;
-	background-color: orange;
-}
-*/
 /* ----- SimpleForm Styles ----- */
 
 .simple_form div.input {
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+}
+
+.simple_form input.string {
+  width: 11em;
+}
+
+.simple_form select {
+  max-width: 13em;
 }
 
 .simple_form label {
   float: left;
   width: 200px;
   text-align: right;
-  margin: 2px 10px;
+  margin: 0.5em 10px;
 }
 
 div.boolean, .simple_form input[type='submit'] {
+  float: left;
   margin-left: 235px;
 }
 
@@ -49,11 +36,12 @@ label.radio {
   margin-left:   2px;
 }
 
-.field_with_errors {
+.field_with_errors input {
 	margin-top: 10px;
 	padding: 2px;
 	background-color: #c00;
-	display: table;
+	/* this breaks datepicker */
+	/* display: table; */
 }
 
 .simple_form .error {

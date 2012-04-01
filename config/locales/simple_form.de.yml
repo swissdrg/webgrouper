@@ -1,7 +1,5 @@
 de:
   simple_form:
-    "yes": 'Ja'
-    "no": 'Nein'
     required:
       text: 'benötigt'
       mark: ''
@@ -10,26 +8,50 @@ de:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: 'Es wurden Fehler gefunden. Bitte überprüfen Sie:'
+    #Everything selectable:
+    options:
+      webgrouper_patient_case:
+        sex:
+          U: 'Unbekannt'
+          M: 'Männlich'
+          W: 'Weiblich'
+        adm:
+          adm11: 'Verlegt (Aufenthalt länger als 24 Stunden im verlegenden Spital)'
+          adm06: 'Verlegt (Aufenthalt kürzer als 24 Stunden im verlegenden Spital)'
+          adm00: 'Normal'
+          adm99: 'Unbekannt'
+        sep:
+          sep99: 'Unbekannt'
+          sep04: 'Gegen ärztlichen Rat beendet'
+          sep06: 'Verlegt (in anderes Spital)'
+          sep07: 'Verstorben'
+          sep00: 'Normal'
+        age_mode:
+          years: 'Jahre'
+          days: 'Tage'
     # Labels and hints examples
     labels:
-      entry_date: 'Aufnahmedatum:'
-      exit_date: 'Entlassdatum:'
-      birth_date: 'Geburtstag:'
-      leave_days: 'Urlaubstage:'
-      age: 'Alter:'
-      years: 'Jahre'
-      days: 'Tage'
-      adm_weight: 'Aufnahmegewicht:'
-      sex: 'Geschlecht:'
-      sex_male: 'männlich'
-      sex_female: 'weiblich'
-      sex_unknown: 'unbekannt'
-      adm: 'Aufnahmeart:'
-      sep: 'Entlassart:'
-      los: 'Verweildauer:'
-      sdf: '!SDF!:'
-      hmv: 'Beatmungszeit:'
-      pdx: 'Hauptdiagnosen:'
-      diagnoses: 'Nebendiagnosen:'
-      procedures: 'Prozeduren:'
-      group: 'Gruppieren'
+      webgrouper_patient_case:
+        entry_date: 'Aufnahmedatum:'
+        exit_date: 'Entlassdatum:'
+        birth_date: 'Geburtstag:'
+        leave_days: 'Urlaubstage:'
+        age: 'Alter:'
+        age_mode: 'asdf'
+        adm_weight: 'Aufnahmegewicht:'
+        sex: 'Geschlecht:'
+        adm: 'Aufnahmeart:'
+        sep: 'Entlassart:'
+        los: 'Verweildauer:'
+        hmv: 'Beatmungszeit:'
+        pdx: 'Hauptdiagnose:'
+        diagnoses: 'Nebendiagnosen:'
+        procedures: 'Prozeduren:'
+    hints: 
+      webgrouper_patient_case:
+  # Buttons
+  helpers:
+    submit:
+      webgrouper_patient_case:
+        create: 'Fall Gruppieren'
+        clear_form: Maske leeren
