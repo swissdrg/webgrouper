@@ -1,6 +1,12 @@
 de:
   diagnoses:  'Nebendiagnosen:'
-  procedures: 'Prozeduren:'  
+  procedures: 'Prozeduren:'
+  fieldsets:
+    system: 'System'
+    stay: 'Aufenthalt'
+    diagnoses_procedures: 'Diagnosen und Prozeduren'
+    patient_data: 'Patientendaten'
+    
   
   result:
     grouperstatus: Grouperstatus

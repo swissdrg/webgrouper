@@ -4,10 +4,10 @@
 
 = simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :get do |f|
   %fieldset#system
-    %legend System stuff
+    %legend= t("fieldsets.system")
 
   %fieldset#stay
-    %legend Stay
+    %legend= t("fieldsets.stay")
     = f.input :entry_date, 
               :input_html => { :class => "date_picker calc_los" }
     = f.input :exit_date, 
@@ -27,7 +27,7 @@
     = f.input :los
 
   %fieldset#patient-data
-    %legend Patient data
+    %legend= t("fieldsets.patient_data")
     = f.input :sex, 
               :collection => [:M , :W, :U], 
               :checked => :U, 
@@ -49,7 +49,7 @@
       = f.input :adm_weight
 
   %fieldset#drg-proc
-    %legend Diagnoses and procedures
+    %legend= t("fieldsets.diagnoses_procedures")
     .diagnoses
       = f.input :pdx
       = render "shared/fields", :kind => "diagnoses", :count => 99, :patient_case => @webgrouper_patient_case
