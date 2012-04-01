@@ -7,9 +7,9 @@ module ActAsValidGrouperQuery
     base.send :include, ActiveModel::Conversion
     
     base.validates      :sex,             :presence => true
-    # base.validates_date :entry_date,      :on_or_before => :today, :allow_blank => true
-    # base.validates_date :exit_date,       :on_or_before => :today, :after => :entry_date, :allow_blank => true
-    # base.validates_date :birth_date,      :on_or_before => :today, :allow_blank => true
+    base.validates_date :entry_date,      :on_or_before => :today, :allow_blank => true
+    base.validates_date :exit_date,       :on_or_before => :today, :after => :entry_date, :allow_blank => true
+    base.validates_date :birth_date,      :on_or_before => :today, :allow_blank => true
     base.validates      :leave_days,      :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
     base.validates      :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 125}, :unless => :age_mode_days?
     base.validates      :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 367}, :if => :age_mode_days?
