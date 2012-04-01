@@ -19,7 +19,7 @@
   margin: 0.5em 10px;
 }
 
-div.boolean, .simple_form input[type='submit'] {
+input[type='submit'] {
   float: left;
   margin-left: 235px;
 }
