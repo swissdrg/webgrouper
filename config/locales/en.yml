@@ -5,6 +5,11 @@ en:
   found_errors: 'You have the following errors:'
   diagnoses:    'Secondary Diagnoses:'
   procedures:   'Procedures:'
+  fieldsets:
+    system: 'System'
+    stay: 'Stay'
+    diagnoses_procedures: 'Diagnoses and Procedures'
+    patient_data: 'Patient data'
   
   result:
     grouperstatus: Grouper status

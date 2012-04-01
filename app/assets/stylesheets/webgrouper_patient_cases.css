@@ -3,6 +3,12 @@
   They will automatically be included in application.css.
 */
 
+.clear_fields {
+	float: left;
+	margin-left: 280px;
+	margin-top: 6px;
+}
+
 .locales {
 	float: right;
 }
