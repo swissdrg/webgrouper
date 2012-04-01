@@ -37,6 +37,10 @@ group :test do
   gem 'cucumber-rails'
   gem 'rspec-rails'
   gem 'database_cleaner'
+  gem 'autotest-standalone'
+  gem 'autotest-fsevent'
+  gem 'autotest-growl'
+  gem "rcov", "~> 1.0.0"
 end
 
 
