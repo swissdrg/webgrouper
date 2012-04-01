@@ -1,5 +1,9 @@
 require 'spec_helper'
 
-describe Drg do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe DRG do
+  
+  it "should have the tablename 'drg'" do
+    DRG.table_name.should == "drg"
+  end
+  
 end
