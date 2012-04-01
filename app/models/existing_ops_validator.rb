@@ -1,3 +1,4 @@
+#Validates if an ops code can be found in the database.
 class ExistingOpsValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)

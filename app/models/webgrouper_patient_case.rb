@@ -4,33 +4,9 @@
 # autors team1
 class WebgrouperPatientCase < PatientCase
   
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  extend ActiveModel::Naming
-  extend ActiveModel::Translation
+  include ActAsValidGrouperQuery
   
-  attr_accessor :age,
-                :age_mode
-  
-  validates :sex,             :presence => true
-  validates_date :entry_date,      :on_or_before => :today, :allow_blank => true
-  validates_date :exit_date,       :on_or_before => :today, :after => :entry_date, :allow_blank => true
-  validates_date :birth_date,      :on_or_before => :today, :allow_blank => true
-  validates :leave_days,      :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
-  validates :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 125}, :unless => :age_mode_days?
-  validates :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 367}, :if => :age_mode_days?
-  validates :adm_weight,      :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 250, :less_than_or_equal_to => 20000}, :if => :age_mode_days?
-  #Admission mode
-  validates :adm,             :presence => true
-  #Separation mode
-  validates :sep,             :presence => true
-  #Length of stay
-  validates :los,             :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
-  #artificial respiration time
-  validates :hmv,             :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
-  validates :pdx,             :presence => true, :existing_icd => true
-  validates :diagnoses,       :existing_icd => true
-  validates :procedures,      :existing_ops => true
+  attr_accessor :age, :age_mode
   
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.

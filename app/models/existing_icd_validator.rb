@@ -1,3 +1,4 @@
+#Validates if an icd code can be found in the database.
 class ExistingIcdValidator < ActiveModel::EachValidator
   
   #will automatically be called if one should validate existing_icd as true
