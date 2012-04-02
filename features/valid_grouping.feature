@@ -10,4 +10,5 @@ Feature: Group a valid patient case
     And I press on "Fall Gruppieren"
 
     Then the grouping should succeed
+    And the form should stay the same
     And the result should be shown
