@@ -3,6 +3,10 @@
   They will automatically be included in application.css.
 */
 
+.inline {
+	display: inline;
+}
+
 .clear_fields {
 	float: left;
 	margin-left: 280px;
@@ -11,11 +15,6 @@
 
 .locales {
 	float: right;
-}
-
-.sameline {
-	/* margin-bottom: 1em;
-	 */
 }
 
 .spacer {
