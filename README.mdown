@@ -45,7 +45,7 @@ To create the empty databases for all environments use following command:
 
 This may take a while.
 
-After that, download and extract the database dump we got from Tim in an email called 'zweites meeting' and execute this command:
+After that, download and extract the database dump: https://www.dropbox.com/sh/f87fy1cqz4sdkee/33FFZgsyO8/webgrouper-dump_13032012.sql
 
 	mysql -u root -p webgrouper < path_to_the_dump.sql
 
