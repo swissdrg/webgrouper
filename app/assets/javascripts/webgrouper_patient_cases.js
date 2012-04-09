@@ -12,7 +12,7 @@ $(".calc_los").live("focus change", function() {
 	var diff = daydiff(first, second, leave_days);
 	if (!(isNaN(diff))){
 		$('#webgrouper_patient_case_los').val(diff);
-		doBGFade($("#webgrouper_patient_case_los"),[245,255,159],[255,255,255],'transparent',75,20,4 );
+		flashYellow($("#webgrouper_patient_case_los"),'transparent',75,20,4 );
 	}
 });
 
@@ -37,8 +37,8 @@ $("#webgrouper_patient_case_birth_date").live("focus change", function() {
 	else {
 		$('#webgrouper_patient_case_age').val("");
 	}
-	doBGFade($("#webgrouper_patient_case_age_mode"),[245,255,159],[255,255,255],'transparent',75,20,4 );
-	doBGFade($("#webgrouper_patient_case_age"),[245,255,159],[255,255,255],'transparent',75,20,4 );
+	flashYellow($("#webgrouper_patient_case_age_mode"),'transparent',75,20,4 );
+	flashYellow($("#webgrouper_patient_case_age"),'transparent',75,20,4 );
 });
 
 /**
@@ -55,7 +55,7 @@ function addDatePickers() {
 }
 
 /**
- * Lets the id "admWeight" dissapear according to the
+ * Lets the id "admWeight" disappear according to the
  * settings in the field age_mode
  * @param fade_time the time used to fade it in/out
  */
@@ -90,13 +90,14 @@ function daydiff(first, second, leave_days) {
 		return Math.floor(((second-first)/(1000*60*60*24))-leave_days)
 }
 
-function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
-    var delta = maxValue - minValue;
-    var stepp = minValue+(Math.pow(((1 / totalSteps)*actualStep),powr)*delta);
-    return Math.ceil(stepp)
-}
-
-function doBGFade(elem,startRGB,endRGB,finalColor,steps,intervals,powr) {
+/**
+ * To highlight an element for a short time, this method will
+ * change it's color to yellow for a short time and then fade it back to 
+ * the background color.
+ */
+function flashYellow(elem,finalColor,steps,intervals,powr) {
+	var startRGB = [245,255,159]
+	var endRGB = [255,255,255]
     if (elem.bgFadeInt) window.clearInterval(elem.bgFadeInt);
     var actStep = 0;
     elem.bgFadeInt = window.setInterval(
@@ -114,3 +115,13 @@ function doBGFade(elem,startRGB,endRGB,finalColor,steps,intervals,powr) {
         }
         ,intervals)
 }
+
+/**
+ * Helper method for flashYellow
+ */
+function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
+    var delta = maxValue - minValue;
+    var stepp = minValue+(Math.pow(((1 / totalSteps)*actualStep),powr)*delta);
+    return Math.ceil(stepp)
+}
+
