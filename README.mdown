@@ -59,6 +59,9 @@ This may take a while.
 After that, download and extract the database dump we got from Tim in an email called 'zweites meeting' and execute this command:
 
 	mysql -u root -p webgrouper_development < path_to_the_dump.sql
+and
+
+	mysql -u root -p webgrouper_test < path_to_the_dump.sql
 
 Again, enter the password or just press enter when asked, depending on what you've set.
 Now all the data from the dump can be found in the webgrouper database in our project.
