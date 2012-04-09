@@ -1,4 +1,4 @@
-module PatientCasesHelper
+module WebgrouperPatientCasesHelper
   
   def procedure_values(patient_case, field_counter)
     compressed_procedure = patient_case.procedures[field_counter]
