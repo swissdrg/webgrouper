@@ -17,7 +17,7 @@ When /^I press on "([^"]*)"$/ do |button|
 end
 
 Then /^the grouping should succeed$/ do
-  
+  page.should_not have_content "Fehler"
 end
 
 Then /^the result should be shown$/ do
@@ -26,10 +26,15 @@ Then /^the result should be shown$/ do
   step %{I should see "0" in result}
 end
 
+Then /^the form should stay the same$/ do
+  
+  
+end
+
 Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
   if page.respond_to? :should
-    within("fieldset#result") do
-      has_content? text
+    within_fieldset("#result") do
+      has_content?(text)
     end
   else
     assert page.has_content?(text)

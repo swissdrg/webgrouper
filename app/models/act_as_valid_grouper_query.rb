@@ -1,11 +1,10 @@
 module ActAsValidGrouperQuery
-  
   def self.included(base)
     base.extend ActiveModel::Naming
     base.extend ActiveModel::Translation
     base.send :include, ActiveModel::Validations
     base.send :include, ActiveModel::Conversion
-    
+
     base.validates      :sex,             :presence => true
     base.validates_date :entry_date,      :on_or_before => :today, :allow_blank => true
     base.validates_date :exit_date,       :on_or_before => :today, :after => :entry_date, :allow_blank => true
@@ -26,5 +25,5 @@ module ActAsValidGrouperQuery
     base.validates      :diagnoses,       :existing_icd => true
     base.validates      :procedures,      :existing_ops => true
   end
-  
+
 end
