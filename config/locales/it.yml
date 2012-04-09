@@ -21,7 +21,8 @@ it:
       INVALID_SEX: Sesso non valido
       INVALID_AGE: Età non valida
       INVALID_ADMWEIGHT: Peso al ricovero non valido
-        
+  # Errors:  
+  found_errors: 'I seguenti errori sono stati trovati:'
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:

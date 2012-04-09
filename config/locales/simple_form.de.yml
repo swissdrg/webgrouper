@@ -8,8 +8,18 @@ de:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: 'Es wurden Fehler gefunden. Bitte überprüfen Sie:'
-    #Everything selectable:
+    # Everything selectable:
     options:
+      system:
+        active_grouper9: Abrechnungsversion 1.0 2012/2012
+        active_grouper8: Planungsversion 2 1.0 2011/2012
+        active_grouper7: Katalog/Planungsversion 1.0 2009-10/2012
+        active_grouper6: Abrechnungsversion 0.3 2011/2011
+        active_grouper5: Planungsversion 0.3 2009/2011
+        active_grouper4: Katalogversion 0.3 2008/2011
+        active_grouper3: there is no system 3 >.<
+        active_grouper2: SwissDRG 0.2
+        active_grouper1: SwissDRG 0.1
       webgrouper_patient_case:
         sex:
           U: 'Unbekannt'
@@ -29,7 +39,7 @@ de:
         age_mode:
           years: 'Jahre'
           days: 'Tage'
-    # Labels and hints examples
+    # Labels
     labels:
       webgrouper_patient_case:
         entry_date: 'Aufnahmedatum:'
@@ -37,7 +47,6 @@ de:
         birth_date: 'Geburtstag:'
         leave_days: 'Urlaubstage:'
         age: 'Alter:'
-        age_mode: 'asdf'
         adm_weight: 'Aufnahmegewicht:'
         sex: 'Geschlecht:'
         adm: 'Aufnahmeart:'
@@ -49,6 +58,8 @@ de:
         procedures: 'Prozeduren:'
     hints: 
       webgrouper_patient_case:
+    tooltips:
+      date: "Im Format dd.mm.yyyy, zB 19.05.1988"
   # Buttons
   helpers:
     submit:

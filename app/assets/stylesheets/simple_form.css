@@ -16,9 +16,9 @@
 
 .simple_form label {
   float: left;
-  width: 200px;
+  width: 180px;
   text-align: right;
-  margin: 0.5em 10px;
+  margin: 0.75em 10px;
 }
 
 input[type='submit'] {

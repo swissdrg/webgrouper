@@ -1,29 +1,36 @@
 %h1 Webgrouper
 
 = render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
-
-= simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :get do |f|
+= simple_form_for :system do |f|
   %fieldset#system
     %legend= t("fieldsets.system")
-
+    .sameline
+      = f.input :active_grouper, 
+            :as => :select, 
+            :include_blank => false,
+            :collection => (1..9),
+            :label_method => lambda { |el| t "simple_form.options.system.active_grouper#{el}" }
+      = f.input :procedure_catalog
+      = f.input :diagnose_catalog
+= simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :get do |f|
   %fieldset#stay
     %legend= t("fieldsets.stay")
     = f.input :entry_date, 
-              :input_html => { :class => "date_picker calc_los" }
+              :input_html => { :title => t("simple_form.tooltips.date"), :class => "date_picker calc_los" }
     = f.input :exit_date, 
-              :input_html => { :class => "date_picker calc_los" }
+              :input_html => { :title => t("simple_form.tooltips.date"), :class => "date_picker calc_los" }
     = f.input :leave_days, 
               :input_html => { :class => "calc_los" }
     = f.input :adm, 
               :as => :select, 
               :include_blank => false,
-              :collection => [[:adm11 ,"11"], [:adm00, "00"], [:adm06, "06"], [:adm99, "99"]],
-              :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.adm.#{el.first}" }
+              :collection => ["11", "00", "06", "99"],
+              :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.adm.adm#{el}" }
     = f.input :sep, 
               :as => :select, 
               :include_blank => false,
-              :collection => [[:sep06 ,"06"], [:sep04, "04"], [:sep00, "00"], [:sep07, "07"], [:sep99, "99"]],
-              :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.sep.#{el.first}" }
+              :collection => ["06","04","00","07","99"],
+              :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.sep.sep#{el}" }
     = f.input :los
 
   %fieldset#patient-data
@@ -33,16 +40,15 @@
               :checked => :U, 
               :include_blank => false
     = f.input :birth_date, 
-              :input_html => { :class => "date_picker" }
-    = f.input :age,
-              :wrapper_html => { :class => "inline" }
-    = f.input :age_mode, 
-              :as => :select, 
-              :collection => [:years, :days],
-              :include_blank => false, 
-              :input_html => { :onchange => "admWeightControl(80)"},
-              :wrapper_html => { :class => "inline" },
-              :label => false
+              :input_html => { :title => t("simple_form.tooltips.date"), :class => "date_picker" }
+    .sameline
+      = f.input :age
+      = f.input :age_mode,
+                :as => :select, 
+                :collection => [:years, :days],
+                :include_blank => false, 
+                :input_html => { :onchange => "admWeightControl(80)"},
+                :label => false
     = f.input :hmv
     #admWeight
       = f.input :adm_weight
