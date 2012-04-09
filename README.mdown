@@ -36,7 +36,7 @@ branch called 'database' commit your current changes and checkout to 'database'.
 	git pull origin database
 	git push -u origin database
 
-Now, you'll need a file called 'database.yml'. Get it here: http://db.tt/jP59qSvN
+Now, you'll need a file called 'database.yml'. Get it here: dropbox.com/sh/cb3qv31w4tjnzxj/1ks5ZK4G6z/database.yml
 
 Copy it into your app/config/ directory
 
