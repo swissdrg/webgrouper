@@ -26,24 +26,16 @@ Enter
 	mysql -u root -p
 
 in your command line tool and enter your mysql root password. (If no password was set for the root user, just press enter)
-If you see a mysql promt. you have installed it correctly.
+If you see a mysql prompt. you have installed it correctly.
 
-Now cd into your webgrouper projects directory and check which branch your currently working on. If you're not on the 
-branch called 'database' commit your current changes and checkout to 'database'.
 
-	git fetch --all
-	git checkout -b database
-	git pull origin database
-	git push -u origin database
+Now, you'll need a file called 'database.yml'. Get it here: https://www.dropbox.com/sh/cb3qv31w4tjnzxj/1ks5ZK4G6z/database.yml
 
-Now, you'll need a file called 'database.yml'. Get it here: http://db.tt/jP59qSvN
+Copy it into your config/ directory
 
-Copy it into your app/config/ directory
+Modify it if necessary. (If you've set a password for mysql root user, enter it in the database.yml file where it says password:)
 
-Modify it if necessary. (If you've set a password for mysql. Enter it there)
-Double check if the databases for all environments are called 'webgrouper'
-
-Before me move on, update the bundle
+Before we move on, update the bundle
 
 	bundle install
 
@@ -53,7 +45,7 @@ To create the empty databases for all environments use following command:
 
 This may take a while.
 
-After that, download and extract the database dump we got from Tim in an email called 'zweites meeting' and execute this command:
+After that, download and extract the database dump: https://www.dropbox.com/sh/f87fy1cqz4sdkee/33FFZgsyO8/webgrouper-dump_13032012.sql
 
 	mysql -u root -p webgrouper < path_to_the_dump.sql
 
@@ -86,7 +78,7 @@ of the table you'd like to refer to as a string. Take a look at the already exis
 
 ### Important stuff considering our database
 
-* Do not execute rake db:migrate. This is not necessairy in this stage of the development.
+* Do not execute rake db:migrate. This is not necessary in this stage of the development.
 	
 ## Run
 
