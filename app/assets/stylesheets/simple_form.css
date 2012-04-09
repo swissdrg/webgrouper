@@ -1,4 +1,6 @@
-/* ----- SimpleForm Styles ----- */
+/* ----- SimpleForm Styles ----- 
+ * Source: https://github.com/plataformatec/simple_form
+ */
 
 .simple_form div.input {
   /* margin-bottom: 10px; */
@@ -22,6 +24,7 @@
 input[type='submit'] {
   float: left;
   margin-left: 235px;
+  margin-bottom:200px;
 }
 
 div.boolean label, label.collection_radio {
