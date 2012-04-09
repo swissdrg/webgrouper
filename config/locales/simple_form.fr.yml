@@ -32,7 +32,7 @@ fr:
     # Labels
     labels:
       webgrouper_patient_case:
-        entry_date: "Date d'admission"
+        entry_date: "Date d'admission:"
         exit_date: 'Date of discharge:'
         birth_date: 'Date de naissance:'
         leave_days: 'Jours de congé:'
