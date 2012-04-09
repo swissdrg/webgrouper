@@ -1,7 +1,6 @@
 class System < ActiveRecord::Base
-  
   def self.table_name
-    "system"    
+    "system"
   end
-  
+
 end
