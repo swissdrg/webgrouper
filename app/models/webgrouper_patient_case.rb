@@ -39,6 +39,9 @@ class WebgrouperPatientCase < PatientCase
    
   end
   
+  # Always returns false since our model is not persisted (saved in a database).
+  # The method is necessary for this model to be treated like an active record model
+  # in certain circumstances; when building forms for it, or instance.
   def persisted?
     false
   end
