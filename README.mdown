@@ -26,22 +26,14 @@ Enter
 	mysql -u root -p
 
 in your command line tool and enter your mysql root password. (If no password was set for the root user, just press enter)
-If you see a mysql promt. you have installed it correctly.
+If you see a mysql prompt. you have installed it correctly.
 
-Now cd into your webgrouper projects directory and check which branch your currently working on. If you're not on the 
-branch called 'database' commit your current changes and checkout to 'database'.
-
-	git fetch --all
-	git checkout -b database
-	git pull origin database
-	git push -u origin database
 
 Now, you'll need a file called 'database.yml'. Get it here: https://www.dropbox.com/sh/cb3qv31w4tjnzxj/1ks5ZK4G6z/database.yml
 
 Copy it into your app/config/ directory
 
-Modify it if necessary. (If you've set a password for mysql. Enter it there)
-Double check if the databases for all environments are called 'webgrouper'
+Modify it if necessary. (If you've set a password for mysql root user, enter it in the database.yml file where it says password:)
 
 Before me move on, update the bundle
 
@@ -86,7 +78,7 @@ of the table you'd like to refer to as a string. Take a look at the already exis
 
 ### Important stuff considering our database
 
-* Do not execute rake db:migrate. This is not necessairy in this stage of the development.
+* Do not execute rake db:migrate. This is not necessary in this stage of the development.
 	
 ## Run
 
