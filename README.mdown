@@ -35,7 +35,7 @@ Copy it into your app/config/ directory
 
 Modify it if necessary. (If you've set a password for mysql root user, enter it in the database.yml file where it says password:)
 
-Before me move on, update the bundle
+Before we move on, update the bundle
 
 	bundle install
 
