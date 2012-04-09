@@ -11,15 +11,19 @@ de:
     # Everything selectable:
     options:
       system:
-        active_grouper9: Abrechnungsversion 1.0 2012/2012
-        active_grouper8: Planungsversion 2 1.0 2011/2012
-        active_grouper7: Katalog/Planungsversion 1.0 2009-10/2012
-        active_grouper6: Abrechnungsversion 0.3 2011/2011
-        active_grouper5: Planungsversion 0.3 2009/2011
-        active_grouper4: Katalogversion 0.3 2008/2011
-        active_grouper3: there is no system 3 >.<
-        active_grouper2: SwissDRG 0.2
-        active_grouper1: SwissDRG 0.1
+        active_grouper:
+          ag9: Abrechnungsversion 1.0 2012/2012
+          ag8: Planungsversion 2 1.0 2011/2012
+          ag7: Katalog/Planungsversion 1.0 2009-10/2012
+          ag6: Abrechnungsversion 0.3 2011/2011
+          ag5: Planungsversion 0.3 2009/2011
+          ag4: Katalogversion 0.3 2008/2011
+          ag3: there is no system 3 >.<
+          ag2: SwissDRG 0.2
+          ag1: SwissDRG 0.1
+        care_provider:
+          hospital: Akutspital
+          birthing_center: Geburtshaus          
       webgrouper_patient_case:
         sex:
           U: 'Unbekannt'
@@ -41,6 +45,9 @@ de:
           days: 'Tage'
     # Labels
     labels:
+      system:
+        active_grouper: 'Aktiver Grouper:'
+        care_provider: 'Leistungserbringer:'
       webgrouper_patient_case:
         entry_date: 'Aufnahmedatum:'
         exit_date: 'Entlassdatum:'

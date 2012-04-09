@@ -10,6 +10,20 @@ fr:
       default_message: 'Missing pls enter something!:'
     #Everything selectable:
     options:
+      system:
+        active_grouper:
+          ag9: Abrechnungsversion 1.0 2012/2012
+          ag8: Planungsversion 2 1.0 2011/2012
+          ag7: Katalog/Planungsversion 1.0 2009-10/2012
+          ag6: Abrechnungsversion 0.3 2011/2011
+          ag5: Planungsversion 0.3 2009/2011
+          ag4: Katalogversion 0.3 2008/2011
+          ag3: there is no system 3 >.<
+          ag2: SwissDRG 0.2
+          ag1: SwissDRG 0.1
+        care_provider:
+          hospital: Hôpital de soins aigus
+          birthing_center: Maison des naissances    
       webgrouper_patient_case:
         sex:
           U: 'Inconnu'
@@ -31,6 +45,9 @@ fr:
           days: 'Jours'
     # Labels
     labels:
+      system:
+        active_grouper: 'Grouper:'
+        care_provider: 'Prestataire:'
       webgrouper_patient_case:
         entry_date: "Date d'admission:"
         exit_date: 'Date of discharge:'

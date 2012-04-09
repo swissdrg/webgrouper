@@ -2,6 +2,8 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+.logo {
+}
 
 .sameline * {
 	display: inline;
@@ -30,11 +32,13 @@ fieldset#system {
 }
 
 fieldset#stay {
+   width: 45%;
    float: left;
 }
 
 fieldset#patient-data {
-   float: right;
+   width: 45%;
+   float:right;
 }
 
 fieldset#drg-proc {
