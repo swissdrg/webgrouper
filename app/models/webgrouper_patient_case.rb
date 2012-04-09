@@ -1,7 +1,6 @@
 # WebgrouperPatientCase holds all input variables for a certain patiant case
 # you can find in either the entry date, the exit date and the number of leave days. 
 # WebgrouperPatientCase inherits from the java class PatientCase
-# autors team1
 class WebgrouperPatientCase < PatientCase
   
   include ActAsValidGrouperQuery
@@ -96,6 +95,9 @@ class WebgrouperPatientCase < PatientCase
   
   private
   
+  # 'age_mode' is chosen in the form and can be
+  # either 'days' or 'years'.
+  # @return true if the age is given in days, false if the age is given in years. 
   def age_mode_days?
     age_mode == 'days'
   end
