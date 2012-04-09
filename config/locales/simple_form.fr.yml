@@ -46,7 +46,9 @@ fr:
         hmv: 'Temps de respiration artificielle:'
         pdx: 'Diagnostic principal:'
         diagnoses: 'Diagnostics secondaires:'
-        procedures: 'Procédures:'       
+        procedures: 'Procédures:'
+    tooltips:
+      date: "En format dd.mm.yyyy, pe 19.05.1988"     
   # Buttons
   helpers:
     submit:
