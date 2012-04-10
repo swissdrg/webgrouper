@@ -1,7 +1,6 @@
 - 3.times do |j|
-  - procedures = procedure_values patient_case, field_counter
-  = text_field_tag "webgrouper_patient_case[procedures][#{field_counter}][1]", procedures.nil? ? "" : procedures[0], :size => 6
-  = text_field_tag "webgrouper_patient_case[procedures][#{field_counter}][2]", procedures.nil? ? "" : procedures[1], :size => 4
-  = text_field_tag "webgrouper_patient_case[procedures][#{field_counter}][3]", procedures.nil? ? "" : procedures[2], :size => 6
-  - field_counter = field_counter + 1
+  = text_field_tag "[p[ID][1]", "", :size => 6
+  = text_field_tag "[p[ID][2]", "", :size => 4
+  = text_field_tag "[p[ID][3]", "", :size => 6
   %span.spacer
+.procedures_row

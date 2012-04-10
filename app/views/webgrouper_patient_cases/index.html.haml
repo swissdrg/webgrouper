@@ -51,10 +51,12 @@
     %legend= t("fieldsets.diagnoses_procedures")
     .diagnoses
       = f.input :pdx
-      = render "shared/fields", :kind => "diagnoses", :count => 99, :patient_case => @webgrouper_patient_case
+      
+      = render "shared/diagnoses", :max_count => 99, :patient_case => @webgrouper_patient_case
+      
     %p
     .procedures
-      = render "shared/fields", :kind => "procedures", :count => 100, :patient_case => @webgrouper_patient_case
+      / # = render "shared/procedures", :max_count => 100, :patient_case => @webgrouper_patient_case
   = f.submit
 = button_to t("helpers.submit.webgrouper_patient_case.clear_form"), 
               webgrouper_patient_cases_path,

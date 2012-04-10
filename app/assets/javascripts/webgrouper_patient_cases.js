@@ -68,17 +68,24 @@ function admWeightControl(fade_time) {
 	}
 }
 
-function showFields(row_nr, kind) {
-	$("#"+kind+"_row_field_buttons_"+row_nr).toggle(false);
-	row_nr++;
-	$("#"+kind+"_row_"+row_nr).toggle(true);
-}
 
-function hideFields(row_nr, kind) {
-	$("#"+kind+"_row_"+row_nr+" > input").val("");
-	$("#"+kind+"_row_"+row_nr).toggle(false);
-	row_nr--;
-	$("#"+kind+"_row_field_buttons_"+row_nr).toggle(true);
+var diagnoses_count = 0;
+
+function add_fields(link, kind, content, value) {
+	var	array = value.replace("[", "").replace("]", "").split(",");
+  var replaceID = new RegExp("ID", "");
+	while(replaceID.test(content)) {
+		var real_value = "";
+		if (array[diagnoses_count] != undefined) {
+			var real_value = array[diagnoses_count].replace("\"", "").replace("\"", "");
+		}
+		alert("Real Value: "+real_value);
+		content = content.replace("ID", diagnoses_count);
+		content = content.replace("ID", diagnoses_count);
+		content = content.replace("VALUE", real_value);
+		diagnoses_count++;
+	}
+	$(link).before(content);
 }
 
 function parseDate(str) {
