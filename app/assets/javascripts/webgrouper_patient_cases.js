@@ -81,13 +81,30 @@ function add_fields(kind, content, value) {
 	var	array = value.replace("[", "").replace("]", "").split(",");
   var replaceID = new RegExp("ID", "");
 	while(replaceID.test(content)) {
-		var real_value = "";
-		if (array[field_count] != undefined) {
-			var real_value = array[field_count].replace("\"", "").replace("\"", "");
+		if (kind == "diagnoses") {
+			var real_value = "";
+			if (array[field_count] != undefined) {
+				var real_value = array[field_count].replace("\"", "").replace("\"", "");
+			}
+			content = content.replace("ID", field_count);
+			content = content.replace("ID", field_count);
+			content = content.replace("VALUE", real_value);
+		} else {
+			for(var i = 0; i < 3; i++) {
+				var real_value = "";
+				if (array[field_count] != undefined) {
+					var real_value = array[field_count].replace("\"", "").replace("\"", "");
+				}
+				proc_values = real_value.split("$");
+				var proc_value = "";
+				if (proc_values[i] != undefined) {
+					var proc_value = proc_values[i];
+				}
+				content = content.replace("ID", field_count);
+				content = content.replace("ID", field_count);
+				content = content.replace("VALUE", proc_value);
+			}
 		}
-		content = content.replace("ID", field_count);
-		content = content.replace("ID", field_count);
-		content = content.replace("VALUE", real_value);
 		field_count++;
 	}
 	if (kind == "diagnoses") {
