@@ -1,10 +1,7 @@
-.diagnoses_row
-  - required_rows = (@webgrouper_patient_case.diagnoses.count / 5).ceil
-  - if required_rows == 0
-    - required_rows = 1
-  - required_rows.times do
-    :javascript
-      var json = "#{escape_javascript(@webgrouper_patient_case.diagnoses.to_json.html_safe)}";
-      add_fields(".diagnoses_row", "diagnoses", "#{escape_javascript(row('diagnoses'))}", json);
-.diagnoses_row
-  = link_to_add_fields("+", "diagnoses")
+- required_rows = (@webgrouper_patient_case.diagnoses.count / 5).ceil
+- if required_rows == 0
+  - required_rows = 1
+- required_rows.times do
+  :javascript
+    var json = "#{escape_javascript(@webgrouper_patient_case.diagnoses.to_json.html_safe)}";
+    add_fields("diagnoses", "#{escape_javascript(row('diagnoses'))}", json);

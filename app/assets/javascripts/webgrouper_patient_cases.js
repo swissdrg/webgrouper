@@ -71,7 +71,7 @@ function admWeightControl(fade_time) {
 
 var diagnoses_count = 0;
 
-function add_fields(link, kind, content, value) {
+function add_fields(kind, content, value) {
 	var	array = value.replace("[", "").replace("]", "").split(",");
   var replaceID = new RegExp("ID", "");
 	while(replaceID.test(content)) {
@@ -79,13 +79,17 @@ function add_fields(link, kind, content, value) {
 		if (array[diagnoses_count] != undefined) {
 			var real_value = array[diagnoses_count].replace("\"", "").replace("\"", "");
 		}
-		alert("Real Value: "+real_value);
 		content = content.replace("ID", diagnoses_count);
 		content = content.replace("ID", diagnoses_count);
 		content = content.replace("VALUE", real_value);
 		diagnoses_count++;
 	}
-	$(link).before(content);
+	$("#diagnoses").append(content);
+}
+
+function remove_fields(link) {
+		$("#diagnoses > .diagnoses_row:visible:last > input").val("");
+		$("#diagnoses > .diagnoses_row:visible:last").toggle(false);
 }
 
 function parseDate(str) {
