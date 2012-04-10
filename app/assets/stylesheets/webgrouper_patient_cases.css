@@ -9,14 +9,14 @@
 	display: inline;
 }
 
+.locales {
+	float: right;
+}
+
 .clear_fields {
 	float: left;
 	margin-left: 280px;
 	margin-top: 6px;
-}
-
-.locales {
-	float: right;
 }
 
 .locales li {
