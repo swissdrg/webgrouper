@@ -19,6 +19,11 @@
 	float: right;
 }
 
+.locales li {
+	list-style: none;
+	display: inline;
+}
+
 .spacer {
 	margin-right: 1em;
 }
