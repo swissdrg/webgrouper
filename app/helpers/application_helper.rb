@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def link_to_remove_fields(name, kind)
-    link_to_function(name, "remove_fields(this)")
+    link_to_function(name, "remove_fields(\"#{kind}\")")
   end
     
   def row(kind)

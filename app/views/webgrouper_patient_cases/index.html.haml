@@ -57,8 +57,12 @@
       = link_to_remove_fields("-", "diagnoses")
       
     %p
-    .procedures
-      / # = render "shared/procedures", :max_count => 100, :patient_case => @webgrouper_patient_case
+    #procedures
+      = render "shared/procedures", :max_count => 100, :patient_case => @webgrouper_patient_case
+    .buttons
+      = link_to_add_fields("+", "procedures")
+      = link_to_remove_fields("-", "procedures")
+      
   = f.submit
 = button_to t("helpers.submit.webgrouper_patient_case.clear_form"), 
               webgrouper_patient_cases_path,
