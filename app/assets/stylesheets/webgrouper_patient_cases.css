@@ -3,23 +3,35 @@
   They will automatically be included in application.css.
 */
 
+
+/**
+ * Everything belonging to the header goes here:	
+ */
+
+/* 	Has to be logo-image-height + 1 */
+.header {
+	height: 94px;
+}
+
 .logo {
 	position: absolute;
 	top: 0;
 	right: 0;
 }
 
+.locales li {
+	list-style: none;
+	display: inline;
+	text-align: right;
+}
 .sameline * {
 	display: inline;
-}
-
-.header {
-	height: 90px;
 }
 
 .container {
 	position: absolute;
 	margin: 10px;
+	width: 980px;
 }
 .locales {
 	position: absolute;
@@ -33,15 +45,10 @@
 	margin-top: 6px;
 }
 
-.locales li {
-	list-style: none;
-	display: inline;
-	text-align: right;
-}
-
 .spacer {
 	margin-right: 1em;
 }
+
 
 /*
  * Various fieldsets:
@@ -51,6 +58,7 @@ fieldset#stay, fieldset#patient-data {
 }
 
 fieldset {
+	padding-top: 0;
 	padding-left: 0;
 	margin: 0;
 }
