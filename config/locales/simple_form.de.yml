@@ -23,7 +23,7 @@ de:
           ag1: SwissDRG 0.1
         care_provider:
           hospital: Akutspital
-          birthing_center: Geburtshaus          
+          birthing_center: Geburtshaus        
       webgrouper_patient_case:
         sex:
           U: 'Unbekannt'
@@ -48,6 +48,8 @@ de:
       system:
         active_grouper: 'Aktiver Grouper:'
         care_provider: 'Leistungserbringer:'
+        diagnoses_catalog: 'Diagnosenkatalog:'
+        procedures_catalog: 'Prozedurenkatalog:'
       webgrouper_patient_case:
         entry_date: 'Aufnahmedatum:'
         exit_date: 'Entlassdatum:'

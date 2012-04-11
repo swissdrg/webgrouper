@@ -2,13 +2,18 @@
 = simple_form_for :system do |f|
   %fieldset#system
     %legend= t("fieldsets.system")
-    = f.input :active_grouper, 
-              :as => :select, 
-              :include_blank => false,
-              :collection => (1..9),
-              :label_method => lambda { |el| t "simple_form.options.system.active_grouper.ag#{el}" }
-    = f.input :procedure_catalog
-    = f.input :diagnose_catalog
+    .sameline
+      = f.input :active_grouper, 
+                :as => :select, 
+                :include_blank => false,
+                :collection => (1..9),
+                :label_method => lambda { |el| t "simple_form.options.system.active_grouper.ag#{el}" }
+      = f.input :procedures_catalog,
+                :disabled => true,
+                :wrapper_html => { :class => "small_field" }
+      = f.input :diagnoses_catalog,
+                :disabled => true,
+                :wrapper_html => { :class => "small_field" }
     = f.input :care_provider, 
               :as => :select,
               :include_blank => false,

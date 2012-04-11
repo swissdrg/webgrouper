@@ -48,6 +48,8 @@ en:
       system:
         active_grouper: 'Active Grouper:'
         care_provider: 'Care provider:'
+        diagnoses_catalog: 'Catalog diagnoses:'
+        procedures_catalog: 'Catalog procedures:'
       webgrouper_patient_case:
         entry_date: 'Admission Date:'
         exit_date: 'Date of discharge:'
