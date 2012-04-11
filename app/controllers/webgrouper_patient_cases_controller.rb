@@ -14,8 +14,7 @@ class WebgrouperPatientCasesController < ApplicationController
     end  
   end
   
-  def group(patient_case)
-		#GROUPER.load("/home/simplay/uni/pse/webgrouper/lib/Spec10billing32bit.bin")    
+  def group(patient_case) 
 		@result = GROUPER.group(patient_case)
 		weighting_relation = WeightingRelation.new		
 		drg = DRG.find_by_DrCode(@result.getDrg)
