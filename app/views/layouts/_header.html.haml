@@ -1,4 +1,5 @@
 .header
+  %h1 Webgrouper
   .locales
     %ol
       %li 
@@ -9,4 +10,4 @@
         = link_to "Italiano", webgrouper_patient_cases_url(:locale => "it"), :class => 'button'
       %li
         = link_to "English", webgrouper_patient_cases_url(:locale => "en"), :class => 'button'
-  %h1 Webgrouper
+  = link_to image_tag("swiss_drg_short.gif"), 'http://www.swissdrg.org/', :class => 'logo'

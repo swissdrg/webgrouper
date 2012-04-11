@@ -2,15 +2,29 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
 .logo {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .sameline * {
 	display: inline;
 }
 
+.header {
+	height: 90px;
+}
+
+.container {
+	position: absolute;
+	margin: 10px;
+}
 .locales {
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 300px;
 }
 
 .clear_fields {
@@ -22,6 +36,7 @@
 .locales li {
 	list-style: none;
 	display: inline;
+	text-align: right;
 }
 
 .spacer {
