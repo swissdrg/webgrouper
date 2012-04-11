@@ -24,7 +24,7 @@
 .locales {
 	position: absolute;
 	top: 0;
-	right: 300px;
+	right: 290px;
 }
 
 .clear_fields {
@@ -46,33 +46,20 @@
 /*
  * Various fieldsets:
  */
-
-fieldset#system {
-    
+fieldset#stay, fieldset#patient-data {
+   width: 47%;
 }
 
-fieldset#stay {
-   width: 45%;
-   float: left;
+fieldset {
+	padding-left: 0;
+	margin: 0;
 }
-
-fieldset#patient-data {
-   width: 45%;
-   float:right;
-}
-
 fieldset#drg-proc {
-    float: left;
+	width: 100%;
+	padding-right: 0;
 }
 
-fieldset#result {
-    float: left;
-}
-
-fieldset#cost-weight {
-    float: right;
-}
-
-fieldset#debug {
-    float: left;
+fieldset legend {
+	margin: 0 1.5em;
+	padding: 8px;
 }

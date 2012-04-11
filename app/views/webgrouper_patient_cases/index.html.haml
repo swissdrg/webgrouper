@@ -16,7 +16,7 @@
               :label_method => lambda { |el| t "simple_form.options.system.care_provider.#{el}" }
     
 = simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :get do |f|
-  %fieldset#stay
+  %fieldset#stay.left
     %legend= t("fieldsets.stay")
     = f.input :entry_date, 
               :input_html => { :title => t("simple_form.tooltips.date"), :class => "date_picker calc_los" }
@@ -36,7 +36,7 @@
               :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.sep.sep#{el}" }
     = f.input :los
 
-  %fieldset#patient-data
+  %fieldset#patient-data.right
     %legend= t("fieldsets.patient_data")
     = f.input :sex, 
               :collection => [:M , :W, :U], 
@@ -56,7 +56,7 @@
     #admWeight
       = f.input :adm_weight
 
-  %fieldset#drg-proc
+  %fieldset#drg-proc.left
     %legend= t("fieldsets.diagnoses_procedures")
     .diagnoses
       = f.input :pdx
@@ -64,9 +64,10 @@
     %p
     .procedures
       = render "shared/fields", :kind => "procedures", :count => 100, :patient_case => @webgrouper_patient_case
-  = f.submit
+  = f.submit :class => "button positive"
 = button_to t("helpers.submit.webgrouper_patient_case.clear_form"), 
-              webgrouper_patient_cases_path,
-              :method => :get
+            webgrouper_patient_cases_path, 
+            :class => "button negative", 
+            :method => :get
               
 = render "shared/result" unless @result.nil? || @result.getGst.nil?

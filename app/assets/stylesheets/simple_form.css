@@ -3,7 +3,7 @@
  */
 
 .simple_form div.input {
-  /* margin-bottom: 10px; */
+  /*margin-bottom: 10px; */
 }
 
 .simple_form input.string {
@@ -16,7 +16,7 @@
 
 .simple_form label {
   float: left;
-  width: 180px;
+  width: 200px;
   text-align: right;
   margin: 0.75em 10px;
 }
@@ -24,7 +24,6 @@
 input[type='submit'] {
   float: left;
   margin-left: 235px;
-  margin-bottom:200px;
 }
 
 div.boolean label, label.collection_radio {
