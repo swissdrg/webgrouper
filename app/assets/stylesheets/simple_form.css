@@ -15,14 +15,14 @@
 }
 
 #system .small_field input.string {
-	width: 100px;
+	width: 90px;
 }
 
 input.string:disabled {
 	background-color: #eee;
 }
 select#webgrouper_patient_case_age_mode {
-	max-width: 5em;
+	width: 70px;
 }
 
 .simple_form div.input {
@@ -35,6 +35,10 @@ select#webgrouper_patient_case_age_mode {
 
 .simple_form select {
   max-width: 13em;
+}
+
+.simple_form select option {
+	display: block !important;
 }
 
 .simple_form label {
