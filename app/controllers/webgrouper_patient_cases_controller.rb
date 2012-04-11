@@ -15,13 +15,16 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def group(patient_case)
-    @result = GROUPER.group(patient_case)
+		GROUPER.load("/home/simplay/uni/pse/webgrouper/lib/Spec10billing32bit.bin")    
+		@result = GROUPER.group(patient_case)
 		weighting_relation = WeightingRelation.new		
 		drg = DRG.find_by_DrCode(@result.getDrg)
-    
+    		
+
+		factor = 10000
 		weighting_relation.setDrg(@result.getDrg)
 		
-		weighting_relation.setCostWeight(drg.cost_weight)
+		weighting_relation.setCostWeight(drg.cost_weight*factor)
 		weighting_relation.setAvgDuration(drg.avg_duration)
 		weighting_relation.setFirstDayDiscount(drg.first_day_discount)
 		weighting_relation.setFirstDaySurcharge(drg.first_day_surcharge)
