@@ -40,7 +40,7 @@ class WebgrouperPatientCase < PatientCase
   
   # Always returns false since our model is not persisted (saved in a database).
   # The method is necessary for this model to be treated like an active record model
-  # in certain circumstances; when building forms for it, or instance.
+  # in certain circumstances; when building forms for it, for instance.
   def persisted?
     false
   end
@@ -79,6 +79,9 @@ class WebgrouperPatientCase < PatientCase
 			hash.each do |key, value| 
 				tmp << value unless value.blank? 
 			end
+			puts "======================================================="
+			puts tmp
+			puts "======================================================="
 		else
 			hash.each do |key, value| 
 				# tmp_procedure contains the current procedure value
