@@ -31,6 +31,10 @@ Then /^the form should stay the same$/ do
   
 end
 
+Then /^show me the results$/ do
+  save_and_open_page
+end
+
 Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
   if page.respond_to? :should
     within_fieldset("#result") do
