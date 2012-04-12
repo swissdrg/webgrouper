@@ -65,17 +65,19 @@
     %legend= t("fieldsets.diagnoses_procedures")
     #diagnoses
       = f.input :pdx
+      = f.label "diagnoses"
       = render "shared/diagnoses", :max_count => 99, :patient_case => @webgrouper_patient_case
     .buttons
-      = link_to_add_fields("+", "diagnoses")
-      = link_to_remove_fields("-", "diagnoses")
+      = link_to_add_fields("bullet_toggle_plus.png", "diagnoses")
+      = link_to_remove_fields("bullet_toggle_minus.png", "diagnoses")
       
     %p
     #procedures
+      = f.label "procedures"
       = render "shared/procedures", :max_count => 100, :patient_case => @webgrouper_patient_case
     .buttons
-      = link_to_add_fields("+", "procedures")
-      = link_to_remove_fields("-", "procedures")
+      = link_to_add_fields("bullet_toggle_plus.png", "procedures")
+      = link_to_remove_fields("bullet_toggle_minus.png", "procedures")
       
   = f.submit :class => "button positive"
 = button_to t("helpers.submit.webgrouper_patient_case.clear_form"), 

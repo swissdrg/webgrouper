@@ -49,7 +49,7 @@ select#webgrouper_patient_case_age_mode {
   float: left;
   width: 200px;
   text-align: right;
-  margin: 0.7em 10px;
+	margin-right: 1em;
 }
 
 input[type='submit'] {
