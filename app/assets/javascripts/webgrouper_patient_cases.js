@@ -95,7 +95,7 @@ function add_fields(kind, content, value) {
 				if (array[field_count] != undefined) {
 					var real_value = array[field_count].replace("\"", "").replace("\"", "");
 				}
-				proc_values = real_value.split("$");
+				proc_values = real_value.split(":");
 				var proc_value = "";
 				if (proc_values[i] != undefined) {
 					var proc_value = proc_values[i];

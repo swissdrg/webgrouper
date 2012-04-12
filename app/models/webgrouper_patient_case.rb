@@ -85,12 +85,17 @@ class WebgrouperPatientCase < PatientCase
 		else
 			hash.each do |key, value| 
 				# tmp_procedure contains the current procedure value
-				tmp_procedure = ""				
+				tmp_procedure = ""
+				counter = 0				
 				value.each do |key2, value2|
 					# we use "$" as our string delimiter symbol
-					tmp_procedure += value2 + "$"				
+					tmp_procedure += value2	
+					if counter < 2
+						tmp_procedure += ":"
+					end
+					counter = counter + 1 			
 				end
-				tmp << tmp_procedure unless tmp_procedure == "$$$"
+				tmp << tmp_procedure unless tmp_procedure == "::"
 			end
 		end
 
