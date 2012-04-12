@@ -1,5 +1,5 @@
-%fieldset#result.left
-  %legend Resultat
+%fieldset#grouping.result.left
+  %legend= t "result.grouping"
   %table
     %tbody
       %tr
@@ -31,8 +31,8 @@
         %td
           = t("result.grouperstatus_modes." + @result.get_gst.to_s)
 
-%fieldset#cost-weight.right
-  %legend Cost weight
+%fieldset#cost-weight.result.left
+  %legend= t "result.cost-weight"
   %table
     %tbody
       %tr
@@ -46,6 +46,25 @@
         %th
           Effective cost weight:
         %td
-          = @cost_weight.get_effective_cost_weight
+          = @cost_weight.get_effective_cost_weight.to_f/@factor
         %td
           = @cost_weight.get_case_flag
+          
+%fieldset#length-of-stay.result.left
+  %legend= t "result.length-of-stay"
+  %table
+    %tbody
+      TODO: get los data
+
+          
+%fieldset#diagnoses.result.left
+  %legend= t "result.diagnoses"
+  %table
+    %tbody
+      TODO: get diagnoses
+      
+%fieldset#procedures.result.left
+  %legend= t "result.procedures"
+  %table
+    %tbody
+      TODO: get procedures

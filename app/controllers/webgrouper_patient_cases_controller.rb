@@ -20,10 +20,10 @@ class WebgrouperPatientCasesController < ApplicationController
 		drg = DRG.find_by_DrCode(@result.getDrg)
     		
 
-		factor = 10000
+		@factor = 10000
 		weighting_relation.setDrg(@result.getDrg)
 		
-		weighting_relation.setCostWeight(drg.cost_weight*factor)
+		weighting_relation.setCostWeight(drg.cost_weight*@factor)
 		weighting_relation.setAvgDuration(drg.avg_duration)
 		weighting_relation.setFirstDayDiscount(drg.first_day_discount)
 		weighting_relation.setFirstDaySurcharge(drg.first_day_surcharge)

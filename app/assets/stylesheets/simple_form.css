@@ -6,6 +6,10 @@
 	float: left;
 }
 
+#system select {
+	width: 13em;
+}
+
 #system legend {
 	float: none;
 }
@@ -34,7 +38,7 @@ select#webgrouper_patient_case_age_mode {
 }
 
 .simple_form select {
-  max-width: 13em;
+  max-width: 240px;
 }
 
 .simple_form select option {

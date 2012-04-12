@@ -71,3 +71,12 @@ fieldset legend {
 	margin: 0 1.5em;
 	padding: 8px;
 }
+
+fieldset.result {
+	padding-left: 1.5em;
+	margin-right: 1em;
+}
+
+fieldset.result legend {
+	margin: 0;
+}
