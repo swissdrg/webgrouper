@@ -1,5 +1,4 @@
 Feature: Group a valid patient case
-  In order to blah
   A normal user
   Should group without any conflicts and validation errors
 

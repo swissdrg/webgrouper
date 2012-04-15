@@ -37,11 +37,7 @@ end
 
 Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
   if page.respond_to? :should
-<<<<<<< HEAD
-    within_fieldset("#result") do
-=======
     within(:css, 'fieldset#grouping') do
->>>>>>> 72c7383... For the first time in history, all tests pass!
       has_content?(text)
     end
   else
