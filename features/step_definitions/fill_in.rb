@@ -8,7 +8,7 @@ When /^I enter some random \(valid!\) data$/ do
 end
 
 When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
-  step %{I fill in "webgrouper_patient_case_pdx" with "pdx"}
+  step %{I fill in "webgrouper_patient_case_pdx" with "#{pdx}"}
 end
 
 
@@ -37,7 +37,11 @@ end
 
 Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
   if page.respond_to? :should
+<<<<<<< HEAD
     within_fieldset("#result") do
+=======
+    within(:css, 'fieldset#grouping') do
+>>>>>>> 72c7383... For the first time in history, all tests pass!
       has_content?(text)
     end
   else
