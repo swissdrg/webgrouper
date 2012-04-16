@@ -6,28 +6,28 @@
         %th
           MDC:
         %td
-          = @result.get_mdc
+          = @result.mdc
         %td
           
       %tr
         %th
           DRG:
         %td
-          = @result.get_drg
+          = @result.drg
         %td
           = (DRG.find_by_DrCode @result.get_drg).DrName
       %tr
         %th
           PCCL:
         %td
-          = @result.get_pccl
+          = @result.pccl
         %td
           
       %tr
         %th
-          = t("result.grouperstatus") + ":"
+          = t("result.grouperstatus")
         %td
-          = @result.get_gst.ordinal
+          = @result.gst.ordinal
         %td
           = t("result.grouperstatus_modes." + @result.get_gst.to_s)
 
@@ -37,34 +37,88 @@
     %tbody
       %tr
         %th
-          Baserate:
+          = t "result.baserate"
         %td
           = @base_cost_weight
-        %td
-          
+        %td        
       %tr
         %th
-          Effective cost weight:
+          = t "result.effective-cost-weight"
         %td
-          = @cost_weight.get_effective_cost_weight.to_f/@factor
+          = @cost_weight.effective_cost_weight.to_f/@factor
+      %tr
+        %th
+          = t "result.surcharge-rate-per-day"
         %td
-          = @cost_weight.get_case_flag
+          = @weighting_relation.surcharge_per_day.to_f/@factor
+      %tr
+        %th
+          = t "result.number-of-days-for-surcharge-or-discount"
+        %td
+          = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge
           
 %fieldset#length-of-stay.result.left
   %legend= t "result.length-of-stay"
   %table
     %tbody
-      TODO: get los data
-
+      %tr
+        %th
+          = t("result.length-of-stay")
+        %td
+          = @webgrouper_patient_case.los
+      %tr
+        %th
+          = t("result.average-los")
+        %td
+          = @weighting_relation.avg_duration.to_f/@factor
+      %tr
+        %th
+          = t("result.first-day-with-discount")
+        %td
+          = @weighting_relation.first_day_discount
+      %tr
+        %th
+          = t("result.first-day-with-surcharge")
+        %td
+          = @weighting_relation.first_day_surcharge
+      %tr
+        %th
+          = t("result.first-day-with-discount")
+        %td
+          = @weighting_relation.first_day_discount
+      %tr
+        %th
+          = t("result.case-flag")
+        %td
+          = @cost_weight.case_flag
           
 %fieldset#diagnoses.result.left
   %legend= t "result.diagnoses"
   %table
     %tbody
-      TODO: get diagnoses
-      
+      %tr
+        %th
+          = t("result.code")
+        %th
+          = t("result.name")
+        %th
+          = t("result.CCL")
+      %tr
+        %td
+          = @webgrouper_patient_case.pdx #this has to be pretty code! 
+        %td
+          lookup in table
+        %td
+          lookup in table
+          
 %fieldset#procedures.result.left
   %legend= t "result.procedures"
   %table
     %tbody
-      TODO: get procedures
+      %tr
+        %th
+          = t("result.code")
+        %th
+          = t("result.name")
+        %th
+          = t("result.or-nor")
