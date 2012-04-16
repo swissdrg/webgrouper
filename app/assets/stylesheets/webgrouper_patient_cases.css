@@ -53,8 +53,12 @@
 /*
  * Various fieldsets:
  */
-fieldset#stay, fieldset#patient-data {
-   width: 47%;
+fieldset#stay, fieldset#patient-data{
+   	width: 47%;
+}
+
+fieldset#grouping, fieldset#cost-weight {
+	width: 45%;
 }
 
 fieldset {
@@ -74,7 +78,6 @@ fieldset legend {
 
 fieldset.result {
 	padding-left: 1.5em;
-	margin-right: 1em;
 }
 
 fieldset.result legend {
