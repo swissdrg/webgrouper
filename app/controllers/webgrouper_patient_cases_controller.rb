@@ -19,17 +19,17 @@ class WebgrouperPatientCasesController < ApplicationController
 		weighting_relation = WeightingRelation.new		
 		drg = DRG.find_by_DrCode(@result.getDrg)
     		
-
-		@factor = 10000
 		weighting_relation.setDrg(@result.getDrg)
+		
+		@factor = 10000
 		
 		weighting_relation.setCostWeight(drg.cost_weight*@factor)
 		weighting_relation.setAvgDuration(drg.avg_duration)
 		weighting_relation.setFirstDayDiscount(drg.first_day_discount)
 		weighting_relation.setFirstDaySurcharge(drg.first_day_surcharge)
-		weighting_relation.setSurchargePerDay(drg.surcharge_per_day)
-		weighting_relation.setDiscountPerDay(drg.discount_per_day)
-		weighting_relation.setTransferFlatrate(drg.transfer_flatrate)
+		weighting_relation.setSurchargePerDay(drg.surcharge_per_day*@factor)
+		weighting_relation.setDiscountPerDay(drg.discount_per_day*@factor)
+		weighting_relation.setTransferFlatrate(drg.transfer_flatrate*@factor)
 		weighting_relation.setUseTransferFlatrate(drg.transfer)
 		
 		@base_cost_weight = drg.cost_weight
