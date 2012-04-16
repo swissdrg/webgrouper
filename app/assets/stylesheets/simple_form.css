@@ -30,7 +30,7 @@ select#webgrouper_patient_case_age_mode {
 }
 
 .simple_form div.input {
-  /*margin-bottom: 10px; */
+	
 }
 
 .simple_form input.string {
@@ -41,6 +41,7 @@ select#webgrouper_patient_case_age_mode {
   max-width: 240px;
 }
 
+/** fix for FF */
 .simple_form select option {
 	display: block !important;
 }
@@ -49,7 +50,8 @@ select#webgrouper_patient_case_age_mode {
   float: left;
   width: 200px;
   text-align: right;
-	margin-right: 1em;
+  margin-right: 1em;
+  margin-top: 0.7em;
 }
 
 input[type='submit'] {
@@ -72,7 +74,7 @@ label.radio {
 .field_with_errors input {
 	margin-top: 10px;
 	padding: 2px;
-	background-color: #c00;
+	background-color: #d00;
 	/* this breaks datepicker */
 	/* display: table; */
 }
