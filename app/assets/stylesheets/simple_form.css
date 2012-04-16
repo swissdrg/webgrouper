@@ -50,8 +50,11 @@ select#webgrouper_patient_case_age_mode {
   float: left;
   width: 200px;
   text-align: right;
-  margin-right: 1em;
-  margin-top: 0.7em;
+  margin: 7px 1em 0 0;
+}
+
+.simple_form input {
+	margin: 5px 0;
 }
 
 input[type='submit'] {
