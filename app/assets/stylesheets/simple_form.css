@@ -1,5 +1,8 @@
-/* ----- SimpleForm Styles ----- 
+/* ----- SimpleForm Styles -----
  * Source: https://github.com/plataformatec/simple_form
+ *
+ * Everything related to the form is put here (except fieldsets).
+ * We from the pse1 team made only made slight alterations.
  */
 
 #system * {
@@ -25,20 +28,17 @@
 input.string:disabled {
 	background-color: #eee;
 }
+
 select#webgrouper_patient_case_age_mode {
 	width: 70px;
 }
 
-.simple_form div.input {
-	
-}
-
 .simple_form input.string {
-  width: 11em;
+	width: 11em;
 }
 
 .simple_form select {
-  max-width: 240px;
+	max-width: 240px;
 }
 
 /** fix for FF */
@@ -47,10 +47,10 @@ select#webgrouper_patient_case_age_mode {
 }
 
 .simple_form label {
-  float: left;
-  width: 200px;
-  text-align: right;
-  margin: 7px 1em 0 0;
+	float: left;
+	width: 200px;
+	text-align: right;
+	margin: 7px 1em 0 0;
 }
 
 .simple_form input {
@@ -58,20 +58,20 @@ select#webgrouper_patient_case_age_mode {
 }
 
 input[type='submit'] {
-  float: left;
-  margin-left: 235px;
+	float: left;
+	margin-left: 235px;
 }
 
 div.boolean label, label.collection_radio {
-  float: none;
-  margin: 0;
+	float: none;
+	margin: 0;
 }
 
 label.radio {
 	width: 50px;
-  margin: 10px;
-  vertical-align: -2px;
-  margin-left:   2px;
+	margin: 10px;
+	vertical-align: -2px;
+	margin-left: 2px;
 }
 
 .field_with_errors input {
@@ -83,35 +83,35 @@ label.radio {
 }
 
 .simple_form .error {
-  clear:   left;
-  color:   black;
-  display: block;
-  margin-left: 120px;
-  font-size:    12px;
+	clear: left;
+	color: black;
+	display: block;
+	margin-left: 120px;
+	font-size: 12px;
 }
 
 .simple_form .hint {
-  clear: left;
-  margin-left: 120px;
-  font-size:    12px;
-  color: #555;
-  display: block;
-  font-style: italic;
+	clear: left;
+	margin-left: 120px;
+	font-size: 12px;
+	color: #555;
+	display: block;
+	font-style: italic;
 }
 
 input.radio {
-  margin-right: 5px;
-  vertical-align: -3px;
+	margin-right: 5px;
+	vertical-align: -3px;
 }
 
 input.check_boxes {
-  margin-left: 3px;
-  vertical-align: -3px;
+	margin-left: 3px;
+	vertical-align: -3px;
 }
 
 label.collection_check_boxes {
-  float: none;
-  margin: 0;
-  vertical-align: -2px;
-  margin-left:   2px;
+	float: none;
+	margin: 0;
+	vertical-align: -2px;
+	margin-left: 2px;
 }

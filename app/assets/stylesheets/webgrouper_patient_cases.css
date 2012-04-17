@@ -1,11 +1,10 @@
 /*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
-
+ Place all the styles related to the matching controller here.
+ They will automatically be included in application.css.
+ */
 
 /**
- * Everything belonging to the header goes here:	
+ * Everything belonging to the header goes here:
  */
 
 /* 	Has to be logo-image-height + 1 */
@@ -49,12 +48,11 @@
 	margin-right: 1em;
 }
 
-
 /*
  * Various fieldsets:
  */
-fieldset#stay, fieldset#patient-data{
-   	width: 47%;
+fieldset#stay, fieldset#patient-data {
+	width: 47%;
 }
 
 fieldset#grouping, fieldset#cost-weight {

@@ -110,6 +110,14 @@
           lookup in table
         %td
           lookup in table
+      - @webgrouper_patient_case.diagnoses.each do |diag|
+        %tr
+          %td
+            = diag
+          %td
+            lookup
+          %td
+            lookup
           
 %fieldset#procedures.result.left
   %legend= t "result.procedures"
@@ -122,3 +130,11 @@
           = t("result.name")
         %th
           = t("result.or-nor")
+      - @webgrouper_patient_case.procedures.each do |proc|
+        %tr
+          %td
+            = proc
+          %td
+            lookup
+          %td
+            lookup
