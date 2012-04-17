@@ -1,5 +1,7 @@
 class WebgrouperPatientCasesController < ApplicationController
   
+  autocomplete :drg, :DrName, :full => true
+  
   def index
     @webgrouper_patient_case = WebgrouperPatientCase.new
   end

@@ -64,7 +64,9 @@
   %fieldset#drg-proc.left
     %legend= t("fieldsets.diagnoses_procedures")
     #diagnoses
-      = f.input :pdx
+      = f.input :pdx, 
+                :url => autocomplete_drg_DrName_webgrouper_patient_cases_path, 
+                :as => :autocomplete
       = f.label "diagnoses"
       = render "shared/diagnoses", :max_count => 99, :patient_case => @webgrouper_patient_case
     .buttons
