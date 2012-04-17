@@ -3,4 +3,7 @@ class ICD < ActiveRecord::Base
     "icd"
   end
 
+  def autocomplete_result
+    "#{self.IcCode} #{self.IcName}"
+  end
 end
