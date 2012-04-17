@@ -2,7 +2,7 @@ Webgrouper::Application.routes.draw do
   
   scope "/:locale" do
     resources :webgrouper_patient_cases do
-      get :autocomplete_drg_DrName, :on => :collection
+      get :autocomplete_DRG_DrName, :on => :collection
     end
     get 'create_query' => 'webgrouper_patient_cases#create_query'
   end
