@@ -3,6 +3,10 @@
 $(document).ready(function() {
 	addDatePickers()
 	admWeightControl(0);
+	$('#webgrouper_patient_case_pdx').bind('railsAutocomplete.select', function(event, data){
+  		/* Do something here */
+  		event.target.value = data.item.label.split(" ")[0];
+	});
 });
 
 
