@@ -8,6 +8,6 @@ class System < ActiveRecord::Base
   end
   
   def self.current_system
-    @current_system ||= 9
+    @current_system ||= System.find_by_SyID(9)
   end
 end

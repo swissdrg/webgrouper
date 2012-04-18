@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 
-$("#system_active_grouper").live("change keyup", function () {
+$("#system_SyID").live("change keyup", function () {
 	this.form.submit();
 });
 

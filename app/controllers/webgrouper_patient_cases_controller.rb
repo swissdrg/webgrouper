@@ -9,6 +9,7 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def create_query
+    System.current_system = System.find_by_SyID(params[:system][:SyID])
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
@@ -39,11 +40,6 @@ class WebgrouperPatientCasesController < ApplicationController
 		
 		@base_cost_weight = drg.cost_weight
 		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
-    render 'index'
-  end
-  
-  def change_system
-    System.current_system = params[:system][:active_grouper]
     render 'index'
   end
   
