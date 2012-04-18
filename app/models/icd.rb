@@ -1,6 +1,6 @@
 class ICD < ActiveRecord::Base
 
-  scope :active_system, lambda{where(:IcFKSyID => 9)}
+  default_scope lambda{where(:IcFKSyID => 9)}
 
   def self.table_name
     "icd"
@@ -8,5 +8,13 @@ class ICD < ActiveRecord::Base
 
   def autocomplete_result
     "#{self.IcCode} #{self.IcName}"
+  end
+  
+  def self.short_code_of(value)
+    value.gsub(/\./, "").strip
+  end
+  
+  def self.pretty_code_of(value)
+    self.find_by_IcShort(short_code_of(value)).IcCode
   end
 end
