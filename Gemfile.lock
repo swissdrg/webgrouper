@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/slash4/rails3-jquery-autocomplete.git
+  revision: 393786627734720f5cdae2265bc4a74609756452
+  specs:
+    rails3-jquery-autocomplete (1.0.4)
+      rails (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -110,8 +117,6 @@ GEM
       activesupport (= 3.1.0)
       bundler (~> 1.0)
       railties (= 3.1.0)
-    rails3-jquery-autocomplete (1.0.6)
-      rails (~> 3.0)
     railties (3.1.0)
       actionpack (= 3.1.0)
       activesupport (= 3.1.0)
@@ -182,7 +187,7 @@ DEPENDENCIES
   json
   launchy
   rails (= 3.1.0)
-  rails3-jquery-autocomplete
+  rails3-jquery-autocomplete!
   rspec-rails
   simple_form
   therubyrhino

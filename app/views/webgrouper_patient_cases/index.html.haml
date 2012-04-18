@@ -65,7 +65,7 @@
     %legend= t("fieldsets.diagnoses_procedures")
     #diagnoses
       = f.input :pdx, 
-                :url => autocomplete_ICD_IcName_webgrouper_patient_cases_path, 
+                :url => autocomplete_ICD_IcCode_webgrouper_patient_cases_path, 
                 :as => :autocomplete
       = f.label "diagnoses"
       = render "shared/diagnoses", :max_count => 99, :patient_case => @webgrouper_patient_case
