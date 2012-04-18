@@ -1,26 +1,45 @@
 = render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
-= simple_form_for :system, :url => change_system_path, :remote => true do |f|
+/ = simple_form_for :system, :url => change_system_path, :remote => true do |f|
+/   %fieldset#system
+/     %legend= t("fieldsets.system")
+/     .sameline
+/       = f.input :active_grouper, 
+/                 :as => :select, 
+/                 :include_blank => false,
+/                 :collection => (1..9),
+/                 :label_method => lambda { |el| t "simple_form.options.system.active_grouper.ag#{el}" }
+/       = f.input :procedures_catalog,
+/                 :disabled => true,
+/                 :wrapper_html => { :class => "small_field" }
+/       = f.input :diagnoses_catalog,
+/                 :disabled => true,
+/                 :wrapper_html => { :class => "small_field" }
+/     = f.input :care_provider, 
+/               :as => :select,
+/               :include_blank => false,
+/               :collection => ["hospital", "birthing_center"],
+/               :label_method => lambda { |el| t "simple_form.options.system.care_provider.#{el}" }
+    
+= simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :get do |f|
+
   %fieldset#system
     %legend= t("fieldsets.system")
     .sameline
-      = f.input :active_grouper, 
-                :as => :select, 
-                :include_blank => false,
-                :collection => (1..9),
-                :label_method => lambda { |el| t "simple_form.options.system.active_grouper.ag#{el}" }
-      = f.input :procedures_catalog,
-                :disabled => true,
-                :wrapper_html => { :class => "small_field" }
-      = f.input :diagnoses_catalog,
-                :disabled => true,
-                :wrapper_html => { :class => "small_field" }
+      = f.label :active_grouper
+      = collection_select(:system, :SyID, System.all, :SyID, :SyName)
+      .small_field
+        = f.label :procedures_catalog
+        = text_field_tag :procedures_catalog, System.current_system.SyCatProcs, :disabled => true     
+      .small_field
+        = f.label :diagnoses_catalog
+        = text_field_tag :diagnoses_catalog, System.current_system.SyCatDiags, :disabled => true
     = f.input :care_provider, 
               :as => :select,
               :include_blank => false,
               :collection => ["hospital", "birthing_center"],
               :label_method => lambda { |el| t "simple_form.options.system.care_provider.#{el}" }
-    
-= simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :get do |f|
+  
+
   %fieldset#stay.left
     %legend= t("fieldsets.stay")
     = f.input :entry_date, 
