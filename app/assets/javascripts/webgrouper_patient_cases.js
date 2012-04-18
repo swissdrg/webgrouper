@@ -3,11 +3,9 @@
 $(document).ready(function() {
 	addDatePickers()
 	admWeightControl(0);
-	$('#webgrouper_patient_case_pdx').bind('railsAutocomplete.select', function(event, data){
-  		/* Do something here */
-  		event.target.value = data.item.label.split(" ")[0];
-	});
+	initializeAutocomplete()
 });
+
 
 
 $("#system_active_grouper").live("change keyup", function () {
@@ -49,6 +47,18 @@ $("#webgrouper_patient_case_birth_date").live("focus change", function() {
 	flashYellow($("#webgrouper_patient_case_age_mode"),'transparent',75,20,4 );
 	flashYellow($("#webgrouper_patient_case_age"),'transparent',75,20,4 );
 });
+
+/**
+ * This method binds an alternative update method to every autocomplete field, so that
+ * only the code itself is put into the field.
+ * It also adds the name as title, making it available to see in a tooltip.
+ */
+function initializeAutocomplete() {
+	$(':input.autocomplete').bind('railsAutocomplete.select', function(event, data){
+  		event.target.value = data.item.label.split(" ", 1)[0];
+  		event.target.title = data.item.IcName;
+	});
+}
 
 /**
  * Adds date pickers to every input field of the class "date_picker"
