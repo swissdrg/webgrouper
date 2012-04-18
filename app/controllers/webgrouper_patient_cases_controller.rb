@@ -42,4 +42,8 @@ class WebgrouperPatientCasesController < ApplicationController
     render 'index'
   end
   
+  def change_system
+    
+  end
+  
 end

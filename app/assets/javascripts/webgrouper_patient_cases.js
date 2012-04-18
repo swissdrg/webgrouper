@@ -5,6 +5,11 @@ $(document).ready(function() {
 	admWeightControl(0);
 });
 
+
+$("#system_active_grouper").live("change keyup", function () {
+	this.form.submit();
+});
+
 $(".calc_los").live("focus change", function() {
 	var first = parseDate($('#webgrouper_patient_case_entry_date').val())
 	var second = parseDate($('#webgrouper_patient_case_exit_date').val())

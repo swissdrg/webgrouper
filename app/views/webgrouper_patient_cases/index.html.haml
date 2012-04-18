@@ -1,5 +1,5 @@
 = render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
-= simple_form_for :system do |f|
+= simple_form_for :system, :url => change_system_path, :remote => true do |f|
   %fieldset#system
     %legend= t("fieldsets.system")
     .sameline

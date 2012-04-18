@@ -79,9 +79,6 @@ class WebgrouperPatientCase < PatientCase
 			hash.each do |key, value| 
 				tmp << ICD.pretty_code_of(value) unless value.blank? 
 			end
-			puts "======================================================="
-			puts tmp
-			puts "======================================================="
 		else
 			hash.each do |key, value| 
 				# tmp_procedure contains the current procedure value
