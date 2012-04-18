@@ -25,6 +25,14 @@
 	width: 90px;
 }
 
+#drg-proc input.small_field {
+	width: 90px;
+}
+
+#drg-proc input.tiny_field {
+	width: 20px;
+}
+
 input.string:disabled {
 	background-color: #eee;
 }

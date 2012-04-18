@@ -69,6 +69,7 @@ class WebgrouperPatientCase < PatientCase
     procedures
   end
   
+  #ZOMFG write some documentation for this >.<
   def hash_to_java_array(hash, length, is_diagnoses)
 		result = []
 		tmp = []
@@ -85,8 +86,12 @@ class WebgrouperPatientCase < PatientCase
 				tmp_procedure = ""
 				counter = 0				
 				value.each do |key2, value2|
-					# we use "$" as our string delimiter symbol
-					tmp_procedure += value2	
+					# we use ":" as our string delimiter symbol
+					if counter == 0 && !value2.blank?
+					  tmp_procedure += OPS.pretty_code_of(value2)
+					else 
+					 tmp_procedure += value2
+					end
 					if counter < 2
 						tmp_procedure += ":"
 					end
