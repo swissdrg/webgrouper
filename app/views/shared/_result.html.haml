@@ -101,6 +101,8 @@
         %th
           = t("result.name")
         %th
+          = t("result.flag")
+        %th
           = t("result.CCL")
       %tr
         %td
@@ -109,14 +111,18 @@
           = ICD.find_by_IcShort(ICD.short_code_of(@webgrouper_patient_case.pdx)).IcName
         %td
           TODO 
+        %td
+          TODO 
       - @webgrouper_patient_case.diagnoses.each do |diag|
         %tr
           %td
-            = ICD.pretty_code_of(diag)
+            = diag
           %td
-            = ICD.find_by_IcShort(ICD.short_code_of(diag)).IcName
+            = ICD.find_by_IcCode(diag).IcName
           %td
             lookup
+          %td
+            TODO
           
 %fieldset#procedures.result.left
   %legend= t "result.procedures"
@@ -127,12 +133,17 @@
           = t("result.code")
         %th
           = t("result.name")
+        %td
+          = t("result.flag")
         %th
           = t("result.or-nor")
       - @webgrouper_patient_case.procedures.each do |proc|
+        - proc_pretty_code = proc.split(":")[0]
         %tr
           %td
-            = proc
+            = proc_pretty_code
+          %td
+            = OPS.find_by_OpCode(proc_pretty_code).OpName
           %td
             lookup
           %td

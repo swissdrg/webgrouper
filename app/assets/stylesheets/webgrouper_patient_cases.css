@@ -62,6 +62,7 @@ fieldset#grouping, fieldset#cost-weight {
 fieldset {
 	padding-top: 0;
 	padding-left: 0;
+	padding-bottom: 1em;
 	margin: 0;
 }
 fieldset#drg-proc {

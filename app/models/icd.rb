@@ -14,6 +14,7 @@ class ICD < ActiveRecord::Base
     value.gsub(/\./, "").strip
   end
   
+  #TODO: don't throw an exception into my face if short code isn't found
   def self.pretty_code_of(value)
     self.find_by_IcShort(short_code_of(value)).IcCode
   end
