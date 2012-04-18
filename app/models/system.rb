@@ -3,4 +3,11 @@ class System < ActiveRecord::Base
     "system"
   end
 
+  def self.current_system=(system)
+    @current_system = system
+  end
+  
+  def self.current_system
+    @current_system ||= 9
+  end
 end

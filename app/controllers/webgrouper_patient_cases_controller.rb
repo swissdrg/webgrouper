@@ -43,7 +43,8 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def change_system
-    
+    System.current_system = params[:system][:active_grouper]
+    render 'index'
   end
   
 end

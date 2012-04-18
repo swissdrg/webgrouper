@@ -1,6 +1,6 @@
 class ICD < ActiveRecord::Base
 
-  default_scope lambda{where(:IcFKSyID => 9)}
+  default_scope lambda{where(:IcFKSyID => System.current_system)}
 
   def self.table_name
     "icd"
