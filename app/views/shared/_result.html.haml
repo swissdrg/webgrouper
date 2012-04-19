@@ -133,18 +133,19 @@
           = t("result.code")
         %th
           = t("result.name")
-        %td
+        %th
           = t("result.flag")
         %th
           = t("result.or-nor")
       - @webgrouper_patient_case.procedures.each do |proc|
         - proc_pretty_code = proc.split(":")[0]
+        - proc_db_entry = OPS.find_by_OpCode(proc_pretty_code)
         %tr
           %td
             = proc_pretty_code
           %td
-            = OPS.find_by_OpCode(proc_pretty_code).OpName
+            = proc_db_entry.OpName
           %td
-            lookup
+            todo
           %td
-            lookup
+            = proc_db_entry.OrNor
