@@ -7,7 +7,7 @@ found at https://webgrouper.swissdrg.org/ . For further information, see [The PS
 
 The easiest way to get Ruby on Rails running is by using rvm, downloadable from https://rvm.beginrescueend.com/
 
-We use jRuby 1.6.6, which you can install by typing
+We use jRuby 1.6.6, which can be installed by typing
 
 	rvm install jruby-1.6.6
 	
@@ -20,9 +20,9 @@ in the project folder.
 ### Configuring the database
 
 Assuming you have mysql correctly installed, you only need to fill in your mysql root configuration in
-the database.yml file.  Get it here: https://www.dropbox.com/sh/cb3qv31w4tjnzxj/1ks5ZK4G6z/database.yml
+the database.yml file. Get it here: https://www.dropbox.com/sh/cb3qv31w4tjnzxj/1ks5ZK4G6z/database.yml
 
-And Copy it into your config/ directory
+And copy it into your config/ directory
 
 Then run this rake task:
 
