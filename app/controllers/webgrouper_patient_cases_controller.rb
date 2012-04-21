@@ -24,7 +24,11 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def group(patient_case) 
-		current_system_id = System.current_system.SyID
+		
+		spec_path = File.join('lib','specs','Spec10planning2.bin')
+		GROUPER.load(spec_path)		
+		current_system_id = System.current_system.SyID		
+		puts current_system_id	
 		
 		@result = GROUPER.group(patient_case)
 		@weighting_relation = WeightingRelation.new
