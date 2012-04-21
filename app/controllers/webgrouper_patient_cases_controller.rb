@@ -23,12 +23,12 @@ class WebgrouperPatientCasesController < ApplicationController
     end  
   end
   
-  def group(patient_case) 
+  def group(patient_case)
 		@result = GROUPER.group(patient_case)
 		@weighting_relation = WeightingRelation.new
 		all_drg = DRG.where(:DrFKSyID => 9)
 		drg = all_drg.find_by_DrCode(@result.getDrg)
-    		
+
 		@weighting_relation.setDrg(@result.getDrg)
 		
 		@factor = 10000
