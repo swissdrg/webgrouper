@@ -1,4 +1,5 @@
 .diagnoses_row
   - 5.times do |i|
-    = text_field_tag "webgrouper_patient_case[diagnoses][ID]", "VALUE", :size => 7
+    %span.field
+      = text_field_tag "webgrouper_patient_case[diagnoses][ID]", "VALUE", :size => 7
   .spacer

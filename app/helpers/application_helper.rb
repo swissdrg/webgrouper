@@ -11,4 +11,12 @@ module ApplicationHelper
   def row(kind)
     render "shared/#{kind}_row"
   end
+  
+  def add_button(kind)
+    render "shared/add_button", :kind => kind
+  end
+  
+  def remove_button(kind)
+    render "shared/remove_button", :kind => kind
+  end
 end
