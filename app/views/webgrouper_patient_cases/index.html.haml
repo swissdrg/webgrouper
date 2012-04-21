@@ -26,7 +26,7 @@
     %legend= t("fieldsets.system")
     .sameline
       = f.label :active_grouper
-      = collection_select(:system, :SyID, System.all, :SyID, :SyName)
+      = collection_select :system, :SyID, System.all.reverse, :SyID, :SyName, {:selected => System.current_system.SyID}
       .small_field
         = f.label :procedures_catalog
         = text_field_tag :procedures_catalog, System.current_system.SyCatProcs, :disabled => true     
