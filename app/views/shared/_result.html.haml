@@ -77,9 +77,9 @@
         %td
           = ICD.find_by_IcShort(ICD.short_code_of(@webgrouper_patient_case.pdx)).IcName
         %td
-          = t("result.diagnosis_flags.valid." + @result.pdx_diagnosis_flag.valid.to_s)
+          = t("result.diagnosis_flag.valid." + @result.pdx_diagnosis_flag.valid.to_s)
         %td
-          = @result.pdx_diagnosis_flag.used
+          = t("result.diagnosis_flag.used." + @result.pdx_diagnosis_flag.used.to_s + "_string")
         %td
           = @result.pdx_diagnosis_flag.ccl
       - counter = 0
@@ -90,9 +90,9 @@
           %td
             = ICD.find_by_IcCode(diag).IcName
           %td
-            = t("result.diagnosis_flags.valid." + @result.diagnoses_flags[counter].valid.to_s)
+            = t("result.diagnosis_flag.valid." + @result.diagnoses_flags[counter].valid.to_s)
           %td
-            = t("result.diagnosis_flags.valid." + @result.diagnoses_flags[counter].used.to_s)
+            = t("result.diagnosis_flag.used." + @result.diagnoses_flags[counter].used.to_s + "_string")
           %td
             = @result.diagnoses_flags[counter].ccl
         - counter = counter + 1
@@ -122,11 +122,11 @@
           %td
             = proc_db_entry.OpName
           %td
-            = t("result.procedures_flags.valid." + @result.procedures_flags[counter].valid.to_s)
+            = t("result.procedure_flag.valid." + @result.procedures_flags[counter].valid.to_s)
           %td
-            = t("result.procedures_flags.used." + @result.procedures_flags[counter].used.to_s)
+            = t("result.procedure_flag.used." + @result.procedures_flags[counter].used.to_s)
           %td
-            = t("result.procedures_flags.or-nor." + @result.procedures_flags[counter].por.to_s)
+            = t("result.procedure_flag.or-nor." + @result.procedures_flags[counter].por.to_s)
         - counter = counter + 1
             
 %fieldset#length-of-stay.result.left
