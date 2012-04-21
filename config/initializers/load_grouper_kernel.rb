@@ -35,7 +35,7 @@ else
 end
 # The real grouper:
 grouper_path = File.join('lib', lib_prequel + 'GrouperKernel' + arch_lib + file_extension)
-spec_path = File.join('lib', 'Spec10billing' + arch_bin + 'bit.bin')
+spec_path = File.join('lib', 'specs', 'Spec10billing' + arch_bin + 'bit.bin')
 GROUPER = org.swissdrg.grouper.kernel.GrouperKernel.create(grouper_path, spec_path)
 
 # for source code and a description of all classes involved
