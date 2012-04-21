@@ -95,5 +95,9 @@ fieldset.result legend {
 }
 
 fieldset.result th.small-col {
-	width: 50px;
+	width: 40px;
+}
+
+fieldset.result th.medium-col {
+	width: 100px;
 }
