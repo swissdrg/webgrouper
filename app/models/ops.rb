@@ -14,8 +14,15 @@ class OPS < ActiveRecord::Base
     value.gsub(/\./, "").strip
   end
   
-  #TODO: don't throw an exception into my face if short code isn't found
+  #Returns the value as pretty code if it is available in the db or
+  #the value itself unchanged if it is not part of the db.
+  #TODO: dont swallow the the error
   def self.pretty_code_of(value)
-    self.find_by_OpShort(short_code_of(value)).OpCode
+    db_entry = self.find_by_OpShort(short_code_of(value))
+    if db_entry.nil?
+      value
+    else
+      db_entry.OpCode
+    end
   end
 end

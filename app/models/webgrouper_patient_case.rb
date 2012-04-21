@@ -78,7 +78,7 @@ class WebgrouperPatientCase < PatientCase
 		
 		if is_diagnoses		
 			hash.each do |key, value| 
-				tmp << ICD.pretty_code_of(value) unless value.blank? 
+				tmp << ICD.pretty_code_of(value) unless value.blank?
 			end
 		else
 			hash.each do |key, value| 
