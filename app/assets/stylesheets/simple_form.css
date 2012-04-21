@@ -10,7 +10,7 @@
 }
 
 #system select {
-	width: 180px;
+	width: 240px;
 }
 
 #system legend {
@@ -18,11 +18,11 @@
 }
 
 #system .small_field label {
-	width: 150px;
+	width: 250px;
 }
 
 #system .small_field input {
-	width: 120px;
+	width: 11em;
 }
 
 #drg-proc input.small_field {
@@ -34,7 +34,7 @@
 }
 
 input:disabled {
-	background-color: #eee;
+	background-color: #ccc;
 }
 
 select#webgrouper_patient_case_age_mode {
