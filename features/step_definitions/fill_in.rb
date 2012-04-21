@@ -11,6 +11,9 @@ When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
   step %{I fill in "webgrouper_patient_case_pdx" with "#{pdx}"}
 end
 
+When /^I enter "([^"]*)" as los$/ do |los|
+  step %{I fill in "webgrouper_patient_case_los" with "#{los}"}
+end
 
 When /^I press on "([^"]*)"$/ do |button|
   click_button(button)
@@ -21,9 +24,9 @@ Then /^the grouping should succeed$/ do
 end
 
 Then /^the result should be shown$/ do
-  step %{I should see "B75B" in result}
-  step %{I should see "01" in result}
-  step %{I should see "0" in result}
+  step %{I should see "B75B" in "grouping"}
+  step %{I should see "01" in "grouping"}
+  step %{I should see "0" in "grouping"}
 end
 
 Then /^the form should stay the same$/ do
@@ -35,13 +38,15 @@ Then /^show me the results$/ do
   save_and_open_page
 end
 
+Then /^(?:|I )should see "([^"]*)" in "([^"]*)"$/ do |text, field|
+  within(:css, 'fieldset#' + field) do
+    has_content?(text)
+  end
+end
+
 Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
-  if page.respond_to? :should
-    within(:css, 'fieldset#grouping') do
-      has_content?(text)
-    end
-  else
-    assert page.has_content?(text)
+  within(:css, 'fieldset#grouping') do
+    has_content?(text)
   end
 end
 

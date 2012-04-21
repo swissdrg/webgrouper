@@ -39,8 +39,7 @@
           %th
             = t "result.baserate"
           %td
-            = @base_cost_weight
-          %td        
+            = @base_cost_weight     
         %tr
           %th
             = t "result.effective-cost-weight"
@@ -55,8 +54,8 @@
           %th
             = t "result.number-of-days-for-surcharge-or-discount"
           %td
-            = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge
-            
+            = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
+             
 %fieldset#diagnoses.result
   %legend= t "result.diagnoses"
   %table
