@@ -25,6 +25,7 @@ class WebgrouperPatientCasesController < ApplicationController
   
   def group(patient_case) 
 		current_system_id = System.current_system.SyID
+		GROUPER.load(spec_path(current_system_id))
 		@result = GROUPER.group(patient_case)
 		@weighting_relation = WeightingRelation.new
 		all_drg = DRG.where(:DrFKSyID => current_system_id)
