@@ -10,6 +10,7 @@
 /* 	Has to be logo-image-height + 1 */
 .header {
 	height: 94px;
+	position: relative;
 }
 
 .logo {
@@ -28,8 +29,6 @@
 }
 
 .container {
-	position: absolute;
-	margin: 10px;
 	width: 980px;
 }
 .locales {
