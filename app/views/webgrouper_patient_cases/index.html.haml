@@ -63,23 +63,19 @@
 
   %fieldset#drg-proc
     %legend= t("fieldsets.diagnoses_procedures")
+    :javascript
+      set_diagnoses_buttons("#{escape_javascript(add_button('diagnoses'))}", "#{escape_javascript(remove_button('diagnoses'))}")
+      set_procedures_buttons("#{escape_javascript(add_button('procedures'))}", "#{escape_javascript(remove_button('procedures'))}")
     #diagnoses
       = f.input :pdx, 
                 :url => autocomplete_ICD_IcCode_webgrouper_patient_cases_path, 
                 :as => :autocomplete
       = f.label "diagnoses"
-      = render "shared/diagnoses", :max_count => 99, :patient_case => @webgrouper_patient_case
-    .buttons
-      = link_to_add_fields("bullet_toggle_plus.png", "diagnoses")
-      = link_to_remove_fields("bullet_toggle_minus.png", "diagnoses")
-      
+      = render "shared/diagnoses", :patient_case => @webgrouper_patient_case
     %p
     #procedures
       = f.label "procedures"
-      = render "shared/procedures", :max_count => 100, :patient_case => @webgrouper_patient_case
-    .buttons
-      = link_to_add_fields("bullet_toggle_plus.png", "procedures")
-      = link_to_remove_fields("bullet_toggle_minus.png", "procedures")
+      = render "shared/procedures", :patient_case => @webgrouper_patient_case
       
   = f.submit :class => "button positive"
 = button_to t("helpers.submit.webgrouper_patient_case.clear_form"), 
