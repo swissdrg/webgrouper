@@ -8,7 +8,17 @@
  */
 
 /* 	Has to be logo-image-height + 1 */
+
+.errorflash ul {
+	margin-bottom: 0;
+}
+
+.errorflash li {
+	margin-bottom: 5px;
+}
+
 .header {
+	margin-top: 10px;
 	height: 94px;
 	position: relative;
 }
