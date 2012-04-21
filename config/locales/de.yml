@@ -5,60 +5,86 @@ de:
     system: 'System'
     stay: 'Aufenthalt'
     diagnoses_procedures: 'Diagnosen und Prozeduren'
-    patient_data: 'Patientendaten'
-  
+    patient_data: 'Patientendaten'        
   result:
-    grouperstatus: Grouperstatus
-    used: Benutzt
-    valid: Gültigkeit
-    or-nor: OR/NOR
-    grouperstatus_modes:
-      NORMAL_GROUP: Normale Gruppierung
-      NO_DRG: Datensatz entspricht keinem der Kriterien für eine DRG
-      ICT_NOT_VALID_PDX: Hauptdiagnose unzulässig
-      INVALID_OR_EMPTY_PDX: Ungültige oder fehlende Hauptdiagnose
-      INVALID_LOS: Ungültige Verweildauer
-      INVALID_SDF: Ungültiger Wert im Feld Sameday
-      INVALID_SEP_OR_ADM: Ungültiger Aufnahme- oder Entlassungsgrund
-      INVALID_SEX: Ungültiges Geschlecht
-      INVALID_AGE: Ungültiges Alter
-      INVALID_ADMWEIGHT: Ungültiges Aufnahmegewicht
-    diagnosis_flag:
-      used:
-        false_string: Nein
-        true_string: Ja
-      valid:
-        AGE_CONFLICT: Konflikt mit Alter
-        ALREADY_IN_PDX: Bereits als Hauptdiagnose vermerkt
-        INVALID_DIAGNOSIS: Ungültiger ICD-Code
-        SEX_CONFLICT: Konflikt mit Geschlecht
-        VALID_DIAGNOSIS: Gültige Diagnose
-    procedure_flag:
-      used:
-        PROC_NOT_USED: Nein
-        PROC_USED: Ja, ohne logische und temporäre Konditionen
-        USED_BOTH: Ja, für beide
-        USED_FOR_CONDITION: ?????
-      valid:
-        PROC_AGE_CONFLICT: Konflikt mit Alter
-        PROC_INVALID: Ungültiger CHOP-Code
-        PROC_SEX_CONFLICT: Konflikt mit Geschlecht
-        VALID_DIAGNOSIS: Gültige Prozedur
-        UNUSED: Nicht benutzt
-      or-nor:
-        NONOR: Nicht operationale Prozedur
-        NONOR_CONFLICT: ??
-        NONOR_CONFLICT_CHOP: ??
-        NONOR_CONFLICT_CHOP_DATE: ??
-        OR: Operationale Prozedur
-        OR_CONFLICT: ??
-        OR_CONFLICT_CHOP_DATE: ??
-        SRG: Weder OR noch NOR Prozedur
-        SRG_CONFLICT: ??
-        SRG_CONFLICT_CHOP: ??
-        SRG_CONFLICT_CHOP_DATE: ??
-        
-  
+    grouping: 
+      legend: Gruppierung
+      grouperstatus: Grouperstatus
+      grouperstatus_modes:
+        NORMAL_GROUP: Normale Gruppierung
+        NO_DRG: Datensatz entspricht keinem der Kriterien für eine DRG
+        ICT_NOT_VALID_PDX: Hauptdiagnose unzulässig
+        INVALID_OR_EMPTY_PDX: Ungültige oder fehlende Hauptdiagnose
+        INVALID_LOS: Ungültige Verweildauer
+        INVALID_SDF: Ungültiger Wert im Feld Sameday
+        INVALID_SEP_OR_ADM: Ungültiger Aufnahme- oder Entlassungsgrund
+        INVALID_SEX: Ungültiges Geschlecht
+        INVALID_AGE: Ungültiges Alter
+        INVALID_ADMWEIGHT: Ungültiges Aufnahmegewicht
+    cost-weight:
+      legend: Kostengewicht
+      baserate: Basiskostengewicht
+      effective-cost-weight: Effektives Kostengewicht
+      surcharge-rate-per-day: Zu-/Abschlagssatz pro Tag
+      number-of-days-for-surcharge-or-discount: Anzahl Zu-/Abschlagspflichtige Tage
+    diagnoses:
+      legend: Diagnosen
+      used: Benutzt
+      valid: Gültigkeit
+      diagnosis_flag:
+        used:
+          false_string: Nein
+          true_string: Ja
+        valid:
+          AGE_CONFLICT: Konflikt mit Alter
+          ALREADY_IN_PDX: Bereits als Hauptdiagnose vermerkt
+          INVALID_DIAGNOSIS: Ungültiger ICD-Code
+          SEX_CONFLICT: Konflikt mit Geschlecht
+          VALID_DIAGNOSIS: Gültige Diagnose
+    procedures:
+      legend: Prozeduren
+      or-nor: OR/NOR
+      procedure_flag:
+        used:
+          PROC_NOT_USED: Nein
+          PROC_USED: Ja, ohne logische und temporäre Konditionen
+          USED_BOTH: Ja, für beide
+          USED_FOR_CONDITION: ?????
+        valid:
+          PROC_AGE_CONFLICT: Konflikt mit Alter
+          PROC_INVALID: Ungültiger CHOP-Code
+          PROC_SEX_CONFLICT: Konflikt mit Geschlecht
+          VALID_DIAGNOSIS: Gültige Prozedur
+          UNUSED: Nicht benutzt
+        or-nor:
+          NONOR: Nicht operationale Prozedur
+          NONOR_CONFLICT: ??
+          NONOR_CONFLICT_CHOP: ??
+          NONOR_CONFLICT_CHOP_DATE: ??
+          OR: Operationale Prozedur
+          OR_CONFLICT: ??
+          OR_CONFLICT_CHOP_DATE: ??
+          SRG: Weder OR noch NOR Prozedur
+          SRG_CONFLICT: ??
+          SRG_CONFLICT_CHOP: ??
+          SRG_CONFLICT_CHOP_DATE: ??
+    length-of-stay:
+      legend: Verweildauer
+      length-of-stay: Aktuelle Verweildauer
+      average-los: Mittlere Verweildauer
+      first-day-with-discount: 1. Tag mit Abschlag
+      first-day-with-surcharge: 1. Tag mit Zuschlag
+      high_trim_point: Obere Grenzverweildauer
+      low_trim_point: Untere Grenzverweildauer
+      case_flag: Fallstatus
+      case_flag_modes:
+        INLIER: Normallieger
+        LOWER_OUTLIER: Unterer Outlier
+        TRANSFERRED: Verlegungsabschlagspflichtig
+        UNDEFINED: Undefiniert
+        UNWEIGHTED: Unbewertete DRG
+        UPPER_OUTLIER: Oberer Outlier
+          
   found_errors: "Folgende Fehler wurden gefunden:"
   errors: &errors
     format: ! '%{attribute} %{message}'
