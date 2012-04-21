@@ -175,7 +175,6 @@ function add_buttons(kind) {
 	}
 	add_button = get_add_button(kind);
 	remove_button = get_remove_button(kind);
-	alert(kind + ": count: "+field_count);
 	if (field_count < max_fields(kind)) {
 		$("#"+kind+"_buttons").append(add_button);
 	};
