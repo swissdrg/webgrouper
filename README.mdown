@@ -17,12 +17,22 @@ Install the needed bundles by running
 	
 in the project folder.
 
+### system components
+
+Assuming you have properly downloaded the swissDRG webgrouper, you have to download also the 
+latest grouper and the appropriate specification files. 
+You can find them here: https://webapps.swissdrg.org/download/
+put the grouper (grouperkernel) into your lib/ and the spec files into your lib/specs directory.
+care about missing specification files - you won't be able to group by them
+and get an error, if you chose them in the gui.   
+
 ### Configuring the database
 
 Assuming you have mysql correctly installed, you only need to fill in your mysql root configuration in
 the database.yml file. Get it here: https://www.dropbox.com/sh/cb3qv31w4tjnzxj/1ks5ZK4G6z/database.yml
 
 And copy it into your config/ directory
+
 
 Then run this rake task:
 
