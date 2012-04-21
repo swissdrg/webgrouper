@@ -1,85 +1,85 @@
 .on-row
   %fieldset#grouping.result.left
-    %legend= t "result.grouping"
+    %legend= t "result.grouping.legend"
     %table
       %tbody
         %tr
           %th
-            MDC:
+            MDC
           %td
             = @result.mdc
           %td    
         %tr
           %th
-            DRG:
+            DRG
           %td
             = @result.drg
           %td
             = (DRG.find_by_DrCode @result.get_drg).DrName
         %tr
           %th
-            PCCL:
+            PCCL
           %td
             = @result.pccl
           %td
             
         %tr
           %th
-            = t("result.grouperstatus")
+            = t("result.grouping.grouperstatus")
           %td
             = @result.gst.ordinal
           %td
-            = t("result.grouperstatus_modes." + @result.gst.to_s)
+            = t("result.grouping.grouperstatus_modes." + @result.gst.to_s)
   
   %fieldset#cost-weight.result.right
-    %legend= t "result.cost-weight"
+    %legend= t "result.cost-weight.legend"
     %table
       %tbody
         %tr
           %th
-            = t "result.baserate"
+            = t "result.cost-weight.baserate"
           %td
             = @base_cost_weight     
         %tr
           %th
-            = t "result.effective-cost-weight"
+            = t "result.cost-weight.effective-cost-weight"
           %td
             = @cost_weight.effective_cost_weight.to_f/@factor
         %tr
           %th
-            = t "result.surcharge-rate-per-day"
+            = t "result.cost-weight.surcharge-rate-per-day"
           %td
             = @weighting_relation.surcharge_per_day.to_f/@factor
         %tr
           %th
-            = t "result.number-of-days-for-surcharge-or-discount"
+            = t "result.cost-weight.number-of-days-for-surcharge-or-discount"
           %td
             = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
              
 %fieldset#diagnoses.result
-  %legend= t "result.diagnoses"
+  %legend= t "result.diagnoses.legend"
   %table
     %tbody
       %tr
         %th.small-col
-          = t("result.code")
+          = t("result.diagnoses.code")
         %th
-          = t("result.name")
+          = t("result.diagnoses.name")
         %th.medium-col
-          = t("result.valid")
+          = t("result.diagnoses.valid")
         %th.small-col
-          = t("result.used")
+          = t("result.diagnoses.used")
         %th.small-col
-          = t("result.CCL")
+          = t("result.diagnoses.CCL")
       %tr
         %td
           = ICD.pretty_code_of(@webgrouper_patient_case.pdx)
         %td
           = ICD.find_by_IcShort(ICD.short_code_of(@webgrouper_patient_case.pdx)).IcName
         %td
-          = t("result.diagnosis_flag.valid." + @result.pdx_diagnosis_flag.valid.to_s)
+          = t("result.diagnoses.diagnosis_flag.valid." + @result.pdx_diagnosis_flag.valid.to_s)
         %td
-          = t("result.diagnosis_flag.used." + @result.pdx_diagnosis_flag.used.to_s + "_string")
+          = t("result.diagnoses.diagnosis_flag.used." + @result.pdx_diagnosis_flag.used.to_s + "_string")
         %td
           = @result.pdx_diagnosis_flag.ccl
       - counter = 0
@@ -90,28 +90,28 @@
           %td
             = ICD.find_by_IcCode(diag).IcName
           %td
-            = t("result.diagnosis_flag.valid." + @result.diagnoses_flags[counter].valid.to_s)
+            = t("result.diagnoses.diagnosis_flag.valid." + @result.diagnoses_flags[counter].valid.to_s)
           %td
-            = t("result.diagnosis_flag.used." + @result.diagnoses_flags[counter].used.to_s + "_string")
+            = t("result.diagnoses.diagnosis_flag.used." + @result.diagnoses_flags[counter].used.to_s + "_string")
           %td
             = @result.diagnoses_flags[counter].ccl
         - counter = counter + 1
           
 %fieldset#procedures.result
-  %legend= t "result.procedures"
+  %legend= t "result.procedures.legend"
   %table
     %tbody
       %tr
         %th.small-col
-          = t("result.code")
+          = t("result.diagnoses.code")
         %th
-          = t("result.name")
+          = t("result.diagnoses.name")
         %th.medium-col
-          = t("result.valid")
+          = t("result.diagnoses.valid")
         %th.medium-col
-          = t("result.used")
+          = t("result.diagnoses.used")
         %th.medium-col
-          = t("result.or-nor")
+          = t("result.procedures.or-nor")
       - counter = 0
       - @webgrouper_patient_case.procedures.each do |proc|
         - proc_pretty_code = proc.split(":")[0]
@@ -122,47 +122,53 @@
           %td
             = proc_db_entry.OpName
           %td
-            = t("result.procedure_flag.valid." + @result.procedures_flags[counter].valid.to_s)
+            = t("result.procedures.procedure_flag.valid." + @result.procedures_flags[counter].valid.to_s)
           %td
-            = t("result.procedure_flag.used." + @result.procedures_flags[counter].used.to_s)
+            = t("result.procedures.procedure_flag.used." + @result.procedures_flags[counter].used.to_s)
           %td
-            = t("result.procedure_flag.or-nor." + @result.procedures_flags[counter].por.to_s)
+            = t("result.procedures.procedure_flag.or-nor." + @result.procedures_flags[counter].por.to_s)
         - counter = counter + 1
             
 %fieldset#length-of-stay.result.left
-  %legend= t "result.length-of-stay"
+  %legend= t "result.length-of-stay.legend"
   %table
     %tbody
       %tr
         %th
-          = t("result.length-of-stay")
+          = t("result.length-of-stay.length-of-stay")
         %td
           = @webgrouper_patient_case.los
       %tr
         %th
-          = t("result.average-los")
+          = t("result.length-of-stay.average-los")
         %td
           = @weighting_relation.avg_duration.to_f/@factor
       %tr
         %th
-          = t("result.first-day-with-discount")
+          = t("result.length-of-stay.first-day-with-discount")
         %td
           = @weighting_relation.first_day_discount
       %tr
         %th
-          = t("result.first-day-with-surcharge")
+          = t("result.length-of-stay.first-day-with-surcharge")
         %td
           = @weighting_relation.first_day_surcharge
       %tr
         %th
-          = t("result.first-day-with-discount")
+          = t("result.length-of-stay.low_trim_point")
         %td
-          = @weighting_relation.first_day_discount
+          ??
       %tr
         %th
-          = t("result.case-flag")
+          = t("result.length-of-stay.high_trim_point")
         %td
-          = @cost_weight.case_flag
+          ??
+      %tr
+        %th
+          = t("result.length-of-stay.case_flag")
+        %td
+          .highlight
+            = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)
           
 %fieldset#los-chart.result.left
   %legend= t "result.los-chart"
