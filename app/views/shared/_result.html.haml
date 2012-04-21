@@ -29,7 +29,7 @@
           %td
             = @result.gst.ordinal
           %td
-            = t("result.grouperstatus_modes." + @result.get_gst.to_s)
+            = t("result.grouperstatus_modes." + @result.gst.to_s)
   
   %fieldset#cost-weight.result.right
     %legend= t "result.cost-weight"
@@ -65,8 +65,10 @@
           = t("result.code")
         %th
           = t("result.name")
+        %th.medium-col
+          = t("result.valid")
         %th.small-col
-          = t("result.flag")
+          = t("result.used")
         %th.small-col
           = t("result.CCL")
       %tr
@@ -75,9 +77,12 @@
         %td
           = ICD.find_by_IcShort(ICD.short_code_of(@webgrouper_patient_case.pdx)).IcName
         %td
-          TODO 
+          = t("result.diagnosis_flags.valid." + @result.pdx_diagnosis_flag.valid.to_s)
         %td
-          TODO 
+          = @result.pdx_diagnosis_flag.used
+        %td
+          = @result.pdx_diagnosis_flag.ccl
+      - counter = 0
       - @webgrouper_patient_case.diagnoses.each do |diag|
         %tr
           %td
@@ -85,9 +90,12 @@
           %td
             = ICD.find_by_IcCode(diag).IcName
           %td
-            lookup
+            = t("result.diagnosis_flags.valid." + @result.diagnoses_flags[counter].valid.to_s)
           %td
-            TODO
+            = t("result.diagnosis_flags.valid." + @result.diagnoses_flags[counter].used.to_s)
+          %td
+            = @result.diagnoses_flags[counter].ccl
+        - counter = counter + 1
           
 %fieldset#procedures.result
   %legend= t "result.procedures"
@@ -98,10 +106,13 @@
           = t("result.code")
         %th
           = t("result.name")
-        %th.small-col
-          = t("result.flag")
-        %th.small-col
+        %th.medium-col
+          = t("result.valid")
+        %th.medium-col
+          = t("result.used")
+        %th.medium-col
           = t("result.or-nor")
+      - counter = 0
       - @webgrouper_patient_case.procedures.each do |proc|
         - proc_pretty_code = proc.split(":")[0]
         - proc_db_entry = OPS.find_by_OpCode(proc_pretty_code)
@@ -111,9 +122,12 @@
           %td
             = proc_db_entry.OpName
           %td
-            todo
+            = t("result.procedures_flags.valid." + @result.procedures_flags[counter].valid.to_s)
           %td
-            = proc_db_entry.OrNor
+            = t("result.procedures_flags.used." + @result.procedures_flags[counter].used.to_s)
+          %td
+            = t("result.procedures_flags.or-nor." + @result.procedures_flags[counter].por.to_s)
+        - counter = counter + 1
             
 %fieldset#length-of-stay.result.left
   %legend= t "result.length-of-stay"
