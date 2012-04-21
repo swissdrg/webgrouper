@@ -1,3 +1,4 @@
+%a(id="result")
 .on-row
   %fieldset#grouping.result.left
     %legend= t "result.grouping.legend"
@@ -172,4 +173,5 @@
           
 %fieldset#los-chart.result.left
   %legend= t "result.los-chart"
-  Gogo single magic!
+  #los_chart
+    = render_chart(@los_chart, 'los_chart')
