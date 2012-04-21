@@ -53,10 +53,12 @@
  */
 fieldset#stay, fieldset#patient-data {
 	width: 47%;
+	display: inline;
 }
 
 fieldset#grouping, fieldset#cost-weight {
 	width: 45%;
+	display: inline;
 }
 
 fieldset {
@@ -65,9 +67,9 @@ fieldset {
 	padding-bottom: 1em;
 	margin: 0;
 }
-fieldset#drg-proc {
-	width: 100%;
-	padding-right: 0;
+fieldset#drg-proc, fieldset#system, fieldset#procedures, fieldset#diagnoses {
+	display:block;
+	clear: both;
 }
 
 fieldset legend {
@@ -81,4 +83,8 @@ fieldset.result {
 
 fieldset.result legend {
 	margin: 0;
+}
+
+fieldset.result th.small-col {
+	width: 50px;
 }
