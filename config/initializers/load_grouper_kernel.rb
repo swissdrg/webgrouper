@@ -1,10 +1,10 @@
 require 'java'
 # On mac: debugging only with mock-grouper
 if java.lang.System.getProperty('os.name').downcase.include?('mac')
-  require 'lib/swissdrg-grouper-1.0.0-mock.jar'
+  require 'lib/javawrapper/swissdrg-grouper-1.0.0-mock.jar'
 else
-  require 'lib/swissdrg-grouper-1.0.0.jar'
-  require 'lib/jna.jar'
+  require 'lib/javawrapper/swissdrg-grouper-1.0.0.jar'
+  require 'lib/javawrapper/jna.jar'
 end
 
 # Spec.bin is the binary file containing the decision tree
