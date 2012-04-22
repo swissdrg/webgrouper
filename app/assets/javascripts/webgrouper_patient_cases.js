@@ -167,7 +167,7 @@ function get_remove_button(kind) {
 }
 
 function add_buttons(kind) {
-	$("#"+kind+"_buttons").empty();
+	$("#"+kind+" > .sameline > ."+kind+"_buttons").empty();
 	if (kind == "diagnoses") {
 		var field_count = diagnoses_count;
 	} else {
@@ -176,10 +176,10 @@ function add_buttons(kind) {
 	add_button = get_add_button(kind);
 	remove_button = get_remove_button(kind);
 	if (field_count < max_fields(kind)) {
-		$("#"+kind+"_buttons").append(add_button);
+		$("#"+kind+" > .sameline:last > ."+kind+"_buttons").append(add_button);
 	};
 	if (field_count > min_fields(kind)) {
-		$("#"+kind+"_buttons").append(remove_button);
+		$("#"+kind+" > .sameline:last > ."+kind+"_buttons").append(remove_button);
 	};
 }
 
@@ -205,9 +205,9 @@ function remove_fields(kind) {
 	} else {
 		var field_count = procedures_count;
 	}
-	var field_count = field_count - $("#"+kind+" > ."+kind+"_row:visible:last > .field").length;
-	$("#"+kind+" > ."+kind+"_row:visible:last > input").val("");
-	$("#"+kind+" > ."+kind+"_row:visible:last").hide();
+	var field_count = field_count - $("#"+kind+" > .sameline > ."+kind+"_row:visible:last > .field").length;
+	$("#"+kind+" > .sameline > ."+kind+"_row:visible:last > input").val("");
+	$("#"+kind+" > .sameline:visible:last").remove();
 	if (kind == "diagnoses") {
 		diagnoses_count = field_count;
 	} else {
