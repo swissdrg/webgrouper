@@ -126,6 +126,9 @@ function add_fields(kind, content, value) {
 		field_count++;
 	}
 	$("#"+kind).append(content);
+	if (field_count > min_fields(kind)) {
+		$("#"+kind+" > .sameline > ."+kind+"_row:visible:last").before('<label><label\>')
+	};
 	if (kind == "diagnoses") {
 		diagnoses_count = field_count;
 	} else {
