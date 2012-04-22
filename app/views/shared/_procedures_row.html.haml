@@ -1,15 +1,16 @@
-.procedures_row
-  - 3.times do |j|
-    %span.field
-      = autocomplete_field_tag "webgrouper_patient_case[procedures][ID][0]", 
-                             "VALUE", 
-                             autocomplete_OPS_OpCode_webgrouper_patient_cases_path, 
-                             :class => 'autocomplete small_field'
-      = text_field_tag "webgrouper_patient_case[procedures][ID][1]", 
-                       "VALUE",
-                       :class => 'tiny_field'
-      = text_field_tag "webgrouper_patient_case[procedures][ID][2]", 
-                       "VALUE",
-                       :class => 'small_field'
-    %span.spacer
-  .spacer
+.sameline
+  .procedures_row
+    - 3.times do |j|
+      %span.field
+        = autocomplete_field_tag "webgrouper_patient_case[procedures][ID][0]", 
+                               "VALUE", 
+                               autocomplete_OPS_OpCode_webgrouper_patient_cases_path, 
+                               :class => 'autocomplete small_field'
+        = text_field_tag "webgrouper_patient_case[procedures][ID][1]", 
+                         "VALUE",
+                         :class => 'tiny_field'
+        = text_field_tag "webgrouper_patient_case[procedures][ID][2]", 
+                         "VALUE",
+                         :class => 'small_field'
+      %span.spacer
+  .procedures_buttons
