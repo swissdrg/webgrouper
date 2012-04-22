@@ -72,7 +72,7 @@ de:
     length-of-stay:
       legend: Verweildauer
       length-of-stay: Aktuelle Verweildauer
-      average-los: Mittlere Verweildauer
+      average_los: Mittlere Verweildauer
       first-day-with-discount: 1. Tag mit Abschlag
       first-day-with-surcharge: 1. Tag mit Zuschlag
       high_trim_point: Obere Grenzverweildauer

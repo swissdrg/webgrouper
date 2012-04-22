@@ -46,7 +46,8 @@ class WebgrouperPatientCasesController < ApplicationController
 		
 		@base_cost_weight = drg.cost_weight
 		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
-		@los_chart = LosDataTable.new(patient_case.los, @weighting_relation, @factor).make_chart
+		@los_chart = LosDataTable.new(patient_case.los, @cost_weight.effective_cost_weight,
+		                              @weighting_relation, @factor).make_chart
     render 'index'
   end
   
