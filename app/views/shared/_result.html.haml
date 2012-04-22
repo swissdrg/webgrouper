@@ -53,9 +53,16 @@
             = @weighting_relation.surcharge_per_day.to_f/@factor
         %tr
           %th
+            = t "result.cost-weight.discount-rate-per-day"
+          %td
+            = @weighting_relation.discount_per_day.to_f/@factor
+        %tr
+          %th
             = t "result.cost-weight.number-of-days-for-surcharge-or-discount"
           %td
-            = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
+            - surcharge_days = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
+            - discount_days = @weighting_relation.first_day_discount - @webgrouper_patient_case.los + 1
+            = [surcharge_days, discount_days, 0].max
              
 %fieldset#diagnoses.result
   %legend= t "result.diagnoses.legend"
@@ -171,7 +178,7 @@
           .highlight
             = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)
           
-%fieldset#los-chart.result.left
+%fieldset#los-chart.result.right
   %legend= t "result.los-chart"
   #los_chart
     = render_chart(@los_chart, 'los_chart')

@@ -25,7 +25,8 @@ de:
       legend: Kostengewicht
       baserate: Basiskostengewicht
       effective-cost-weight: Effektives Kostengewicht
-      surcharge-rate-per-day: Zu-/Abschlagssatz pro Tag
+      surcharge-rate-per-day: Zuschlagssatz pro Tag
+      discount-rate-per-day: Abschlagssatz pro Tag
       number-of-days-for-surcharge-or-discount: Anzahl Zu-/Abschlagspflichtige Tage
     diagnoses:
       legend: Diagnosen
