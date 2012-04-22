@@ -8,25 +8,29 @@ class LosDataTable < GoogleVisualr::DataTable
                   {:type => 'number', :label => I18n.t('result.cost-weight.legend')} ]
     new_column('string', nil, nil, 'annotation')
     new_column('string', nil, nil, 'annotationText')
-    #new_column :type => 'string', :label => 'Label'
-    @avg_duration = weighting_relation.avg_duration.to_f/factor
-    @low_trim_point = weighting_relation.first_day_discount + 1
-    @high_trim_point = weighting_relation.first_day_surcharge - 1
-    @base_cost_rate = weighting_relation.cost_weight.to_f/factor
-    @effective_cost_weight = effective_cost_weight.to_f/factor
+
+    avg_duration = weighting_relation.avg_duration.to_f/factor
+    low_trim_point = weighting_relation.first_day_discount + 1
+    high_trim_point = weighting_relation.first_day_surcharge - 1
+    base_cost_rate = weighting_relation.cost_weight.to_f/factor
+    effective_cost_weight_f = effective_cost_weight.to_f/factor
     discount_per_day = weighting_relation.discount_per_day.to_f/factor
     surcharge_per_day = weighting_relation.surcharge_per_day.to_f/factor
-    one_day_cost_rate = @base_cost_rate - discount_per_day*(@low_trim_point - 1)
-    many_days = [@high_trim_point, actual_los].max + 5
-    many_days_cost_rate = @base_cost_rate + surcharge_per_day*(many_days - @high_trim_point)
+    one_day_cost_rate = base_cost_rate - discount_per_day*(low_trim_point - 1)
+    many_days = [high_trim_point, actual_los].max + 5
+    many_days_cost_rate = base_cost_rate + surcharge_per_day*(many_days - high_trim_point)
     
-    add_rows([
+    rows = [
     [1, one_day_cost_rate, '',''],
-    [@low_trim_point, @base_cost_rate, 'lo', I18n.t('result.length-of-stay.low_trim_point')],
-    [@avg_duration, @base_cost_rate, 'mid',I18n.t('result.length-of-stay.average_los')],
-    [@high_trim_point, @base_cost_rate, 'hi', I18n.t('result.length-of-stay.high_trim_point')],
-    [actual_los, @effective_cost_weight, '***', I18n.t('result.length-of-stay.length-of-stay')],
-    [many_days, many_days_cost_rate, '','']]) 
+    [low_trim_point, base_cost_rate, 'lo', I18n.t('result.length-of-stay.low_trim_point')],
+    [avg_duration, base_cost_rate, 'mid',I18n.t('result.length-of-stay.average_los')],
+    [high_trim_point, base_cost_rate, 'hi', I18n.t('result.length-of-stay.high_trim_point')],
+    [actual_los, effective_cost_weight_f, '***', I18n.t('result.length-of-stay.length-of-stay')],
+    [many_days, many_days_cost_rate, '','']]
+    
+    sorted_rows = rows.sort_by {|row| row[0] }
+    
+    add_rows(sorted_rows)
   end
   
   def make_chart()
