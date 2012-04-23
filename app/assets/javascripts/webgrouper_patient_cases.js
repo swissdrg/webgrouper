@@ -54,8 +54,9 @@ $("#webgrouper_patient_case_birth_date").live("focus change", function() {
  */
 function initializeAutocomplete() {
 	$(':input.autocomplete').bind('railsAutocomplete.select', function(event, data){
-  		event.target.value = data.item.label.split(" ", 1)[0];
-  		event.target.title = data.item.IcName;
+		splitPos = data.item.label.search(" ");
+  		event.target.value = data.item.label.substring(0, splitPos);
+  		event.target.title = data.item.label.substring(splitPos + 1);
 	});
 }
 
