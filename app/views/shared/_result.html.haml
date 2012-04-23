@@ -57,17 +57,24 @@
           %td
             = @weighting_relation.discount_per_day.to_f/@factor
         %tr
-          %th
-            = t "result.cost-weight.number_of_days_for_surcharge"
-          %td
-            - surcharge_days = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
-            = [surcharge_days, 0].max
-        %tr
-          %th
-            = t "result.cost-weight.number_of_days_for_discount"
-          %td
-            - discount_days = @weighting_relation.first_day_discount - @webgrouper_patient_case.los + 1
-            = [discount_days, 0].max
+          - surcharge_days = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
+          - discount_days = @weighting_relation.first_day_discount - @webgrouper_patient_case.los + 1
+          - if surcharge_days > 0
+            %th
+              = t "result.cost-weight.number_of_days_for_surcharge"
+            %td
+              
+              = surcharge_days
+          - else 
+            - if discount_days > 0
+              %th
+                = t "result.cost-weight.number_of_days_for_discount"
+              %td
+                
+                = discount_days.max
+            - else
+              %th
+                = t "result.cost-weight.no_days_for_discount_or_surcharge"
              
 %fieldset#diagnoses.result
   %legend= t "result.diagnoses.legend"

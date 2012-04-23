@@ -29,6 +29,7 @@ de:
       discount-rate-per-day: Abschlagssatz pro Tag
       number_of_days_for_surcharge: Anzahl Zuschlagspflichtige Tage
       number_of_days_for_discount: Anzahl Abschlagspflichtige Tage
+      no_days_for_discount_or_surcharge: Keine Tage sind Zu- oder Abschlagspflichtig
     diagnoses:
       legend: Diagnosen
       used: Benutzt
