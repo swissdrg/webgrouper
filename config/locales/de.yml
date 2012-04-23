@@ -27,7 +27,8 @@ de:
       effective-cost-weight: Effektives Kostengewicht
       surcharge-rate-per-day: Zuschlagssatz pro Tag
       discount-rate-per-day: Abschlagssatz pro Tag
-      number-of-days-for-surcharge-or-discount: Anzahl Zu-/Abschlagspflichtige Tage
+      number_of_days_for_surcharge: Anzahl Zuschlagspflichtige Tage
+      number_of_days_for_discount: Anzahl Abschlagspflichtige Tage
     diagnoses:
       legend: Diagnosen
       used: Benutzt
