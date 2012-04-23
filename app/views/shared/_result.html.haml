@@ -165,18 +165,17 @@
         %th
           = t("result.length-of-stay.low_trim_point")
         %td
-          ??
+          = @weighting_relation.first_day_discount + 1
       %tr
         %th
           = t("result.length-of-stay.high_trim_point")
         %td
-          ??
+          = @weighting_relation.first_day_surcharge - 1
       %tr
         %th
           = t("result.length-of-stay.case_flag")
-        %td
-          .highlight
-            = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)
+        %td.highlight
+          = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)
           
 %fieldset#los-chart.result.right
   %legend= t "result.los-chart"
