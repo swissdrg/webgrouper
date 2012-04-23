@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -12,12 +12,14 @@ gem "activerecord-jdbcmysql-adapter", "~> 1.2.2"
 gem 'jruby-openssl'
 gem 'json'
 gem 'jquery-rails'
+gem 'rails3-jquery-autocomplete', :git => "git://github.com/slash4/rails3-jquery-autocomplete.git"
 
 gem 'haml', '3.1.4'
 gem 'haml-rails', '0.3.4'
 
 gem 'simple_form'
 gem 'validates_timeliness', '3.0.2'
+gem 'google_visualr'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -37,6 +39,7 @@ group :test do
   gem 'cucumber-rails'
   gem 'rspec-rails'
   gem 'database_cleaner'
+  gem 'launchy'
   gem 'autotest-standalone'
   gem 'autotest-fsevent'
   gem 'autotest-growl'

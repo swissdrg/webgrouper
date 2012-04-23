@@ -1,10 +1,19 @@
 class WebgrouperPatientCasesController < ApplicationController
   
+  autocomplete :ICD, [:IcCode, :IcShort, :IcName], :full => true, 
+                              :display_value => :autocomplete_result,
+                              :extra_data => [:IcName]
+  
+  autocomplete :OPS, [:OpCode, :OpShort, :OpName], :full => true, 
+                              :display_value => :autocomplete_result,
+                              :extra_data => [:OpName]
+                              
   def index
     @webgrouper_patient_case = WebgrouperPatientCase.new
   end
   
   def create_query
+    System.current_system = System.find_by_SyID(params[:system][:SyID])
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
@@ -14,24 +23,31 @@ class WebgrouperPatientCasesController < ApplicationController
     end  
   end
   
-  def group(patient_case)
-    @result = GROUPER.group(patient_case)
-		weighting_relation = WeightingRelation.new		
-		drg = DRG.find_by_DrCode(@result.getDrg)
-    
-		weighting_relation.setDrg(@result.getDrg)
+  def group(patient_case) 
+		current_system_id = System.current_system.SyID
+		GROUPER.load(spec_path(current_system_id))
+		@result = GROUPER.group(patient_case)
+		@weighting_relation = WeightingRelation.new
+		all_drg = DRG.where(:DrFKSyID => current_system_id)
+		drg = all_drg.find_by_DrCode(@result.getDrg)
+
+		@weighting_relation.setDrg(@result.getDrg)
 		
-		weighting_relation.setCostWeight(drg.cost_weight)
-		weighting_relation.setAvgDuration(drg.avg_duration)
-		weighting_relation.setFirstDayDiscount(drg.first_day_discount)
-		weighting_relation.setFirstDaySurcharge(drg.first_day_surcharge)
-		weighting_relation.setSurchargePerDay(drg.surcharge_per_day)
-		weighting_relation.setDiscountPerDay(drg.discount_per_day)
-		weighting_relation.setTransferFlatrate(drg.transfer_flatrate)
-		weighting_relation.setUseTransferFlatrate(drg.transfer)
+		@factor = 10000
+		
+		@weighting_relation.setCostWeight(drg.cost_weight*@factor)
+		@weighting_relation.setAvgDuration(drg.avg_duration*@factor)
+		@weighting_relation.setFirstDayDiscount(drg.first_day_discount)
+		@weighting_relation.setFirstDaySurcharge(drg.first_day_surcharge)
+		@weighting_relation.setSurchargePerDay(drg.surcharge_per_day*@factor)
+		@weighting_relation.setDiscountPerDay(drg.discount_per_day*@factor)
+		@weighting_relation.setTransferFlatrate(drg.transfer_flatrate*@factor)
+		@weighting_relation.setUseTransferFlatrate(drg.transfer)
 		
 		@base_cost_weight = drg.cost_weight
-		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, weighting_relation)
+		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
+		@los_chart = LosDataTable.new(patient_case.los, @cost_weight.effective_cost_weight,
+		                              @weighting_relation, @factor).make_chart
     render 'index'
   end
   

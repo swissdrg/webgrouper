@@ -1,12 +1,11 @@
 # WebgrouperPatientCase holds all input variables for a certain patiant case
 # you can find in either the entry date, the exit date and the number of leave days. 
 # WebgrouperPatientCase inherits from the java class PatientCase
-# autors team1
 class WebgrouperPatientCase < PatientCase
   
   include ActAsValidGrouperQuery
   
-  attr_accessor :age, :age_mode
+  attr_accessor :age, :age_mode, :care_provider
   
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
@@ -39,6 +38,9 @@ class WebgrouperPatientCase < PatientCase
    
   end
   
+  # Always returns false since our model is not persisted (saved in a database).
+  # The method is necessary for this model to be treated like an active record model
+  # in certain circumstances; when building forms for it, for instance.
   def persisted?
     false
   end
@@ -67,6 +69,7 @@ class WebgrouperPatientCase < PatientCase
     procedures
   end
   
+  #ZOMFG write some documentation for this >.<
   def hash_to_java_array(hash, length, is_diagnoses)
 		result = []
 		tmp = []
@@ -75,17 +78,26 @@ class WebgrouperPatientCase < PatientCase
 		
 		if is_diagnoses		
 			hash.each do |key, value| 
-				tmp << value unless value.blank? 
+				tmp << ICD.pretty_code_of(value) unless value.blank?
 			end
 		else
 			hash.each do |key, value| 
 				# tmp_procedure contains the current procedure value
-				tmp_procedure = ""				
+				tmp_procedure = ""
+				counter = 0				
 				value.each do |key2, value2|
-					# we use "$" as our string delimiter symbol
-					tmp_procedure += value2 + "$"				
+					# we use ":" as our string delimiter symbol
+					if counter == 0 && !value2.blank?
+					  tmp_procedure += OPS.pretty_code_of(value2)
+					else 
+					 tmp_procedure += value2
+					end
+					if counter < 2
+						tmp_procedure += ":"
+					end
+					counter = counter + 1 			
 				end
-				tmp << tmp_procedure unless tmp_procedure == "$$$"
+				tmp << tmp_procedure unless tmp_procedure == "::"
 			end
 		end
 
@@ -96,6 +108,9 @@ class WebgrouperPatientCase < PatientCase
   
   private
   
+  # 'age_mode' is chosen in the form and can be
+  # either 'days' or 'years'.
+  # @return true if the age is given in days, false if the age is given in years. 
   def age_mode_days?
     age_mode == 'days'
   end

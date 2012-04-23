@@ -1,7 +1,55 @@
 /*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+ Place all the styles related to the matching controller here.
+ They will automatically be included in application.css.
+ */
+
+/**
+ * Everything belonging to the header goes here:
+ */
+
+/* 	Has to be logo-image-height + 1 */
+
+.errorflash ul {
+	margin-bottom: 0;
+}
+
+.errorflash li {
+	margin-bottom: 5px;
+}
+
+.container {
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.header {
+	height: 94px;
+	position: relative;
+}
+
+.logo {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.locales li {
+	list-style: none;
+	display: inline;
+	text-align: right;
+}
+.sameline * {
+	display: inline;
+}
+
+.container {
+	width: 980px;
+}
+.locales {
+	position: absolute;
+	top: 0;
+	right: 290px;
+}
 
 .clear_fields {
 	float: left;
@@ -9,47 +57,56 @@
 	margin-top: 6px;
 }
 
-.locales {
-	float: right;
-}
-
-.sameline {
-	/* margin-bottom: 1em;
-	 */
-}
-
 .spacer {
 	margin-right: 1em;
 }
 
 /*
- * Different fieldsets:
+ * Various fieldsets:
  */
-
-fieldset#system {
-    
+fieldset#stay, fieldset#patient-data {
+	width: 47%;
+	display: inline;
 }
 
-fieldset#stay {
-   float: left;
+fieldset#grouping, fieldset#cost-weight {
+	width: 45%;
+	display: inline;
 }
 
-fieldset#patient-data {
-   float: right;
+fieldset {
+	padding-top: 0;
+	padding-left: 0;
+	padding-bottom: 1em;
+	margin: 0;
+}
+fieldset#drg-proc, fieldset#system, fieldset#procedures, fieldset#diagnoses {
+	display:block;
+	clear: both;
 }
 
-fieldset#drg-proc {
-    float: left;
+fieldset legend {
+	margin: 0 1.5em;
+	padding: 8px;
 }
 
-fieldset#result {
-    float: left;
+fieldset.result {
+	padding-left: 1.5em;
 }
 
-fieldset#cost-weight {
-    float: right;
+fieldset.result legend {
+	margin: 0;
 }
 
-fieldset#debug {
-    float: left;
+fieldset.result th.small-col {
+	width: 40px;
+}
+
+fieldset.result th.medium-col {
+	width: 150px;
+}
+
+fieldset#los-chart {
+	padding-top: 0;
+	padding-right: 0;
 }

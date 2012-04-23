@@ -1,10 +1,10 @@
 require 'java'
 # On mac: debugging only with mock-grouper
 if java.lang.System.getProperty('os.name').downcase.include?('mac')
-  require 'lib/swissdrg-grouper-1.0.0-mock.jar'
+  require 'lib/javawrapper/swissdrg-grouper-1.0.0-mock.jar'
 else
-  require 'lib/swissdrg-grouper-1.0.0.jar'
-  require 'lib/jna.jar'
+  require 'lib/javawrapper/swissdrg-grouper-1.0.0.jar'
+  require 'lib/javawrapper/jna.jar'
 end
 
 # Spec.bin is the binary file containing the decision tree
@@ -35,7 +35,7 @@ else
 end
 # The real grouper:
 grouper_path = File.join('lib', lib_prequel + 'GrouperKernel' + arch_lib + file_extension)
-spec_path = File.join('lib', 'Spec10billing' + arch_bin + 'bit.bin')
+spec_path = File.join('lib', 'specs', 'Spec10billing' + arch_bin + 'bit.bin')
 GROUPER = org.swissdrg.grouper.kernel.GrouperKernel.create(grouper_path, spec_path)
 
 # for source code and a description of all classes involved
