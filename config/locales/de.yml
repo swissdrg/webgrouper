@@ -60,16 +60,16 @@ de:
           UNUSED: Nicht benutzt
         or-nor:
           NONOR: Nicht operationale Prozedur
-          NONOR_CONFLICT: ??
-          NONOR_CONFLICT_CHOP: ??
-          NONOR_CONFLICT_CHOP_DATE: ??
+          NONOR_CONFLICT: 
+          NONOR_CONFLICT_CHOP: 
+          NONOR_CONFLICT_CHOP_DATE: 
           OR: Operationale Prozedur
-          OR_CONFLICT: ??
-          OR_CONFLICT_CHOP_DATE: ??
+          OR_CONFLICT: 
+          OR_CONFLICT_CHOP_DATE: 
           SRG: Weder OR noch NOR Prozedur
-          SRG_CONFLICT: ??
-          SRG_CONFLICT_CHOP: ??
-          SRG_CONFLICT_CHOP_DATE: ??
+          SRG_CONFLICT: 
+          SRG_CONFLICT_CHOP: 
+          SRG_CONFLICT_CHOP_DATE: 
     length-of-stay:
       legend: Verweildauer
       length-of-stay: Aktuelle Verweildauer
