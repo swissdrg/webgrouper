@@ -8,8 +8,22 @@ de:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: 'Es wurden Fehler gefunden. Bitte überprüfen Sie:'
-    #Everything selectable:
+    # Everything selectable:
     options:
+      system:
+        active_grouper:
+          ag9: Abrechnungsversion 1.0 2012/2012
+          ag8: Planungsversion 2 1.0 2011/2012
+          ag7: Katalog/Planungsversion 1.0 2009-10/2012
+          ag6: Abrechnungsversion 0.3 2011/2011
+          ag5: Planungsversion 0.3 2009/2011
+          ag4: Katalogversion 0.3 2008/2011
+          ag3: there is no system 3 >.<
+          ag2: SwissDRG 0.2
+          ag1: SwissDRG 0.1
+        care_provider:
+          hospital: Akutspital
+          birthing_center: Geburtshaus        
       webgrouper_patient_case:
         sex:
           U: 'Unbekannt'
@@ -29,15 +43,18 @@ de:
         age_mode:
           years: 'Jahre'
           days: 'Tage'
-    # Labels and hints examples
+    # Labels
     labels:
       webgrouper_patient_case:
+        active_grouper: 'Aktiver Grouper:'
+        care_provider: 'Leistungserbringer:'
+        diagnoses_catalog: 'Diagnosenkatalog:'
+        procedures_catalog: 'Prozedurenkatalog:'
         entry_date: 'Aufnahmedatum:'
         exit_date: 'Entlassdatum:'
         birth_date: 'Geburtstag:'
         leave_days: 'Urlaubstage:'
         age: 'Alter:'
-        age_mode: 'asdf'
         adm_weight: 'Aufnahmegewicht:'
         sex: 'Geschlecht:'
         adm: 'Aufnahmeart:'
@@ -49,6 +66,8 @@ de:
         procedures: 'Prozeduren:'
     hints: 
       webgrouper_patient_case:
+    tooltips:
+      date: "Im Format dd.mm.yyyy, zB 19.05.1988"
   # Buttons
   helpers:
     submit:

@@ -10,6 +10,20 @@ en:
       default_message: 'Some errors were found, please take a look:'
     #Everything selectable:
     options:
+      system:
+        active_grouper:
+          ag9: Abrechnungsversion 1.0 2012/2012
+          ag8: Planungsversion 2 1.0 2011/2012
+          ag7: Katalog/Planungsversion 1.0 2009-10/2012
+          ag6: Abrechnungsversion 0.3 2011/2011
+          ag5: Planungsversion 0.3 2009/2011
+          ag4: Katalogversion 0.3 2008/2011
+          ag3: there is no system 3 >.<
+          ag2: SwissDRG 0.2
+          ag1: SwissDRG 0.1
+        care_provider:
+          hospital: Hospital
+          birthing_center: Birthing center
       webgrouper_patient_case:
         sex:
           U: 'Unknown'
@@ -31,6 +45,11 @@ en:
           days: 'Days'
     # Labels
     labels:
+      system:
+        active_grouper: 'Active Grouper:'
+        care_provider: 'Care provider:'
+        diagnoses_catalog: 'Catalog diagnoses:'
+        procedures_catalog: 'Catalog procedures:'
       webgrouper_patient_case:
         entry_date: 'Admission Date:'
         exit_date: 'Date of discharge:'
@@ -46,7 +65,9 @@ en:
         hmv: 'Artificial respiration:'
         pdx: 'Primary diagnoses:'
         diagnoses: 'Secondary diagnoses:'
-        procedures: 'Procedures:'       
+        procedures: 'Procedures:'
+    tooltips:
+      date: "In format dd.mm.yyyy, eg 19.05.1988" 
   # Buttons
   helpers:
     submit:

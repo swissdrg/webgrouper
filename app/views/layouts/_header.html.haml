@@ -1,5 +1,13 @@
-.locales
-  = link_to "Deutsch", webgrouper_patient_cases_url(:locale => "de")
-  = link_to "Francais", webgrouper_patient_cases_url(:locale => "fr")
-  = link_to "Italiano", webgrouper_patient_cases_url(:locale => "it")
-  = link_to "English", webgrouper_patient_cases_url(:locale => "en")
+.header
+  %h1 Webgrouper
+  .locales
+    %ol
+      %li 
+        = link_to "Deutsch", webgrouper_patient_cases_url(:locale => "de"), :class => 'button'
+      %li
+        = link_to "Français", webgrouper_patient_cases_url(:locale => "fr"), :class => 'button'
+      %li
+        = link_to "Italiano", webgrouper_patient_cases_url(:locale => "it"), :class => 'button'
+      %li
+        = link_to "English", webgrouper_patient_cases_url(:locale => "en"), :class => 'button'
+  = link_to image_tag("swiss_drg_short.gif"), 'http://www.swissdrg.org/', :class => 'logo', :target => :blank

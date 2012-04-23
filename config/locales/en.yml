@@ -2,7 +2,6 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  found_errors: 'You have the following errors:'
   diagnoses:    'Secondary Diagnoses:'
   procedures:   'Procedures:'
   fieldsets:
@@ -11,6 +10,7 @@ en:
     diagnoses_procedures: 'Diagnoses and Procedures'
     patient_data: 'Patient data'
   
+  found_errors: 'Found the following errors:'
   result:
     grouperstatus: Grouper status
     grouperstatus_modes:

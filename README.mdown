@@ -7,7 +7,7 @@ found at https://webgrouper.swissdrg.org/ . For further information, see [The PS
 
 The easiest way to get Ruby on Rails running is by using rvm, downloadable from https://rvm.beginrescueend.com/
 
-We use jRuby 1.6.6, which you can install by typing
+We use jRuby 1.6.6, which can be installed by typing
 
 	rvm install jruby-1.6.6
 	
@@ -17,88 +17,42 @@ Install the needed bundles by running
 	
 in the project folder.
 
+### system components
+
+Assuming you have properly downloaded the swissDRG webgrouper, you have to download also the 
+latest grouper and the appropriate specification files. 
+You can find them here: https://webapps.swissdrg.org/download/
+put the grouper (grouperkernel) into your lib/ and the spec files into your lib/specs directory.
+care about missing specification files - you won't be able to group by them
+and get an error, if you chose them in the gui.   
+
 ### Configuring the database
 
-Before configuring the database for the rails project, I assume that you have installed mysql. On an Ubuntu derivative
-you can install this by running
+Assuming you have mysql correctly installed, you only need to fill in your mysql root configuration in
+the database.yml file. Get it here: https://www.dropbox.com/sh/cb3qv31w4tjnzxj/1ks5ZK4G6z/database.yml
 
-	supo apt-get install mysql-server
+And copy it into your config/ directory
 
-To check if it installed correctly, enter
-	
-	mysql -u root -p
 
-in your command line tool and enter your mysql root password. (If no password was set for the root user, just press enter)
-If you see a mysql promt. you have installed it correctly.
+Then run this rake task:
 
-Now cd into your webgrouper projects directory and check which branch your currently working on. If you're not on the 
-branch called 'database' commit your current changes and checkout to 'database'.
-
-	git fetch --all
-	git checkout -b database
-	git pull origin database
-	git push -u origin database
-
-Now, you'll need a file called 'database.yml'. Get it here: http://db.tt/jP59qSvN
-
-Copy it into your app/config/ directory
-
-Modify it if necessary. (If you've set a password for mysql. Enter it there)
-Double check if the databases for all environments are called 'webgrouper'
-
-Before me move on, update the bundle
-
-	bundle install
-
-To create the empty databases for all environments use following command:
-
-	rake db:create:all
+	rake db:dumpimport
 
 This may take a while.
-
-After that, download and extract the database dump we got from Tim in an email called 'zweites meeting' and execute this command:
-
-	mysql -u root -p webgrouper_development < path_to_the_dump.sql
-and
-
-	mysql -u root -p webgrouper_test < path_to_the_dump.sql
-
-Again, enter the password or just press enter when asked, depending on what you've set.
-Now all the data from the dump can be found in the webgrouper database in our project.
-
-We already have a model called 'DRG'. Start up the rails console:
 	
-	rails c
-
-and try entering
-
-	DRG
-
-This just display the table with all the attributes of DRG.
-
-	DRG.first
-
-for instance picks the very first DRG in the table.
-
-	
-Take a look at the file called 'drg.rb'
-
-To generate models similar to that one enter following command in your shell:
-
-	rails g model theNameOfTheModel --skip-migration
-
-The most important part is to declare the 'self.table_name' method in the model. Just return the name
-of the table you'd like to refer to as a string. Take a look at the already existing DRG model. Just like that.
-
-### Important stuff considering our database
-
-* Do not execute rake db:migrate. This is not necessary in this stage of the development.
-
 ## Run
 
 You can start the project by typing
 	
 	rails s
+
+in the project folder. Be aware, that jruby & the bundles must be installed/active for this.
+
+## Testing
+
+To run the cucumber tests, execute
+	
+	bundle exec cucumber -c
 
 in the project folder. Be aware, that jruby & the bundles must be installed/active for this.
 

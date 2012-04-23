@@ -21,6 +21,8 @@ fr:
       INVALID_AGE: Âge non valable
       INVALID_ADMWEIGHT: Poids à l'admission non valable
 
+  # Errors:  
+  found_errors: 'Les erreurs suivantes ont été trouvées:'
   errors: &errors
     format: Le %{attribute} %{message}
     messages:
