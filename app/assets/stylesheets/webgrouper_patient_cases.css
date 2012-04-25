@@ -17,8 +17,12 @@
 	margin-bottom: 5px;
 }
 
-.header {
+.container {
 	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.header {
 	height: 94px;
 	position: relative;
 }
@@ -100,4 +104,9 @@ fieldset.result th.small-col {
 
 fieldset.result th.medium-col {
 	width: 150px;
+}
+
+fieldset#los-chart {
+	padding-top: 0;
+	padding-right: 0;
 }

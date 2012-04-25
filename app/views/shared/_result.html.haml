@@ -53,9 +53,28 @@
             = @weighting_relation.surcharge_per_day.to_f/@factor
         %tr
           %th
-            = t "result.cost-weight.number-of-days-for-surcharge-or-discount"
+            = t "result.cost-weight.discount-rate-per-day"
           %td
-            = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
+            = @weighting_relation.discount_per_day.to_f/@factor
+        %tr
+          - surcharge_days = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
+          - discount_days = @weighting_relation.first_day_discount - @webgrouper_patient_case.los + 1
+          - if surcharge_days > 0
+            %th
+              = t "result.cost-weight.number_of_days_for_surcharge"
+            %td
+              
+              = surcharge_days
+          - else 
+            - if discount_days > 0
+              %th
+                = t "result.cost-weight.number_of_days_for_discount"
+              %td
+                
+                = discount_days.max
+            - else
+              %th
+                = t "result.cost-weight.no_days_for_discount_or_surcharge"
              
 %fieldset#diagnoses.result
   %legend= t "result.diagnoses.legend"
@@ -158,20 +177,19 @@
         %th
           = t("result.length-of-stay.low_trim_point")
         %td
-          ??
+          = @weighting_relation.first_day_discount + 1
       %tr
         %th
           = t("result.length-of-stay.high_trim_point")
         %td
-          ??
+          = @weighting_relation.first_day_surcharge - 1
       %tr
         %th
           = t("result.length-of-stay.case_flag")
-        %td
-          .highlight
-            = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)
+        %td.highlight
+          = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)
           
-%fieldset#los-chart.result.left
-  %legend= t "result.los-chart"
+%fieldset#los-chart.result.right
+  %legend= t "result.los_chart"
   #los_chart
     = render_chart(@los_chart, 'los_chart')

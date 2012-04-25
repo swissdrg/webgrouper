@@ -15,6 +15,11 @@ When /^I enter "([^"]*)" as los$/ do |los|
   step %{I fill in "webgrouper_patient_case_los" with "#{los}"}
 end
 
+When /^I enter Transfered \(los more than 24 hours\) as admission mode$/ do 
+  select(I18n.t('simple_form.options.webgrouper_patient_case.adm.adm11'), 
+         :from => 'webgrouper_patient_case_adm')
+end
+
 When /^I press on "([^"]*)"$/ do |button|
   click_button(button)
 end
@@ -39,15 +44,11 @@ Then /^show me the results$/ do
 end
 
 Then /^(?:|I )should see "([^"]*)" in "([^"]*)"$/ do |text, field|
-  within(:css, 'fieldset#' + field) do
-    has_content?(text)
-  end
+  find(:css, 'fieldset#' + field). should have_content(text)
 end
 
 Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
-  within(:css, 'fieldset#grouping') do
-    has_content?(text)
-  end
+  find(:css, 'fieldset#grouping').should have_content?(text)
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
