@@ -1,11 +1,11 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).ready(function() {
-	addDatePickers()
+	addDatePickers();
 	admWeightControl(0);
-	initializeAutocomplete()
+	initializeAutocomplete();
+	goToResult();
 });
-
 
 $("#system_SyID").live("change keyup", function () {
 	this.form.submit();
@@ -342,5 +342,13 @@ function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
     var delta = maxValue - minValue;
     var stepp = minValue+(Math.pow(((1 / totalSteps)*actualStep),powr)*delta);
     return Math.ceil(stepp)
+}
+
+function goToResult(){
+	if ($("#result").length) {
+		jQuery('html,body').animate({
+			scrollTop: $("#result").offset().top - 100
+		},'slow');
+	};
 }
 
