@@ -17,14 +17,14 @@ Install the needed bundles by running
 	
 in the project folder.
 
-### system components
+### System components
 
 Assuming you have properly downloaded the swissDRG webgrouper, you have to download also the 
 latest grouper and the appropriate specification files. 
 You can find them here: https://webapps.swissdrg.org/download/
 put the grouper (grouperkernel) into your lib/ and the spec files into your lib/specs directory.
-care about missing specification files - you won't be able to group by them
-and get an error, if you chose them in the gui.   
+Care about missing specification files - you won't be able to group by them
+and get an error, if you chose them in the gui.
 
 ### Configuring the database
 

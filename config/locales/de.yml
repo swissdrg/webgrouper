@@ -25,8 +25,11 @@ de:
       legend: Kostengewicht
       baserate: Basiskostengewicht
       effective-cost-weight: Effektives Kostengewicht
-      surcharge-rate-per-day: Zu-/Abschlagssatz pro Tag
-      number-of-days-for-surcharge-or-discount: Anzahl Zu-/Abschlagspflichtige Tage
+      surcharge-rate-per-day: Zuschlagssatz pro Tag
+      discount-rate-per-day: Abschlagssatz pro Tag
+      number_of_days_for_surcharge: Anzahl Zuschlagspflichtige Tage
+      number_of_days_for_discount: Anzahl Abschlagspflichtige Tage
+      no_days_for_discount_or_surcharge: Keine Tage sind Zu- oder Abschlagspflichtig
     diagnoses:
       legend: Diagnosen
       used: Benutzt
@@ -59,16 +62,16 @@ de:
           UNUSED: Nicht benutzt
         or-nor:
           NONOR: Nicht operationale Prozedur
-          NONOR_CONFLICT: ??
-          NONOR_CONFLICT_CHOP: ??
-          NONOR_CONFLICT_CHOP_DATE: ??
+          NONOR_CONFLICT: 
+          NONOR_CONFLICT_CHOP: 
+          NONOR_CONFLICT_CHOP_DATE: 
           OR: Operationale Prozedur
-          OR_CONFLICT: ??
-          OR_CONFLICT_CHOP_DATE: ??
+          OR_CONFLICT: 
+          OR_CONFLICT_CHOP_DATE: 
           SRG: Weder OR noch NOR Prozedur
-          SRG_CONFLICT: ??
-          SRG_CONFLICT_CHOP: ??
-          SRG_CONFLICT_CHOP_DATE: ??
+          SRG_CONFLICT: 
+          SRG_CONFLICT_CHOP: 
+          SRG_CONFLICT_CHOP_DATE: 
     length-of-stay:
       legend: Verweildauer
       length-of-stay: Aktuelle Verweildauer
