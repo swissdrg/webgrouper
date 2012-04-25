@@ -5,7 +5,7 @@ class WebgrouperPatientCase < PatientCase
   
   include ActAsValidGrouperQuery
   
-  attr_accessor :age, :age_mode, :care_provider
+  attr_accessor :age, :age_mode, :care_provider, :manual_submission
   
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
@@ -104,6 +104,14 @@ class WebgrouperPatientCase < PatientCase
 		tmp_java_array = tmp.to_java(:string)
 		(0..(tmp_java_array.size-1)).each {|i| result[i] = tmp_java_array[i]}
 		result
+	end
+	
+	def manual_submission=(submission)
+	 @manual_submission = submission
+	end
+	
+	def manual_submission
+	 @manual_submission
 	end
   
   private
