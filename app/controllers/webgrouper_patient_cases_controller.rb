@@ -15,6 +15,7 @@ class WebgrouperPatientCasesController < ApplicationController
   def create_query
     System.current_system = System.find_by_SyID(params[:system][:SyID])
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
+    @webgrouper_patient_case.manual_submission = params[:commit]
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
     else
