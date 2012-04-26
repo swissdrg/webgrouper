@@ -10,8 +10,6 @@ class LosDataTable < GoogleVisualr::DataTable
                   {:type => 'string', :role => 'annotationText'},
                   #{:type => 'string', :role => 'tooltip'}, #TODO: make a pretty tooltip
                   {:type => 'number', :label => I18n.t('transferred')} ]
-    #new_column('string', nil, nil, 'annotation')
-    #new_column('string', nil, nil, 'annotationText')
 
     # Values used for populating the rows of the table:
     avg_duration = weighting_relation.avg_duration.to_f/factor
@@ -39,8 +37,6 @@ class LosDataTable < GoogleVisualr::DataTable
     [high_trim_point, base_cost_rate, 'hi', I18n.t('result.length-of-stay.high_trim_point'), nil],
     [actual_los, effective_cost_weight, '***', I18n.t('result.length-of-stay.length-of-stay'), nil],
     [many_days, many_days_cost_rate, '','', nil]]
-    
-    puts EffectiveCostWeight::CaseType::TRANSFERRED
     
     sorted_rows = rows.sort_by { |row| row[0] }
     

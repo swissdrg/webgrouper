@@ -40,7 +40,7 @@
           %th
             = t "result.cost-weight.baserate"
           %td
-            = @base_cost_weight     
+            = @weighting_relation.cost_weight.to_f/@factor
         %tr
           %th
             = t "result.cost-weight.effective-cost-weight"
