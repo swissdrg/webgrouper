@@ -138,7 +138,7 @@
         - proc_db_entry = OPS.find_by_OpShort(proc_code)
         %tr
           %td
-            = proc_code
+            = OPS.pretty_code_of(proc_code)
           %td
             = proc_db_entry.OpName
           %td
