@@ -45,7 +45,6 @@ class WebgrouperPatientCasesController < ApplicationController
 		@weighting_relation.setTransferFlatrate(drg.transfer_flatrate*@factor)
 		@weighting_relation.setUseTransferFlatrate(drg.transfer)
 		
-		@base_cost_weight = drg.cost_weight
 		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
 		@los_chart = LosDataTable.new(patient_case.los, @cost_weight,
 		                              @weighting_relation, @factor).make_chart
