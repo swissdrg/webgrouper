@@ -55,6 +55,7 @@ de:
           USED_BOTH: Ja, für beide
           USED_FOR_CONDITION: ?????
         valid:
+          PROC_VALID: Gültige Prozedur
           PROC_AGE_CONFLICT: Konflikt mit Alter
           PROC_INVALID: Ungültiger CHOP-Code
           PROC_SEX_CONFLICT: Konflikt mit Geschlecht
