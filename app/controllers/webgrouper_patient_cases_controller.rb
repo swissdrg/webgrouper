@@ -24,7 +24,7 @@ class WebgrouperPatientCasesController < ApplicationController
     end  
   end
   
-  def group(patient_case) 
+  def group(patient_case)
 		current_system_id = System.current_system.SyID
 		GROUPER.load(spec_path(current_system_id))
 		@result = GROUPER.group(patient_case)
