@@ -8,8 +8,7 @@ class ExistingIcdValidator < ActiveModel::EachValidator
   private
 
   def validate_pdx(record, attribute, value)
-    short_code = ICD.short_code_of(value)
-    record.errors[attribute] << "invalid" if ICD.find_by_IcShort(short_code).nil?
+    record.errors[attribute] << "invalid" if ICD.find_by_IcShort(value).nil?
   end
 
   def validate_diagnoses(record, attribute, value)

@@ -44,6 +44,13 @@ class WebgrouperPatientCase < PatientCase
   def persisted?
     false
   end
+  
+  # Custom setter for pdx (main diagnosis)
+  # Makes sure that the variable pdx only references a short code representation of an 
+  # icd code by filtering out periods and whitespace.
+  def pdx=(pdx)
+    set_pdx pdx.gsub(/\./, "").strip
+  end
 
   def diagnoses=(diagnoses)
 	  set_diagnoses hash_to_java_array(diagnoses, 99, true)
