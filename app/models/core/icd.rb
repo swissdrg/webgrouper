@@ -16,13 +16,9 @@ class ICD < ActiveRecord::Base
   
   #Returns the value as pretty code if it is available in the db or
   #the value itself unchanged if it is not part of the db.
-  #TODO: dont swallow the the error
+  #Returns nil if there is no entry in the database for given the value.
   def self.pretty_code_of(value)
     db_entry = self.find_by_IcShort(short_code_of(value))
-    if db_entry.nil?
-      value
-    else 
-      db_entry.IcCode
-    end
+    db_entry ? db_entry.IcCode : nil
   end
 end
