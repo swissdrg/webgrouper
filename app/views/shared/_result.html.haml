@@ -134,11 +134,11 @@
           = t("result.procedures.or-nor")
       - counter = 0
       - @webgrouper_patient_case.procedures.each do |proc|
-        - proc_pretty_code = proc.split(":")[0]
-        - proc_db_entry = OPS.find_by_OpCode(proc_pretty_code)
+        - proc_code = proc.split(":")[0]
+        - proc_db_entry = OPS.find_by_OpShort(proc_code)
         %tr
           %td
-            = proc_pretty_code
+            = proc_code
           %td
             = proc_db_entry.OpName
           %td

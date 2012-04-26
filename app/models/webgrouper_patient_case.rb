@@ -78,7 +78,7 @@ class WebgrouperPatientCase < PatientCase
 		
 		if is_diagnoses		
 			hash.each do |key, value| 
-				tmp << ICD.pretty_code_of(value) unless value.blank?
+				tmp << value.gsub(/\./, "").strip unless value.blank?
 			end
 		else
 			hash.each do |key, value| 
@@ -88,7 +88,7 @@ class WebgrouperPatientCase < PatientCase
 				value.each do |key2, value2|
 					# we use ":" as our string delimiter symbol
 					if counter == 0 && !value2.blank?
-					  tmp_procedure += OPS.pretty_code_of(value2)
+					  tmp_procedure += value2.gsub(/\./, "").strip
 					else 
 					 tmp_procedure += value2
 					end
