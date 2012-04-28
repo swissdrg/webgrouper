@@ -11,6 +11,11 @@ When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
   step %{I fill in "webgrouper_patient_case_pdx" with "#{pdx}"}
 end
 
+When /^I enter "([^"]*)" as procedure$/ do |proc|
+  step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
+end
+
+
 When /^I enter "([^"]*)" as los$/ do |los|
   step %{I fill in "webgrouper_patient_case_los" with "#{los}"}
 end
@@ -39,7 +44,7 @@ Then /^the form should stay the same$/ do
   
 end
 
-Then /^show me the results$/ do
+Then /^show me the page$/ do
   save_and_open_page
 end
 
