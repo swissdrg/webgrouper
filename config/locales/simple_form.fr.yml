@@ -21,7 +21,7 @@ fr:
           ag3: there is no system 3 >.<
           ag2: SwissDRG 0.2
           ag1: SwissDRG 0.1
-        care_provider:
+        house:
           hospital: Hôpital de soins aigus
           birthing_center: Maison des naissances    
       webgrouper_patient_case:
@@ -47,7 +47,7 @@ fr:
     labels:
       system:
         active_grouper: 'Grouper:'
-        care_provider: 'Prestataire:'
+        house: 'Prestataire:'
         diagnoses_catalog: 'Catalogue des diagnostics:'
         procedures_catalog: 'Catalogue des procédures:'
       webgrouper_patient_case:

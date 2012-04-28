@@ -21,7 +21,7 @@ it:
           ag3: there is no system 3 >.<
           ag2: SwissDRG 0.2
           ag1: SwissDRG 0.1
-        care_provider:
+        house:
           hospital: Ospedali medicina acuta
           birthing_center: Casa natale
       webgrouper_patient_case:
@@ -47,7 +47,7 @@ it:
     labels:
       system:
         active_grouper: 'Grouper:'
-        care_provider: 'Prestataire:'
+        house: 'Prestataire:'
         diagnoses_catalog: 'Catalogo delle diagnosi:'
         procedures_catalog: 'Catalog delle procedure:'
       webgrouper_patient_case:

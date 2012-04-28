@@ -1,11 +1,11 @@
-# WebgrouperPatientCase holds all input variables for a certain patiant case
+# WebgrouperPatientCase holds all input variables for a certain patient case
 # you can find in either the entry date, the exit date and the number of leave days. 
 # WebgrouperPatientCase inherits from the java class PatientCase
 class WebgrouperPatientCase < PatientCase
   
   include ActAsValidGrouperQuery
   
-  attr_accessor :age, :age_mode, :care_provider, :manual_submission
+  attr_accessor :age, :age_mode, :house, :manual_submission
   
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
@@ -23,24 +23,16 @@ class WebgrouperPatientCase < PatientCase
     self.pdx = ""
     
     attributes.each do |name, value|
-      if send(name).is_a? Fixnum
-        value = value.to_i 
-      end
-
+      value = value.to_i if send(name).is_a? Fixnum
       send("#{name}=", value) 
     end
     
-    if age_mode_days?
-      self.age_days = self.age
-    else
-      self.age_years = self.age
-    end
-   
+    age_mode_days? ? self.age_days = self.age : self.age_years = self.age
   end
   
-  # Always returns false since our model is not persisted (saved in a database).
+  # Always returns false since this model is not persisted (saved in a database).
   # The method is necessary for this model to be treated like an active record model
-  # in certain circumstances; when building forms for it, for instance.
+  # in certain circumstances; when building forms, for instance.
   def persisted?
     false
   end
@@ -111,14 +103,6 @@ class WebgrouperPatientCase < PatientCase
 		tmp_java_array = tmp.to_java(:string)
 		(0..(tmp_java_array.size-1)).each {|i| result[i] = tmp_java_array[i]}
 		result
-	end
-	
-	def manual_submission=(submission)
-	 @manual_submission = submission
-	end
-	
-	def manual_submission
-	 @manual_submission
 	end
   
   private
