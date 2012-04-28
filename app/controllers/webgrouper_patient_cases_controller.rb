@@ -25,20 +25,17 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def group(patient_case)
-		@factor = 10000		
+		@factor = 10000
 		current_system_id = System.current_system.SyID
 		GROUPER.load(spec_path(current_system_id))
 		@result = GROUPER.group(patient_case)
 		@weighting_relation = WeightingRelation.new
-		@weighting_relation.setDrg(@result.getDrg)		
-		drg = DRG.where(:DrCode => @result.getDrg, :house =>2).first
-		unless drg 
-			drg = DRG.where(:DrCode => @result.getDrg, :house =>1).first 
+		@weighting_relation.setDrg(@result.getDrg)
+		drg = DRG.where(:DrCode => @result.getDrg, :house => patient_case.house).first
+		if drg.nil?
+			drg = DRG.where(:DrCode => @result.getDrg, :house => 1).first 
 			@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
 		else
-			drg = DRG.where(:DrCode => @result.getDrg, :house =>1).first 
-			@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
-		
 			@weighting_relation.setCostWeight(drg.cost_weight*@factor)
 			@weighting_relation.setAvgDuration(drg.avg_duration*@factor)
 			@weighting_relation.setFirstDayDiscount(drg.first_day_discount)
@@ -49,8 +46,7 @@ class WebgrouperPatientCasesController < ApplicationController
 			@weighting_relation.setUseTransferFlatrate(drg.transfer)		
 			@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
 		end
-
-
+		
 		@los_chart = LosDataTable.new(patient_case.los, @cost_weight,
 		                              @weighting_relation, @factor).make_chart
     render 'index'

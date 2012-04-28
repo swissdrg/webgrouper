@@ -21,7 +21,7 @@ de:
           ag3: there is no system 3 >.<
           ag2: SwissDRG 0.2
           ag1: SwissDRG 0.1
-        care_provider:
+        house:
           hospital: Akutspital
           birthing_center: Geburtshaus        
       webgrouper_patient_case:
@@ -47,7 +47,7 @@ de:
     labels:
       webgrouper_patient_case:
         active_grouper: 'Aktiver Grouper:'
-        care_provider: 'Leistungserbringer:'
+        house: 'Leistungserbringer:'
         diagnoses_catalog: 'Diagnosenkatalog:'
         procedures_catalog: 'Prozedurenkatalog:'
         entry_date: 'Aufnahmedatum:'
