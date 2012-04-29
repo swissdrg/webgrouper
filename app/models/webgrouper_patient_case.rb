@@ -88,6 +88,9 @@ class WebgrouperPatientCase < PatientCase
 					# we use ":" as our string delimiter symbol
 					if counter == 0 && !value2.blank?
 					  tmp_procedure += value2.gsub(/\./, "").strip
+					elsif counter == 2 && !value2.blank?
+						regexed_date = value2.match(/(.*)\.(.*)\.(.*)/)
+						tmp_procedure += regexed_date[3] + regexed_date[2] + regexed_date[1]
 					else 
 					 tmp_procedure += value2
 					end
