@@ -12,7 +12,11 @@
         = text_field_tag :procedures_catalog, System.current_system.SyCatProcs, :disabled => true
     .sameline
       - selected = @webgrouper_patient_case.house || 1
-      = f.input :house, :as => :select, :collection => [1,2], :selected => selected
+      = f.input :house, 
+                :as => :select, 
+                :collection => [1,2],
+                :selected => selected,
+                :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.house.house#{el.to_s}" }
     .small_field
       = f.label :diagnoses_catalog
       = text_field_tag :diagnoses_catalog, System.current_system.SyCatDiags, :disabled => true
