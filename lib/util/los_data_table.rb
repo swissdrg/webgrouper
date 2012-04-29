@@ -24,19 +24,21 @@ class LosDataTable < GoogleVisualr::DataTable
     many_days = [high_trim_point, actual_los].max + 5
     many_days_cost_rate = base_cost_rate + surcharge_per_day*(many_days - high_trim_point)
    
+    rows = []
     if cost_weight.case_flag == EffectiveCostWeight::CaseType::TRANSFERRED
       transfer_flatrate = weighting_relation.transfer_flatrate.to_f/factor    
       one_day_transfer_rate = base_cost_rate - transfer_flatrate*(avg_duration-1)
       avg_transfer_rate = base_cost_rate
+      rows.push [actual_los, nil, '***', I18n.t('result.length-of-stay.length-of-stay'), effective_cost_weight]
+    else
+      rows.push [actual_los, effective_cost_weight, '***', I18n.t('result.length-of-stay.length-of-stay'), nil]
     end
     
-    rows = [
-    [1, one_day_cost_rate, '','', one_day_transfer_rate],
+    rows.push [1, one_day_cost_rate, '','', one_day_transfer_rate],
     [low_trim_point, base_cost_rate, 'lo', I18n.t('result.length-of-stay.low_trim_point'), nil],
     [avg_duration, base_cost_rate, 'avg',I18n.t('result.length-of-stay.average_los'), avg_transfer_rate],
     [high_trim_point, base_cost_rate, 'hi', I18n.t('result.length-of-stay.high_trim_point'), nil],
-    [actual_los, effective_cost_weight, '***', I18n.t('result.length-of-stay.length-of-stay'), nil],
-    [many_days, many_days_cost_rate, '','', nil]]
+    [many_days, many_days_cost_rate, '','', nil]
     
     sorted_rows = rows.sort_by { |row| row[0] }
     
