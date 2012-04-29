@@ -20,11 +20,11 @@ fr:
           ag4: Katalogversion 0.3 2008/2011
           ag3: there is no system 3 >.<
           ag2: SwissDRG 0.2
-          ag1: SwissDRG 0.1
-        house:
-          hospital: Hôpital de soins aigus
-          birthing_center: Maison des naissances    
+          ag1: SwissDRG 0.1   
       webgrouper_patient_case:
+        house:
+          house1: Hôpital de soins aigus
+          house2: Maison des naissances 
         sex:
           U: 'Inconnu'
           M: 'Masculin'
