@@ -21,10 +21,10 @@ it:
           ag3: there is no system 3 >.<
           ag2: SwissDRG 0.2
           ag1: SwissDRG 0.1
-        house:
-          hospital: Ospedali medicina acuta
-          birthing_center: Casa natale
       webgrouper_patient_case:
+        house:
+          house1: Ospedali medicina acuta
+          house2: Casa natale
         sex:
           U: 'sconosciuto'
           M: 'maschile'
