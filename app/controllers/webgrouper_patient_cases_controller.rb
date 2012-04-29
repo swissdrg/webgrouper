@@ -43,7 +43,7 @@ class WebgrouperPatientCasesController < ApplicationController
 			@weighting_relation.setSurchargePerDay(drg.surcharge_per_day*@factor)
 			@weighting_relation.setDiscountPerDay(drg.discount_per_day*@factor)
 			@weighting_relation.setTransferFlatrate(drg.transfer_flatrate*@factor)
-			@weighting_relation.setUseTransferFlatrate(drg.transfer)		
+			@weighting_relation.setUseTransferFlatrate(drg.transfer == 1)
 			@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
 		end
 		
