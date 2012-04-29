@@ -114,6 +114,9 @@ function add_fields(kind, field_row, value) {
 	}
 	append_field_row(kind, field_row, field_count);
 	set_field_count(kind, field_count);
+	if (kind == "procedures") {
+		addDatePickers();
+	}
 	add_buttons(kind);
 }
 
