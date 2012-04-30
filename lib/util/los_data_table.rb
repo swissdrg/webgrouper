@@ -45,11 +45,13 @@ class LosDataTable < GoogleVisualr::DataTable
         make_tooltip('high_trim_point', high_trim_point, base_cost_rate), nil],
     [many_days, many_days_cost_rate, '','',nil, nil]
     
+    # Sort the rows afterwards, so the chart is not like spaghetti
     sorted_rows = rows.sort_by { |row| row[0] }
     
     add_rows(sorted_rows)
   end
   
+  # Gives back a chart, using the data filled in this instance.
   def make_chart()
     options = { :width => 650, :height => 170,
                 :legend => 'none',
@@ -60,9 +62,10 @@ class LosDataTable < GoogleVisualr::DataTable
   end
   
   #TODO: values have to be bold
+  # Gives back a formated string with the data given
   def make_tooltip(x_value_caption, x_value, y_value)
     "#{I18n.t('result.length-of-stay.' + x_value_caption)}: "+ 
         "#{I18n.t('datetime.distance_in_words.x_days', :count => x_value.to_s)} \\n"+
-        " #{I18n.t('result.cost-weight.legend')}: #{y_value.to_s}"
+        "#{I18n.t('result.cost-weight.legend')}: #{y_value.to_s}"
   end
 end
