@@ -62,16 +62,14 @@
           - if surcharge_days > 0
             %th
               = t "result.cost-weight.number_of_days_for_surcharge"
-            %td
-              
+            %td           
               = surcharge_days
           - else 
             - if discount_days > 0
               %th
                 = t "result.cost-weight.number_of_days_for_discount"
               %td
-                
-                = discount_days.max
+                = discount_days
             - else
               %th
                 = t "result.cost-weight.no_days_for_discount_or_surcharge"
@@ -184,7 +182,7 @@
         %td
           = @weighting_relation.first_day_surcharge - 1
       %tr.highlight
-        %td{:colspan => 2}
+        %th{:colspan => 2}
           = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)
           
 %fieldset#los-chart.result.right
