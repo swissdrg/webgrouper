@@ -4,8 +4,8 @@
 class LosDataTable < GoogleVisualr::DataTable
   def initialize(actual_los, cost_weight, weighting_relation, factor)
     super()
-    new_columns [ {:type => 'number', :label => 'Tage'},
-                  {:type => 'number', :label => I18n.t('result.cost-weight.legend')},
+    new_columns [ {:type => 'number'},
+                  {:type => 'number'},
                   {:type => 'string', :role => 'annotation'},
                   {:type => 'string', :role => 'annotationText'},
                   {:type => 'string', :role => 'tooltip'},
@@ -54,13 +54,15 @@ class LosDataTable < GoogleVisualr::DataTable
     options = { :width => 650, :height => 170,
                 :legend => 'none',
                 :interpolateNulls => true,
-                :hAxis => { :title => 'Tage' },
-                :vAxis => { :title => 'Kostengewicht' }}
+                :hAxis => { :title => I18n.t('datetime.distance_in_words.x_days', :count => '') },
+                :vAxis => { :title => I18n.t('result.cost-weight.legend') }}
     GoogleVisualr::Interactive::LineChart.new(self, options)
   end
   
   #TODO: values have to be bold
   def make_tooltip(x_value_caption, x_value, y_value)
-    "#{I18n.t('result.length-of-stay.' + x_value_caption)}: #{x_value.to_s} \\n #{I18n.t('result.cost-weight.legend')}: #{y_value.to_s}"
+    "#{I18n.t('result.length-of-stay.' + x_value_caption)}: "+ 
+        "#{I18n.t('datetime.distance_in_words.x_days', :count => x_value.to_s)} \\n"+
+        " #{I18n.t('result.cost-weight.legend')}: #{y_value.to_s}"
   end
 end
