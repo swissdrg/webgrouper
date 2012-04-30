@@ -108,7 +108,7 @@
           %td
             = diag
           %td
-            = ICD.find_by_IcCode(diag).IcName
+            = ICD.find_by_IcShort(diag).IcName
           %td
             = t("result.diagnoses.diagnosis_flag.valid." + @result.diagnoses_flags[counter].valid.to_s)
           %td
