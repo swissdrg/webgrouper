@@ -1,5 +1,4 @@
 require 'spec_helper'
 
-describe Icd do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe ICD do
 end
