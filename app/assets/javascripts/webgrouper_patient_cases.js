@@ -1,11 +1,11 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).ready(function() {
-	addDatePickers()
+	initializeDatePickers();
 	admWeightControl(0);
-	initializeAutocomplete()
+	initializeAutocomplete();
+	goToResult();
 });
-
 
 $("#system_SyID").live("change keyup", function () {
 	this.form.submit();
@@ -54,23 +54,32 @@ $("#webgrouper_patient_case_birth_date").live("focus change", function() {
  */
 function initializeAutocomplete() {
 	$(':input.autocomplete').bind('railsAutocomplete.select', function(event, data){
-  		event.target.value = data.item.label.split(" ", 1)[0];
-  		event.target.title = data.item.IcName;
+		splitPos = data.item.label.search(" ");
+  		event.target.value = data.item.label.substring(0, splitPos);
+  		event.target.title = data.item.label.substring(splitPos + 1);
 	});
 }
 
 /**
  * Adds date pickers to every input field of the class "date_picker"
- * The format of the date picker is eg 02.04.2011
  */
-function addDatePickers() {
+function initializeDatePickers() {
 	$(".date_picker").each(function() {
-		var form_id = this.id;
-		var eles = {};
-		eles[form_id] = "d-dt-m-dt-Y";
-		datePickerController.createDatePicker({formElements: eles});
+		addDatePicker(this.id)
 	});
 }
+
+/**
+ * Adds a date picker to the field with the given id
+ * The format of the date picker is eg 02.04.2011
+ * @param id the id of the field you want to add a datepicker
+ */
+function addDatePicker(id) {
+	var eles = {};
+	eles[id] = "d-dt-m-dt-Y";
+	datePickerController.createDatePicker({formElements: eles});
+}
+
 
 /**
  * Lets the id "admWeight" disappear according to the
@@ -342,5 +351,13 @@ function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
     var delta = maxValue - minValue;
     var stepp = minValue+(Math.pow(((1 / totalSteps)*actualStep),powr)*delta);
     return Math.ceil(stepp)
+}
+
+function goToResult(){
+	if ($("#result").length) {
+		jQuery('html,body').animate({
+			scrollTop: $("#los-chart").offset().top - 100
+		},'slow');
+	};
 }
 

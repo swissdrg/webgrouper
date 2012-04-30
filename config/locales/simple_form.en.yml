@@ -21,10 +21,10 @@ en:
           ag3: there is no system 3 >.<
           ag2: SwissDRG 0.2
           ag1: SwissDRG 0.1
-        care_provider:
-          hospital: Hospital
-          birthing_center: Birthing center
       webgrouper_patient_case:
+        house:
+          house1: Hospital
+          house2: Birthing center
         sex:
           U: 'Unknown'
           M: 'Male'
@@ -47,7 +47,7 @@ en:
     labels:
       system:
         active_grouper: 'Active Grouper:'
-        care_provider: 'Care provider:'
+        house: 'Care provider:'
         diagnoses_catalog: 'Catalog diagnoses:'
         procedures_catalog: 'Catalog procedures:'
       webgrouper_patient_case:

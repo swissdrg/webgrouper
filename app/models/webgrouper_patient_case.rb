@@ -1,11 +1,11 @@
-# WebgrouperPatientCase holds all input variables for a certain patiant case
+# WebgrouperPatientCase holds all input variables for a certain patient case
 # you can find in either the entry date, the exit date and the number of leave days. 
 # WebgrouperPatientCase inherits from the java class PatientCase
 class WebgrouperPatientCase < PatientCase
   
   include ActAsValidGrouperQuery
   
-  attr_accessor :age, :age_mode, :care_provider
+  attr_accessor :age, :age_mode, :house, :manual_submission
   
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
@@ -23,26 +23,25 @@ class WebgrouperPatientCase < PatientCase
     self.pdx = ""
     
     attributes.each do |name, value|
-      if send(name).is_a? Fixnum
-        value = value.to_i 
-      end
-
+      value = value.to_i if send(name).is_a? Fixnum
       send("#{name}=", value) 
     end
     
-    if age_mode_days?
-      self.age_days = self.age
-    else
-      self.age_years = self.age
-    end
-   
+    age_mode_days? ? self.age_days = self.age : self.age_years = self.age
   end
   
-  # Always returns false since our model is not persisted (saved in a database).
+  # Always returns false since this model is not persisted (saved in a database).
   # The method is necessary for this model to be treated like an active record model
-  # in certain circumstances; when building forms for it, for instance.
+  # in certain circumstances; when building forms, for instance.
   def persisted?
     false
+  end
+  
+  # Custom setter for pdx (main diagnosis)
+  # Makes sure that the variable pdx only references a short code representation of an 
+  # icd code by filtering out periods and whitespace.
+  def pdx=(pdx)
+    set_pdx pdx.gsub(/\./, "").strip
   end
 
   def diagnoses=(diagnoses)
@@ -78,7 +77,7 @@ class WebgrouperPatientCase < PatientCase
 		
 		if is_diagnoses		
 			hash.each do |key, value| 
-				tmp << ICD.pretty_code_of(value) unless value.blank?
+				tmp << value.gsub(/\./, "").strip unless value.blank?
 			end
 		else
 			hash.each do |key, value| 
@@ -88,7 +87,10 @@ class WebgrouperPatientCase < PatientCase
 				value.each do |key2, value2|
 					# we use ":" as our string delimiter symbol
 					if counter == 0 && !value2.blank?
-					  tmp_procedure += OPS.pretty_code_of(value2)
+					  tmp_procedure += value2.gsub(/\./, "").strip
+					elsif counter == 2 && !value2.blank?
+						regexed_date = value2.match(/(.*)\.(.*)\.(.*)/)
+						tmp_procedure += regexed_date[3] + regexed_date[2] + regexed_date[1]
 					else 
 					 tmp_procedure += value2
 					end

@@ -3,12 +3,6 @@
  They will automatically be included in application.css.
  */
 
-/**
- * Everything belonging to the header goes here:
- */
-
-/* 	Has to be logo-image-height + 1 */
-
 .errorflash ul {
 	margin-bottom: 0;
 }
@@ -22,6 +16,7 @@
 	margin-bottom: 30px;
 }
 
+/* 	Has to be logo-image-height + 1 */
 .header {
 	height: 94px;
 	position: relative;
@@ -61,6 +56,10 @@
 	margin-right: 1em;
 }
 
+tbody tr#pdx {
+	/*background: #e5ecf9; */
+	background: #a7bfeb;
+}
 /*
  * Various fieldsets:
  */
@@ -79,6 +78,10 @@ fieldset {
 	padding-left: 0;
 	padding-bottom: 1em;
 	margin: 0;
+}
+
+fieldset#grouping {
+	border-width: 3px;
 }
 fieldset#drg-proc, fieldset#system, fieldset#procedures, fieldset#diagnoses {
 	display:block;
@@ -109,4 +112,8 @@ fieldset.result th.medium-col {
 fieldset#los-chart {
 	padding-top: 0;
 	padding-right: 0;
+}
+
+html {
+	overflow-y: scroll;
 }

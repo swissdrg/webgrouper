@@ -21,9 +21,6 @@ de:
           ag3: there is no system 3 >.<
           ag2: SwissDRG 0.2
           ag1: SwissDRG 0.1
-        care_provider:
-          hospital: Akutspital
-          birthing_center: Geburtshaus        
       webgrouper_patient_case:
         sex:
           U: 'Unbekannt'
@@ -40,6 +37,9 @@ de:
           sep06: 'Verlegt (in anderes Spital)'
           sep07: 'Verstorben'
           sep00: 'Normal'
+        house:
+          house1: Akutspital
+          house2: Geburtshaus        
         age_mode:
           years: 'Jahre'
           days: 'Tage'
@@ -47,7 +47,7 @@ de:
     labels:
       webgrouper_patient_case:
         active_grouper: 'Aktiver Grouper:'
-        care_provider: 'Leistungserbringer:'
+        house: 'Leistungserbringer:'
         diagnoses_catalog: 'Diagnosenkatalog:'
         procedures_catalog: 'Prozedurenkatalog:'
         entry_date: 'Aufnahmedatum:'

@@ -1,4 +1,4 @@
-%a(id="result")
+#result
 .on-row
   %fieldset#grouping.result.left
     %legend= t "result.grouping.legend"
@@ -40,7 +40,7 @@
           %th
             = t "result.cost-weight.baserate"
           %td
-            = @base_cost_weight     
+            = @weighting_relation.cost_weight.to_f/@factor
         %tr
           %th
             = t "result.cost-weight.effective-cost-weight"
@@ -57,12 +57,22 @@
           %td
             = @weighting_relation.discount_per_day.to_f/@factor
         %tr
-          %th
-            = t "result.cost-weight.number-of-days-for-surcharge-or-discount"
-          %td
-            - surcharge_days = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
-            - discount_days = @weighting_relation.first_day_discount - @webgrouper_patient_case.los + 1
-            = [surcharge_days, discount_days, 0].max
+          - surcharge_days = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
+          - discount_days = @weighting_relation.first_day_discount - @webgrouper_patient_case.los + 1
+          - if surcharge_days > 0
+            %th
+              = t "result.cost-weight.number_of_days_for_surcharge"
+            %td           
+              = surcharge_days
+          - else 
+            - if discount_days > 0
+              %th
+                = t "result.cost-weight.number_of_days_for_discount"
+              %td
+                = discount_days
+            - else
+              %th
+                = t "result.cost-weight.no_days_for_discount_or_surcharge"
              
 %fieldset#diagnoses.result
   %legend= t "result.diagnoses.legend"
@@ -79,7 +89,7 @@
           = t("result.diagnoses.used")
         %th.small-col
           = t("result.diagnoses.CCL")
-      %tr
+      %tr#pdx
         %td
           = ICD.pretty_code_of(@webgrouper_patient_case.pdx)
         %td
@@ -96,7 +106,7 @@
           %td
             = diag
           %td
-            = ICD.find_by_IcCode(diag).IcName
+            = ICD.find_by_IcShort(diag).IcName
           %td
             = t("result.diagnoses.diagnosis_flag.valid." + @result.diagnoses_flags[counter].valid.to_s)
           %td
@@ -122,11 +132,11 @@
           = t("result.procedures.or-nor")
       - counter = 0
       - @webgrouper_patient_case.procedures.each do |proc|
-        - proc_pretty_code = proc.split(":")[0]
-        - proc_db_entry = OPS.find_by_OpCode(proc_pretty_code)
+        - proc_code = proc.split(":")[0]
+        - proc_db_entry = OPS.find_by_OpShort(proc_code)
         %tr
           %td
-            = proc_pretty_code
+            = OPS.pretty_code_of(proc_code)
           %td
             = proc_db_entry.OpName
           %td
@@ -165,20 +175,17 @@
         %th
           = t("result.length-of-stay.low_trim_point")
         %td
-          ??
+          = @weighting_relation.first_day_discount + 1
       %tr
         %th
           = t("result.length-of-stay.high_trim_point")
         %td
-          ??
-      %tr
-        %th
-          = t("result.length-of-stay.case_flag")
-        %td
-          .highlight
-            = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)
+          = @weighting_relation.first_day_surcharge - 1
+      %tr.highlight
+        %th{:colspan => 2}
+          = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)
           
 %fieldset#los-chart.result.right
-  %legend= t "result.los-chart"
+  %legend= t "result.los_chart"
   #los_chart
     = render_chart(@los_chart, 'los_chart')

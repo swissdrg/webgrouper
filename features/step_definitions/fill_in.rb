@@ -11,8 +11,18 @@ When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
   step %{I fill in "webgrouper_patient_case_pdx" with "#{pdx}"}
 end
 
+When /^I enter "([^"]*)" as procedure$/ do |proc|
+  step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
+end
+
+
 When /^I enter "([^"]*)" as los$/ do |los|
   step %{I fill in "webgrouper_patient_case_los" with "#{los}"}
+end
+
+When /^I enter Transfered \(los more than 24 hours\) as admission mode$/ do 
+  select(I18n.t('simple_form.options.webgrouper_patient_case.adm.adm11'), 
+         :from => 'webgrouper_patient_case_adm')
 end
 
 When /^I press on "([^"]*)"$/ do |button|
@@ -34,20 +44,16 @@ Then /^the form should stay the same$/ do
   
 end
 
-Then /^show me the results$/ do
+Then /^show me the page$/ do
   save_and_open_page
 end
 
 Then /^(?:|I )should see "([^"]*)" in "([^"]*)"$/ do |text, field|
-  within(:css, 'fieldset#' + field) do
-    has_content?(text)
-  end
+  find(:css, 'fieldset#' + field). should have_content(text)
 end
 
 Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
-  within(:css, 'fieldset#grouping') do
-    has_content?(text)
-  end
+  find(:css, 'fieldset#grouping').should have_content?(text)
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|

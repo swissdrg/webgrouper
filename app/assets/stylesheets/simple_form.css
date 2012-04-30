@@ -26,7 +26,7 @@
 }
 
 #drg-proc input.small_field {
-	width: 90px;
+	width: 85px;
 }
 
 #drg-proc input.tiny_field {
@@ -84,7 +84,7 @@ label.radio {
 .field_with_errors input {
 	margin-top: 10px;
 	padding: 2px;
-	background-color: #d00;
+	background-color: #fbe3e4;
 	/* this breaks datepicker */
 	/* display: table; */
 }
