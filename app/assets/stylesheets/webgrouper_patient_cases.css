@@ -113,3 +113,7 @@ fieldset#los-chart {
 	padding-top: 0;
 	padding-right: 0;
 }
+
+html {
+	overflow-y: scroll;
+}
