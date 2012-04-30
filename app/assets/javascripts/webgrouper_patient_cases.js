@@ -1,7 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 $(document).ready(function() {
-	addDatePickers();
+	initializeDatePickers();
 	admWeightControl(0);
 	initializeAutocomplete();
 	goToResult();
@@ -62,16 +62,24 @@ function initializeAutocomplete() {
 
 /**
  * Adds date pickers to every input field of the class "date_picker"
- * The format of the date picker is eg 02.04.2011
  */
-function addDatePickers() {
+function initializeDatePickers() {
 	$(".date_picker").each(function() {
-		var form_id = this.id;
-		var eles = {};
-		eles[form_id] = "d-dt-m-dt-Y";
-		datePickerController.createDatePicker({formElements: eles});
+		addDatePicker(this.id)
 	});
 }
+
+/**
+ * Adds a date picker to the field with the given id
+ * The format of the date picker is eg 02.04.2011
+ * @param id the id of the field you want to add a datepicker
+ */
+function addDatePicker(id) {
+	var eles = {};
+	eles[id] = "d-dt-m-dt-Y";
+	datePickerController.createDatePicker({formElements: eles});
+}
+
 
 /**
  * Lets the id "admWeight" disappear according to the
@@ -114,9 +122,6 @@ function add_fields(kind, field_row, value) {
 	}
 	append_field_row(kind, field_row, field_count);
 	set_field_count(kind, field_count);
-	if (kind == "procedures") {
-		addDatePickers();
-	}
 	add_buttons(kind);
 }
 
@@ -351,7 +356,7 @@ function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
 function goToResult(){
 	if ($("#result").length) {
 		jQuery('html,body').animate({
-			scrollTop: $("#result").offset().top - 100
+			scrollTop: $("#los-chart").offset().top - 100
 		},'slow');
 	};
 }
