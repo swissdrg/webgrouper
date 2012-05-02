@@ -93,7 +93,7 @@
         %td
           = ICD.pretty_code_of(@webgrouper_patient_case.pdx)
         %td
-          = ICD.find_by_IcShort(ICD.short_code_of(@webgrouper_patient_case.pdx)).IcName
+          = ICD.find_by_IcCode(@webgrouper_patient_case.pdx).IcName
         %td
           = t("result.diagnoses.diagnosis_flag.valid." + @result.pdx_diagnosis_flag.valid.to_s)
         %td
@@ -106,7 +106,7 @@
           %td
             = diag
           %td
-            = ICD.find_by_IcShort(diag).IcName
+            = ICD.find_by_IcCode(diag).IcName
           %td
             = t("result.diagnoses.diagnosis_flag.valid." + @result.diagnoses_flags[counter].valid.to_s)
           %td
