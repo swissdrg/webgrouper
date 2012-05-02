@@ -133,10 +133,10 @@
       - counter = 0
       - @webgrouper_patient_case.procedures.each do |proc|
         - proc_code = proc.split(":")[0]
-        - proc_db_entry = OPS.find_by_OpShort(proc_code)
+        - proc_db_entry = OPS.find_by_OpCode(proc_code)
         %tr
           %td
-            = OPS.pretty_code_of(proc_code)
+            = proc_code
           %td
             = proc_db_entry.OpName
           %td
