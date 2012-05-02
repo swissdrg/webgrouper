@@ -68,12 +68,8 @@ class WebgrouperPatientCase < PatientCase
     procedures = []
     get_procedures.each do |d|
       unless d.nil?
-        # Why clone?
-        # Just in case one calls the getter before the setter, the original format remains the same.
-        # Prevents potential errors when validating and grouping.
-        d2 = d.clone
-        d2 = d2.match(/(\S*)\:(\w*)\:(\w*)/)[1]
-        procedures << OPS.pretty_code_of(d2) 
+        d = d.match(/(\S*)\:(\w*)\:(\w*)/)[1]
+        procedures << OPS.pretty_code_of(d) 
       end
     end
     procedures
