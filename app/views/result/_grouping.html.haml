@@ -1,31 +1,31 @@
 %fieldset#grouping.result.left
-    %legend= t "result.grouping.legend"
-    %table
-      %tbody
-        %tr
-          %th
-            MDC
-          %td
-            = @result.mdc
-          %td    
-        %tr
-          %th
-            DRG
-          %td
-            = @result.drg
-          %td
-            = (DRG.find_by_DrCode @result.get_drg).DrName
-        %tr
-          %th
-            PCCL
-          %td
-            = @result.pccl
-          %td
-            
-        %tr
-          %th
-            = t("result.grouping.grouperstatus")
-          %td
-            = @result.gst.ordinal
-          %td
-            = t("result.grouping.grouperstatus_modes." + @result.gst.to_s)
+  %legend= t "result.grouping.legend"
+  %table
+    %tbody
+      %tr
+        %th
+          MDC
+        %td
+          = @result.mdc
+        %td    
+      %tr
+        %th
+          DRG
+        %td
+          = @result.drg
+        %td
+          = (DRG.find_by_DrCode @result.get_drg).DrName
+      %tr
+        %th
+          PCCL
+        %td
+          = @result.pccl
+        %td
+          
+      %tr
+        %th
+          = t("result.grouping.grouperstatus")
+        %td
+          = @result.gst.ordinal
+        %td
+          = t("result.grouping.grouperstatus_modes." + @result.gst.to_s)
