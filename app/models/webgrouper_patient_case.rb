@@ -43,6 +43,10 @@ class WebgrouperPatientCase < PatientCase
   def pdx=(pdx)
     set_pdx pdx.gsub(/\./, "").strip
   end
+  
+  def pdx
+    ICD.pretty_code_of get_pdx
+  end
 
   def diagnoses=(diagnoses)
 	  set_diagnoses hash_to_java_array(diagnoses, 99, true)
@@ -51,7 +55,7 @@ class WebgrouperPatientCase < PatientCase
   def diagnoses
     diagnoses = []
     get_diagnoses.each do |d|
-      diagnoses << d unless d.nil?
+      diagnoses << ICD.pretty_code_of(d) unless d.nil?
     end
     diagnoses
   end
@@ -63,7 +67,14 @@ class WebgrouperPatientCase < PatientCase
   def procedures
     procedures = []
     get_procedures.each do |d|
-      procedures << d unless d.nil?
+      unless d.nil?
+        # Why clone?
+        # Just in case one calls the getter before the setter, the original format remains the same.
+        # Prevents potential errors when validating and grouping.
+        d2 = d.clone
+        d2 = d2.match(/(\S*)\:(\w*)\:(\w*)/)[1]
+        procedures << OPS.pretty_code_of(d2) 
+      end
     end
     procedures
   end
@@ -89,8 +100,12 @@ class WebgrouperPatientCase < PatientCase
 					if counter == 0 && !value2.blank?
 					  tmp_procedure += value2.gsub(/\./, "").strip
 					elsif counter == 2 && !value2.blank?
-						regexed_date = value2.match(/(.*)\.(.*)\.(.*)/)
-						tmp_procedure += regexed_date[3] + regexed_date[2] + regexed_date[1]
+						regexed_date = value2.match(/(.*)\.(.*)\.(.*)/) 
+						unless regexed_date.nil?
+						  tmp_procedure += regexed_date[3] + regexed_date[2] + regexed_date[1] 
+					  else
+					    tmp_procedure += value2
+					  end
 					else 
 					 tmp_procedure += value2
 					end
