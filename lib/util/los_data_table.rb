@@ -56,12 +56,15 @@ class LosDataTable < GoogleVisualr::DataTable
     options = { :width => 650, :height => 170,
                 :legend => 'none',
                 :interpolateNulls => true,
-                :hAxis => { :title => I18n.t('datetime.distance_in_words.x_days', :count => '') },
-                :vAxis => { :title => I18n.t('result.cost-weight.legend') }}
+                #:chartArea => { :width => "100%", :height => "100%" },
+                :hAxis => { :gridlines => { :count => 10} ,
+                            :title => I18n.t('datetime.distance_in_words.x_days', :count => '') },
+                :vAxis => { :title => I18n.t('result.cost-weight.legend') } ,
+                :allowHtml => "true" }
     GoogleVisualr::Interactive::LineChart.new(self, options)
   end
   
-  #TODO: values have to be bold
+  #TODO: values should to be bold
   # Gives back a formated string with the data given
   def make_tooltip(x_value_caption, x_value, y_value)
     "#{I18n.t('result.length-of-stay.' + x_value_caption)}: " + 
