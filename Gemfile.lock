@@ -46,7 +46,6 @@ GEM
       sys-uname
     autotest-growl (0.2.16)
     autotest-standalone (4.5.9)
-    bcrypt-ruby (3.0.1-java)
     bouncy-castle-java (1.5.0146.1)
     builder (3.0.0)
     capybara (1.1.2)
