@@ -1,0 +1,41 @@
+%fieldset#cost-weight.result.right
+    %legend= t "result.cost-weight.legend"
+    %table
+      %tbody
+        %tr
+          %th
+            = t "result.cost-weight.baserate"
+          %td
+            = @weighting_relation.cost_weight.to_f/@factor
+        %tr
+          %th
+            = t "result.cost-weight.effective-cost-weight"
+          %td
+            = @cost_weight.effective_cost_weight.to_f/@factor
+        %tr
+          %th
+            = t "result.cost-weight.surcharge-rate-per-day"
+          %td
+            = @weighting_relation.surcharge_per_day.to_f/@factor
+        %tr
+          %th
+            = t "result.cost-weight.discount-rate-per-day"
+          %td
+            = @weighting_relation.discount_per_day.to_f/@factor
+        %tr
+          - surcharge_days = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
+          - discount_days = @weighting_relation.first_day_discount - @webgrouper_patient_case.los + 1
+          - if surcharge_days > 0
+            %th
+              = t "result.cost-weight.number_of_days_for_surcharge"
+            %td           
+              = surcharge_days
+          - else 
+            - if discount_days > 0
+              %th
+                = t "result.cost-weight.number_of_days_for_discount"
+              %td
+                = discount_days
+            - else
+              %th
+                = t "result.cost-weight.no_days_for_discount_or_surcharge"

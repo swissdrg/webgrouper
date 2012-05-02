@@ -1,0 +1,40 @@
+%fieldset#diagnoses.result
+  %legend= t "result.diagnoses.legend"
+  %table
+    %tbody
+      %tr
+        %th.small-col
+          = t("result.diagnoses.code")
+        %th
+          = t("result.diagnoses.name")
+        %th.medium-col
+          = t("result.diagnoses.valid")
+        %th.small-col
+          = t("result.diagnoses.used")
+        %th.small-col
+          = t("result.diagnoses.CCL")
+      %tr#pdx
+        %td
+          = @webgrouper_patient_case.pdx
+        %td
+          = ICD.find_by_IcCode(@webgrouper_patient_case.pdx).IcName
+        %td
+          = t("result.diagnoses.diagnosis_flag.valid." + @result.pdx_diagnosis_flag.valid.to_s)
+        %td
+          = t("result.diagnoses.diagnosis_flag.used." + @result.pdx_diagnosis_flag.used.to_s + "_string")
+        %td
+          = @result.pdx_diagnosis_flag.ccl
+      - counter = 0
+      - @webgrouper_patient_case.diagnoses.each do |diag|
+        %tr
+          %td
+            = diag
+          %td
+            = ICD.find_by_IcCode(diag).IcName
+          %td
+            = t("result.diagnoses.diagnosis_flag.valid." + @result.diagnoses_flags[counter].valid.to_s)
+          %td
+            = t("result.diagnoses.diagnosis_flag.used." + @result.diagnoses_flags[counter].used.to_s + "_string")
+          %td
+            = @result.diagnoses_flags[counter].ccl
+        - counter = counter + 1
