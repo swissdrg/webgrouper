@@ -64,8 +64,8 @@ function initializeAutocomplete() {
  * Adds date pickers to every input field of the class "date_picker"
  */
 function initializeDatePickers() {
-	$(".date_picker").each(function() {
-		addDatePicker(this.id)
+	$("#webgrouper_patient_case_birth_date.date_picker").each(function() {
+		addDatePicker(this.id);
 	});
 }
 
@@ -156,11 +156,13 @@ function append_field_row (kind, field_row, field_count) {
 	if (field_count > min_fields(kind)) {
 		$("#"+kind+" > .sameline > ."+kind+"_row:visible:last").before('<label><label\>')
 	};
-	// $("#"+kind+" > .sameline > ."+kind+"_row:visible:last :input.autocomplete").css("background-color", "red");
 	$("#"+kind+" > .sameline > ."+kind+"_row:visible:last :input.autocomplete").bind('railsAutocomplete.select', function(event, data){
 		splitPos = data.item.label.search(" ");
 	  		event.target.value = data.item.label.substring(0, splitPos);
 	  		event.target.title = data.item.label.substring(splitPos + 1);
+	});
+	$("#"+kind+" > .sameline > ."+kind+"_row:visible:last .date_picker").each(function() {
+		addDatePicker(this.id);
 	});
 }
 
@@ -193,9 +195,6 @@ function replace_diagnoses (field_count, value_array, field_row) {
 		field_row += temp_field_array[i];
 	};
 	return field_row;
-	// field_row = field_row.replace("ID", field_count);
-	// field_row = field_row.replace("ID", field_count);
-	// field_row = field_row.replace("VALUE", real_value);
 }
 
 /**
