@@ -83,5 +83,6 @@
             webgrouper_patient_cases_path, 
             :class => "button negative", 
             :method => :get
+= button_to "Help", help_url, :class => 'button', :method => :get
               
 = render "result/main" unless @result.nil? || @result.getGst.nil?
