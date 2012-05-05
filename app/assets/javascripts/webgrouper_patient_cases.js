@@ -53,7 +53,7 @@ $("#webgrouper_patient_case_birth_date").live("focus change", function() {
  * It also adds the name as title, making it available to see in a tooltip.
  */
 function initializeAutocomplete() {
-	$(':input.autocomplete').bind('railsAutocomplete.select', function(event, data){
+	$('#webgrouper_patient_case_pdx:input').bind('railsAutocomplete.select', function(event, data){
 		splitPos = data.item.label.search(" ");
   		event.target.value = data.item.label.substring(0, splitPos);
   		event.target.title = data.item.label.substring(splitPos + 1);
@@ -104,13 +104,12 @@ function add_fields(kind, field_row, value) {
 	var field_count = get_field_count(kind);	
 	var	value_array = value.replace("[", "").replace("]", "").split(",");
   	var replaceID = new RegExp("ID", "");
-	while(replaceID.test(field_row)) {
-		if (kind == "diagnoses") {
-			var field_row = replace_diagnoses(field_count, value_array, field_row);
-		} else {
-			var field_row = replace_procedures(field_count, value_array, field_row);
-		}
-		field_count++;
+	if (kind == "diagnoses") {
+		var field_row = replace_diagnoses(field_count, value_array, field_row);
+		field_count += 5;
+	} else {
+		var field_row = replace_procedures(field_count, value_array, field_row);
+		field_count += 3;
 	}
 	append_field_row(kind, field_row, field_count);
 	set_field_count(kind, field_count);
@@ -139,7 +138,7 @@ function add_buttons(kind) {
 }
 
 /**
- * Appends the field_row to the div with id "#"+kind'.
+ * Appends the field_row to the div with id '"#"+kind'.
  * The function prepends an empty label-tag if the field_row
  * @param kind the kind of fields (diagnoses/procedures).
  * @param field_row the fields to be added to the div with id '"#"+kind'.
@@ -149,6 +148,12 @@ function append_field_row (kind, field_row, field_count) {
 	if (field_count > min_fields(kind)) {
 		$("#"+kind+" > .sameline > ."+kind+"_row:visible:last").before('<label><label\>')
 	};
+	// $("#"+kind+" > .sameline > ."+kind+"_row:visible:last :input.autocomplete").css("background-color", "red");
+	$("#"+kind+" > .sameline > ."+kind+"_row:visible:last :input.autocomplete").bind('railsAutocomplete.select', function(event, data){
+		splitPos = data.item.label.search(" ");
+	  		event.target.value = data.item.label.substring(0, splitPos);
+	  		event.target.title = data.item.label.substring(splitPos + 1);
+	});
 }
 
 /**
@@ -160,11 +165,29 @@ function append_field_row (kind, field_row, field_count) {
  * @return the field_row with real id's and correct value.
 */
 function replace_diagnoses (field_count, value_array, field_row) {
-	var real_value = initialize_value(value_array, field_count);
-	field_row = field_row.replace("ID", field_count);
-	field_row = field_row.replace("ID", field_count);
-	field_row = field_row.replace("VALUE", real_value);
+	var id = new RegExp("ID", "g");
+	var value = new RegExp("VALUE", "g");
+	
+	// split field_row in seperate fields
+	var splitter = new RegExp("<span class='splitter'>*<\/span>");
+	var temp_field_array = field_row.split(splitter);
+	
+	// iterate through each field and replace id and value placeholders
+	for (var i=0; i < 5; i++) {
+		var real_value = initialize_value(value_array, field_count+i);
+		temp_field_array[i] = temp_field_array[i].replace(id, field_count+i);
+		temp_field_array[i] = temp_field_array[i].replace(value, real_value);
+	};
+	
+	// add fields back together to form complete field_row
+	field_row = "";
+	for(var i = 0; i < 6; i++) {
+		field_row += temp_field_array[i];
+	};
 	return field_row;
+	// field_row = field_row.replace("ID", field_count);
+	// field_row = field_row.replace("ID", field_count);
+	// field_row = field_row.replace("VALUE", real_value);
 }
 
 /**
@@ -178,32 +201,30 @@ function replace_diagnoses (field_count, value_array, field_row) {
  * @return the field_row with real id's and correct value.
 */
 function replace_procedures (field_count, value_array, field_row) {
-	var spacer_span = new RegExp("<span class='spacer'>*<\/span>");
 	var id = new RegExp("ID", "g");
-	var temp_field_array = field_row.split(spacer_span);
+	
+	var splitter = new RegExp("<span class='splitter'>*<\/span>");
+	var temp_field_array = field_row.split(splitter);
+	
 	for(var i = 0; i < 3; i++) {
-		alert("I: "+i)
-		var real_value = initialize_value(value_array, i);
+		var real_value = initialize_value(value_array, field_count+i);
 		var proc_values = real_value.split(":");
-		temp_field_array[i] = temp_field_array[i].replace(id, i);
+		temp_field_array[i] = temp_field_array[i].replace(id, field_count+i);
 		
 		for(var j = 0; j < 3; j++) {
 			if (proc_values[j] == undefined) {
 				proc_values[j] = "";
 			};
 		};
-		alert("VALUE_ARRAY: "+value_array);
 		temp_field_array[i] = temp_field_array[i].replace("VALUE", proc_values[0]);
 		var seitigkeit_value = "<option value=\""+proc_values[1]+"\">"+proc_values[1]+"</option>";
 		var seitigkeit_selected = "<option value=\""+proc_values[1]+"\" selected=\"selected\">"+proc_values[1]+"</option>";
 		temp_field_array[i] = temp_field_array[i].replace(seitigkeit_value, seitigkeit_selected);
 		temp_field_array[i] = temp_field_array[i].replace("VALUE", proc_values[2]);
-		
 	};
 	field_row = "";
-	for(var i = 0; i < 3; i++) {
+	for(var i = 0; i < 4; i++) {
 		field_row += temp_field_array[i];
-		alert("FIELD_ROW: "+field_row);
 	};
 	return field_row;
 }
