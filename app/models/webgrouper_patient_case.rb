@@ -45,7 +45,7 @@ class WebgrouperPatientCase < PatientCase
   end
   
   def pdx
-    ICD.pretty_code_of get_pdx
+    ICD.pretty_code_of get_pdx rescue get_pdx
   end
 
   def diagnoses=(diagnoses)
@@ -55,7 +55,13 @@ class WebgrouperPatientCase < PatientCase
   def diagnoses
     diagnoses = []
     get_diagnoses.each do |d|
-      diagnoses << ICD.pretty_code_of(d) unless d.nil?
+      unless d.nil?
+        begin
+          diagnoses << ICD.pretty_code_of(d)
+        rescue
+          diagnoses << d
+        end
+      end
     end
     diagnoses
   end
@@ -72,9 +78,13 @@ class WebgrouperPatientCase < PatientCase
         short_code = p.match(regex)[1]
         laterality = p.match(regex)[2]
         date = p.match(regex)[3]
-        long_code = OPS.pretty_code_of short_code
+        begin
+          code = OPS.pretty_code_of short_code
+        rescue
+          code = short_code
+        end
         parsed_date = "#{date[6..7]}.#{date[4..5]}.#{date[0..3]}"
-        p = "#{long_code}:#{laterality}:#{parsed_date}"
+        p = "#{code}:#{laterality}:#{parsed_date}"
         procedures << p
       end
     end
@@ -133,7 +143,7 @@ class WebgrouperPatientCase < PatientCase
 		    if counter < 2
 		    	tmp_procedure += ":"
 		    end
-		    #counter = counter + 1       
+		    
 			end
     	tmp_ruby_array << tmp_procedure unless tmp_procedure == "::"
 		end	

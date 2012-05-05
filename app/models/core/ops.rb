@@ -14,11 +14,11 @@ class OPS < ActiveRecord::Base
     value.gsub(/\./, "").strip
   end
   
-  #Returns the value as pretty code if it is available in the db or
-  #the value itself unchanged if it is not part of the db.
-  #Returns nil if there is no entry in the database for the given value.
+  # Returns the value as pretty code if it is available in the db.
+  # Throws a Runtime Error if the given value is not valid.
   def self.pretty_code_of(value)
     db_entry = self.find_by_OpShort(short_code_of(value))
-    db_entry ? db_entry.OpCode : nil
+    raise "'#{value}' is not a valid icd code" if db_entry.nil?
+    db_entry.OpCode
   end
 end
