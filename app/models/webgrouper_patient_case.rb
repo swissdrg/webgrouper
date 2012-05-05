@@ -75,48 +75,48 @@ class WebgrouperPatientCase < PatientCase
     procedures
   end
   
-  #   def hash_to_java_array(hash, length, is_diagnoses)
-  #   result = []
-  #   tmp = []
-  #   length.times {result << nil}
-  #   result = result.to_java(:string)
-  #   
-  #   if is_diagnoses   
-  #     hash.each do |key, value| 
-  #       tmp << value.gsub(/\./, "").strip unless value.blank?
-  #     end
-  #   else
-  #     hash.each do |key, value| 
-  #       # tmp_procedure contains the current procedure value
-  #       tmp_procedure = ""
-  #       counter = 0       
-  #       value.each do |key2, value2|
-  #         # we use ":" as our string delimiter symbol
-  #         if counter == 0 && !value2.blank?
-  #           tmp_procedure += value2.gsub(/\./, "").strip
-  #         elsif counter == 2 && !value2.blank?
-  #           regexed_date = value2.match(/(.*)\.(.*)\.(.*)/) 
-  #           unless regexed_date.nil?
-  #             tmp_procedure += regexed_date[3] + regexed_date[2] + regexed_date[1] 
-  #           else
-  #             tmp_procedure += value2
-  #           end
-  #         else 
-  #          tmp_procedure += value2
-  #         end
-  #         if counter < 2
-  #           tmp_procedure += ":"
-  #         end
-  #         counter = counter + 1       
-  #       end
-  #       tmp << tmp_procedure unless tmp_procedure == "::"
-  #     end
-  #   end
-  # 
-  #   tmp_java_array = tmp.to_java(:string)
-  #   (0..(tmp_java_array.size-1)).each {|i| result[i] = tmp_java_array[i]}
-  #   result
-  # end
+    def hash_to_java_array(hash, length, is_diagnoses)
+    result = []
+    tmp = []
+    length.times {result << nil}
+    result = result.to_java(:string)
+    
+    if is_diagnoses   
+      hash.each do |key, value| 
+        tmp << value.gsub(/\./, "").strip unless value.blank?
+      end
+    else
+      hash.each do |key, value| 
+        # tmp_procedure contains the current procedure value
+        tmp_procedure = ""
+        counter = 0       
+        value.each do |key2, value2|
+          # we use ":" as our string delimiter symbol
+          if counter == 0 && !value2.blank?
+            tmp_procedure += value2.gsub(/\./, "").strip
+          elsif counter == 2 && !value2.blank?
+            regexed_date = value2.match(/(.*)\.(.*)\.(.*)/) 
+            unless regexed_date.nil?
+              tmp_procedure += regexed_date[3] + regexed_date[2] + regexed_date[1] 
+            else
+              tmp_procedure += value2
+            end
+          else 
+           tmp_procedure += value2
+          end
+          if counter < 2
+            tmp_procedure += ":"
+          end
+          counter = counter + 1       
+        end
+        tmp << tmp_procedure unless tmp_procedure == "::"
+      end
+    end
+  
+    tmp_java_array = tmp.to_java(:string)
+    (0..(tmp_java_array.size-1)).each {|i| result[i] = tmp_java_array[i]}
+    result
+  end
 
   #   def hash_to_java_array(hash, length, is_diagnoses)
   #   result = []
