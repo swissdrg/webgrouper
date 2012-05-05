@@ -5,34 +5,41 @@
     %th 
       = t("fieldsets.system") + ": "
     %td 
-      = yield :system
+      %ul
+        = yield :system
   %tr
     %th
       = t("fieldsets.stay") + ": "
     %td
-      = yield :stay
+      %ul
+        = yield :stay
   %tr
     %th
       = t("fieldsets.patient_data") + ": "
     %td
-      = yield :patient_data
+      %ul
+        = yield :patient_data
   %tr
     %th
       = t "simple_form.labels.webgrouper_patient_case.pdx"
     %td
-      = yield :pdx
+      %ul
+        = yield :pdx
   %tr
     %th
       = t "simple_form.labels.webgrouper_patient_case.diagnoses"
     %td
-      = yield :diagnoses
+      %ul
+        = yield :diagnoses
   %tr
     %th
       = t "simple_form.labels.webgrouper_patient_case.procedures"
     %td
-      = yield :procedures
+      %ul
+        = yield :procedures
   %tr
     %th
       = t "other"
     %td
-      = yield :other
+      %ul
+        = yield :other
