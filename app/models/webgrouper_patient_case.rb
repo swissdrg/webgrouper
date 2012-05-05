@@ -74,48 +74,29 @@ class WebgrouperPatientCase < PatientCase
     end
     procedures
   end
-  
-    def hash_to_java_array(hash, length, is_diagnoses)
-    result = []
-    tmp = []
-    length.times {result << nil}
-    result = result.to_java(:string)
+ 	
+	# convert a given ruby hash to a java array of fixed size
+	# either of size 99 (i.e. diagnoses) or 100 (i.e. procedures)
+	# and fill resulting java array with given inpuit which is stored in the arguemnt hash
+  def hash_to_java_array(hash, length, is_diagnoses)
+    empty_ruby_array = []
+    tmp_ruby_array = []
+    length.times {empty_ruby_array << nil}
+    java_array = empty_ruby_array.to_java(:string)
     
     if is_diagnoses   
-      hash.each do |key, value| 
-        tmp << value.gsub(/\./, "").strip unless value.blank?
+    	hash.each do |key, value| 
+      	tmp_ruby_array << value.gsub(/\./, "").strip unless value.blank?
       end
     else
-      hash.each do |key, value| 
-        # tmp_procedure contains the current procedure value
-        tmp_procedure = ""
-        counter = 0       
-        value.each do |key2, value2|
-          # we use ":" as our string delimiter symbol
-          if counter == 0 && !value2.blank?
-            tmp_procedure += value2.gsub(/\./, "").strip
-          elsif counter == 2 && !value2.blank?
-            regexed_date = value2.match(/(.*)\.(.*)\.(.*)/) 
-            unless regexed_date.nil?
-              tmp_procedure += regexed_date[3] + regexed_date[2] + regexed_date[1] 
-            else
-              tmp_procedure += value2
-            end
-          else 
-           tmp_procedure += value2
-          end
-          if counter < 2
-            tmp_procedure += ":"
-          end
-          counter = counter + 1       
-        end
-        tmp << tmp_procedure unless tmp_procedure == "::"
-      end
+			fill_and_filter_java_array(hash, tmp_ruby_array)
     end
   
-    tmp_java_array = tmp.to_java(:string)
-    (0..(tmp_java_array.size-1)).each {|i| result[i] = tmp_java_array[i]}
-    result
+    tmp_java_array = tmp_ruby_array.to_java(:string)
+		# since indicess start at 0 the last index of an array with n elements is (n-1)
+	  # therefore this each block
+    (0..(tmp_java_array.size-1)).each {|i| java_array[i] = tmp_java_array[i]}
+    java_array
   end
 
   #   def hash_to_java_array(hash, length, is_diagnoses)
@@ -162,7 +143,39 @@ class WebgrouperPatientCase < PatientCase
   # end
   
   private
-  
+	
+	#  
+	def fill_and_filter_java_array(hash, tmp_ruby_array)
+		hash.each do |tripple_key, tripple| 
+    	# tmp_procedure contains the current procedure value
+      tmp_procedure = ""
+			     
+			# a tripple element is either a procedure code, seitigkeit or a date
+			# except procedure code(i.e. counter == 0) all other tripple elements may be blank
+      tripple.each do |element_key, tripple_element|
+				counter = element_key.to_i
+		    # we use ":" as our string delimiter symbol
+		    if counter == 0 && !tripple_element.blank?
+		    	tmp_procedure += tripple_element.gsub(/\./, "").strip
+		    elsif counter == 2 && !tripple_element.blank?
+		      regexed_date = tripple_element.match(/(.*)\.(.*)\.(.*)/) 
+		      unless regexed_date.nil?
+		      	tmp_procedure += regexed_date[3] + regexed_date[2] + regexed_date[1] 
+		      else
+		        tmp_procedure += tripple_element
+		      end
+		    else 
+		      tmp_procedure += tripple_element
+		    end
+
+		    if counter < 2
+		    	tmp_procedure += ":"
+		    end
+		    #counter = counter + 1       
+			end
+    	tmp_ruby_array << tmp_procedure unless tmp_procedure == "::"
+		end	
+	end
   # 'age_mode' is chosen in the form and can be
   # either 'days' or 'years'.
   # @return true if the age is given in days, false if the age is given in years. 
