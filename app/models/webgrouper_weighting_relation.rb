@@ -1,3 +1,4 @@
+# Acts as a wrapper class for superclass WeightingRelation
 class WebgrouperWeightingRelation < WeightingRelation
 	attr_accessor :factor	
 	def initialize(drg_code, house)
