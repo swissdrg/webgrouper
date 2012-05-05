@@ -178,47 +178,35 @@ function replace_diagnoses (field_count, value_array, field_row) {
  * @return the field_row with real id's and correct value.
 */
 function replace_procedures (field_count, value_array, field_row) {
+	var spacer_span = new RegExp("<span class='spacer'>*<\/span>");
+	var id = new RegExp("ID", "g");
+	var temp_field_array = field_row.split(spacer_span);
 	for(var i = 0; i < 3; i++) {
-		var real_value = initialize_value(value_array, field_count);
+		alert("I: "+i)
+		var real_value = initialize_value(value_array, i);
 		var proc_values = real_value.split(":");
-		var proc_value = "";
-		if (proc_values[i] != undefined) {
-			var proc_value = proc_values[i];
-		}
-		field_row = field_row.replace("ID", field_count);
-		field_row = field_row.replace("ID", field_count);
-		if (i == 1) {
-			var temp_field_array = new Array();
-			var to_replace = new RegExp("<option value=\""+proc_value+"\">"+proc_value+"</option>");
-			var end_select = new RegExp("<\/select>");
-			var replacement = "<option value=\""+proc_value+"\" selected=\"selected\">"+proc_value+"</option>";
-			temp_field_array = field_row.split(end_select);
-			for (var i = temp_field_array.length - 1; i >= 0; i--){
-				alert(temp_field_array[i]);
+		temp_field_array[i] = temp_field_array[i].replace(id, i);
+		
+		for(var j = 0; j < 3; j++) {
+			if (proc_values[j] == undefined) {
+				proc_values[j] = "";
 			};
-		} else {
-			field_row = field_row.replace("VALUE", proc_value);	
 		};
+		alert("VALUE_ARRAY: "+value_array);
+		temp_field_array[i] = temp_field_array[i].replace("VALUE", proc_values[0]);
+		var seitigkeit_value = "<option value=\""+proc_values[1]+"\">"+proc_values[1]+"</option>";
+		var seitigkeit_selected = "<option value=\""+proc_values[1]+"\" selected=\"selected\">"+proc_values[1]+"</option>";
+		temp_field_array[i] = temp_field_array[i].replace(seitigkeit_value, seitigkeit_selected);
+		temp_field_array[i] = temp_field_array[i].replace("VALUE", proc_values[2]);
+		
+	};
+	field_row = "";
+	for(var i = 0; i < 3; i++) {
+		field_row += temp_field_array[i];
+		alert("FIELD_ROW: "+field_row);
 	};
 	return field_row;
 }
-
-// function replaceAt (field_row, regexp_to_replace, replacement, occurence) {
-// 	var match_count = 0;
-// 	var temp_row = field_row;
-// 
-// 	
-// 		alert("startIndex: "+startIndex.index)
-// 		
-// 		
-// 		alert("ARRAY with "+replacement+": "+temp_field_array[i]);
-// 		alert("remaining row: "+field_row);
-// 	}
-// 	for (var i = 0; i < temp_field_array.length; i++) {
-// 		field_row += temp_field_array[i];
-// 	}
-// 	return field_row;
-// }
 
 /**
  * Helper method to parse the value_array and return the correct value for one input field.
