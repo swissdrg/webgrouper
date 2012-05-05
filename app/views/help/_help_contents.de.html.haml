@@ -1,0 +1,38 @@
+- content_for :system do
+  Der Webgrouper unterstützt mehrere Systeme. Wählen Sie die gewünschte Grouperversion. 
+  Zu jedem System ist der passenden Prozeduren- sowie der Diagnosenkatalog hinterlegt. 
+  Diese werden nach Auswahl ebenfalls angezeigt.
+- content_for :stay do
+  Für den Gruppierungsvorgang benötigt der Grouper die Verweildauer des Patienten. 
+  Dies kann entweder direkt angegeben werden oder wird nach Eingabe von Aufnahme- und Entlassdatum 
+  sowie Urlaubstage vom System berechnet.
+  Aufnahme- und Entlassart wählen Sie bitte aus den jeweiligen Listen.
+- content_for :patient_data do
+  In zahlreichen DRGs ist das Patientenalter gruppierungsrelevant. 
+  Sie können das Alter (zum Aufnahmezeitpunkt) entweder direkt angegeben, oder es durch Angabe von Aufnahmedatum und Geburtsdatum berechnen lassen. Das Alter wird in Jahren angegeben, sofern der Patient mindestens das erste Lebensjahr vollendet hat, andernfalls in Tagen. Die entsprechende Einheit ist aus der Liste zu wählen.
+  Für Patienten < 1 Jahr kann zusätzlich das Aufnahmegewicht angegeben werden.
+  Das Geschlecht wird aus der Liste gewählt.
+  Im Falle maschineller Beatmung wird diese ebenfalls erfasst, da sie für diverse DRGs gruppierungsrelevant ist.
+- content_for :pdx do
+  An dieser Stelle ist der Schlüssel der Hauptdiagnose anzugeben. Sofern es sich um einen korrekten Kode handelt, wird beim Serverzugriff die zugehörige Beschreibung geholt und angezeigt. Andernfalls erfolgt die Meldung eines unzulässigen Kodes.
+- content_for :diagnoses do
+  Zu zahlreichen Fällen gibt es diverse Nebendiagnosen. Diese werden in der Tabelle erfasst.
+  Sofern der Eingabebereich zu klein ist, können Sie mittels Schaltfläche
+  = image_tag "bullet_toggle_plus.png"
+  weitere Zeilen (max. zehn) einblenden.
+  Über die Schaltfläche
+  = image_tag "bullet_toggle_minus.png"
+  kann die Anzahl der Zeilen wieder auf minimal zwei reduziert werden.  
+- content_for :procedures do
+  Die Prozeduren werden in der Tabelle erfasst. Optional können Sie Seitenlokalisation 
+  und/oder Datum angeben. Mittels 
+  = image_tag "bullet_toggle_plus.png"
+  und
+  = image_tag "bullet_toggle_minus.png"
+  kann die Anzahl der Eingabezeilen angepasst werden.
+- content_for :other do
+  Sind alle relevanten Falldaten erfasst, starten Sie über [Gruppieren] die Auswertung.
+  Technically invalid entrys are highlighted in red (e.g. non-existent ICD-10 codes).
+  Mit Hilfe der Schaltfläche [Maske leeren] können Sie den Maskeninhalt entfernen, 
+  um so völlig andere Falldaten zu erfassen. Möchten Sie dagegen ähnliche Daten gruppieren, 
+  so ändern Sie einfach einzelne Werte und gruppieren neu.
