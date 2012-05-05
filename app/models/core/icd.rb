@@ -1,8 +1,6 @@
 class ICD < ActiveRecord::Base
 	has_many :names, :class_name => "ICDName", :foreign_key => "InFkIcID" 
   default_scope lambda{where(:IcFKSyID => System.current_system.SyID)}
-	
-	
 
   def self.table_name
     "icd"
