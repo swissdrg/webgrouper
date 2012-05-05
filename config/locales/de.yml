@@ -1,6 +1,5 @@
 de:
-  diagnoses:  'Nebendiagnosen:'
-  procedures: 'Prozeduren:'
+  other: 'Anderes: '
   fieldsets:
     system: 'System'
     stay: 'Aufenthalt'
@@ -89,6 +88,7 @@ de:
         UNDEFINED: Undefiniert
         UNWEIGHTED: Unbewertete DRG
         UPPER_OUTLIER: Oberer Outlier
+    los_chart: Diagramm für
           
   found_errors: "Folgende Fehler wurden gefunden:"
   date:
