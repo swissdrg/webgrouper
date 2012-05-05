@@ -1,5 +1,5 @@
 class OPS < ActiveRecord::Base
-
+	has_many :names, :class_name => "OPSName", :foreign_key => "OnFkOpID" 
   default_scope lambda{where(:OpFkSyID => System.current_system.SyID)}
 
   def self.table_name
