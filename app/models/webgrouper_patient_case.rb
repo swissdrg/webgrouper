@@ -73,7 +73,8 @@ class WebgrouperPatientCase < PatientCase
         laterality = p.match(regex)[2]
         date = p.match(regex)[3]
         long_code = OPS.pretty_code_of short_code
-        p = "#{long_code}:#{laterality}:#{date}"
+        parsed_date = "#{date[6..7]}.#{date[4..5]}.#{date[0..3]}"
+        p = "#{long_code}:#{laterality}:#{parsed_date}"
         procedures << p
       end
     end
@@ -106,13 +107,12 @@ class WebgrouperPatientCase < PatientCase
   
   private
 	
-	#  
 	def fill_and_filter_java_array(hash, tmp_ruby_array)
 		hash.each do |tripple_key, tripple| 
     	# tmp_procedure contains the current procedure value
       tmp_procedure = ""
 			     
-			# a tripple element is either a procedure code, seitigkeit or a date
+			# a tripple element is either a procedure code, laterality or a date
 			# except procedure code(i.e. counter == 0) all other tripple elements may be blank
       tripple.each do |element_key, tripple_element|
 				counter = element_key.to_i
