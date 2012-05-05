@@ -66,10 +66,15 @@ class WebgrouperPatientCase < PatientCase
   
   def procedures
     procedures = []
-    get_procedures.each do |d|
-      unless d.nil?
-        d = d.match(/(\S*)\:(\w*)\:(\w*)/)[1]
-        procedures << OPS.pretty_code_of(d) 
+    get_procedures.each do |p|
+      unless p.nil?
+        regex = /(\S*)\:(\w*)\:(\w*)/
+        short_code = p.match(regex)[1]
+        laterality = p.match(regex)[2]
+        date = p.match(regex)[3]
+        long_code = OPS.pretty_code_of short_code
+        p = "#{long_code}:#{laterality}:#{date}"
+        procedures << p
       end
     end
     procedures
