@@ -1,6 +1,5 @@
 de:
-  diagnoses:  'Nebendiagnosen:'
-  procedures: 'Prozeduren:'
+  other: 'Anderes: '
   fieldsets:
     system: 'System'
     stay: 'Aufenthalt'
