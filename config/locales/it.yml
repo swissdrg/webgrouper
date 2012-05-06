@@ -231,43 +231,11 @@ it:
     date:           "Ultimo aggiornamento: 1. febbraio 2010"
     accept_tos:     Accettazione delle condizioni di utilizzo
     confirm_read:   MEDIANTE L'ACCETTAZIONE TRAMITE CLIC DEL MOUSE L'UTENTE CONFERMA DI AVER LETTO INTERAMENTE IL PRESENTE ACCORDO DI UTILIZZO E DI AVERLO COMPRESO, DICHIARANDOSI COMPLETAMENTE CONCORDE CON IL SUO CONTENUTO.
-    preamble:
-      heading:       Preambolo
-      p1:           SwissDRG opera in Svizzera con lo scopo di elaborare e sviluppare, nonché adeguare e curare le strutture tariffarie nazionali necessarie per l'indennizzo forfetario del trattamento stazionario negli ospedali, sulla base di un sistema DRG (Diagnosis Related Groups) e di altre basi a tal fine necessarie. Il sistema di conteggio SwissDRG sarà impiegato uniformemente in tutta la Svizzera a partire dal 1° gennaio 2012.
-      p2:           Per l'utilizzo del sistema SwissDRG è necessario un software Grouper che permette di assegnare i dati di un paziente a un determinato DRG (il cosiddetto processo di raggruppamento).
-      p3:           Le versioni Grouper presenti su questo sito web sono messe a disposizione online da SwissDRG AG (di seguito "SwissDRG"), Haslerstrasse 21, 3008 Berna prima dell'introduzione unitaria in tutta la Svizzera a favore di tutti i soggetti interessati, in particolare gli ospedali e gli assicuratori-malattie (di seguito "utenti")
-      in_ch:        con sede in Svizzera e
-      for_testing:   a scopi di test
-      p4:           .  
-    group_right:
-      heading:       "Oggetto dell'accordo: diritto al raggruppamento online"
-      p1:           Il software Grouper (programmi e documentazione) messo a disposizione online è e resta di proprietà di SwissDRG ed è protetto dai diritti d'autore. Nel rapporto tra le parti, tutti i diritti di tutela del software Grouper, in particolare i diritti d'autore, spettano esclusivamente a SwissDRG.
-      p2:           All'utente viene concesso gratuitamente e alle condizioni stabilite nel presente accordo un diritto non esclusivo di utilizzo del software Grouper reso disponibile sul sito web di SwissDRG al fine di eseguire raggruppamenti di dati amministrativi e medici dei pazienti in forma anonima, a scopo di test all'interno della Svizzera.
-      p3:           Il software Grouper può essere utilizzato esclusivamente online mediante il sito web di SwissDRG. L'utente non riceve da SwissDRG alcuna copia del software Grouper.
-      p4:           SwissDRG ha facoltà di limitare l'uso del software Grouper, o di non offrirlo più, in qualsiasi momento senza preavviso e senza giustificazione.
-    data_security:
-      heading:       Sicurezza dei dati in Internet
-      p1:           L'utente è consapevole che Internet è accessibile pubblicamente. La rivelazione volontaria di informazioni e dati di qualsiasi tipo mediante Internet avviene a rischio dell'utente.
-      p2:           SwissDRG protegge la trasmissione dei dati mediante misure adeguate. Nonostante queste misure conformi agli attuali standard di sicurezza (tutte le versioni Grouper sono crittografate mediante SSL con una chiave AES-128 bit) non è possibile escludere completamente una perdita di informazioni o un furto di dati da parte di terzi.
-      p3:           L'utente si accerta autonomamente, mediante misure adeguate, di utilizzare in ogni momento il corretto indirizzo URL di SwissDRG, evitando così eventuali attacchi di phishing.
-    privacy:
-      heading:       Protezione dei dati
-      p1:           La protezione dei dati sta particolarmente a cuore a SwissDRG. Per la registrazione e l'elaborazione dei dati, SwissDRG rispetta le disposizioni della legislazione svizzera sulla protezione dei dati.
-      p2:            I dati trasmessi a SwissDRG nell'ambito del processo di raggruppamento non sono inoltrati a terzi e sono utilizzati esclusivamente per il processo di raggruppamento.
-    responsibility:
-      heading:       Garanzia / responsabilità
-      p1:           L'utente deve astenersi, secondo scienza e coscienza, da compiere quanto possa pregiudicare gli interessi di SwissDRG.
-      p2:           L'utente è consapevole che il software Grouper reso disponibile online non è autorizzato per il mercato e che gli viene messo a disposizione da SwissDRG nella presente versione attuale esclusivamente a scopo di test.
-      p3:           Grouper è reso disponibile ai singoli utenti "come rappresentato" e "a seconda della disponibilità". SwissDRG AG nonché i suoi partner, fornitori e concedenti non si assumono alcuna responsabilità per i difetti del software (programmi e documentazione) ed escludono, nella misura consentita dalla legge, la responsabilità per eventuali danni diretti o indiretti di qualsiasi tipo, compresi i danni conseguenti come mancato guadagno, perdita dei dati e diritti di terzi, causati dal software Grouper o dal suo uso. L'esclusione di responsabilità e garanzia vale in particolare in riferimento all'utilizzabilità generale del software Grouper e alla sua idoneità per uno scopo determinato, alla possibilità di un utilizzo nel rapporto tra gli ospedali e gli assicuratori-malattie e all'eventuale lesione dei diritti di terzi.
-      p4:           Né SwissDRG né le aziende ad essa legate garantiscono che il software Grouper soddisfi i requisiti dell'utente e che sia esente da interruzioni e guasti, sicuro, privo di errori e completo.
-      p5:           SwissDRG non risponde né per eventuali perdite di informazioni e dati causate dall'invio dei dati, né per gli accessi abusivi e l'elaborazione dei dati da parte di terzi non autorizzati.
-      p6:           SwissDRG non risponde dei danni subiti dall'utente a causa dell'abuso del collegamento (compresi i virus o altri componenti dannosi) da parte di terzi.
-    terminatory:
-      heading:       Disposizioni conclusive
-      p1:           Qualora una o più delle disposizioni precedenti risultino o dovessero diventare totalmente o parzialmente nulle o inattuabili, l'efficacia delle restanti disposizioni non viene pregiudicata. In sostituzione delle disposizioni nulle o inattuabili, le parti concorderanno nuove disposizioni che si avvicinino quanto più possibile al senso e allo scopo economico auspicato dalle disposizioni nulle o inattuabili, nell'ambito di quanto legalmente consentito relativamente al luogo, al tempo, all'entità e alla validità. Lo stesso vale per eventuali lacune nel contratto.
-      p2:           I diritti e i doveri derivanti dal presente accordo non sono cedibili.
-      p3:           Il presente accordo di utilizzo è disponibile in lingua tedesca, francese, italiana. In presenza di differenze di contenuto tra le singole versioni linguistiche è determinante unicamente la versione tedesca.
-      p4:           Le controversie derivanti dal presente accordo di utilizzo sono soggette integralmente al diritto svizzero.
-      p5:            Il foro giuridico esclusivamente competente è Berna.
+    preamble:       Preambolo
+    group_right:    "Oggetto dell'accordo: diritto al raggruppamento online"
+    data_security:  Sicurezza dei dati in Internet
+    privacy:        Protezione dei dati
+    responsibility: Garanzia / responsabilità
+    terminatory:    Disposizioni conclusive
     accept:         "Bene"
 
