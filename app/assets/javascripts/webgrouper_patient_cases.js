@@ -393,7 +393,7 @@ function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
 function goToResult(){
 	if ($("#result").length) {
 		jQuery('html,body').animate({
-			scrollTop: $("#los-chart").offset().top - 100
+			scrollTop: $("#bottom").offset().top - 100
 		},'slow');
 	};
 }
