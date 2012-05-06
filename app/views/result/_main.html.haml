@@ -3,9 +3,9 @@
   - normal_group = true
 .on-row
   = render "result/grouping"
-  = if normal_group
+  - if normal_group
     = render "result/cost_weight"
-= if normal_group
+- if normal_group
   = render "result/diagnoses"
   = render "result/procedures"
   .on-row
