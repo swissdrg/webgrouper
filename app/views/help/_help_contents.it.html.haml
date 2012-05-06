@@ -1,0 +1,61 @@
+- content_for :system do
+  %li
+    Il webgrouper propone diverse versioni. Scegliere la versione grouper desiderata. 
+    Sono aggiunti i cataloghi di procedure e diagnosi corrispondenti per ogni versione. 
+    Dopo la selezione appaiono allo schermo.
+- content_for :stay do
+  %li 
+    Per il processo di raggruppamento serve al grouper la degenza del paziente. 
+    Si può inserirla direttamente o il sistema la calcola con le date di ricovero, 
+    di dimissione e di ferie.
+  %li 
+    Genere di ricovero e di dimissione, scegliere nelle liste specifiche.
+- content_for :patient_data do
+  %li
+    Per numerosi DRG l'età del paziente è rilevante per il raggruppamento. 
+    L'età (al ricovero) può essere inserito direttamente o il sistema la calcola con le 
+    date di ricovero e di nascita. L'età è dichiarata in anni se il paziente ha compiuto 
+    il primo anno di vita, se no in giorni. 
+    Scegliere l'unità corrispondente nella lista.
+  %li  
+    PPer i pazienti < 1 anno si può aggiungere il peso al ricovero.
+  %li
+    Scegliere il sesso sulla lista.
+  %li
+    Il caso di respirazione artificiale deve sempre essere inserito sempre, 
+    perche è rilevante per il raggruppamento di diverse DRG.
+- content_for :pdx do
+  %li
+    Indicare la chiave del diagnostico principale. Se il codice è corretto, 
+    la descrizione corrispondente appare con l'accesso al server. 
+    Se non è corretto, appare il messaggio codice inammissibile.
+- content_for :diagnoses do
+  %li
+    Per numerosi casi ci sono diversi diagnostici secondari. Questi sono registrati in una tabella.  
+    Se la casella di registrazione è troppo piccola, con l'ordine 
+    = image_tag "bullet_toggle_plus.png"
+    si può aggiungere altre linee (mass. dieci).
+  %li
+    Con l'ordine
+    = image_tag "bullet_toggle_minus.png"
+    la quantità di linee può esser ridotta al minimo di due.
+- content_for :procedures do
+  %li
+    Le procedure sono registrate nella tabella. Come possibilità si può aggiungere la localizzazione del lato e/o la data.
+
+  %li
+    Con gli ordini 
+    = image_tag "bullet_toggle_plus.png"
+    e
+    = image_tag "bullet_toggle_minus.png"
+    la quantità di linee può essere adatta.
+- content_for :other do
+  %li
+    Una voltat tutte le date rilevante per il caso inserite, con l'ordine [raggruppare] 
+    comincia l'interpretazione.
+  %li
+    Inserimenti non validi sono segnalati in rosso (per codici ICD-10 non esistenti).
+  %li
+    Con l'ordine [svuotare la maschera] può eliminare il contenuto della maschera per 
+    inserire date di casi diversi. Se desidera raggruppare date simili, basta cambiare i 
+    contenuti in particolare e raggrupparli di nuovo.
