@@ -1,43 +1,56 @@
 - content_for :system do
   %li
-    = t "help.system"
+    Der Webgrouper unterstützt mehrere Systeme. Wählen Sie die gewünschte Grouperversion. 
+    Zu jedem System ist der passenden Prozeduren- sowie der Diagnosenkatalog hinterlegt. 
+    Diese werden nach Auswahl ebenfalls angezeigt.
 - content_for :stay do
   %li 
-    = t "help.stay.los"
+    Für den Gruppierungsvorgang benötigt der Grouper die Verweildauer des Patienten. 
+    Dies kann entweder direkt angegeben werden oder wird nach Eingabe von Aufnahme- und Entlassdatum 
+    sowie Urlaubstage vom System berechnet.
   %li 
-    = t "help.stay.adm"
+    Aufnahme- und Entlassart wählen Sie bitte aus den jeweiligen Listen.
 - content_for :patient_data do
   %li
-    = t "help.patient_data.age"
+    In zahlreichen DRGs ist das Patientenalter gruppierungsrelevant. 
+    Sie können das Alter (zum Aufnahmezeitpunkt) entweder direkt angegeben, oder es durch Angabe von Aufnahmedatum und Geburtsdatum berechnen lassen. Das Alter wird in Jahren angegeben, sofern der Patient mindestens das erste Lebensjahr vollendet hat, andernfalls in Tagen. Die entsprechende Einheit ist aus der Liste zu wählen.
   %li
-    = t "help.patient_data.weight"
+    Für Patienten < 1 Jahr kann zusätzlich das Aufnahmegewicht angegeben werden.
   %li
-    = t "help.patient_data.sex"
+    Das Geschlecht wird aus der Liste gewählt.
   %li
-    = t "help.patient_data.hmv"
+    Im Falle maschineller Beatmung wird diese ebenfalls erfasst, da sie für diverse DRGs gruppierungsrelevant ist.
 - content_for :pdx do
   %li
-    = t "help.pdx"
+    An dieser Stelle ist der Schlüssel der Hauptdiagnose anzugeben. 
+    Sofern es sich um einen korrekten Kode handelt, wird beim Serverzugriff 
+    die zugehörige Beschreibung geholt und angezeigt. Andernfalls erfolgt die Meldung eines 
+    unzulässigen Codes.
 - content_for :diagnoses do
   %li
-    = t "help.diagnoses.pre_+"
+    Zu zahlreichen Fällen gibt es diverse Nebendiagnosen. Diese werden in der Tabelle erfasst.
+    Sofern der Eingabebereich zu klein ist, können Sie mittels Schaltfläche
     = image_tag "bullet_toggle_plus.png"
-    = t "help.diagnoses.post_+"
+    weitere Zeilen (max. zehn) einblenden.
   %li
-    = t "help.diagnoses.pre_-"
+    Über die Schaltfläche
     = image_tag "bullet_toggle_minus.png"
-    = t "help.diagnoses.post_-"
+    kann die Anzahl der Zeilen wieder auf minimal zwei reduziert werden.  
 - content_for :procedures do
   %li
-    = t "help.procedures.pre_+"
+    Die Prozeduren werden in der Tabelle erfasst. Optional können Sie Seitenlokalisation 
+    und/oder Datum angeben. Mittels 
     = image_tag "bullet_toggle_plus.png"
-    = t "help.procedures.post_+"
+    und
     = image_tag "bullet_toggle_minus.png"
-    = t "help.procedures.post_-"
+    kann die Anzahl der Eingabezeilen angepasst werden.
 - content_for :other do
   %li
-    = t "help.other.group"
+    Sind alle relevanten Falldaten erfasst, starten Sie über [Gruppieren] die Auswertung.
   %li  
-    = t "help.other.invalid"
+    Ungültige Eingaben werden rot hervorgehoben und im oberen, rot hinterlegten Feld vermerkt
+    (zum Beispiel nicht existente ICD-10 Codes).
   %li
-    = t "help.other.clear_form"
+    Mit Hilfe der Schaltfläche [Maske leeren] können Sie den Maskeninhalt entfernen, 
+    um so völlig andere Falldaten zu erfassen. Möchten Sie dagegen ähnliche Daten gruppieren, 
+    so ändern Sie einfach einzelne Werte und gruppieren neu.
