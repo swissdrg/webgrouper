@@ -231,7 +231,7 @@ it:
     date:           "Ultimo aggiornamento: 1. febbraio 2010"
     accept_tos:     Accettazione delle condizioni di utilizzo
     confirm_read:   MEDIANTE L'ACCETTAZIONE TRAMITE CLIC DEL MOUSE L'UTENTE CONFERMA DI AVER LETTO INTERAMENTE IL PRESENTE ACCORDO DI UTILIZZO E DI AVERLO COMPRESO, DICHIARANDOSI COMPLETAMENTE CONCORDE CON IL SUO CONTENUTO.
-    preambel:
+    preamble:
       heading:       Preambolo
       p1:           SwissDRG opera in Svizzera con lo scopo di elaborare e sviluppare, nonché adeguare e curare le strutture tariffarie nazionali necessarie per l'indennizzo forfetario del trattamento stazionario negli ospedali, sulla base di un sistema DRG (Diagnosis Related Groups) e di altre basi a tal fine necessarie. Il sistema di conteggio SwissDRG sarà impiegato uniformemente in tutta la Svizzera a partire dal 1° gennaio 2012.
       p2:           Per l'utilizzo del sistema SwissDRG è necessario un software Grouper che permette di assegnare i dati di un paziente a un determinato DRG (il cosiddetto processo di raggruppamento).

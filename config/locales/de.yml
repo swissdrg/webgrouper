@@ -326,7 +326,7 @@ de:
     date:           "Stand: 1. Februar 2010"
     accept_tos:     Annahme der Nutzungsbedingungen
     confirm_read:   DURCH DIE ANNAHME PER MAUSKLICK BESTÄTIGEN SIE DIE VORLIEGENDE NUTZUNGSVEREINBARUNG DURCHGELESEN UND VERSTANDEN ZU HABEN UND ERKENNEN SICH MIT DEREN INHALT VOLLUMFÄNGLICH EINVERSTANDEN.
-    preambel:
+    preamble:
       heading:       Präambel
       p1:           "Die SwissDRG bezweckt in der Schweiz die Erarbeitung und Weiterentwicklung sowie die Anpassung und Pflege der für die pauschale Vergütung der stationären Behandlung in Spitälern notwendigen gesamtschweizerischen Tarifstrukturen auf der Basis eines DRG-Systems (Diagnosis Related Groups) und weiterer dazu notwendiger Grundlagen. Das SwissDRG-Abrechnungssystem soll per 1. Januar 2012 gesamtschweizerisch einheitlich angewendet werden."
       p2:           Für die Anwendung des SwissDRG-Systems ist eine Grouper-Software erforderlich, durch welche die Zuweisung eines Patientendatensatzes zu einer bestimmten DRG erfolgt (sog. Gruppierungsvorgang).
