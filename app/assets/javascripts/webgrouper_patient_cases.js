@@ -64,7 +64,7 @@ function initializeAutocomplete() {
  * Adds date pickers to every input field of the class "date_picker"
  */
 function initializeDatePickers() {
-	$("#webgrouper_patient_case_birth_date.date_picker").each(function() {
+	$(".date_picker").each(function() {
 		addDatePicker(this.id);
 	});
 }

@@ -293,3 +293,109 @@ de:
   activerecord:
     errors:
       <<: *errors
+  help:
+    system:         Der Webgrouper unterstützt mehrere Systeme. Wählen Sie die gewünschte Grouperversion. 
+                    Zu jedem System ist der passenden Prozeduren- sowie der Diagnosenkatalog hinterlegt. 
+                    Diese werden nach Auswahl ebenfalls angezeigt.
+    stay:           
+      los:          Für den Gruppierungsvorgang benötigt der Grouper die Verweildauer des Patienten. 
+                    Dies kann entweder direkt angegeben werden oder wird nach Eingabe von Aufnahme- und Entlassdatum 
+                    sowie Urlaubstage vom System berechnet.
+    stay_adm:       Aufnahme- und Entlassart wählen Sie bitte aus den jeweiligen Listen.
+    patient_data:   
+      age:          In zahlreichen DRGs ist das Patientenalter gruppierungsrelevant. 
+                    Sie können das Alter (zum Aufnahmezeitpunkt) entweder direkt angegeben, oder es durch Angabe von Aufnahmedatum und Geburtsdatum berechnen lassen.
+                    Das Alter wird in Jahren angegeben, sofern der Patient mindestens das erste Lebensjahr vollendet hat, andernfalls in Tagen.
+                    Die entsprechende Einheit ist aus der Liste zu wählen.
+      weight:       Für Patienten < 1 Jahr kann zusätzlich das Aufnahmegewicht angegeben werden.
+      sex:          Das Geschlecht wird aus der Liste gewählt.
+      hmv:          Im Falle maschineller Beatmung wird diese ebenfalls erfasst, da sie für diverse DRGs gruppierungsrelevant ist.
+    pdx:            An dieser Stelle ist der Schlüssel der Hauptdiagnose anzugeben. 
+                    Sofern es sich um einen korrekten Kode handelt, wird beim Serverzugriff 
+                    die zugehörige Beschreibung geholt und angezeigt. Andernfalls erfolgt die Meldung eines 
+                    unzulässigen Codes.
+    diagnoses:      
+      pre_+:        Zu zahlreichen Fällen gibt es diverse Nebendiagnosen. Diese werden in der Tabelle erfasst.
+                    Sofern der Eingabebereich zu klein ist, können Sie mittels Schaltfläche
+      post_+:       weitere Zeilen (max. zehn) einblenden.
+      pre_-:        Über die Schaltfläche
+      post_-:       kann die Anzahl der Zeilen wieder auf minimal zwei reduziert werden.
+    procedures:     
+      pre_+:        Die Prozeduren werden in der Tabelle erfasst. Optional können Sie Seitenlokalisation 
+                    und/oder Datum angeben. Mittels
+      post_+:       und
+      post_-:       kann die Anzahl der Eingabezeilen angepasst werden.
+    other:          
+      group:        Sind alle relevanten Falldaten erfasst, starten Sie über [Gruppieren] die Auswertung.
+      invalid:      Ungültige Eingaben werden rot hervorgehoben und im oberen, rot hinterlegten Feld vermerkt
+                    (zum Beispiel nicht existente ICD-10 Codes).
+      clear_form:   Mit Hilfe der Schaltfläche [Maske leeren] können Sie den Maskeninhalt entfernen, 
+                    um so völlig andere Falldaten zu erfassen. Möchten Sie dagegen ähnliche Daten gruppieren, 
+                    so ändern Sie einfach einzelne Werte und gruppieren neu.
+  tos:
+    header:         NUTZUNGSVEREINBARUNG ONLINE WEB-GROUPER
+                    UND BATCH-GROUPER DER SWISSDRG AG
+    date:           "Stand: 1. Februar 2010"
+    accept_tos:     Annahme der Nutzungsbedingungen
+    confirm_read:   DURCH DIE ANNAHME PER MAUSKLICK BESTÄTIGEN SIE DIE VORLIEGENDE NUTZUNGSVEREINBARUNG DURCHGELESEN UND VERSTANDEN ZU HABEN
+                    UND ERKENNEN SICH MIT DEREN INHALT VOLLUMFÄNGLICH EINVERSTANDEN.
+    preambel:
+      header:       Präambel
+      p1:           "Die SwissDRG bezweckt in der Schweiz die Erarbeitung und Weiterentwicklung sowie die Anpassung und Pflege
+                    der für die pauschale Vergütung der stationären Behandlung in Spitälern notwendigen gesamtschweizerischen Tarifstrukturen
+                    auf der Basis eines DRG-Systems (Diagnosis Related Groups) und weiterer dazu notwendiger Grundlagen.
+                    Das SwissDRG-Abrechnungssystem soll per 1. Januar 2012 gesamtschweizerisch einheitlich angewendet werden."
+      p2:           Für die Anwendung des SwissDRG-Systems ist eine Grouper-Software erforderlich,
+                    durch welche die Zuweisung eines Patientendatensatzes zu einer bestimmten DRG erfolgt
+                    (sog. Gruppierungsvorgang).
+      p3:           Die auf der vorliegenden Website zur Verfügung gestellten Grouper-Versionen werden von der SwissDRG AG (nachfolgend "SwissDRG"), Haslerstrasse 21, 3008 Bern
+                    vor der gesamtschweizerisch einheitlichen Einführung sämtlichen interessierten Kreisen wie namentlich Spitälern und Krankenversicherungen (nachfolgend "Nutzer")
+      in_ch:        mit Sitz in der Schweiz
+      for_testing:  zu Testzwecken
+      p4:           online zur Verfügung gestellt.  
+    group_right:
+      header:       "Gegenstand der Vereinbarung: Recht zur Online-Gruppierung"
+      p1:           Die online zur Verfügung gestellte Grouper-Software (Programme und Dokumentation) stehen und verbleiben im Eigentum der SwissDRG
+                    und sind urheberrechtlich geschützt. Sämtliche Schutzrechte, insbesondere Urheberrechte an der Grouper-Software,
+                    stehen im Verhältnis zwischen den Parteien ausschliesslich der SwissDRG zu.
+      p2:           Dem Nutzer wird zu den in dieser Vereinbarung festgehaltenen Bedingungen unentgeltlich ein nicht übertragbares und nicht ausschliessliches Recht
+                    zur Nutzung der auf der Website der SwissDRG zur Verfügung gestellten Grouper zwecks Gruppierung von anonymisierten medizinischen und administrativen Patientendaten
+                    zu Testzwecken innerhalb der Schweiz erteilt.
+      p3:           Die Grouper-Software kann ausschliesslich online über die Website der SwissDRG verwendet werden.
+                    Der Nutzer erhält von der SwissDRG keine Kopie der Grouper-Software.
+      p4:           Die SwissDRG ist berechtigt, die Nutzung der Grouper-Software jederzeit ohne Vorankündigung und ohne Begründung einzuschränken oder nicht mehr anzubieten.
+    data_security:
+      header:       Datensicherheit im Internet
+      p1:           Dem jeweiligen Nutzer ist bekannt, dass das Internet öffentlich zugänglich ist.
+                    Die freiwillige Preisgabe von Informationen und Daten aller Art über das Internet erfolgt auf eigenes Risiko des Nutzers.
+      p2:           Die SwissDRG schützt die Datenübermittlung durch angemessene Massnahmen. Auch mit diesen Massnahmen nach aktuellen Sicherheitsstandards (alle Grouper-Versionen sind per SSL mit einem AES-128 bit Schlüssel verschlüsselt)
+                    ist ein Informationsverlust oder gar Datendiebstahl durch Dritte nicht vollständig ausgeschlossen.
+      p3:           Der Nutzer stellt durch geeignete Massnahmen selbstständig sicher, jederzeit die korrekte URL-Adresse der SwissDRG zu verwenden, um dadurch allfällige Phishing-Attacken zu verhindern.
+    privacy:
+      header:       Datenschutz
+      p1:           Der Datenschutz ist der SwissDRG ein wichtiges Anliegen. Die SwissDRG beachtet bei der Erfassung und Bearbeitung von Daten die Bestimmungen der schweizerischen Datenschutzgesetzgebung.
+      p2:           Die der SwissDRG im Rahmen des Gruppierungsvorganges übermittelten Daten werden nicht an Dritte weitergegeben und ausschliesslich für den Gruppierungsvorgang verwendet.
+    HAFTUNG:
+      header:       Gewährleistung / Haftung
+      p1:           Die Nutzer haben nach bestem Wissen und Gewissen alles zu unterlassen, was den Interessen der SwissDRG zuwiderlaufen könnte.
+      p2:           Dem Nutzer ist bekannt, dass die online zur Verfügung gestellte Grouper-Software nicht für den Markt freigegeben ist und ihr durch die SwissDRG in der aktuell vorliegenden Fassung lediglich zu Testzwecken zur Verfügung gestellt wird.
+      p3:           Der Grouper wird dem jeweiligen Nutzer "wie dargestellt" und "nach Verfügbarkeit" bereitgestellt.
+                    Die SwissDRG AG sowie ihre Kooperationspartner, Lieferanten und Lizenzgeber übernehmen keine Gewährleistung für Mängel der Software (Programme und Dokumentation) und sie schliessen,
+                    soweit gesetzlich zulässig, die Haftung für allfällige direkte oder indirekte Schäden aller Art, einschliesslich Folgeschäden wie entgangenen Gewinn, Datenverlust und Ansprüche Dritter,
+                    die durch die Grouper-Software oder deren Gebrauch entstehen aus. Der Haftungs- und Gewährleistungsausschluss gilt im Speziellen in Bezug auf die allgemeine Gebrauchstauglichkeit der Grouper-Software
+                    und deren Eignung für einen bestimmten Zweck, die Möglichkeit zur Nutzung im Verhältnis zwischen den Spitälern und Krankenversicherern und die Nichtverletzung von Rechten Dritter.
+      p4:           Weder die SwissDRG noch die mit ihr verbundenen Unternehmen gewährleisten, dass der Grouper den Anforderungen des Nutzers entspricht und unterbrechungs- und störungsfrei, sicher, fehlerfrei oder vollständig ist.
+      p5:           Die SwissDRG haftet weder für allfällige Informations- und Datenverluste welche durch das Senden der Daten entstehen können, noch für das unbefugte Zugreifen oder Bearbeiten durch nicht berechtigte Dritte.
+      p6:           Die SwissDRG haftet nicht für Schäden, die dem Nutzer durch Missbrauch der Verbindung (einschliesslich Viren oder sonstige schädliche Komponenten) von Dritten zugefügt werden.
+    FINALLY:
+      header:       Schlussbestimmungen
+      p1:           Sollte eine oder mehrere der vorstehenden Bestimmungen ganz oder teilweise unwirksam oder undurchführbar sein oder werden,
+                    so wird die Wirksamkeit der übrigen Bestimmungen hiervon nicht berührt. Anstelle der unwirksamen und undurchführbaren Bestimmungen werden die Parteien eine solche Bestimmung vereinbaren,
+                    die im Rahmen des rechtlich Möglichen hinsichtlich Ort, Zeit, Mass und Geltungsbereich dem am nächsten kommt, was von den Vertragsparteien nach dem ursprünglichen Sinn und Zweck der unwirksamen oder undurchführbaren Bestimmung
+                    wirtschaftlich gewollt war. Gleiches gilt für etwaige Lücken im Vertrag.
+      p2:           Rechte und Pflichten aus dieser Vereinbarung sind nicht übertragbar.
+      p3:           Die vorliegende Nutzungsvereinbarung liegt in deutscher, französischer und italienischer Sprache vor. Sollten zwischen den einzelnen Sprachversionen inhaltliche Differenzen bestehen, ist einzig die deutsche Sprachversion massgebend.
+      p4:           Streitigkeiten aus der vorliegenden Nutzungsvereinbarung unterliegen vollumfänglich schweizerischem Recht.
+      p5:           Ausschliesslicher Gerichtsstand ist Bern.
+    accept:         "Ja, ich akzeptiere die AGB's"
+                    
