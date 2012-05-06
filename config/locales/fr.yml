@@ -259,7 +259,7 @@ fr:
     date:           "Etat : 1 février 2010"
     accept_tos:     "Acceptation des conditions d'utilisation"
     confirm_read:   VOUS CONFIRMEZ, EN ACCEPTANT CES CONDITIONS PAR UN CLIC SOURIS, AVOIR LU ET COMPRIS DANS SON INTÉGRALITÉ LE PRÉSENT ACCORD D'UTILISATION, DONT VOUS DÉCLAREZ APPROUVER PLEINEMENT LE CONTENU.
-    preambel:
+    preamble:
       heading:       Préambule
       p1:           "La SwissDRG a pour objectif d'élaborer, de développer, d'adapter et d'entretenir en Suisse des structures tarifaires nécessaires permettant d'assurer sur l'ensemble du territoire suisse la rémunération forfaitaire des traitements stationnaires en milieu hospitalier sur la base d'un système DRG (Diagnosis Related Groups) et autres bases indispensables dans ce domaine. Le système de facturation SwissDRG doit être mis en place dans toute la Suisse à la date du 1er janvier 2012."
       p2:           "Pour que le système SwissDRG puisse être utilisé, il est nécessaire de disposer d'un logiciel Grouper permettant l'affectation d'un ensemble de données de patients à un DRG déterminé"
