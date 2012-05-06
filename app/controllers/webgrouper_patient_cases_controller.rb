@@ -37,6 +37,8 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def help
-    render 'help'
+  end
+  
+  def tos
   end
 end
