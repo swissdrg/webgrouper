@@ -1,9 +1,13 @@
 #result
+- if (@result.gst == GrouperResult::GSTFlag::NORMAL_GROUP) 
+  - normal_group = true
 .on-row
   = render "result/grouping"
-  = render "result/cost_weight"
-= render "result/diagnoses"
-= render "result/procedures"
-.on-row
-  = render "result/length_of_stay"
-  = render "result/los_chart"
+  = if normal_group
+    = render "result/cost_weight"
+= if normal_group
+  = render "result/diagnoses"
+  = render "result/procedures"
+  .on-row
+    = render "result/length_of_stay"
+    = render "result/los_chart"
