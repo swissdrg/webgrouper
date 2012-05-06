@@ -2,12 +2,12 @@
   %h1 Webgrouper
   .locales
     %ol
-      %li 
-        = link_to "Deutsch", url_for(:locale => "de"), :class => 'button'
       %li
-        = link_to "Français", url_for(:locale => "fr"), :class => 'button'
+        = link_to "Deutsch", url_for(params.merge({:locale => 'de'})), :class => 'button'
       %li
-        = link_to "Italiano", url_for(:locale => "it"), :class => 'button'
+        = link_to "Français", url_for(params.merge({:locale => 'fr'})), :class => 'button'
       %li
-        = link_to "English", url_for(:locale => "en"), :class => 'button'
+        = link_to "Italiano", url_for(params.merge({:locale => 'it'})), :class => 'button'
+      %li
+        = link_to "English", url_for(params.merge({:locale => 'en'})), :class => 'button'
   = link_to image_tag("swiss_drg_short.gif"), 'http://www.swissdrg.org/', :class => 'logo', :target => :blank
