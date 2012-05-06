@@ -1,9 +1,7 @@
-= stylesheet_link_tag 'help'
-.header
-%h3
+= stylesheet_link_tag 'tos'
+%h2
   = t "tos.heading"
-%h4
-  = t "tos.date"
+= t "tos.date"
 %hr
 .important
   %h3
@@ -11,59 +9,34 @@
     %h4
       = t "tos.confirm_read"
 %p.spacer
-%table
-  = render :partial => "tos/tos_contents"
-  %tr.underlined
-    %td
-      %h3
-        = t "tos.preamble"
-  = yield :preamble
-  %p.spacer
-%table
-  %tr.underlined
-    %td
-      %h3
-        1.
-    %td
-      %h3
-        = t "tos.group_right"
+= render :partial => "tos/tos_contents"
+%h3
+  = t "tos.preamble"
+= yield :preamble
+
+%hr
+
+%ol
+  %h3
+    %li 
+      = t "tos.group_right"
   = yield :group_right
-%table
-  %tr.underlined
-    %td
-      %h3
-        2.
-    %td
-      %h3
-        = t "tos.data_security"
+  %h3
+    %li
+      = t "tos.data_security"
   = yield :data_security
-%table
-  %tr.underlined
-    %td
-      %h3
-        3.
-    %td
-      %h3
-        = t "tos.privacy"
+  %h3
+    %li
+      = t "tos.privacy"
   = yield :privacy
-%table
-  %tr.underlined
-    %td
-      %h3
-        4.
-    %td
-      %h3
-        = t "tos.responsibility"
+  %h3
+    %li
+      = t "tos.responsibility"
   = yield :responsibility
-%table
-  %tr.underlined
-    %td
-      %h3
-        5.
-    %td
-      %h3
-        = t "tos.terminatory"
-    = yield :terminatory
+  %h3
+    %li
+      = t "tos.terminatory"
+  = yield :terminatory
 
 
 = link_to t("tos.accept"), webgrouper_patient_cases_path, :class => "button"
