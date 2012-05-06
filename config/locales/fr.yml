@@ -226,3 +226,27 @@ fr:
   activerecord:
     errors:
       <<: *errors
+    # help:
+    #   system:
+    #   stay:
+    #     los:
+    #   stay_adm:
+    #   patient_data:
+    #     age:
+    #     weight:
+    #     sex:
+    #     hmv:
+    #   pdx:
+    #   diagnoses:
+    #     pre_+:
+    #     post_+:
+    #     pre_-:
+    #     post_-:
+    #   procedures:
+    #     pre_+:
+    #     post_+:
+    #     post_-:
+    #   other:
+    #     group:
+    #     invalid:
+    #     clear_form:
