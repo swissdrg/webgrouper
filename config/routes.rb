@@ -7,9 +7,10 @@ Webgrouper::Application.routes.draw do
     end
     get 'help' => 'webgrouper_patient_cases#help'
     get 'create_query'  => 'webgrouper_patient_cases#create_query'
+    get 'tos' => 'webgrouper_patient_cases#tos'
   end
   
-  root :to => 'webgrouper_patient_cases#index'
+  root :to => 'webgrouper_patient_cases#tos'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
