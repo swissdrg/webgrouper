@@ -2,6 +2,10 @@ it:
   
   diagnoses:  'Diagnosi secondarie:'
   procedures: 'Procedure:'
+  help:
+    show_help: Aiuto
+    back: Indietro
+    other: 'Altro:'  
   fieldsets:
     system: 'Sistema'
     stay: 'Soggiorno'

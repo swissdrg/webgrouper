@@ -1,6 +1,10 @@
 fr: 
   diagnoses:  'Diagnostics secondaires:'
   procedures: 'Procédures:'
+  help:
+    show_help: Aide
+    back: En arrière
+    other: 'Divers:'
   fieldsets:
     system: 'Système'
     stay: 'Séjour'
