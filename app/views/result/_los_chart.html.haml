@@ -1,4 +1,4 @@
 %fieldset#los-chart.result.right
-  %legend= t "result.los_chart"
+  %legend= t("result.los_chart") + " " + @result.drg
   #los_chart
     = render_chart(@los_chart, 'los_chart')

@@ -5,10 +5,12 @@ Webgrouper::Application.routes.draw do
       get :autocomplete_ICD_IcCode, :on => :collection
       get :autocomplete_OPS_OpCode, :on => :collection
     end
-    get  'create_query'  => 'webgrouper_patient_cases#create_query'
+    get 'help' => 'webgrouper_patient_cases#help'
+    get 'create_query'  => 'webgrouper_patient_cases#create_query'
+    get 'tos' => 'webgrouper_patient_cases#tos'
   end
   
-  root :to => 'webgrouper_patient_cases#index'
+  root :to => 'webgrouper_patient_cases#tos'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

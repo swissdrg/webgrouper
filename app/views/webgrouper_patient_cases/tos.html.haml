@@ -1,0 +1,42 @@
+= stylesheet_link_tag 'tos'
+%h2
+  = t "tos.heading"
+= t "tos.date"
+%hr
+.important
+  %h3
+    = t "tos.accept_tos"
+    %h4
+      = t "tos.confirm_read"
+%p.spacer
+= render :partial => "tos/tos_contents"
+%h3
+  = t "tos.preamble"
+= yield :preamble
+
+%hr
+
+%ol
+  %h3
+    %li 
+      = t "tos.group_right"
+  = yield :group_right
+  %h3
+    %li
+      = t "tos.data_security"
+  = yield :data_security
+  %h3
+    %li
+      = t "tos.privacy"
+  = yield :privacy
+  %h3
+    %li
+      = t "tos.responsibility"
+  = yield :responsibility
+  %h3
+    %li
+      = t "tos.terminatory"
+  = yield :terminatory
+
+
+= link_to t("tos.accept"), webgrouper_patient_cases_path, :class => "button"

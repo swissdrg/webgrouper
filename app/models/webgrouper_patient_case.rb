@@ -45,7 +45,7 @@ class WebgrouperPatientCase < PatientCase
   end
   
   def pdx
-    ICD.pretty_code_of get_pdx
+    ICD.pretty_code_of get_pdx rescue get_pdx
   end
 
   def diagnoses=(diagnoses)
@@ -55,7 +55,13 @@ class WebgrouperPatientCase < PatientCase
   def diagnoses
     diagnoses = []
     get_diagnoses.each do |d|
-      diagnoses << ICD.pretty_code_of(d) unless d.nil?
+      unless d.nil?
+        begin
+          diagnoses << ICD.pretty_code_of(d)
+        rescue
+          diagnoses << d
+        end
+      end
     end
     diagnoses
   end
@@ -66,10 +72,20 @@ class WebgrouperPatientCase < PatientCase
   
   def procedures
     procedures = []
-    get_procedures.each do |d|
-      unless d.nil?
-        d = d.match(/(\S*)\:(\w*)\:(\w*)/)[1]
-        procedures << OPS.pretty_code_of(d) 
+    get_procedures.each do |p|
+      unless p.nil?
+        regex = /(\S*)\:(\w*)\:(\w*)/
+        short_code = p.match(regex)[1]
+        laterality = p.match(regex)[2]
+        date = p.match(regex)[3]
+        begin
+          code = OPS.pretty_code_of short_code
+        rescue
+          code = short_code
+        end
+        parsed_date = "#{date[6..7]}.#{date[4..5]}.#{date[0..3]}"
+        p = "#{code}:#{laterality}:#{parsed_date}"
+        procedures << p
       end
     end
     procedures
@@ -101,13 +117,12 @@ class WebgrouperPatientCase < PatientCase
   
   private
 	
-	#  
 	def fill_and_filter_java_array(hash, tmp_ruby_array)
 		hash.each do |tripple_key, tripple| 
     	# tmp_procedure contains the current procedure value
       tmp_procedure = ""
 			     
-			# a tripple element is either a procedure code, seitigkeit or a date
+			# a tripple element is either a procedure code, laterality or a date
 			# except procedure code(i.e. counter == 0) all other tripple elements may be blank
       tripple.each do |element_key, tripple_element|
 				counter = element_key.to_i
@@ -128,7 +143,7 @@ class WebgrouperPatientCase < PatientCase
 		    if counter < 2
 		    	tmp_procedure += ":"
 		    end
-		    #counter = counter + 1       
+		    
 			end
     	tmp_ruby_array << tmp_procedure unless tmp_procedure == "::"
 		end	

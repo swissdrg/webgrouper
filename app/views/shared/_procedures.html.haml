@@ -1,4 +1,4 @@
-- required_rows = (@webgrouper_patient_case.procedures.count/5)+1
+- required_rows = (Float(@webgrouper_patient_case.procedures.count)/3).ceil
 - if required_rows == 0
   - required_rows = 1
 - required_rows.times do

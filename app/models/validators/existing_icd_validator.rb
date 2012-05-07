@@ -2,7 +2,9 @@
 class ExistingIcdValidator < ActiveModel::EachValidator
   #will automatically be called if one should validate existing_icd as true
   def validate_each(record, attribute, value)
-    value.is_a?(String) ? validate_pdx(record, attribute, value) : validate_diagnoses(record, attribute, value)
+    unless value.blank?
+      value.is_a?(String) ? validate_pdx(record, attribute, value) : validate_diagnoses(record, attribute, value)
+    end
   end
 
   private

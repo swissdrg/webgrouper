@@ -225,3 +225,17 @@ it:
   activerecord:
     errors:
       <<: *errors
+# Terms of Service page
+  tos:
+    heading:         ACCORDO DI UTILIZZO ONLINE DI WEB-GROUPER E BATCH-GROUPER DI SWISSDRG AG
+    date:           "Ultimo aggiornamento: 1. febbraio 2010"
+    accept_tos:     Accettazione delle condizioni di utilizzo
+    confirm_read:   MEDIANTE L'ACCETTAZIONE TRAMITE CLIC DEL MOUSE L'UTENTE CONFERMA DI AVER LETTO INTERAMENTE IL PRESENTE ACCORDO DI UTILIZZO E DI AVERLO COMPRESO, DICHIARANDOSI COMPLETAMENTE CONCORDE CON IL SUO CONTENUTO.
+    preamble:       Preambolo
+    group_right:    "Oggetto dell'accordo: diritto al raggruppamento online"
+    data_security:  Sicurezza dei dati in Internet
+    privacy:        Protezione dei dati
+    responsibility: Garanzia / responsabilità
+    terminatory:    Disposizioni conclusive
+    accept:         Sì, accetto le condizioni di utilizzo
+
