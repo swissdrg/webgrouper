@@ -1,0 +1,57 @@
+- content_for :system do
+  %p
+    Le webgrouper propose plusieurs versions. Choisir la version grouper désirée. 
+    Pour chaque version sont joints les catalogues de procédures et de diagnostics correspondants. 
+    Ils sont affichés après la seléction.
+- content_for :stay do
+  %p 
+    Pour le processus de regroupement le grouper a besoin de la durée de séjour du patient. 
+    Cela peut être transmis directement ou c'est le système qui fait le calcul 
+    d'après les dates d'admission, de sortie et de congé.
+  %p 
+    Veuillez choisir le type d'admission et de sortie dans les listes respectives.
+- content_for :patient_data do
+  %p
+    Dans de nombreux DRG l'âge du patient est significatif pour le regroupement. 
+    Vous pouvez introduire l'âge (lors de l'admission) directement ou le faire calculer 
+    d'après la date d'admission et la date de naissance. L'âge est mentionné en années, 
+    si le patient a accompli au moins une année, sinon en jours. 
+    L'unité respective est à choisir sur la liste.
+  %p  
+    Pour les patients < 1 année le poids lors de l'admission peut être ajouté.
+  %p
+    Le sexe est choisi sur la liste.
+  %p
+    Le cas d'une respiration artificielle est aussi enregistré, vu qu'il est significatif 
+    pour le regroupement de certains DRG.
+- content_for :pdx do
+  %p
+    Dans cette case il faut mentionner la clef du diagnostic principal. Si le code est correct, 
+    la description correspondante apparait lors de l'accès au server. 
+    Dans le cas contraire apparait le message de code erroné.
+- content_for :diagnoses do
+  %p
+    Pour de nombreux cas il y a divers diagnostics secondaires. Ceux-ci sont regroupés dans un tableau.
+    Si la place de saisie est trop petite, vous pouvez y ajouter des lignes (dix au max.) avec l'ordre 
+    = image_tag "bullet_toggle_plus.png"
+  %p
+    Avec l'ordre
+    = image_tag "bullet_toggle_minus.png"
+    le nombre de lignes peut être réduit jusqu'à 2 lignes au minimum.
+- content_for :procedures do
+  %p
+    Les procédures sont notés dans le tableau. En option vous pouvez ajouter le côté et/ou la date.
+    Moyennant les ordres
+    = image_tag "bullet_toggle_plus.png"
+    et
+    = image_tag "bullet_toggle_minus.png"
+    le nombre lignes de saisie peut être ajusté.
+- content_for :other do
+  %p
+    Une fois toutes les données du cas requises enregistrées, vous pouvez déclencher l'exploitation avec [regrouper].
+  %p
+    Les entrées non valables sont signalées en rouge (p.ex code ICD-10 non existant).
+  %p
+    Moyennant l'ordre [vider le masque] vous pouvez éliminer le contenu du masque pour 
+    enregistrer d'autres données de cas. Si cependant vous voulez regrouper des données similaires, 
+    vous changez simplement quelques données et vous les regroupez une nouvelle fois.

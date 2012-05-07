@@ -1,0 +1,25 @@
+= stylesheet_link_tag 'help'
+%h2 
+  = t("Help")
+= render :partial => 'help/help_contents'
+%h3
+  = t("fieldsets.system") + ": "
+= yield :system
+%h3
+  = t("fieldsets.stay") + ": "
+= yield :stay
+%h3
+  = t("fieldsets.patient_data") + ": "
+= yield :patient_data
+%h3
+  = t "simple_form.labels.webgrouper_patient_case.pdx"
+= yield :pdx
+%h3
+  = t "simple_form.labels.webgrouper_patient_case.diagnoses"
+= yield :diagnoses
+%h3
+  = t "simple_form.labels.webgrouper_patient_case.procedures"
+= yield :procedures
+%h3
+  = t "other"
+= yield :other

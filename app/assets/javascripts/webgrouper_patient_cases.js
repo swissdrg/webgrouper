@@ -11,88 +11,17 @@ $("#system_SyID").live("change keyup", function () {
 	this.form.submit();
 });
 
-$(".calc_los").live("focus change", function() {
-	var first = parseDate($('#webgrouper_patient_case_entry_date').val())
-	var second = parseDate($('#webgrouper_patient_case_exit_date').val())
-	var leave_days = $('#webgrouper_patient_case_leave_days').val()
-	var diff = daydiff(first, second, leave_days);
-	if (!(isNaN(diff))){
-		$('#webgrouper_patient_case_los').val(diff);
-		flashYellow($("#webgrouper_patient_case_los"),'transparent',75,20,4 );
-	}
-});
-
-$("#webgrouper_patient_case_birth_date").live("focus change", function() {
-	if ($('#webgrouper_patient_case_birth_date').val() == "") {
-		return;
-	}
-	var bd = parseDate($('#webgrouper_patient_case_birth_date').val());
-	var today = new Date();
-	var year_diff = Math.floor(Math.ceil(today - bd) / (1000 * 60 * 60 * 24 * 365));
-	if (!(isNaN(year_diff)) && bd < today) {
-		if (year_diff >= 1) {
-			$('#webgrouper_patient_case_age_mode').val("year");
-			$('#webgrouper_patient_case_age').val(year_diff);
-		}
-		else {
-			$('#webgrouper_patient_case_age_mode').val("days");
-			$('#webgrouper_patient_case_age').val(daydiff(bd, today, 0));
-		}
-		admWeightControl(500);
-	}
-	else {
-		$('#webgrouper_patient_case_age').val("");
-	}
-	flashYellow($("#webgrouper_patient_case_age_mode"),'transparent',75,20,4 );
-	flashYellow($("#webgrouper_patient_case_age"),'transparent',75,20,4 );
-});
-
 /**
  * This method binds an alternative update method to every autocomplete field, so that
  * only the code itself is put into the field.
  * It also adds the name as title, making it available to see in a tooltip.
  */
 function initializeAutocomplete() {
-	$(':input.autocomplete').bind('railsAutocomplete.select', function(event, data){
+	$('#webgrouper_patient_case_pdx:input').bind('railsAutocomplete.select', function(event, data){
 		splitPos = data.item.label.search(" ");
   		event.target.value = data.item.label.substring(0, splitPos);
   		event.target.title = data.item.label.substring(splitPos + 1);
 	});
-}
-
-/**
- * Adds date pickers to every input field of the class "date_picker"
- */
-function initializeDatePickers() {
-	$(".date_picker").each(function() {
-		addDatePicker(this.id)
-	});
-}
-
-/**
- * Adds a date picker to the field with the given id
- * The format of the date picker is eg 02.04.2011
- * @param id the id of the field you want to add a datepicker
- */
-function addDatePicker(id) {
-	var eles = {};
-	eles[id] = "d-dt-m-dt-Y";
-	datePickerController.createDatePicker({formElements: eles});
-}
-
-
-/**
- * Lets the id "admWeight" disappear according to the
- * settings in the field age_mode
- * @param fade_time the time used to fade it in/out
- */
-function admWeightControl(fade_time) {
-	if ($('[id$="age_mode"]').val() == "days") {
-		$("#admWeight").show(fade_time);
-	}
-	else {
-		$("#admWeight").hide(fade_time);
-	}
 }
 
 
@@ -112,13 +41,12 @@ function add_fields(kind, field_row, value) {
 	var field_count = get_field_count(kind);	
 	var	value_array = value.replace("[", "").replace("]", "").split(",");
   	var replaceID = new RegExp("ID", "");
-	while(replaceID.test(field_row)) {
-		if (kind == "diagnoses") {
-			var field_row = replace_diagnoses(field_count, value_array, field_row);
-		} else {
-			var field_row = replace_procedures(field_count, value_array, field_row);
-		}
-		field_count++;
+	if (kind == "diagnoses") {
+		var field_row = replace_diagnoses(field_count, value_array, field_row);
+		field_count += 5;
+	} else {
+		var field_row = replace_procedures(field_count, value_array, field_row);
+		field_count += 3;
 	}
 	append_field_row(kind, field_row, field_count);
 	set_field_count(kind, field_count);
@@ -147,7 +75,7 @@ function add_buttons(kind) {
 }
 
 /**
- * Appends the field_row to the div with id "#"+kind'.
+ * Appends the field_row to the div with id '"#"+kind'.
  * The function prepends an empty label-tag if the field_row
  * @param kind the kind of fields (diagnoses/procedures).
  * @param field_row the fields to be added to the div with id '"#"+kind'.
@@ -157,6 +85,14 @@ function append_field_row (kind, field_row, field_count) {
 	if (field_count > min_fields(kind)) {
 		$("#"+kind+" > .sameline > ."+kind+"_row:visible:last").before('<label><label\>')
 	};
+	$("#"+kind+" > .sameline > ."+kind+"_row:visible:last :input.autocomplete").bind('railsAutocomplete.select', function(event, data){
+		splitPos = data.item.label.search(" ");
+	  		event.target.value = data.item.label.substring(0, splitPos);
+	  		event.target.title = data.item.label.substring(splitPos + 1);
+	});
+	$("#"+kind+" > .sameline > ."+kind+"_row:visible:last .date_picker").each(function() {
+		addDatePicker(this.id);
+	});
 }
 
 /**
@@ -168,10 +104,25 @@ function append_field_row (kind, field_row, field_count) {
  * @return the field_row with real id's and correct value.
 */
 function replace_diagnoses (field_count, value_array, field_row) {
-	var real_value = initialize_value(value_array, field_count);
-	field_row = field_row.replace("ID", field_count);
-	field_row = field_row.replace("ID", field_count);
-	field_row = field_row.replace("VALUE", real_value);
+	var id = new RegExp("ID", "g");
+	var value = new RegExp("VALUE", "g");
+	
+	// split field_row in seperate fields
+	var splitter = new RegExp("<span class='splitter'>*<\/span>");
+	var temp_field_array = field_row.split(splitter);
+	
+	// iterate through each field and replace id and value placeholders
+	for (var i=0; i < 5; i++) {
+		var real_value = initialize_value(value_array, field_count+i);
+		temp_field_array[i] = temp_field_array[i].replace(id, field_count+i);
+		temp_field_array[i] = temp_field_array[i].replace(value, real_value);
+	};
+	
+	// add fields back together to form complete field_row
+	field_row = "";
+	for(var i = 0; i < 6; i++) {
+		field_row += temp_field_array[i];
+	};
 	return field_row;
 }
 
@@ -186,17 +137,31 @@ function replace_diagnoses (field_count, value_array, field_row) {
  * @return the field_row with real id's and correct value.
 */
 function replace_procedures (field_count, value_array, field_row) {
+	var id = new RegExp("ID", "g");
+	
+	var splitter = new RegExp("<span class='splitter'>*<\/span>");
+	var temp_field_array = field_row.split(splitter);
+	
 	for(var i = 0; i < 3; i++) {
-		var real_value = initialize_value(value_array, field_count);
-		proc_values = real_value.split(":");
-		var proc_value = "";
-		if (proc_values[i] != undefined) {
-			var proc_value = proc_values[i];
-		}
-		field_row = field_row.replace("ID", field_count);
-		field_row = field_row.replace("ID", field_count);
-		field_row = field_row.replace("VALUE", proc_value);
-	}
+		var real_value = initialize_value(value_array, field_count+i);
+		var proc_values = real_value.split(":");
+		temp_field_array[i] = temp_field_array[i].replace(id, field_count+i);
+		
+		for(var j = 0; j < 3; j++) {
+			if (proc_values[j] == undefined) {
+				proc_values[j] = "";
+			};
+		};
+		temp_field_array[i] = temp_field_array[i].replace("VALUE", proc_values[0]);
+		var seitigkeit_value = "<option value=\""+proc_values[1]+"\">"+proc_values[1]+"</option>";
+		var seitigkeit_selected = "<option value=\""+proc_values[1]+"\" selected=\"selected\">"+proc_values[1]+"</option>";
+		temp_field_array[i] = temp_field_array[i].replace(seitigkeit_value, seitigkeit_selected);
+		temp_field_array[i] = temp_field_array[i].replace("VALUE", proc_values[2]);
+	};
+	field_row = "";
+	for(var i = 0; i < 4; i++) {
+		field_row += temp_field_array[i];
+	};
 	return field_row;
 }
 
@@ -258,6 +223,7 @@ function set_procedures_buttons(add_button, remove_button) {
 	proc_remove_button = remove_button;
 }
 
+
 /**
  * Helper method to get the correct add_button based on the kind of fields.
  * @param kind the kind of fields (diagnoses/procedures).
@@ -309,14 +275,6 @@ function remove_fields(kind) {
 	add_buttons(kind);
 }
 
-function parseDate(str) {
-    var mdy = str.split('.')
-    return new Date(mdy[2], mdy[1]-1, mdy[0]-1);
-}
-
-function daydiff(first, second, leave_days) {
-		return Math.floor(((second-first)/(1000*60*60*24))-leave_days)
-}
 
 /**
  * To highlight an element for a short time, this method will
@@ -356,7 +314,7 @@ function easeInOut(minValue,maxValue,totalSteps,actualStep,powr) {
 function goToResult(){
 	if ($("#result").length) {
 		jQuery('html,body').animate({
-			scrollTop: $("#los-chart").offset().top - 100
+			scrollTop: $("#bottom").offset().top - 100
 		},'slow');
 	};
 }

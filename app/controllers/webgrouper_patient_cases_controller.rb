@@ -36,4 +36,9 @@ class WebgrouperPatientCasesController < ApplicationController
     render 'index'
   end
   
+  def help
+  end
+  
+  def tos
+  end
 end

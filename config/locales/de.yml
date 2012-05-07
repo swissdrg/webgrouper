@@ -1,6 +1,5 @@
 de:
-  diagnoses:  'Nebendiagnosen:'
-  procedures: 'Prozeduren:'
+  other: 'Anderes: '
   fieldsets:
     system: 'System'
     stay: 'Aufenthalt'
@@ -27,9 +26,9 @@ de:
       effective-cost-weight: Effektives Kostengewicht
       surcharge-rate-per-day: Zuschlagssatz pro Tag
       discount-rate-per-day: Abschlagssatz pro Tag
-      number_of_days_for_surcharge: Anzahl Zuschlagspflichtige Tage
-      number_of_days_for_discount: Anzahl Abschlagspflichtige Tage
-      no_days_for_discount_or_surcharge: Keine Tage sind Zu- oder Abschlagspflichtig
+      number_of_days_for_surcharge: Anzahl zuschlagspflichtige Tage
+      number_of_days_for_discount: Anzahl abschlagspflichtige Tage
+      no_days_for_discount_or_surcharge: Keine Tage sind zu- oder abschlagspflichtig
     diagnoses:
       legend: Diagnosen
       used: Benutzt
@@ -53,7 +52,7 @@ de:
           PROC_NOT_USED: Nein
           PROC_USED: Ja, ohne logische und temporäre Konditionen
           USED_BOTH: Ja, für beide
-          USED_FOR_CONDITION: ?????
+          USED_FOR_CONDITION:
         valid:
           PROC_VALID: Gültige Prozedur
           PROC_AGE_CONFLICT: Konflikt mit Alter
@@ -89,6 +88,7 @@ de:
         UNDEFINED: Undefiniert
         UNWEIGHTED: Unbewertete DRG
         UPPER_OUTLIER: Oberer Outlier
+    los_chart: Diagramm für
           
   found_errors: "Folgende Fehler wurden gefunden:"
   date:
@@ -293,3 +293,18 @@ de:
   activerecord:
     errors:
       <<: *errors
+
+# Terms of Service page
+  tos:
+    heading:        NUTZUNGSVEREINBARUNG ONLINE WEB-GROUPER UND BATCH-GROUPER DER SWISSDRG AG
+    date:           "Stand: 1. Februar 2010"
+    accept_tos:     Annahme der Nutzungsbedingungen
+    confirm_read:   DURCH DIE ANNAHME PER MAUSKLICK BESTÄTIGEN SIE DIE VORLIEGENDE NUTZUNGSVEREINBARUNG DURCHGELESEN UND VERSTANDEN ZU HABEN UND ERKENNEN SICH MIT DEREN INHALT VOLLUMFÄNGLICH EINVERSTANDEN.
+    preamble:       Präambel  
+    group_right:    "Gegenstand der Vereinbarung: Recht zur Online-Gruppierung"
+    data_security:  Datensicherheit im Internet
+    privacy:        Datenschutz
+    responsibility: Gewährleistung / Haftung
+    terminatory:    Schlussbestimmungen
+    accept:         "Ja, ich akzeptiere die allgemeinen Geschäftsbedingungen"
+                    
