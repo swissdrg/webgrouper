@@ -4,6 +4,10 @@
 en:
   diagnoses:    'Secondary Diagnoses:'
   procedures:   'Procedures:'
+  help:
+    show_help: Show help
+    back: Back
+    other: 'Other: '
   fieldsets:
     system: 'System'
     stay: 'Stay'

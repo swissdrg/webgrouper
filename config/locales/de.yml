@@ -1,5 +1,8 @@
 de:
-  other: 'Anderes: '
+  help:
+    show_help: Hilfe anzeigen
+    back: Zurück
+    other: 'Anderes:'
   fieldsets:
     system: 'System'
     stay: 'Aufenthalt'
