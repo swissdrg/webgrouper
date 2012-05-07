@@ -1,24 +1,32 @@
 %h2 
   = t("Help")
 = render :partial => 'help/help_contents'
-%h3
-  = t("fieldsets.system") + ": "
-= yield :system
-%h3
-  = t("fieldsets.stay") + ": "
-= yield :stay
-%h3
-  = t("fieldsets.patient_data") + ": "
-= yield :patient_data
-%h3
-  = t "simple_form.labels.webgrouper_patient_case.pdx"
-= yield :pdx
-%h3
-  = t "simple_form.labels.webgrouper_patient_case.diagnoses"
-= yield :diagnoses
-%h3
-  = t "simple_form.labels.webgrouper_patient_case.procedures"
-= yield :procedures
-%h3
-  = t "other"
-= yield :other
+#accordion
+  %h3
+    = link_to(t("fieldsets.system") + ": ", '#')
+  %div
+    = yield :system
+  %h3
+    = link_to(t("fieldsets.stay") + ": ", '#')  
+  %div
+    = yield :stay
+  %h3
+    = link_to(t("fieldsets.patient_data") + ": ", '#')
+  %div
+    = yield :patient_data
+  %h3
+    = link_to(t("simple_form.labels.webgrouper_patient_case.pdx"), '#')
+  %div
+    = yield :pdx
+  %h3
+    = link_to(t( "simple_form.labels.webgrouper_patient_case.diagnoses"), '#')
+  %div
+    = yield :diagnoses
+  %h3
+    = link_to(t("simple_form.labels.webgrouper_patient_case.procedures"), '#')
+  %div
+    = yield :procedures
+  %h3
+    = link_to t ("other"), '#'
+  %div
+    = yield :other
