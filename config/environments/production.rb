@@ -64,4 +64,13 @@ Webgrouper::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  
+  # From Stackoverflow:
+  # If you have other manifests or individual stylesheets and JavaScript 
+  # files to include, you can add them to the precompile array
+  # config.assets.precompile += %w( blueprint/screen.css blueprint/print.css )
+  # or better:
+  # Precompile
+  # All the things!
+  config.assets.precompile += %w( *.css *.js )
 end
