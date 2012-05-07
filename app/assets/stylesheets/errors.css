@@ -1,0 +1,17 @@
+/**
+ * 	TODO: some useful css
+ */
+#errorpage .dialog {
+	width: 50em;
+    padding: 1em 4em;
+	margin: 4em auto 0 auto;
+	border: 1px solid #ccc;
+	border-right-color: #999;
+	border-bottom-color: #999;
+	background-color: #fff; 
+	text-align: center;
+}
+
+#errorpage h2 {
+	color: #f00;
+}

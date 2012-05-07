@@ -1,5 +1,5 @@
 Webgrouper::Application.routes.draw do
-  
+
   scope "/:locale" do
     resources :webgrouper_patient_cases do
       get :autocomplete_ICD_IcCode, :on => :collection
@@ -10,8 +10,15 @@ Webgrouper::Application.routes.draw do
     get 'tos' => 'webgrouper_patient_cases#tos'
   end
   
+  # This is for testing only and can be removed later on:
+  get 'test404' => 'errors#error_404'
+  get 'test500' => 'errors#error_500'
+  
   root :to => 'webgrouper_patient_cases#tos'
-
+  
+  unless Rails.application.config.consider_all_requests_local
+    match '*not_found', :to => 'errors#error_404'
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
