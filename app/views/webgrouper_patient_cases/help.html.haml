@@ -1,31 +1,32 @@
-%h2 
-  = t("Help")
-= link_to t('back_to_grouper'), webgrouper_patient_cases_url, :class => "button right"
+.headline
+  %h2 
+    = t("Help")
+  = link_to t('back_to_grouper'), webgrouper_patient_cases_url, :class => "button", :id => 'back-button'
 %hr
 = render :partial => 'help/help_contents'
 #accordion
   %h3
-    = link_to(t("fieldsets.system") + ": ", '#')
+    = link_to t("fieldsets.system") + ": ", '#'
   %div
     = yield :system
   %h3
-    = link_to(t("fieldsets.stay") + ": ", '#')  
+    = link_to t("fieldsets.stay") + ": ", '#' 
   %div
     = yield :stay
   %h3
-    = link_to(t("fieldsets.patient_data") + ": ", '#')
+    = link_to t("fieldsets.patient_data") + ": ", '#'
   %div
     = yield :patient_data
   %h3
-    = link_to(t("simple_form.labels.webgrouper_patient_case.pdx"), '#')
+    = link_to t("simple_form.labels.webgrouper_patient_case.pdx"), '#'
   %div
     = yield :pdx
   %h3
-    = link_to(t( "simple_form.labels.webgrouper_patient_case.diagnoses"), '#')
+    = link_to t( "simple_form.labels.webgrouper_patient_case.diagnoses"), '#'
   %div
     = yield :diagnoses
   %h3
-    = link_to(t("simple_form.labels.webgrouper_patient_case.procedures"), '#')
+    = link_to t("simple_form.labels.webgrouper_patient_case.procedures"), '#'
   %div
     = yield :procedures
   %h3

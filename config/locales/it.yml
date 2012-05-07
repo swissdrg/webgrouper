@@ -1,12 +1,12 @@
 it:
   
-  diagnoses:  'diagnosi secondarie:'
-  procedures: 'procedure:'
+  diagnoses:  'Diagnosi secondarie:'
+  procedures: 'Procedure:'
   fieldsets:
-    system: 'sistema'
-    stay: 'soggiorno'
-    diagnoses_procedures: 'diagnosi e procedure'
-    patient_data: 'dati del paziente'
+    system: 'Sistema'
+    stay: 'Soggiorno'
+    diagnoses_procedures: 'Diagnosi e procedure'
+    patient_data: 'Dati del paziente'
   
   result:
     grouperstatus: Statuto del Grouper

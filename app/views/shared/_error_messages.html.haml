@@ -1,7 +1,7 @@
 - if @webgrouper_patient_case.errors.any?
   .errorflash
     %h2
-      = t :found_errors
+      = t 'errors.template.body'
     %ul
       - @webgrouper_patient_case.errors.each do |message|
         %li
