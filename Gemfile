@@ -12,6 +12,7 @@ gem "activerecord-jdbcmysql-adapter", "~> 1.2.2"
 gem 'jruby-openssl'
 gem 'json'
 gem 'jquery-rails'
+gem 'rails-asset-jqueryui'
 gem 'rails3-jquery-autocomplete', :git => "git://github.com/slash4/rails3-jquery-autocomplete.git"
 
 gem 'haml', '3.1.4'
