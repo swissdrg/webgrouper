@@ -1,45 +1,25 @@
 = stylesheet_link_tag 'help'
-%table
-  = render :partial => 'help/help_contents'
-  %tr
-    %th 
-      = t("fieldsets.system") + ": "
-    %td 
-      %ul
-        = yield :system
-  %tr
-    %th
-      = t("fieldsets.stay") + ": "
-    %td
-      %ul
-        = yield :stay
-  %tr
-    %th
-      = t("fieldsets.patient_data") + ": "
-    %td
-      %ul
-        = yield :patient_data
-  %tr
-    %th
-      = t "simple_form.labels.webgrouper_patient_case.pdx"
-    %td
-      %ul
-        = yield :pdx
-  %tr
-    %th
-      = t "simple_form.labels.webgrouper_patient_case.diagnoses"
-    %td
-      %ul
-        = yield :diagnoses
-  %tr
-    %th
-      = t "simple_form.labels.webgrouper_patient_case.procedures"
-    %td
-      %ul
-        = yield :procedures
-  %tr
-    %th
-      = t "other"
-    %td
-      %ul
-        = yield :other
+%h2 
+  = t("Help")
+= render :partial => 'help/help_contents'
+%h3
+  = t("fieldsets.system") + ": "
+= yield :system
+%h3
+  = t("fieldsets.stay") + ": "
+= yield :stay
+%h3
+  = t("fieldsets.patient_data") + ": "
+= yield :patient_data
+%h3
+  = t "simple_form.labels.webgrouper_patient_case.pdx"
+= yield :pdx
+%h3
+  = t "simple_form.labels.webgrouper_patient_case.diagnoses"
+= yield :diagnoses
+%h3
+  = t "simple_form.labels.webgrouper_patient_case.procedures"
+= yield :procedures
+%h3
+  = t "other"
+= yield :other

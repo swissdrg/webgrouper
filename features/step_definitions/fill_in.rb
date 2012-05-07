@@ -1,5 +1,5 @@
 Given /^the form with initialized standard values$/ do
-  visit root_path
+  visit "http://localhost:3000/de/webgrouper_patient_cases"
 end
 
 When /^I enter some random \(valid!\) data$/ do
