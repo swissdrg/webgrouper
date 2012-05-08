@@ -25,8 +25,12 @@ When /^I enter Transfered \(los more than 24 hours\) as admission mode$/ do
          :from => 'webgrouper_patient_case_adm')
 end
 
-When /^I press on "([^"]*)"$/ do |button|
+When /^I press on "([^\"]*)"$/ do |button|
   click_button(button)
+end
+
+When /^I follow "([^\"]*)"$/ do |link|
+  click_link(link)
 end
 
 Then /^the grouping should succeed$/ do
