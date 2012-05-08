@@ -3,6 +3,18 @@
  They will automatically be included in application.css.
  */
 
+.ui-datepicker th, .ui-datepicker tr {
+	background-color: inherit !important;
+}
+
+.ui-datepicker-trigger {
+	margin-left: 4px;
+}
+
+.spacer {
+	height: 150px;
+}
+
 .errorflash ul {
 	margin-bottom: 0;
 }
