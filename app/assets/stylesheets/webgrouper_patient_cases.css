@@ -3,7 +3,7 @@
  They will automatically be included in application.css.
  */
 
-.ui-datepicker th, tr {
+.ui-datepicker th, .ui-datepicker tr {
 	background-color: inherit !important;
 }
 
