@@ -84,5 +84,7 @@
             :class => "button negative", 
             :method => :get
 = link_to t("help.show_help"), help_url, :class => 'button right', :method => :get
-              
-= render "result/main" unless @result.nil? || @result.getGst.nil?
+- if @result.nil? || @result.getGst.nil?         
+  .spacer
+- else  
+  = render "result/main" 
