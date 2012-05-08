@@ -7,6 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require_tree .
 //= require autocomplete-rails
-//= require ../../../vendor/assets/javascripts/datepicker.packed.js
+//= require_tree ../../../vendor/assets/javascripts/.
+//= require_tree .
