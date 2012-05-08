@@ -18,8 +18,16 @@ function initializeDatePickers() {
  * @param id the id of the field you want to add a datepicker
  */
 function addDatePicker(id) {
-	var eles = {};
-	eles[id] = "d-dt-m-dt-Y";
-	datePickerController.createDatePicker({formElements: eles});
+	$("#"+id).datepicker({ 
+		minDate: "-120Y", 
+		maxDate: "+0D",
+		dateFormat: "dd.mm.yy",
+		changeMonth: true,
+		changeYear: true,
+		showOn: "button",
+		buttonImage: "<%= asset_path 'cal.gif' %>",
+		buttonImageOnly: true
+		}
+	);
 }
 

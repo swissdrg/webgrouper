@@ -3,6 +3,10 @@
  They will automatically be included in application.css.
  */
 
+.ui-datepicker th, tr {
+	background-color: inherit !important;
+}
+
 .errorflash ul {
 	margin-bottom: 0;
 }
