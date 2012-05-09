@@ -33,7 +33,7 @@
 	width: 20px;
 }
 
-input:disabled {
+input:disabled, input[readonly] {
 	background-color: #ccc;
 }
 
