@@ -19,13 +19,13 @@ function initializeDatePickers() {
  */
 function addDatePicker(id) {
 	$("#"+id).datepicker({ 
-		minDate: "-120Y", 
+		minDate: "-124Y", 
 		maxDate: "+0D",
 		firstDay: 1,
 		dateFormat: "dd.mm.yy",
 		changeYear: true,
-		yearRange: "-120:+0",
-		showOn: "button",
+		yearRange: "-124:+0",
+		showOn: "both",
 		buttonImage: "<%= asset_path 'cal.gif' %>",
 		buttonText: "<%= I18n.t(:pick_date) %>",
 		buttonImageOnly: true
