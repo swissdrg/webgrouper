@@ -8,7 +8,7 @@ $(document).ready(function() {
 	goToResult();
 });
 
-$("#system_SyID").live("change keyup", function () {
+$("#system_SyID").live("change", function () {
 	this.form.submit();
 });
 
