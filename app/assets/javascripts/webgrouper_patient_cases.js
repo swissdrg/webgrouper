@@ -2,6 +2,7 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function() {
 	initializeDatePickers();
+	$(".numeric").numeric({ negative : false });
 	admWeightControl(0);
 	initializeAutocomplete();
 	goToResult();
