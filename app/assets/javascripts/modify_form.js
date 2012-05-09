@@ -4,6 +4,9 @@
  * (Except the javascripts concerning the dynamic creation of fields for diagnoses and procedures.)
  */
 
+/** Some bindings */
+$(document).on("change focus", "#webgrouper_patient_case_birth_date", computeAge);
+$(document).on("change focus", ".calc_los", computeLos);
 
 /**
  * Lets the id "admWeight" disappear according to the
@@ -19,7 +22,7 @@ function admWeightControl(fade_time) {
 	}
 }
 
-$(".calc_los").live("focus change", function() {
+function computeLos() {
 	var first = parseDate($('#webgrouper_patient_case_entry_date').val())
 	var second = parseDate($('#webgrouper_patient_case_exit_date').val())
 	var leave_days = $('#webgrouper_patient_case_leave_days').val()
@@ -30,9 +33,10 @@ $(".calc_los").live("focus change", function() {
 	} else {
 		disableLosInput(false);
 	}	
-});
+}
 
-$("#webgrouper_patient_case_birth_date").live("focus change", function() {
+
+function computeAge() {
 	if ($('#webgrouper_patient_case_birth_date').val() == "") {
 		disableAgeInput(false);
 		return;
@@ -56,23 +60,30 @@ $("#webgrouper_patient_case_birth_date").live("focus change", function() {
 		disableAgeInput(false);
 		$('#webgrouper_patient_case_age').val("");
 	}
-});
+}
 
 /**
  * Disables or enables the input field for length of stay.
  * @param boolean doDisable
  */
 function disableLosInput(doDisable) {
-	$('#webgrouper_patient_case_los').prop('disabled', doDisable);
+	if (doDisable) {
+		$('#webgrouper_patient_case_los').prop('readonly', 'readonly');
+	} else {
+		$('#webgrouper_patient_case_los').prop('readonly', false);
+	}
 }
 
 /**
- * Disables or enables the two fields concerning age.
+ * Disables or enables the input of the two fields concerning age.
  * @param boolean doDisable
  */
 function disableAgeInput(doDisable) {
-	$('#webgrouper_patient_case_age').prop('disabled', doDisable);
-	$('#webgrouper_patient_case_age_mode').prop('disabled', doDisable);
+	if (doDisable) {
+		$('#webgrouper_patient_case_age').prop('readonly', 'readonly');
+	} else {
+		$('#webgrouper_patient_case_age_mode').prop('readonly', false);
+	}
 }
 function parseDate(str) {
     var mdy = str.split('.')
