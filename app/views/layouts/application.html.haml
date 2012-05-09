@@ -3,6 +3,7 @@
   %head
     %meta{ :charset => "UTF-8" }
     = render 'layouts/stylesheets'
+    / Used for localisation of datepicker
     :javascript
       var locale = "#{ I18n.locale }";
     = javascript_include_tag "application"
