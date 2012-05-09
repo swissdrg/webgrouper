@@ -2,15 +2,21 @@
 // All this logic will automatically be available in application.js.
 $(document).ready(function() {
 	initializeDatePickers();
+	initializeForm();
 	admWeightControl(0);
 	initializeAutocomplete();
 	goToResult();
 });
 
-$("#system_SyID").live("change keyup", function () {
+$("#system_SyID").live("change", function () {
 	this.form.submit();
 });
 
+function initializeForm() {
+	$(".numeric").numeric({ negative : false });
+	computeAge();
+	computeLos();
+}
 /**
  * This method binds an alternative update method to every autocomplete field, so that
  * only the code itself is put into the field.
