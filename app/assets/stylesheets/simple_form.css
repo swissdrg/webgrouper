@@ -65,6 +65,10 @@ select#webgrouper_patient_case_age_mode {
 	margin: 5px 0;
 }
 
+.simple_form :focus {
+	border-color: #000000;
+}
+
 input[type='submit'] {
 	margin-left: 235px;
 }

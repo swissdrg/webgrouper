@@ -3,6 +3,10 @@
  They will automatically be included in application.css.
  */
 
+a:focus img, a:focus img {
+	border: 1px solid #000000;
+}
+
 .ui-datepicker th, .ui-datepicker tr {
 	background-color: inherit !important;
 }
