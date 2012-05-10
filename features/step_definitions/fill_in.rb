@@ -2,14 +2,32 @@ Given /^the form with initialized standard values$/ do
   visit "http://localhost:3000/de/webgrouper_patient_cases"
 end
 
-When /^I enter some random \(valid!\) data$/ do
-  step %{I fill in "webgrouper_patient_case_age" with "62"}
-  step %{I fill in "webgrouper_patient_case_pdx" with "R560"}
+When /^I parse "([^"]*)" as input for the form$/ do |caseString|
+  caseArray = caseString.split(";")
+  step %{I enter "#{caseArray[1]}" as age}
+  step %{I enter "#{caseArray[3]}" as admission weight}
+  step %{I  "#{caseArray[4]}" as gender}
+end
+
+When /^I enter "([^"]*)" as age$/ do |age|
+  step %{I fill in "webgrouper_patient_case_age" with "#{age}"}
 end
 
 When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
   step %{I fill in "webgrouper_patient_case_pdx" with "#{pdx}"}
 end
+
+#Takes M, F or U as Gender
+When /^I enter "([^"]*)" as gender$/ do |gender|
+  step %{I fill in "webgrouper_patient_case_gender" with 
+      "#{I18n.t('simple_form.options.webgrouper_patient_case.gender.' + gender)}"}
+end
+
+
+When /^I enter "([^"]*)" as admission weight$/ do |adm_weight|
+  step %{I fill in "webgrouper_patient_case_adm_weight" with "#{adm_weight}"}
+end
+
 
 When /^I enter "([^"]*)" as procedure$/ do |proc|
   step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
@@ -42,6 +60,12 @@ Then /^the result should be shown$/ do
   step %{I should see "01" in "grouping"}
   step %{I should see "0" in "grouping"}
 end
+
+When /^I enter some random \(valid!\) data$/ do
+  step %{I enter "32" as age}
+  step %{I enter "B36.1" as diagnosis}
+end
+
 
 Then /^the form should stay the same$/ do
   
