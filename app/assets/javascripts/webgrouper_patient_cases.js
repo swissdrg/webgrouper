@@ -1,5 +1,6 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+/**
+ * Initializer & general stuff for the form is here in this file
+ */
 $(document).ready(function() {
 	initializeDatePickers();
 	initializeForm();
