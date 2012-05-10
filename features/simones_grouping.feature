@@ -18,4 +18,3 @@ Feature: Enterin Simones data should work
     And I should see "N28.0" in "diagnoses"
     And I should see "38.36.15" in "procedures"
     And I should see "Ischämie und Infarkt der Niere" in "diagnoses"
-    And show me the page
