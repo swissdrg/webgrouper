@@ -6,11 +6,18 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   caseArray = caseString.split(";")
   step %{I enter "#{caseArray[1]}" as age}
   step %{I enter "#{caseArray[3]}" as admission weight}
-  step %{I  "#{caseArray[4]}" as gender}
+  step %{I select "#{caseArray[4]}" as sex}
+  step %{I enter "#{caseArray[7]}" as los}
+  step %{I enter "#{caseArray[8]}" as hmv}
+  step %{I enter "#{caseArray[9]}" as diagnosis}
 end
 
 When /^I enter "([^"]*)" as age$/ do |age|
   step %{I fill in "webgrouper_patient_case_age" with "#{age}"}
+end
+
+When /^I enter "([^"]*)" as hmv$/ do |hmv|
+  step %{I fill in "webgrouper_patient_case_hmv" with "#{hmv}"}
 end
 
 When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
@@ -18,9 +25,9 @@ When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
 end
 
 #Takes M, F or U as Gender
-When /^I enter "([^"]*)" as gender$/ do |gender|
-  step %{I fill in "webgrouper_patient_case_gender" with 
-      "#{I18n.t('simple_form.options.webgrouper_patient_case.gender.' + gender)}"}
+When /^I select "([^"]*)" as sex$/ do |sex|
+  sexString = I18n.t('simple_form.options.webgrouper_patient_case.sex.' + sex)
+  step %{I select in "webgrouper_patient_case_sex" "#{sexString}"}
 end
 
 
@@ -94,4 +101,8 @@ end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
+end
+
+When /^(?:|I )select in "([^"]*)" "([^"]*)"$/ do |field, value|
+  select(value, :from => field)
 end
