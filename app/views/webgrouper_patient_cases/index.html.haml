@@ -89,6 +89,6 @@
             :method => :get
 = link_to t("help.show_help"), help_url, :class => 'button right', :method => :get
 - if @result.nil? || @result.getGst.nil?         
-  .spacer
+  .bottom-spacer
 - else  
   = render "result/main" 

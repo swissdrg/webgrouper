@@ -2,13 +2,37 @@ Given /^the form with initialized standard values$/ do
   visit "http://localhost:3000/de/webgrouper_patient_cases"
 end
 
-When /^I enter some random \(valid!\) data$/ do
-  step %{I fill in "webgrouper_patient_case_age" with "62"}
-  step %{I fill in "webgrouper_patient_case_pdx" with "R560"}
+When /^I parse "([^"]*)" as input for the form$/ do |caseString|
+  caseArray = caseString.split(";")
+  step %{I enter "#{caseArray[1]}" as age}
+  step %{I enter "#{caseArray[3]}" as admission weight}
+  step %{I select "#{caseArray[4]}" as sex}
+  step %{I enter "#{caseArray[7]}" as los}
+  step %{I enter "#{caseArray[8]}" as hmv}
+  step %{I enter "#{caseArray[9]}" as diagnosis}
+end
+
+When /^I enter "([^"]*)" as age$/ do |age|
+  step %{I fill in "webgrouper_patient_case_age" with "#{age}"}
+end
+
+When /^I enter "([^"]*)" as hmv$/ do |hmv|
+  step %{I fill in "webgrouper_patient_case_hmv" with "#{hmv}"}
 end
 
 When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
   step %{I fill in "webgrouper_patient_case_pdx" with "#{pdx}"}
+end
+
+#Takes M, F or U as Gender
+When /^I select "([^"]*)" as sex$/ do |sex|
+  sexString = I18n.t('simple_form.options.webgrouper_patient_case.sex.' + sex)
+  step %{I select in "webgrouper_patient_case_sex" "#{sexString}"}
+end
+
+
+When /^I enter "([^"]*)" as admission weight$/ do |adm_weight|
+  step %{I fill in "webgrouper_patient_case_adm_weight" with "#{adm_weight}"}
 end
 
 When /^I enter "([^"]*)" as secondary diagnosis$/ do |diag|
@@ -16,6 +40,7 @@ When /^I enter "([^"]*)" as secondary diagnosis$/ do |diag|
     step %{fill in "webgrouper_patient_case_diagnoses_#{field}" with "#{diag}"}
   end
 end
+
 
 When /^I enter "([^"]*)" as procedure$/ do |proc|
   step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
@@ -49,6 +74,12 @@ Then /^the result should be shown$/ do
   step %{I should see "0" in "grouping"}
 end
 
+When /^I enter some random \(valid!\) data$/ do
+  step %{I enter "32" as age}
+  step %{I enter "B36.1" as diagnosis}
+end
+
+
 Then /^the form should stay the same$/ do
   
   
@@ -76,4 +107,8 @@ end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
+end
+
+When /^(?:|I )select in "([^"]*)" "([^"]*)"$/ do |field, value|
+  select(value, :from => field)
 end
