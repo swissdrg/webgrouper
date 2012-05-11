@@ -81,8 +81,10 @@ function disableLosInput(doDisable) {
 function disableAgeInput(doDisable) {
 	if (doDisable) {
 		$('#webgrouper_patient_case_age').prop('readonly', 'readonly');
+		$('#webgrouper_patient_case_age_mode').prop('disabled', true);
 	} else {
-		$('#webgrouper_patient_case_age_mode').prop('readonly', false);
+		$('#webgrouper_patient_case_age').prop('readonly', false);
+		$('#webgrouper_patient_case_age_mode').prop('disabled', false);
 	}
 }
 function parseDate(str) {

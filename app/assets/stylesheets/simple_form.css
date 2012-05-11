@@ -25,6 +25,10 @@
 	width: 11em;
 }
 
+.spacer {
+	width: 30px;
+}
+
 #drg-proc input.small_field {
 	width: 75px;
 }
@@ -35,6 +39,10 @@
 
 input:disabled, input[readonly] {
 	background-color: #ccc;
+}
+
+.spacer span {
+	width: 10px;
 }
 
 select#webgrouper_patient_case_age_mode {
