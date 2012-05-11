@@ -4,12 +4,25 @@ end
 
 When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   caseArray = caseString.split(";")
-  step %{I enter "#{caseArray[1]}" as age}
-  step %{I enter "#{caseArray[3]}" as admission weight}
+  if (!caseArray[1].blank?)
+    step %{I enter "#{caseArray[1]}" as age}
+    step %{I select "years" as age mode}
+  else
+    step %{I enter "#{caseArray[2]}" as age}
+    step %{I select "days" as age mode}
+    step %{I enter "#{caseArray[3]}" as admission weight}
+  end
   step %{I select "#{caseArray[4]}" as sex}
   step %{I enter "#{caseArray[7]}" as los}
   step %{I enter "#{caseArray[8]}" as hmv}
   step %{I enter "#{caseArray[9]}" as diagnosis}
+  step %{I enter "#{caseArray[10]}" as secondary diagnosis}
+  step %{I submit the form}
+end
+
+When /^I select "([^"]*)" as age mode$/ do |age_mode|
+  age_mode_string = I18n.t('simple_form.options.webgrouper_patient_case.age_mode.' + age_mode)
+  step %{I select in "webgrouper_patient_case_age_mode" "#{age_mode_string}"}
 end
 
 When /^I enter "([^"]*)" as age$/ do |age|
@@ -36,9 +49,9 @@ When /^I enter "([^"]*)" as admission weight$/ do |adm_weight|
 end
 
 When /^I enter "([^"]*)" as secondary diagnosis$/ do |diag|
-  (0..4).each do |field|
-    step %{fill in "webgrouper_patient_case_diagnoses_#{field}" with "#{diag}"}
-  end
+  #(0..4).each do |field|
+    step %{fill in "webgrouper_patient_case_diagnoses_0" with "#{diag}"}
+  #end
 end
 
 
@@ -69,8 +82,6 @@ Then /^the grouping should succeed$/ do
 end
 
 Then /^the result should be shown$/ do
-  step %{I should see "B75B" in "grouping"}
-  step %{I should see "01" in "grouping"}
   step %{I should see "0" in "grouping"}
 end
 
@@ -111,4 +122,8 @@ end
 
 When /^(?:|I )select in "([^"]*)" "([^"]*)"$/ do |field, value|
   select(value, :from => field)
+end
+
+When /^I submit the form$/ do
+  step %{I press on "Fall Gruppieren"}
 end
