@@ -11,6 +11,12 @@ When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
   step %{I fill in "webgrouper_patient_case_pdx" with "#{pdx}"}
 end
 
+When /^I enter "([^"]*)" as secondary diagnosis$/ do |diag|
+  (0..4).each do |field|
+    step %{fill in "webgrouper_patient_case_diagnoses_#{field}" with "#{diag}"}
+  end
+end
+
 When /^I enter "([^"]*)" as procedure$/ do |proc|
   step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
 end
