@@ -2,7 +2,7 @@ class OPS < ActiveRecord::Base
 	has_many :names, :class_name => "OPSName", :foreign_key => "OnFkOpID" 
 
 
-  default_scope lambda{where(:OpFkSyID => System.current_system.SyID)}
+  default_scope lambda{where(:OpFkSyID => System.current_system_id)}
 	
 	def OpName
 		system_language = I18n.locale.to_s.upcase

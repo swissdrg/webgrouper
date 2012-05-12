@@ -1,6 +1,6 @@
 class ICD < ActiveRecord::Base
 	has_many :names, :class_name => "ICDName", :foreign_key => "InFkIcID" 
-  default_scope lambda{where(:IcFKSyID => System.current_system.SyID)}
+  default_scope lambda{where(:IcFKSyID => System.current_system_id)}
 	
 	def IcName
 		system_language = I18n.locale.to_s.upcase
