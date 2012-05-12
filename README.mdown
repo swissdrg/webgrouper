@@ -73,4 +73,4 @@ Be aware, that jruby & the bundles must be installed/active for this.
 If you, for some reason, don't have the kernel on your machine, most of the cucumber tests will fail.
 You can still run some of them by entering:
   
-  bundle exec cucumber -ct @mac
+  	bundle exec cucumber -ct @mac
