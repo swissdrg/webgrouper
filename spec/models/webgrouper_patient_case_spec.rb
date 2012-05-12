@@ -40,6 +40,7 @@ describe WebgrouperPatientCase do
     
     it "should fail if no attributes are given" do
       patient_case = WebgrouperPatientCase.new
+      patient_case.manual_submission = true
       patient_case.should_not be_valid
     end
     
@@ -128,7 +129,7 @@ describe WebgrouperPatientCase do
     end
     
     it "should fail if one of the procedures is not registered in the webgrouper database" do
-      invalid_attr = @attr.merge(:procedures => { 0 => { 1 => "Invalid op", 2 => "bla", 3 => "bla" }, 1 => { 1 => "0001", 2 => "bla", 3 => "ginger" } })
+      invalid_attr = @attr.merge(:procedures => { 0 => { 0 => "Invalid op", 1 => "bla", 2 => "bla" }, 1 => { 0 => "0001", 1 => "bla", 2 => "ginger" } })
       patient_case = WebgrouperPatientCase.new(invalid_attr)
       patient_case.should_not be_valid
     end

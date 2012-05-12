@@ -1,6 +1,6 @@
 class DRG < ActiveRecord::Base
 	has_many :names, :class_name => "DRGName", :foreign_key => "DnFkDrID" 
-  default_scope lambda{where(:DrFKSyID => System.current_system.SyID)}
+  default_scope lambda{where(:DrFKSyID => System.current_system_id)}
 	
 	def DrName
 		system_language = I18n.locale.to_s.upcase
