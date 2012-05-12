@@ -90,7 +90,9 @@ class WebgrouperPatientCase < PatientCase
     end
     procedures
   end
- 	
+  
+  private
+
 	# convert a given ruby hash to a java array of fixed size
 	# either of size 99 (i.e. diagnoses) or 100 (i.e. procedures)
 	# and fill resulting java array with given inpuit which is stored in the arguemnt hash
@@ -114,8 +116,6 @@ class WebgrouperPatientCase < PatientCase
     (0..(tmp_java_array.size-1)).each {|i| java_array[i] = tmp_java_array[i]}
     java_array
   end
-  
-  private
 	
 	def fill_and_filter_java_array(hash, tmp_ruby_array)
 		hash.each do |tripple_key, tripple| 
