@@ -68,11 +68,17 @@ When /^I enter "([^"]*)" as procedure$/ do |proc|
   step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
 end
 
+When /^I add the maximum number of "([^"]*)" fields$/ do |kind|
+  while (page.has_selector?("a#add_#{kind}")) do
+    step %{I add more "#{kind}" fields}
+  end
+end
+
 When /^I enter the procedures (".+")$/ do |procedures|
   procedures = procedures.scan(/"([^"]+?)"/).flatten
   (0..procedures.count).each do |field_index|
-    step %{I add more "procedures" fields} if field_index != 0 && field_index % 5 == 0
-    step %{fill in "webgrouper_patient_case_procedures_#{field_index}" with "#{procedures[field_index]}"}
+    step %{I add more "procedures" fields} if field_index != 0 && field_index % 3 == 0
+    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_0" with "#{procedures[field_index]}"}
   end
 end
 
@@ -131,6 +137,26 @@ end
 
 Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
   find(:css, 'fieldset#grouping').should have_content?(text)
+end
+
+Then /^I should see (\d+) diagnoses fields$/ do |field_count|
+  field_count = field_count.to_i - 1
+  page.should have_css("#webgrouper_patient_case_diagnoses_#{field_count}")
+end
+
+Then /^I should not see (\d+) diagnoses fields$/ do |field_count|
+  field_count = field_count.to_i - 1
+  page.should_not have_css("#webgrouper_patient_case_diagnoses_#{field_count}")
+end
+
+Then /^I should see (\d+) procedures fields$/ do |field_count|
+  field_count = field_count.to_i - 1
+  page.should have_css("#webgrouper_patient_case_procedures_#{field_count}_0")
+end
+
+Then /^I should not see (\d+) procedures fields$/ do |field_count|
+  field_count = field_count.to_i - 1
+  page.should_not have_css("#webgrouper_patient_case_procedures_#{field_count}_0")
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|

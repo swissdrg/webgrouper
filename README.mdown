@@ -54,7 +54,7 @@ To run the cucumber tests, execute
 	
 	bundle exec cucumber -c
 
-in the project folder. Be aware, that jruby & the bundles must be installed/active for this.
+in the project folder. 
 
 ## Run tests
 
@@ -66,4 +66,11 @@ For rspec:
 
 For cucumber:
 
-	bundle exec cucumber
+	bundle exec cucumber -c
+	
+Be aware, that jruby & the bundles must be installed/active for this.
+
+If you, for some reason, don't have the kernel on your machine, most of the cucumber tests will fail.
+You can still run some of them by entering:
+  
+  bundle exec cucumber -ct @mac
