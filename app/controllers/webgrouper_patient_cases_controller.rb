@@ -37,11 +37,18 @@ class WebgrouperPatientCasesController < ApplicationController
     render 'index'
   end
   
+  def help
+  end
+  
+  def tos
+  end
+  
+  private
+  
   def get_supplements(patient_case)
     @supplement_procedures = {}
     @total_supplement_amount = 0
-    procs = patient_case.procedures
-    procs.each do |p|
+    patient_case.procedures.each do |p|
       p = p.match(/(\S*)\:(\w*)\:(\w*)/)[1]
       sup_op = SupplementOps.where(:ops => p).first
       unless sup_op.nil?
@@ -54,9 +61,5 @@ class WebgrouperPatientCasesController < ApplicationController
     end
   end
   
-  def help
-  end
   
-  def tos
-  end
 end
