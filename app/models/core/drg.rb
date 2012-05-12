@@ -13,4 +13,9 @@ class DRG < ActiveRecord::Base
     "drg"
   end
 
+	def self.reuptake_exception_for?(dr_code)
+		drg = DRG.find_by_DrCode dr_code
+		drg.exception_from_reuptake
+	end
+
 end
