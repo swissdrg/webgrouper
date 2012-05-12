@@ -26,6 +26,7 @@ class WebgrouperPatientCasesController < ApplicationController
   
   def group(patient_case)
 		current_system_id = System.current_system.SyID
+		get_supplements(patient_case)
 		GROUPER.load(spec_path(current_system_id))
 		@result = GROUPER.group(patient_case)
 		@weighting_relation = WebgrouperWeightingRelation.new(@result.getDrg, patient_case.house)
@@ -41,4 +42,24 @@ class WebgrouperPatientCasesController < ApplicationController
   
   def tos
   end
+  
+  private
+  
+  def get_supplements(patient_case)
+    @supplement_procedures = {}
+    @total_supplement_amount = 0
+    patient_case.procedures.each do |p|
+      p = p.match(/(\S*)\:(\w*)\:(\w*)/)[1]
+      sup_op = SupplementOps.where(:ops => p).first
+      unless sup_op.nil?
+        fee = sup_op.fee
+        supplement = Supplement.where(:fee => fee).first
+        amount = supplement.amount
+        @total_supplement_amount += amount
+        @supplement_procedures[p] = amount
+      end
+    end
+  end
+  
+  
 end
