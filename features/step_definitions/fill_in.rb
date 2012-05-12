@@ -48,15 +48,32 @@ When /^I enter "([^"]*)" as admission weight$/ do |adm_weight|
   step %{I fill in "webgrouper_patient_case_adm_weight" with "#{adm_weight}"}
 end
 
-When /^I enter "([^"]*)" as secondary diagnosis$/ do |diag|
-  #(0..4).each do |field|
-    step %{fill in "webgrouper_patient_case_diagnoses_0" with "#{diag}"}
-  #end
+When /^I enter "([^"]*)" as secondary diagnosis$/ do |diagnosis|
+  step %{fill in "webgrouper_patient_case_diagnoses_0" with "#{diagnosis}"}
 end
 
+When /^I enter the secondary diagnoses (".+")$/ do |diagnoses|
+  diagnoses = diagnoses.scan(/"([^"]+?)"/).flatten
+  (0..diagnoses.count).each do |field_index|
+    step %{I add more "diagnoses" fields} if field_index != 0 && field_index % 5 == 0
+    step %{fill in "webgrouper_patient_case_diagnoses_#{field_index}" with "#{diagnoses[field_index]}"}
+  end
+end
+
+When /^I add more "([^"]*)" fields$/ do |kind|
+  step %{I follow "add_#{kind}"}
+end
 
 When /^I enter "([^"]*)" as procedure$/ do |proc|
   step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
+end
+
+When /^I enter the procedures (".+")$/ do |procedures|
+  procedures = procedures.scan(/"([^"]+?)"/).flatten
+  (0..procedures.count).each do |field_index|
+    step %{I add more "procedures" fields} if field_index != 0 && field_index % 5 == 0
+    step %{fill in "webgrouper_patient_case_procedures_#{field_index}" with "#{procedures[field_index]}"}
+  end
 end
 
 
@@ -69,11 +86,11 @@ When /^I enter Transfered \(los more than 24 hours\) as admission mode$/ do
          :from => 'webgrouper_patient_case_adm')
 end
 
-When /^I press on "([^\"]*)"$/ do |button|
+When /^I press on "([^"]*)"$/ do |button|
   click_button(button)
 end
 
-When /^I follow "([^\"]*)"$/ do |link|
+When /^I follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 

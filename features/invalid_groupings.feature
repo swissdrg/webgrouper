@@ -21,6 +21,15 @@ Feature: Grouping a valid patient case should return right results
     When I enter "foo" as secondary diagnosis
     And I press on "Fall Gruppieren"
     Then I should see "Nebendiagnosen: foo invalid"
+    
+    
+  @debug @mac @javascript
+  Scenario: Submit the form with invalid secondary diagnoses
+    Given the form with initialized standard values
+    When I enter the secondary diagnoses "foo", "bar", "bat", "dani", "randy", "test", "hallo", "yeeah"
+    And I press on "Fall Gruppieren"
+    Then I should see "Nebendiagnosen: foo invalid"
+    And I should see "Nebendiagnosen: bar invalid"
   
   
   
