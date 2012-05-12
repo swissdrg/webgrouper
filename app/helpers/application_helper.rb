@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def link_to_remove_fields(name, kind)
-    link_to_function(image_tag(name), "remove_fields(\"#{kind}\")")
+    link_to_function(image_tag(name), "remove_fields(\"#{kind}\")", :id => "remove_#{kind}")
   end
     
   def row(kind)

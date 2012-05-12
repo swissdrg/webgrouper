@@ -7,8 +7,8 @@ Feature: Enterin Simones data should work
     Given the form with initialized standard values
     When I enter "N28.0" as diagnosis
     And I enter "38.36.15" as procedure
-    And I press on "Fall Gruppieren"
 
+    And I press on "Fall Gruppieren"
     Then the grouping should succeed
     And I should see "11" in "grouping"
     And I should see "Andere Eingriffe bei Erkrankungen der Harnorgane, Alter > 1 Jahr, ohne äusserst schwere CC" in "grouping"

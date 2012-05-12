@@ -1,16 +1,23 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+/**
+ * Initializer & general stuff for the form is here in this file
+ */
 $(document).ready(function() {
 	initializeDatePickers();
+	initializeForm();
 	admWeightControl(0);
 	initializeAutocomplete();
 	goToResult();
 });
 
-$("#system_SyID").live("change keyup", function () {
+$("#system_SyID").live("change", function () {
 	this.form.submit();
 });
 
+function initializeForm() {
+	$(".numeric").numeric({ negative : false });
+	computeAge();
+	computeLos();
+}
 /**
  * This method binds an alternative update method to every autocomplete field, so that
  * only the code itself is put into the field.
