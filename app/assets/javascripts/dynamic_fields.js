@@ -170,9 +170,9 @@ function append_field_row (kind, field_row, field_count) {
  * Removes the buttons from all field_rows and then appends the correct buttons behind the previously added field_row.
  * If the affected field_row is the first row of this kind, only the add_button will be appended.
  * If the affected field_row is the highest field_row of this kind, only the remove_button will be appended.
- * The highest field_row is defined in #max_fields.
+ * The highest number of rows is defined in #max_rows.
  * @param kind the kind of fields to append the buttons to (diagnoses/procedures).
- * @see min_fields(), max_fields()
+ * @see min_fields(), max_rows()
 */
 function add_buttons(kind) {
 	var field_count = get_field_count(kind);
@@ -181,7 +181,7 @@ function add_buttons(kind) {
 	// remove all add-/remove buttons for this kind of fields
 	$("#"+kind+" > .sameline > ."+kind+"_buttons").empty();
 	
-	if (field_count < max_fields(kind)) {
+	if (field_count/fields_per_row(kind) < max_rows(kind)) {
 		$("#"+kind+" > .sameline:last > ."+kind+"_buttons").append(add_button);
 	};
 	if (field_count > min_fields(kind)) {
@@ -298,8 +298,12 @@ function get_remove_button(kind) {
  * @param kind the kind of fields (diagnoses/procedures).
  * @return the maximal allowed number of fields per kind.
 */
-function max_fields (kind) {
-	return (kind == "diagnoses") ? 99 : 100;
+function max_rows (kind) {
+	return (kind == "diagnoses") ? 19 : 33;
+}
+
+function fields_per_row (kind) {
+	return (kind == "diagnoses") ? 5 : 3
 }
 
 /**
