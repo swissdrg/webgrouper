@@ -1,7 +1,6 @@
 class OPS < ActiveRecord::Base
 	has_many :names, :class_name => "OPSName", :foreign_key => "OnFkOpID" 
-	has_many :supplements, :through => :supplement_ops, :foreign_key => "ops"
-	has_many :supplement_ops
+
 
   default_scope lambda{where(:OpFkSyID => System.current_system.SyID)}
 	
