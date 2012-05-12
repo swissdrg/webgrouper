@@ -25,6 +25,10 @@
 	width: 11em;
 }
 
+.spacer {
+	width: 30px;
+}
+
 #drg-proc input.small_field {
 	width: 75px;
 }
@@ -33,8 +37,12 @@
 	width: 20px;
 }
 
-input:disabled {
+input:disabled, input[readonly] {
 	background-color: #ccc;
+}
+
+.spacer span {
+	width: 10px;
 }
 
 select#webgrouper_patient_case_age_mode {
@@ -63,6 +71,10 @@ select#webgrouper_patient_case_age_mode {
 
 .simple_form input {
 	margin: 5px 0;
+}
+
+.simple_form :focus {
+	border-color: #000000;
 }
 
 input[type='submit'] {
