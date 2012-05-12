@@ -5,7 +5,6 @@ Feature: Enterin Simones data should work
   @javascript
   Scenario: A random valid patient case
     Given the form with initialized standard values
-
     When I enter "N28.0" as diagnosis
     And I enter "38.36.15" as procedure
 
@@ -18,3 +17,5 @@ Feature: Enterin Simones data should work
     And I should see "N28.0" in "diagnoses"
     And I should see "38.36.15" in "procedures"
     And I should see "Ischämie und Infarkt der Niere" in "diagnoses"
+		And I click_link on "add_diagnoses"    
+		And show me the page

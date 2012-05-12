@@ -90,6 +90,11 @@ tbody tr#pdx {
 	/*background: #e5ecf9; */
 	background: #a7bfeb;
 }
+
+table {
+	margin: 0;
+}
+
 /*
  * Various fieldsets:
  */
