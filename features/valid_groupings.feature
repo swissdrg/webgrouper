@@ -33,7 +33,7 @@ Feature: Grouping a valid patient case should return right results
     And I enter "40" as los
     And I press on "Fall Gruppieren"
 
-    And the grouping should succeed
+    Then the grouping should succeed
     And I should see "21B" in "grouping"
     And I should see "X60Z" in "grouping"
     And I should see "0" in "grouping"
@@ -43,3 +43,14 @@ Feature: Grouping a valid patient case should return right results
     And I should see "0.09" in "cost-weight"
     And I should see "Penisfraktur" in "diagnoses"
     And I should see "S39.80" in "diagnoses"
+    
+  @javascript
+  Scenario: Autocomplete should find right things
+  	Given the form with initialized standard values
+  	
+  	When I enter "rand" as diagnosis
+  	And I choose "Hautmilzbrand" in the autocomplete list
+  	And I submit the form
+  	
+  	Then the grouping should succeed
+  	And I should see "A22.0" in "diagnoses"
