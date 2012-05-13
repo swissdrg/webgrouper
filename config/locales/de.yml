@@ -74,7 +74,13 @@ de:
           SRG: Weder OR noch NOR Prozedur
           SRG_CONFLICT: 
           SRG_CONFLICT_CHOP: 
-          SRG_CONFLICT_CHOP_DATE: 
+          SRG_CONFLICT_CHOP_DATE:
+    settlement_hints: 
+      legend: Hinweise für die Abrechnung
+      no_additional_fees: Keine Zusatzentgelte
+      additional_fees: 'Zusatzentgelte:'
+      reuptake_hint: Die DRG %{drg} ist von einer Fallzusammenführung bei Wiederaufnahme ausgeschlossen.
+      
     length-of-stay:
       legend: Verweildauer
       length-of-stay: Aktuelle Verweildauer
