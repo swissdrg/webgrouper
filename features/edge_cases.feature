@@ -12,4 +12,14 @@ Feature: The edge cases should be handled correctly
   	When I enter "Q28.81" as diagnosis
   	And I enter "30" as hmv
   	And I submit the form
-  	Then I should see something about reuptake
+  	Then I should see "Die DRG F43C ist von einer Fallzusammenführung bei Wiederaufnahme ausgeschlossen." in "settlement_hints"
+  
+  @javascript @unfinished 
+  Scenario: Case for additional fee
+  	Given the form with initialized standard values
+  	When I enter "B72" as diagnosis
+  	And I enter "39.95.21" as procedure
+  	And I submit the form
+  	Then I should see "Hämodialyse, Hämodiafiltration, Hämofiltration, intermittierend" in "settlement_hints"
+  	And I should see "ZE01-2012" in "settlement_hints"
+  	And I should see "39.95.21" in "settlement_hints"
