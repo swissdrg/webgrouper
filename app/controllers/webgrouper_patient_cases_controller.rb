@@ -55,10 +55,9 @@ class WebgrouperPatientCasesController < ApplicationController
         fee = sup_op.fee
         supplement = Supplement.where(:fee => fee).first
         amount = supplement.amount
-		description = supplement.description
+	     	description = supplement.description
         @total_supplement_amount += amount
-		data = {}
-		data[fee] = [description,amount]		
+		    data = {:fee => fee, :description => description, :amount => amount}	
         @supplement_procedures[p] = data
       end
     end

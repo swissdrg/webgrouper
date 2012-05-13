@@ -8,9 +8,9 @@
             = t("result.settlement_hints.no_additional_fees")
           - else
             = t("result.settlement_hints.additional_fees")
-      - @supplement_procedures.each do |ops_code, amount|
-        - fee = SupplementOps.find_by_ops(ops_code).fee
-        - description = Supplement.find_by_fee(fee).description
+      - @supplement_procedures.each do |ops_code, data|
+        - fee = data[:fee]
+        - description = data[:description]
         %tr
           %td
             %strong
