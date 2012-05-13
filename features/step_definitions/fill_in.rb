@@ -60,6 +60,20 @@ When /^I enter the secondary diagnoses (".+")$/ do |diagnoses|
   end
 end
 
+When /^I enter the secondary diagnoses "([^"]*)" (\d+) times$/ do |code, count|
+  (0..count.to_i - 1).each do |field_index|
+    step %{I add more "diagnoses" fields} if field_index != 0 && field_index % 5 == 0
+    step %{fill in "webgrouper_patient_case_diagnoses_#{field_index}" with "#{code}"}
+  end
+end
+
+When /^I enter the procedures "([^"]*)" (\d+) times$/ do |code, count|
+  (0..(count.to_i - 1)).each do |field_index|
+    step %{I add more "procedures" fields} if field_index != 0 && field_index % 3 == 0
+    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_0" with "#{code}"}
+  end
+end
+
 When /^I add more "([^"]*)" fields$/ do |kind|
   step %{I follow "add_#{kind}"}
 end
@@ -101,7 +115,7 @@ When /^I follow "([^"]*)"$/ do |link|
 end
 
 Then /^the grouping should succeed$/ do
-  page.should_not have_content "Fehler"
+  page.should_not have_selector('.errorflash')
 end
 
 Then /^the result should be shown$/ do
