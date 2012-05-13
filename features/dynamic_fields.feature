@@ -15,23 +15,31 @@ Feature: Users can add and remove fields for secondary diagnoses and procedures 
   When I follow "add_procedures"
   Then I should see 6 procedures fields
   
-  @debug @mac @javascript
-  Scenario: I can add 99 diagnoses fields in total
+  @mac @javascript
+  Scenario: I can add less than 100 diagnoses fields in total
     Given the form with initialized standard values
     When I add the maximum number of "diagnoses" fields
     And I should not see 100 diagnoses fields
   
-  @debug @mac @javascript
-  Scenario: I can add 98 procedures fields in total
+  @mac @javascript
+  Scenario: I can add less than 101 procedures fields in total
     Given the form with initialized standard values
     When I add the maximum number of "procedures" fields
     And I should not see 101 procedures fields
   
-  
-  
-  
-  
-  
-  
-  
-  
+    @mac @javascript
+    Scenario: I can enter up to 94 diagnoses
+      Given the form with initialized standard values
+      When I enter "A000" as diagnosis
+      And I enter the secondary diagnoses "A000" 95 times
+      And I press on "Fall Gruppieren"
+      Then the grouping should succeed
+      
+  @debug @mac @javascript
+  Scenario: I can enter up to 99 procedures
+    Given the form with initialized standard values
+    When I enter "A000" as diagnosis
+    And I enter the procedures "00.01" 99 times
+    And I press on "Fall Gruppieren"
+    Then the grouping should succeed
+    
