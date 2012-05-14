@@ -57,9 +57,19 @@ class WebgrouperPatientCasesController < ApplicationController
         amount = supplement.amount
 	     	description = supplement.description
         @total_supplement_amount += amount
-		    data = {:fee => fee, :description => description, :amount => amount}	
-        @supplement_procedures[p] = data
+				
+				# count how many times the same proc appeared with same fee.
+				default_proc_count = 1
+				if @supplement_procedures[p].nil?
+					data = {:fee => fee, :description => description, :amount => amount, :proc_count => default_proc_count}	
+			  	@supplement_procedures[p] = data			
+				else
+					new_proc_count = @supplement_procedures[p][:proc_count] + 1
+					@supplement_procedures[p][:proc_count] = new_proc_count
+				end				
+        
       end
+			puts "AAAAA number " + @supplement_procedures.values.to_s + "\n"
     end
   end
   
