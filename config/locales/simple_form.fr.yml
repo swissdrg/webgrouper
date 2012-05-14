@@ -45,12 +45,11 @@ fr:
           days: 'Jours'
     # Labels
     labels:
-      system:
+      webgrouper_patient_case:
         active_grouper: 'Grouper:'
         house: 'Prestataire:'
         diagnoses_catalog: 'Catalogue des diagnostics:'
         procedures_catalog: 'Catalogue des procédures:'
-      webgrouper_patient_case:
         entry_date: "Date d'admission:"
         exit_date: 'Date of discharge:'
         birth_date: 'Date de naissance:'
