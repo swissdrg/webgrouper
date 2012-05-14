@@ -7,7 +7,7 @@ module ActAsValidGrouperQuery
     base.extend ActiveModel::Translation
     base.send :include, ActiveModel::Validations
     base.send :include, ActiveModel::Conversion
-
+    
     base.validates      :sex,             :presence => true
     base.validates_date :entry_date,      :on_or_before => :today, :allow_blank => true
     base.validates_date :exit_date,       :on_or_before => :today, :after => :entry_date, :allow_blank => true
@@ -26,7 +26,7 @@ module ActAsValidGrouperQuery
     # Artificial respiration time
     base.validates      :hmv,             :numericality => { :only_integer => true, :greater_than_or_equal_to => 0 }
     # Main diagnosis
-    base.validates      :pdx,             :presence => true, :existing_icd => true, :if => lambda{ |wpc| wpc.manual_submission || !wpc.pdx.blank?}
+    base.validates      :pdx,             :presence => true, :existing_icd => true, :if => lambda{ |wpc| wpc.manual_submission || !wpc.pdx.blank? || !wpc.diagnoses.blank? || !wpc.procedures.blank? }
     base.validates      :diagnoses,       :existing_icd => true
     base.validates      :procedures,      :existing_ops => true
   end
