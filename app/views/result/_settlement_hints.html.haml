@@ -16,7 +16,7 @@
             %strong
               = fee + ": "
             = description
-            = " (" + ops_code + ")"
+            = " (" + ops_code + ") " + "["+data[:proc_count].to_s+"]"
       - if DRG.reuptake_exception_for?(@result.drg)
         %tr
           %th
