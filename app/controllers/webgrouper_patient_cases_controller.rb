@@ -37,15 +37,6 @@ class WebgrouperPatientCasesController < ApplicationController
     render 'index'
   end
   
-  def help
-  end
-  
-  def tos
-  end
-  
-  def about
-  end
-  
   private
   
 	# creates the a hash which contains, if there are any, procedures relevant for zusatzentgelte

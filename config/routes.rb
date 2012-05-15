@@ -5,10 +5,10 @@ Webgrouper::Application.routes.draw do
       get :autocomplete_ICD_IcCode, :on => :collection
       get :autocomplete_OPS_OpCode, :on => :collection
     end
-    get 'help' => 'webgrouper_patient_cases#help'
     get 'create_query'  => 'webgrouper_patient_cases#create_query'
-    get 'tos' => 'webgrouper_patient_cases#tos'
-    get 'about' => 'webgrouper_patient_cases#about'
+    get 'help' => 'static_pages#help'
+    get 'tos' => 'static_pages#tos'
+    get 'about' => 'static_pages#about'
   end
   
   # This is for testing only and can be removed later on:
