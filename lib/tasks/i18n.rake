@@ -32,11 +32,14 @@ namespace :locales do
       end
       
       original = File.read(ORIGINAL_PATH).split("\n").map{|i|i.split('=')}
+      original.invert
       puts original
       #puts master[master_language_code]
-      #master[master_language_code].each do |key, value|
-       # puts "#{key} \n #{value}"
-      #end
+      master[master_language_code].each do |key, value|
+        if original.has_key?(value)
+          newHash[key]
+        end
+      end
       merged = master[master_language_code].deep_merge(slave[language_code])
       final = { language_code => merged } # remove other keys
       File.open(file_name, 'w') do |file|
