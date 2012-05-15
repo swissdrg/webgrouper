@@ -1,6 +1,11 @@
 /*
- * Todo: some useful css
+ * Contains all css concerning the terms of service page
  */
 .important {
 	margin-bottom: 10px;
+	padding: 8px;
+	border: 1px solid;
+	background-color: #DDD;
+	/*font-variant: small-caps; */
+	/* TODO: Kapitälchen */
 }
