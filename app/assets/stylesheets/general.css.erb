@@ -1,0 +1,63 @@
+/**
+ * 	Everything that doesn't belong to a single page of the grouper belongs here
+ */
+body {
+	background: white url(<%= asset_data_uri "fading_background_7.png" %>) top;
+	background-repeat: repeat-x;
+}
+
+/**
+ * 	Highlights links/input fields on tabing
+ */
+a:focus img, a:focus img {
+	border: 1px solid #000000;
+}
+
+.container {
+	background: white;
+}
+
+.bottom-spacer {
+	height: 150px;
+}
+
+.container {
+	margin-bottom: 30px;
+	width: 980px;
+}
+
+/* 	Has to be logo-image-height + 1 */
+.header {
+	padding: 10px;
+	height: 94px;
+	position: relative;
+}
+
+.logo, .locales {
+	position: absolute;
+	top: 10px;
+}
+
+.logo {
+	right: 0;
+}
+
+.locales {
+	right: 290px;
+}
+
+.locales li {
+	list-style: none;
+	display: inline;
+	text-align: right;
+}
+.sameline * {
+	display: inline;
+}
+
+/**
+ * 	Scrollbar always enabled
+ */
+html {
+	overflow-y: scroll;
+}
