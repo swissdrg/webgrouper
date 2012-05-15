@@ -8,6 +8,7 @@ Webgrouper::Application.routes.draw do
     get 'help' => 'webgrouper_patient_cases#help'
     get 'create_query'  => 'webgrouper_patient_cases#create_query'
     get 'tos' => 'webgrouper_patient_cases#tos'
+    get 'about' => 'webgrouper_patient_cases#about'
   end
   
   # This is for testing only and can be removed later on:
