@@ -15,8 +15,8 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
     step %{I enter "#{caseArray[3]}" as admission weight}
   end
   step %{I select "#{caseArray[4]}" as sex}
-  #todo: adm_mode 5
-  #todo: sep_mode 6
+  step %{I select "#{caseArray[5]}" as adm mode}
+  step %{I select "#{caseArray[6]}" as sep mode}
   step %{I enter "#{caseArray[7]}" as los}
   #todo: same_day flag: 8
   step %{I enter "#{caseArray[9]}" as hmv}
@@ -31,6 +31,24 @@ end
 When /^I select "([^"]*)" as age mode$/ do |age_mode|
   age_mode_string = I18n.t('simple_form.options.webgrouper_patient_case.age_mode_decoy.' + age_mode)
   step %{I select in "webgrouper_patient_case_age_mode_decoy" "#{age_mode_string}"}
+end
+
+When /^I select "([^"]*)" as sep mode$/ do |sep|
+  #fix for string parsing:
+  if sep.eql? "01"
+    sep = "00"
+  end
+  string = I18n.t('simple_form.options.webgrouper_patient_case.sep.sep' + sep)
+  step %{I select in "webgrouper_patient_case_sep" "#{string}"}
+end
+
+When /^I select "([^"]*)" as adm mode$/ do |adm|
+  #fix for string parsing:
+  if adm.eql? "01"
+    adm = "00"
+  end
+  string = I18n.t('simple_form.options.webgrouper_patient_case.adm.adm' + adm)
+  step %{I select in "webgrouper_patient_case_adm" "#{string}"}
 end
 
 When /^I enter "([^"]*)" as age$/ do |age|
