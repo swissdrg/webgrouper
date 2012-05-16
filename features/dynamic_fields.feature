@@ -35,7 +35,7 @@ Feature: Users can add and remove fields for secondary diagnoses and procedures 
       And I press on "Fall Gruppieren"
       Then the grouping should succeed
       
-  @debug @mac @javascript
+  @mac @javascript
   Scenario: I can enter up to 99 procedures
     Given the form with initialized standard values
     When I enter "A000" as diagnosis
@@ -43,3 +43,13 @@ Feature: Users can add and remove fields for secondary diagnoses and procedures 
     And I press on "Fall Gruppieren"
     Then the grouping should succeed
     
+  @mac @javascript @debug
+  Scenario: I can fill in procedures with Seitigkeit and date
+    Given the form with initialized standard values
+    When I enter "A000" as diagnosis
+    And I enter the procedures with seitigkeit and date "0001:L:12.12.2012", "0001:L:12.12.2012", "0001:L:12.12.2012", "0001:L:12.12.2012"
+    And I press on "Fall Gruppieren"
+    Then the grouping should succeed
+  
+  
+  
