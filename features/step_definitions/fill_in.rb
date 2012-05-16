@@ -6,7 +6,7 @@ end
 # Needs the @javascript annotation
 When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   caseArray = caseString.split(";")
-  if (!caseArray[1].blank?)
+  if (!caseArray[1].blank? && !(caseArray[1].eql? "0"))
     step %{I enter "#{caseArray[1]}" as age}
     step %{I select "years" as age mode}
   else
@@ -15,10 +15,13 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
     step %{I enter "#{caseArray[3]}" as admission weight}
   end
   step %{I select "#{caseArray[4]}" as sex}
+  #todo: adm_mode 5
+  #todo: sep_mode 6
   step %{I enter "#{caseArray[7]}" as los}
-  step %{I enter "#{caseArray[8]}" as hmv}
-  step %{I enter "#{caseArray[9]}" as diagnosis}
-  step %{I enter "#{caseArray[10]}" as secondary diagnosis}
+  #todo: same_day flag: 8
+  step %{I enter "#{caseArray[9]}" as hmv}
+  step %{I enter "#{caseArray[10]}" as diagnosis}
+  step %{I enter "#{caseArray[11]}" as secondary diagnosis}
   if caseArray.size > 108
     step %{I enter the procedures "#{caseArray[110]}", "#{caseArray[111]}"}
   end
@@ -188,4 +191,8 @@ end
 
 When /^I submit the form$/ do
   step %{I press on "Fall Gruppieren"}
+end
+
+When /^I wait (\d+) seconds?$/ do |seconds|
+  sleep seconds.to_i
 end
