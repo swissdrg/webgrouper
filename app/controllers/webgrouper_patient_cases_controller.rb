@@ -37,19 +37,21 @@ class WebgrouperPatientCasesController < ApplicationController
     render 'index'
   end
   
-  def help
-  end
-  
-  def tos
-  end
-  
   private
   
+	# creates the a hash which contains, if there are any, procedures relevant for zusatzentgelte
+	# the hash contains the appropriate fee, description, amount of the fee, and the number of apperiances
+	# of the same procedure which entered the user as values and as key a procedure code.
+	# futhermore this method calculates also the total supplement amount (summed up). 
   def get_supplements(patient_case)
     @supplement_procedures = {}
     @total_supplement_amount = 0
     patient_case.procedures.each do |p|
+			# cleanup: we just want the procedure code (no seitigkeit or date)
       p = p.match(/(\S*)\:(\w*)\:(\w*)/)[1]
+			
+			# if there is an a row in supplementops which has a column equals the given procedure value
+			# prepare hash for a new value
       sup_op = SupplementOps.where(:ops => p).first
       unless sup_op.nil?
         fee = sup_op.fee
@@ -57,8 +59,17 @@ class WebgrouperPatientCasesController < ApplicationController
         amount = supplement.amount
 	     	description = supplement.description
         @total_supplement_amount += amount
-		    data = {:fee => fee, :description => description, :amount => amount}	
-        @supplement_procedures[p] = data
+				
+				# count how many times the same proc appeared with same fee.
+				default_proc_count = 1
+				if @supplement_procedures[p].nil?
+					data = {:fee => fee, :description => description, :amount => amount, :proc_count => default_proc_count}	
+			  	@supplement_procedures[p] = data			
+				else
+					new_proc_count = @supplement_procedures[p][:proc_count] + 1
+					@supplement_procedures[p][:proc_count] = new_proc_count
+				end				
+        
       end
     end
   end
