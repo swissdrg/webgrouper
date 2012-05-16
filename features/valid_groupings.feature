@@ -55,7 +55,7 @@ Feature: Grouping a valid patient case should return right results
   	Then the grouping should succeed
   	And I should see "A22.0" in "diagnoses"
   	
-  @javascript @critical
+  @javascript
   Scenario: Changing age should have an effect
   	Given the form with initialized standard values
   	
