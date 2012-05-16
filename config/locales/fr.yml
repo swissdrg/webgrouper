@@ -26,61 +26,9 @@ fr:
         INVALID_SEX: Sexe non valable
         INVALID_AGE: Âge non valable
         INVALID_ADMWEIGHT: Poids à l'admission non valable
-    cost-weight:
-      legend: Kostengewicht
-      baserate: Basiskostengewicht
-      effective-cost-weight: Effektives Kostengewicht
-      surcharge-rate-per-day: Zuschlagssatz pro Tag
-      discount-rate-per-day: Abschlagssatz pro Tag
-      number_of_days_for_surcharge: Anzahl zuschlagspflichtige Tage
-      number_of_days_for_discount: Anzahl abschlagspflichtige Tage
-      no_days_for_discount_or_surcharge: Keine Tage sind zu- oder abschlagspflichtig
-    diagnoses:
-      legend: Diagnosen
-      used: Benutzt
-      valid: Gültigkeit
-      CCL: CCL
-      diagnosis_flag:
-        used:
-          false_string: Nein
-          true_string: Ja
-        valid:
-          AGE_CONFLICT: Konflikt mit Alter
-          ALREADY_IN_PDX: Bereits als Hauptdiagnose vermerkt
-          INVALID_DIAGNOSIS: Ungültiger ICD-Code
-          SEX_CONFLICT: Konflikt mit Geschlecht
-          VALID_DIAGNOSIS: Gültige Diagnose
-    procedures:
-      legend: Prozeduren
-      or-nor: OR/NOR
-      procedure_flag:
-        used:
-          PROC_NOT_USED: Nein
-          PROC_USED: Ja, ohne logische und temporäre Konditionen
-          USED_BOTH: Ja, für beide
-          USED_FOR_CONDITION:
-        valid:
-          PROC_VALID: Gültige Prozedur
-          PROC_AGE_CONFLICT: Konflikt mit Alter
-          PROC_INVALID: Ungültiger CHOP-Code
-          PROC_SEX_CONFLICT: Konflikt mit Geschlecht
-          VALID_DIAGNOSIS: Gültige Prozedur
-          UNUSED: Nicht benutzt
-        or-nor:
-          NONOR: Nicht operationale Prozedur
-          NONOR_CONFLICT: 
-          NONOR_CONFLICT_CHOP: 
-          NONOR_CONFLICT_CHOP_DATE: 
-          OR: Operationale Prozedur
-          OR_CONFLICT: 
-          OR_CONFLICT_CHOP_DATE: 
-          SRG: Weder OR noch NOR Prozedur
-          SRG_CONFLICT: 
-          SRG_CONFLICT_CHOP: 
-          SRG_CONFLICT_CHOP_DATE:
     settlement_hints: 
       legend: Note explicative pour la facturation
-      no_additional_fees: TODO
+      no_additional_fees:
       additional_fees: 'Rémunération supplémentaire: '
       reuptake_hint: Le regroupement de cas du DRG %{drg} est exclu lors d'une réadmission.
   date:
