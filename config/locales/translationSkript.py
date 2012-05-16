@@ -38,7 +38,7 @@ def main():
 	print "loaded german yml file"
 	languages = ["fr", "it", "en"]
 	initSwissdrgDicts()
-	
+	print swissdrg_dict
 	for lang in languages:
 		lang_yml = yaml.load(open(lang + ".yml"))
 		addMissingKeys(de_yml["de"], lang_yml[lang], lang)
