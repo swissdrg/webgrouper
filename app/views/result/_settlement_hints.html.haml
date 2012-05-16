@@ -8,15 +8,20 @@
             = t("result.settlement_hints.no_additional_fees")
           - else
             = t("result.settlement_hints.additional_fees")
+            %th
+              = t("result.settlement_hints.count")
       - @supplement_procedures.each do |ops_code, data|
         - fee = data[:fee]
         - description = data[:description]
+        - count = data[:proc_count]
         %tr
           %td
             %strong
               = fee + ": "
             = description
-            = " (" + ops_code + ")"
+            = " (" + ops_code + ") "
+          %td
+            = count.to_s
       - if DRG.reuptake_exception_for?(@result.drg)
         %tr
           %th
