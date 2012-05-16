@@ -67,10 +67,13 @@ function computeAge() {
  * @param boolean doDisable
  */
 function disableLosInput(doDisable) {
+	var tooltip = '<%= I18n.t("simple_form.hints.webgrouper_patient_case.disabled_los")%>';
 	if (doDisable) {
 		$('#webgrouper_patient_case_los').prop('readonly', 'readonly');
+		$('#webgrouper_patient_case_los').prop('title', tooltip);
 	} else {
 		$('#webgrouper_patient_case_los').prop('readonly', false);
+		$('#webgrouper_patient_case_los').prop('title', "");
 	}
 }
 
@@ -80,11 +83,16 @@ function disableLosInput(doDisable) {
  */
 function disableAgeInput(doDisable) {
 	if (doDisable) {
+		var tooltip = '<%= I18n.t("simple_form.hints.webgrouper_patient_case.disabled_age")%>';
 		$('#webgrouper_patient_case_age').prop('readonly', 'readonly');
+		$('#webgrouper_patient_case_age').prop('title', tooltip);
 		$('#webgrouper_patient_case_age_mode').prop('disabled', true);
+		$('#webgrouper_patient_case_age_mode').prop('title', tooltip);
 	} else {
 		$('#webgrouper_patient_case_age').prop('readonly', false);
+		$('#webgrouper_patient_case_age').prop('title', "");
 		$('#webgrouper_patient_case_age_mode').prop('disabled', false);
+		$('#webgrouper_patient_case_age_mode').prop('title', "");
 	}
 }
 function parseDate(str) {
