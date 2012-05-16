@@ -2,6 +2,8 @@ Given /^the form with initialized standard values$/ do
   visit "http://localhost:3000/de/webgrouper_patient_cases"
 end
 
+# Only takes two diagnoses and two procedures for now. 
+# Needs the @javascript annotation
 When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   caseArray = caseString.split(";")
   if (!caseArray[1].blank?)
@@ -17,12 +19,15 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   step %{I enter "#{caseArray[8]}" as hmv}
   step %{I enter "#{caseArray[9]}" as diagnosis}
   step %{I enter "#{caseArray[10]}" as secondary diagnosis}
+  if caseArray.size > 108
+    step %{I enter the procedures "#{caseArray[110]}", "#{caseArray[111]}"}
+  end
   step %{I submit the form}
 end
 
 When /^I select "([^"]*)" as age mode$/ do |age_mode|
-  age_mode_string = I18n.t('simple_form.options.webgrouper_patient_case.age_mode.' + age_mode)
-  step %{I select in "webgrouper_patient_case_age_mode" "#{age_mode_string}"}
+  age_mode_string = I18n.t('simple_form.options.webgrouper_patient_case.age_mode_decoy.' + age_mode)
+  step %{I select in "webgrouper_patient_case_age_mode_decoy" "#{age_mode_string}"}
 end
 
 When /^I enter "([^"]*)" as age$/ do |age|

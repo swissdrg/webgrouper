@@ -40,7 +40,7 @@ de:
         house:
           house1: Akutspital
           house2: Geburtshaus        
-        age_mode:
+        age_mode_decoy:
           years: 'Jahre'
           days: 'Tage'
     # Labels
