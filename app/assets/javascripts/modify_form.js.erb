@@ -23,6 +23,11 @@ function admWeightControl(fade_time) {
 	}
 }
 
+function set_age_mode() {
+	var decoy_age_mode = $('#webgrouper_patient_case_age_mode_decoy').val();	  	
+	$('#webgrouper_patient_case_age_mode').val(decoy_age_mode);
+}
+
 function computeLos() {
 	var first = parseDate($('#webgrouper_patient_case_entry_date').val())
 	var second = parseDate($('#webgrouper_patient_case_exit_date').val())

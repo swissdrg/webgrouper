@@ -28,7 +28,7 @@ Feature: The edge cases should be handled correctly
   Scenario: Case for "Verlegungsabschlag"
     Given the form with initialized standard values
     When i parse "12;28;;;U;99;06;2;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
-    Then I should see "E74Z" in groupings
+    Then I should see "E74Z" in "grouping"
   
   
   
