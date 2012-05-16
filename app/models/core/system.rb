@@ -12,6 +12,6 @@ class System < ActiveRecord::Base
   end
   
   def self.current_system_id
-    current_system.SyID
+    @current_system
   end
 end

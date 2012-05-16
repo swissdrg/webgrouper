@@ -37,6 +37,12 @@ class WebgrouperPatientCasesController < ApplicationController
     render 'index'
   end
   
+ def get_autocomplete_items(parameters)
+    items = super(parameters)
+    items = items.where(:IcFKSyID => 7)
+  end
+
+
   private
   
 	# creates the a hash which contains, if there are any, procedures relevant for zusatzentgelte
