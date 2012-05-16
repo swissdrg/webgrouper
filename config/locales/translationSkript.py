@@ -33,16 +33,16 @@ def getSwissdrgKey(search_value):
 	return None
 			
 def main():
-	de_file = open("de.yml")
+	de_file = open("de.yml.old")
 	de_yml = yaml.load(de_file)
 	print "loaded german yml file"
 	languages = ["fr", "it", "en"]
 	initSwissdrgDicts()
 	print swissdrg_dict
 	for lang in languages:
-		lang_yml = yaml.load(open(lang + ".yml"))
+		lang_yml = yaml.load(open(lang + ".yml.old"))
 		addMissingKeys(de_yml["de"], lang_yml[lang], lang)
-		test_file_path = 'test_'+ lang + '.yaml'
+		test_file_path = lang + '.yml'
 		#os.remove(test_file_path)
 		stream = file(test_file_path, 'w')
 		yaml.dump(lang_yml, stream,  default_flow_style=False, encoding=('utf-8'))
