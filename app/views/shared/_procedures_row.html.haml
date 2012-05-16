@@ -4,7 +4,7 @@
       %span.field
         = autocomplete_field_tag "webgrouper_patient_case[procedures][ID][0]", 
                                "VALUE", 
-                               autocomplete_OPS_OpCode_webgrouper_patient_cases_path, 
+                               autocomplete_OPS_OpCode_webgrouper_patient_cases_path(:system_id => System.current_system.SyID), 
                                :class => 'autocomplete small_field'
         - options = options_for_select(["", "R", "L", "B"])
         = select_tag "webgrouper_patient_case[procedures][ID][1]", 
