@@ -9,7 +9,10 @@ class LosDataTable < GoogleVisualr::DataTable
                   {:type => 'string', :role => 'annotation'},
                   {:type => 'string', :role => 'annotationText'},
                   {:type => 'string', :role => 'tooltip'},
-                  {:type => 'number', :label => I18n.t('transferred')} ]
+                  {:type => 'number', :label => I18n.t('transferred')},
+                  {:type => 'string', :role => 'annotation'},
+                  {:type => 'string', :role => 'annotationText'},
+                  {:type => 'string', :role => 'tooltip'},]
 
     # Values used for populating the rows of the table:
     avg_duration = weighting_relation.avg_duration.to_f/factor
@@ -29,21 +32,37 @@ class LosDataTable < GoogleVisualr::DataTable
       transfer_flatrate = weighting_relation.transfer_flatrate.to_f/factor    
       one_day_transfer_rate = base_cost_rate - transfer_flatrate*(avg_duration-1)
       avg_transfer_rate = base_cost_rate
-      rows.push [actual_los, nil, '***', I18n.t('result.length-of-stay.length-of-stay'),  
-                 make_tooltip('length-of-stay', actual_los, effective_cost_weight), effective_cost_weight]
+      rows.push [actual_los, nil, nil, nil, 
+                 nil,
+                 effective_cost_weight, '***', I18n.t('result.length-of-stay.length-of-stay'), 
+                 make_tooltip('length-of-stay', actual_los, effective_cost_weight)]
     else
       rows.push [actual_los, effective_cost_weight, '***', I18n.t('result.length-of-stay.length-of-stay'), 
-                 make_tooltip('length-of-stay', actual_los, effective_cost_weight) , nil]
+                 make_tooltip('length-of-stay', actual_los, effective_cost_weight) , 
+                 nil, nil, nil, 
+                 nil]
     end
     
-    rows.push [1, one_day_cost_rate, '','','', one_day_transfer_rate],
+    rows.push [1, one_day_cost_rate, nil, nil, 
+        nil, 
+        one_day_transfer_rate, nil, nil, 
+        nil],
     [low_trim_point, base_cost_rate, 'lo', I18n.t('result.length-of-stay.low_trim_point'),
-        make_tooltip('low_trim_point', low_trim_point, base_cost_rate), nil],
+        make_tooltip('low_trim_point', low_trim_point, base_cost_rate), 
+        nil, nil, nil, 
+        nil],
     [avg_duration, base_cost_rate, 'avg',I18n.t('result.length-of-stay.average_los'),
-        make_tooltip('average_los', avg_duration, base_cost_rate), avg_transfer_rate],
+        make_tooltip('average_los', avg_duration, base_cost_rate), 
+        avg_transfer_rate, 'avg', I18n.t('result.length-of-stay.average_los'),
+        make_tooltip('average_los', avg_duration, base_cost_rate)],
     [high_trim_point, base_cost_rate, 'hi', I18n.t('result.length-of-stay.high_trim_point'),
-        make_tooltip('high_trim_point', high_trim_point, base_cost_rate), nil],
-    [many_days, many_days_cost_rate, '','',nil, nil]
+        make_tooltip('high_trim_point', high_trim_point, base_cost_rate), 
+        nil, nil, nil, 
+        nil],
+    [many_days, many_days_cost_rate, nil, nil, 
+        nil, 
+        nil, nil, nil, 
+        nil]
     
     # Sort the rows afterwards, so the chart is not like spaghetti
     sorted_rows = rows.sort_by { |row| row[0] }
