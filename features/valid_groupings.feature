@@ -70,4 +70,4 @@ Feature: Grouping a valid patient case should return right results
     And I enter "3620" as admission weight
     And I press on "Fall Gruppieren"
     
-    Then I should see "P76D" in "grouping"
+    Then I should see "P67D" in "grouping"
