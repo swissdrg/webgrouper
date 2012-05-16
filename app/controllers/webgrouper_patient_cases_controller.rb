@@ -25,7 +25,6 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def group(patient_case)
-    puts "age_mode: #{params[:webgrouper_patient_case][:age_mode]}"
 		current_system_id = System.current_system.SyID
 		get_supplements(patient_case)
 		GROUPER.load(spec_path(current_system_id))

@@ -86,6 +86,7 @@ When /^I enter the secondary diagnoses (".+")$/ do |diagnoses|
   end
 end
 
+# needs @javascript annotation
 When /^I enter the secondary diagnoses "([^"]*)" (\d+) times$/ do |code, count|
   (0..count.to_i - 1).each do |field_index|
     step %{I add more "diagnoses" fields} if field_index != 0 && field_index % 5 == 0
@@ -93,6 +94,7 @@ When /^I enter the secondary diagnoses "([^"]*)" (\d+) times$/ do |code, count|
   end
 end
 
+# needs @javascript annotation
 When /^I enter the procedures "([^"]*)" (\d+) times$/ do |code, count|
   (0..(count.to_i - 1)).each do |field_index|
     step %{I add more "procedures" fields} if field_index != 0 && field_index % 3 == 0
