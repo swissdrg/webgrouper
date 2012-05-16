@@ -122,6 +122,18 @@ When /^I enter the procedures (".+")$/ do |procedures|
   end
 end
 
+When /^I enter the procedures with seitigkeit and date (".+")$/ do |procedures|
+  procedures = procedures.scan(/"([^"]+?)"/).flatten
+  (0..procedures.count-1).each do |field_index|
+    procedure = procedures[field_index-1]
+    procedure_parts = procedure.split(":")
+    step %{I add more "procedures" fields} if field_index != 0 && field_index % 3 == 0
+    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_0" with "#{procedure_parts[0]}"}
+    step %{I select in "webgrouper_patient_case_procedures_#{field_index}_1" "#{procedure_parts[1]}"}
+    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_2" with "#{procedure_parts[2]}"}
+  end
+end
+
 
 When /^I enter "([^"]*)" as los$/ do |los|
   step %{I fill in "webgrouper_patient_case_los" with "#{los}"}
