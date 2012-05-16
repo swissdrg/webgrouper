@@ -54,3 +54,31 @@ Feature: Grouping a valid patient case should return right results
   	
   	Then the grouping should succeed
   	And I should see "A22.0" in "diagnoses"
+  	
+  @javascript @critical
+  Scenario: Changing age should have an effect
+  	Given the form with initialized standard values
+  	
+  	When I enter "Q18.1" as diagnosis
+    And I enter "5" as los
+    And I press on "Fall Gruppieren"
+    Then I should see "D66Z" in "grouping"
+    
+    When I enter "1" as age
+    And I select "days" as age mode
+    And I enter "3620" as admission weight
+    And I press on "Fall Gruppieren"
+    Then I should see "P67D" in "grouping"
+    
+    When I enter "2222" as admission weight
+    And I submit the form
+    Then I should see "P66D" in "grouping"
+    
+    When I enter "1100" as admission weight
+    And I submit the form
+    Then I should see "P63Z" in "grouping"
+    
+    When I enter "700" as admission weight
+    And I submit the form
+    Then I should see "P61D" in "grouping"
+    

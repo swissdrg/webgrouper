@@ -6,7 +6,6 @@ class WebgrouperPatientCase < PatientCase
   include ActAsValidGrouperQuery
   
   attr_accessor :age, :age_mode, :age_mode_decoy, :house, :manual_submission
-  
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
   def initialize(attributes = {})
@@ -29,7 +28,7 @@ class WebgrouperPatientCase < PatientCase
     
     age_mode_days? ? self.age_days = self.age : self.age_years = self.age
   end
-  
+
   # Always returns false since this model is not persisted (saved in a database).
   # The method is necessary for this model to be treated like an active record model
   # in certain circumstances; when building forms, for instance.

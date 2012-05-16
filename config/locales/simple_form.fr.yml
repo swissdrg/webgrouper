@@ -40,7 +40,7 @@ fr:
           sep06: 'transféré (dans un autre hôpital)'
           sep07: 'décédé'
           sep00: 'normal'
-        age_mode:
+        age_mode_decoy:
           years: 'Ans'
           days: 'Jours'
     # Labels
@@ -55,7 +55,6 @@ fr:
         birth_date: 'Date de naissance:'
         leave_days: 'Jours de congé:'
         age: 'Âge:'
-        age_mode: 'Is this label necessary?'
         adm_weight: "Poids à l'admission:"
         sex: 'Sexe:'
         adm: "Mode d'admission:"

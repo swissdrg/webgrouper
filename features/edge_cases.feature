@@ -1,12 +1,12 @@
 Feature: The edge cases should be handled correctly
   Any user
   
-  @javascript
+  @javascript @unfinished
   Scenario: Just parse some stuff
 	Given the form with initialized standard values
-	When I parse "1;5;;;M;01;01;3;0;0;I130;;;;;;" as input for the form
+	When I parse "38853;0;1;3620;W;01;01;5;;;Q181;;;;P153;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897;;;;;;;;;;;;;;;;;;;;;" as input for the form
+	Then I should see "P67D" in "grouping"
 	
-  @unfinished 
   Scenario: Case for reuptake
   	Given the form with initialized standard values
   	When I enter "Q28.81" as diagnosis
@@ -14,7 +14,7 @@ Feature: The edge cases should be handled correctly
   	And I submit the form
   	Then I should see "Die DRG F43C ist von einer Fallzusammenführung bei Wiederaufnahme ausgeschlossen." in "settlement_hints"
   
-  @javascript @unfinished 
+  @javascript
   Scenario: Case for additional fee
   	Given the form with initialized standard values
   	When I enter "B72" as diagnosis

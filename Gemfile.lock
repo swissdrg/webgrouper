@@ -155,6 +155,10 @@ GEM
       actionpack (~> 3.0)
       activemodel (~> 3.0)
     spoon (0.0.1)
+    spork (1.0.0rc3)
+    spork-rails (3.2.0)
+      rails (>= 3.0.0, < 3.3.0)
+      spork (>= 1.0rc0)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -202,6 +206,7 @@ DEPENDENCIES
   rails3-jquery-autocomplete!
   rspec-rails
   simple_form
+  spork-rails
   therubyrhino
   uglifier (>= 1.0.3)
   validates_timeliness (= 3.0.2)
