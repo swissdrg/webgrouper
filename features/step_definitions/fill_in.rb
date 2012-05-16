@@ -2,9 +2,11 @@ Given /^the form with initialized standard values$/ do
   visit "http://localhost:3000/de/webgrouper_patient_cases"
 end
 
+# Only takes two diagnoses and two procedures for now. 
+# Needs the @javascript annotation
 When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   caseArray = caseString.split(";")
-  if (!caseArray[1].blank?)
+  if (!caseArray[1].blank? && !(caseArray[1].eql? "0"))
     step %{I enter "#{caseArray[1]}" as age}
     step %{I select "years" as age mode}
   else
@@ -13,16 +15,40 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
     step %{I enter "#{caseArray[3]}" as admission weight}
   end
   step %{I select "#{caseArray[4]}" as sex}
+  step %{I select "#{caseArray[5]}" as adm mode}
+  step %{I select "#{caseArray[6]}" as sep mode}
   step %{I enter "#{caseArray[7]}" as los}
-  step %{I enter "#{caseArray[8]}" as hmv}
-  step %{I enter "#{caseArray[9]}" as diagnosis}
-  step %{I enter "#{caseArray[10]}" as secondary diagnosis}
+  #todo: same_day flag: 8
+  step %{I enter "#{caseArray[9]}" as hmv}
+  step %{I enter "#{caseArray[10]}" as diagnosis}
+  step %{I enter "#{caseArray[11]}" as secondary diagnosis}
+  if caseArray.size > 108
+    step %{I enter the procedures "#{caseArray[110]}", "#{caseArray[111]}"}
+  end
   step %{I submit the form}
 end
 
 When /^I select "([^"]*)" as age mode$/ do |age_mode|
-  age_mode_string = I18n.t('simple_form.options.webgrouper_patient_case.age_mode.' + age_mode)
-  step %{I select in "webgrouper_patient_case_age_mode" "#{age_mode_string}"}
+  age_mode_string = I18n.t('simple_form.options.webgrouper_patient_case.age_mode_decoy.' + age_mode)
+  step %{I select in "webgrouper_patient_case_age_mode_decoy" "#{age_mode_string}"}
+end
+
+When /^I select "([^"]*)" as sep mode$/ do |sep|
+  #fix for string parsing:
+  if sep.eql? "01"
+    sep = "00"
+  end
+  string = I18n.t('simple_form.options.webgrouper_patient_case.sep.sep' + sep)
+  step %{I select in "webgrouper_patient_case_sep" "#{string}"}
+end
+
+When /^I select "([^"]*)" as adm mode$/ do |adm|
+  #fix for string parsing:
+  if adm.eql? "01"
+    adm = "00"
+  end
+  string = I18n.t('simple_form.options.webgrouper_patient_case.adm.adm' + adm)
+  step %{I select in "webgrouper_patient_case_adm" "#{string}"}
 end
 
 When /^I enter "([^"]*)" as age$/ do |age|
@@ -183,4 +209,8 @@ end
 
 When /^I submit the form$/ do
   step %{I press on "Fall Gruppieren"}
+end
+
+When /^I wait (\d+) seconds?$/ do |seconds|
+  sleep seconds.to_i
 end
