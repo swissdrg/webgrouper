@@ -28,6 +28,7 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   step %{I submit the form}
 end
 
+# Needs the @javascript annotation
 When /^I select "([^"]*)" as age mode$/ do |age_mode|
   age_mode_string = I18n.t('simple_form.options.webgrouper_patient_case.age_mode_decoy.' + age_mode)
   step %{I select in "webgrouper_patient_case_age_mode_decoy" "#{age_mode_string}"}
@@ -74,10 +75,12 @@ When /^I enter "([^"]*)" as admission weight$/ do |adm_weight|
   step %{I fill in "webgrouper_patient_case_adm_weight" with "#{adm_weight}"}
 end
 
+# Needs the @javascript annotation
 When /^I enter "([^"]*)" as secondary diagnosis$/ do |diagnosis|
   step %{fill in "webgrouper_patient_case_diagnoses_0" with "#{diagnosis}"}
 end
 
+# Needs the @javascript annotation
 When /^I enter the secondary diagnoses (".+")$/ do |diagnoses|
   diagnoses = diagnoses.scan(/"([^"]+?)"/).flatten
   (0..diagnoses.count).each do |field_index|
@@ -86,7 +89,7 @@ When /^I enter the secondary diagnoses (".+")$/ do |diagnoses|
   end
 end
 
-# needs @javascript annotation
+# Needs the @javascript annotation
 When /^I enter the secondary diagnoses "([^"]*)" (\d+) times$/ do |code, count|
   (0..count.to_i - 1).each do |field_index|
     step %{I add more "diagnoses" fields} if field_index != 0 && field_index % 5 == 0
@@ -94,7 +97,7 @@ When /^I enter the secondary diagnoses "([^"]*)" (\d+) times$/ do |code, count|
   end
 end
 
-# needs @javascript annotation
+# Needs the @javascript annotation
 When /^I enter the procedures "([^"]*)" (\d+) times$/ do |code, count|
   (0..(count.to_i - 1)).each do |field_index|
     step %{I add more "procedures" fields} if field_index != 0 && field_index % 3 == 0
@@ -102,20 +105,24 @@ When /^I enter the procedures "([^"]*)" (\d+) times$/ do |code, count|
   end
 end
 
+# Needs the @javascript annotation
 When /^I add more "([^"]*)" fields$/ do |kind|
   step %{I follow "add_#{kind}"}
 end
 
+# Needs the @javascript annotation
 When /^I enter "([^"]*)" as procedure$/ do |proc|
   step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
 end
 
+# Needs the @javascript annotation
 When /^I add the maximum number of "([^"]*)" fields$/ do |kind|
   while (page.has_selector?("a#add_#{kind}")) do
     step %{I add more "#{kind}" fields}
   end
 end
 
+# Needs the @javascript annotation
 When /^I enter the procedures (".+")$/ do |procedures|
   procedures = procedures.scan(/"([^"]+?)"/).flatten
   (0..procedures.count).each do |field_index|
@@ -124,6 +131,7 @@ When /^I enter the procedures (".+")$/ do |procedures|
   end
 end
 
+# Needs the @javascript annotation
 When /^I enter the procedures with seitigkeit and date (".+")$/ do |procedures|
   procedures = procedures.scan(/"([^"]+?)"/).flatten
   (0..procedures.count-1).each do |field_index|
