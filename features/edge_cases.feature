@@ -23,3 +23,12 @@ Feature: The edge cases should be handled correctly
   	Then I should see "Hämodialyse, Hämodiafiltration, Hämofiltration, intermittierend" in "settlement_hints"
   	And I should see "ZE01-2012" in "settlement_hints"
   	And I should see "39.95.21" in "settlement_hints"
+  	
+  @javascript
+  Scenario: Case for "Verlegungsabschlag"
+    Given the form with initialized standard values
+    When i parse "12;28;;;U;99;06;2;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    Then I should see "E74Z" in groupings
+  
+  
+  
