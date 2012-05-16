@@ -7,14 +7,15 @@
 /** Some bindings */
 $(document).on("change focus", "#webgrouper_patient_case_birth_date", computeAge);
 $(document).on("change focus", ".calc_los", computeLos);
+$(document).on("change", '#webgrouper_patient_case_age_mode_decoy', set_age_mode)
 
 /**
  * Lets the id "admWeight" disappear according to the
- * settings in the field age_mode
+ * settings in the field age_mode_decoy
  * @param fade_time the time used to fade it in/out
  */
 function admWeightControl(fade_time) {
-	if ($('[id$="age_mode"]').val() == "days") {
+	if ($('[id$="age_mode_decoy"]').val() == "days") {
 		$("#admWeight").show(fade_time);
 	}
 	else {
@@ -35,6 +36,11 @@ function computeLos() {
 	}	
 }
 
+function set_age_mode() {
+	var decoy_age_mode = $('#webgrouper_patient_case_age_mode_decoy').val();
+	$('#webgrouper_patient_case_age_mode').val(decoy_age_mode);
+}
+
 
 function computeAge() {
 	if ($('#webgrouper_patient_case_birth_date').val() == "") {
@@ -46,11 +52,13 @@ function computeAge() {
 	var year_diff = Math.floor(Math.ceil(today - bd) / (1000 * 60 * 60 * 24 * 365));
 	if (!(isNaN(year_diff)) && bd < today) {
 		if (year_diff >= 1) {
-			$('#webgrouper_patient_case_age_mode').val("years");
+			$('#webgrouper_patient_case_age_mode_decoy').val("years");
+			set_age_mode();
 			$('#webgrouper_patient_case_age').val(year_diff);
 		}
 		else {
-			$('#webgrouper_patient_case_age_mode').val("days");
+			$('#webgrouper_patient_case_age_mode_decoy').val("days");
+			set_age_mode();
 			$('#webgrouper_patient_case_age').val(daydiff(bd, today, 0));
 		}
 		disableAgeInput(true);
@@ -81,10 +89,10 @@ function disableLosInput(doDisable) {
 function disableAgeInput(doDisable) {
 	if (doDisable) {
 		$('#webgrouper_patient_case_age').prop('readonly', 'readonly');
-		$('#webgrouper_patient_case_age_mode').prop('disabled', true);
+		$('#webgrouper_patient_case_age_mode_decoy').prop('disabled', true);
 	} else {
 		$('#webgrouper_patient_case_age').prop('readonly', false);
-		$('#webgrouper_patient_case_age_mode').prop('disabled', false);
+		$('#webgrouper_patient_case_age_mode_decoy').prop('disabled', false);
 	}
 }
 function parseDate(str) {
