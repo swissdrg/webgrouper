@@ -1,4 +1,6 @@
 #! /usr/bin/env python
+# -*- coding: UTF-8 -*-
+
 import yaml
 import os
 
@@ -25,7 +27,7 @@ def getSwissdrgValue(search_key, lang):
 
 def getSwissdrgKey(search_value):
 	for key, value in swissdrg_dict["de"].items():
-		if value == search_value:
+		if value is search_value:
 			print "returning " + key
 			return key
 	return None
@@ -55,6 +57,14 @@ def initSwissdrgDicts():
 		for line in swissdrg_lang:
 			if not "#" in line:
 				key, value = line.split("=", 1)
-				dict[key] = value
+				dict[key] = sanitizeString(value)
+
+def sanitizeString(string):
+	string = string.replace("\u00F6", "ö")
+	string = string.replace("\u00DF", "ss")
+	string = string.replace("\u00E4", "ä")
+	string = string.replace("\u00FC", "ü")
+	return string
+	
 if __name__ == "__main__":
     main()
