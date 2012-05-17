@@ -23,7 +23,7 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   step %{I enter "#{caseArray[10]}" as diagnosis}
   
   field_index = 0
-  pos = pos_last_value(caseArray[11, 100], 100)
+  pos = pos_last_value(caseArray, 11, 100)
   (11..pos).each do |nr|
     if caseArray.length > nr
       step %{I add more "diagnoses" fields} if field_index != 0 && field_index % 5 == 0
@@ -43,15 +43,11 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   
 end
 
-def pos_last_value(array, last_pos)
+def pos_last_value(array, first_pos, last_pos)
   pos_last_value = last_pos
-  array.reverse!
-  puts array
-  array.each do |value|
-    puts value
-    puts pos_last_value
-    if value.blank?
-      pos_last_value = pos_last_value - 1
+  (0..(last_pos-first_pos)).each do |value|
+    if array[last_pos - value].blank?
+      pos_last_value = last_pos - value
     else
       break
     end
