@@ -23,19 +23,18 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   step %{I enter "#{caseArray[10]}" as diagnosis}
   
   field_index = 0
-  
-  (11...pos_last_value(caseArray[11, 100], 100)).each do |nr|
+  pos = pos_last_value(caseArray[11, 100], 100)
+  (11..pos).each do |nr|
     if caseArray.length > nr
       step %{I add more "diagnoses" fields} if field_index != 0 && field_index % 5 == 0
       step %{fill in "webgrouper_patient_case_diagnoses_#{field_index}" with "#{caseArray[nr]}"}
       field_index = field_index + 1
     end
   end
-  
   #Only add procedures if there are actually any
   if caseArray.length > 108
     procs = "\"#{caseArray[108]}\""
-    (109...caseArray.length-1).each do |nr|
+    (109...caseArray.length).each do |nr|
       procs = "#{procs}, \"#{caseArray[nr]}\""
     end
     step %{I enter the procedures #{procs}}
@@ -47,7 +46,10 @@ end
 def pos_last_value(array, last_pos)
   pos_last_value = last_pos
   array.reverse!
+  puts array
   array.each do |value|
+    puts value
+    puts pos_last_value
     if value.blank?
       pos_last_value = pos_last_value - 1
     else
