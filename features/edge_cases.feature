@@ -27,7 +27,7 @@ Feature: The edge cases should be handled correctly
 	  Then I should see "P67D" in "grouping"
 	  
 	
-	# groupertest.java L 74
+  # groupertest.java L 74
   @javascript
   Scenario: parse case pdx F03Z, should be inlier
 	  Given the form with initialized standard values
@@ -35,13 +35,15 @@ Feature: The edge cases should be handled correctly
 	  Then I should see "F03Z" in "grouping"
 	  And I should see "Normallieger" in "length-of-stay"
 
-	# groupertest.java L 81
+  # groupertest.java L 81
+  # Could not reproduce desired results in original grouper
   @javascript
   Scenario: parse case pdx B78C
-	  Given the form with initialized standard values
-	  When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
-	  Then I should see "B78C" in "grouping"	
-		
+    Given the form with initialized standard values
+    When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    # Then I should see "B78C" in "grouping"	#could not reproduce
+    Then I should see "H63C" in "grouping"	
+	  
 # groupertest.java L 88
 # Changed to valid diagnosis codes
 # 9359 is an invalid procedure, so removed it
@@ -135,6 +137,7 @@ Feature: The edge cases should be handled correctly
     Then I should see "E74Z" in "grouping"
     And I should see "0.811" in "cost-weight"
   	And I should see "Unterer Outlier" in "length-of-stay"
+  	And I should see "Berylliose" in "diagnoses"
   	
 
   # calcCostWeightTest.java L21
