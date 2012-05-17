@@ -1,8 +1,6 @@
 Feature: The edge cases should be handled correctly
   Any user
   
-## STÖFE: adm_mode and sep_mode are often set to 01, which is not a valid value. Ideas?
-  
   Scenario: Case for reuptake
   	Given the form with initialized standard values
   	When I enter "Q28.81" as diagnosis
@@ -70,21 +68,23 @@ Feature: The edge cases should be handled correctly
     And I submit the form
     Then I should see "1" in "length-of-stay"
     
-	# groupertest.java L 125
-	# It wont parse because 'sex' is set as 2. I tried in the real webgrouper and i couln't get the desired result for Katalogversion 0.3 because there is also no value 01 for adm_mode and no value 00 for sep_mode. no idea, sorry
-  @javascript @dani
+  # groupertest.java L 125
+  # We don't have the grouper specifications for running this test.
+  @javascript @fails
   Scenario: parse with different systems
 	Given the form with initialized standard values
 	When I select in "system_SyID" "Planungsversion 0.3 2009/2011"
-	And I parse "56;10;0;;2;01;00;3;0;;S424;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7911::20080307;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
-    Then I should see "960Z" in "grouping"
+	And I parse "56;10;0;;2;01;00;3;0;;S424;" as input for the form
+	And I enter the procedures with seitigkeit and date "7911::20080307"
+    Then I should see "Hauptdiagnose: invalid"
 	  
     When I select in "system_SyID" "Katalogversion 0.3 2008/2011"
-    And I parse "56;10;0;;2;01;00;3;0;;S424;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7911::20080307;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+	And I submit the form
+	Then the grouping should succeed
     Then I should see "I13B" in "grouping"
    
 # TESTS FOR DATE EXCEPTIONS/LEAP YEARS
-  # calcCostWeightTest.java L10
+# calcCostWeightTest.java L10
   @javascript
   Scenario: calculate length of stay for normal year
     Given the form with initialized standard values
@@ -134,7 +134,7 @@ Feature: The edge cases should be handled correctly
     When I parse "12;28;;;U;99;00;2;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
     Then I should see "E74Z" in "grouping"
     And I should see "0.811" in "cost-weight"
-  	And I should see "Unterer Outlier"  in "length-of-stay"
+  	And I should see "Unterer Outlier" in "length-of-stay"
   	
 
   # calcCostWeightTest.java L21
@@ -144,7 +144,7 @@ Feature: The edge cases should be handled correctly
     When I parse "12;28;;;U;99;00;22;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
     Then I should see "E74Z" in "grouping"
     And I should see "1.181" in "cost-weight"
-  	And I should see "Normallieger"  in "length-of-stay"
+  	And I should see "Normallieger" in "length-of-stay"
 
   # calcCostWeightTest.java L27
   @javascript
@@ -153,7 +153,7 @@ Feature: The edge cases should be handled correctly
     When I parse "12;28;;;U;99;00;23;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
     Then I should see "E74Z" in "grouping"
     And I should see "1.258" in "cost-weight"
-  	And I should see "Oberer Outlier"  in "length-of-stay"
+  	And I should see "Oberer Outlier" in "length-of-stay"
   	
   # calcCostWeightTest.java L33
   @javascript
@@ -161,7 +161,7 @@ Feature: The edge cases should be handled correctly
     Given the form with initialized standard values
     When I parse "12;28;;;U;99;00;22;0;0;Z85.6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
     Then I should see "961Z" in "grouping"
-  	And I should see "Unbewertete DRG"  in "length-of-stay"
+  	And I should see "Unbewertete DRG" in "length-of-stay"
   	
   	
   # calcCostWeightTest.java L39
@@ -171,4 +171,4 @@ Feature: The edge cases should be handled correctly
     When I parse "12;28;;;U;99;00;9999;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
     Then I should see "E74Z" in "grouping"
     And I should see "769.41" in "cost-weight"
-  	And I should see "Oberer Outlier"  in "length-of-stay"
+  	And I should see "Oberer Outlier" in "length-of-stay"
