@@ -1,6 +1,19 @@
 /** This file contains all JS functions required for adding and removing new fields for both secondary diagnoses and procedures
 */
 
+$(document).ready(function () {
+	if ($(".errorflash").is(":visible")) {
+		var kinds = ["diagnoses", "procedures"]
+		for (var i=0; i < kinds.length; i++) {
+			var kind = kinds[i];
+			$("#"+kind+" > .sameline > ."+kind+"_row:visible:last :input.autocomplete").each(function () {
+				if ($(this).val() != "" && $(".errorflash > ul >li:contains("+$(this).val()+")").length > 0) {
+					$(this).css("background-color", "#FBE3E4");
+				};
+			});
+		};
+	};
+});
 
 /**
  * Counter for the number of diagnoses fields that are visible.
