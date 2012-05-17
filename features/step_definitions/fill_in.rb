@@ -82,7 +82,7 @@ end
 
 # Needs the @javascript annotation
 When /^I enter the secondary diagnoses (".+")$/ do |diagnoses|
-  diagnoses = diagnoses.scan(/"([^"]+?)"/).flatten
+  diagnoses = diagnoses.scan(/"([^"]*?)"/).flatten
   (0..diagnoses.count).each do |field_index|
     step %{I add more "diagnoses" fields} if field_index != 0 && field_index % 5 == 0
     step %{fill in "webgrouper_patient_case_diagnoses_#{field_index}" with "#{diagnoses[field_index]}"}
@@ -124,7 +124,7 @@ end
 
 # Needs the @javascript annotation
 When /^I enter the procedures (".+")$/ do |procedures|
-  procedures = procedures.scan(/"([^"]+?)"/).flatten
+  procedures = procedures.scan(/"([^"]*?)"/).flatten
   (0..procedures.count).each do |field_index|
     step %{I add more "procedures" fields} if field_index != 0 && field_index % 3 == 0
     step %{fill in "webgrouper_patient_case_procedures_#{field_index}_0" with "#{procedures[field_index]}"}
