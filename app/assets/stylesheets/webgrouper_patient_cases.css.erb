@@ -44,7 +44,6 @@
 }
 
 tbody tr#pdx {
-	/*background: #e5ecf9; */
 	background: #a7bfeb;
 }
 
@@ -66,6 +65,8 @@ fieldset#grouping, fieldset#cost-weight {
 }
 
 fieldset {
+	border-radius: 6px;
+	-moz-border-radius: 6px; /* Firefox 3.6 and earlier */
 	padding-top: 0;
 	padding-left: 0;
 	padding-bottom: 1em;
@@ -75,6 +76,7 @@ fieldset {
 fieldset#grouping {
 	border-width: 3px;
 }
+
 fieldset#drg-proc, fieldset#system, fieldset#procedures, fieldset#diagnoses {
 	display:block;
 	clear: both;
@@ -104,4 +106,9 @@ fieldset.result th.medium-col {
 fieldset#los-chart {
 	padding-top: 0;
 	padding-right: 0;
+}
+
+fieldset.result {
+	/*background: white url(<%= asset_data_uri "stripe_2.png" %>);
+	background-repeat: repeat; */
 }
