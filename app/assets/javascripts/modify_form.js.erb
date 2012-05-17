@@ -34,7 +34,11 @@ function computeLos() {
 	var leave_days = $('#webgrouper_patient_case_leave_days').val()
 	var diff = daydiff(first, second, leave_days);
 	if (!(isNaN(diff))){
-		$('#webgrouper_patient_case_los').val(diff);
+		if (diff == 0) {
+			$('#webgrouper_patient_case_los').val(1);
+		} else {
+			$('#webgrouper_patient_case_los').val(diff);
+		}
 		disableLosInput(true);
 	} else {
 		disableLosInput(false);

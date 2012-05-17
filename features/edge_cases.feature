@@ -54,7 +54,6 @@ Feature: The edge cases should be handled correctly
     Given the form with initialized standard values
     When I parse "53567;68;;;W;01;01;5;;;S068;;;;S4220;;S4240;;S066;;S065;;S501;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
     # this could be wrong because dates were not set yet
-    Then I wait 20 seconds
     Then I should see "B78A" in "grouping"
 
     When I fill in "webgrouper_patient_case_entry_date" with "01.02.2008"
@@ -87,7 +86,7 @@ Feature: The edge cases should be handled correctly
    
 # TESTS FOR DATE EXCEPTIONS/LEAP YEARS
 # calcCostWeightTest.java L10
-  @javascript @wip
+  @javascript @unfinished
   Scenario: calculate length of stay for normal year
     Given the form with initialized standard values
     When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -97,7 +96,7 @@ Feature: The edge cases should be handled correctly
     Then I should see "3" in "length-of-stay"
 
   # calcCostWeightTest.java L10
-  @javascript @wip
+  @javascript @unfinished
   Scenario: calculate length of stay for leap year
     Given the form with initialized standard values
     When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
