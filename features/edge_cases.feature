@@ -1,7 +1,15 @@
 Feature: The edge cases should be handled correctly
   Any user
   
+  # groupertest.java
   @javascript @unfinished
+  Scenario: Just parse some stuff
+	Given the form with initialized standard values
+	When I parse "38853;0;1;3620;W;01;01;5;;;Q181;;;;P153;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897;;;;;;;;;;;;;;;;;;;;;" as input for the form
+	Then I should see "P67D" in "grouping"
+	
+  # groupertest.java
+  @javascript
   Scenario: Just parse some stuff
 	Given the form with initialized standard values
 	When I parse "38853;0;1;3620;W;01;01;5;;;Q181;;;;P153;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897;;;;;;;;;;;;;;;;;;;;;" as input for the form

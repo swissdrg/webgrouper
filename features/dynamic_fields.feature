@@ -27,17 +27,15 @@ Feature: Users can add and remove fields for secondary diagnoses and procedures 
     When I add the maximum number of "procedures" fields
     And I should not see 101 procedures fields
     
-  @mac @javascript
+  @mac @javascript @debug
   Scenario: Submit the form with invalid secondary diagnoses
     Given the form with initialized standard values
-    When I enter the secondary diagnoses "foo", "bar", "bat", "dani", "randy", "test", "hallo", "yeeah"
+    When I enter the secondary diagnoses " ", "bar", "bat", "dani", "randy", "", "hallo", "yeeah"
     And I press on "Fall Gruppieren"
-    Then I should see "Nebendiagnosen: foo invalid"
-    And I should see "Nebendiagnosen: bar invalid"
+    Then I should see "Nebendiagnosen: bar invalid"
     And I should see "Nebendiagnosen: bat invalid"
     And I should see "Nebendiagnosen: dani invalid"
     And I should see "Nebendiagnosen: randy invalid"
-    And I should see "Nebendiagnosen: test invalid"
     And I should see "Nebendiagnosen: hallo invalid"
     And I should see "Nebendiagnosen: yeeah invalid"
 
@@ -71,7 +69,7 @@ Feature: Users can add and remove fields for secondary diagnoses and procedures 
     And I press on "Fall Gruppieren"
     Then the grouping should succeed
     
-  @mac @javascript @debug
+  @mac @javascript
   Scenario: I can fill in procedures with Seitigkeit and date
     Given the form with initialized standard values
     When I enter "A000" as diagnosis
