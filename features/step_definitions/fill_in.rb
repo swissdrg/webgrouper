@@ -24,24 +24,37 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   
   field_index = 0
   
-  (11...100).each do |nr|
-    if caseArray.size > nr
+  (11...pos_last_value(caseArray[11, 100], 100)).each do |nr|
+    if caseArray.length > nr
       step %{I add more "diagnoses" fields} if field_index != 0 && field_index % 5 == 0
       step %{fill in "webgrouper_patient_case_diagnoses_#{field_index}" with "#{caseArray[nr]}"}
       field_index = field_index + 1
     end
   end
   
-  procs = "\"#{caseArray[108]}\""
-  
-  (109...197).each do |nr|
-    if caseArray.size > nr
-      procs = "#{procs}, \"#{procs[nr]}\""
+  #Only add procedures if there are actually any
+  if caseArray.length > 108
+    procs = "\"#{caseArray[108]}\""
+    (109...caseArray.length-1).each do |nr|
+      procs = "#{procs}, \"#{caseArray[nr]}\""
     end
+    step %{I enter the procedures #{procs}}
   end
-  step %{I enter the procedures #{procs}}
   step %{I submit the form}
   
+end
+
+def pos_last_value(array, last_pos)
+  pos_last_value = last_pos
+  array.reverse!
+  array.each do |value|
+    if value.blank?
+      pos_last_value = pos_last_value - 1
+    else
+      break
+    end
+  end 
+  pos_last_value
 end
 
 # Needs the @javascript annotation
@@ -82,6 +95,10 @@ end
 
 #Takes M, F or U as Gender
 When /^I select "([^"]*)" as sex$/ do |sex|
+  #Fix for parsing strings:
+  if sex.eql? "2"
+    sex = "U"
+  end
   sexString = I18n.t('simple_form.options.webgrouper_patient_case.sex.' + sex)
   step %{I select in "webgrouper_patient_case_sex" "#{sexString}"}
 end

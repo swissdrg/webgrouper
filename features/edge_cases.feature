@@ -44,38 +44,44 @@ Feature: The edge cases should be handled correctly
 	  When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
 	  Then I should see "B78C" in "grouping"	
 		
-	# groupertest.java L 88
-  @javascript
+# groupertest.java L 88
+# Changed to valid diagnosis codes
+# 9359 is an invalid procedure, so removed it
+# & sanitized some diag codes
+# had to change expectations due to this
+  @javascript @unfinished
   Scenario: parse with different dates
-	  Given the form with initialized standard values
-	  When I parse "53567;68;;;W;01;01;5;;;S0680;;W100;;S4220;;S4240;;S0660;;S0650;;S501;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9359;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
-  # this could be wrong because dates were not set yet
-	  Then I should see "H63B" in "grouping"
-	
-	  When I fill in "webgrouper_patient_case_entry_date" with "01.02.2008"
-	  And I fill in "webgrouper_patient_case_exit_date" with "10.02.2008"
-	  And I fill in "webgrouper_patient_case_birth_date" with "02.01.2003"
-	  And I submit the form
-    Then I should see "H63B" in "grouping"
-    And I should see "9" in "webgrouper_patient_case_los"
-    And I should see "5" in "webgrouper_patient_case_age"
+    Given the form with initialized standard values
+    When I parse "53567;68;;;W;01;01;5;;;S068;;;;S4220;;S4240;;S066;;S065;;S501;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    # this could be wrong because dates were not set yet
+    Then I wait 20 seconds
+    Then I should see "B78A" in "grouping"
+
+    When I fill in "webgrouper_patient_case_entry_date" with "01.02.2008"
+    And I fill in "webgrouper_patient_case_exit_date" with "10.02.2008"
+    And I fill in "webgrouper_patient_case_birth_date" with "02.01.2003"
+    And I submit the form
+    Then I should see "B78A" in "grouping"
+    And I should see "9" in "length-of-stay"
+    #needs new step
+    #And I should see "5" in "webgrouper_patient_case_age"
   
     When I fill in "webgrouper_patient_case_exit_date" with "01.02.2008"
     And I submit the form
-    Then I should see "1" in "webgrouper_patient_case_los"
+    Then I should see "1" in "length-of-stay"
     
 	# groupertest.java L 125
 	# It wont parse because 'sex' is set as 2. I tried in the real webgrouper and i couln't get the desired result for Katalogversion 0.3 because there is also no value 01 for adm_mode and no value 00 for sep_mode. no idea, sorry
   @javascript @dani
   Scenario: parse with different systems
-	  Given the form with initialized standard values
-	  When I select in "system_SyID" "Planungsversion 0.3 2009/2011"
-	  And I parse "56;10;0;;2;01;00;3;0;;S424;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7911::20080307;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+	Given the form with initialized standard values
+	When I select in "system_SyID" "Planungsversion 0.3 2009/2011"
+	And I parse "56;10;0;;2;01;00;3;0;;S424;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7911::20080307;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
     Then I should see "960Z" in "grouping"
 	  
     When I select in "system_SyID" "Katalogversion 0.3 2008/2011"
     And I parse "56;10;0;;2;01;00;3;0;;S424;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7911::20080307;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
-   Then I should see "I13B" in "grouping"
+    Then I should see "I13B" in "grouping"
    
 # TESTS FOR DATE EXCEPTIONS/LEAP YEARS
   # calcCostWeightTest.java L10
