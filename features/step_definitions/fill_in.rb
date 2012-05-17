@@ -21,11 +21,27 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   #todo: same_day flag: 8
   step %{I enter "#{caseArray[9]}" as hmv}
   step %{I enter "#{caseArray[10]}" as diagnosis}
-  step %{I enter "#{caseArray[11]}" as secondary diagnosis}
-  if caseArray.size > 108
-    step %{I enter the procedures "#{caseArray[110]}", "#{caseArray[111]}"}
+  
+  field_index = 0
+  
+  (11...100).each do |nr|
+    if caseArray.size > nr
+      step %{I add more "diagnoses" fields} if field_index != 0 && field_index % 5 == 0
+      step %{fill in "webgrouper_patient_case_diagnoses_#{field_index}" with "#{caseArray[nr]}"}
+      field_index = field_index + 1
+    end
   end
+  
+  procs = "\"#{caseArray[108]}\""
+  
+  (109...197).each do |nr|
+    if caseArray.size > nr
+      procs = "#{procs}, \"#{procs[nr]}\""
+    end
+  end
+  step %{I enter the procedures #{procs}}
   step %{I submit the form}
+  
 end
 
 # Needs the @javascript annotation
@@ -186,11 +202,7 @@ Then /^show me the page$/ do
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
-  if page.respond_to? :should
-    page.should have_content(text)
-  else
-    assert page.has_content?(text)
-  end
+  page.should have_content(text)
 end
 
 Then /^(?:|I )should see "([^"]*)" in "([^"]*)"$/ do |text, field|
