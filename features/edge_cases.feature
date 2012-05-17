@@ -1,20 +1,8 @@
 Feature: The edge cases should be handled correctly
   Any user
   
-  # groupertest.java
-  @javascript @unfinished
-  Scenario: Just parse some stuff
-	Given the form with initialized standard values
-	When I parse "38853;0;1;3620;W;01;01;5;;;Q181;;;;P153;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897;;;;;;;;;;;;;;;;;;;;;" as input for the form
-	Then I should see "P67D" in "grouping"
-	
-  # groupertest.java
-  @javascript
-  Scenario: Just parse some stuff
-	Given the form with initialized standard values
-	When I parse "38853;0;1;3620;W;01;01;5;;;Q181;;;;P153;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897;;;;;;;;;;;;;;;;;;;;;" as input for the form
-	Then I should see "P67D" in "grouping"
-	
+## STÖFE: adm_mode and sep_mode are often set to 01, which is not a valid value. Ideas?
+  
   Scenario: Case for reuptake
   	Given the form with initialized standard values
   	When I enter "Q28.81" as diagnosis
@@ -31,7 +19,100 @@ Feature: The edge cases should be handled correctly
   	Then I should see "Hämodialyse, Hämodiafiltration, Hämofiltration, intermittierend" in "settlement_hints"
   	And I should see "ZE01-2012" in "settlement_hints"
   	And I should see "39.95.21" in "settlement_hints"
-  	
+  
+# TESTS FOR RIGHT DRG
+  # groupertest.java L67
+  @javascript
+  Scenario: parse case pdx P67D
+	  Given the form with initialized standard values
+	  When I parse "38853;0;1;3620;W;01;01;5;;;Q181;;;;P153;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897;;;;;;;;;;;;;;;;;;;;;" as input for the form
+	  Then I should see "P67D" in "grouping"
+	  
+	
+	# groupertest.java L 74
+  @javascript
+  Scenario: parse case pdx F03Z, should be inlier
+	  Given the form with initialized standard values
+	  When I parse "44364;55;;;W;01;01;15;;;I080;;;;E039;;I10;;I48;;I270;;I501;;F171;;E669;;E785;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3964;3961;9671;9390;8872;3995;3962;3512;3734;3533;3963;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+	  Then I should see "F03Z" in "grouping"
+	  And I should see "Normallieger" in "length-of-stay"
+
+	# groupertest.java L 81
+  @javascript
+  Scenario: parse case pdx B78C
+	  Given the form with initialized standard values
+	  When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+	  Then I should see "B78C" in "grouping"	
+		
+	# groupertest.java L 88
+  @javascript
+  Scenario: parse with different dates
+	  Given the form with initialized standard values
+	  When I parse "53567;68;;;W;01;01;5;;;S0680;;W100;;S4220;;S4240;;S0660;;S0650;;S501;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9359;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+  # this could be wrong because dates were not set yet
+	  Then I should see "H63B" in "grouping"
+	
+	  When I fill in "webgrouper_patient_case_entry_date" with "01.02.2008"
+	  And I fill in "webgrouper_patient_case_exit_date" with "10.02.2008"
+	  And I fill in "webgrouper_patient_case_birth_date" with "02.01.2003"
+	  And I submit the form
+    Then I should see "H63B" in "grouping"
+    And I should see "9" in "webgrouper_patient_case_los"
+    And I should see "5" in "webgrouper_patient_case_age"
+  
+    When I fill in "webgrouper_patient_case_exit_date" with "01.02.2008"
+    And I submit the form
+    Then I should see "1" in "webgrouper_patient_case_los"
+    
+	# groupertest.java L 125
+	# It wont parse because 'sex' is set as 2. I tried in the real webgrouper and i couln't get the desired result for Katalogversion 0.3 because there is also no value 01 for adm_mode and no value 00 for sep_mode. no idea, sorry
+  @javascript @dani
+  Scenario: parse with different systems
+	  Given the form with initialized standard values
+	  When I select in "system_SyID" "Planungsversion 0.3 2009/2011"
+	  And I parse "56;10;0;;2;01;00;3;0;;S424;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7911::20080307;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    Then I should see "960Z" in "grouping"
+	  
+    When I select in "system_SyID" "Katalogversion 0.3 2008/2011"
+    And I parse "56;10;0;;2;01;00;3;0;;S424;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7911::20080307;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+   Then I should see "I13B" in "grouping"
+   
+# TESTS FOR DATE EXCEPTIONS/LEAP YEARS
+  # calcCostWeightTest.java L10
+  @javascript
+  Scenario: calculate length of stay for normal year
+    Given the form with initialized standard values
+    When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    And I fill in "webgrouper_patient_case_entry_date" with "26.02.2010"
+    And I fill in "webgrouper_patient_case_exit_date" with "01.03.2010"
+    And I submit the form
+    Then I should see "3" in "length-of-stay"
+
+  # calcCostWeightTest.java L10
+  @javascript
+  Scenario: calculate length of stay for leap year
+    Given the form with initialized standard values
+    When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    And I fill in "webgrouper_patient_case_entry_date" with "26.02.2011"
+    And I fill in "webgrouper_patient_case_exit_date" with "01.03.2011"
+    And I submit the form
+    Then I should see "4" in "length-of-stay"
+    
+# I can't test the age calculations for normal/leap years because we always calculate them up to the current date.
+
+#TESTS FOR MEDICAL FLAGS
+
+  # calcCostWeightTest.java L10
+  @javascript
+  Scenario: calculate length of stay for leap year
+    Given the form with initialized standard values
+    When I parse "53567;15;;;M;01;01;10;;;R509;BLAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    Then I should see "960Z" in "grouping"
+
+
+
+# TESTS FOR LENGTH OF STAY
+  # calcCostWeightTest.java L10
   @javascript
   Scenario: Case for transfer patient
     Given the form with initialized standard values
@@ -39,5 +120,49 @@ Feature: The edge cases should be handled correctly
     Then I should see "E74Z" in "grouping"
     And I should see "0.371" in "cost-weight"
   	And I should see "Verlegungsabschlagspflichtig" in "length-of-stay"
-  
-  
+  	
+  # calcCostWeightTest.java L15
+  @javascript
+  Scenario: Case for lower outlier
+    Given the form with initialized standard values
+    When I parse "12;28;;;U;99;00;2;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    Then I should see "E74Z" in "grouping"
+    And I should see "0.811" in "cost-weight"
+  	And I should see "Unterer Outlier"  in "length-of-stay"
+  	
+
+  # calcCostWeightTest.java L21
+  @javascript
+  Scenario: Case for inlier
+    Given the form with initialized standard values
+    When I parse "12;28;;;U;99;00;22;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    Then I should see "E74Z" in "grouping"
+    And I should see "1.181" in "cost-weight"
+  	And I should see "Normallieger"  in "length-of-stay"
+
+  # calcCostWeightTest.java L27
+  @javascript
+  Scenario: Case for upper outlier
+    Given the form with initialized standard values
+    When I parse "12;28;;;U;99;00;23;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    Then I should see "E74Z" in "grouping"
+    And I should see "1.258" in "cost-weight"
+  	And I should see "Oberer Outlier"  in "length-of-stay"
+  	
+  # calcCostWeightTest.java L33
+  @javascript
+  Scenario: Case for unweighted DRG
+    Given the form with initialized standard values
+    When I parse "12;28;;;U;99;00;22;0;0;Z85.6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    Then I should see "961Z" in "grouping"
+  	And I should see "Unbewertete DRG"  in "length-of-stay"
+  	
+  	
+  # calcCostWeightTest.java L39
+  @javascript
+  Scenario: Case for upper outlier
+    Given the form with initialized standard values
+    When I parse "12;28;;;U;99;00;9999;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    Then I should see "E74Z" in "grouping"
+    And I should see "769.41" in "cost-weight"
+  	And I should see "Oberer Outlier"  in "length-of-stay"
