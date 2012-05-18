@@ -18,15 +18,16 @@ def addMissingKeys(keys_de, keys_other, lang):
 			if type(value) is dict:
 				keys_other[key] = {}
 			else:
-				swissdrg_key = getSwissdrgKey(value)
+				swissdrg_key = get_swissdrg_key(value)
 				if swissdrg_key != None:
 					keys_other[key] = swissdrg_dict[lang][swissdrg_key]
 				else:
 					keys_other[key] = "Translation missing"
 		if type(value) is dict:
 			addMissingKeys(keys_de[key], keys_other[key], lang)
-
-def getSwissdrgKey(search_value):
+			
+# Returns the key if the given value has a matching swissdrg key
+def get_swissdrg_key(search_value):
 	for key, value in swissdrg_dict["de"].items():
 		if value == search_value:
 			return key
@@ -37,8 +38,7 @@ def main():
 	de_yml = yaml.load(de_file)
 	print "loaded german yml file as template"
 	languages = ["fr", "it", "en"]
-	initSwissdrgDicts()
-	print de_yml
+	init_swissdrg_dicts()
 	for lang in languages:
 		lang_yml = yaml.load(codecs.open("old_locales/" + lang + ".yml.old", "r", "utf-8"))
 		addMissingKeys(de_yml["de"], lang_yml[lang], lang)
@@ -47,7 +47,7 @@ def main():
 		yaml.safe_dump(lang_yml, stream, allow_unicode=True, default_flow_style=False)
 	print 'Terminated!'
 
-def initSwissdrgDicts():
+def init_swissdrg_dicts():
 	global swissdrg_dict
 	for lang in ["de", "en", "it", "fr"]:
 		swissdrg_lang = codecs.open("old_locales/" + "messages_" + lang + ".properties.utf", "r", "utf-8")
