@@ -3,36 +3,35 @@ fr:
     errors:
       format: Le %{attribute} %{message}
       messages: &id001
-        accepted: "doit \xEAtre accept\xE9(e)"
-        blank: "doit \xEAtre rempli(e)"
+        accepted: doit être accepté(e)
+        blank: doit être rempli(e)
         confirmation: ne concorde pas avec la confirmation
-        empty: "doit \xEAtre rempli(e)"
-        equal_to: "doit \xEAtre \xE9gal \xE0 %{count}"
-        even: "doit \xEAtre pair"
+        empty: doit être rempli(e)
+        equal_to: doit être égal à %{count}
+        even: doit être pair
         exclusion: n'est pas disponible
-        greater_than: "doit \xEAtre sup\xE9rieur \xE0 %{count}"
-        greater_than_or_equal_to: "doit \xEAtre sup\xE9rieur ou \xE9gal \xE0 %{count}"
+        greater_than: doit être supérieur à %{count}
+        greater_than_or_equal_to: doit être supérieur ou égal à %{count}
         inclusion: n'est pas inclus(e) dans la liste
         invalid: n'est pas valide
-        less_than: "doit \xEAtre inf\xE9rieur \xE0 %{count}"
-        less_than_or_equal_to: "doit \xEAtre inf\xE9rieur ou \xE9gal \xE0 %{count}"
+        less_than: doit être inférieur à %{count}
+        less_than_or_equal_to: doit être inférieur ou égal à %{count}
         not_a_number: n'est pas un nombre
-        not_an_integer: "doit \xEAtre un nombre entier"
-        odd: "doit \xEAtre impair"
-        record_invalid: "La validation a \xE9chou\xE9 : %{errors}"
+        not_an_integer: doit être un nombre entier
+        odd: doit être impair
+        record_invalid: 'La validation a échoué : %{errors}'
         taken: n'est pas disponible
         too_long:
-          one: "est trop long (pas plus d'un caract\xE8re)"
-          other: "est trop long (pas plus de %{count} caract\xE8res)"
+          one: est trop long (pas plus d'un caractère)
+          other: est trop long (pas plus de %{count} caractères)
         too_short:
-          one: "est trop court (au moins un caract\xE8re)"
-          other: "est trop court (au moins %{count} caract\xE8res)"
+          one: est trop court (au moins un caractère)
+          other: est trop court (au moins %{count} caractères)
         wrong_length:
-          one: "ne fait pas la bonne longueur (doit comporter un seul caract\xE8re)"
-          other: "ne fait pas la bonne longueur (doit comporter %{count} caract\xE8\
-            res)"
+          one: ne fait pas la bonne longueur (doit comporter un seul caractère)
+          other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
       template: &id002
-        body: "Veuillez v\xE9rifier les champs suivants : "
+        body: 'Veuillez vérifier les champs suivants : '
         header:
           one: 'Impossible d''enregistrer ce %{model} : 1 erreur'
           other: 'Impossible d''enregistrer ce %{model} : %{count} erreurs'
@@ -53,17 +52,17 @@ fr:
     abbr_month_names:
     - null
     - jan.
-    - "f\xE9v."
+    - fév.
     - mar.
     - avr.
     - mai
     - juin
     - juil.
-    - "ao\xFBt"
+    - août
     - sept.
     - oct.
     - nov.
-    - "d\xE9c."
+    - déc.
     day_names:
     - dimanche
     - lundi
@@ -79,17 +78,17 @@ fr:
     month_names:
     - null
     - janvier
-    - "f\xE9vrier"
+    - février
     - mars
     - avril
     - mai
     - juin
     - juillet
-    - "ao\xFBt"
+    - août
     - septembre
     - octobre
     - novembre
-    - "d\xE9cembre"
+    - décembre
     order:
     - :day
     - :month
@@ -138,27 +137,27 @@ fr:
       minute: Minute
       month: Mois
       second: Seconde
-      year: "Ann\xE9e"
+      year: Année
   diagnoses: 'Diagnostics secondaires:'
   errors:
     format: Le %{attribute} %{message}
     messages: *id001
     template: *id002
   fieldsets:
-    diagnoses_procedures: "Diagnostics et Proc\xE9dures"
-    patient_data: "Donn\xE9es du patient"
-    stay: "S\xE9jour"
-    system: "Syst\xE8me"
+    diagnoses_procedures: Diagnostics et Procédures
+    patient_data: Données du patient
+    stay: Séjour
+    system: Système
   found_errors: null
   help:
-    back: "En arri\xE8re"
+    back: En arrière
     other: 'Divers:'
     show_help: Aide
   helpers:
     select:
-      prompt: "Veuillez s\xE9lectionner"
+      prompt: Veuillez sélectionner
     submit:
-      create: "Cr\xE9er un %{model}"
+      create: Créer un %{model}
       submit: Enregistrer ce %{model}
       update: Modifier ce %{model}
   number:
@@ -208,67 +207,67 @@ fr:
     precision:
       format:
         delimiter: ''
-  procedures: "Proc\xE9dures:"
+  procedures: 'Procédures:'
   result:
     cost-weight:
-      baserate: null
-      discount-rate-per-day: null
-      effective-cost-weight: null
-      legend: null
+      baserate: Cost-weight de base
+      discount-rate-per-day: Réduction du CW par jour
+      effective-cost-weight: Cost-weight effectif
+      legend: Cost-weight
       no_days_for_discount_or_surcharge: null
       number_of_days_for_discount: null
       number_of_days_for_surcharge: null
-      surcharge-rate-per-day: null
+      surcharge-rate-per-day: Augmentation du CW par jour
     diagnoses:
-      CCL: null
+      CCL: CCL
       diagnosis_flag:
         used:
           false_string: null
           true_string: null
         valid:
           AGE_CONFLICT: null
-          ALREADY_IN_PDX: null
+          ALREADY_IN_PDX: Déjà employé comme diagnostic principal
           INVALID_DIAGNOSIS: null
           SEX_CONFLICT: null
           VALID_DIAGNOSIS: null
-      legend: null
+      legend: Diagnostics
       used: null
       valid: null
     grouping:
       grouperstatus: Statut du groupeur
       grouperstatus_modes:
         ICT_NOT_VALID_PDX: Diagnostic principal inadmissible
-        INVALID_ADMWEIGHT: "Poids \xE0 l'admission non valable"
-        INVALID_AGE: "\xC2ge non valable"
-        INVALID_LOS: "Dur\xE9e du s\xE9jour non valable"
+        INVALID_ADMWEIGHT: Poids à l'admission non valable
+        INVALID_AGE: Âge non valable
+        INVALID_LOS: Durée du séjour non valable
         INVALID_OR_EMPTY_PDX: Diagnostic principal non valable ou manquant
         INVALID_SDF: Valeur non valable dans la case Sameday
         INVALID_SEP_OR_ADM: Raison d'admission ou de sortie non valable
         INVALID_SEX: Sexe non valable
         NORMAL_GROUP: Groupement normal
-        NO_DRG: "Ensemble de donn\xE9es ne correspond \xE0 aucun crit\xE8re d'une\
-          \ quelconque DRG"
-      legend: null
+        NO_DRG: Ensemble de données ne correspond à aucun critère d'une quelconque
+          DRG
+      legend: Groupement
     length-of-stay:
-      average_los: null
+      average_los: Durée moyenne de séjour
       case_flag: null
       case_flag_modes:
-        INLIER: null
-        LOWER_OUTLIER: null
-        TRANSFERRED: null
+        INLIER: Inlier
+        LOWER_OUTLIER: Low-Outlier
+        TRANSFERRED: Réduction pour transfert
         UNDEFINED: null
-        UNWEIGHTED: null
-        UPPER_OUTLIER: null
+        UNWEIGHTED: DRG non évalué
+        UPPER_OUTLIER: High-Outlier
       first-day-with-discount: null
       first-day-with-surcharge: null
-      high_trim_point: null
-      legend: null
-      length-of-stay: null
-      low_trim_point: null
-    los_chart: null
+      high_trim_point: Borne supérieure de la durée de séjour
+      legend: Durée du séjour
+      length-of-stay: Durée de séjour
+      low_trim_point: Borne inférieure de la durée de séjour
+    los_chart: Diagramme pour
     procedures:
-      legend: null
-      or-nor: null
+      legend: Procédures
+      or-nor: OR/NOR
       procedure_flag:
         or-nor:
           NONOR: null
@@ -295,11 +294,10 @@ fr:
           UNUSED: null
           VALID_DIAGNOSIS: null
     settlement_hints:
-      additional_fees: "R\xE9mun\xE9ration suppl\xE9mentaire: "
+      additional_fees: 'Rémunération supplémentaire: '
       legend: Note explicative pour la facturation
       no_additional_fees: null
-      reuptake_hint: "Le regroupement de cas du DRG %{drg} est exclu lors d'une r\xE9\
-        admission."
+      reuptake_hint: Le regroupement de cas du DRG %{drg} est exclu lors d'une réadmission.
   support:
     array:
       last_word_connector: ' et '
@@ -315,15 +313,15 @@ fr:
   tos:
     accept: Oui, j'accepte les conditions d'utilisation
     accept_tos: Acceptation des conditions d'utilisation
-    confirm_read: "VOUS CONFIRMEZ, EN ACCEPTANT CES CONDITIONS PAR UN CLIC SOURIS,\
-      \ AVOIR LU ET COMPRIS DANS SON INT\xC9GRALIT\xC9 LE PR\xC9SENT ACCORD D'UTILISATION,\
-      \ DONT VOUS D\xC9CLAREZ APPROUVER PLEINEMENT LE CONTENU."
-    data_security: "S\xE9curit\xE9 des donn\xE9es sur Internet"
-    date: "Etat : 1 f\xE9vrier 2010"
-    group_right: "Objet du pr\xE9sent accord : le droit de regroupement en ligne"
-    heading: "ACCORD D'UTILISATION EN LIGNE DU WEB-GROUPER ET DU BATCH-GROUPER DE\
-      \ LA SOCI\xC9T\xC9 SWISSDRG AG"
-    preamble: "Pr\xE9ambule"
-    privacy: "Protection des donn\xE9es"
-    responsibility: "Garantie / Responsabilit\xE9"
+    confirm_read: VOUS CONFIRMEZ, EN ACCEPTANT CES CONDITIONS PAR UN CLIC SOURIS,
+      AVOIR LU ET COMPRIS DANS SON INTÉGRALITÉ LE PRÉSENT ACCORD D'UTILISATION, DONT
+      VOUS DÉCLAREZ APPROUVER PLEINEMENT LE CONTENU.
+    data_security: Sécurité des données sur Internet
+    date: 'Etat : 1 février 2010'
+    group_right: 'Objet du présent accord : le droit de regroupement en ligne'
+    heading: ACCORD D'UTILISATION EN LIGNE DU WEB-GROUPER ET DU BATCH-GROUPER DE LA
+      SOCIÉTÉ SWISSDRG AG
+    preamble: Préambule
+    privacy: Protection des données
+    responsibility: Garantie / Responsabilité
     terminatory: Dispositions finales
