@@ -4,6 +4,7 @@
 import yaml
 import os
 import codecs
+import unicodedata as ud
 
 swissdrg_dict = {}
 
@@ -17,18 +18,15 @@ def addMissingKeys(keys_de, keys_other, lang):
 			else:
 				swissdrg_key = getSwissdrgKey(value)
 				if swissdrg_key != None:
-					keys_other[key] = getSwissdrgValue(swissdrg_key, lang)
+					keys_other[key] = swissdrg_dict[lang][swissdrg_key]
 				else:
 					keys_other[key] = None
 		if type(value) is dict:
 			addMissingKeys(keys_de[key], keys_other[key], lang)
 
-def getSwissdrgValue(search_key, lang):
-	return swissdrg_dict[lang][key]
-
 def getSwissdrgKey(search_value):
 	for key, value in swissdrg_dict["de"].items():
-		if value is search_value:
+		if value == search_value:
 			print "returning " + key
 			return key
 	return None
@@ -37,16 +35,17 @@ def main():
 	de_file = codecs.open("de.yml.old", "r", "utf-8")
 	de_yml = yaml.load(de_file)
 	print "loaded german yml file"
-	languages = ["fr", "it", "en"]
+	#languages = ["fr", "it", "en"]
+	languages = ["fr"]
 	initSwissdrgDicts()
-	print swissdrg_dict
+	print de_yml
 	for lang in languages:
 		lang_yml = yaml.load(codecs.open(lang + ".yml.old", "r", "utf-8"))
 		addMissingKeys(de_yml["de"], lang_yml[lang], lang)
 		test_file_path = lang + '.yml'
 		#os.remove(test_file_path)
 		stream = file(test_file_path, 'w')
-		yaml.dump(lang_yml, stream,  default_flow_style=False, encoding=('utf-8'))
+		yaml.safe_dump(lang_yml, stream, allow_unicode=True, default_flow_style=False)
 	print 'Terminated!'
 
 def initSwissdrgDicts():
@@ -61,6 +60,7 @@ def initSwissdrgDicts():
 				dict[key] = sanitizeString(value)
 
 def sanitizeString(string):
+	string = string.strip()
 	string = string.replace("\u00F6", "ö")
 	string = string.replace("\u00DF", "ss")
 	string = string.replace("\u00E4", "ä")
