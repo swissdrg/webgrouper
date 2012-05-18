@@ -38,13 +38,15 @@ def main():
 	de_yml = yaml.load(de_file)
 	print "loaded german yml file as template"
 	languages = ["fr", "it", "en"]
+	files = ["", "simple_form."]
 	init_swissdrg_dicts()
 	for lang in languages:
-		lang_yml = yaml.load(codecs.open("old_locales/" + lang + ".yml.old", "r", "utf-8"))
-		addMissingKeys(de_yml["de"], lang_yml[lang], lang)
-		test_file_path = lang + '.yml'
-		stream = file(test_file_path, 'w')
-		yaml.safe_dump(lang_yml, stream, allow_unicode=True, default_flow_style=False)
+		for f in files:
+			lang_yml = yaml.load(codecs.open("old_locales/" + f + lang + ".yml.old", "r", "utf-8"))
+			addMissingKeys(de_yml["de"], lang_yml[lang], lang)
+			test_file_path = f + lang + '.yml'
+			stream = file(test_file_path, 'w')
+			yaml.safe_dump(lang_yml, stream, allow_unicode=True, default_flow_style=False)
 	print 'Terminated!'
 
 def init_swissdrg_dicts():
