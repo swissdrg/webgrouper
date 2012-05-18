@@ -1,6 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 
+# This script was added to keep all translation files synchronized. It is assumed that german is
+# the most completed language. The missing keys in otherlanguages are added either with the value
+# "Translation missing" or the value provided by the old grouper translations.
 import yaml
 import os
 import codecs
@@ -26,22 +29,20 @@ def addMissingKeys(keys_de, keys_other, lang):
 def getSwissdrgKey(search_value):
 	for key, value in swissdrg_dict["de"].items():
 		if value == search_value:
-			print "returning " + key
 			return key
 	return None
 			
 def main():
-	de_file = codecs.open("de.yml.old", "r", "utf-8")
+	de_file = codecs.open("old_locales/" + "de.yml.old", "r", "utf-8")
 	de_yml = yaml.load(de_file)
-	print "loaded german yml file"
+	print "loaded german yml file as template"
 	languages = ["fr", "it", "en"]
 	initSwissdrgDicts()
 	print de_yml
 	for lang in languages:
-		lang_yml = yaml.load(codecs.open(lang + ".yml.old", "r", "utf-8"))
+		lang_yml = yaml.load(codecs.open("old_locales/" + lang + ".yml.old", "r", "utf-8"))
 		addMissingKeys(de_yml["de"], lang_yml[lang], lang)
 		test_file_path = lang + '.yml'
-		#os.remove(test_file_path)
 		stream = file(test_file_path, 'w')
 		yaml.safe_dump(lang_yml, stream, allow_unicode=True, default_flow_style=False)
 	print 'Terminated!'
@@ -49,7 +50,7 @@ def main():
 def initSwissdrgDicts():
 	global swissdrg_dict
 	for lang in ["de", "en", "it", "fr"]:
-		swissdrg_lang = codecs.open("messages_" + lang + ".properties.utf", "r", "utf-8")
+		swissdrg_lang = codecs.open("old_locales/" + "messages_" + lang + ".properties.utf", "r", "utf-8")
 		dict = {}
 		swissdrg_dict[lang] = dict
 		for line in swissdrg_lang:
