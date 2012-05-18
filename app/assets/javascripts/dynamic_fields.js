@@ -191,14 +191,15 @@ function add_buttons(kind) {
 	var field_count = get_field_count(kind);
 	var add_button = get_add_button(kind);
 	var remove_button = get_remove_button(kind);
+	var $button_div = $("#"+kind+" > .sameline > ."+kind+"_buttons")
 	// remove all add-/remove buttons for this kind of fields
-	$("#"+kind+" > .sameline > ."+kind+"_buttons").empty();
+	$button_div.empty();
 	
 	if (field_count/fields_per_row(kind) < max_rows(kind)) {
-		$("#"+kind+" > .sameline:last > ."+kind+"_buttons").append(add_button);
+		button_div.append(add_button);
 	};
 	if (field_count > min_fields(kind)) {
-		$("#"+kind+" > .sameline:last > ."+kind+"_buttons").append(remove_button);
+		button_div.append(remove_button);
 	};
 }
 
