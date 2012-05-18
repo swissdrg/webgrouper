@@ -3,6 +3,7 @@
 
 import yaml
 import os
+import codecs
 
 swissdrg_dict = {}
 
@@ -33,14 +34,14 @@ def getSwissdrgKey(search_value):
 	return None
 			
 def main():
-	de_file = open("de.yml.old")
+	de_file = codecs.open("de.yml.old", "r", "utf-8")
 	de_yml = yaml.load(de_file)
 	print "loaded german yml file"
 	languages = ["fr", "it", "en"]
 	initSwissdrgDicts()
 	print swissdrg_dict
 	for lang in languages:
-		lang_yml = yaml.load(open(lang + ".yml.old"))
+		lang_yml = yaml.load(codecs.open(lang + ".yml.old", "r", "utf-8"))
 		addMissingKeys(de_yml["de"], lang_yml[lang], lang)
 		test_file_path = lang + '.yml'
 		#os.remove(test_file_path)
@@ -51,7 +52,7 @@ def main():
 def initSwissdrgDicts():
 	global swissdrg_dict
 	for lang in ["de", "en", "it", "fr"]:
-		swissdrg_lang = open("messages_" + lang + ".properties")
+		swissdrg_lang = codecs.open("messages_" + lang + ".properties.utf", "r", "utf-8")
 		dict = {}
 		swissdrg_dict[lang] = dict
 		for line in swissdrg_lang:

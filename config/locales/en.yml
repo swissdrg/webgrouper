@@ -1,33 +1,45 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  diagnoses:    'Secondary Diagnoses:'
-  procedures:   'Procedures:'
-  help:
-    show_help: Show help
-    back: Back
-    other: 'Other: '
-  fieldsets:
-    system: 'System'
-    stay: 'Stay'
-    diagnoses_procedures: 'Diagnoses and Procedures'
-    patient_data: 'Patient data'
-  
-  found_errors: 'Found the following errors:'
-  result:
-    grouperstatus: Grouper status
-    grouperstatus_modes:
-      NORMAL_GROUP: Normal grouping
-      NO_DRG: data not matching criteria for any DRG
-      ICT_NOT_VALID_PDX: Is not valid as a primary diagnosis
-      INVALID_OR_EMPTY_PDX: Invalid or missing primary diagnosis
-      INVALID_LOS: Invalid length of stay
-      INVALID_SDF: Invalid value in the field Sameday
-      INVALID_SEP_OR_ADM: Invalid reason for admission or separation
-      INVALID_SEX: Invalid sex
-      INVALID_AGE: Invalid age
-      INVALID_ADMWEIGHT: Invalid admission weight
+  activemodel:
+    errors:
+      format: '%{attribute} %{message}'
+      messages: &id001
+        accepted: must be accepted
+        blank: can't be blank
+        confirmation: doesn't match confirmation
+        empty: can't be empty
+        equal_to: must be equal to %{count}
+        even: must be even
+        exclusion: is reserved
+        greater_than: must be greater than %{count}
+        greater_than_or_equal_to: must be greater than or equal to %{count}
+        inclusion: is not included in the list
+        invalid: is invalid
+        less_than: must be less than %{count}
+        less_than_or_equal_to: must be less than or equal to %{count}
+        not_a_number: is not a number
+        not_an_integer: must be an integer
+        odd: must be odd
+        record_invalid: 'Validation failed: %{errors}'
+        taken: has already been taken
+        too_long:
+          one: is too long (maximum is 1 character)
+          other: is too long (maximum is %{count} characters)
+        too_short:
+          one: is too short (minimum is 1 character)
+          other: is too short (minimum is %{count} characters)
+        wrong_length:
+          one: is the wrong length (should be 1 character)
+          other: is the wrong length (should be %{count} characters)
+      template: &id002
+        body: 'There were problems with the following fields:'
+        header:
+          one: 1 error prohibited this %{model} from being saved
+          other: '%{count} errors prohibited this %{model} from being saved'
+  activerecord:
+    errors:
+      format: '%{attribute} %{message}'
+      messages: *id001
+      template: *id002
   date:
     abbr_day_names:
     - Sun
@@ -38,7 +50,7 @@ en:
     - Fri
     - Sat
     abbr_month_names:
-    - 
+    - null
     - Jan
     - Feb
     - Mar
@@ -60,11 +72,11 @@ en:
     - Friday
     - Saturday
     formats:
-      default: ! '%Y-%m-%d'
-      long: ! '%B %d, %Y'
-      short: ! '%b %d'
+      default: '%Y-%m-%d'
+      long: '%B %d, %Y'
+      short: '%b %d'
     month_names:
-    - 
+    - null
     - January
     - February
     - March
@@ -107,16 +119,16 @@ en:
         other: over %{count} years
       x_days:
         one: 1 day
-        other: ! '%{count} days'
+        other: '%{count} days'
       x_minutes:
         one: 1 minute
-        other: ! '%{count} minutes'
+        other: '%{count} minutes'
       x_months:
         one: 1 month
-        other: ! '%{count} months'
+        other: '%{count} months'
       x_seconds:
         one: 1 second
-        other: ! '%{count} seconds'
+        other: '%{count} seconds'
     prompts:
       day: Day
       hour: Hour
@@ -124,41 +136,21 @@ en:
       month: Month
       second: Seconds
       year: Year
-  errors: &errors
-    format: ! '%{attribute} %{message}'
-    messages:
-      accepted: must be accepted
-      blank: can't be blank
-      confirmation: doesn't match confirmation
-      empty: can't be empty
-      equal_to: must be equal to %{count}
-      even: must be even
-      exclusion: is reserved
-      greater_than: must be greater than %{count}
-      greater_than_or_equal_to: must be greater than or equal to %{count}
-      inclusion: is not included in the list
-      invalid: is invalid
-      less_than: must be less than %{count}
-      less_than_or_equal_to: must be less than or equal to %{count}
-      not_a_number: is not a number
-      not_an_integer: must be an integer
-      odd: must be odd
-      record_invalid: ! 'Validation failed: %{errors}'
-      taken: has already been taken
-      too_long:
-        one: is too long (maximum is 1 character)
-        other: is too long (maximum is %{count} characters)
-      too_short:
-        one: is too short (minimum is 1 character)
-        other: is too short (minimum is %{count} characters)
-      wrong_length:
-        one: is the wrong length (should be 1 character)
-        other: is the wrong length (should be %{count} characters)
-    template:
-      body: ! 'There were problems with the following fields:'
-      header:
-        one: 1 error prohibited this %{model} from being saved
-        other: ! '%{count} errors prohibited this %{model} from being saved'
+  diagnoses: 'Secondary Diagnoses:'
+  errors:
+    format: '%{attribute} %{message}'
+    messages: *id001
+    template: *id002
+  fieldsets:
+    diagnoses_procedures: Diagnoses and Procedures
+    patient_data: Patient data
+    stay: Stay
+    system: System
+  found_errors: 'Found the following errors:'
+  help:
+    back: Back
+    other: 'Other: '
+    show_help: Show help
   helpers:
     select:
       prompt: Please select
@@ -169,22 +161,22 @@ en:
   number:
     currency:
       format:
-        delimiter: ! ','
-        format: ! '%u%n'
+        delimiter: ','
+        format: '%u%n'
         precision: 2
         separator: .
         significant: false
         strip_insignificant_zeros: false
         unit: $
     format:
-      delimiter: ! ','
+      delimiter: ','
       precision: 3
       separator: .
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           billion: Billion
           million: Million
@@ -198,7 +190,7 @@ en:
         significant: true
         strip_insignificant_zeros: true
       storage_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           byte:
             one: Byte
@@ -213,22 +205,129 @@ en:
     precision:
       format:
         delimiter: ''
+  procedures: 'Procedures:'
+  result:
+    cost-weight:
+      baserate: null
+      discount-rate-per-day: null
+      effective-cost-weight: null
+      legend: null
+      no_days_for_discount_or_surcharge: null
+      number_of_days_for_discount: null
+      number_of_days_for_surcharge: null
+      surcharge-rate-per-day: null
+    diagnoses:
+      CCL: null
+      diagnosis_flag:
+        used:
+          false_string: null
+          true_string: null
+        valid:
+          AGE_CONFLICT: null
+          ALREADY_IN_PDX: null
+          INVALID_DIAGNOSIS: null
+          SEX_CONFLICT: null
+          VALID_DIAGNOSIS: null
+      legend: null
+      used: null
+      valid: null
+    grouperstatus: Grouper status
+    grouperstatus_modes:
+      ICT_NOT_VALID_PDX: Is not valid as a primary diagnosis
+      INVALID_ADMWEIGHT: Invalid admission weight
+      INVALID_AGE: Invalid age
+      INVALID_LOS: Invalid length of stay
+      INVALID_OR_EMPTY_PDX: Invalid or missing primary diagnosis
+      INVALID_SDF: Invalid value in the field Sameday
+      INVALID_SEP_OR_ADM: Invalid reason for admission or separation
+      INVALID_SEX: Invalid sex
+      NORMAL_GROUP: Normal grouping
+      NO_DRG: data not matching criteria for any DRG
+    grouping:
+      grouperstatus: null
+      grouperstatus_modes:
+        ICT_NOT_VALID_PDX: null
+        INVALID_ADMWEIGHT: null
+        INVALID_AGE: null
+        INVALID_LOS: null
+        INVALID_OR_EMPTY_PDX: null
+        INVALID_SDF: null
+        INVALID_SEP_OR_ADM: null
+        INVALID_SEX: null
+        NORMAL_GROUP: null
+        NO_DRG: null
+      legend: null
+    length-of-stay:
+      average_los: null
+      case_flag: null
+      case_flag_modes:
+        INLIER: null
+        LOWER_OUTLIER: null
+        TRANSFERRED: null
+        UNDEFINED: null
+        UNWEIGHTED: null
+        UPPER_OUTLIER: null
+      first-day-with-discount: null
+      first-day-with-surcharge: null
+      high_trim_point: null
+      legend: null
+      length-of-stay: null
+      low_trim_point: null
+    los_chart: null
+    procedures:
+      legend: null
+      or-nor: null
+      procedure_flag:
+        or-nor:
+          NONOR: null
+          NONOR_CONFLICT: null
+          NONOR_CONFLICT_CHOP: null
+          NONOR_CONFLICT_CHOP_DATE: null
+          OR: null
+          OR_CONFLICT: null
+          OR_CONFLICT_CHOP_DATE: null
+          SRG: null
+          SRG_CONFLICT: null
+          SRG_CONFLICT_CHOP: null
+          SRG_CONFLICT_CHOP_DATE: null
+        used:
+          PROC_NOT_USED: null
+          PROC_USED: null
+          USED_BOTH: null
+          USED_FOR_CONDITION: null
+        valid:
+          PROC_AGE_CONFLICT: null
+          PROC_INVALID: null
+          PROC_SEX_CONFLICT: null
+          PROC_VALID: null
+          UNUSED: null
+          VALID_DIAGNOSIS: null
+    settlement_hints:
+      additional_fees: null
+      legend: null
+      no_additional_fees: null
+      reuptake_hint: null
   support:
     array:
-      last_word_connector: ! ', and '
-      two_words_connector: ! ' and '
-      words_connector: ! ', '
+      last_word_connector: ', and '
+      two_words_connector: ' and '
+      words_connector: ', '
   time:
     am: am
     formats:
-      default: ! '%a, %d %b %Y %H:%M:%S %z'
-      long: ! '%B %d, %Y %H:%M'
-      short: ! '%d %b %H:%M'
+      default: '%a, %d %b %Y %H:%M:%S %z'
+      long: '%B %d, %Y %H:%M'
+      short: '%d %b %H:%M'
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
-  activerecord:
-    errors:
-      <<: *errors
+  tos:
+    accept: null
+    accept_tos: null
+    confirm_read: null
+    data_security: null
+    date: null
+    group_right: null
+    heading: null
+    preamble: null
+    privacy: null
+    responsibility: null
+    terminatory: null

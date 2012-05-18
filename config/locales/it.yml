@@ -1,30 +1,45 @@
 it:
-  
-  diagnoses:  'Diagnosi secondarie:'
-  procedures: 'Procedure:'
-  help:
-    show_help: Aiuto
-    back: Indietro
-    other: 'Altro:'  
-  fieldsets:
-    system: 'Sistema'
-    stay: 'Soggiorno'
-    diagnoses_procedures: 'Diagnosi e procedure'
-    patient_data: 'Dati del paziente'
-  
-  result:
-    grouperstatus: Statuto del Grouper
-    grouperstatus_modes:
-      NORMAL_GROUP: Raggrupamento normale
-      NO_DRG: Insieme di dati non corrisponde ad un criterio di un qualsiasi DRG
-      ICT_NOT_VALID_PDX: Diagnosi principale inammissibile 
-      INVALID_OR_EMPTY_PDX: Diagnosi principale non valida o mancante
-      INVALID_LOS: Durata del soggiorno non valida
-      INVALID_SDF: Valore non valido nella casella Sameday
-      INVALID_SEP_OR_ADM: Motivo di ricovero o dimissione non valido
-      INVALID_SEX: Sesso non valido
-      INVALID_AGE: Età non valida
-      INVALID_ADMWEIGHT: Peso al ricovero non valido
+  activemodel:
+    errors:
+      format: '%{attribute} %{message}'
+      messages: &id001
+        accepted: deve essere accettata
+        blank: "non pu\xF2 essere lasciato in bianco"
+        confirmation: non coincide con la conferma
+        empty: "non pu\xF2 essere vuoto"
+        equal_to: deve essere uguale a %{count}
+        even: deve essere pari
+        exclusion: "\xE8 riservato"
+        greater_than: deve essere superiore a %{count}
+        greater_than_or_equal_to: deve essere superiore o uguale a %{count}
+        inclusion: "non \xE8 incluso nella lista"
+        invalid: "non \xE8 valido"
+        less_than: deve essere meno di %{count}
+        less_than_or_equal_to: deve essere meno o uguale a %{count}
+        not_a_number: "non \xE8 un numero"
+        not_an_integer: "non \xE8 un intero"
+        odd: deve essere dispari
+        record_invalid: 'Validazione fallita: %{errors}'
+        taken: "\xE8 gi\xE0 in uso"
+        too_long:
+          one: "\xE8 troppo lungo (il massimo \xE8 1 carattere)"
+          other: "\xE8 troppo lungo (il massimo \xE8 %{count} caratteri)"
+        too_short:
+          one: "\xE8 troppo corto (il minimo \xE8 1 carattere)"
+          other: "\xE8 troppo corto (il minimo \xE8 %{count} caratteri)"
+        wrong_length:
+          one: "\xE8 della lunghezza sbagliata (deve essere di 1 carattere)"
+          other: "\xE8 della lunghezza sbagliata (deve essere di %{count} caratteri)"
+      template: &id002
+        body: 'Per favore ricontrolla i seguenti campi:'
+        header:
+          one: 'Non posso salvare questo %{model}: 1 errore'
+          other: 'Non posso salvare questo %{model}: %{count} errori.'
+  activerecord:
+    errors:
+      format: '%{attribute} %{message}'
+      messages: *id001
+      template: *id002
   date:
     abbr_day_names:
     - Dom
@@ -35,7 +50,7 @@ it:
     - Ven
     - Sab
     abbr_month_names:
-    - 
+    - null
     - Gen
     - Feb
     - Mar
@@ -50,18 +65,18 @@ it:
     - Dic
     day_names:
     - Domenica
-    - Lunedì
-    - Martedì
-    - Mercoledì
-    - Giovedì
-    - Venerdì
+    - "Luned\xEC"
+    - "Marted\xEC"
+    - "Mercoled\xEC"
+    - "Gioved\xEC"
+    - "Venerd\xEC"
     - Sabato
     formats:
-      default: ! '%d-%m-%Y'
-      long: ! '%d %B %Y'
-      short: ! '%d %b'
+      default: '%d-%m-%Y'
+      long: '%d %B %Y'
+      short: '%d %b'
     month_names:
-    - 
+    - null
     - Gennaio
     - Febbraio
     - Marzo
@@ -104,16 +119,16 @@ it:
         other: oltre %{count} anni
       x_days:
         one: 1 giorno
-        other: ! '%{count} giorni'
+        other: '%{count} giorni'
       x_minutes:
         one: 1 minuto
-        other: ! '%{count} minuti'
+        other: '%{count} minuti'
       x_months:
         one: 1 mese
-        other: ! '%{count} mesi'
+        other: '%{count} mesi'
       x_seconds:
         one: 1 secondo
-        other: ! '%{count} secondi'
+        other: '%{count} secondi'
     prompts:
       day: Giorno
       hour: Ora
@@ -121,41 +136,21 @@ it:
       month: Mese
       second: Secondi
       year: Anno
-  errors: &errors
-    format: ! '%{attribute} %{message}'
-    messages:
-      accepted: deve essere accettata
-      blank: non può essere lasciato in bianco
-      confirmation: non coincide con la conferma
-      empty: non può essere vuoto
-      equal_to: deve essere uguale a %{count}
-      even: deve essere pari
-      exclusion: è riservato
-      greater_than: deve essere superiore a %{count}
-      greater_than_or_equal_to: deve essere superiore o uguale a %{count}
-      inclusion: non è incluso nella lista
-      invalid: non è valido
-      less_than: deve essere meno di %{count}
-      less_than_or_equal_to: deve essere meno o uguale a %{count}
-      not_a_number: non è un numero
-      not_an_integer: non è un intero
-      odd: deve essere dispari
-      record_invalid: ! 'Validazione fallita: %{errors}'
-      taken: è già in uso
-      too_long:
-        one: è troppo lungo (il massimo è 1 carattere)
-        other: è troppo lungo (il massimo è %{count} caratteri)
-      too_short:
-        one: è troppo corto (il minimo è 1 carattere)
-        other: è troppo corto (il minimo è %{count} caratteri)
-      wrong_length:
-        one: è della lunghezza sbagliata (deve essere di 1 carattere)
-        other: è della lunghezza sbagliata (deve essere di %{count} caratteri)
-    template:
-      body: ! 'Per favore ricontrolla i seguenti campi:'
-      header:
-        one: ! 'Non posso salvare questo %{model}: 1 errore'
-        other: ! 'Non posso salvare questo %{model}: %{count} errori.'
+  diagnoses: 'Diagnosi secondarie:'
+  errors:
+    format: '%{attribute} %{message}'
+    messages: *id001
+    template: *id002
+  fieldsets:
+    diagnoses_procedures: Diagnosi e procedure
+    patient_data: Dati del paziente
+    stay: Soggiorno
+    system: Sistema
+  found_errors: null
+  help:
+    back: Indietro
+    other: 'Altro:'
+    show_help: Aiuto
   helpers:
     select:
       prompt: Per favore, seleziona
@@ -166,22 +161,22 @@ it:
   number:
     currency:
       format:
-        delimiter: ! ','
-        format: ! '%n %u'
+        delimiter: ','
+        format: '%n %u'
         precision: 2
         separator: .
         significant: false
         strip_insignificant_zeros: false
-        unit: €
+        unit: "\u20AC"
     format:
-      delimiter: ! ','
+      delimiter: ','
       precision: 2
       separator: .
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           billion: Miliardi
           million: Milioni
@@ -195,7 +190,7 @@ it:
         significant: true
         strip_insignificant_zeros: true
       storage_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           byte:
             one: Byte
@@ -210,36 +205,132 @@ it:
     precision:
       format:
         delimiter: ''
+  procedures: 'Procedure:'
+  result:
+    cost-weight:
+      baserate: null
+      discount-rate-per-day: null
+      effective-cost-weight: null
+      legend: null
+      no_days_for_discount_or_surcharge: null
+      number_of_days_for_discount: null
+      number_of_days_for_surcharge: null
+      surcharge-rate-per-day: null
+    diagnoses:
+      CCL: null
+      diagnosis_flag:
+        used:
+          false_string: null
+          true_string: null
+        valid:
+          AGE_CONFLICT: null
+          ALREADY_IN_PDX: null
+          INVALID_DIAGNOSIS: null
+          SEX_CONFLICT: null
+          VALID_DIAGNOSIS: null
+      legend: null
+      used: null
+      valid: null
+    grouperstatus: Statuto del Grouper
+    grouperstatus_modes:
+      ICT_NOT_VALID_PDX: Diagnosi principale inammissibile
+      INVALID_ADMWEIGHT: Peso al ricovero non valido
+      INVALID_AGE: "Et\xE0 non valida"
+      INVALID_LOS: Durata del soggiorno non valida
+      INVALID_OR_EMPTY_PDX: Diagnosi principale non valida o mancante
+      INVALID_SDF: Valore non valido nella casella Sameday
+      INVALID_SEP_OR_ADM: Motivo di ricovero o dimissione non valido
+      INVALID_SEX: Sesso non valido
+      NORMAL_GROUP: Raggrupamento normale
+      NO_DRG: Insieme di dati non corrisponde ad un criterio di un qualsiasi DRG
+    grouping:
+      grouperstatus: null
+      grouperstatus_modes:
+        ICT_NOT_VALID_PDX: null
+        INVALID_ADMWEIGHT: null
+        INVALID_AGE: null
+        INVALID_LOS: null
+        INVALID_OR_EMPTY_PDX: null
+        INVALID_SDF: null
+        INVALID_SEP_OR_ADM: null
+        INVALID_SEX: null
+        NORMAL_GROUP: null
+        NO_DRG: null
+      legend: null
+    length-of-stay:
+      average_los: null
+      case_flag: null
+      case_flag_modes:
+        INLIER: null
+        LOWER_OUTLIER: null
+        TRANSFERRED: null
+        UNDEFINED: null
+        UNWEIGHTED: null
+        UPPER_OUTLIER: null
+      first-day-with-discount: null
+      first-day-with-surcharge: null
+      high_trim_point: null
+      legend: null
+      length-of-stay: null
+      low_trim_point: null
+    los_chart: null
+    procedures:
+      legend: null
+      or-nor: null
+      procedure_flag:
+        or-nor:
+          NONOR: null
+          NONOR_CONFLICT: null
+          NONOR_CONFLICT_CHOP: null
+          NONOR_CONFLICT_CHOP_DATE: null
+          OR: null
+          OR_CONFLICT: null
+          OR_CONFLICT_CHOP_DATE: null
+          SRG: null
+          SRG_CONFLICT: null
+          SRG_CONFLICT_CHOP: null
+          SRG_CONFLICT_CHOP_DATE: null
+        used:
+          PROC_NOT_USED: null
+          PROC_USED: null
+          USED_BOTH: null
+          USED_FOR_CONDITION: null
+        valid:
+          PROC_AGE_CONFLICT: null
+          PROC_INVALID: null
+          PROC_SEX_CONFLICT: null
+          PROC_VALID: null
+          UNUSED: null
+          VALID_DIAGNOSIS: null
+    settlement_hints:
+      additional_fees: null
+      legend: null
+      no_additional_fees: null
+      reuptake_hint: null
   support:
     array:
-      last_word_connector: ! ' e '
-      two_words_connector: ! ' e '
-      words_connector: ! ', '
+      last_word_connector: ' e '
+      two_words_connector: ' e '
+      words_connector: ', '
   time:
     am: am
     formats:
-      default: ! '%a %d %b %Y, %H:%M:%S %z'
-      long: ! '%d %B %Y %H:%M'
-      short: ! '%d %b %H:%M'
+      default: '%a %d %b %Y, %H:%M:%S %z'
+      long: '%d %B %Y %H:%M'
+      short: '%d %b %H:%M'
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
-  activerecord:
-    errors:
-      <<: *errors
-# Terms of Service page
   tos:
-    heading:         ACCORDO DI UTILIZZO ONLINE DI WEB-GROUPER E BATCH-GROUPER DI SWISSDRG AG
-    date:           "Ultimo aggiornamento: 1. febbraio 2010"
-    accept_tos:     Accettazione delle condizioni di utilizzo
-    confirm_read:   MEDIANTE L'ACCETTAZIONE TRAMITE CLIC DEL MOUSE L'UTENTE CONFERMA DI AVER LETTO INTERAMENTE IL PRESENTE ACCORDO DI UTILIZZO E DI AVERLO COMPRESO, DICHIARANDOSI COMPLETAMENTE CONCORDE CON IL SUO CONTENUTO.
-    preamble:       Preambolo
-    group_right:    "Oggetto dell'accordo: diritto al raggruppamento online"
-    data_security:  Sicurezza dei dati in Internet
-    privacy:        Protezione dei dati
-    responsibility: Garanzia / responsabilità
-    terminatory:    Disposizioni conclusive
-    accept:         Sì, accetto le condizioni di utilizzo
-
+    accept: "S\xEC, accetto le condizioni di utilizzo"
+    accept_tos: Accettazione delle condizioni di utilizzo
+    confirm_read: MEDIANTE L'ACCETTAZIONE TRAMITE CLIC DEL MOUSE L'UTENTE CONFERMA
+      DI AVER LETTO INTERAMENTE IL PRESENTE ACCORDO DI UTILIZZO E DI AVERLO COMPRESO,
+      DICHIARANDOSI COMPLETAMENTE CONCORDE CON IL SUO CONTENUTO.
+    data_security: Sicurezza dei dati in Internet
+    date: 'Ultimo aggiornamento: 1. febbraio 2010'
+    group_right: 'Oggetto dell''accordo: diritto al raggruppamento online'
+    heading: ACCORDO DI UTILIZZO ONLINE DI WEB-GROUPER E BATCH-GROUPER DI SWISSDRG
+      AG
+    preamble: Preambolo
+    privacy: Protezione dei dati
+    responsibility: "Garanzia / responsabilit\xE0"
+    terminatory: Disposizioni conclusive
