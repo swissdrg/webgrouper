@@ -4,7 +4,6 @@
 import yaml
 import os
 import codecs
-import unicodedata as ud
 
 swissdrg_dict = {}
 
@@ -20,7 +19,7 @@ def addMissingKeys(keys_de, keys_other, lang):
 				if swissdrg_key != None:
 					keys_other[key] = swissdrg_dict[lang][swissdrg_key]
 				else:
-					keys_other[key] = None
+					keys_other[key] = "Translation missing"
 		if type(value) is dict:
 			addMissingKeys(keys_de[key], keys_other[key], lang)
 
@@ -35,8 +34,7 @@ def main():
 	de_file = codecs.open("de.yml.old", "r", "utf-8")
 	de_yml = yaml.load(de_file)
 	print "loaded german yml file"
-	#languages = ["fr", "it", "en"]
-	languages = ["fr"]
+	languages = ["fr", "it", "en"]
 	initSwissdrgDicts()
 	print de_yml
 	for lang in languages:
