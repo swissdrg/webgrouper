@@ -1,88 +1,45 @@
-fr: 
-  diagnoses:  'Diagnostics secondaires:'
-  procedures: 'Procédures:'
-  help:
-    show_help: Aide
-    back: En arrière
-    other: 'Divers:'
-  fieldsets:
-    system: 'Système'
-    stay: 'Séjour'
-    diagnoses_procedures: 'Diagnostics et Procédures'
-    patient_data: 'Données du patient'
-  
-  #labels from the result section
-  result:
-    grouping:
-      grouperstatus: Statut du groupeur
-      grouperstatus_modes:
-        NORMAL_GROUP: Groupement normal
-        NO_DRG: Ensemble de données ne correspond à aucun critère d'une quelconque DRG
-        ICT_NOT_VALID_PDX: Diagnostic principal inadmissible
-        INVALID_OR_EMPTY_PDX: Diagnostic principal non valable ou manquant
-        INVALID_LOS: Durée du séjour non valable
-        INVALID_SDF: Valeur non valable dans la case Sameday
-        INVALID_SEP_OR_ADM: Raison d'admission ou de sortie non valable
-        INVALID_SEX: Sexe non valable
-        INVALID_AGE: Âge non valable
-        INVALID_ADMWEIGHT: Poids à l'admission non valable
-    cost-weight:
-      legend: Kostengewicht
-      baserate: Basiskostengewicht
-      effective-cost-weight: Effektives Kostengewicht
-      surcharge-rate-per-day: Zuschlagssatz pro Tag
-      discount-rate-per-day: Abschlagssatz pro Tag
-      number_of_days_for_surcharge: Anzahl zuschlagspflichtige Tage
-      number_of_days_for_discount: Anzahl abschlagspflichtige Tage
-      no_days_for_discount_or_surcharge: Keine Tage sind zu- oder abschlagspflichtig
-    diagnoses:
-      legend: Diagnosen
-      used: Benutzt
-      valid: Gültigkeit
-      CCL: CCL
-      diagnosis_flag:
-        used:
-          false_string: Nein
-          true_string: Ja
-        valid:
-          AGE_CONFLICT: Konflikt mit Alter
-          ALREADY_IN_PDX: Bereits als Hauptdiagnose vermerkt
-          INVALID_DIAGNOSIS: Ungültiger ICD-Code
-          SEX_CONFLICT: Konflikt mit Geschlecht
-          VALID_DIAGNOSIS: Gültige Diagnose
-    procedures:
-      legend: Prozeduren
-      or-nor: OR/NOR
-      procedure_flag:
-        used:
-          PROC_NOT_USED: Nein
-          PROC_USED: Ja, ohne logische und temporäre Konditionen
-          USED_BOTH: Ja, für beide
-          USED_FOR_CONDITION:
-        valid:
-          PROC_VALID: Gültige Prozedur
-          PROC_AGE_CONFLICT: Konflikt mit Alter
-          PROC_INVALID: Ungültiger CHOP-Code
-          PROC_SEX_CONFLICT: Konflikt mit Geschlecht
-          VALID_DIAGNOSIS: Gültige Prozedur
-          UNUSED: Nicht benutzt
-        or-nor:
-          NONOR: Nicht operationale Prozedur
-          NONOR_CONFLICT: 
-          NONOR_CONFLICT_CHOP: 
-          NONOR_CONFLICT_CHOP_DATE: 
-          OR: Operationale Prozedur
-          OR_CONFLICT: 
-          OR_CONFLICT_CHOP_DATE: 
-          SRG: Weder OR noch NOR Prozedur
-          SRG_CONFLICT: 
-          SRG_CONFLICT_CHOP: 
-          SRG_CONFLICT_CHOP_DATE:
-    settlement_hints: 
-      legend: Note explicative pour la facturation
-      no_additional_fees: TODO
-      additional_fees: 'Rémunération supplémentaire: '
-      reuptake_hint: Le regroupement de cas du DRG %{drg} est exclu lors d'une réadmission.
+fr:
+  activemodel:
+    errors:
+      format: Le %{attribute} %{message}
+      messages: &id001
+        accepted: doit être accepté(e)
+        blank: doit être rempli(e)
+        confirmation: ne concorde pas avec la confirmation
+        empty: doit être rempli(e)
+        equal_to: doit être égal à %{count}
+        even: doit être pair
+        exclusion: n'est pas disponible
+        greater_than: doit être supérieur à %{count}
+        greater_than_or_equal_to: doit être supérieur ou égal à %{count}
+        inclusion: n'est pas inclus(e) dans la liste
+        invalid: n'est pas valide
+        less_than: doit être inférieur à %{count}
+        less_than_or_equal_to: doit être inférieur ou égal à %{count}
+        not_a_number: n'est pas un nombre
+        not_an_integer: doit être un nombre entier
+        odd: doit être impair
+        record_invalid: 'La validation a échoué : %{errors}'
+        taken: n'est pas disponible
+        too_long:
+          one: est trop long (pas plus d'un caractère)
+          other: est trop long (pas plus de %{count} caractères)
+        too_short:
+          one: est trop court (au moins un caractère)
+          other: est trop court (au moins %{count} caractères)
+        wrong_length:
+          one: ne fait pas la bonne longueur (doit comporter un seul caractère)
+          other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
+      template: &id002
+        body: 'Veuillez vérifier les champs suivants : '
+        header:
+          one: 'Impossible d''enregistrer ce %{model} : 1 erreur'
+          other: 'Impossible d''enregistrer ce %{model} : %{count} erreurs'
+  activerecord:
+    errors:
+      format: Le %{attribute} %{message}
+      messages: *id001
+      template: *id002
   date:
     abbr_day_names:
     - dim
@@ -93,7 +50,7 @@ fr:
     - ven
     - sam
     abbr_month_names:
-    - 
+    - null
     - jan.
     - fév.
     - mar.
@@ -115,11 +72,11 @@ fr:
     - vendredi
     - samedi
     formats:
-      default: ! '%d.%m.%Y'
-      long: ! '%e %B %Y'
-      short: ! '%e %b'
+      default: '%d.%m.%Y'
+      long: '%e %B %Y'
+      short: '%e %b'
     month_names:
-    - 
+    - null
     - janvier
     - février
     - mars
@@ -164,16 +121,16 @@ fr:
         other: plus de %{count} ans
       x_days:
         one: 1 jour
-        other: ! '%{count} jours'
+        other: '%{count} jours'
       x_minutes:
         one: 1 minute
-        other: ! '%{count} minutes'
+        other: '%{count} minutes'
       x_months:
         one: 1 mois
-        other: ! '%{count} mois'
+        other: '%{count} mois'
       x_seconds:
         one: 1 seconde
-        other: ! '%{count} secondes'
+        other: '%{count} secondes'
     prompts:
       day: Jour
       hour: Heure
@@ -181,41 +138,21 @@ fr:
       month: Mois
       second: Seconde
       year: Année
-  errors: &errors
+  diagnoses: 'Diagnostics secondaires:'
+  errors:
     format: Le %{attribute} %{message}
-    messages:
-      accepted: doit être accepté(e)
-      blank: doit être rempli(e)
-      confirmation: ne concorde pas avec la confirmation
-      empty: doit être rempli(e)
-      equal_to: doit être égal à %{count}
-      even: doit être pair
-      exclusion: n'est pas disponible
-      greater_than: doit être supérieur à %{count}
-      greater_than_or_equal_to: doit être supérieur ou égal à %{count}
-      inclusion: n'est pas inclus(e) dans la liste
-      invalid: n'est pas valide
-      less_than: doit être inférieur à %{count}
-      less_than_or_equal_to: doit être inférieur ou égal à %{count}
-      not_a_number: n'est pas un nombre
-      not_an_integer: doit être un nombre entier
-      odd: doit être impair
-      record_invalid: ! 'La validation a échoué : %{errors}'
-      taken: n'est pas disponible
-      too_long:
-        one: est trop long (pas plus d'un caractère)
-        other: est trop long (pas plus de %{count} caractères)
-      too_short:
-        one: est trop court (au moins un caractère)
-        other: est trop court (au moins %{count} caractères)
-      wrong_length:
-        one: ne fait pas la bonne longueur (doit comporter un seul caractère)
-        other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
-    template:
-      body: ! 'Veuillez vérifier les champs suivants : '
-      header:
-        one: ! 'Impossible d''enregistrer ce %{model} : 1 erreur'
-        other: ! 'Impossible d''enregistrer ce %{model} : %{count} erreurs'
+    messages: *id001
+    template: *id002
+  fieldsets:
+    diagnoses_procedures: Diagnostics et Procédures
+    patient_data: Données du patient
+    stay: Séjour
+    system: Système
+  found_errors: Translation missing
+  help:
+    back: En arrière
+    other: 'Divers:'
+    show_help: Aide
   helpers:
     select:
       prompt: Veuillez sélectionner
@@ -226,22 +163,22 @@ fr:
   number:
     currency:
       format:
-        delimiter: ! ''''
-        format: ! '%n %u'
+        delimiter: ''''
+        format: '%n %u'
         precision: 2
         separator: .
         significant: false
         strip_insignificant_zeros: false
         unit: CHF
     format:
-      delimiter: ! ''''
+      delimiter: ''''
       precision: 3
       separator: .
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           billion: milliard
           million: million
@@ -255,7 +192,7 @@ fr:
         significant: true
         strip_insignificant_zeros: true
       storage_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           byte:
             one: octet
@@ -270,36 +207,121 @@ fr:
     precision:
       format:
         delimiter: ''
+  procedures: 'Procédures:'
+  result:
+    cost-weight:
+      baserate: Cost-weight de base
+      discount-rate-per-day: Réduction du CW par jour
+      effective-cost-weight: Cost-weight effectif
+      legend: Cost-weight
+      no_days_for_discount_or_surcharge: Translation missing
+      number_of_days_for_discount: Translation missing
+      number_of_days_for_surcharge: Translation missing
+      surcharge-rate-per-day: Augmentation du CW par jour
+    diagnoses:
+      CCL: CCL
+      diagnosis_flag:
+        used:
+          false_string: Translation missing
+          true_string: Translation missing
+        valid:
+          AGE_CONFLICT: Translation missing
+          ALREADY_IN_PDX: Déjà employé comme diagnostic principal
+          INVALID_DIAGNOSIS: Translation missing
+          SEX_CONFLICT: Translation missing
+          VALID_DIAGNOSIS: Translation missing
+      legend: Diagnostics
+      used: Translation missing
+      valid: Translation missing
+    grouping:
+      grouperstatus: Statut du groupeur
+      grouperstatus_modes:
+        ICT_NOT_VALID_PDX: Diagnostic principal inadmissible
+        INVALID_ADMWEIGHT: Poids à l'admission non valable
+        INVALID_AGE: Âge non valable
+        INVALID_LOS: Durée du séjour non valable
+        INVALID_OR_EMPTY_PDX: Diagnostic principal non valable ou manquant
+        INVALID_SDF: Valeur non valable dans la case Sameday
+        INVALID_SEP_OR_ADM: Raison d'admission ou de sortie non valable
+        INVALID_SEX: Sexe non valable
+        NORMAL_GROUP: Groupement normal
+        NO_DRG: Ensemble de données ne correspond à aucun critère d'une quelconque
+          DRG
+      legend: Groupement
+    length-of-stay:
+      average_los: Durée moyenne de séjour
+      case_flag: Translation missing
+      case_flag_modes:
+        INLIER: Inlier
+        LOWER_OUTLIER: Low-Outlier
+        TRANSFERRED: Réduction pour transfert
+        UNDEFINED: Translation missing
+        UNWEIGHTED: DRG non évalué
+        UPPER_OUTLIER: High-Outlier
+      first-day-with-discount: Translation missing
+      first-day-with-surcharge: Translation missing
+      high_trim_point: Borne supérieure de la durée de séjour
+      legend: Durée du séjour
+      length-of-stay: Durée de séjour
+      low_trim_point: Borne inférieure de la durée de séjour
+    los_chart: Diagramme pour
+    procedures:
+      legend: Procédures
+      or-nor: OR/NOR
+      procedure_flag:
+        or-nor:
+          NONOR: Translation missing
+          NONOR_CONFLICT: Translation missing
+          NONOR_CONFLICT_CHOP: Translation missing
+          NONOR_CONFLICT_CHOP_DATE: Translation missing
+          OR: Translation missing
+          OR_CONFLICT: Translation missing
+          OR_CONFLICT_CHOP_DATE: Translation missing
+          SRG: Translation missing
+          SRG_CONFLICT: Translation missing
+          SRG_CONFLICT_CHOP: Translation missing
+          SRG_CONFLICT_CHOP_DATE: Translation missing
+        used:
+          PROC_NOT_USED: Translation missing
+          PROC_USED: Translation missing
+          USED_BOTH: Translation missing
+          USED_FOR_CONDITION: Translation missing
+        valid:
+          PROC_AGE_CONFLICT: Translation missing
+          PROC_INVALID: Translation missing
+          PROC_SEX_CONFLICT: Translation missing
+          PROC_VALID: Translation missing
+          UNUSED: Translation missing
+          VALID_DIAGNOSIS: Translation missing
+    settlement_hints:
+      additional_fees: 'Rémunération supplémentaire: '
+      legend: Note explicative pour la facturation
+      no_additional_fees: null
+      reuptake_hint: Le regroupement de cas du DRG %{drg} est exclu lors d'une réadmission.
   support:
     array:
-      last_word_connector: ! ' et '
-      two_words_connector: ! ' et '
-      words_connector: ! ', '
+      last_word_connector: ' et '
+      two_words_connector: ' et '
+      words_connector: ', '
   time:
     am: am
     formats:
-      default: ! '%d. %B %Y %H:%M'
-      long: ! '%A, %d. %B %Y %H:%M:%S %Z'
-      short: ! '%d. %b %H:%M'
+      default: '%d. %B %Y %H:%M'
+      long: '%A, %d. %B %Y %H:%M:%S %Z'
+      short: '%d. %b %H:%M'
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
-  activerecord:
-    errors:
-      <<: *errors
-      
-# Terms of Service page
   tos:
-    heading:        "ACCORD D'UTILISATION EN LIGNE DU WEB-GROUPER ET DU BATCH-GROUPER DE LA SOCIÉTÉ SWISSDRG AG"
-    date:           "Etat : 1 février 2010"
-    accept_tos:     "Acceptation des conditions d'utilisation"
-    confirm_read:   VOUS CONFIRMEZ, EN ACCEPTANT CES CONDITIONS PAR UN CLIC SOURIS, AVOIR LU ET COMPRIS DANS SON INTÉGRALITÉ LE PRÉSENT ACCORD D'UTILISATION, DONT VOUS DÉCLAREZ APPROUVER PLEINEMENT LE CONTENU.
-    preamble:       Préambule
-    group_right:    "Objet du présent accord : le droit de regroupement en ligne"
-    data_security:  Sécurité des données sur Internet
-    privacy:        Protection des données
+    accept: Oui, j'accepte les conditions d'utilisation
+    accept_tos: Acceptation des conditions d'utilisation
+    confirm_read: VOUS CONFIRMEZ, EN ACCEPTANT CES CONDITIONS PAR UN CLIC SOURIS,
+      AVOIR LU ET COMPRIS DANS SON INTÉGRALITÉ LE PRÉSENT ACCORD D'UTILISATION, DONT
+      VOUS DÉCLAREZ APPROUVER PLEINEMENT LE CONTENU.
+    data_security: Sécurité des données sur Internet
+    date: 'Etat : 1 février 2010'
+    group_right: 'Objet du présent accord : le droit de regroupement en ligne'
+    heading: ACCORD D'UTILISATION EN LIGNE DU WEB-GROUPER ET DU BATCH-GROUPER DE LA
+      SOCIÉTÉ SWISSDRG AG
+    preamble: Préambule
+    privacy: Protection des données
     responsibility: Garantie / Responsabilité
-    terminatory:    Dispositions finales
-    accept:         Oui, j'accepte les conditions d'utilisation
+    terminatory: Dispositions finales

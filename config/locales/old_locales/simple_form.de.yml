@@ -1,0 +1,74 @@
+de:
+  simple_form:
+    required:
+      text: 'benötigt'
+      mark: ''
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: 'Es wurden Fehler gefunden. Bitte überprüfen Sie:'
+    # Everything selectable:
+    options:
+      system:
+        active_grouper:
+          ag9: Abrechnungsversion 1.0 2012/2012
+          ag8: Planungsversion 2 1.0 2011/2012
+          ag7: Katalog/Planungsversion 1.0 2009-10/2012
+          ag6: Abrechnungsversion 0.3 2011/2011
+          ag5: Planungsversion 0.3 2009/2011
+          ag4: Katalogversion 0.3 2008/2011
+          ag3: there is no system 3 >.<
+          ag2: SwissDRG 0.2
+          ag1: SwissDRG 0.1
+      webgrouper_patient_case:
+        sex:
+          U: 'Unbekannt'
+          M: 'Männlich'
+          W: 'Weiblich'
+        adm:
+          adm11: 'Verlegt (Aufenthalt länger als 24 Stunden im verlegenden Spital)'
+          adm06: 'Verlegt (Aufenthalt kürzer als 24 Stunden im verlegenden Spital)'
+          adm00: 'Normal'
+          adm99: 'Unbekannt'
+        sep:
+          sep99: 'Unbekannt'
+          sep04: 'Gegen ärztlichen Rat beendet'
+          sep06: 'Verlegt (in anderes Spital)'
+          sep07: 'Verstorben'
+          sep00: 'Normal'
+        house:
+          house1: Akutspital
+          house2: Geburtshaus        
+        age_mode:
+          years: 'Jahre'
+          days: 'Tage'
+    # Labels
+    labels:
+      webgrouper_patient_case:
+        active_grouper: 'Aktiver Grouper:'
+        house: 'Leistungserbringer:'
+        diagnoses_catalog: 'Diagnosenkatalog:'
+        procedures_catalog: 'Prozedurenkatalog:'
+        entry_date: 'Aufnahmedatum:'
+        exit_date: 'Entlassdatum:'
+        birth_date: 'Geburtstag:'
+        leave_days: 'Urlaubstage:'
+        age: 'Alter:'
+        adm_weight: 'Aufnahmegewicht:'
+        sex: 'Geschlecht:'
+        adm: 'Aufnahmeart:'
+        sep: 'Entlassart:'
+        los: 'Verweildauer:'
+        hmv: 'Beatmungszeit:'
+        pdx: 'Hauptdiagnose:'
+        diagnoses: 'Nebendiagnosen:'
+        procedures: 'Prozeduren:'
+    tooltips:
+      date: "Im Format dd.mm.yyyy, zB 19.05.1988"
+  # Buttons
+  helpers:
+    submit:
+      webgrouper_patient_case:
+        create: 'Fall Gruppieren'
+        clear_form: Maske leeren

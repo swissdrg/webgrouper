@@ -1,30 +1,45 @@
 it:
-  
-  diagnoses:  'Diagnosi secondarie:'
-  procedures: 'Procedure:'
-  help:
-    show_help: Aiuto
-    back: Indietro
-    other: 'Altro:'  
-  fieldsets:
-    system: 'Sistema'
-    stay: 'Soggiorno'
-    diagnoses_procedures: 'Diagnosi e procedure'
-    patient_data: 'Dati del paziente'
-  
-  result:
-    grouperstatus: Statuto del Grouper
-    grouperstatus_modes:
-      NORMAL_GROUP: Raggrupamento normale
-      NO_DRG: Insieme di dati non corrisponde ad un criterio di un qualsiasi DRG
-      ICT_NOT_VALID_PDX: Diagnosi principale inammissibile 
-      INVALID_OR_EMPTY_PDX: Diagnosi principale non valida o mancante
-      INVALID_LOS: Durata del soggiorno non valida
-      INVALID_SDF: Valore non valido nella casella Sameday
-      INVALID_SEP_OR_ADM: Motivo di ricovero o dimissione non valido
-      INVALID_SEX: Sesso non valido
-      INVALID_AGE: Età non valida
-      INVALID_ADMWEIGHT: Peso al ricovero non valido
+  activemodel:
+    errors:
+      format: '%{attribute} %{message}'
+      messages: &id001
+        accepted: deve essere accettata
+        blank: non può essere lasciato in bianco
+        confirmation: non coincide con la conferma
+        empty: non può essere vuoto
+        equal_to: deve essere uguale a %{count}
+        even: deve essere pari
+        exclusion: è riservato
+        greater_than: deve essere superiore a %{count}
+        greater_than_or_equal_to: deve essere superiore o uguale a %{count}
+        inclusion: non è incluso nella lista
+        invalid: non è valido
+        less_than: deve essere meno di %{count}
+        less_than_or_equal_to: deve essere meno o uguale a %{count}
+        not_a_number: non è un numero
+        not_an_integer: non è un intero
+        odd: deve essere dispari
+        record_invalid: 'Validazione fallita: %{errors}'
+        taken: è già in uso
+        too_long:
+          one: è troppo lungo (il massimo è 1 carattere)
+          other: è troppo lungo (il massimo è %{count} caratteri)
+        too_short:
+          one: è troppo corto (il minimo è 1 carattere)
+          other: è troppo corto (il minimo è %{count} caratteri)
+        wrong_length:
+          one: è della lunghezza sbagliata (deve essere di 1 carattere)
+          other: è della lunghezza sbagliata (deve essere di %{count} caratteri)
+      template: &id002
+        body: 'Per favore ricontrolla i seguenti campi:'
+        header:
+          one: 'Non posso salvare questo %{model}: 1 errore'
+          other: 'Non posso salvare questo %{model}: %{count} errori.'
+  activerecord:
+    errors:
+      format: '%{attribute} %{message}'
+      messages: *id001
+      template: *id002
   date:
     abbr_day_names:
     - Dom
@@ -35,7 +50,7 @@ it:
     - Ven
     - Sab
     abbr_month_names:
-    - 
+    - null
     - Gen
     - Feb
     - Mar
@@ -57,11 +72,11 @@ it:
     - Venerdì
     - Sabato
     formats:
-      default: ! '%d-%m-%Y'
-      long: ! '%d %B %Y'
-      short: ! '%d %b'
+      default: '%d-%m-%Y'
+      long: '%d %B %Y'
+      short: '%d %b'
     month_names:
-    - 
+    - null
     - Gennaio
     - Febbraio
     - Marzo
@@ -104,16 +119,16 @@ it:
         other: oltre %{count} anni
       x_days:
         one: 1 giorno
-        other: ! '%{count} giorni'
+        other: '%{count} giorni'
       x_minutes:
         one: 1 minuto
-        other: ! '%{count} minuti'
+        other: '%{count} minuti'
       x_months:
         one: 1 mese
-        other: ! '%{count} mesi'
+        other: '%{count} mesi'
       x_seconds:
         one: 1 secondo
-        other: ! '%{count} secondi'
+        other: '%{count} secondi'
     prompts:
       day: Giorno
       hour: Ora
@@ -121,41 +136,21 @@ it:
       month: Mese
       second: Secondi
       year: Anno
-  errors: &errors
-    format: ! '%{attribute} %{message}'
-    messages:
-      accepted: deve essere accettata
-      blank: non può essere lasciato in bianco
-      confirmation: non coincide con la conferma
-      empty: non può essere vuoto
-      equal_to: deve essere uguale a %{count}
-      even: deve essere pari
-      exclusion: è riservato
-      greater_than: deve essere superiore a %{count}
-      greater_than_or_equal_to: deve essere superiore o uguale a %{count}
-      inclusion: non è incluso nella lista
-      invalid: non è valido
-      less_than: deve essere meno di %{count}
-      less_than_or_equal_to: deve essere meno o uguale a %{count}
-      not_a_number: non è un numero
-      not_an_integer: non è un intero
-      odd: deve essere dispari
-      record_invalid: ! 'Validazione fallita: %{errors}'
-      taken: è già in uso
-      too_long:
-        one: è troppo lungo (il massimo è 1 carattere)
-        other: è troppo lungo (il massimo è %{count} caratteri)
-      too_short:
-        one: è troppo corto (il minimo è 1 carattere)
-        other: è troppo corto (il minimo è %{count} caratteri)
-      wrong_length:
-        one: è della lunghezza sbagliata (deve essere di 1 carattere)
-        other: è della lunghezza sbagliata (deve essere di %{count} caratteri)
-    template:
-      body: ! 'Per favore ricontrolla i seguenti campi:'
-      header:
-        one: ! 'Non posso salvare questo %{model}: 1 errore'
-        other: ! 'Non posso salvare questo %{model}: %{count} errori.'
+  diagnoses: 'Diagnosi secondarie:'
+  errors:
+    format: '%{attribute} %{message}'
+    messages: *id001
+    template: *id002
+  fieldsets:
+    diagnoses_procedures: Diagnosi e procedure
+    patient_data: Dati del paziente
+    stay: Soggiorno
+    system: Sistema
+  found_errors: Translation missing
+  help:
+    back: Indietro
+    other: 'Altro:'
+    show_help: Aiuto
   helpers:
     select:
       prompt: Per favore, seleziona
@@ -166,22 +161,22 @@ it:
   number:
     currency:
       format:
-        delimiter: ! ','
-        format: ! '%n %u'
+        delimiter: ','
+        format: '%n %u'
         precision: 2
         separator: .
         significant: false
         strip_insignificant_zeros: false
         unit: €
     format:
-      delimiter: ! ','
+      delimiter: ','
       precision: 2
       separator: .
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           billion: Miliardi
           million: Milioni
@@ -195,7 +190,7 @@ it:
         significant: true
         strip_insignificant_zeros: true
       storage_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           byte:
             one: Byte
@@ -210,36 +205,132 @@ it:
     precision:
       format:
         delimiter: ''
+  procedures: 'Procedure:'
+  result:
+    cost-weight:
+      baserate: 'Cost-weight di base:'
+      discount-rate-per-day: Riduzione del CW al giorno
+      effective-cost-weight: 'Cost-weight effettivo:'
+      legend: 'Cost-weight:'
+      no_days_for_discount_or_surcharge: Translation missing
+      number_of_days_for_discount: Translation missing
+      number_of_days_for_surcharge: Translation missing
+      surcharge-rate-per-day: Maggiorazione del CW al giorno
+    diagnoses:
+      CCL: CCL
+      diagnosis_flag:
+        used:
+          false_string: Translation missing
+          true_string: Translation missing
+        valid:
+          AGE_CONFLICT: Translation missing
+          ALREADY_IN_PDX: Già utilizzato come diagnostico principale
+          INVALID_DIAGNOSIS: Translation missing
+          SEX_CONFLICT: Translation missing
+          VALID_DIAGNOSIS: Translation missing
+      legend: Diagnostici
+      used: Translation missing
+      valid: Translation missing
+    grouperstatus: Statuto del Grouper
+    grouperstatus_modes:
+      ICT_NOT_VALID_PDX: Diagnosi principale inammissibile
+      INVALID_ADMWEIGHT: Peso al ricovero non valido
+      INVALID_AGE: Età non valida
+      INVALID_LOS: Durata del soggiorno non valida
+      INVALID_OR_EMPTY_PDX: Diagnosi principale non valida o mancante
+      INVALID_SDF: Valore non valido nella casella Sameday
+      INVALID_SEP_OR_ADM: Motivo di ricovero o dimissione non valido
+      INVALID_SEX: Sesso non valido
+      NORMAL_GROUP: Raggrupamento normale
+      NO_DRG: Insieme di dati non corrisponde ad un criterio di un qualsiasi DRG
+    grouping:
+      grouperstatus: Statuto del Grouper
+      grouperstatus_modes:
+        ICT_NOT_VALID_PDX: Diagnosi principale inammissibile
+        INVALID_ADMWEIGHT: Peso al ricovero non valido
+        INVALID_AGE: Età non valida
+        INVALID_LOS: Durata del soggiorno non valida
+        INVALID_OR_EMPTY_PDX: Diagnosi principale non valida o mancante
+        INVALID_SDF: Valore non valido nella casella Sameday
+        INVALID_SEP_OR_ADM: Translation missing
+        INVALID_SEX: Sesso non valido
+        NORMAL_GROUP: Raggrupamento normale
+        NO_DRG: Translation missing
+      legend: Raggrupamento
+    length-of-stay:
+      average_los: 'Durata media di degenza:'
+      case_flag: Translation missing
+      case_flag_modes:
+        INLIER: Inlier
+        LOWER_OUTLIER: Low-Outlier
+        TRANSFERRED: Riduzione per trasferimento
+        UNDEFINED: Translation missing
+        UNWEIGHTED: DRG non valutato
+        UPPER_OUTLIER: High-Outlier
+      first-day-with-discount: Translation missing
+      first-day-with-surcharge: Translation missing
+      high_trim_point: 'Limite superiore della durata di degenza:'
+      legend: Durata del soggiorno
+      length-of-stay: 'Degenza attuale:'
+      low_trim_point: 'Limite inferiore della durata di degenza:'
+    los_chart: Diagrammo per
+    procedures:
+      legend: Procedure
+      or-nor: OR/NOR
+      procedure_flag:
+        or-nor:
+          NONOR: Translation missing
+          NONOR_CONFLICT: Translation missing
+          NONOR_CONFLICT_CHOP: Translation missing
+          NONOR_CONFLICT_CHOP_DATE: Translation missing
+          OR: Translation missing
+          OR_CONFLICT: Translation missing
+          OR_CONFLICT_CHOP_DATE: Translation missing
+          SRG: Translation missing
+          SRG_CONFLICT: Translation missing
+          SRG_CONFLICT_CHOP: Translation missing
+          SRG_CONFLICT_CHOP_DATE: Translation missing
+        used:
+          PROC_NOT_USED: Translation missing
+          PROC_USED: Translation missing
+          USED_BOTH: Translation missing
+          USED_FOR_CONDITION: Translation missing
+        valid:
+          PROC_AGE_CONFLICT: Translation missing
+          PROC_INVALID: Translation missing
+          PROC_SEX_CONFLICT: Translation missing
+          PROC_VALID: Translation missing
+          UNUSED: Translation missing
+          VALID_DIAGNOSIS: Translation missing
+    settlement_hints:
+      additional_fees: 'Zusatzentgelte:'
+      legend: Hinweise für die Abrechnung
+      no_additional_fees: Translation missing
+      reuptake_hint: Translation missing
   support:
     array:
-      last_word_connector: ! ' e '
-      two_words_connector: ! ' e '
-      words_connector: ! ', '
+      last_word_connector: ' e '
+      two_words_connector: ' e '
+      words_connector: ', '
   time:
     am: am
     formats:
-      default: ! '%a %d %b %Y, %H:%M:%S %z'
-      long: ! '%d %B %Y %H:%M'
-      short: ! '%d %b %H:%M'
+      default: '%a %d %b %Y, %H:%M:%S %z'
+      long: '%d %B %Y %H:%M'
+      short: '%d %b %H:%M'
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
-  activerecord:
-    errors:
-      <<: *errors
-# Terms of Service page
   tos:
-    heading:         ACCORDO DI UTILIZZO ONLINE DI WEB-GROUPER E BATCH-GROUPER DI SWISSDRG AG
-    date:           "Ultimo aggiornamento: 1. febbraio 2010"
-    accept_tos:     Accettazione delle condizioni di utilizzo
-    confirm_read:   MEDIANTE L'ACCETTAZIONE TRAMITE CLIC DEL MOUSE L'UTENTE CONFERMA DI AVER LETTO INTERAMENTE IL PRESENTE ACCORDO DI UTILIZZO E DI AVERLO COMPRESO, DICHIARANDOSI COMPLETAMENTE CONCORDE CON IL SUO CONTENUTO.
-    preamble:       Preambolo
-    group_right:    "Oggetto dell'accordo: diritto al raggruppamento online"
-    data_security:  Sicurezza dei dati in Internet
-    privacy:        Protezione dei dati
+    accept: Sì, accetto le condizioni di utilizzo
+    accept_tos: Accettazione delle condizioni di utilizzo
+    confirm_read: MEDIANTE L'ACCETTAZIONE TRAMITE CLIC DEL MOUSE L'UTENTE CONFERMA
+      DI AVER LETTO INTERAMENTE IL PRESENTE ACCORDO DI UTILIZZO E DI AVERLO COMPRESO,
+      DICHIARANDOSI COMPLETAMENTE CONCORDE CON IL SUO CONTENUTO.
+    data_security: Sicurezza dei dati in Internet
+    date: 'Ultimo aggiornamento: 1. febbraio 2010'
+    group_right: 'Oggetto dell''accordo: diritto al raggruppamento online'
+    heading: ACCORDO DI UTILIZZO ONLINE DI WEB-GROUPER E BATCH-GROUPER DI SWISSDRG
+      AG
+    preamble: Preambolo
+    privacy: Protezione dei dati
     responsibility: Garanzia / responsabilità
-    terminatory:    Disposizioni conclusive
-    accept:         Sì, accetto le condizioni di utilizzo
-
+    terminatory: Disposizioni conclusive
