@@ -7,11 +7,16 @@ $(document).ready(function() {
 	admWeightControl(0);
 	initializeAutocomplete();
 	goToResult();
+	addZebraStripes();
 });
 
 $("#system_SyID").live("change", function () {
 	this.form.submit();
 });
+
+function addZebraStripes() {
+	$("table tbody tr:nth-child(even)").addClass("even");
+}
 
 function initializeForm() {
 	$(".numeric").numeric({ negative : false });
