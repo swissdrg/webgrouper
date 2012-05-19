@@ -44,8 +44,18 @@ a:focus img, a:focus img {
 	width: 20px;
 }
 
-input:disabled, input[readonly] {
-	background-color: #ccc !important;
+/*
+ * For IE 7
+ */
+input[disabled], input[readonly] {
+	background-color: #ccc;
+}
+
+/*
+ * For IE 8
+ */
+input[disabled="disabled"], input[readonly="readonly"] {
+	background-color: #ccc;
 }
 
 .spacer span {
