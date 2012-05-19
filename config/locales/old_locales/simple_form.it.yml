@@ -1,76 +1,68 @@
 it:
-  simple_form:
-    required:
-      text: 'required'
-      mark: ''
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
-    error_notification:
-      default_message: 'Some errors were found, please take a look:'
-    #Everything selectable:
-    options:
-      system:
-        active_grouper:
-          ag9: Abrechnungsversion 1.0 2012/2012
-          ag8: Planungsversion 2 1.0 2011/2012
-          ag7: Katalog/Planungsversion 1.0 2009-10/2012
-          ag6: Abrechnungsversion 0.3 2011/2011
-          ag5: Planungsversion 0.3 2009/2011
-          ag4: Katalogversion 0.3 2008/2011
-          ag3: there is no system 3 >.<
-          ag2: SwissDRG 0.2
-          ag1: SwissDRG 0.1
-      webgrouper_patient_case:
-        house:
-          house1: Ospedali medicina acuta
-          house2: Casa natale
-        sex:
-          U: 'sconosciuto'
-          M: 'maschile'
-          W: 'femminile'
-        adm:
-          adm11: "trasferto (Soggiorno più lungo che 24 ore nell'ospedale trasferente.)"
-          adm06: "trasferto (Soggiorno più corte che 24 ore nell'ospedale trasferente.)"
-          adm00: 'non semi-ospedaliero, non trasferto'
-          adm99: 'sconosciuto'
-        sep:
-          sep99: 'sconosciuto'
-          sep04: 'concluso contro il consiglio medico'
-          sep06: 'trasferto (in un altro ospedale)'
-          sep07: 'deceduto'
-          sep00: 'normale'
-        age_mode:
-          years: 'anni'
-          days: 'giorni'
-    # Labels
-    labels:
-      system:
-        active_grouper: 'Grouper:'
-        house: 'Prestataire:'
-        diagnoses_catalog: 'Catalogo delle diagnosi:'
-        procedures_catalog: 'Catalog delle procedure:'
-      webgrouper_patient_case:
-        entry_date: 'Data di ricovero:'
-        exit_date: 'Data di dimissione:'
-        birth_date: 'Data di nascita:'
-        leave_days: 'Giorni di ferie:'
-        age: 'Età:'
-        age_mode: 'Is this label necessary?'
-        adm_weight: 'Peso al ricovero:'
-        sex: 'Sesso:'
-        adm: 'Modo di ricovero:'
-        sep: 'Modo di dimissione:'
-        los: 'Durata del soggiorno:'
-        hmv: 'Tempo di respirazione artificiale:'
-        pdx: 'Diagnosi principale:'
-        diagnoses: 'Diagnosi secondarie:'
-        procedures: 'Procedure:'
-    tooltips:
-      date: Nel formato dd.mm.yyyy, ae 19.05.1988
-  # Buttons
   helpers:
     submit:
       webgrouper_patient_case:
-        create: 'Raggruppare'
         clear_form: Svuotare la maschera
+        create: Raggruppare
+  simple_form:
+    error_notification:
+      default_message: 'Per favore ricontrolla i seguenti campi:'
+    labels:
+      webgrouper_patient_case:
+        active_grouper: 'Grouper:'
+        adm: 'Modo di ricovero:'
+        adm_weight: 'Peso al ricovero:'
+        age: 'Età:'
+        birth_date: 'Data di nascita:'
+        diagnoses: 'Diagnosi secondarie:'
+        diagnoses_catalog: 'Catalogo delle diagnosi:'
+        entry_date: 'Data di ricovero:'
+        exit_date: 'Data di dimissione:'
+        hmv: 'Tempo di respirazione artificiale:'
+        house: Prestataire
+        leave_days: 'Giorni di ferie:'
+        los: 'Durata del soggiorno:'
+        pdx: 'Diagnosi principale:'
+        procedures: 'Procedure:'
+        procedures_catalog: 'Catalogo delle procedure:'
+        sep: 'Modo di dimissione:'
+        sex: 'Sesso:'
+    options:
+      system:
+        active_grouper:
+          ag1: SwissDRG 0.1
+          ag2: SwissDRG 0.2
+          ag3: there is no system 3 >.<
+          ag4: Katalogversion 0.3 2008/2011
+          ag5: Planungsversion 0.3 2009/2011
+          ag6: Abrechnungsversion 0.3 2011/2011
+          ag7: Katalog/Planungsversion 1.0 2009-10/2012
+          ag8: Planungsversion 2 1.0 2011/2012
+          ag9: Abrechnungsversion 1.0 2012/2012
+      webgrouper_patient_case:
+        adm:
+          adm00: non semi-ospedaliero, non trasferto
+          adm06: trasferto (Soggiorno più corte che 24 ore nell'ospedale trasferente.)
+          adm11: trasferto (Soggiorno più lungo che 24 ore nell'ospedale trasferente.)
+          adm99: sconosciuto
+        age_mode:
+          days: giorni
+          years: anni
+        house:
+          house1: Ospedali medicina acuta
+          house2: Casa natale
+        sep:
+          sep00: normale
+          sep04: concluso contro il consiglio medico
+          sep06: trasferto (in un altro ospedale)
+          sep07: deceduto
+          sep99: sconosciuto
+        sex:
+          M: maschile
+          U: sconosciuto
+          W: femminile
+    required:
+      mark: ''
+      text: required
+    tooltips:
+      date: Nel formato dd.mm.yyyy, ae 19.05.1988

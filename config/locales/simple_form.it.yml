@@ -6,7 +6,7 @@ it:
         create: Raggruppare
   simple_form:
     error_notification:
-      default_message: 'Some errors were found, please take a look:'
+      default_message: 'Per favore ricontrolla i seguenti campi:'
     labels:
       webgrouper_patient_case:
         active_grouper: 'Grouper:'
@@ -15,7 +15,7 @@ it:
         age: 'Età:'
         birth_date: 'Data di nascita:'
         diagnoses: 'Diagnosi secondarie:'
-        diagnoses_catalog: Catalogo delle diagnosi
+        diagnoses_catalog: 'Catalogo delle diagnosi:'
         entry_date: 'Data di ricovero:'
         exit_date: 'Data di dimissione:'
         hmv: 'Tempo di respirazione artificiale:'
@@ -24,7 +24,7 @@ it:
         los: 'Durata del soggiorno:'
         pdx: 'Diagnosi principale:'
         procedures: 'Procedure:'
-        procedures_catalog: Catalogo delle procedure
+        procedures_catalog: 'Catalogo delle procedure:'
         sep: 'Modo di dimissione:'
         sex: 'Sesso:'
     options:

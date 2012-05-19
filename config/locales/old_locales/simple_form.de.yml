@@ -7,7 +7,7 @@ de:
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: 'Es wurden Fehler gefunden. Bitte überprüfen Sie:'
+      default_message: 'Bitte überprüfen Sie die folgenden Felder:'
     # Everything selectable:
     options:
       system:
@@ -40,7 +40,7 @@ de:
         house:
           house1: Akutspital
           house2: Geburtshaus        
-        age_mode:
+        age_mode_decoy:
           years: 'Jahre'
           days: 'Tage'
     # Labels
@@ -64,6 +64,11 @@ de:
         pdx: 'Hauptdiagnose:'
         diagnoses: 'Nebendiagnosen:'
         procedures: 'Prozeduren:'
+    hints: 
+      webgrouper_patient_case:
+        disabled_age: 'Löschen oder ändern sie das Geburtsdatum, um diesen Wert zu verändern.'
+        disabled_los: 'Löschen oder ändern sie eines der hierfür relevanten Felder, um diesen Wert zu verändern'
+        pick_date: Datumwahl
     tooltips:
       date: "Im Format dd.mm.yyyy, zB 19.05.1988"
   # Buttons

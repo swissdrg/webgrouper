@@ -6,7 +6,7 @@ fr:
         create: Grouper
   simple_form:
     error_notification:
-      default_message: 'Missing pls enter something!:'
+      default_message: 'Veuillez vérifier les champs suivants : '
     labels:
       webgrouper_patient_case:
         active_grouper: 'Grouper:'
