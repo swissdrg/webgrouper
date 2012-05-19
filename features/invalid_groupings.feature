@@ -21,3 +21,11 @@ Feature: Grouping a valid patient case should return right results
     When I enter "foo" as secondary diagnosis
     And I press on "Fall Gruppieren"
     Then I should see "Nebendiagnosen: foo invalid"
+    
+  @mac @javascript
+  Scenario: Submit the form with seitigkeit and date only, but no procedure
+    Given the form with initialized standard values
+    When I enter "S39.0" as diagnosis
+    When I enter the procedures with seitigkeit and date ":L:1.1.2011"
+    And I press on "Fall Gruppieren"
+    Then I should see "Prozeduren: No code entered"
