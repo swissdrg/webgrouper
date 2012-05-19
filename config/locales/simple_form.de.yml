@@ -7,7 +7,7 @@ de:
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: 'Es wurden Fehler gefunden. Bitte überprüfen Sie:'
+      default_message: 'Bitte überprüfen Sie die folgenden Felder:'
     # Everything selectable:
     options:
       system:
