@@ -196,10 +196,10 @@ function add_buttons(kind) {
 	$button_div.empty();
 	
 	if (field_count/fields_per_row(kind) < max_rows(kind)) {
-		button_div.append(add_button);
+		$button_div.append(add_button);
 	};
 	if (field_count > min_fields(kind)) {
-		button_div.append(remove_button);
+		$button_div.append(remove_button);
 	};
 }
 
