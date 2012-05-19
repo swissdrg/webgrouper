@@ -48,14 +48,6 @@ You can start the project by typing
 
 in the project folder. Be aware, that jruby & the bundles must be installed/active for this.
 
-## Testing
-
-To run the cucumber tests, execute
-	
-	bundle exec cucumber -c
-
-in the project folder. 
-
 ## Run tests
 
 You can run our specs by entering the following:
@@ -74,3 +66,9 @@ If you, for some reason, don't have the kernel on your machine, most of the cucu
 You can still run some of them by entering:
   
   	bundle exec cucumber -ct @mac
+  	
+Most tests need to be run with the javascript webdriver. This will take some time, 
+because it has to run in an actual webbrowser. You can exclude these tests by running
+
+    bundle exec cucumber -ct ~@javascript
+    
