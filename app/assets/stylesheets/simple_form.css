@@ -5,6 +5,13 @@
  * We from the pse1 team made only made slight alterations.
  */
 
+/**
+ * 	Highlights links/input fields on tabing
+ */
+a:focus img, a:focus img {
+	border: 1px solid #000000;
+}
+
 #system * {
 	float: left;
 }
@@ -38,7 +45,7 @@
 }
 
 input:disabled, input[readonly] {
-	background-color: #ccc;
+	background-color: #ccc !important;
 }
 
 .spacer span {

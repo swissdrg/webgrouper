@@ -81,12 +81,13 @@ function computeAge() {
  */
 function disableLosInput(doDisable) {
 	var tooltip = '<%= I18n.t("simple_form.hints.webgrouper_patient_case.disabled_los")%>';
+	var $los = $('#webgrouper_patient_case_los')
 	if (doDisable) {
-		$('#webgrouper_patient_case_los').prop('readonly', 'readonly');
-		$('#webgrouper_patient_case_los').prop('title', tooltip);
+		$los.prop('readonly', 'readonly');
+		$los.prop('title', tooltip);
 	} else {
-		$('#webgrouper_patient_case_los').prop('readonly', false);
-		$('#webgrouper_patient_case_los').prop('title', "");
+		$los.prop('readonly', false);
+		$los.prop('title', "");
 	}
 }
 
@@ -95,17 +96,19 @@ function disableLosInput(doDisable) {
  * @param boolean doDisable
  */
 function disableAgeInput(doDisable) {
+	var $age = $('#webgrouper_patient_case_age')
+	var $age_decoy = $('#webgrouper_patient_case_age_mode_decoy')
 	if (doDisable) {
 		var tooltip = '<%= I18n.t("simple_form.hints.webgrouper_patient_case.disabled_age")%>';
-		$('#webgrouper_patient_case_age').prop('readonly', 'readonly');
-		$('#webgrouper_patient_case_age').prop('title', tooltip);
-		$('#webgrouper_patient_case_age_mode_decoy').prop('disabled', true);
-		$('#webgrouper_patient_case_age_mode_decoy').prop('title', tooltip);
+		$age.prop('readonly', 'readonly');
+		$age.prop('title', tooltip);
+		$age_decoy.prop('disabled', true);
+		$age_decoy.prop('title', tooltip);
 	} else {
-		$('#webgrouper_patient_case_age').prop('readonly', false);
-		$('#webgrouper_patient_case_age').prop('title', "");
-		$('#webgrouper_patient_case_age_mode_decoy').prop('disabled', false);
-		$('#webgrouper_patient_case_age_mode_decoy').prop('title', "");
+		$age.prop('readonly', false);
+		$age.prop('title', "");
+		$age_decoy.prop('disabled', false);
+		$age_decoy.prop('title', "");
 	}
 }
 function parseDate(str) {
