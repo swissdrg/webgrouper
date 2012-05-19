@@ -14,12 +14,20 @@ $("#system_SyID").live("change", function () {
 	this.form.submit();
 });
 
+/**
+ * Adds classes to the rows of the tables.
+ * This is only a fix for IE < 9, but not used by other browsers.
+ */
 function addZebraStripes() {
 	$("table tbody tr:nth-child(even)").addClass("even");
 }
 
+/**
+ * Initializes certain fields in the form, which only allow a
+ * certain kind of input of have to be disabled.
+ */
 function initializeForm() {
-	$(".numeric").numeric({ negative : false });
+	$(".numeric").numeric({ decimal: false, negative: false });
 	computeAge();
 	computeLos();
 }
