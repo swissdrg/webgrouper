@@ -231,8 +231,8 @@ fr:
           SEX_CONFLICT: Translation missing
           VALID_DIAGNOSIS: Translation missing
       legend: Diagnostics
-      used: Translation missing
-      valid: Translation missing
+      used: Utilisé
+      valid: Valid
     grouping:
       grouperstatus: Statut du groupeur
       grouperstatus_modes:

@@ -64,5 +64,9 @@ fr:
     required:
       mark: ''
       text: required
-    tooltips:
-      date: En format dd.mm.yyyy, pe 19.05.1988
+    hints:
+      webgrouper_patient_case:
+        date: En format dd.mm.yyyy, pe 19.05.1988
+        disabled_age: 'Translation missing'
+        disabled_los: 'Translation missing'
+        pick_date: 'Translation missing'

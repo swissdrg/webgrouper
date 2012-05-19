@@ -69,8 +69,7 @@ de:
         disabled_age: 'Löschen oder ändern sie das Geburtsdatum, um diesen Wert zu verändern.'
         disabled_los: 'Löschen oder ändern sie eines der hierfür relevanten Felder, um diesen Wert zu verändern'
         pick_date: Datumwahl
-    tooltips:
-      date: "Im Format dd.mm.yyyy, zB 19.05.1988"
+        date: "Im Format dd.mm.yyyy, zB 19.05.1988"
   # Buttons
   helpers:
     submit:
