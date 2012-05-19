@@ -1,76 +1,76 @@
 en:
-  simple_form:
-    required:
-      text: 'required'
-      mark: ''
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
-    error_notification:
-      default_message: 'Some errors were found, please take a look:'
-    #Everything selectable:
-    options:
-      system:
-        active_grouper:
-          ag9: Abrechnungsversion 1.0 2012/2012
-          ag8: Planungsversion 2 1.0 2011/2012
-          ag7: Katalog/Planungsversion 1.0 2009-10/2012
-          ag6: Abrechnungsversion 0.3 2011/2011
-          ag5: Planungsversion 0.3 2009/2011
-          ag4: Katalogversion 0.3 2008/2011
-          ag3: there is no system 3 >.<
-          ag2: SwissDRG 0.2
-          ag1: SwissDRG 0.1
-      webgrouper_patient_case:
-        house:
-          house1: Hospital
-          house2: Birthing center
-        sex:
-          U: 'Unknown'
-          M: 'Male'
-          W: 'Female'
-        adm:
-          adm11: 'Transfered (Length of stay more than 24 hours in the transfering hospital)'
-          adm06: 'Transfered (Length of stay less than 24 hours in the transfering hospital)'
-          adm00: 'not transfered'
-          adm99: 'unknown'
-        sep:
-          sep99: 'unknown'
-          sep04: 'terminated against medical advice'
-          sep06: 'transfered to another hospital'
-          sep07: 'deceased'
-          sep00: 'normal'
-        age_mode:
-          years: 'Years'
-          days: 'Days'
-    # Labels
-    labels:
-      system:
-        active_grouper: 'Active Grouper:'
-        house: 'Care provider:'
-        diagnoses_catalog: 'Catalog diagnoses:'
-        procedures_catalog: 'Catalog procedures:'
-      webgrouper_patient_case:
-        entry_date: 'Admission Date:'
-        exit_date: 'Date of discharge:'
-        birth_date: 'Birthday:'
-        leave_days: 'Leave days:'
-        age: 'Age:'
-        age_mode: 'Is this label necessary?'
-        adm_weight: 'Admission weight:'
-        sex: 'Sex:'
-        adm: 'Admission mode:'
-        sep: 'Separation mode:'
-        los: 'Length of stay:'
-        hmv: 'Artificial respiration:'
-        pdx: 'Primary diagnoses:'
-        diagnoses: 'Secondary diagnoses:'
-        procedures: 'Procedures:'
-    tooltips:
-      date: "In format dd.mm.yyyy, eg 19.05.1988" 
-  # Buttons
   helpers:
     submit:
       webgrouper_patient_case:
-        create: 'Group It'
         clear_form: Clear form
+        create: Group It
+  simple_form:
+    error_notification:
+      default_message: 'Some errors were found, please take a look:'
+    labels:
+      system:
+        active_grouper: 'Active Grouper:'
+        diagnoses_catalog: 'Catalog diagnoses:'
+        house: 'Care provider:'
+        procedures_catalog: 'Catalog procedures:'
+      webgrouper_patient_case:
+        active_grouper: Translation missing
+        adm: 'Admission mode:'
+        adm_weight: 'Admission weight:'
+        age: 'Age:'
+        age_mode: Is this label necessary?
+        birth_date: 'Birthday:'
+        diagnoses: 'Secondary diagnoses:'
+        diagnoses_catalog: Catalog diagnoses
+        entry_date: 'Admission Date:'
+        exit_date: 'Date of discharge:'
+        hmv: 'Artificial respiration:'
+        house: Care provider
+        leave_days: 'Leave days:'
+        los: 'Length of stay:'
+        pdx: 'Primary diagnoses:'
+        procedures: 'Procedures:'
+        procedures_catalog: Catalog procedures
+        sep: 'Separation mode:'
+        sex: 'Sex:'
+    options:
+      system:
+        active_grouper:
+          ag1: SwissDRG 0.1
+          ag2: SwissDRG 0.2
+          ag3: there is no system 3 >.<
+          ag4: Katalogversion 0.3 2008/2011
+          ag5: Planungsversion 0.3 2009/2011
+          ag6: Abrechnungsversion 0.3 2011/2011
+          ag7: Katalog/Planungsversion 1.0 2009-10/2012
+          ag8: Planungsversion 2 1.0 2011/2012
+          ag9: Abrechnungsversion 1.0 2012/2012
+      webgrouper_patient_case:
+        adm:
+          adm00: not transfered
+          adm06: Transfered (Length of stay less than 24 hours in the transfering
+            hospital)
+          adm11: Transfered (Length of stay more than 24 hours in the transfering
+            hospital)
+          adm99: unknown
+        age_mode:
+          days: Days
+          years: Years
+        house:
+          house1: Hospital
+          house2: Birthing center
+        sep:
+          sep00: normal
+          sep04: terminated against medical advice
+          sep06: transfered to another hospital
+          sep07: deceased
+          sep99: unknown
+        sex:
+          M: Male
+          U: Unknown
+          W: Female
+    required:
+      mark: ''
+      text: required
+    tooltips:
+      date: In format dd.mm.yyyy, eg 19.05.1988

@@ -1,75 +1,69 @@
 fr:
-  simple_form:
-    required:
-      text: 'required'
-      mark: ''
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
-    error_notification:
-      default_message: 'Missing pls enter something!:'
-    #Everything selectable:
-    options:
-      system:
-        active_grouper:
-          ag9: Abrechnungsversion 1.0 2012/2012
-          ag8: Planungsversion 2 1.0 2011/2012
-          ag7: Katalog/Planungsversion 1.0 2009-10/2012
-          ag6: Abrechnungsversion 0.3 2011/2011
-          ag5: Planungsversion 0.3 2009/2011
-          ag4: Katalogversion 0.3 2008/2011
-          ag3: there is no system 3 >.<
-          ag2: SwissDRG 0.2
-          ag1: SwissDRG 0.1   
-      webgrouper_patient_case:
-        house:
-          house1: Hôpital de soins aigus
-          house2: Maison des naissances 
-        sex:
-          U: 'Inconnu'
-          M: 'Masculin'
-          W: 'Féminin'
-        adm:
-          adm11: "transféré (Séjour plus long que 24 heures dans l'hôpital transférant.)"
-          adm06: "transféré (Séjour plus court que 24 heures dans l'hôpital transférant.)"
-          adm00: 'normal'
-          adm99: 'inconnu'
-        sep:
-          sep99: 'inconnu'
-          sep04: "terminé contre l'avis médical"
-          sep06: 'transféré (dans un autre hôpital)'
-          sep07: 'décédé'
-          sep00: 'normal'
-        age_mode:
-          years: 'Ans'
-          days: 'Jours'
-    # Labels
-    labels:
-      webgrouper_patient_case:
-        active_grouper: 'Grouper:'
-        house: 'Prestataire:'
-        diagnoses_catalog: 'Catalogue des diagnostics:'
-        procedures_catalog: 'Catalogue des procédures:'
-        entry_date: "Date d'admission:"
-        exit_date: 'Date of discharge:'
-        birth_date: 'Date de naissance:'
-        leave_days: 'Jours de congé:'
-        age: 'Âge:'
-        age_mode: 'Is this label necessary?'
-        adm_weight: "Poids à l'admission:"
-        sex: 'Sexe:'
-        adm: "Mode d'admission:"
-        sep: 'Mode de sortie:'
-        los: 'Durée du séjour:'
-        hmv: 'Temps de respiration artificielle:'
-        pdx: 'Diagnostic principal:'
-        diagnoses: 'Diagnostics secondaires:'
-        procedures: 'Procédures:'
-    tooltips:
-      date: "En format dd.mm.yyyy, pe 19.05.1988"     
-  # Buttons
   helpers:
     submit:
       webgrouper_patient_case:
-        create: 'Grouper'
         clear_form: Vider le masque
+        create: Grouper
+  simple_form:
+    error_notification:
+      default_message: 'Missing pls enter something!:'
+    labels:
+      webgrouper_patient_case:
+        active_grouper: 'Grouper:'
+        adm: 'Mode d''admission:'
+        adm_weight: 'Poids à l''admission:'
+        age: 'Âge:'
+        age_mode: Is this label necessary?
+        birth_date: 'Date de naissance:'
+        diagnoses: 'Diagnostics secondaires:'
+        diagnoses_catalog: 'Catalogue des diagnostics:'
+        entry_date: 'Date d''admission:'
+        exit_date: 'Date of discharge:'
+        hmv: 'Temps de respiration artificielle:'
+        house: 'Prestataire:'
+        leave_days: 'Jours de congé:'
+        los: 'Durée du séjour:'
+        pdx: 'Diagnostic principal:'
+        procedures: 'Procédures:'
+        procedures_catalog: 'Catalogue des procédures:'
+        sep: 'Mode de sortie:'
+        sex: 'Sexe:'
+    options:
+      system:
+        active_grouper:
+          ag1: SwissDRG 0.1
+          ag2: SwissDRG 0.2
+          ag3: there is no system 3 >.<
+          ag4: Katalogversion 0.3 2008/2011
+          ag5: Planungsversion 0.3 2009/2011
+          ag6: Abrechnungsversion 0.3 2011/2011
+          ag7: Katalog/Planungsversion 1.0 2009-10/2012
+          ag8: Planungsversion 2 1.0 2011/2012
+          ag9: Abrechnungsversion 1.0 2012/2012
+      webgrouper_patient_case:
+        adm:
+          adm00: normal
+          adm06: transféré (Séjour plus court que 24 heures dans l'hôpital transférant.)
+          adm11: transféré (Séjour plus long que 24 heures dans l'hôpital transférant.)
+          adm99: inconnu
+        age_mode:
+          days: Jours
+          years: Ans
+        house:
+          house1: Hôpital de soins aigus
+          house2: Maison des naissances
+        sep:
+          sep00: normal
+          sep04: terminé contre l'avis médical
+          sep06: transféré (dans un autre hôpital)
+          sep07: décédé
+          sep99: inconnu
+        sex:
+          M: Masculin
+          U: Inconnu
+          W: Féminin
+    required:
+      mark: ''
+      text: required
+    tooltips:
+      date: En format dd.mm.yyyy, pe 19.05.1988

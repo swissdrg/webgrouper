@@ -28,23 +28,29 @@ def addMissingKeys(keys_de, keys_other, lang):
 			
 # Returns the key if the given value has a matching swissdrg key
 def get_swissdrg_key(search_value):
+	if type(search_value) is str:
+		search_value_without = search_value.replace(":", "")
+		print search_value_without
+	else:
+		search_value_without = search_value
 	for key, value in swissdrg_dict["de"].items():
-		if value == search_value:
+		if value == search_value or value == search_value_without:
 			return key
 	return None
 			
 def main():
-	de_file = codecs.open("old_locales/" + "de.yml.old", "r", "utf-8")
-	de_yml = yaml.load(de_file)
-	print "loaded german yml file as template"
 	languages = ["fr", "it", "en"]
 	files = ["", "simple_form."]
 	init_swissdrg_dicts()
-	for lang in languages:
-		for f in files:
-			lang_yml = yaml.load(codecs.open("old_locales/" + f + lang + ".yml.old", "r", "utf-8"))
-			addMissingKeys(de_yml["de"], lang_yml[lang], lang)
+	
+	for f in files:
+		de_file = codecs.open("old_locales/" + f + "de.yml", "r", "utf-8")
+		de_yml = yaml.load(de_file)
+		for lang in languages:
+			lang_yml = yaml.load(codecs.open("old_locales/" + f + lang + ".yml", "r", "utf-8"))
 			test_file_path = f + lang + '.yml'
+			print "Trying to complete " + test_file_path
+			addMissingKeys(de_yml["de"], lang_yml[lang], lang)
 			stream = file(test_file_path, 'w')
 			yaml.safe_dump(lang_yml, stream, allow_unicode=True, default_flow_style=False)
 	print 'Terminated!'

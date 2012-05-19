@@ -64,8 +64,6 @@ de:
         pdx: 'Hauptdiagnose:'
         diagnoses: 'Nebendiagnosen:'
         procedures: 'Prozeduren:'
-    hints: 
-      webgrouper_patient_case:
     tooltips:
       date: "Im Format dd.mm.yyyy, zB 19.05.1988"
   # Buttons
