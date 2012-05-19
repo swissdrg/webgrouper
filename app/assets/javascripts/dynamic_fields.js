@@ -163,7 +163,7 @@ function append_field_row (kind, field_row, field_count) {
 	
 	// prepend empty label if nessecary to ensure layout is not broken
 	if (field_count > min_fields(kind)) {
-		$("#"+kind+" > .sameline > ."+kind+"_row:visible:last").before('<label><label\>')
+		$("#"+kind+" > .sameline > ."+kind+"_row:visible:last").before('<label \>')
 	};
 	
 	// bind autocomplete function to field which sets only the diagnoses/procedures code as value instead of whole string with description
@@ -191,9 +191,9 @@ function add_buttons(kind) {
 	var field_count = get_field_count(kind);
 	var add_button = get_add_button(kind);
 	var remove_button = get_remove_button(kind);
-	var $button_div = $("#"+kind+" > .sameline > ."+kind+"_buttons")
+	var $button_div = $("#"+kind+" > .sameline:last > ."+kind+"_buttons");
 	// remove all add-/remove buttons for this kind of fields
-	$button_div.empty();
+	$("#"+kind+" > .sameline > ."+kind+"_buttons").empty();
 	
 	if (field_count/fields_per_row(kind) < max_rows(kind)) {
 		$button_div.append(add_button);
