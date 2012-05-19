@@ -25,9 +25,9 @@
     %fieldset#stay.left
       %legend= t("fieldsets.stay")
       = f.input :entry_date, 
-                :input_html => { :title => t("simple_form.tooltips.date"), :class => "date_picker calc_los" }
+                :input_html => { :title => t("simple_form.hints.webgrouper_patient_case.date"), :class => "date_picker calc_los" }
       = f.input :exit_date, 
-                :input_html => { :title => t("simple_form.tooltips.date"), :class => "date_picker calc_los" }
+                :input_html => { :title => t("simple_form.hints.webgrouper_patient_case.date"), :class => "date_picker calc_los" }
       = f.input :leave_days, 
                 :input_html => { :class => "calc_los numeric" }
       = f.input :adm, 
