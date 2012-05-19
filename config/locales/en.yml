@@ -246,14 +246,14 @@ en:
     grouping:
       grouperstatus: Grouper status
       grouperstatus_modes:
-        ICT_NOT_VALID_PDX: not a pdx
-        INVALID_ADMWEIGHT: bad admission weight
-        INVALID_AGE: bad age
-        INVALID_LOS: bad length of stay
-        INVALID_OR_EMPTY_PDX: primary diagnosis (pdx) missing or bad pdx
-        INVALID_SDF: bad sameday value
+        ICT_NOT_VALID_PDX: Not a pdx
+        INVALID_ADMWEIGHT: Bad admission weight
+        INVALID_AGE: Bad age
+        INVALID_LOS: Bad length of stay
+        INVALID_OR_EMPTY_PDX: Primary diagnosis (pdx) missing or bad pdx
+        INVALID_SDF: Bad sameday value
         INVALID_SEP_OR_ADM: Translation missing
-        INVALID_SEX: bad sex
+        INVALID_SEX: Bad sex
         NORMAL_GROUP: Normal grouping
         NO_DRG: Translation missing
       legend: Grouping
@@ -303,8 +303,8 @@ en:
           UNUSED: Translation missing
           VALID_DIAGNOSIS: Translation missing
     settlement_hints:
-      additional_fees: 'additional fees:'
-      legend: settlement hints
+      additional_fees: 'Additional fees:'
+      legend: Settlement hints
       no_additional_fees: Translation missing
       reuptake_hint: Translation missing
   support:

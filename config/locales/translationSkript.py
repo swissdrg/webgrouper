@@ -4,6 +4,9 @@
 # This script was added to keep all translation files synchronized. It is assumed that german is
 # the most completed language. The missing keys in otherlanguages are added either with the value
 # "Translation missing" or the value provided by the old grouper translations.
+
+# For now, the backup files must be created by hand (just copy them into the old_locales folder)
+# TODO: Make it all automatic
 import yaml
 import os
 import codecs
@@ -66,12 +69,15 @@ def init_swissdrg_dicts():
 				key, value = line.split("=", 1)
 				dict[key] = sanitizeString(value)
 
+# The strings are a bit random, so they need sanitizing
 def sanitizeString(string):
 	string = string.strip()
 	string = string.replace("\u00F6", "ö")
 	string = string.replace("\u00DF", "ss")
 	string = string.replace("\u00E4", "ä")
 	string = string.replace("\u00FC", "ü")
+	string = string[0:1].upper() + string[1:]
+	print string
 	return string
 	
 if __name__ == "__main__":
