@@ -1,9 +1,8 @@
 class WebgrouperPatientCasesController < ApplicationController
   
-  autocomplete :ICD, [:IcCode, :IcShort, :IcName], :full => true, 
+  autocomplete :ICDM, [:IcCode, :IcShort, :langDE, :langFR, :langIT], :full => true, 
                               :display_value => :autocomplete_result,
-                              :extra_data => [:IcName]
-  
+                              :extra_data => [:langDE, :langFR, :langIT]
   autocomplete :OPS, [:OpCode, :OpShort, :OpName], :full => true, 
                               :display_value => :autocomplete_result,
                               :extra_data => [:OpName]
