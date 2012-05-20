@@ -116,6 +116,17 @@ class WebgrouperPatientCase < PatientCase
     java_array
   end
 	
+	# helper method for the method hash_to_java_array
+	# in the case we are considering not diagnoses,
+	# i.e. we are considering procedures.
+	# filters given input(and adds : delimiter)
+	# and stores it in a java_array.
+	# a procedure is a tripple (A:B:C) which has as first element
+	# a procedure as 2nd element a seitigkeit, and as 
+  # 3rd element a data for the given procedure.
+	# remark: B and C may be empty string for a given A
+	# filter all the . out of an A to get its short code
+	# rearange the date since the date format of the grouper is yyyy.mm.dd
 	def fill_and_filter_java_array(hash, tmp_ruby_array)
 		hash.each do |tripple_key, tripple| 
     	# tmp_procedure contains the current procedure value
