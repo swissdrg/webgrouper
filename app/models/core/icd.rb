@@ -13,10 +13,6 @@ class ICD < ActiveRecord::Base
     "icd"
   end
 
-  def autocomplete_result
-    "#{self.IcCode} #{self.IcName}"
-  end
-  
   def self.short_code_of(value)
     value.gsub(/\./, "").strip
   end

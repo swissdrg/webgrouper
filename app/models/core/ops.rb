@@ -1,7 +1,5 @@
 class OPS < ActiveRecord::Base
 	has_many :names, :class_name => "OPSName", :foreign_key => "OnFkOpID" 
-
-
   default_scope lambda{where(:OpFkSyID => System.current_system_id)}
 	
 	def OpName
@@ -13,10 +11,6 @@ class OPS < ActiveRecord::Base
 
   def self.table_name
     "ops"
-  end
-
-  def autocomplete_result
-    "#{self.OpCode} #{self.OpName}"
   end
   
   def self.short_code_of(value)
