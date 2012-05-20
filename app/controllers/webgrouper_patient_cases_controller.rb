@@ -1,12 +1,11 @@
 class WebgrouperPatientCasesController < ApplicationController
   
-  autocomplete :ICD, [:IcCode, :IcShort, :IcName], :full => true, 
+  autocomplete :ICDM, [:IcCode, :IcShort, :langDE, :langFR, :langIT], :full => true,
                               :display_value => :autocomplete_result,
-                              :extra_data => [:IcName]
-  
-  autocomplete :OPS, [:OpCode, :OpShort, :OpName], :full => true, 
+                              :extra_data => [:langDE, :langFR, :langIT]
+  autocomplete :OPSM, [:OpCode, :OpShort, :langDE, :langFR, :langIT], :full => true,
                               :display_value => :autocomplete_result,
-                              :extra_data => [:OpName]
+                              :extra_data => [:langDE, :langFR, :langIT]
                               
   def index
     @webgrouper_patient_case = WebgrouperPatientCase.new
@@ -37,7 +36,7 @@ class WebgrouperPatientCasesController < ApplicationController
     render 'index'
   end
   
- def get_autocomplete_items(parameters)
+  def get_autocomplete_items(parameters)
    	System.current_system = System.find_by_SyID(params[:system_id])
     items = super(parameters)
   end
