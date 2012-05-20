@@ -6,7 +6,7 @@ $(document).ready(function () {
 		var kinds = ["diagnoses", "procedures"]
 		for (var i=0; i < kinds.length; i++) {
 			var kind = kinds[i];
-			$("#"+kind+" > .sameline > ."+kind+"_row:visible:last :input.autocomplete").each(function () {
+			$("#"+kind+" > .sameline > ."+kind+"_row:visible:last :input*").each(function () {
 				if ($(this).val() != "" && $(".errorflash > ul >li:contains("+$(this).val()+")").length > 0) {
 					$(this).css("background-color", "#FBE3E4");
 				};
