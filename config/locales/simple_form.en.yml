@@ -68,7 +68,7 @@ en:
       text: required
     hints:
       webgrouper_patient_case:
-        date: In format dd.mm.yyyy, eg 19.05.1988
+        date: 'In format dd.mm.yyyy, eg 19.05.1988'
         disabled_age: 'To change this value, change or delete the birthday field'
         disabled_los: 'To change this value, change or delete one of the relevant fields'
         pick_date: Pick a date

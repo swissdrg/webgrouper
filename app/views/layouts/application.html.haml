@@ -3,10 +3,12 @@
   %head
     %meta{ :charset => "UTF-8" }
     = render 'layouts/stylesheets'
-    / Used for localisation of datepicker
+    = javascript_include_tag "application"
+    / Used for localisation in JS
     :javascript
       var locale = "#{ I18n.locale }";
-    = javascript_include_tag "application"
+      I18n.defaultLocale = "#{I18n.default_locale}";
+      I18n.locale = "#{I18n.locale}";
     = javascript_include_tag 'http://www.google.com/jsapi'
     = csrf_meta_tags
     %title Webgrouper
