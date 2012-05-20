@@ -1,11 +1,11 @@
 class WebgrouperPatientCasesController < ApplicationController
   
-  autocomplete :ICDM, [:IcCode, :IcShort, :langDE, :langFR, :langIT], :full => true, 
+  autocomplete :ICDM, [:IcCode, :IcShort, :langDE, :langFR, :langIT], :full => true,
                               :display_value => :autocomplete_result,
                               :extra_data => [:langDE, :langFR, :langIT]
-  autocomplete :OPS, [:OpCode, :OpShort, :OpName], :full => true, 
+  autocomplete :OPSM, [:OpCode, :OpShort, :langDE, :langFR, :langIT], :full => true,
                               :display_value => :autocomplete_result,
-                              :extra_data => [:OpName]
+                              :extra_data => [:langDE, :langFR, :langIT]
                               
   def index
     @webgrouper_patient_case = WebgrouperPatientCase.new
