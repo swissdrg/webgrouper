@@ -36,7 +36,7 @@ class WebgrouperPatientCasesController < ApplicationController
     render 'index'
   end
   
- def get_autocomplete_items(parameters)
+  def get_autocomplete_items(parameters)
    	System.current_system = System.find_by_SyID(params[:system_id])
     items = super(parameters)
   end
