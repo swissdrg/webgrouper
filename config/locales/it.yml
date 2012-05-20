@@ -30,6 +30,7 @@ it:
         wrong_length:
           one: è della lunghezza sbagliata (deve essere di 1 carattere)
           other: è della lunghezza sbagliata (deve essere di %{count} caratteri)
+        no_code: non è stato inserito un codice
       template: &id002
         body: 'Per favore ricontrolla i seguenti campi:'
         header:
