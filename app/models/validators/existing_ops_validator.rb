@@ -7,7 +7,11 @@ class ExistingOpsValidator < ActiveModel::EachValidator
       short_code = v.match(procedure_regex)[1].gsub(/\./, "").strip
       laterality = v.match(procedure_regex)[2]
       date = v.match(procedure_regex)[3]
-      record.errors[attribute] << I18n.t("errors.messages.no_code") + ": #{laterality}, #{date}" if no_code_entered?(short_code, laterality, date)
+      if no_code_entered?(short_code, laterality, date)
+        record.errors[attribute] << I18n.t("errors.messages.no_code")
+        record.errors[attribute][0] += " #{laterality}" unless laterality.blank?
+        record.errors[attribute][0] += " #{date}" unless date.gsub("\.", "").blank?
+      end
       error_happened = OPS.find_by_OpShort(short_code).nil?
       if(error_happened)
         error_msg = ""
@@ -20,6 +24,6 @@ class ExistingOpsValidator < ActiveModel::EachValidator
   private
   
   def no_code_entered?(short_code, laterality, date)
-    short_code.blank? && ( !laterality.blank? || !date.blank? )
+    short_code.blank? && ( !laterality.blank? || !date.gsub("/\./", "").blank? )
   end
 end
