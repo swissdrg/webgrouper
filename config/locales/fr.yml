@@ -30,6 +30,7 @@ fr:
         wrong_length:
           one: ne fait pas la bonne longueur (doit comporter un seul caractère)
           other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
+        no_code: aucun code à été saisi
       template: &id002
         body: 'Veuillez vérifier les champs suivants : '
         header:
