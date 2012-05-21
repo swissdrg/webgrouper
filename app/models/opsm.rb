@@ -1,4 +1,4 @@
-class Opsm < ActiveRecord::Base
+class OPSM < ActiveRecord::Base
   default_scope lambda{where(:OpFkSyID => System.current_system_id)}
   
   def self.table_name
