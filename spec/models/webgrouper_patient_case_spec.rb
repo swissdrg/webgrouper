@@ -134,6 +134,12 @@ describe WebgrouperPatientCase do
       patient_case.should_not be_valid
     end
     
+    it "should fail if the procedure 'triple' consists of a date or laterality, but no code" do
+      invalid_attr = @attr.merge(:procedures => { 0 => { 0 => "", 1 => "L", 2 => "12.04.2012" } })
+      patient_case = WebgrouperPatientCase.new(invalid_attr)
+      patient_case.should_not be_valid
+    end
+    
   end
   
 end
