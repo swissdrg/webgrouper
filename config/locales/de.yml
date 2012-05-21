@@ -220,6 +220,7 @@ de:
       too_long: ist zu lang (nicht mehr als %{count} Zeichen)
       too_short: ist zu kurz (nicht weniger als %{count} Zeichen)
       wrong_length: hat die falsche Länge (muss genau %{count} Zeichen haben)
+      no_code: kein code eingegeben
     template:
       body: ! 'Bitte überprüfen Sie die folgenden Felder:'
       header:
