@@ -80,7 +80,7 @@ function computeAge() {
  * @param boolean doDisable
  */
 function disableLosInput(doDisable) {
-	var tooltip = '<%= I18n.t("simple_form.hints.webgrouper_patient_case.disabled_los")%>';
+	var tooltip = I18n.t("simple_form.hints.webgrouper_patient_case.disabled_los");
 	var $los = $('#webgrouper_patient_case_los')
 	if (doDisable) {
 		$los.prop('readonly', 'readonly');
@@ -99,7 +99,7 @@ function disableAgeInput(doDisable) {
 	var $age = $('#webgrouper_patient_case_age')
 	var $age_decoy = $('#webgrouper_patient_case_age_mode_decoy')
 	if (doDisable) {
-		var tooltip = '<%= I18n.t("simple_form.hints.webgrouper_patient_case.disabled_age")%>';
+		var tooltip = I18n.t("simple_form.hints.webgrouper_patient_case.disabled_age");
 		$age.prop('readonly', 'readonly');
 		$age.prop('title', tooltip);
 		$age_decoy.prop('disabled', true);

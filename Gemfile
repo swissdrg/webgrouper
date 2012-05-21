@@ -23,6 +23,7 @@ gem 'haml-rails', '0.3.4'
 gem 'simple_form'
 gem 'validates_timeliness', '3.0.2'
 gem 'google_visualr'
+gem "i18n-js"
 
 # Gems used only for assets and not required
 # in production environments by default.
