@@ -5,7 +5,8 @@ gem 'rails', '3.1.4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem "jdbc-mysql", "~> 5.1.13"
+# mysql driver stuff for JRuby
+gem "jdbc-mysql", "~> 5.1.13" 
 gem "activerecord-jdbc-adapter", "~> 1.2.2"
 gem "activerecord-jdbcmysql-adapter", "~> 1.2.2"
 
@@ -17,12 +18,21 @@ gem 'jquery-rails'
 gem 'rails-asset-jqueryui'
 gem 'rails3-jquery-autocomplete', :git => "git://github.com/slash4/rails3-jquery-autocomplete.git"
 
+# HTML Abstraction Markup Language 
+# Templating Engine, that allows a non-repetitive and more elegant way to structure xhtml/xml with embedded ruby.
 gem 'haml', '3.1.4'
 gem 'haml-rails', '0.3.4'
 
+# Prettier forms. Similar to formtastic, but lightweight.
 gem 'simple_form'
+
+# Complete validation of dates, times and datetimes for Rails 3.x and ActiveModel.
 gem 'validates_timeliness', '3.0.2'
+
+# Wrapper around the Google Chart Tools that allows anyone to create the same beautiful charts with just plain Ruby
 gem 'google_visualr'
+
+# It’s a small library to provide the Rails I18n translations on Javascript.
 gem "i18n-js"
 
 # Gems used only for assets and not required
