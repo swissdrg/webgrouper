@@ -109,7 +109,7 @@ Feature: The edge cases should be handled correctly
 #TESTS FOR MEDICAL FLAGS
 
   # calcCostWeightTest.java L10
-  @javascript @unfinished
+  @javascript
   Scenario: calculate length of stay for leap year
     Given the form with initialized standard values
     When I parse "53567;15;;;M;01;01;10;;;R509;BLAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form

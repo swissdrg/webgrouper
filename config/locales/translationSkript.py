@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 # This script was added to keep all translation files synchronized. It is assumed that german is
-# the most completed language. The missing keys in otherlanguages are added either with the value
+# the most completed language. The missing keys in other languages are added either with the value
 # "Translation missing" or the value provided by the old grouper translations.
 
 # For now, the backup files must be created by hand (just copy them into the old_locales folder)
@@ -30,7 +30,9 @@ def addMissingKeys(keys_de, keys_other, lang):
 			addMissingKeys(keys_de[key], keys_other[key], lang)
 			
 # Returns the key if the given value has a matching swissdrg key
+# TODO: Initialize a lookup-Dictionary
 def get_swissdrg_key(search_value):
+	# try to remove a leading colon
 	if type(search_value) is str:
 		search_value_without = search_value.replace(":", "")
 		print search_value_without

@@ -15,6 +15,6 @@ namespace :db do
      puts 'creating new db...'
      Rake::Task['db:create'].invoke 
      puts "Filling #{database} with data"
-     %x[mysql -u #{username} --password=#{password} #{database}<lib/webgrouper-dump_13032012.sql]
+     %x[mysql -u #{username} --password=#{password} #{database}<lib/new_dump.sql]
   end
 end
