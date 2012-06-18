@@ -280,17 +280,17 @@ en:
       or-nor: OR/NOR
       procedure_flag:
         or-nor:
-          NONOR: Translation missing
-          NONOR_CONFLICT: Translation missing
-          NONOR_CONFLICT_CHOP: Translation missing
-          NONOR_CONFLICT_CHOP_DATE: Translation missing
-          OR: Translation missing
-          OR_CONFLICT: Translation missing
-          OR_CONFLICT_CHOP_DATE: Translation missing
-          SRG: Translation missing
-          SRG_CONFLICT: Translation missing
-          SRG_CONFLICT_CHOP: Translation missing
-          SRG_CONFLICT_CHOP_DATE: Translation missing
+          NONOR: NOR
+          NONOR_CONFLICT: NOR
+          NONOR_CONFLICT_CHOP: NOR
+          NONOR_CONFLICT_CHOP_DATE: NOR
+          OR: OR
+          OR_CONFLICT: OR
+          OR_CONFLICT_CHOP_DATE: OR
+          SRG: Neither OR nor NOR procedure
+          SRG_CONFLICT: Neither OR nor NOR procedure
+          SRG_CONFLICT_CHOP: Neither OR nor NOR procedure
+          SRG_CONFLICT_CHOP_DATE: Neither OR nor NOR procedure
         used:
           PROC_NOT_USED: Translation missing
           PROC_USED: Translation missing

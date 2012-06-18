@@ -64,17 +64,17 @@ de:
           VALID_DIAGNOSIS: Gültige Prozedur
           UNUSED: Nicht benutzt
         or-nor:
-          NONOR: Nicht operationale Prozedur
-          NONOR_CONFLICT: 
-          NONOR_CONFLICT_CHOP: 
-          NONOR_CONFLICT_CHOP_DATE: 
-          OR: Operationale Prozedur
-          OR_CONFLICT: 
-          OR_CONFLICT_CHOP_DATE: 
+          NONOR: NOR
+          NONOR_CONFLICT: NOR
+          NONOR_CONFLICT_CHOP: NOR
+          NONOR_CONFLICT_CHOP_DATE: NOR
+          OR: OR
+          OR_CONFLICT: OR
+          OR_CONFLICT_CHOP_DATE: OR
           SRG: Weder OR noch NOR Prozedur
-          SRG_CONFLICT: 
-          SRG_CONFLICT_CHOP: 
-          SRG_CONFLICT_CHOP_DATE:
+          SRG_CONFLICT: Weder OR noch NOR Prozedur
+          SRG_CONFLICT_CHOP: Weder OR noch NOR Prozedur
+          SRG_CONFLICT_CHOP_DATE: Weder OR noch NOR Prozedur
     settlement_hints: 
       legend: Hinweise für die Abrechnung
       no_additional_fees: Keine Zusatzentgelte
