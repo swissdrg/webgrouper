@@ -13,9 +13,12 @@
 - content_for :patient_data do
   %p
     In zahlreichen DRGs ist das Patientenalter gruppierungsrelevant. 
-    Sie können das Alter (zum Aufnahmezeitpunkt) entweder direkt angegeben, oder es durch Angabe von Aufnahmedatum und Geburtsdatum berechnen lassen. Das Alter wird in Jahren angegeben, sofern der Patient mindestens das erste Lebensjahr vollendet hat, andernfalls in Tagen. Die entsprechende Einheit ist aus der Liste zu wählen.
+    Sie können das Alter (zum Aufnahmezeitpunkt) entweder direkt angegeben, oder es durch Angabe von Aufnahmedatum 
+    und Geburtsdatum berechnen lassen. Das Alter wird in Jahren angegeben, sofern der Patient mindestens das erste 
+    Lebensjahr vollendet hat, andernfalls in Tagen. Die entsprechende Einheit ist aus der Liste zu wählen.
   %p
-    Für Patienten < 1 Jahr kann zusätzlich das Aufnahmegewicht angegeben werden.
+    Für Patienten < 1 Jahr kann zusätzlich das Aufnahmegewicht angegeben werden. Das dazugehörige Eingabefeld
+    erscheint nach der Eingabe des Alters.
   %p
     Das Geschlecht wird aus der Liste gewählt.
   %p
@@ -26,6 +29,9 @@
     Sofern es sich um einen korrekten Kode handelt, wird beim Serverzugriff 
     die zugehörige Beschreibung geholt und angezeigt. Andernfalls erfolgt die Meldung eines 
     unzulässigen Codes.
+  %p
+    Es ist auch möglich, in diesem Feld einen Suchbegriff einzugeben, worauf eine Liste mit passenden Diagnosen
+    erscheint.
 - content_for :diagnoses do
   %p
     Zu zahlreichen Fällen gibt es diverse Nebendiagnosen. Diese werden in der Tabelle erfasst.
@@ -35,7 +41,7 @@
   %p
     Über die Schaltfläche
     = image_tag "bullet_toggle_minus.png"
-    kann die Anzahl der Zeilen wieder auf minimal zwei reduziert werden.  
+    kann die Anzahl der Zeilen wieder auf minimal eine reduziert werden.  
 - content_for :procedures do
   %p
     Die Prozeduren werden in der Tabelle erfasst. Optional können Sie Seitenlokalisation 
@@ -48,7 +54,7 @@
   %p
     Sind alle relevanten Falldaten erfasst, starten Sie über [Gruppieren] die Auswertung.
   %p  
-    Ungültige Eingaben werden rot hervorgehoben und im oberen, rot hinterlegten Feld vermerkt
+    Ungültige Eingaben werden rot hervorgehoben und im oberen, rot hinterlegten Feld näher beschrieben
     (zum Beispiel nicht existente ICD-10 Codes).
   %p
     Mit Hilfe der Schaltfläche [Maske leeren] können Sie den Maskeninhalt entfernen, 
