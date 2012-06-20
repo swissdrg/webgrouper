@@ -27,6 +27,7 @@ class WebgrouperPatientCase < PatientCase
     end
     
     age_mode_days? ? self.age_days = self.age : self.age_years = self.age
+    self.birth_house = birth_house?
   end
 
   # Always returns false since this model is not persisted (saved in a database).
@@ -164,6 +165,11 @@ class WebgrouperPatientCase < PatientCase
   # @return true if the age is given in days, false if the age is given in years. 
   def age_mode_days?
     age_mode == 'days'
+  end
+  
+  # @return true if birthhouse was chosen as care supplier. 
+  def birthhouse?
+    house == 2
   end
   
   def today
