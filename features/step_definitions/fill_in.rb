@@ -2,7 +2,6 @@ Given /^the form with initialized standard values$/ do
   visit "http://localhost:3000/de/webgrouper_patient_cases"
 end
 
-# Only takes two diagnoses and two procedures for now. 
 # Needs the @javascript annotation
 When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   caseArray = caseString.split(";")
@@ -56,62 +55,6 @@ def pos_last_value(array, first_pos, last_pos)
 end
 
 # Needs the @javascript annotation
-When /^I select "([^"]*)" as age mode$/ do |age_mode|
-  age_mode_string = I18n.t('simple_form.options.webgrouper_patient_case.age_mode_decoy.' + age_mode)
-  step %{I select in "webgrouper_patient_case_age_mode_decoy" "#{age_mode_string}"}
-end
-
-When /^I select "([^"]*)" as sep mode$/ do |sep|
-  #fix for string parsing:
-  if sep.eql? "01"
-    sep = "00"
-  end
-  string = I18n.t('simple_form.options.webgrouper_patient_case.sep.sep' + sep)
-  step %{I select in "webgrouper_patient_case_sep" "#{string}"}
-end
-
-When /^I select "([^"]*)" as adm mode$/ do |adm|
-  #fix for string parsing:
-  if adm.eql? "01"
-    adm = "00"
-  end
-  string = I18n.t('simple_form.options.webgrouper_patient_case.adm.adm' + adm)
-  step %{I select in "webgrouper_patient_case_adm" "#{string}"}
-end
-
-When /^I enter "([^"]*)" as age$/ do |age|
-  step %{I fill in "webgrouper_patient_case_age" with "#{age}"}
-end
-
-When /^I enter "([^"]*)" as hmv$/ do |hmv|
-  step %{I fill in "webgrouper_patient_case_hmv" with "#{hmv}"}
-end
-
-When /^I enter "([^"]*)" as diagnosis$/ do |pdx|
-  step %{I fill in "webgrouper_patient_case_pdx" with "#{pdx}"}
-end
-
-#Takes M, F or U as Gender
-When /^I select "([^"]*)" as sex$/ do |sex|
-  #Fix for parsing strings:
-  if sex.eql? "2"
-    sex = "U"
-  end
-  sexString = I18n.t('simple_form.options.webgrouper_patient_case.sex.' + sex)
-  step %{I select in "webgrouper_patient_case_sex" "#{sexString}"}
-end
-
-
-When /^I enter "([^"]*)" as admission weight$/ do |adm_weight|
-  step %{I fill in "webgrouper_patient_case_adm_weight" with "#{adm_weight}"}
-end
-
-# Needs the @javascript annotation
-When /^I enter "([^"]*)" as secondary diagnosis$/ do |diagnosis|
-  step %{fill in "webgrouper_patient_case_diagnoses_0" with "#{diagnosis}"}
-end
-
-# Needs the @javascript annotation
 When /^I enter the secondary diagnoses (".+")$/ do |diagnoses|
   diagnoses = diagnoses.scan(/"([^"]*?)"/).flatten
   (0..diagnoses.count).each do |field_index|
@@ -139,11 +82,6 @@ end
 # Needs the @javascript annotation
 When /^I add more "([^"]*)" fields$/ do |kind|
   step %{I follow "add_#{kind}"}
-end
-
-# Needs the @javascript annotation
-When /^I enter "([^"]*)" as procedure$/ do |proc|
-  step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
 end
 
 # Needs the @javascript annotation
@@ -176,14 +114,6 @@ When /^I enter the procedures with seitigkeit and date (".+")$/ do |procedures|
 end
 
 
-When /^I enter "([^"]*)" as los$/ do |los|
-  step %{I fill in "webgrouper_patient_case_los" with "#{los}"}
-end
-
-When /^I enter Transfered \(los more than 24 hours\) as admission mode$/ do 
-  select(I18n.t('simple_form.options.webgrouper_patient_case.adm.adm11'), 
-         :from => 'webgrouper_patient_case_adm')
-end
 
 When /^I press on "([^"]*)"$/ do |button|
   click_button(button)
@@ -248,18 +178,8 @@ Then /^I should not see (\d+) procedures fields$/ do |field_count|
   page.should_not have_css("#webgrouper_patient_case_procedures_#{field_count}_0")
 end
 
-When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
-end
 
-When /^(?:|I )select in "([^"]*)" "([^"]*)"$/ do |field, value|
-  select(value, :from => field)
-end
 
 When /^I submit the form$/ do
   step %{I press on "Fall Gruppieren"}
-end
-
-When /^I wait (\d+) seconds?$/ do |seconds|
-  sleep seconds.to_i
 end

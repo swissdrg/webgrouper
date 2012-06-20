@@ -37,13 +37,14 @@ Feature: The edge cases should be handled correctly
 	  And I should see "Normallieger" in "length-of-stay"
 
   # groupertest.java L 81
-  # Could not reproduce desired results in original grouper
-  @javascript @fails
-  Scenario: parse case pdx B78C
+  @javascript
+  Scenario: parse case pdx H63C (low CC) and H63B (high CC)
     Given the form with initialized standard values
-    When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
-    # Then I should see "B78C" in "grouping"	#could not reproduce
-    Then I should see "H63C" in "grouping"	
+    When I parse "53567;10;;;U;01;01;50;0;0;B58.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+    Then I should see "H63C" in "grouping"
+    When I enter the secondary diagnoses "C83.7", "E24.1"
+    And I submit the form
+    Then I should see "H63B" in "grouping"
 	  
 # groupertest.java L 88
 # Changed to valid diagnosis codes
@@ -173,3 +174,12 @@ Feature: The edge cases should be handled correctly
     Then I should see "E74Z" in "grouping"
     And I should see "769.41" in "cost-weight"
   	And I should see "Oberer Outlier" in "length-of-stay"
+  	
+  @javascript
+  Scenario: Test case for B78C
+  	Given the form with initialized standard values
+  	When I enter "S06.1" as diagnosis
+  	And I enter "1" as los
+  	And I submit the form
+  	Then I should see "B78C" in "grouping"
+  	
