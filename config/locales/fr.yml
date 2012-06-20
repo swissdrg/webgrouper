@@ -278,10 +278,10 @@ fr:
           OR: OR
           OR_CONFLICT: OR
           OR_CONFLICT_CHOP_DATE: OR
-          SRG: Translation missing
-          SRG_CONFLICT: Translation missing
-          SRG_CONFLICT_CHOP: Translation missing
-          SRG_CONFLICT_CHOP_DATE: Translation missing
+          SRG: Ni OU ni NOR
+          SRG_CONFLICT: Ni OU ni NOR
+          SRG_CONFLICT_CHOP: Ni OU ni NOR
+          SRG_CONFLICT_CHOP_DATE: Ni OU ni NOR
         used:
           PROC_NOT_USED: Translation missing
           PROC_USED: Translation missing

@@ -287,10 +287,10 @@ it:
           OR: OR
           OR_CONFLICT: OR
           OR_CONFLICT_CHOP_DATE: OR
-          SRG: Translation missing
-          SRG_CONFLICT: Translation missing
-          SRG_CONFLICT_CHOP: Translation missing
-          SRG_CONFLICT_CHOP_DATE: Translation missing
+          SRG: Né OR né NOR
+          SRG_CONFLICT: Né OR né NOR
+          SRG_CONFLICT_CHOP: Né OR né NOR
+          SRG_CONFLICT_CHOP_DATE: Né OR né NOR
         used:
           PROC_NOT_USED: Translation missing
           PROC_USED: Translation missing
