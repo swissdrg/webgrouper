@@ -29,8 +29,6 @@ When /^I select "([^"]*)" as adm mode$/ do |adm|
   step %{I select in "webgrouper_patient_case_adm" "#{string}"}
 end
 
-
-
 #Takes M, F or U as Gender
 When /^I select "([^"]*)" as sex$/ do |sex|
   #Fix for parsing strings:
