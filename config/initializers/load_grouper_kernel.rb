@@ -33,8 +33,10 @@ else
   file_extension = '.so.1.1.0'
 end
 
+DEFAULT_SYSTEM = 9
+
 # The real grouper:
-spec_path = spec_path(11)
+spec_path = spec_path(DEFAULT_SYSTEM)
 grouper_path = File.join(Rails.root, 'lib', lib_prequel + 'GrouperKernel' + arch_lib + file_extension)
 GROUPER = org.swissdrg.grouper.kernel.GrouperKernel.create(grouper_path, spec_path)
 
