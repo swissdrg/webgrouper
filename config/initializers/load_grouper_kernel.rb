@@ -1,4 +1,7 @@
 require 'java'
+require 'app/helpers/webgrouper_patient_cases_helper'
+include WebgrouperPatientCasesHelper
+
 # On mac: debugging only with mock-grouper
 if java.lang.System.getProperty('os.name').downcase.include?('mac')
   require 'lib/javawrapper/swissdrg-grouper-1.0.0-mock.jar'
@@ -31,6 +34,8 @@ else
 end
 
 # The real grouper:
+spec_path = spec_path(11)
 grouper_path = File.join(Rails.root, 'lib', lib_prequel + 'GrouperKernel' + arch_lib + file_extension)
-spec_path = File.join(Rails.root, 'lib', 'specs', 'Spec10billing' + arch_bin + 'bit.bin')
 GROUPER = org.swissdrg.grouper.kernel.GrouperKernel.create(grouper_path, spec_path)
+
+
