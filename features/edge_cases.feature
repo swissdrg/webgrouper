@@ -72,8 +72,7 @@ Feature: The edge cases should be handled correctly
     Then I should see "1" in "length-of-stay"
     
   # groupertest.java L 125
-  # We don't have the grouper specifications for running this test.
-  @javascript @fails
+  @javascript
   Scenario: parse with different systems
 	Given the form with initialized standard values
 	When I select in "system_SyID" "Planungsversion 0.3 2009/2011"

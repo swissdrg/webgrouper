@@ -1,4 +1,7 @@
 # All steps concerning dropdown-selects
+When /^I select "([^"]*)" as system $/ do |system|
+  step %{I select in "webgrouper_patient_case_active_grouper" "#{system}"}
+end 
 
 When /^I enter Transfered \(los more than 24 hours\) as admission mode$/ do 
   select(I18n.t('simple_form.options.webgrouper_patient_case.adm.adm11'), 
