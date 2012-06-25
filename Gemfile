@@ -5,10 +5,8 @@ gem 'rails', '3.1.4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# mysql driver stuff for JRuby
-gem "jdbc-mysql", "~> 5.1.13" 
-gem "activerecord-jdbc-adapter", "~> 1.2.2"
-gem "activerecord-jdbcmysql-adapter", "~> 1.2.2"
+# mongoDB driver
+gem "mongoid"
 
 gem 'jruby-openssl'
 gem 'json'

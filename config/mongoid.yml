@@ -1,0 +1,6 @@
+development:
+  sessions:
+    default:
+      database: webgrouper_development
+      hosts:
+        - localhost:27017
