@@ -1,6 +1,9 @@
 development:
   host: localhost
-  database: webgrouper_development
+  database: webgrouper_development1
+ # options:
+  #  allow_dynamic_field: false
+   # scope_overwrite_exception: true
 
 test:
   host: localhost

@@ -1,13 +1,13 @@
 class CHOP
   include Mongoid::Document
-	store_in collection: "chop"
+	self.collection_name = "chop"
   
   field :code_short, type: String
   field :code, type: String
   field :description, type: String, localize: true
   field :icd_version, type: String
 	
-	default_scope lambda{where(:chop_version => System.chop_version)}
+	default_scope lambda{where(:chop_version => System.current_system.chop_version)}
   
   def self.short_code_of(value)
     value.gsub(/\./, "").strip

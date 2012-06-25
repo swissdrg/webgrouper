@@ -1,13 +1,13 @@
 class ICD
   include Mongoid::Document
-	store_in collection: "icd"
+	self.collection_name = "icd"
   
   field :code_short, type: String
   field :code, type: String
   field :description, type: String, localize: true
   field :icd_version, type: String
   
-  default_scope lambda{where(:icd_version => System.icd_version)}
+  default_scope lambda{where(:icd_version => System.current_system.icd_version)}
 		
   def self.short_code_of(value)
     value.gsub(/\./, "").strip
