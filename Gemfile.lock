@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/slash4/rails3-jquery-autocomplete.git
-  revision: 393786627734720f5cdae2265bc4a74609756452
+  remote: git://github.com/panmari/rails3-jquery-autocomplete.git
+  revision: 2e4a25ee96a3374a7b6b2ad29fc445655a2109d2
   specs:
     rails3-jquery-autocomplete (1.0.4)
       rails (~> 3.0)
@@ -43,7 +43,6 @@ GEM
     autotest-growl (0.2.16)
     autotest-standalone (4.5.9)
     bouncy-castle-java (1.5.0146.1)
-    bson (1.6.4)
     bson (1.6.4-java)
     bson_ext (1.6.4)
       bson (~> 1.6.4)
@@ -71,11 +70,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    ffi (1.0.11)
     ffi (1.0.11-java)
-    gherkin (2.11.0)
-      json (>= 1.4.6)
-    gherkin (2.11.0-java)
+    gherkin (2.11.1-java)
       json (>= 1.4.6)
     google_visualr (2.1.2)
     haml (3.1.4)
@@ -93,10 +89,7 @@ GEM
       thor (~> 0.14)
     jruby-openssl (0.7.7)
       bouncy-castle-java (>= 1.5.0146.1)
-    json (1.7.3)
     json (1.7.3-java)
-    launchy (2.1.0)
-      addressable (~> 2.2.6)
     launchy (2.1.0-java)
       addressable (~> 2.2.6)
       ffi (~> 1.0.9)
@@ -107,7 +100,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.18)
+    mime-types (1.19)
     mongo (1.6.2)
       bson (~> 1.6.2)
     mongoid (2.4.11)
@@ -115,8 +108,7 @@ GEM
       mongo (<= 1.6.2)
       tzinfo (~> 0.3.22)
     multi_json (1.3.6)
-    nokogiri (1.5.4)
-    nokogiri (1.5.4-java)
+    nokogiri (1.5.5-java)
     polyglot (0.3.3)
     rack (1.3.6)
     rack-cache (1.2)

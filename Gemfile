@@ -15,7 +15,7 @@ gem 'json'
 # Javascript-related:
 gem 'jquery-rails'
 gem 'rails-asset-jqueryui'
-gem 'rails3-jquery-autocomplete', :git => "git://github.com/slash4/rails3-jquery-autocomplete.git"
+gem 'rails3-jquery-autocomplete', :git => "git://github.com/panmari/rails3-jquery-autocomplete.git"
 
 # HTML Abstraction Markup Language 
 # Templating Engine, that allows a non-repetitive and more elegant way to structure xhtml/xml with embedded ruby.

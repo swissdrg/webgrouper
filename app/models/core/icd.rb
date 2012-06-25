@@ -20,4 +20,8 @@ class ICD
     raise "'#{value}' is not a valid icd code" if db_entry.nil?
     db_entry.code
   end
+  
+  def autocomplete_result
+    "#{self.code} #{self.description}"
+  end
 end

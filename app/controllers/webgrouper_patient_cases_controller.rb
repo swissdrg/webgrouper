@@ -1,11 +1,11 @@
 class WebgrouperPatientCasesController < ApplicationController
   
-  autocomplete :ICDM, [:IcCode, :IcShort, :langDE, :langFR, :langIT], :full => true,
+  autocomplete :ICD, [:code, :code_short, :description], :full => true,
                               :display_value => :autocomplete_result,
-                              :extra_data => [:langDE, :langFR, :langIT]
-  autocomplete :OPSM, [:OpCode, :OpShort, :langDE, :langFR, :langIT], :full => true,
+                              :extra_data => [:description]
+  autocomplete :CHOP, [:code, :code_short, :description], :full => true,
                               :display_value => :autocomplete_result,
-                              :extra_data => [:langDE, :langFR, :langIT]
+                              :extra_data => :description
                               
   def index
     @webgrouper_patient_case = WebgrouperPatientCase.new
@@ -24,7 +24,7 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def group(patient_case)
-		current_system_id = System.current_system.SyID
+		current_system_id = System.current_system.system_id
 		get_supplements(patient_case)
 		GROUPER.load(spec_path(current_system_id))
 		@result = GROUPER.group(patient_case)
@@ -35,12 +35,6 @@ class WebgrouperPatientCasesController < ApplicationController
 		                              @weighting_relation, @factor).make_chart
     render 'index'
   end
-  
-  def get_autocomplete_items(parameters)
-   	System.current_system = System.find_by_SyID(params[:system_id])
-    items = super(parameters)
-  end
-
 
   private
   
