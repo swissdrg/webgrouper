@@ -6,10 +6,10 @@
     %legend= t("fieldsets.system")
     .sameline
       = f.label :active_grouper
-      = collection_select :system, :SyID, System.all.reverse, :SyID, :SyName, {:selected => System.current_system.SyID}
+      = collection_select :system, :system_id, System.all.reverse, :system_id, :description, {:selected => System.current_system.system_id}
       .small_field
         = f.label :procedures_catalog
-        = text_field_tag :procedures_catalog, System.current_system.SyCatProcs, :disabled => true
+        = text_field_tag :procedures_catalog, System.current_system.chop_version, :disabled => true
     .sameline
       - selected = @webgrouper_patient_case.house || 1
       = f.input :house, 
@@ -19,7 +19,7 @@
                 :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.house.house#{el.to_s}" }
     .small_field
       = f.label :diagnoses_catalog
-      = text_field_tag :diagnoses_catalog, System.current_system.SyCatDiags, :disabled => true
+      = text_field_tag :diagnoses_catalog, System.current_system().icd_version, :disabled => true
     
   .on-row
     %fieldset#stay.left

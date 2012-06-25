@@ -1,5 +1,6 @@
-class CHOP < Mongoid::Document
-	 store_in collection: "chop"
+class CHOP
+  include Mongoid::Document
+	store_in collection: "chop"
   
   field :code_short, type: String
   field :code, type: String

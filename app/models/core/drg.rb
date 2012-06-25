@@ -1,4 +1,5 @@
-class DRG < Mongoid::Document
+class DRG
+  include Mongoid::Document
   store_in collection: "drg"
   
   field :code_short, type: String

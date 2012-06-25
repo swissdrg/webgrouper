@@ -7,6 +7,7 @@ gem 'rails', '3.1.4'
 
 # mongoDB driver
 gem "mongoid"
+gem 'bson_ext'
 
 gem 'jruby-openssl'
 gem 'json'

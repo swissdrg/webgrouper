@@ -1,4 +1,5 @@
-class ICD < Mongoid::Document
+class ICD
+  include Mongoid::Document
 	store_in collection: "icd"
   
   field :code_short, type: String

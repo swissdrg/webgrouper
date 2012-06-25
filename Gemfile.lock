@@ -43,7 +43,10 @@ GEM
     autotest-growl (0.2.16)
     autotest-standalone (4.5.9)
     bouncy-castle-java (1.5.0146.1)
+    bson (1.6.4)
     bson (1.6.4-java)
+    bson_ext (1.6.4)
+      bson (~> 1.6.4)
     builder (3.0.0)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -200,6 +203,7 @@ DEPENDENCIES
   autotest-fsevent
   autotest-growl
   autotest-standalone
+  bson_ext
   cucumber-rails
   database_cleaner
   google_visualr
