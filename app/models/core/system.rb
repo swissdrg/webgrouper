@@ -1,17 +1,18 @@
-class System < ActiveRecord::Base
-  def self.table_name
-    "system"
-  end
+class System < Mongoid::Document
+  store_in collection: "systems"
 
-  def self.current_system=(system)
-    @current_system = system
-  end
+  field :system_id, type: Integer
+  field :description, type: String, localize: true
+  field :chop_version, type: String
+  field :icd_version, type: String
+  field :drg_version, type: String
+  
+  
+  default_scope lambda{where(:system_id => current_system())}
+
   
   def self.current_system
     @current_system ||= System.find_by_SyID(DEFAULT_SYSTEM)
   end
   
-  def self.current_system_id
-    current_system.SyID
-  end
 end
