@@ -16,12 +16,11 @@
       - counter = 0
       - @webgrouper_patient_case.procedures.each do |proc|
         - proc_code = proc.split(":")[0]
-        - proc_db_entry = OPS.find_by_OpCode(proc_code)
         %tr
           %td
             = proc_code
           %td
-            = proc_db_entry.OpName
+            = CHOP.get_description_for(proc_code)
           %td
             = t("result.procedures.procedure_flag.valid." + @result.procedures_flags[counter].valid.to_s)
           %td

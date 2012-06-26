@@ -11,8 +11,8 @@ class System
     @current_system ||= System.where(system_id: DEFAULT_SYSTEM).first
   end
   
-  def self.current_system=(system)
-    @current_system = system
+  def self.current_system=(id)
+    @current_system = System.where(system_id: id).first
   end
  
 end

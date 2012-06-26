@@ -10,7 +10,7 @@ $(document).ready(function() {
 	addZebraStripes();
 });
 
-$("#system_SyID").live("change", function () {
+$("#system_system_id").live("change", function () {
 	this.form.submit();
 });
 

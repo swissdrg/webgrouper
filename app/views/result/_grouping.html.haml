@@ -14,7 +14,7 @@
         %td
           = link_to @result.drg, "http://webapps.swissdrg.org:8081/drgs/name?code=" + @result.drg
         %td
-          = (DRG.find_by_DrCode @result.get_drg).DrName
+          = DRG.get_description_for(@result.drg)
       %tr
         %th
           PCCL
