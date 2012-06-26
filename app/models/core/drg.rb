@@ -21,6 +21,10 @@ class DRG
 	def self.reuptake_exception_for?(search_code)
 		DRG.find_by(code: search_code).exception_from_reuptake_flag
 	end
+	
+	def self.get_description_for(search_code)
+    where(code: search_code).first.description
+  end
 
   #index for faster searching:
   index "description.de"

@@ -24,4 +24,13 @@ class ICD
   def autocomplete_result
     "#{self.code} #{self.description}"
   end
+  
+  def self.get_description_for(search_code)
+    where(code: search_code).first.description
+  end
+  
+    #index for faster searching:
+  index "description.de"
+  index "description.fr"
+  index "description.it"
 end
