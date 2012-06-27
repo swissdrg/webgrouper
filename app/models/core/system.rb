@@ -7,12 +7,15 @@ class System
   field :icd_version, type: String
   field :drg_version, type: String
     
+  cache = ActiveSupport::Cache::MemoryStore.new
+  
   def self.current_system
-    @current_system ||= System.where(system_id: DEFAULT_SYSTEM).first
+    current_system = Rails.cache.read(:current_system) 
+    current_system ||= System.where(system_id: DEFAULT_SYSTEM).first
   end
   
   def self.current_system=(id)
-    @current_system = System.where(system_id: id).first
+    Rails.cache.write(:current_system, System.where(system_id: id).first)
   end
  
 end

@@ -5,7 +5,7 @@ class WebgrouperPatientCasesController < ApplicationController
                               :extra_data => [:description]
   autocomplete :CHOP, [:code, :code_short, :description], :full => true,
                               :display_value => :autocomplete_result,
-                              :extra_data => :description
+                              :extra_data => [:description]
                               
   def index
     @webgrouper_patient_case = WebgrouperPatientCase.new
