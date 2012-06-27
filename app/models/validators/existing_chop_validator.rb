@@ -1,5 +1,5 @@
 #Validates if an ops code can be found in the database.
-class ExistingOpsValidator < ActiveModel::EachValidator
+class ExistingChopValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     error_happened = false
     value.each do |v|
@@ -11,12 +11,9 @@ class ExistingOpsValidator < ActiveModel::EachValidator
         record.errors[attribute] << I18n.t("errors.messages.no_code")
         record.errors[attribute][0] += " #{laterality}" unless laterality.blank?
         record.errors[attribute][0] += " #{date}" unless date.gsub("\.", "").blank?
-      end
-      error_happened = CHOP.exists?(short_code)
-      if(error_happened)
-        error_msg = ""
-        error_msg = "#{short_code} invalid" unless short_code.empty?
-        record.errors[attribute] << error_msg unless error_msg.blank?
+      end     
+      if(!short_code.empty? && !CHOP.exists?(short_code))
+        record.errors[attribute] << "#{short_code} invalid"
       end
     end
   end

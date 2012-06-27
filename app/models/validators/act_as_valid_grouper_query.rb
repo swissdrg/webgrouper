@@ -28,7 +28,7 @@ module ActAsValidGrouperQuery
     # Main diagnosis
     base.validates      :pdx,             :presence => true, :existing_icd => true, :if => lambda{ |wpc| wpc.manual_submission || !wpc.pdx.blank? || !wpc.diagnoses.blank? || !wpc.procedures.blank? }
     base.validates      :diagnoses,       :existing_icd => true
-    base.validates      :procedures,      :existing_ops => true
+    base.validates      :procedures,      :existing_chop => true
   end
 
 end
