@@ -44,8 +44,10 @@ class WebgrouperPatientCase < PatientCase
     super(pdx.gsub(/\./, "").strip)
   end
   
+  # Custom getter for pdx
+  # Makes sure that it appears in the form as pretty code
   def pdx
-    ICD.pretty_code_of get_pdx rescue get_pdx
+    ICD.pretty_code_of(super) rescue get_pdx
   end
 
   def diagnoses=(diagnoses)

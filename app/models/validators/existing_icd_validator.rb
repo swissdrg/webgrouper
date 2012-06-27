@@ -15,7 +15,7 @@ class ExistingIcdValidator < ActiveModel::EachValidator
 
   def validate_diagnoses(record, attribute, value)
     value.each do |v|
-      record.errors[attribute] << "#{v} invalid" unless ICD.exists?(value)
+      record.errors[attribute] << "#{v} invalid" unless ICD.exists?(v)
     end
   end
 

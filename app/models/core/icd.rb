@@ -16,7 +16,7 @@ class ICD
   # Returns the value as pretty code if it is available in the db.
   # Throws a Runtime Error if the given value is not valid.
   def self.pretty_code_of(value)
-    db_entry = self.find_by(code_short: short_code_of(value))
+    db_entry = where(code_short: short_code_of(value)).first
     raise "'#{value}' is not a valid icd code" if db_entry.nil?
     db_entry.code
   end

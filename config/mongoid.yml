@@ -7,7 +7,7 @@ development:
 
 test:
   host: localhost
-  database: mongoid_test_test
+  database: webgrouper_test
 
 # set these environment variables on your prod server
 production:
