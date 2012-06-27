@@ -47,7 +47,7 @@ group :assets do
 end
 
 group :development do
-  
+
 end
 
 group :test do
