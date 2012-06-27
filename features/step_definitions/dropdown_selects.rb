@@ -1,5 +1,5 @@
 # All steps concerning dropdown-selects
-When /^I select "([^"]*)" as system $/ do |system|
+When /^I select "(.*?)" as system $/ do |system|
   step %{I select in "webgrouper_patient_case_active_grouper" "#{system}"}
 end 
 

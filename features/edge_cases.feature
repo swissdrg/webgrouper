@@ -75,12 +75,12 @@ Feature: The edge cases should be handled correctly
   @javascript
   Scenario: parse with different systems
 	Given the form with initialized standard values
-	When I select in "system_SyID" "Planungsversion 0.3 2009/2011"
+	When I select "Planungsversion 0.3 2009/2011" as system
 	And I parse "56;10;0;;2;01;00;3;0;;S424;" as input for the form
 	And I enter the procedures with seitigkeit and date "7911::20080307"
     Then I should see "Hauptdiagnose: invalid"
 	  
-    When I select in "system_SyID" "Katalogversion 0.3 2008/2011"
+    When I select in "Katalogversion 0.3 2008/2011" as system
 	And I submit the form
 	Then the grouping should succeed
     Then I should see "I13B" in "grouping"
