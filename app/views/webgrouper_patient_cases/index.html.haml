@@ -6,7 +6,7 @@
     %legend= t("fieldsets.system")
     .sameline
       = f.label :active_grouper
-      = collection_select :system, :system_id, System.all.reverse, :system_id, :text_de, {:selected => System.current_system.system_id}
+      = collection_select :system, :system_id, System.all.reverse, :system_id, :description, {:selected => System.current_system.system_id}
       .small_field
         = f.label :procedures_catalog
         = text_field_tag :procedures_catalog, System.current_system.chop_version, :disabled => true
