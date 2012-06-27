@@ -1,8 +1,8 @@
-class Supplement < ActiveRecord::Base
-	
-	default_scope lambda{where(:system => System.current_system_id)}
+class Supplement
+  include Mongoid::Document
+  self.collection_name = "chop"
+  
+	#TODO: scope
+	default_scope lambda{where(:chop_version => System.current_system.chop_version)}
 
-	def self.table_name
-		'supplement'	
-	end
 end
