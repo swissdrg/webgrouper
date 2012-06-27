@@ -3,6 +3,6 @@
     %h2
       = t 'errors.template.body'
     %ul
-      - @webgrouper_patient_case.errors.each do |message|
+      - @webgrouper_patient_case.errors.each do |attr, msg|
         %li
-          = t("simple_form.labels.webgrouper_patient_case." + message[0].to_s) + " " + message[1]
+          = t("simple_form.labels.webgrouper_patient_case." + attr.to_s) + " " + msg

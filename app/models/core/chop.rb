@@ -29,6 +29,13 @@ class CHOP
     where(code: search_code).first.description
   end
   
+  # Returns true if the code exists in the database.
+  # you can either give the code of the code_short.
+  def self.exists?(search_code)
+    !where(code_short: self.short_code_of(search_code)).first.nil?
+  end
+
+  
   #index for faster searching:
   index "description.de"
   index "description.fr"

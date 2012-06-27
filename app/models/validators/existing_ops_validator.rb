@@ -12,7 +12,7 @@ class ExistingOpsValidator < ActiveModel::EachValidator
         record.errors[attribute][0] += " #{laterality}" unless laterality.blank?
         record.errors[attribute][0] += " #{date}" unless date.gsub("\.", "").blank?
       end
-      error_happened = OPS.find_by_OpShort(short_code).nil?
+      error_happened = CHOP.exists?(short_code)
       if(error_happened)
         error_msg = ""
         error_msg = "#{short_code} invalid" unless short_code.empty?
