@@ -22,7 +22,7 @@
             = " (" + ops_code + ") "
           %td
             = count.to_s
-      - if DRG.reuptake_exception_for?(@result.drg)
+      - if DRG.reuptake_exception?(@result.drg)
         %tr
           %th
             = t("result.settlement_hints.reuptake_hint", :drg => @result.drg)

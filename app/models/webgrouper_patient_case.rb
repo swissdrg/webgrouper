@@ -41,7 +41,7 @@ class WebgrouperPatientCase < PatientCase
   # Makes sure that the variable pdx only references a short code representation of an 
   # icd code by filtering out periods and whitespace.
   def pdx=(pdx)
-    set_pdx pdx.gsub(/\./, "").strip
+    super(pdx.gsub(/\./, "").strip)
   end
   
   def pdx

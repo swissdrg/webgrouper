@@ -26,7 +26,7 @@ class ICD
   end
   
   def self.get_description_for(search_code)
-    where(code: search_code).first.description
+    where(code_short: self.short_code_of(search_code)).first.description
   end
   
   # Returns true if the code exists in the database.
