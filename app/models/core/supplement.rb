@@ -3,6 +3,6 @@ class Supplement
   self.collection_name = "chop"
   
 	#TODO: scope
-	default_scope lambda{where(:chop_version => System.current_system.chop_version)}
+	scope :in_system, lambda { |system_id| where(:chop_version => System.where(:system_id => system_id ).first.chop_version) }
 
 end

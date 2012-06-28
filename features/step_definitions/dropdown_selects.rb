@@ -1,6 +1,6 @@
 # All steps concerning dropdown-selects
-When /^I select "(.*?)" as system $/ do |system|
-  step %{I select in "webgrouper_patient_case_active_grouper" "#{system}"}
+When /^I select "(.*?)" as system$/ do |system|
+  step %{I select in "webgrouper_patient_case_system_id" "#{system}"}
 end 
 
 When /^I enter Transfered \(los more than 24 hours\) as admission mode$/ do 

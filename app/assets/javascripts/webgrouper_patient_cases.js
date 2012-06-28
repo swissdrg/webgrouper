@@ -10,7 +10,7 @@ $(document).ready(function() {
 	addZebraStripes();
 });
 
-$("#system_system_id").live("change", function () {
+$("#webgrouper_patient_case_system_id").live("change", function () {
 	this.form.submit();
 });
 

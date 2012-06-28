@@ -22,13 +22,10 @@ class WebgrouperPatientCase < PatientCase
     self.pdx = ""
     self.system_id = DEFAULT_SYSTEM
     
-    puts attributes
-    
     attributes.each do |name, value|
       value = value.to_i if send(name).is_a? Fixnum
       send("#{name}=", value) 
     end
-    puts system_id
 
     age_mode_days? ? self.age_days = self.age : self.age_years = self.age
     self.birth_house = care_taker_birth_house?

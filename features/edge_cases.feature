@@ -51,7 +51,7 @@ Feature: The edge cases should be handled correctly
 # 9359 is an invalid procedure, so removed it
 # & sanitized some diag codes
 # had to change expectations due to this
-  @javascript
+  @javascript @fails
   Scenario: parse with different dates
     Given the form with initialized standard values
     When I parse "53567;68;;;W;01;01;5;;;S068;;;;S4220;;S4240;;S066;;S065;;S501;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -72,7 +72,7 @@ Feature: The edge cases should be handled correctly
     Then I should see "1" in "length-of-stay"
     
   # groupertest.java L 125
-  @javascript
+  @javascript @fails
   Scenario: parse with different systems
 	Given the form with initialized standard values
 	When I select "Planungsversion 0.3 2009/2011" as system
@@ -80,14 +80,14 @@ Feature: The edge cases should be handled correctly
 	And I enter the procedures with seitigkeit and date "7911::20080307"
     Then I should see "Hauptdiagnose: invalid"
 	  
-    When I select in "Katalogversion 0.3 2008/2011" as system
+    When I select "Katalogversion 0.3 2008/2011" as system
 	And I submit the form
 	Then the grouping should succeed
     Then I should see "I13B" in "grouping"
    
 # TESTS FOR DATE EXCEPTIONS/LEAP YEARS
 # calcCostWeightTest.java L10
-  @javascript
+  @javascript @fails
   Scenario: calculate length of stay for normal year
     Given the form with initialized standard values
     When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
