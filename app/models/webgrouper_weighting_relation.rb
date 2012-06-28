@@ -1,11 +1,10 @@
 # Acts as a wrapper class for superclass WeightingRelation
 class WebgrouperWeightingRelation < WeightingRelation
 	attr_accessor :factor	
-	def initialize(drg_code)
+	def initialize(drg)
 		super()
 		@factor = 10000
-		drg = DRG.where(:code => drg_code).first
-		self.setDrg(drg_code)
+		self.setDrg(drg.code)
 		self.setCostWeight(drg.cost_weight*@factor)
 		self.setAvgDuration(drg.avg_duration*@factor)
 		self.setFirstDayDiscount(drg.first_day_discount)

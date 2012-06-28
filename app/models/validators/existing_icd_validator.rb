@@ -10,12 +10,12 @@ class ExistingIcdValidator < ActiveModel::EachValidator
   private
 
   def validate_pdx(record, attribute, value)
-    record.errors[attribute] << "invalid" unless ICD.exists?(value)
+    record.errors[attribute] << "invalid" unless ICD.exists?(record.system_id, value)
   end
 
   def validate_diagnoses(record, attribute, value)
     value.each do |v|
-      record.errors[attribute] << "#{v} invalid" unless ICD.exists?(v)
+      record.errors[attribute] << "#{v} invalid" unless ICD.exists?(record.system_id, v)
     end
   end
 

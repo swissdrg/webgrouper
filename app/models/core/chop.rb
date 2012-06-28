@@ -5,18 +5,18 @@ class CHOP
   field :code_short, type: String
   field :code, type: String
   field :description, type: String, localize: true
-  field :icd_version, type: String
+  field :chop_version, type: String
 	
-	default_scope lambda{where(:chop_version => System.current_system.chop_version)}
+	scope :in_system, lambda { |system_id| where(:chop_version => System.where(:system_id => system_id ).first.chop_version) }
   
   def self.short_code_of(value)
-    value.gsub(/\./, "").strip
+    value.gsub(/\./, "").strip.upcase
   end
   
   # Returns the value as pretty code if it is available in the db.
   # Throws a Runtime Error if the given value is not valid.
-  def self.pretty_code_of(value)
-    db_entry = self.find_by(code_short: short_code_of(value))
+  def self.pretty_code_of(system_id, value)
+    db_entry = in_system(system_id).where(code_short: short_code_of(value)).first
     raise "'#{value}' is not a valid icd code" if db_entry.nil?
     db_entry.code
   end
@@ -25,14 +25,14 @@ class CHOP
     "#{self.code} #{self.description}"
   end
   
-  def self.get_description_for(search_code)
-    where(code_short: self.short_code_of(search_code)).first.description
+  def self.get_description_for(system_id, search_code)
+    in_system.(system_id).where(code_short: self.short_code_of(search_code)).first.description
   end
   
   # Returns true if the code exists in the database.
   # you can either give the code of the code_short.
-  def self.exists?(search_code)
-    !where(code_short: self.short_code_of(search_code)).first.nil?
+  def self.exists?(system_id, search_code)
+    !in_system(system_id).where(code_short: self.short_code_of(search_code)).first.nil?
   end
 
   

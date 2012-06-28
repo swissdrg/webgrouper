@@ -14,7 +14,7 @@
         %td
           = link_to @result.drg, "http://webapps.swissdrg.org:8081/drgs/name?code=" + @result.drg
         %td
-          = DRG.get_description_for(@result.drg)
+          = DRG.get_description_for(@webgrouper_patient_case.system_id, @result.drg)
       %tr
         %th
           PCCL

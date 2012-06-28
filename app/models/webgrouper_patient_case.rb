@@ -5,7 +5,7 @@ class WebgrouperPatientCase < PatientCase
   
   include ActAsValidGrouperQuery
   
-  attr_accessor :age, :age_mode, :age_mode_decoy, :house, :manual_submission
+  attr_accessor :age, :age_mode, :age_mode_decoy, :house, :manual_submission, :system_id
   # invokes superconstructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
   def initialize(attributes = {})
@@ -20,12 +20,16 @@ class WebgrouperPatientCase < PatientCase
 	  self.adm = "99" #aka unknown
     self.sep = "99" #aka unknown
     self.pdx = ""
+    self.system_id = DEFAULT_SYSTEM
+    
+    puts attributes
     
     attributes.each do |name, value|
       value = value.to_i if send(name).is_a? Fixnum
       send("#{name}=", value) 
     end
-    
+    puts system_id
+
     age_mode_days? ? self.age_days = self.age : self.age_years = self.age
     self.birth_house = care_taker_birth_house?
   end
@@ -41,13 +45,13 @@ class WebgrouperPatientCase < PatientCase
   # Makes sure that the variable pdx only references a short code representation of an 
   # icd code by filtering out periods and whitespace.
   def pdx=(pdx)
-    super(pdx.gsub(/\./, "").strip)
+    super(ICD.short_code_of(pdx))
   end
   
   # Custom getter for pdx
   # Makes sure that it appears in the form as pretty code
   def pdx
-    ICD.pretty_code_of(super) rescue get_pdx
+    ICD.pretty_code_of(system_id, super) rescue get_pdx
   end
 
   def diagnoses=(diagnoses)
@@ -59,7 +63,7 @@ class WebgrouperPatientCase < PatientCase
     get_diagnoses.each do |d|
       unless d.nil?
         begin
-          diagnoses << ICD.pretty_code_of(d)
+          diagnoses << ICD.pretty_code_of(system_id, d)
         rescue
           diagnoses << d
         end
@@ -81,7 +85,7 @@ class WebgrouperPatientCase < PatientCase
         laterality = p.match(regex)[2]
         date = p.match(regex)[3]
         begin
-          code = OPS.pretty_code_of short_code
+          code = CHOP.pretty_code_of(system_id, short_code)
         rescue
           code = short_code
         end

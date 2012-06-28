@@ -17,7 +17,7 @@
         %td
           = @webgrouper_patient_case.pdx
         %td
-          = ICD.get_description_for(@webgrouper_patient_case.pdx)
+          = ICD.get_description_for(@webgrouper_patient_case.system_id, @webgrouper_patient_case.pdx)
         %td
           = t("result.diagnoses.diagnosis_flag.valid." + @result.pdx_diagnosis_flag.valid.to_s)
         %td
@@ -30,7 +30,7 @@
           %td
             = diag
           %td
-            = ICD.get_description_for(diag)
+            = ICD.get_description_for(@webgrouper_patient_case.system_id, diag)
           %td
             = t("result.diagnoses.diagnosis_flag.valid." + @result.diagnoses_flags[counter].valid.to_s)
           %td

@@ -12,7 +12,6 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def create_query
-		System.current_system=(params[:system][:system_id])
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
     @webgrouper_patient_case.manual_submission = params[:commit]
     if @webgrouper_patient_case.valid?
@@ -20,20 +19,24 @@ class WebgrouperPatientCasesController < ApplicationController
     else
       flash.now[:error] = @webgrouper_patient_case.errors.full_messages
       render 'index'
-    end  
+    end
   end
   
   def group(patient_case)
-		current_system_id = System.current_system.system_id
 		get_supplements(patient_case)
-		GROUPER.load(spec_path(current_system_id))
+		GROUPER.load(spec_path(patient_case.system_id))
 		@result = GROUPER.group(patient_case)
-		@weighting_relation = WebgrouperWeightingRelation.new(@result.getDrg)
+		@weighting_relation = WebgrouperWeightingRelation.new(DRG.find_by_code(patient_case.system_id, @result.drg))
 		@factor = @weighting_relation.factor
 		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)		
 		@los_chart = LosDataTable.new(patient_case.los, @cost_weight,
 		                              @weighting_relation, @factor).make_chart
     render 'index'
+  end
+  
+  def get_autocomplete_items(parameters)
+    System.current_system = params[:system][:system_id] ||= DEFAULT_SYSTEM
+    items = super(parameters)
   end
 
   private

@@ -16,22 +16,21 @@ class DRG
   field :exception_from_reuptake_flag, type: Boolean
   field :drg_version, type: String
   
-  default_scope lambda{where(:drg_version => System.current_system.drg_version)}
+  scope :in_system, lambda { |system_id| where(:drg_version => System.where(:system_id => system_id ).first.drg_version) }
 
-	def self.reuptake_exception_for?(search_code)
-		DRG.find_by(code: search_code).exception_from_reuptake_flag
+	def self.reuptake_exception_for?(system_id, search_code)
+		in_system(system_id).where(code: search_code).first.exception_from_reuptake_flag
 	end
 	
-	def self.get_description_for(search_code)
-    where(code: search_code).first.description
+	def self.get_description_for(system_id, search_code)
+    in_system(system_id).where(code: search_code).first.description
   end
   
-  def self.reuptake_exception?(search_code)
-    where(code: search_code).first.exception_from_reuptake_flag
+  def self.reuptake_exception?(system_id, search_code)
+    in_system(system_id).where(code: search_code).first.exception_from_reuptake_flag
   end
-
-  #index for faster searching:
-  index "description.de"
-  index "description.fr"
-  index "description.it"
+  
+  def self.find_by_code(system_id, search_code)
+    in_system(system_id).where(code: search_code).first
+  end
 end
