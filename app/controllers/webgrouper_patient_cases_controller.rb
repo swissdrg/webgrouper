@@ -35,8 +35,8 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def get_autocomplete_items(parameters)
-    System.current_system = params[:system][:system_id] ||= DEFAULT_SYSTEM
     items = super(parameters)
+    items.send(:in_system, params[:system_id])
   end
 
   private

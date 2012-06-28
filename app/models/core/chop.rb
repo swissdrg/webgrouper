@@ -26,7 +26,7 @@ class CHOP
   end
   
   def self.get_description_for(system_id, search_code)
-    in_system.(system_id).where(code_short: self.short_code_of(search_code)).first.description
+    in_system(system_id).where(code_short: self.short_code_of(search_code)).first.description
   end
   
   # Returns true if the code exists in the database.

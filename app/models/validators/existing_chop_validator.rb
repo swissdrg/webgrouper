@@ -12,7 +12,7 @@ class ExistingChopValidator < ActiveModel::EachValidator
         record.errors[attribute][0] += " #{laterality}" unless laterality.blank?
         record.errors[attribute][0] += " #{date}" unless date.gsub("\.", "").blank?
       end     
-      if(!short_code.empty? && !CHOP.exists?(short_code))
+      if(!short_code.empty? && !CHOP.exists?(record.system_id, short_code))
         record.errors[attribute] << "#{short_code} invalid"
       end
     end

@@ -85,7 +85,7 @@
       set_procedures_buttons("#{escape_javascript(add_button('procedures'))}", "#{escape_javascript(remove_button('procedures'))}")
     #diagnoses
       = f.input :pdx, 
-                :url => autocomplete_ICD_code_webgrouper_patient_cases_path, 
+                :url => autocomplete_ICD_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id), 
                 :as => :autocomplete
       = f.label "diagnoses"
       = render "shared/diagnoses", :patient_case => @webgrouper_patient_case
