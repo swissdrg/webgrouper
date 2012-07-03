@@ -8,12 +8,13 @@ class WebgrouperPatientCasesController < ApplicationController
                               :extra_data => [:description]
                               
   def index
-    @webgrouper_patient_case = WebgrouperPatientCase.new
+    @webgrouper_patient_case = WebgrouperPatientCase.new()
   end
   
   def create_query
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
-    @webgrouper_patient_case.manual_submission = params[:commit]
+    @webgrouper_patient_case.manual_submission = !params[:commit].nil?
+    Query.new(params[:webgrouper_patient_case]).save
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
     else
