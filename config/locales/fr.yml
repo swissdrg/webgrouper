@@ -149,7 +149,7 @@ fr:
     patient_data: Données du patient
     stay: Séjour
     system: Système
-  found_errors: Translation missing
+  found_errors: 
   help:
     back: En arrière
     other: 'Divers:'
@@ -215,22 +215,22 @@ fr:
       discount-rate-per-day: Réduction du CW par jour
       effective-cost-weight: Cost-weight effectif
       legend: Cost-weight
-      no_days_for_discount_or_surcharge: Translation missing
-      number_of_days_for_discount: Translation missing
-      number_of_days_for_surcharge: Translation missing
+      no_days_for_discount_or_surcharge: 
+      number_of_days_for_discount: 
+      number_of_days_for_surcharge: 
       surcharge-rate-per-day: Augmentation du CW par jour
     diagnoses:
       CCL: CCL
       diagnosis_flag:
         used:
-          false_string: Translation missing
-          true_string: Translation missing
+          false_string: 
+          true_string: 
         valid:
-          AGE_CONFLICT: Translation missing
+          AGE_CONFLICT: 
           ALREADY_IN_PDX: Déjà employé comme diagnostic principal
-          INVALID_DIAGNOSIS: Translation missing
-          SEX_CONFLICT: Translation missing
-          VALID_DIAGNOSIS: Translation missing
+          INVALID_DIAGNOSIS: 
+          SEX_CONFLICT: 
+          VALID_DIAGNOSIS: 
       legend: Diagnostics
       used: Utilisé
       valid: Valid
@@ -251,16 +251,16 @@ fr:
       legend: Groupement
     length-of-stay:
       average_los: Durée moyenne de séjour
-      case_flag: Translation missing
+      case_flag: 
       case_flag_modes:
         INLIER: Inlier
         LOWER_OUTLIER: Low-Outlier
         TRANSFERRED: Réduction pour transfert
-        UNDEFINED: Translation missing
+        UNDEFINED: 
         UNWEIGHTED: DRG non évalué
         UPPER_OUTLIER: High-Outlier
-      first-day-with-discount: Translation missing
-      first-day-with-surcharge: Translation missing
+      first-day-with-discount: 
+      first-day-with-surcharge: 
       high_trim_point: Borne supérieure de la durée de séjour
       legend: Durée du séjour
       length-of-stay: Durée de séjour
@@ -283,17 +283,17 @@ fr:
           SRG_CONFLICT_CHOP: Ni OU ni NOR
           SRG_CONFLICT_CHOP_DATE: Ni OU ni NOR
         used:
-          PROC_NOT_USED: Translation missing
-          PROC_USED: Translation missing
-          USED_BOTH: Translation missing
-          USED_FOR_CONDITION: Translation missing
+          PROC_NOT_USED: 
+          PROC_USED: 
+          USED_BOTH: 
+          USED_FOR_CONDITION: 
         valid:
-          PROC_AGE_CONFLICT: Translation missing
-          PROC_INVALID: Translation missing
-          PROC_SEX_CONFLICT: Translation missing
-          PROC_VALID: Translation missing
-          UNUSED: Translation missing
-          VALID_DIAGNOSIS: Translation missing
+          PROC_AGE_CONFLICT: 
+          PROC_INVALID: 
+          PROC_SEX_CONFLICT: 
+          PROC_VALID: 
+          UNUSED: 
+          VALID_DIAGNOSIS: 
     settlement_hints:
       additional_fees: 'Rémunération supplémentaire: '
       legend: Note explicative pour la facturation
