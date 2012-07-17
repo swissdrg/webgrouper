@@ -18,7 +18,7 @@ class DRG
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version) }
 
 	def self.reuptake_exception_for?(system_id, search_code)
-		in_system(system_id).where(code: search_code).first.exception_from_reuptake_flag
+		in_system(system_id).where(code: search_code).first.exception_from_reuptake
 	end
 	
 	def self.get_description_for(system_id, search_code)

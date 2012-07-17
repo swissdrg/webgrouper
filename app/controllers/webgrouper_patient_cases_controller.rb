@@ -55,18 +55,17 @@ class WebgrouperPatientCasesController < ApplicationController
 			
 			# if there is an a row in supplementops which has a column equals the given procedure value
 			# prepare hash for a new value
-      sup_op = SupplementOps.where(:ops => p).first
+      sup = Supplement.in_system(patient_case.system_id).where(:chop_code => p).first
       unless sup_op.nil?
-        fee = sup_op.fee
-        supplement = Supplement.where(:fee => fee).first
+        supplement = SupplementDescription.where(:code => sup.supplement_code).first
         amount = supplement.amount
-	     	description = supplement.description
+	     	description = supplement.text
         @total_supplement_amount += amount
 				
 				# count how many times the same proc appeared with same fee.
 				default_proc_count = 1
 				if @supplement_procedures[p].nil?
-					data = {:fee => fee, :description => description, :amount => amount, :proc_count => default_proc_count}	
+					data = {:fee => sup.code, :description => description, :amount => amount, :proc_count => default_proc_count}	
 			  	@supplement_procedures[p] = data			
 				else
 					new_proc_count = @supplement_procedures[p][:proc_count] + 1

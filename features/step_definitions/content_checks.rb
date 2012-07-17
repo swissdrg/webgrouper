@@ -36,7 +36,7 @@ Then /^I should not see (\d+) procedures fields$/ do |field_count|
 end
 
 Then /^the grouping should succeed$/ do
-  page.should_not have_selector('.errorflash')
+  page.should_not have_css('.errorflash')
 end
 
 Then /^the form should stay the same$/ do
