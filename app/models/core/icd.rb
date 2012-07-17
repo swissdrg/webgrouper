@@ -1,13 +1,12 @@
 class ICD
   include Mongoid::Document
-	self.collection_name = "icd"
   
   field :code_short, type: String
   field :code, type: String
-  field :description, type: String, localize: true
-  field :icd_version, type: String
+  field :text, type: String, localize: true
+  field :version, type: String
   
-  scope :in_system, lambda { |system_id| where(:icd_version => System.where(:system_id => system_id ).first.icd_version) }
+  scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.icd_version) }
 		
   def self.short_code_of(value)
     value.gsub(/\./, "").strip.upcase
@@ -22,11 +21,11 @@ class ICD
   end
   
   def autocomplete_result
-    "#{self.code} #{self.description}"
+    "#{self.code} #{self.text}"
   end
   
   def self.get_description_for(system_id, search_code)
-    in_system(system_id).where(code_short: self.short_code_of(search_code)).first.description
+    in_system(system_id).where(code_short: self.short_code_of(search_code)).first.text
   end
   
   # Returns true if the code exists in the database.
