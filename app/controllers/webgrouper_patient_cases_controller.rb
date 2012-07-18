@@ -56,7 +56,7 @@ class WebgrouperPatientCasesController < ApplicationController
 			# if there is an a row in supplementops which has a column equals the given procedure value
 			# prepare hash for a new value
       sup = Supplement.in_system(patient_case.system_id).where(:chop_code => p).first
-      unless sup_op.nil?
+      unless sup.nil?
         supplement = SupplementDescription.where(:code => sup.supplement_code).first
         amount = supplement.amount
 	     	description = supplement.text

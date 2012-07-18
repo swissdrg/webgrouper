@@ -55,21 +55,19 @@ Feature: The edge cases should be handled correctly
   Scenario: parse with different dates
     Given the form with initialized standard values
     When I parse "53567;68;;;W;01;01;5;;;S068;;;;S4220;;S4240;;S066;;S065;;S501;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
-    # this could be wrong because dates were not set yet
     Then I should see "B78A" in "grouping"
-
+	And I should see "5" in "length-of-stay"
+	
     When I fill in "webgrouper_patient_case_entry_date" with "01.02.2008"
     And I fill in "webgrouper_patient_case_exit_date" with "10.02.2008"
     And I fill in "webgrouper_patient_case_birth_date" with "02.01.2003"
     And I submit the form
     Then I should see "B78A" in "grouping"
-    And I should see "9" in "length-of-stay"
-    #needs new step
-    #And I should see "5" in "webgrouper_patient_case_age"
-  
+    And I should see "9" in "length-of-stay"  
     When I fill in "webgrouper_patient_case_exit_date" with "01.02.2008"
     And I submit the form
     Then I should see "1" in "length-of-stay"
+    Then I should see "B78C" in "grouping"
     
   # groupertest.java L 125
   @javascript @fails

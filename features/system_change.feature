@@ -9,5 +9,6 @@ Feature: The system should be changable in the form
   	And I submit the form
   	Then I should see "2.762" in "cost-weight"
   	When I select "SwissDRG 2.0 Planungsversion 1" as system
+  	And I submit the form
   	Then I should see "2.111" in "cost-weight"
   	

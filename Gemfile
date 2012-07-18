@@ -6,7 +6,7 @@ gem 'rails', '3.1.4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # mongoDB driver
-gem "mongoid"
+gem "mongoid", '~> 2'
 gem 'bson_ext'
 
 gem 'jruby-openssl'
