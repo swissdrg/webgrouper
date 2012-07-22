@@ -1,5 +1,6 @@
 class CHOP
   include Mongoid::Document
+  
   field :code_short, type: String
   field :code, type: String
   field :text, type: String, localize: true
@@ -35,7 +36,5 @@ class CHOP
 
   
   #index for faster searching:
-  index "description.de"
-  index "description.fr"
-  index "description.it"
+  index "code" => 1
 end

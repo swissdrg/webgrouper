@@ -32,4 +32,6 @@ class DRG
   def self.find_by_code(system_id, search_code)
     in_system(system_id).where(code: search_code).first
   end
+  
+  index "code" => 1
 end

@@ -9,7 +9,8 @@ Webgrouper::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  # Set to true for local testing of production mode
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -68,9 +69,5 @@ Webgrouper::Application.configure do
   # From Stackoverflow:
   # If you have other manifests or individual stylesheets and JavaScript 
   # files to include, you can add them to the precompile array
-  # config.assets.precompile += %w( blueprint/screen.css blueprint/print.css )
-  # or better:
-  # Precompile
-  # All the things!
-  config.assets.precompile += %w( *.css *.js )
+  config.assets.precompile += %w( blueprint/screen.css blueprint/print.css blueprint/plugins/buttons/screen.css blueprint/ie.css)
 end

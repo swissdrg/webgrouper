@@ -1,4 +1,4 @@
-require 'java'
+include Java 
 require 'app/helpers/webgrouper_patient_cases_helper'
 include WebgrouperPatientCasesHelper
 
@@ -10,10 +10,10 @@ else
   require 'lib/javawrapper/jna.jar'
 end
 
-import org.swissdrg.grouper.PatientCase
-import org.swissdrg.grouper.GrouperResult
-import org.swissdrg.grouper.WeightingRelation
-import org.swissdrg.grouper.EffectiveCostWeight
+include_class Java::org.swissdrg.grouper.PatientCase
+include_class Java::org.swissdrg.grouper.GrouperResult
+include_class Java::org.swissdrg.grouper.WeightingRelation
+include_class Java::org.swissdrg.grouper.EffectiveCostWeight
 
 # Load libraries according to system:
 # This is a bit complicated due to obscure naming convention.

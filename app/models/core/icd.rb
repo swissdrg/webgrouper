@@ -13,8 +13,10 @@ class ICD
   end
   
   # Returns the value as pretty code if it is available in the db.
+  # If the code is blank, the db is not querried and an empty string is returned.
   # Throws a Runtime Error if the given value is not valid.
   def self.pretty_code_of(system_id, value)
+    return "" if value.blank?
     db_entry = in_system(system_id).where(code_short: short_code_of(value)).first
     raise "'#{value}' is not a valid icd code" if db_entry.nil?
     db_entry.code
@@ -34,7 +36,5 @@ class ICD
     !in_system(system_id).where(code_short: self.short_code_of(search_code)).first.nil?
   end
 
-  index "description.de"
-  index "description.fr"
-  index "description.it"
+  index "code" => 1
 end
