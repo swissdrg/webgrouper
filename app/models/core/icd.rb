@@ -1,4 +1,4 @@
-class ICD
+class Icd
   include Mongoid::Document
   
   field :code_short, type: String
@@ -17,7 +17,7 @@ class ICD
   # Throws a Runtime Error if the given value is not valid.
   def self.pretty_code_of(system_id, value)
     return "" if value.blank?
-    db_entry = in_system(system_id).where(code_short: short_code_of(value)).first
+    db_entry = get_code(system_id, value)
     raise "'#{value}' is not a valid icd code" if db_entry.nil?
     db_entry.code
   end
@@ -27,14 +27,22 @@ class ICD
   end
   
   def self.get_description_for(system_id, search_code)
-    in_system(system_id).where(code_short: self.short_code_of(search_code)).first.text
+    get_code(system_id, search_code).text
+  end
+  
+  # Returns the entry of a certain code in a certain system and caches it into
+  # the rails cache for faster querrying. 
+  def self.get_code system_id, search_code
+    Rails.cache.fetch(system_id.to_s + ':' + search_code) do
+      in_system(system_id).where(code_short: self.short_code_of(search_code)).first
+    end
   end
   
   # Returns true if the code exists in the database.
   # you can either give the code of the code_short.
   def self.exists?(system_id, search_code)
-    !in_system(system_id).where(code_short: self.short_code_of(search_code)).first.nil?
+    !get_code(system_id, search_code).nil?
   end
 
-  index "code" => 1
+  index "code_short" => 1, "version" => 1
 end

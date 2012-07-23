@@ -7,4 +7,5 @@ class System
   field :icd_version, type: String
   field :drg_version, type: String
  
+  index "system_id" => 1
 end

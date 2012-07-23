@@ -1,9 +1,9 @@
 class WebgrouperPatientCasesController < ApplicationController
   
-  autocomplete :ICD, [:code, :code_short, :text], :full => true,
+  autocomplete :Icd, [:code, :code_short, :text], :full => true,
                               :display_value => :autocomplete_result,
                               :extra_data => [:text]
-  autocomplete :CHOP, [:code, :code_short, :description], :full => true,
+  autocomplete :Chop, [:code, :code_short, :description], :full => true,
                               :display_value => :autocomplete_result,
                               :extra_data => [:text]
                               
@@ -27,7 +27,7 @@ class WebgrouperPatientCasesController < ApplicationController
 		get_supplements(patient_case)
 		GROUPER.load(spec_path(patient_case.system_id))
 		@result = GROUPER.group(patient_case)
-		@weighting_relation = WebgrouperWeightingRelation.new(DRG.find_by_code(patient_case.system_id, @result.drg))
+		@weighting_relation = WebgrouperWeightingRelation.new(Drg.find_by_code(patient_case.system_id, @result.drg))
 		@factor = @weighting_relation.factor
 		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)		
 		@los_chart = LosDataTable.new(patient_case.los, @cost_weight,
@@ -57,7 +57,8 @@ class WebgrouperPatientCasesController < ApplicationController
 			# prepare hash for a new value
       sup = Supplement.in_system(patient_case.system_id).where(:chop_code => p).first
       unless sup.nil?
-        supplement = SupplementDescription.where(:code => sup.supplement_code).first
+        supplement = SupplementDescription.in_system(patient_case.system_id).where(:code => sup.supplement_code).first
+        code = supplement.code
         amount = supplement.amount
 	     	description = supplement.text
         @total_supplement_amount += amount
@@ -65,7 +66,7 @@ class WebgrouperPatientCasesController < ApplicationController
 				# count how many times the same proc appeared with same fee.
 				default_proc_count = 1
 				if @supplement_procedures[p].nil?
-					data = {:fee => sup.code, :description => description, :amount => amount, :proc_count => default_proc_count}	
+					data = {:fee => code, :description => description, :amount => amount, :proc_count => default_proc_count}	
 			  	@supplement_procedures[p] = data			
 				else
 					new_proc_count = @supplement_procedures[p][:proc_count] + 1

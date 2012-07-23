@@ -17,9 +17,9 @@
         %tr
           %td
             %strong
-              = fee + ": "
+              = fee.to_s + ": "
             = description
-            = " (" + ops_code + ") "
+            = " (" + ops_code.to_s + ") "
           %td
             = count.to_s
       - if Drg.reuptake_exception?(@webgrouper_patient_case.system_id, @result.drg)

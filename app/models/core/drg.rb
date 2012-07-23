@@ -1,4 +1,4 @@
-class DRG
+class Drg
   include Mongoid::Document
   
   field :code_short, type: String
@@ -33,5 +33,5 @@ class DRG
     in_system(system_id).where(code: search_code).first
   end
   
-  index "code" => 1
+  index :code => 1, :version => 1
 end
