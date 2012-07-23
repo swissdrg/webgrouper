@@ -1,10 +1,17 @@
 .headline
   = link_to t('help.back'), webgrouper_patient_cases_url, :class => "button", :id => 'back-button'
 %h2
-  We rock!
+  About this page
 %p
-  
-= link_to "readmebaby", "http://sixrevisions.com/content-strategy/about-page-guidelines/"
+  This page was created as a students project during the course 
+  = link_to "Praktikum Software Engineering", "http://pym.unibe.ch/pse/wiki/doku.php?id=pse1:home"
+%p
+  The aim of this project was to take the existing grouper, port it to another, more modern and flexible framework and make it 
+  more userfriendly in the process. The developers made frequent use of user tests and simulations for reaching this goal. When
+  version 2.0 of the SwissDRG grouper was published, the new Kernel was implemented by Stefan Moser, who is also maintaining the project
+  at the time of writing. 
+%p
+  This is a Rails 3 application with MongoDB as database provider. The members of the group and original creators were:
 #tabs
   %ul
     %li
@@ -16,10 +23,14 @@
     %li
       <a href="#sm">Stefan Moser</a>
   #ri
-    Tab 1 content
+    = gravatar_image_tag 'rad.iyadurai@gmail.com'
+    = link_to "On Github", "https://github.com/rathrio"
   #sk
-    Tab 2 content
+    = gravatar_image_tag 'kiener.simon@gmail.com'
+    = link_to "On Github", "https://github.com/jugglinghobo"
   #ms
-    Tab 3 content
+    = gravatar_image_tag 'silent.simplay@gmail.com'
+    = link_to "On Github", "https://github.com/simplay"
   #sm
-    https://github.com/panmari
+    = gravatar_image_tag 'smmuzi@gmail.com'
+    = link_to "On Github", "https://github.com/panmari"

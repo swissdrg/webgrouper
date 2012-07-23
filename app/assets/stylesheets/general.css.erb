@@ -6,6 +6,10 @@ body {
 	background-repeat: repeat-x;
 }
 
+h1 a{
+	color: inherit;
+	text-decoration: none;
+}
 .bottom-spacer {
 	height: 150px;
 }
@@ -17,6 +21,7 @@ body {
 	padding: 15px;
 	padding-top: 8px;
 	box-shadow: 0 0 20px 5px rgba(0,0,0,0.2);
+	position: relative;
 }
 
 /* 	Has to be logo-image-height + 1 */
@@ -47,9 +52,20 @@ body {
 	display: inline;
 }
 
+#about {
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+	margin-bottom: 0;
+}
+
 /**
  * 	Scrollbar always enabled
  */
 html {
 	overflow-y: scroll;
+}
+
+.button {
+	display: inline !important;
 }

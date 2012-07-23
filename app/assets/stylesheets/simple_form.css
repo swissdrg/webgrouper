@@ -86,16 +86,8 @@ select#webgrouper_patient_case_age_mode {
 	margin: 7px 1em 0 0;
 }
 
-.simple_form input {
-	margin: 5px 0;
-}
-
 .simple_form :focus {
 	border-color: #000000;
-}
-
-input[type='submit'] {
-	margin-left: 235px;
 }
 
 div.boolean label, label.collection_radio {

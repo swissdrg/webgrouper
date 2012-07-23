@@ -93,13 +93,13 @@
     #procedures
       = f.label "procedures"
       = render "shared/procedures", :patient_case => @webgrouper_patient_case
-      
-  = f.submit :class => "button positive"
-= button_to t("helpers.submit.webgrouper_patient_case.clear_form"), 
+  .right 
+    = link_to t("help.show_help"), help_url, :class => 'button', :method => :get
+    = link_to t("helpers.submit.webgrouper_patient_case.clear_form"), 
             webgrouper_patient_cases_path, 
             :class => "button negative", 
             :method => :get
-= link_to t("help.show_help"), help_url, :class => 'button right', :method => :get
+    = f.submit :class => "button positive"
 - if @result.nil? || @result.getGst.nil?         
   .bottom-spacer
 - else  
