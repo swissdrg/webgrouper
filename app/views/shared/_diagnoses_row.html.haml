@@ -4,7 +4,7 @@
       %span.field
         = autocomplete_field_tag "webgrouper_patient_case[diagnoses][ID]", 
                           "VALUE",
-                          autocomplete_ICD_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id), 
+                          autocomplete_Icd_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id), 
                           :class => 'autocomplete small_field'
         %span.spacer
         %span.splitter

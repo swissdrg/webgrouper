@@ -20,7 +20,7 @@
           %td
             = proc_code
           %td
-            = CHOP.get_description_for(@webgrouper_patient_case.system_id, proc_code)
+            = Chop.get_description_for(@webgrouper_patient_case.system_id, proc_code)
           %td
             = t("result.procedures.procedure_flag.valid." + @result.procedures_flags[counter].valid.to_s)
           %td

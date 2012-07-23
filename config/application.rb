@@ -65,5 +65,8 @@ module Webgrouper
     
     #set timeliness to Euro    
     Timeliness.use_euro_formats
+    
+    #cache store configuration
+    config.cache_store = :memory_store
   end
 end

@@ -66,3 +66,12 @@ test:
         - localhost:27017
       options:
         consistency: :strong
+        
+production:
+  sessions:
+    default:
+      database: webgrouper_development
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong

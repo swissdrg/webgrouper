@@ -2,8 +2,8 @@ Webgrouper::Application.routes.draw do
 
   scope "/:locale" do
     resources :webgrouper_patient_cases do
-      get :autocomplete_ICD_code, :on => :collection
-      get :autocomplete_CHOP_code, :on => :collection
+      get :autocomplete_Icd_code, :on => :collection
+      get :autocomplete_Chop_code, :on => :collection
     end
     get 'create_query'  => 'webgrouper_patient_cases#create_query'
     get 'help' => 'static_pages#help'

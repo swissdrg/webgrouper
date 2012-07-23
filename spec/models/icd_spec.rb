@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe ICD do
+describe Icd do
   it "should have the table name 'icd'" do
-    ICD.table_name.should == "icd"
+    Icd.table_name.should == "icd"
   end
 end

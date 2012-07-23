@@ -42,13 +42,13 @@ class WebgrouperPatientCase < PatientCase
   # Makes sure that the variable pdx only references a short code representation of an 
   # icd code by filtering out periods and whitespace.
   def pdx=(pdx)
-    super(ICD.short_code_of(pdx))
+    super(Icd.short_code_of(pdx))
   end
   
   # Custom getter for pdx
   # Makes sure that it appears in the form as pretty code
   def pdx
-    ICD.pretty_code_of(system_id, super) rescue get_pdx
+    Icd.pretty_code_of(system_id, super) rescue get_pdx
   end
 
   def diagnoses=(diagnoses)
@@ -60,7 +60,7 @@ class WebgrouperPatientCase < PatientCase
     get_diagnoses.each do |d|
       unless d.nil?
         begin
-          diagnoses << ICD.pretty_code_of(system_id, d)
+          diagnoses << Icd.pretty_code_of(system_id, d)
         rescue
           diagnoses << d
         end
@@ -82,7 +82,7 @@ class WebgrouperPatientCase < PatientCase
         laterality = p.match(regex)[2]
         date = p.match(regex)[3]
         begin
-          code = CHOP.pretty_code_of(system_id, short_code)
+          code = Chop.pretty_code_of(system_id, short_code)
         rescue
           code = short_code
         end
