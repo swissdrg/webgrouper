@@ -33,8 +33,10 @@ gem 'google_visualr'
 # It’s a small library to provide the Rails I18n translations on Javascript.
 gem "i18n-js"
 
+# For retrieving gravatar pictures
 gem 'gravatar_image_tag'
 
+# Lightweight web server alternative to webrick
 gem 'thin'
 
 # Gems used only for assets and not required

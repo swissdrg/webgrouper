@@ -28,7 +28,7 @@ and get an error, if you chose them in the gui.
 
 ### Configuring the database
 
-TODO: now using mongodb, much easier!
+The Project Mongo-Migration is used for populating the mongo-db with data. It can be found in the swissDRG private repositories.
 	
 ## Run
 
