@@ -39,7 +39,6 @@ gem 'gravatar_image_tag'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyrhino'
 
@@ -78,6 +77,7 @@ end
 # To use debugger
 # gem 'ruby-debug'
 
-gem 'torquebox-server'
-gem "torquebox", "2.0.3"
-gem "torquebox-rake-support", "2.0.3"
+group :deployment do
+  gem "torquebox", "2.0.3"
+  gem "torquebox-rake-support", "2.0.3"
+end
