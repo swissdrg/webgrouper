@@ -6,7 +6,7 @@ include WebgrouperPatientCasesHelper
 if java.lang.System.getProperty('os.name').downcase.include?('mac')
   require 'lib/javawrapper/swissdrg-grouper-1.0.0-mock.jar'
 else
-  require 'lib/javawrapper/swissdrg-grouper-1.1.0.jar'
+  require 'lib/javawrapper/swissdrg-grouper-2.0.0.jar'
   require 'lib/javawrapper/jna.jar'
 end
 
@@ -30,7 +30,7 @@ if java.lang.System.getProperty('os.name').downcase.include?('windows')
   file_extension = '.dll'
 else 
   lib_prequel = 'lib'
-  file_extension = '.so.1.1.0'
+  file_extension = '.so.2.0.2'
 end
 
 DEFAULT_SYSTEM = 9
