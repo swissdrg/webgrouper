@@ -36,9 +36,6 @@ gem "i18n-js"
 # For retrieving gravatar pictures
 gem 'gravatar_image_tag'
 
-# Lightweight web server alternative to webrick
-gem 'thin'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -80,3 +77,7 @@ end
 
 # To use debugger
 # gem 'ruby-debug'
+
+gem 'torquebox-server'
+gem "torquebox", "2.0.3"
+gem "torquebox-rake-support", "2.0.3"

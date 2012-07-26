@@ -15,6 +15,9 @@ end
 
 module Webgrouper
   class Application < Rails::Application
+    # Use TorqueBox::Infinispan::Cache for the Rails cache store
+    config.cache_store = :torque_box_store
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -65,8 +68,5 @@ module Webgrouper
     
     #set timeliness to Euro    
     Timeliness.use_euro_formats
-    
-    #cache store configuration
-    config.cache_store = :memory_store
   end
 end
