@@ -14,7 +14,7 @@ class WebgrouperPatientCasesController < ApplicationController
   def create_query
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
     @webgrouper_patient_case.manual_submission = !params[:commit].nil?
-    Query.new(params[:webgrouper_patient_case]).save
+    Query.new(params[:webgrouper_patient_case].merge({:valid => @webgrouper_patient_case.valid?, :time => Time.now})).save
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
     else
@@ -35,6 +35,7 @@ class WebgrouperPatientCasesController < ApplicationController
     render 'index'
   end
   
+  # Reduces autocomplete results to the system specified in the form
   def get_autocomplete_items(parameters)
     items = super(parameters)
     items.send(:in_system, params[:system_id])
