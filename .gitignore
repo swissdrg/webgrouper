@@ -70,3 +70,6 @@ pickle-email-*.html
 # Aptana:
 .project
 
+#
+mongoid.yml
+public/assets
