@@ -62,3 +62,10 @@ because it has to run in an actual webbrowser. You can exclude these tests by ru
 
     bundle exec cucumber -ct ~@javascript
     
+## Deployment
+
+This application was configured to be deployed with torquebox. Run
+
+	torquebox deploy --env=production --context-path=/webgrouper
+	
+or something similar to deploy it. Of course you need a torquebox-server running for that.
