@@ -16,21 +16,20 @@ class Drg
   field :version, type: String
   
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version) }
-
-	def self.reuptake_exception_for?(system_id, search_code)
-		in_system(system_id).where(code: search_code).first.exception_from_reuptake
-	end
 	
 	def self.get_description_for(system_id, search_code)
-    in_system(system_id).where(code: search_code).first.text
+    find_by_code(system_id, search_code).text
   end
   
   def self.reuptake_exception?(system_id, search_code)
-    in_system(system_id).where(code: search_code).first.exception_from_reuptake_flag
+    find_by_code(system_id, search_code).exception_from_reuptake_flag
   end
   
   def self.find_by_code(system_id, search_code)
-    in_system(system_id).where(code: search_code).first
+    raise 'No code given' if search_code.blank?
+    Rails.cache.fetch("drg:" + system_id.to_s + ':' + search_code) do
+      in_system(system_id).where(code: search_code).first
+    end
   end
   
   index :code => 1, :version => 1
