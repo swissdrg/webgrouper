@@ -69,5 +69,5 @@ Webgrouper::Application.configure do
   # From Stackoverflow:
   # If you have other manifests or individual stylesheets and JavaScript 
   # files to include, you can add them to the precompile array
-  config.assets.precompile += %w( blueprint/screen.css blueprint/print.css blueprint/plugins/buttons/screen.css blueprint/ie.css)
+  config.assets.precompile += %w( blueprint/screen.css blueprint/plugins/buttons/screen.css blueprint/ie.css)
 end

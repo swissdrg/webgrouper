@@ -9,10 +9,8 @@ class GroupingTest < ActionDispatch::PerformanceTest
     # called before every single test
   def setup
     @pc = WebgrouperPatientCase.new({:pdx => "S39.0"})
-  end
-  
-  def test_empty_case
-    WebgrouperPatientCase.new
+    @result = GROUPER.group(@pc)
+    @weighting_relation = WebgrouperWeightingRelation.new(Drg.find_by_code(@pc.system_id, @result.drg))
   end
   
   def test_creating_case
@@ -32,6 +30,10 @@ class GroupingTest < ActionDispatch::PerformanceTest
   end
   
   def test_creating_weighting_relation
-    # @weighting_relation = WebgrouperWeightingRelation.new(Drg.find_by_code(@pc.system_id, @result.drg))
+    WebgrouperWeightingRelation.new(Drg.find_by_code(@pc.system_id, @result.drg))
+  end
+  
+  def test_calculate_effective_cost_weight
+    GROUPER.calculateEffectiveCostWeight(@pc, @weighting_relation)
   end
 end
