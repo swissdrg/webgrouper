@@ -1,5 +1,5 @@
 Given /^the form with initialized standard values$/ do
-  visit "http://localhost:3000/de/webgrouper_patient_cases"
+  visit "http://localhost:8080/webgrouper/de/webgrouper_patient_cases"
 end
 
 # Needs the @javascript annotation

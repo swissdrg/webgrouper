@@ -64,8 +64,14 @@ because it has to run in an actual webbrowser. You can exclude these tests by ru
     
 ## Deployment
 
-This application was configured to be deployed with torquebox. Run
+This application was configured to be deployed with torquebox. The configuration can be changed in the file `config/torquebox_remote.rb` Run
 
-	torquebox deploy --env=production --context-path=/webgrouper
+	rake torquebox:remote:stage
+	rake torquebox:remote:exec["bundle install --deployment --without test development"]
+	rake torquebox:remote:deploy
 	
-or something similar to deploy it. Of course you need a torquebox-server running for that.
+or something similar to deploy it. Of course you need a torquebox-server running (on the machine specified in the conf file) for that.
+
+### Hint
+
+The connection to te ruby-gem site can not made with https, you need to change the address in the gemfile to http://...
