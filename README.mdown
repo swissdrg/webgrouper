@@ -62,16 +62,21 @@ because it has to run in an actual webbrowser. You can exclude these tests by ru
 
     bundle exec cucumber -ct ~@javascript
     
+If you want to test the deployed application, change the initial step in the step configuration
+file to point to any server you'd like.
+
 ## Deployment
 
 This application was configured to be deployed with torquebox. The configuration can be changed in the file `config/torquebox_remote.rb` Run
 
-	rake torquebox:remote:stage
+	rake torquebox:remote:stage       #important hint!
 	rake torquebox:remote:exec["bundle install --deployment --without test development"]
 	rake torquebox:remote:deploy
 	
 or something similar to deploy it. Of course you need a torquebox-server running (on the machine specified in the conf file) for that.
 
-### Hint
+### Hints
 
 The connection to te ruby-gem site can not made with https, you need to change the address in the gemfile to http://...
+It also has to be said that the current configuration doesn't add the folder /lib/grouper_specs automatically. It has to be
+copied manually into the archive after staging.
