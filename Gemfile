@@ -77,6 +77,6 @@ end
 # gem 'ruby-debug'
 
 group :deployment do
-  gem "torquebox", "2.0.3"
-  gem "torquebox-rake-support", "2.0.3"
+  gem "torquebox"
+  gem "torquebox-rake-support"
 end

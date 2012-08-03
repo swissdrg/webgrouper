@@ -3,7 +3,7 @@ class WebgrouperPatientCasesController < ApplicationController
   autocomplete :Icd, [:code, :code_short, :text], :full => true,
                               :display_value => :autocomplete_result,
                               :extra_data => [:text]
-  autocomplete :Chop, [:code, :code_short, :description], :full => true,
+  autocomplete :Chop, [:code, :code_short, :text], :full => true,
                               :display_value => :autocomplete_result,
                               :extra_data => [:text]
                               
@@ -14,7 +14,7 @@ class WebgrouperPatientCasesController < ApplicationController
   def create_query
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
     @webgrouper_patient_case.manual_submission = !params[:commit].nil?
-    Query.new(params[:webgrouper_patient_case].merge({:valid => @webgrouper_patient_case.valid?, :time => Time.now})).save
+    Query.create(params[:webgrouper_patient_case].merge({:valid => @webgrouper_patient_case.valid?, :time => Time.now}))
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
     else
