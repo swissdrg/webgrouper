@@ -13,7 +13,7 @@ module WebgrouperPatientCasesHelper
 		  spec_file = 'Spec.bin'
 		end
 
-		File.join(Rails.root, Dir.glob("lib/specs/#{system_id} (*"), spec_file)
+		File.join(Dir.glob(Rails.root + "lib/specs/#{system_id} (*"), spec_file)
   end
   
   def is_64bit?
