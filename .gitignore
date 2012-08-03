@@ -73,3 +73,6 @@ pickle-email-*.html
 #
 mongoid.yml
 public/assets
+
+# torquebox deployment
+*.knob
