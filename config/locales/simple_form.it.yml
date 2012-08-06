@@ -8,7 +8,7 @@ it:
     error_notification:
       default_message: 'Per favore ricontrolla i seguenti campi:'
     labels:
-      webgrouper_patient_case:
+      defaults:
         active_grouper: 'Grouper:'
         adm: 'Modo di ricovero:'
         adm_weight: 'Peso al ricovero:'

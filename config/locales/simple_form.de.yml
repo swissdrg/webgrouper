@@ -45,7 +45,7 @@ de:
           days: 'Tage'
     # Labels
     labels:
-      webgrouper_patient_case:
+      defaults:
         active_grouper: 'Aktiver Grouper:'
         house: 'Leistungserbringer:'
         diagnoses_catalog: 'Diagnosenkatalog:'
@@ -65,7 +65,7 @@ de:
         diagnoses: 'Nebendiagnosen:'
         procedures: 'Prozeduren:'
     hints: 
-      webgrouper_patient_case:
+      defaults:
         disabled_age: 'Löschen oder ändern sie das Geburtsdatum, um diesen Wert zu verändern.'
         disabled_los: 'Löschen oder ändern sie eines der hierfür relevanten Felder, um diesen Wert zu verändern'
         pick_date: "Datumauswahl"

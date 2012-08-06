@@ -9,6 +9,6 @@ TorqueBox.configure do
   end
   
   environment do
-    RAILS_ENV 'production'
+    RAILS_ENV 'development'
   end
 end

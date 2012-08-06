@@ -1,0 +1,7 @@
+= simple_form_for :batchgrouper do |f|
+  = render "shared/system", :f => f, :system_id => DEFAULT_SYSTEM, :house => 1
+  %fieldset
+    %legend File
+    = f.file_field :file
+  .right
+    = f.submit :class => "button positive"

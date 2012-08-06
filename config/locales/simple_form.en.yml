@@ -8,7 +8,7 @@ en:
     error_notification:
       default_message: 'There were problems with the following fields:'
     labels:
-      webgrouper_patient_case:
+      defaults:
         active_grouper: 'Active Grouper:'
         adm: 'Admission mode:'
         adm_weight: 'Admission weight:'
