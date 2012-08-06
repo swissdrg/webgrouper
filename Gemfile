@@ -78,5 +78,5 @@ end
 
 group :deployment do
   gem "torquebox"
-  gem "torquebox-rake-support"
+  gem "torquebox-rake-support", "2.1.0", :path => "~/swissDRG/aptana/torquebox/gems/rake-support"
 end

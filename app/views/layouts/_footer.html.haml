@@ -1,2 +1,3 @@
-.small#about
-  = link_to "about", "about"
+#about
+  = mail_to "webgrouper@swissdrg.com", "Contact", :encode => "javascript", :body => "\n\n ---------------------------------------------- \n" + "Please insert your inquery above this line \n" + request.url
+  = link_to "About", "about"

@@ -5,6 +5,11 @@ GIT
     rails3-jquery-autocomplete (1.0.4)
       rails (~> 3.0)
 
+PATH
+  remote: ~/swissDRG/aptana/torquebox/gems/rake-support
+  specs:
+    torquebox-rake-support (2.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -68,7 +73,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    ffi (1.1.3-java)
+    ffi (1.1.4-java)
     gherkin (2.11.1-java)
       json (>= 1.4.6)
     google_visualr (2.1.3)
@@ -203,8 +208,6 @@ GEM
       torquebox-core (= 2.1.0)
       torquebox-transactions (= 2.1.0)
     torquebox-naming (2.1.0-java)
-    torquebox-rake-support (2.1.0)
-      rake (>= 0.8.7, < 1.0.0)
     torquebox-remote-deployer (0.1.1)
       jruby-openssl
       net-scp
@@ -260,7 +263,7 @@ DEPENDENCIES
   spork-rails
   therubyrhino
   torquebox
-  torquebox-rake-support
+  torquebox-rake-support (= 2.1.0)!
   torquebox-remote-deployer
   torquebox-server
   uglifier (>= 1.0.3)
