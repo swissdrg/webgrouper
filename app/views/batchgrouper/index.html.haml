@@ -1,7 +1,16 @@
-= simple_form_for :batchgrouper do |f|
-  = render "shared/system", :f => f, :system_id => DEFAULT_SYSTEM, :house => 1
+= simple_form_for @batchgrouper, :url => "batchgrouper" do |f|
+  = render "shared/system", :f => f, :system_id => @batchgrouper.system_id, :house => @batchgrouper.house
   %fieldset
     %legend File
     = f.file_field :file
+  %fieldset
+    %legend Single group
+    = f.text_field :single_group
   .right
     = f.submit :class => "button positive"
+#progressbar
+- if @groupings
+  %fieldset
+    - @groupings.each do |g|
+      %br
+      = g

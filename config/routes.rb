@@ -13,6 +13,9 @@ Webgrouper::Application.routes.draw do
     get 'about' => 'static_pages#about'
   end
   
+  get 'batchgrouper' => 'batchgrouper#index'
+  post 'batchgrouper' => 'batchgrouper#group'
+  post 'batchgrouper/single_group' => 'batchgrouper#single_group'
   # This is for testing only and can be removed later on:
   get 'test404' => 'errors#error_404'
   get 'test500' => 'errors#error_500'
