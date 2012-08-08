@@ -1,22 +1,21 @@
-# This helper class choses the appropriate spec file 
-# depending on the chosen in the active system grouper selection
-# and if the sever is a 64 bit machine or not
-# The specs must be in a folder /lib/specs/ and be named as follows:
-# {system_id} (Description of Version)
-
 module WebgrouperPatientCasesHelper
-  
-  def spec_path(system_id)
-		if is_64bit?
-		  spec_file = 'Spec64.bin'
-		else
-		  spec_file = 'Spec.bin'
-		end
-
-		File.join(Dir.glob(Rails.root + "lib/grouper_specs/#{system_id} (*"), spec_file)
+  def link_to_add_fields(name, kind)  
+    link_to_function(image_tag(name), "add_fields(\"#{kind}\", \"#{escape_javascript(row(kind))}\", \"\")", :id => "add_#{kind}")
   end
   
-  def is_64bit?
-    java.lang.System.getProperty('os.arch').include?('64')
+  def link_to_remove_fields(name, kind)
+    link_to_function(image_tag(name), "remove_fields(\"#{kind}\")", :id => "remove_#{kind}")
+  end
+    
+  def row(kind)
+    render "shared/#{kind}_row"
+  end
+  
+  def add_button(kind)
+    render "shared/add_button", :kind => kind
+  end
+  
+  def remove_button(kind)
+    render "shared/remove_button", :kind => kind
   end
 end

@@ -1,22 +1,24 @@
 module ApplicationHelper
-      
-  def link_to_add_fields(name, kind)  
-    link_to_function(image_tag(name), "add_fields(\"#{kind}\", \"#{escape_javascript(row(kind))}\", \"\")", :id => "add_#{kind}")
+  # This helper class choses the appropriate spec file 
+  # depending on the chosen in the active system grouper selection
+  # and if the sever is a 64 bit machine or not
+  # The specs must be in a folder /lib/specs/ and be named as follows:
+  # {system_id} (Description of Version)
+  def spec_path(system_id)
+    if is_64bit?
+      spec_file = 'Spec64'
+    else
+      spec_file = 'Spec'
+    end
+    if (Rails.env == "production")
+      # this doesn't work for 32 bits, but right now that's not an issue
+      File.join(File.join('home', 'tim','grouperspecs', system_id, spec_file + "bit.bin"))
+    else
+      File.join(Dir.glob(Rails.root + "lib/grouper_specs/#{system_id} (*"), spec_file + ".bin")
+    end
   end
   
-  def link_to_remove_fields(name, kind)
-    link_to_function(image_tag(name), "remove_fields(\"#{kind}\")", :id => "remove_#{kind}")
-  end
-    
-  def row(kind)
-    render "shared/#{kind}_row"
-  end
-  
-  def add_button(kind)
-    render "shared/add_button", :kind => kind
-  end
-  
-  def remove_button(kind)
-    render "shared/remove_button", :kind => kind
+  def is_64bit?
+    java.lang.System.getProperty('os.arch').include?('64')
   end
 end
