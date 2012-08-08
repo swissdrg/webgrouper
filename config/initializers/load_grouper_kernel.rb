@@ -1,5 +1,5 @@
 include Java 
-require 'app/helpers/webgrouper_patient_cases_helper'
+require 'app/helpers/application_helper'
 include WebgrouperPatientCasesHelper
 
 # On mac: debugging only with mock-grouper
