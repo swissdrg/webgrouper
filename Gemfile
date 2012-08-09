@@ -46,8 +46,9 @@ group :assets do
 end
 
 group :development do
-  gem "torquebox-remote-deployer"
   gem "torquebox-server"
+  gem "torquebox-remote-deployer"
+  gem "torquebox-rake-support", "2.1.0", :path => "~/swissDRG/aptana/torquebox/gems/rake-support"
 end
 
 group :test do
@@ -78,5 +79,4 @@ end
 
 group :deployment do
   gem "torquebox"
-  gem "torquebox-rake-support", "2.1.0", :path => "~/swissDRG/aptana/torquebox/gems/rake-support"
 end

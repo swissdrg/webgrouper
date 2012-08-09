@@ -1,6 +1,6 @@
 include Java 
 require 'app/helpers/application_helper'
-include WebgrouperPatientCasesHelper
+include ApplicationHelper
 
 # On mac: debugging only with mock-grouper
 if java.lang.System.getProperty('os.name').downcase.include?('mac')
