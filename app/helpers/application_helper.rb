@@ -10,9 +10,10 @@ module ApplicationHelper
     else
       spec_file = 'Spec'
     end
-    if (Rails.env == "production")
+    tim_home = File.join('home', 'tim')
+    if (Rails.env == "production" && File.directory?(tim_home))
       # this doesn't work for 32 bits, but right now that's not an issue
-      File.join(File.join('home', 'tim','grouperspecs', system_id, spec_file + "bit.bin"))
+      File.join(File.join(tim_home,'grouperspecs', system_id, spec_file + "bit.bin"))
     else
       File.join(Dir.glob(Rails.root + "lib/grouper_specs/#{system_id} (*"), spec_file + ".bin")
     end

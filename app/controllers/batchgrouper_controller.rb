@@ -5,7 +5,6 @@ class BatchgrouperController < ApplicationController
   
   def group
     @batchgrouper = Batchgrouper.new(params[:batchgrouper])
-    puts @batchgrouper.single_group
     if @batchgrouper.single_group.blank?
       send_file @batchgrouper.group
     else
@@ -15,6 +14,7 @@ class BatchgrouperController < ApplicationController
   end
   
   def single_group
-    
+    @batchgrouper = Batchgrouper.new(params[:batchgrouper])
+    render :json => @batchgrouper.group_line(@batchgrouper.single_group)
   end
 end
