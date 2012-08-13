@@ -21,19 +21,23 @@ class Batchgrouper
   end
   
   def group
-    f = Tempfile.open('groupings', File.join(Rails.root, 'tmp') )
+    #f = Tempfile.open('groupings', File.join(Rails.root, 'tmp') )
+    
     file.read.each_line do |line, nr|
-      begin
-        f.print group_line(line)
-      rescue IllegalArgumentException 
-        f.println "ERROR (#{nr}): #{line}"
-      end
-      f.print "\n"
+      #TODO: do some preprocessing??
     end
-    f.flush
-    return f
+    cmd = File.join(production_spec_folder(self.system_id), 'batchgrouper')
+    work_path = File.join(Rails.root, 'tmp', 'batchgroupings')
+    # uploaded_file = File.join(work_path, file.original_filename)
+    # Or use tempfile:
+    uploaded_file = Tempfile.open('groupings', work_path )
+    output_file = File.join(work_dir, file.original_filename + ".out")
+    File.open(uploaded_file, 'wb') { |f| f.write(file.read) }
+    `#{cmd} #{spec_path(self.system_id)} #{catalogue_path(self.system_id)} #{file} #{output_file}`
+    output_file
   end
   
+  #Not used right now
   def group_line(line)
     line = line.strip
     return nil if line.blank? # allows blank lines

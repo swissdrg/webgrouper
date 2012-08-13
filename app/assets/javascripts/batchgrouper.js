@@ -9,4 +9,7 @@ $(document).ready(function() {
     $("#progressbar").progressbar({ value: 37 });
   });
 
-$("#new_batchgrouper").onSubmit = showLoadingScreen;
+$("#new_batchgrouper").submit(function() {
+	alert("Loading stuff");
+    return false;
+})

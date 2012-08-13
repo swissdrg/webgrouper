@@ -4,6 +4,7 @@ class BatchgrouperController < ApplicationController
   end
   
   def group
+    
     @batchgrouper = Batchgrouper.new(params[:batchgrouper])
     if @batchgrouper.single_group.blank?
       send_file @batchgrouper.group

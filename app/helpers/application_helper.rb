@@ -10,10 +10,10 @@ module ApplicationHelper
     else
       spec_file = 'Spec'
     end
-    tim_home = File.join('home', 'tim')
-    if (Rails.env == "production" && File.directory?(tim_home))
+    
+    if (Rails.env == "production" && File.directory?(production_spec_folder))
       # this doesn't work for 32 bits, but right now that's not an issue
-      File.join(File.join(tim_home,'grouperspecs', system_id, spec_file + "bit.bin"))
+      File.join(production_spec_folder, system_id, spec_file + "bit.bin")
     else
       File.join(Dir.glob(Rails.root + "lib/grouper_specs/#{system_id} (*"), spec_file + ".bin")
     end
@@ -21,5 +21,16 @@ module ApplicationHelper
   
   def is_64bit?
     java.lang.System.getProperty('os.arch').include?('64')
+  end
+  
+  #TODO: fix
+  def catalogue_path(system_id)
+    if (Rails.env == "production" && File.directory?(production_spec_folder))
+      File.join(production_spec_folder, system_id, 'catalogue.bin')
+    end
+  end
+  
+  def production_spec_folder(system_id)
+    File.join('home', 'tim', 'grouperspecs')
   end
 end
