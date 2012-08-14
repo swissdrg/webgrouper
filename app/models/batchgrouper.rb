@@ -13,7 +13,6 @@ class Batchgrouper
       value = value.to_i if send(name).is_a? Fixnum
       send("#{name}=", value) 
     end
-    GROUPER.load(spec_path(self.system_id))
   end
   
   def persisted?
@@ -35,7 +34,6 @@ class Batchgrouper
     uploaded_file.chmod(0666)
     uploaded_file.write(file.read)
     uploaded_file.close
-    
     output_file = File.join(work_path, file.original_filename + ".out")
     cmd = "#{batchgrouper_exec} '#{spec_path(self.system_id)}' '#{catalogue_path(self.system_id, self.house)}' '#{uploaded_file.path}' '#{output_file}'"
     proc_status = `#{cmd}`

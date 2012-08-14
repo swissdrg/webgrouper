@@ -23,9 +23,8 @@ module ApplicationHelper
     java.lang.System.getProperty('os.arch').include?('64')
   end
   
-  #TODO: fix
   def catalogue_path(system_id, house)
-    if (house == 1)
+    if (house == '1')
       file_name = 'catalogue-acute.csv'
     else
       file_name = 'catalogue-birthhouses.csv'
