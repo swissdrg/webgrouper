@@ -22,18 +22,24 @@ class Batchgrouper
   
   def group
     #f = Tempfile.open('groupings', File.join(Rails.root, 'tmp') )
-    
     file.read.each_line do |line, nr|
       #TODO: do some preprocessing??
     end
-    cmd = File.join(production_spec_folder(self.system_id), 'batchgrouper')
+    file.rewind
+    batchgrouper_exec = File.join(production_spec_folder, 'batchgrouper')
     work_path = File.join(Rails.root, 'tmp', 'batchgroupings')
+    Dir.mkdir(work_path) unless File.directory?(work_path)
     # uploaded_file = File.join(work_path, file.original_filename)
     # Or use tempfile:
     uploaded_file = Tempfile.open('groupings', work_path )
-    output_file = File.join(work_dir, file.original_filename + ".out")
-    File.open(uploaded_file, 'wb') { |f| f.write(file.read) }
-    `#{cmd} #{spec_path(self.system_id)} #{catalogue_path(self.system_id)} #{file} #{output_file}`
+    uploaded_file.chmod(0666)
+    uploaded_file.write(file.read)
+    uploaded_file.close
+    
+    output_file = File.join(work_path, file.original_filename + ".out")
+    cmd = "#{batchgrouper_exec} '#{spec_path(self.system_id)}' '#{catalogue_path(self.system_id, self.house)}' '#{uploaded_file.path}' '#{output_file}'"
+    proc_status = `#{cmd}`
+    puts "#{cmd}, terminated with: #{proc_status}"
     output_file
   end
   

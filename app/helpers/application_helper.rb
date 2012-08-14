@@ -13,7 +13,7 @@ module ApplicationHelper
     
     if (Rails.env == "production" && File.directory?(production_spec_folder))
       # this doesn't work for 32 bits, but right now that's not an issue
-      File.join(production_spec_folder, system_id, spec_file + "bit.bin")
+      File.join(production_spec_folder, system_id.to_s, spec_file + "bit.bin")
     else
       File.join(Dir.glob(Rails.root + "lib/grouper_specs/#{system_id} (*"), spec_file + ".bin")
     end
@@ -24,13 +24,19 @@ module ApplicationHelper
   end
   
   #TODO: fix
-  def catalogue_path(system_id)
+  def catalogue_path(system_id, house)
+    if (house == 1)
+      file_name = 'catalogue-acute.csv'
+    else
+      file_name = 'catalogue-birthhouses.csv'
+    end
+    
     if (Rails.env == "production" && File.directory?(production_spec_folder))
-      File.join(production_spec_folder, system_id, 'catalogue.bin')
+      File.join(production_spec_folder, system_id.to_s, file_name)
     end
   end
   
-  def production_spec_folder(system_id)
-    File.join('home', 'tim', 'grouperspecs')
+  def production_spec_folder
+    File.join('/','home', 'tim', 'grouperspecs')
   end
 end
