@@ -65,7 +65,7 @@ de:
         diagnoses: 'Nebendiagnosen:'
         procedures: 'Prozeduren:'
     hints: 
-      defaults:
+      webgrouper_patient_case:
         disabled_age: 'Löschen oder ändern sie das Geburtsdatum, um diesen Wert zu verändern.'
         disabled_los: 'Löschen oder ändern sie eines der hierfür relevanten Felder, um diesen Wert zu verändern'
         pick_date: "Datumauswahl"
