@@ -75,6 +75,10 @@ This application was configured to be deployed with torquebox. The configuration
 	
 or something similar to deploy it. Of course you need a torquebox-server running (on the machine specified in the conf file) for that.
 
+When on remote, it can also be easily deployed with
+
+	torquebox deploy --env=production
+
 ### Hints
 
 The connection to te ruby-gem site can not made with https, you need to change the address in the gemfile to http://...
