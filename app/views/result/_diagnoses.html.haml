@@ -15,7 +15,7 @@
           = t("result.diagnoses.CCL")
       %tr#pdx
         %td
-          = @webgrouper_patient_case.pdx
+          = link_to_online_definition_manual(@webgrouper_patient_case.pdx, :icd_codes, @webgrouper_patient_case.system_id)
         %td
           = Icd.get_description_for(@webgrouper_patient_case.system_id, @webgrouper_patient_case.pdx)
         %td
@@ -28,7 +28,7 @@
       - @webgrouper_patient_case.diagnoses.each do |diag|
         %tr
           %td
-            = diag
+            = link_to_online_definition_manual(diag, :icd_codes, @webgrouper_patient_case.system_id)
           %td
             = Icd.get_description_for(@webgrouper_patient_case.system_id, diag)
           %td

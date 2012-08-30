@@ -6,13 +6,13 @@
         %th
           MDC
         %td
-          = @result.mdc
+          = link_to_online_definition_manual(@result.mdc, :mdcs, @webgrouper_patient_case.system_id)
         %td    
       %tr
         %th
           DRG
         %td
-          = link_to @result.drg, "http://webapps.swissdrg.org:8081/drgs/name?code=" + @result.drg
+          = link_to_online_definition_manual(@result.drg, :drgs, @webgrouper_patient_case.system_id)
         %td
           = Drg.get_description_for(@webgrouper_patient_case.system_id, @result.drg)
       %tr

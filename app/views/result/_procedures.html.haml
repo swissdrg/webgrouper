@@ -18,7 +18,7 @@
         - proc_code = proc.split(":")[0]
         %tr
           %td
-            = proc_code
+            = link_to_online_definition_manual(proc_code, :chop_codes, @webgrouper_patient_case.system_id)
           %td
             = Chop.get_description_for(@webgrouper_patient_case.system_id, proc_code)
           %td
