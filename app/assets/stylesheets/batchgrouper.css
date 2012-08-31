@@ -2,3 +2,13 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+input#batchgrouper_single_group {
+	width: 70%;
+}
+
+#single_group_result {
+	margin: 30px;
+	margin-left: 210px;
+	display: inline;
+}

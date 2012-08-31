@@ -1,21 +1,19 @@
 class BatchgrouperController < ApplicationController
+  respond_to :html, :json
+  
   def index
     @batchgrouper = Batchgrouper.new()
   end
   
   def group
-    
     @batchgrouper = Batchgrouper.new(params[:batchgrouper])
-    if @batchgrouper.single_group.blank?
-      send_file @batchgrouper.group
-    else
-      render :json => @batchgrouper.group_line(@batchgrouper.single_group)
+    respond_to do |format|
+      if params[:batchgrouper][:file]
+        send_file @batchgrouper.group
+        format.json { render :json => { :result => "It worked!" }}
+      else
+        format.json { render :json => { :result => @batchgrouper.group_line(@batchgrouper.single_group) }}
+      end
     end
-    
-  end
-  
-  def single_group
-    @batchgrouper = Batchgrouper.new(params[:batchgrouper])
-    render :json => @batchgrouper.group_line(@batchgrouper.single_group)
   end
 end
