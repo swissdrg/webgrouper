@@ -1,4 +1,5 @@
 fr:
+  to_online_definition_manual: 'Zum Eintrag im Online Definitionshandbuch'
   activemodel:
     errors:
       format: Le %{attribute} %{message}

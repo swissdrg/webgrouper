@@ -24,6 +24,6 @@ module WebgrouperPatientCasesHelper
   def link_to_online_definition_manual(code, type, system_id)
     # TODO: use system_id
     system_url = "http://webapps.swissdrg.org:8081/"
-    return link_to code, system_url + type.to_s + "/name?code=" + code + "&?locale=" + I18n.locale.to_s
+    return link_to code, system_url + type.to_s + "/name?code=" + code + "&?locale=" + I18n.locale.to_s, :title => t('to_online_definition_manual')
   end
 end
