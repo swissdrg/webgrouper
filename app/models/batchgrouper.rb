@@ -25,7 +25,7 @@ class Batchgrouper
       #TODO: do some preprocessing??
     end
     file.rewind
-    batchgrouper_exec = File.join(production_spec_folder, 'batchgrouper')
+    batchgrouper_exec = File.join(spec_folder, 'batchgrouper')
     work_path = File.join(Rails.root, 'tmp', 'batchgroupings')
     Dir.mkdir(work_path) unless File.directory?(work_path)
     # uploaded_file = File.join(work_path, file.original_filename)

@@ -76,3 +76,4 @@ public/assets
 
 # torquebox deployment
 *.knob
+/lib/grouperspecs
