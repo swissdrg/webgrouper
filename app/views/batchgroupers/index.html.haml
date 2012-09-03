@@ -1,10 +1,12 @@
-= simple_form_for @batchgrouper, :url => "batchgrouper", :remote => true do |f|
+= simple_form_for @batchgrouper, :url => "batchgrouper" do |f|
   = render "shared/system", :f => f, :system_id => @batchgrouper.system_id, :house => @batchgrouper.house
   %fieldset
     %legend Data
     = f.input :file, :as => :file
     = f.input :single_group
-    #single_group_result
+    - if @single_group_result
+      #single_group_result
+        = @single_group_result
+  #loading
   .right
     = f.submit :class => "button positive"
-    #loading

@@ -5,14 +5,12 @@ Webgrouper::Application.routes.draw do
       get :autocomplete_Icd_code, :on => :collection
       get :autocomplete_Chop_code, :on => :collection
     end
-    get 'batchgrouper' => 'batchgrouper#index'
-    post 'batchgrouper' => 'batchgrouper#group'
     get 'create_query'  => 'webgrouper_patient_cases#create_query'
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
     get 'about' => 'static_pages#about'
-    post 'batchgrouper' => 'batchgrouper#group'
-    get 'batchgrouper' => 'batchgrouper#index'
+    post 'batchgrouper' => 'batchgroupers#group'
+    get 'batchgrouper' => 'batchgroupers#index'
   end
   
   # This is for testing only and can be removed later on:

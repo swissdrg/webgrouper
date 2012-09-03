@@ -67,6 +67,10 @@ file to point to any server you'd like.
 
 ## Deployment
 
+First, make sure that all assets are precompiled for production mode with (the mongoid gem needs 1.9 syntax): 
+
+	JRUBY_OPTS=--1.9 rake assets:precompile
+	
 This application was configured to be deployed with torquebox. The configuration can be changed in the file `config/torquebox_remote.rb` Run
 
 	rake torquebox:remote:stage       #important hint!
