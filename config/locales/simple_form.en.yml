@@ -3,7 +3,9 @@ en:
     submit:
       webgrouper_patient_case:
         clear_form: Clear form
-        create: Group It
+        create: Group case
+      batchgrouper:
+        create: Group
   simple_form:
     error_notification:
       default_message: 'There were problems with the following fields:'

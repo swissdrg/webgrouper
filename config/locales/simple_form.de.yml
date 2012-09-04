@@ -80,4 +80,4 @@ de:
         create: 'Fall Gruppieren'
         clear_form: Maske leeren
       batchgrouper:
-        create: 'Starte Vorgang'
+        create: 'Gruppieren'

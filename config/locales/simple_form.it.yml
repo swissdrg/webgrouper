@@ -4,6 +4,8 @@ it:
       webgrouper_patient_case:
         clear_form: Svuotare la maschera
         create: Raggruppare
+      batchgrouper:
+        create: Raggruppare
   simple_form:
     error_notification:
       default_message: 'Per favore ricontrolla i seguenti campi:'

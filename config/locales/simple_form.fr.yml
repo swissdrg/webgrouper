@@ -4,6 +4,8 @@ fr:
       webgrouper_patient_case:
         clear_form: Vider le masque
         create: Grouper
+      batchgrouper:
+        create: Grouper
   simple_form:
     error_notification:
       default_message: 'Veuillez vérifier les champs suivants : '
