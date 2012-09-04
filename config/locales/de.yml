@@ -1,4 +1,6 @@
 de:
+  batchgrouper:
+    invalid_format: 'Invalides Format!'
   to_online_definition_manual: 'Zum Eintrag im Online Definitionshandbuch'
   help:
     show_help: Hilfe anzeigen

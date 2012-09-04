@@ -1,5 +1,7 @@
 en:
   to_online_definition_manual: 'To the entry of the online definition manual'
+  batchgrouper:
+    invalid_format: 'Invalid format!'
   activemodel:
     errors:
       format: '%{attribute} %{message}'

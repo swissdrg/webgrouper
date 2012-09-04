@@ -1,4 +1,5 @@
 !!! 5
+- @title ||= 'Webgrouper'
 %html{:lang => I18n.locale}
   %head
     %meta{ :charset => "UTF-8" }
@@ -11,9 +12,10 @@
       I18n.locale = "#{I18n.locale}";
     = javascript_include_tag 'http://www.google.com/jsapi'
     = csrf_meta_tags
-    %title Webgrouper
+    %title 
+      = @title
   %body
     .container
-      = render 'layouts/header'
+      = render 'layouts/header', :title => @title
       = yield
       = render 'layouts/footer'
