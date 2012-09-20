@@ -2,7 +2,6 @@ class Batchgrouper
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
-  include_class 'java.lang.IllegalArgumentException'
   
   attr_accessor :file, :system_id, :single_group, :house, :first_line, :line_count
   
@@ -13,10 +12,6 @@ class Batchgrouper
     attributes.each do |name, value|
       value = value.to_i if send(name).is_a? Fixnum
       send("#{name}=", value) 
-    end
-    
-    if file
-      preprocess_file
     end
   end
   

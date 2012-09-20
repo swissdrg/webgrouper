@@ -10,15 +10,17 @@ class BatchgroupersController < ApplicationController
     @title = 'Batchgrouper'
     @batchgrouper = Batchgrouper.new(params[:batchgrouper])
     if params[:batchgrouper][:file]
-      BatchgrouperQuery.create(:ip => request.remote_ip, 
+      begin
+        @batchgrouper.preprocess_file
+        BatchgrouperQuery.create(:ip => request.remote_ip, 
                       :filename => @batchgrouper.file.original_filename,
                       :first_line => @batchgrouper.first_line, 
                       :line_count => @batchgrouper.line_count,
-                      :time => Time.now)
-      begin
+                      :time => Time.now,
+                      :client => request.env['HTTP_USER_AGENT'])
         send_file @batchgrouper.group 
       rescue
-        flash.now[:error] = @batchgrouper.errors.full_messages
+        @error = "Could not parse file. Only use text files, not eg .doc"
         render 'index'
       end
     else
