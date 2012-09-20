@@ -10,6 +10,11 @@ class BatchgroupersController < ApplicationController
     @title = 'Batchgrouper'
     @batchgrouper = Batchgrouper.new(params[:batchgrouper])
     if params[:batchgrouper][:file]
+      BatchgrouperQuery.create(:ip => request.remote_ip, 
+                      :filename => @batchgrouper.file.original_filename,
+                      :first_line => @batchgrouper.first_line, 
+                      :line_count => @batchgrouper.line_count,
+                      :time => Time.now)
       begin
         send_file @batchgrouper.group 
       rescue

@@ -4,15 +4,26 @@ class Batchgrouper
   extend ActiveModel::Naming
   include_class 'java.lang.IllegalArgumentException'
   
-  attr_accessor :file, :system_id, :single_group, :house
+  attr_accessor :file, :system_id, :single_group, :house, :first_line, :line_count
   
   def initialize(attributes = {})
     self.system_id = DEFAULT_SYSTEM
+    self.line_count = 0
     
     attributes.each do |name, value|
       value = value.to_i if send(name).is_a? Fixnum
       send("#{name}=", value) 
     end
+    
+    if file
+      preprocess_file
+    end
+  end
+  
+  def preprocess_file
+    lines_of_file = file.read.split("\n")
+    self.first_line = lines_of_file[0]
+    self.line_count = lines_of_file.size
   end
   
   def persisted?
@@ -20,11 +31,8 @@ class Batchgrouper
   end
   
   def group
-    #f = Tempfile.open('groupings', File.join(Rails.root, 'tmp') )
-    file.read.each_line do |line, nr|
-      #TODO: do some preprocessing??
-    end
     file.rewind
+    #f = Tempfile.open('groupings', File.join(Rails.root, 'tmp') )
     batchgrouper_exec = File.join(spec_folder, 'batchgrouper')
     work_path = File.join(Rails.root, 'tmp', 'batchgroupings')
     Dir.mkdir(work_path) unless File.directory?(work_path)
@@ -41,7 +49,6 @@ class Batchgrouper
     output_file
   end
   
-  #Not used right now
   def group_line(line)
     line = line.strip
     return nil if line.blank? # allows blank lines
