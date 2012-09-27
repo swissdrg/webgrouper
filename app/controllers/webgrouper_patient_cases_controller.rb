@@ -6,7 +6,11 @@ class WebgrouperPatientCasesController < ApplicationController
   autocomplete :Chop, [:code, :code_short, :text], :full => true,
                               :display_value => :autocomplete_result,
                               :extra_data => [:text]
-                              
+  def tos
+    @link = webgrouper_patient_cases_path
+    render 'static_pages/tos'
+  end
+  
   def index
     @webgrouper_patient_case = WebgrouperPatientCase.new()
   end

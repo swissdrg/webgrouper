@@ -18,10 +18,9 @@ Webgrouper::Application.routes.draw do
   get 'test404' => 'errors#error_404'
   get 'test500' => 'errors#error_500'
   
-  get 'grouper' => 'batchgroupers#index'
-  get 'batchgrouper' => 'batchgroupers#index'
-  post 'batchgrouper' => 'batchgroupers#group'
-  root :to => 'static_pages#tos'
+  get 'grouper' => 'batchgroupers#tos'
+  get 'batchgrouper' => 'batchgroupers#tos'
+  root :to => 'webgrouper_patient_cases#tos'
   
   unless Rails.application.config.consider_all_requests_local
     match '*not_found', :to => 'errors#error_404'

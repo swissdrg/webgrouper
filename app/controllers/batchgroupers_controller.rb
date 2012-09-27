@@ -1,6 +1,11 @@
 class BatchgroupersController < ApplicationController
   respond_to :html, :json
   
+  def tos
+    @link = batchgrouper_path
+    render 'static_pages/tos'
+  end
+  
   def index
     @title = 'Batchgrouper'
     @batchgrouper = Batchgrouper.new()

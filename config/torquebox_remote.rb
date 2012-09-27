@@ -1,6 +1,6 @@
 TorqueBox::RemoteDeploy.configure do
   torquebox_home "/opt/torquebox-current"
-  hostname "192.168.145.109"
+  hostname "77.95.120.68"
   port "22"
   user "sm"
   key "~/.ssh/id_rsa"
