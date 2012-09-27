@@ -5,4 +5,5 @@ TorqueBox::RemoteDeploy.configure do
   user "sm"
   key "~/.ssh/id_rsa"
   sudo false
+  rails_env "production"
 end

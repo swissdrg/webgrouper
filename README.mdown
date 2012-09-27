@@ -11,7 +11,7 @@ We use jRuby 1.6.7.2, which can be installed by typing
 
 	rvm install jruby-1.6.7.2
 	
-Install the needed bundles by running
+Install the needed gems by running
 
 	bundle install
 	
@@ -34,9 +34,10 @@ The Project Mongo-Migration is used for populating the mongo-db with data. It ca
 
 You can start the project by typing
 	
-	thin start
+	torquebox run
+	torquebox deploy
 
-in the project folder. Be aware, that jruby & the bundles must be installed/active for this.
+in the project folder. Be aware, that jruby & the bundle must be installed/active for this.
 
 ## Run tests
 
@@ -50,7 +51,7 @@ For cucumber:
 
 	bundle exec cucumber -c
 	
-Be aware, that jruby & the bundles must be installed/active for this.
+Be aware, that jruby & the gemss must be installed/active for this.
 
 If you, for some reason, don't have the kernel on your machine, most of the cucumber tests will fail.
 You can still run some of them by entering:
@@ -82,6 +83,8 @@ or something similar to deploy it. Of course you need a torquebox-server running
 When on remote, it can also be easily deployed with
 
 	torquebox deploy --env=production
+
+without use of the torquebox_remote_deploy gem.
 
 ### Hints
 
