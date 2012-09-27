@@ -1,8 +1,13 @@
 Given /^the form with initialized standard values$/ do
-  if Rails.env == "development"
-    visit "http://localhost:8080/webgrouper/de/webgrouper_patient_cases"
+  if Capybara.current_driver == :selenium
+    context = "/webgrouper"
   else
-    visit "http://77.95.120.68:8080/webgrouper/de/webgrouper_patient_cases"
+    context = ""
+  end
+  if Rails.env == "development"
+    visit "http://localhost:8080" + context + "/de/webgrouper_patient_cases"
+  else
+    visit "http://77.95.120.68:8080" + context + "/de/webgrouper_patient_cases"
   end
 end
 
