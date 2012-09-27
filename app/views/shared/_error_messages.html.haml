@@ -5,4 +5,4 @@
     %ul
       - @webgrouper_patient_case.errors.each do |attr, msg|
         %li
-          = t("simple_form.labels.webgrouper_patient_case." + attr.to_s) + " " + msg
+          = t("simple_form.labels.defaults." + attr.to_s) + " " + msg

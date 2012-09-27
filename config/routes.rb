@@ -11,6 +11,7 @@ Webgrouper::Application.routes.draw do
     get 'about' => 'static_pages#about'
     post 'batchgrouper' => 'batchgroupers#group'
     get 'batchgrouper' => 'batchgroupers#index'
+    get 'index' => 'webgrouper_patient_cases#index'
   end
   
   # This is for testing only and can be removed later on:
@@ -20,7 +21,7 @@ Webgrouper::Application.routes.draw do
   get 'grouper' => 'batchgroupers#index'
   get 'batchgrouper' => 'batchgroupers#index'
   post 'batchgrouper' => 'batchgroupers#group'
-  root :to => 'webgrouper_patient_cases#index'
+  root :to => 'static_pages#tos'
   
   unless Rails.application.config.consider_all_requests_local
     match '*not_found', :to => 'errors#error_404'

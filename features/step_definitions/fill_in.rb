@@ -1,5 +1,9 @@
 Given /^the form with initialized standard values$/ do
-  visit "http://localhost:8080/webgrouper/de/webgrouper_patient_cases"
+  if Rails.env == "development"
+    visit "http://localhost:8080/webgrouper/de/webgrouper_patient_cases"
+  else
+    visit "http://77.95.120.68:8080/webgrouper/de/webgrouper_patient_cases"
+  end
 end
 
 # Needs the @javascript annotation

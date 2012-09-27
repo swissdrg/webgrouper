@@ -294,18 +294,6 @@ en:
           SRG_CONFLICT: Neither OR nor NOR procedure
           SRG_CONFLICT_CHOP: Neither OR nor NOR procedure
           SRG_CONFLICT_CHOP_DATE: Neither OR nor NOR procedure
-        used:
-          PROC_NOT_USED: Translation missing
-          PROC_USED: Translation missing
-          USED_BOTH: Translation missing
-          USED_FOR_CONDITION: Translation missing
-        valid:
-          PROC_AGE_CONFLICT: Translation missing
-          PROC_INVALID: Translation missing
-          PROC_SEX_CONFLICT: Translation missing
-          PROC_VALID: Translation missing
-          UNUSED: Translation missing
-          VALID_DIAGNOSIS: Translation missing
     settlement_hints:
       additional_fees: 'Additional fees:'
       legend: Settlement hints
@@ -323,15 +311,3 @@ en:
       long: '%B %d, %Y %H:%M'
       short: '%d %b %H:%M'
     pm: pm
-  tos:
-    accept: Translation missing
-    accept_tos: Translation missing
-    confirm_read: Translation missing
-    data_security: Translation missing
-    date: Translation missing
-    group_right: Translation missing
-    heading: Translation missing
-    preamble: Translation missing
-    privacy: Translation missing
-    responsibility: Translation missing
-    terminatory: Translation missing
