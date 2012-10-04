@@ -38,7 +38,8 @@ class Batchgrouper
     uploaded_file.write(file.read)
     uploaded_file.close
     output_file = File.join(work_path, file.original_filename + ".out")
-    cmd = "#{batchgrouper_exec} '#{spec_path(self.system_id)}' '#{catalogue_path(self.system_id, self.house)}' '#{uploaded_file.path}' '#{output_file}'"
+    additional_argument = "-bh " if house == '2'
+    cmd = "#{batchgrouper_exec} #{additional_argument}'#{spec_path(self.system_id)}' '#{catalogue_path(self.system_id, self.house)}' '#{uploaded_file.path}' '#{output_file}'"
     proc_status = `#{cmd}`
     puts "#{cmd}, terminated with: #{proc_status}"
     output_file
