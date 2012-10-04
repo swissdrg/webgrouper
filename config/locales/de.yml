@@ -1,6 +1,7 @@
 de:
   batchgrouper:
     invalid_format: 'Invalides Format!'
+    loading_hint: 'Bitte warten sie, während die Datei hochgeladen und verarbeitet wird.'
   to_online_definition_manual: 'Zum Eintrag im Online Definitionshandbuch'
   help:
     show_help: Hilfe anzeigen

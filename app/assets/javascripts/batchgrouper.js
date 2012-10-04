@@ -14,7 +14,7 @@ $(document).ready(function() {
 });
 
 $(function() {
-		$( "#loading" ).progressbar({
+		$( "#loading-bar" ).progressbar({
 			value: 100
 		});
 	});
