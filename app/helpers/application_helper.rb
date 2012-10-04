@@ -30,7 +30,7 @@ module ApplicationHelper
   def spec_folder
     production_spec_folder = File.join('/','home', 'tim', 'grouperspecs')
     development_spec_folder = File.join(Rails.root,'lib', 'grouperspecs')
-    if (Rails.env == "production" && File.directory?(production_spec_folder))
+    if (File.directory?(production_spec_folder))
       return production_spec_folder
     else
       return development_spec_folder

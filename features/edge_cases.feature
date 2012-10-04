@@ -61,10 +61,12 @@ Feature: The edge cases should be handled correctly
     When I fill in "webgrouper_patient_case_entry_date" with "01.02.2008"
     And I fill in "webgrouper_patient_case_exit_date" with "10.02.2008"
     And I fill in "webgrouper_patient_case_birth_date" with "02.01.2003"
+    And I wait 1 seconds
     And I submit the form
     Then I should see "B78A" in "grouping"
     And I should see "9" in "length-of-stay"  
     When I fill in "webgrouper_patient_case_exit_date" with "01.02.2008"
+    And I wait 1 seconds
     And I submit the form
     Then I should see "1" in "length-of-stay"
     Then I should see "B78C" in "grouping"
@@ -91,6 +93,7 @@ Feature: The edge cases should be handled correctly
     When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
     And I fill in "webgrouper_patient_case_entry_date" with "26.02.2010"
     And I fill in "webgrouper_patient_case_exit_date" with "01.03.2010"
+    And I wait 1 seconds
     And I submit the form
     Then I should see "3" in "length-of-stay"
 
@@ -101,6 +104,7 @@ Feature: The edge cases should be handled correctly
     When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
     And I fill in "webgrouper_patient_case_entry_date" with "26.02.2012"
     And I fill in "webgrouper_patient_case_exit_date" with "01.03.2012"
+    And I wait 1 seconds
     And I submit the form
     Then I should see "4" in "length-of-stay"
     
