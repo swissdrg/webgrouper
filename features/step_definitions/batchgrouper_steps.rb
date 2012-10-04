@@ -20,6 +20,6 @@ Then /^I should receive a file called "(.*?)"$/ do |arg1|
 end
 
 Then /^the MD5sum of it should be "(.*?)"$/ do |arg2|
-  hash = `md5 -s '#{page.source}'`.split("=").last.strip
+  hash = Digest::MD5.hexdigest(page.source)
   hash.to_s.should == arg2
 end
