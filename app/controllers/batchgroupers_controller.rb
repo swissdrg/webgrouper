@@ -25,7 +25,7 @@ class BatchgroupersController < ApplicationController
                       :client => request.env['HTTP_USER_AGENT'])
         send_file @batchgrouper.group 
       rescue
-        @error = "Could not parse file. Only use text files, not eg .doc"
+        @error = "Could not parse file. Only use text files in the swissdrg format, not eg .doc"
         render 'index'
       end
     else
