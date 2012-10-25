@@ -22,4 +22,5 @@
     = f.label :diagnoses_catalog
     = text_field_tag :diagnoses_catalog, current_system.icd_version, :disabled => true
   - if system_id == 9
-    = link_to t("to_online_definition_manual"), "http://webapps.swissdrg.org:8081/", :class => "button right"
+    = f.label "  "
+    = link_to t("online_definition_manual_for") + " #{current_system.description}", "http://webapps.swissdrg.org:8081/", :class => "button"
