@@ -26,7 +26,7 @@ module WebgrouperPatientCasesHelper
     if system_id != 9
       return code
     end
-    system_url = "http://webapps.swissdrg.org:8081/"
+    system_url = "http://apps.swissdrg.org/manual10/"
     return link_to code, system_url + type.to_s + "/name?code=" + code + "&locale=" + I18n.locale.to_s, :title => t('to_online_definition_manual')
   end
 end
