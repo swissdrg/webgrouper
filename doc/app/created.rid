@@ -1,7 +1,0 @@
-Sat, 10 Mar 2012 15:17:16 +0100
-doc/README_FOR_APP	Mon, 27 Feb 2012 14:44:12 +0100
-app/controllers/application_controller.rb	Wed, 07 Mar 2012 21:31:21 +0100
-app/controllers/patient_cases_controller.rb	Sat, 10 Mar 2012 14:45:16 +0100
-app/helpers/application_helper.rb	Mon, 27 Feb 2012 14:44:12 +0100
-app/helpers/patient_cases_helper.rb	Wed, 07 Mar 2012 21:47:47 +0100
-app/models/webgrouper_patient_case.rb	Sat, 10 Mar 2012 15:16:49 +0100
