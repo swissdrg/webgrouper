@@ -1,8 +1,4 @@
 en:
-  to_online_definition_manual: 'To the entry of the online definition manual'
-  batchgrouper:
-    invalid_format: 'Invalid format!'
-    loading_hint: 'Please wait while the file is uploading and being processed. The result will download automatically.'
   activemodel:
     errors:
       format: '%{attribute} %{message}'
@@ -20,6 +16,7 @@ en:
         invalid: is invalid
         less_than: must be less than %{count}
         less_than_or_equal_to: must be less than or equal to %{count}
+        no_code: no code entered
         not_a_number: is not a number
         not_an_integer: must be an integer
         odd: must be odd
@@ -34,7 +31,6 @@ en:
         wrong_length:
           one: is the wrong length (should be 1 character)
           other: is the wrong length (should be %{count} characters)
-        no_code: no code entered
       template: &id002
         body: 'There were problems with the following fields:'
         header:
@@ -45,6 +41,10 @@ en:
       format: '%{attribute} %{message}'
       messages: *id001
       template: *id002
+  batchgrouper:
+    invalid_format: Invalid format!
+    loading_hint: Please wait while the file is uploading and being processed. The
+      result will download automatically.
   date:
     abbr_day_names:
     - Sun
@@ -225,8 +225,8 @@ en:
       CCL: CCL
       diagnosis_flag:
         used:
-          false_string: False
-          true_string: True
+          false_string: false
+          true_string: true
         valid:
           AGE_CONFLICT: Conflicts with given age
           ALREADY_IN_PDX: Already given as primary diagnosis
@@ -257,19 +257,19 @@ en:
         INVALID_LOS: Bad length of stay
         INVALID_OR_EMPTY_PDX: Primary diagnosis (pdx) missing or bad pdx
         INVALID_SDF: Bad sameday value
-        INVALID_SEP_OR_ADM: Translation missing
+        INVALID_SEP_OR_ADM:Invalid separation or admission date
         INVALID_SEX: Bad sex
         NORMAL_GROUP: Normal grouping
-        NO_DRG: Translation missing
+        NO_DRG: Does not fit the criteria for any DRG
       legend: Grouping
     length-of-stay:
       average_los: Average length of stay
-      case_flag: Translation missing
+      case_flag: Case flag
       case_flag_modes:
         INLIER: Inlier
         LOWER_OUTLIER: Low Outlier
         TRANSFERRED: Transferred
-        UNDEFINED: Translation missing
+        UNDEFINED: Undefined
         UNWEIGHTED: Unweighted DRG
         UPPER_OUTLIER: High Outlier
       first-day-with-discount: First day with discount
@@ -295,11 +295,23 @@ en:
           SRG_CONFLICT: Neither OR nor NOR procedure
           SRG_CONFLICT_CHOP: Neither OR nor NOR procedure
           SRG_CONFLICT_CHOP_DATE: Neither OR nor NOR procedure
+        used:
+          PROC_NOT_USED: false
+          PROC_USED: Yes, without logical and temporary conditions
+          USED_BOTH: Yes, for both
+          USED_FOR_CONDITION: null
+        valid:
+          PROC_AGE_CONFLICT: Conflict with age
+          PROC_INVALID: Invalid CHOP code
+          PROC_SEX_CONFLICT: Conflict with sex
+          PROC_VALID: Valid procedure
+          UNUSED: Not used
+          VALID_DIAGNOSIS: Valid diagnosis
     settlement_hints:
       additional_fees: 'Additional fees:'
       legend: Settlement hints
       no_additional_fees: No additional fees
-      reuptake_hint: Translation missing
+      reuptake_hint: The DRG %{drg} is excluded from reuptake.
   support:
     array:
       last_word_connector: ', and '
@@ -312,3 +324,17 @@ en:
       long: '%B %d, %Y %H:%M'
       short: '%d %b %H:%M'
     pm: pm
+  to_online_definition_manual: To the entry of the online definition manual
+  tos:
+    accept: Yes, I accept the General Terms and Conditions
+    accept_tos: Acceptance of the Terms of the User Agreement
+    confirm_read: BY CLICKING THE MOUSE TO ACCEPT YOU CONFIRM THAT YOU HAVE READ AND
+      UNDERSTOOD THIS USER AGREEMENT AND ARE FULLY IN AGREEMENT WITH ITS CONTENTS.
+    data_security: Data security in the internet
+    date: 'As at: 1st February 2010'
+    group_right: 'Object of the Agreement: Right to online grouping'
+    heading: USER AGREEMENT OF ONLINE WEB-GROUPER AND BATCH-GROUPER OF SWISSDRG AG
+    preamble: Preamble
+    privacy: Data protection
+    responsibility: Warranty / Liability
+    terminatory: Final Provisions
