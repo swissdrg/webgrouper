@@ -26,7 +26,7 @@ no_additional_fees: Pas de rémunérations supplémentaires
 case_flag: Statut du cas
 UNDEFINED: Indéfini
 first-day-with-discount: 1er jour avec réduction
-first-day-with-discount: 1er jour avec supplément
+first-day-with-surcharge: 1er jour avec supplément
 number_of_days_for_surcharge: Nombre de jours avec supplément
 number_of_days_for_discount: Nombre de jours avec réduction
 no_days_for_discount_or_surcharge: Aucun jour avec supplément, ni avec réduction

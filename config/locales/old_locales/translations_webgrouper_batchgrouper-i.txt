@@ -44,7 +44,7 @@ ALREADY_IN_PDX: Già indicato come diagnosi principale
 INVALID_DIAGNOSIS: Codice ICD non valido
 SEX_CONFLICT: Conflitto con il sesso
 VALID_DIAGNOSIS: Diagnosi valida
-found_errors: Sono stati rilevati gli errori seguenti:
+found_errors: "Sono stati rilevati gli errori seguenti:"
 
 loading_hint: 'Attendere che il file sia caricato ed elaborato. Il download del risultato viene avviato automaticamente.'
 invalid_format: 'Formato non valido!'
