@@ -1,0 +1,55 @@
+
+heading:        CONTRATTO D'USO ONLINE WEB-GROUPER E BATCH-GROUPER DI SWISSDRG AG
+date:           "Stato: 1° febbraio 2010"
+accept_tos:     Accettazione delle condizioni d'uso
+confirm_read:   CON L'ACCETTAZIONE ONLINE, PREMENDO IL TASTO SOTTOSTANTE, LEI CONFERMA DI AVER LETTO INTERAMENTE E DI AVER COMPRESO IL PRESENTE CONTRATTO D'USO E DICHIARA DI ACCONSENTIRE ALLE CONDIZIONI IN ESSO CONTENUTE.
+preamble:       Preambolo  
+group_right:    "Oggetto del contratto: diritto al raggruppamento online"
+data_security:  Sicurezza dei dati in Internet
+privacy:        Protezione dei dati personali
+responsibility: Responsabilità
+terminatory:    Determinazioni finali
+accept:         "Sì, accetto le condizioni generali di contratto"
+to_online_definition_manual: 'Vai al record nel libro delle definizioni online'
+
+PROC_NOT_USED: No
+PROC_USED: Sì, senza condizioni logiche e temporali
+USED_BOTH: Sì, per entrambi
+USED_FOR_CONDITION:
+PROC_VALID: Procedura valida
+PROC_AGE_CONFLICT: Conflitto con l'età
+PROC_INVALID: Codice CHOP non valido
+PROC_SEX_CONFLICT: Conflitto con il sesso
+VALID_DIAGNOSIS: Procedura valida
+UNUSED: Non utilizzato
+ 
+no_additional_fees: Nessun compenso supplementare
+case_flag: Stato del caso
+UNDEFINED: Non definito
+first-day-with-discount: 1° giorno con riduzione
+first-day-with-surcharge: 1° giorno con supplemento
+number_of_days_for_surcharge: Numero di giorni con obbligo di supplemento
+number_of_days_for_discount: Numero di giorni con obbligo di riduzione
+no_days_for_discount_or_surcharge: Nessun giorno con obbligo di supplemento o riduzione
+
+legend: Diagnosi
+used: Utilizzato
+valid: Validità
+
+false_string: No
+true_string: Sì
+
+AGE_CONFLICT: Conflitto con l'età
+ALREADY_IN_PDX: Già indicato come diagnosi principale
+INVALID_DIAGNOSIS: Codice ICD non valido
+SEX_CONFLICT: Conflitto con il sesso
+VALID_DIAGNOSIS: Diagnosi valida
+found_errors: Sono stati rilevati gli errori seguenti:
+
+loading_hint: 'Attendere che il file sia caricato ed elaborato. Il download del risultato viene avviato automaticamente.'
+invalid_format: 'Formato non valido!'
+disabled_age: 'Cancellare o modificare la data di nascita per modificare questo valore.'
+disabled_los: 'Cancellare o modificare uno dei campi rilevanti per modificare questo valore.'
+pick_date: "Scelta della data"
+file: 'File:'
+single_group: 'Caso singolo per testare il formato:'

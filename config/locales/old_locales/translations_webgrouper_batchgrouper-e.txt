@@ -1,0 +1,55 @@
+
+heading:        USER AGREEMENT OF ONLINE WEB-GROUPER AND BATCH-GROUPER OF SWISSDRG AG
+date:           "As at: 1st February 2010"
+accept_tos:     Acceptance of the Terms of the User Agreement
+confirm_read:   BY CLICKING THE MOUSE TO ACCEPT YOU CONFIRM THAT YOU HAVE READ AND UNDERSTOOD THIS USER AGREEMENT AND ARE FULLY IN AGREEMENT WITH ITS CONTENTS.
+preamble:       Preamble  
+group_right:    "Object of the Agreement: Right to online grouping"
+data_security:  Data security in the internet
+privacy:        Data protection
+responsibility: Warranty / Liability
+terminatory:    Final Provisions
+accept:         "Yes, I accept the General Terms and Conditions"
+to_online_definition_manual: 'For entry in the Online Definition Manual'
+
+PROC_NOT_USED: No
+PROC_USED: Yes, without logical and temporary conditions
+USED_BOTH: Yes, for both
+USED_FOR_CONDITION:
+PROC_VALID: Valid procedure
+PROC_AGE_CONFLICT: Conflict with age
+PROC_INVALID: Invalid CHOP code
+PROC_SEX_CONFLICT: Conflict with sex
+VALID_DIAGNOSIS: Valid procedure
+UNUSED: Not used
+ 
+no_additional_fees: No additional fees
+case_flag: Case status
+UNDEFINED: Undefined
+first-day-with-discount: First day with discount
+first-day-with-surcharge: First day with surcharge
+number_of_days_for_surcharge: Number of days for surcharge
+number_of_days_for_discount: Number of days for discount
+no_days_for_discount_or_surcharge: No days for discount or surcharge
+
+legend: Diagnoses
+used: Used
+valid: Valid
+
+false_string: No
+true_string: Yes
+
+AGE_CONFLICT: Conflict with age
+ALREADY_IN_PDX: Already noted as Primary Diagnosis
+INVALID_DIAGNOSIS: Invalid ICD code
+SEX_CONFLICT: Conflict with sex
+VALID_DIAGNOSIS: Valid diagnosis
+found_errors: "The following errors were found:"
+
+loading_hint: 'Please wait whilst the file is uploaded and processed. The download of the result will start automatically.'
+invalid_format: 'Invalid format!'
+disabled_age: 'Delete or change the date of birth in order to change this value.'
+disabled_los: 'Delete or change one of the relevant fields in order to change this value'
+pick_date: "Pick date"
+file: 'File:'
+single_group: 'Test individual case for format:'
