@@ -12,7 +12,7 @@ terminatory:    Determinazioni finali
 accept:         "Sì, accetto le condizioni generali di contratto"
 to_online_definition_manual: 'Vai al record nel libro delle definizioni online'
 
-PROC_NOT_USED: No
+PROC_NOT_USED: "No"
 PROC_USED: Sì, senza condizioni logiche e temporali
 USED_BOTH: Sì, per entrambi
 USED_FOR_CONDITION:
@@ -36,7 +36,7 @@ legend: Diagnosi
 used: Utilizzato
 valid: Validità
 
-false_string: No
+false_string: "No"
 true_string: Sì
 
 AGE_CONFLICT: Conflitto con l'età
