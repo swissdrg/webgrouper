@@ -1,15 +1,25 @@
 fr:
   helpers:
     submit:
+      batchgrouper:
+        create: Grouper
       webgrouper_patient_case:
         clear_form: Vider le masque
-        create: Grouper
-      batchgrouper:
         create: Grouper
   simple_form:
     error_notification:
       default_message: 'Veuillez vérifier les champs suivants : '
+    hints:
+      webgrouper_patient_case:
+        date: En format dd.mm.yyyy, pe 19.05.1988
+        disabled_age: Pour changer cette valeur, effacez ou modifiez la date de naissance.
+        disabled_los: Pour changer cette valeur, effacez ou modifiez le contenu de
+          l'une des cases qui s'y rapporte.
+        pick_date: Choix de la date
     labels:
+      batchgrouper:
+        file: 'Fichier :'
+        single_group: 'Cas unique pour tester le format:'
       defaults:
         active_grouper: 'Grouper:'
         adm: 'Mode d''admission:'
@@ -50,6 +60,9 @@ fr:
         age_mode:
           days: Jours
           years: Ans
+        age_mode_decoy:
+          days: null
+          years: null
         house:
           house1: Hôpital de soins aigus
           house2: Maison des naissances
@@ -64,11 +77,5 @@ fr:
           U: Inconnu
           W: Féminin
     required:
-      mark: ''
+      mark: null
       text: required
-    hints:
-      webgrouper_patient_case:
-        date: En format dd.mm.yyyy, pe 19.05.1988
-        disabled_age: 'Translation missing'
-        disabled_los: 'Translation missing'
-        pick_date: 'Translation missing'

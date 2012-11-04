@@ -1,6 +1,4 @@
 fr:
-  to_online_definition_manual: 'Zum Eintrag im Online Definitionshandbuch'
-  loading_hint: null
   activemodel:
     errors:
       format: Le %{attribute} %{message}
@@ -18,6 +16,7 @@ fr:
         invalid: n'est pas valide
         less_than: doit être inférieur à %{count}
         less_than_or_equal_to: doit être inférieur ou égal à %{count}
+        no_code: aucun code à été saisi
         not_a_number: n'est pas un nombre
         not_an_integer: doit être un nombre entier
         odd: doit être impair
@@ -32,7 +31,6 @@ fr:
         wrong_length:
           one: ne fait pas la bonne longueur (doit comporter un seul caractère)
           other: ne fait pas la bonne longueur (doit comporter %{count} caractères)
-        no_code: aucun code à été saisi
       template: &id002
         body: 'Veuillez vérifier les champs suivants : '
         header:
@@ -43,6 +41,10 @@ fr:
       format: Le %{attribute} %{message}
       messages: *id001
       template: *id002
+  batchgrouper:
+    invalid_format: Format invalide !
+    loading_hint: Veuillez patienter pendant l'envoi et le traitement du fichier.
+      Le téléchargement du résultat démarrera automatiquement.
   date:
     abbr_day_names:
     - dim
@@ -151,7 +153,7 @@ fr:
     patient_data: Données du patient
     stay: Séjour
     system: Système
-  found_errors: 
+  found_errors: 'Les erreurs suivantes ont été trouvées:'
   help:
     back: En arrière
     other: 'Divers:'
@@ -188,9 +190,9 @@ fr:
           quadrillion: million de milliards
           thousand: millier
           trillion: billion
-          unit: ''
+          unit: null
       format:
-        delimiter: ''
+        delimiter: null
         precision: 2
         significant: true
         strip_insignificant_zeros: true
@@ -206,10 +208,11 @@ fr:
           tb: To
     percentage:
       format:
-        delimiter: ''
+        delimiter: null
     precision:
       format:
-        delimiter: ''
+        delimiter: null
+  online_definition_manual_for: Manuel de définition en ligne
   procedures: 'Procédures:'
   result:
     cost-weight:
@@ -217,22 +220,22 @@ fr:
       discount-rate-per-day: Réduction du CW par jour
       effective-cost-weight: Cost-weight effectif
       legend: Cost-weight
-      no_days_for_discount_or_surcharge: 
-      number_of_days_for_discount: 
-      number_of_days_for_surcharge: 
+      no_days_for_discount_or_surcharge: Aucun jour avec supplément, ni avec réduction
+      number_of_days_for_discount: Nombre de jours avec réduction
+      number_of_days_for_surcharge: Nombre de jours avec supplément
       surcharge-rate-per-day: Augmentation du CW par jour
     diagnoses:
       CCL: CCL
       diagnosis_flag:
         used:
-          false_string: 
-          true_string: 
+          false_string: Non
+          true_string: Oui
         valid:
-          AGE_CONFLICT: 
+          AGE_CONFLICT: Conflit d'âge
           ALREADY_IN_PDX: Déjà employé comme diagnostic principal
-          INVALID_DIAGNOSIS: 
-          SEX_CONFLICT: 
-          VALID_DIAGNOSIS: 
+          INVALID_DIAGNOSIS: Code CIM invalide
+          SEX_CONFLICT: Conflit de sexe
+          VALID_DIAGNOSIS: Diagnostic valide
       legend: Diagnostics
       used: Utilisé
       valid: Valid
@@ -253,16 +256,16 @@ fr:
       legend: Groupement
     length-of-stay:
       average_los: Durée moyenne de séjour
-      case_flag: 
+      case_flag: Statut du cas
       case_flag_modes:
         INLIER: Inlier
         LOWER_OUTLIER: Low-Outlier
         TRANSFERRED: Réduction pour transfert
-        UNDEFINED: 
+        UNDEFINED: Indéfini
         UNWEIGHTED: DRG non évalué
         UPPER_OUTLIER: High-Outlier
-      first-day-with-discount: 
-      first-day-with-surcharge: 
+      first-day-with-discount: 1er jour avec réduction
+      first-day-with-surcharge: 1er jour avec supplément
       high_trim_point: Borne supérieure de la durée de séjour
       legend: Durée du séjour
       length-of-stay: Durée de séjour
@@ -285,21 +288,21 @@ fr:
           SRG_CONFLICT_CHOP: Ni OU ni NOR
           SRG_CONFLICT_CHOP_DATE: Ni OU ni NOR
         used:
-          PROC_NOT_USED: 
-          PROC_USED: 
-          USED_BOTH: 
-          USED_FOR_CONDITION: 
+          PROC_NOT_USED: Non
+          PROC_USED: Oui, pour les deux
+          USED_BOTH: null
+          USED_FOR_CONDITION: null
         valid:
-          PROC_AGE_CONFLICT: 
-          PROC_INVALID: 
-          PROC_SEX_CONFLICT: 
-          PROC_VALID: 
-          UNUSED: 
-          VALID_DIAGNOSIS: 
+          PROC_AGE_CONFLICT: Conflit de sexe
+          PROC_INVALID: Code CHOP invalide
+          PROC_SEX_CONFLICT: null
+          PROC_VALID: Procédure valide
+          UNUSED: Non utilisé
+          VALID_DIAGNOSIS: Diagnostic valide
     settlement_hints:
       additional_fees: 'Rémunération supplémentaire: '
       legend: Note explicative pour la facturation
-      no_additional_fees: null
+      no_additional_fees: Pas de rémunérations supplémentaires
       reuptake_hint: Le regroupement de cas du DRG %{drg} est exclu lors d'une réadmission.
   support:
     array:
@@ -313,6 +316,7 @@ fr:
       long: '%A, %d. %B %Y %H:%M:%S %Z'
       short: '%d. %b %H:%M'
     pm: pm
+  to_online_definition_manual: A inscrire dans le Manuel de définitions en ligne
   tos:
     accept: Oui, j'accepte les conditions d'utilisation
     accept_tos: Acceptation des conditions d'utilisation

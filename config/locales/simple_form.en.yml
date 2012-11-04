@@ -1,15 +1,24 @@
 en:
   helpers:
     submit:
+      batchgrouper:
+        create: Group
       webgrouper_patient_case:
         clear_form: Clear form
         create: Group case
-      batchgrouper:
-        create: Group
   simple_form:
     error_notification:
       default_message: 'There were problems with the following fields:'
+    hints:
+      webgrouper_patient_case:
+        date: In format dd.mm.yyyy, eg 19.05.1988
+        disabled_age: To change this value, change or delete the birthday field
+        disabled_los: To change this value, change or delete one of the relevant fields
+        pick_date: Pick a date
     labels:
+      batchgrouper:
+        file: 'File:'
+        single_group: 'Test individual case for format:'
       defaults:
         active_grouper: 'Active Grouper:'
         adm: 'Admission mode:'
@@ -52,6 +61,9 @@ en:
         age_mode:
           days: Days
           years: Years
+        age_mode_decoy:
+          days: null
+          years: null
         house:
           house1: Hospital
           house2: Birthing center
@@ -66,11 +78,5 @@ en:
           U: Unknown
           W: Female
     required:
-      mark: ''
+      mark: null
       text: required
-    hints:
-      webgrouper_patient_case:
-        date: 'In format dd.mm.yyyy, eg 19.05.1988'
-        disabled_age: 'To change this value, change or delete the birthday field'
-        disabled_los: 'To change this value, change or delete one of the relevant fields'
-        pick_date: Pick a date

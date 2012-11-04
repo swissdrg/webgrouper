@@ -304,8 +304,7 @@ it:
           UNUSED: 
           VALID_DIAGNOSIS: 
     settlement_hints:
-      additional_fees: 'Zusatzentgelte:'
-      legend: Hinweise für die Abrechnung
+      additional_fees: "Compenso supplementare"
       no_additional_fees: 
       reuptake_hint: 
   support:

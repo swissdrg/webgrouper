@@ -42,6 +42,7 @@ AGE_CONFLICT: Conflit d'âge
 ALREADY_IN_PDX: Déjà relevé comme diagnostic principal
 INVALID_DIAGNOSIS: Code CIM invalide
 SEX_CONFLICT: Conflit de sexe
+PROC_SEX_CONFLICT: Conflit de sexe
 VALID_DIAGNOSIS: Diagnostic valide
 found_errors: 'Les erreurs suivantes ont été trouvées:'
 

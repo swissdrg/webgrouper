@@ -188,9 +188,9 @@ en:
           quadrillion: Quadrillion
           thousand: Thousand
           trillion: Trillion
-          unit: ''
+          unit: null
       format:
-        delimiter: ''
+        delimiter: null
         precision: 3
         significant: true
         strip_insignificant_zeros: true
@@ -206,10 +206,11 @@ en:
           tb: TB
     percentage:
       format:
-        delimiter: ''
+        delimiter: null
     precision:
       format:
-        delimiter: ''
+        delimiter: null
+  online_definition_manual_for: null
   procedures: 'Procedures:'
   result:
     cost-weight:
@@ -257,7 +258,7 @@ en:
         INVALID_LOS: Bad length of stay
         INVALID_OR_EMPTY_PDX: Primary diagnosis (pdx) missing or bad pdx
         INVALID_SDF: Bad sameday value
-        INVALID_SEP_OR_ADM:Invalid separation or admission date
+        INVALID_SEP_OR_ADM: Invalid separation or admission date
         INVALID_SEX: Bad sex
         NORMAL_GROUP: Normal grouping
         NO_DRG: Does not fit the criteria for any DRG

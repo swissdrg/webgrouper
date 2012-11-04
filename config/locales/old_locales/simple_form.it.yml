@@ -66,9 +66,6 @@ it:
     hints:
       webgrouper_patient_case:
         date: Nel formato dd.mm.yyyy, ae 19.05.1988
-        disabled_age: Translation Missing
-        disabled_los: Translation Missing
-        pick_date: Translation Missing
     required:
       mark: ''
       text: required

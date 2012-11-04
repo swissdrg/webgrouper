@@ -1,5 +1,5 @@
 fr:
-  loading_hint: null
+  online_definition_manual_for: 'Manuel de définition en ligne'
   activemodel:
     errors:
       format: Le %{attribute} %{message}

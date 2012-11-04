@@ -1,15 +1,26 @@
 it:
   helpers:
     submit:
+      batchgrouper:
+        create: Raggruppare
       webgrouper_patient_case:
         clear_form: Svuotare la maschera
-        create: Raggruppare
-      batchgrouper:
         create: Raggruppare
   simple_form:
     error_notification:
       default_message: 'Per favore ricontrolla i seguenti campi:'
+    hints:
+      webgrouper_patient_case:
+        date: Nel formato dd.mm.yyyy, ae 19.05.1988
+        disabled_age: Cancellare o modificare la data di nascita per modificare questo
+          valore.
+        disabled_los: Cancellare o modificare uno dei campi rilevanti per modificare
+          questo valore.
+        pick_date: Scelta della data
     labels:
+      batchgrouper:
+        file: 'File:'
+        single_group: 'Caso singolo per testare il formato:'
       defaults:
         active_grouper: 'Grouper:'
         adm: 'Modo di ricovero:'
@@ -50,6 +61,9 @@ it:
         age_mode:
           days: giorni
           years: anni
+        age_mode_decoy:
+          days: null
+          years: null
         house:
           house1: Ospedali medicina acuta
           house2: Casa natale
@@ -63,12 +77,6 @@ it:
           M: maschile
           U: sconosciuto
           W: femminile
-    hints:
-      webgrouper_patient_case:
-        date: Nel formato dd.mm.yyyy, ae 19.05.1988
-        disabled_age: Translation Missing
-        disabled_los: Translation Missing
-        pick_date: Translation Missing
     required:
-      mark: ''
+      mark: null
       text: required
