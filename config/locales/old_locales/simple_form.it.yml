@@ -4,11 +4,13 @@ it:
       webgrouper_patient_case:
         clear_form: Svuotare la maschera
         create: Raggruppare
+      batchgrouper:
+        create: Raggruppare
   simple_form:
     error_notification:
       default_message: 'Per favore ricontrolla i seguenti campi:'
     labels:
-      webgrouper_patient_case:
+      defaults:
         active_grouper: 'Grouper:'
         adm: 'Modo di ricovero:'
         adm_weight: 'Peso al ricovero:'
@@ -61,8 +63,12 @@ it:
           M: maschile
           U: sconosciuto
           W: femminile
+    hints:
+      webgrouper_patient_case:
+        date: Nel formato dd.mm.yyyy, ae 19.05.1988
+        disabled_age: Translation Missing
+        disabled_los: Translation Missing
+        pick_date: Translation Missing
     required:
       mark: ''
       text: required
-    tooltips:
-      date: Nel formato dd.mm.yyyy, ae 19.05.1988

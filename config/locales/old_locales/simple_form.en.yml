@@ -3,12 +3,14 @@ en:
     submit:
       webgrouper_patient_case:
         clear_form: Clear form
-        create: Group It
+        create: Group case
+      batchgrouper:
+        create: Group
   simple_form:
     error_notification:
       default_message: 'There were problems with the following fields:'
     labels:
-      webgrouper_patient_case:
+      defaults:
         active_grouper: 'Active Grouper:'
         adm: 'Admission mode:'
         adm_weight: 'Admission weight:'
@@ -66,5 +68,9 @@ en:
     required:
       mark: ''
       text: required
-    tooltips:
-      date: In format dd.mm.yyyy, eg 19.05.1988
+    hints:
+      webgrouper_patient_case:
+        date: 'In format dd.mm.yyyy, eg 19.05.1988'
+        disabled_age: 'To change this value, change or delete the birthday field'
+        disabled_los: 'To change this value, change or delete one of the relevant fields'
+        pick_date: Pick a date

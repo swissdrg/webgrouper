@@ -1,4 +1,8 @@
 de:
+  batchgrouper:
+    invalid_format: 'Invalides Format!'
+    loading_hint: 'Bitte warten sie, während die Datei hochgeladen und verarbeitet wird. Der Download des Ergebnis wird automatisch gestartet.'
+  to_online_definition_manual: 'Zum Eintrag im Online Definitionshandbuch'
   help:
     show_help: Hilfe anzeigen
     back: Zurück
@@ -64,17 +68,17 @@ de:
           VALID_DIAGNOSIS: Gültige Prozedur
           UNUSED: Nicht benutzt
         or-nor:
-          NONOR: Nicht operationale Prozedur
-          NONOR_CONFLICT: 
-          NONOR_CONFLICT_CHOP: 
-          NONOR_CONFLICT_CHOP_DATE: 
-          OR: Operationale Prozedur
-          OR_CONFLICT: 
-          OR_CONFLICT_CHOP_DATE: 
+          NONOR: NOR
+          NONOR_CONFLICT: NOR
+          NONOR_CONFLICT_CHOP: NOR
+          NONOR_CONFLICT_CHOP_DATE: NOR
+          OR: OR
+          OR_CONFLICT: OR
+          OR_CONFLICT_CHOP_DATE: OR
           SRG: Weder OR noch NOR Prozedur
-          SRG_CONFLICT: 
-          SRG_CONFLICT_CHOP: 
-          SRG_CONFLICT_CHOP_DATE:
+          SRG_CONFLICT: Weder OR noch NOR Prozedur
+          SRG_CONFLICT_CHOP: Weder OR noch NOR Prozedur
+          SRG_CONFLICT_CHOP_DATE: Weder OR noch NOR Prozedur
     settlement_hints: 
       legend: Hinweise für die Abrechnung
       no_additional_fees: Keine Zusatzentgelte
@@ -220,6 +224,7 @@ de:
       too_long: ist zu lang (nicht mehr als %{count} Zeichen)
       too_short: ist zu kurz (nicht weniger als %{count} Zeichen)
       wrong_length: hat die falsche Länge (muss genau %{count} Zeichen haben)
+      no_code: kein code eingegeben
     template:
       body: ! 'Bitte überprüfen Sie die folgenden Felder:'
       header:
