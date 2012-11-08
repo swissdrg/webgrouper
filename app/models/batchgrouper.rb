@@ -27,19 +27,17 @@ class Batchgrouper
   
   def group
     file.rewind
-    #f = Tempfile.open('groupings', File.join(Rails.root, 'tmp') )
     batchgrouper_exec = File.join(spec_folder, 'batchgrouper')
-    work_path = File.join(Rails.root, 'tmp', 'batchgroupings')
-    Dir.mkdir(work_path) unless File.directory?(work_path)
-    # uploaded_file = File.join(work_path, file.original_filename)
-    # Or use tempfile:
-    uploaded_file = Tempfile.open('groupings', work_path )
-    uploaded_file.chmod(0666)
-    uploaded_file.write(file.read)
-    uploaded_file.close
+    # Use a temp directory: 
+    work_path = Dir.mktmpdir(File.join("tmp", "batchgroupings", "Temp"))
+    uploaded_file = File.join(work_path, file.original_filename)
+    File.open(uploaded_file, "w") do |f| 
+      f.write(file.read)
+      f.chmod(0666) # this should not be necessary, since rails also spawns the batchgrouper executable
+    end
     output_file = File.join(work_path, file.original_filename + ".out")
     additional_argument = "-bh " if house == '2'
-    cmd = "#{batchgrouper_exec} #{additional_argument}'#{spec_path(self.system_id)}' '#{catalogue_path(self.system_id, self.house)}' '#{uploaded_file.path}' '#{output_file}'"
+    cmd = "#{batchgrouper_exec} #{additional_argument}'#{spec_path(self.system_id)}' '#{catalogue_path(self.system_id, self.house)}' '#{uploaded_file}' '#{output_file}'"
     proc_status = `#{cmd}`
     puts "#{cmd}, terminated with: #{proc_status}"
     output_file
