@@ -51,7 +51,7 @@ For cucumber:
 
 	bundle exec cucumber -c
 	
-Be aware, that jruby & the gemss must be installed/active for this.
+Be aware, that jruby & the gems must be installed/active for this.
 
 If you, for some reason, don't have the kernel on your machine, most of the cucumber tests will fail.
 You can still run some of them by entering:

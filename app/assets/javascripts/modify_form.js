@@ -2,6 +2,8 @@
  * Everything that modifies values in the form or the form itself 
  * belongs here. 
  * (Except the javascripts concerning the dynamic creation of fields for diagnoses and procedures.)
+ * 
+ * Some of these javascripts also use translations. See config/i18n-js.yml for how to access more translations.
  */
 
 /** Some bindings */
