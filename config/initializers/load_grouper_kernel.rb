@@ -10,10 +10,10 @@ else
   require 'lib/javawrapper/jna.jar'
 end
 
-include_class Java::org.swissdrg.grouper.PatientCase
-include_class Java::org.swissdrg.grouper.GrouperResult
-include_class Java::org.swissdrg.grouper.WeightingRelation
-include_class Java::org.swissdrg.grouper.EffectiveCostWeight
+java_import Java::org.swissdrg.grouper.PatientCase
+java_import Java::org.swissdrg.grouper.GrouperResult
+java_import Java::org.swissdrg.grouper.WeightingRelation
+java_import Java::org.swissdrg.grouper.EffectiveCostWeight
 
 # Load libraries according to system:
 # This is a bit complicated due to obscure naming convention.

@@ -1,10 +1,6 @@
 Given /^the form with initialized standard values$/ do
-  if Capybara.current_driver == :selenium
-    context = "/webgrouper"
-  else
-    context = ""
-  end
-  if Rails.env == "development"
+  context = ""
+  if Rails.env == "test"
     visit "http://localhost:8080" + context + "/de/webgrouper_patient_cases"
   else
     visit "http://77.95.120.68:8080" + context + "/de/webgrouper_patient_cases"

@@ -1,9 +1,5 @@
 Given /^the batchgrouper with initialized standard values$/ do
-  if Capybara.current_driver == :selenium
-    context = "/webgrouper"
-  else
-    context = ""
-  end
+  context = ""
   if Rails.env == "test"
     visit "http://localhost:8080"+ context + "/de/batchgrouper"
   else
