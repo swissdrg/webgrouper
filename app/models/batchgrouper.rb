@@ -29,7 +29,7 @@ class Batchgrouper
     file.rewind
     batchgrouper_exec = File.join(spec_folder, 'batchgrouper')
     # Use a temp directory: 
-    work_path = Dir.mktmpdir(File.join("tmp", "batchgroupings", "Temp"))
+    work_path = Dir.mktmpdir(File.join("/tmp", "batchgroupings", "Temp"))
     uploaded_file = File.join(work_path, file.original_filename)
     File.open(uploaded_file, "w") do |f| 
       f.write(file.read)
