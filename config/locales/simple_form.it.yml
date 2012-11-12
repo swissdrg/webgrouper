@@ -62,8 +62,8 @@ it:
           days: giorni
           years: anni
         age_mode_decoy:
-          days: null
-          years: null
+          days: giorni
+          years: anni
         house:
           house1: Ospedali medicina acuta
           house2: Casa natale

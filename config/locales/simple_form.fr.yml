@@ -29,7 +29,7 @@ fr:
         diagnoses: 'Diagnostics secondaires:'
         diagnoses_catalog: 'Catalogue des diagnostics:'
         entry_date: 'Date d''admission:'
-        exit_date: 'Date of discharge:'
+        exit_date: 'Date de sortie:'
         hmv: 'Temps de respiration artificielle:'
         house: 'Prestataire:'
         leave_days: 'Jours de congé:'
@@ -61,8 +61,8 @@ fr:
           days: Jours
           years: Ans
         age_mode_decoy:
-          days: null
-          years: null
+          days: Jours
+          years: Ans
         house:
           house1: Hôpital de soins aigus
           house2: Maison des naissances
