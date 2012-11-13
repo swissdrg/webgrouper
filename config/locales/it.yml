@@ -299,9 +299,9 @@ it:
           SRG_CONFLICT_CHOP_DATE: Né OR né NOR
         used:
           PROC_NOT_USED: 'No'
-          PROC_USED: Sì, senza condizioni logiche e temporali
-          USED_BOTH: Sì, per entrambi
-          USED_FOR_CONDITION: null
+          PROC_USED: Sì
+          USED_BOTH: Sì
+          USED_FOR_CONDITION: Sì
         valid:
           PROC_AGE_CONFLICT: Conflitto con l'età
           PROC_INVALID: Codice CHOP non valido

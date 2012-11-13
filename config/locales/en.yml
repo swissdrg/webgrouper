@@ -297,10 +297,10 @@ en:
           SRG_CONFLICT_CHOP: Neither OR nor NOR procedure
           SRG_CONFLICT_CHOP_DATE: Neither OR nor NOR procedure
         used:
-          PROC_NOT_USED: false
-          PROC_USED: Yes, without logical and temporary conditions
-          USED_BOTH: Yes, for both
-          USED_FOR_CONDITION: null
+          PROC_NOT_USED: 'No'
+          PROC_USED: Yes
+          USED_BOTH: Yes
+          USED_FOR_CONDITION: Yes
         valid:
           PROC_AGE_CONFLICT: Conflict with age
           PROC_INVALID: Invalid CHOP code

@@ -289,9 +289,9 @@ fr:
           SRG_CONFLICT_CHOP_DATE: Ni OU ni NOR
         used:
           PROC_NOT_USED: Non
-          PROC_USED: Oui, pour les deux
-          USED_BOTH: null
-          USED_FOR_CONDITION: null
+          PROC_USED: Oui
+          USED_BOTH: Oui
+          USED_FOR_CONDITION: Oui
         valid:
           PROC_AGE_CONFLICT: Conflit de sexe
           PROC_INVALID: Code CHOP invalide

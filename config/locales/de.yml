@@ -58,9 +58,9 @@ de:
       procedure_flag:
         used:
           PROC_NOT_USED: Nein
-          PROC_USED: Ja, ohne logische und temporäre Konditionen
-          USED_BOTH: Ja, für beide
-          USED_FOR_CONDITION:
+          PROC_USED: Ja
+          USED_BOTH: Ja
+          USED_FOR_CONDITION: Ja
         valid:
           PROC_VALID: Gültige Prozedur
           PROC_AGE_CONFLICT: Konflikt mit Alter
