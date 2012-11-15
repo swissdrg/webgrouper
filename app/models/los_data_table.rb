@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This class is used for creating a data chart containing all the
 # length of stay data computed through the grouper.
 # This uses a big deal of the google chart API
@@ -28,16 +29,20 @@ class LosDataTable < GoogleVisualr::DataTable
     many_days_cost_rate = base_cost_rate + surcharge_per_day*(many_days - high_trim_point)
    
     rows = []
+    # If it is a transferred case, we need to draw 2 lines. The actual los is
+    # then suppposed to be on the second line.
     if cost_weight.case_flag == EffectiveCostWeight::CaseType::TRANSFERRED
       transfer_flatrate = weighting_relation.transfer_flatrate.to_f/factor    
       one_day_transfer_rate = base_cost_rate - transfer_flatrate*(avg_duration-1)
       avg_transfer_rate = base_cost_rate
       rows.push [actual_los, nil, nil, nil, 
                  nil,
-                 effective_cost_weight, '***', I18n.t('result.length-of-stay.length-of-stay'), 
+                 effective_cost_weight, I18n.t('result.length-of-stay.length-of-stay-short'), 
+                 I18n.t('result.length-of-stay.length-of-stay'), 
                  make_tooltip('length-of-stay', actual_los, effective_cost_weight)]
     else
-      rows.push [actual_los, effective_cost_weight, '***', I18n.t('result.length-of-stay.length-of-stay'), 
+      rows.push [actual_los, effective_cost_weight, I18n.t('result.length-of-stay.length-of-stay-short'), 
+                 I18n.t('result.length-of-stay.length-of-stay'), 
                  make_tooltip('length-of-stay', actual_los, effective_cost_weight) , 
                  nil, nil, nil, 
                  nil]
@@ -47,15 +52,15 @@ class LosDataTable < GoogleVisualr::DataTable
         nil, 
         one_day_transfer_rate, nil, nil, 
         nil],
-    [low_trim_point, base_cost_rate, 'lo', I18n.t('result.length-of-stay.low_trim_point'),
+    [low_trim_point, base_cost_rate, nil , I18n.t('result.length-of-stay.low_trim_point'),
         make_tooltip('low_trim_point', low_trim_point, base_cost_rate), 
         nil, nil, nil, 
         nil],
-    [avg_duration, base_cost_rate, 'avg',I18n.t('result.length-of-stay.average_los'),
+    [avg_duration, base_cost_rate, 'Ø',I18n.t('result.length-of-stay.average_los'),
         make_tooltip('average_los', avg_duration, base_cost_rate), 
         avg_transfer_rate, 'avg', I18n.t('result.length-of-stay.average_los'),
         make_tooltip('average_los', avg_duration, base_cost_rate)],
-    [high_trim_point, base_cost_rate, 'hi', I18n.t('result.length-of-stay.high_trim_point'),
+    [high_trim_point, base_cost_rate, nil , I18n.t('result.length-of-stay.high_trim_point'),
         make_tooltip('high_trim_point', high_trim_point, base_cost_rate), 
         nil, nil, nil, 
         nil],

@@ -269,6 +269,7 @@ fr:
       high_trim_point: Borne supérieure de la durée de séjour
       legend: Durée du séjour
       length-of-stay: Durée de séjour
+      length-of-stay-short: DS
       low_trim_point: Borne inférieure de la durée de séjour
     los_chart: Diagramme pour
     procedures:

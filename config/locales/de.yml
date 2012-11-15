@@ -89,6 +89,7 @@ de:
     length-of-stay:
       legend: Verweildauer
       length-of-stay: Aktuelle Verweildauer
+      length-of-stay-short: VWD
       average_los: Mittlere Verweildauer
       first-day-with-discount: 1. Tag mit Abschlag
       first-day-with-surcharge: 1. Tag mit Zuschlag

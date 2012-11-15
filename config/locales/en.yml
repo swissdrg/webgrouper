@@ -278,6 +278,7 @@ en:
       high_trim_point: High trim point
       legend: Length of stay
       length-of-stay: Length of stay
+      length-of-stay-short: LOS
       low_trim_point: Low trim point
     los_chart: Chart for
     procedures:

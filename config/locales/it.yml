@@ -279,6 +279,7 @@ it:
       high_trim_point: Limite superiore della durata di degenza
       legend: Durata del soggiorno
       length-of-stay: Degenza attuale
+      length-of-stay-short: DS
       low_trim_point: Limite inferiore della durata di degenza
     los_chart: Diagrammo per
     procedures:
