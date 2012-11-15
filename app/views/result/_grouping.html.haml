@@ -7,7 +7,8 @@
           MDC
         %td
           = link_to_online_definition_manual(@result.mdc, :mdcs, @webgrouper_patient_case.system_id)
-        %td    
+        %td
+          = Mdc.get_description_for(@webgrouper_patient_case.system_id, @result.mdc)
       %tr
         %th
           DRG
