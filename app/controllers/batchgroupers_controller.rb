@@ -16,7 +16,7 @@ class BatchgroupersController < ApplicationController
     @batchgrouper = Batchgrouper.new(params[:batchgrouper])
     if params[:batchgrouper][:file]
       begin
-        @batchgrouper.preprocess_file
+        # @batchgrouper.preprocess_file
         BatchgrouperQuery.create(:ip => request.remote_ip, 
                       :filename => @batchgrouper.file.original_filename,
                       :first_line => @batchgrouper.first_line, 
@@ -24,8 +24,8 @@ class BatchgroupersController < ApplicationController
                       :time => Time.now,
                       :client => request.env['HTTP_USER_AGENT'])
         send_file @batchgrouper.group 
-      rescue ActionController::MissingFile => e
-        @error = "Could not parse file. Only use text files in the swissdrg format, not eg .doc"
+      rescue *[ActionController::MissingFile, Encoding::UndefinedConversionError] => e
+        @error = "Could not parse file. Only use text files in the swissdrg format, not eg .doc or .xls"
         render 'index'
       end
     else
