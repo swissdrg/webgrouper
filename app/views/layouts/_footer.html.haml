@@ -1,3 +1,8 @@
 #about
-  = mail_to "webgrouper@swissdrg.com", "Contact", :encode => "javascript", :body => "\n\n ---------------------------------------------- \n" + "Please insert your inquery above this line \n" + request.url
+  - body =  "\n\n ---------------------------------------------- \n" + "Please insert your inquery above this line \n" 
+  - if @webgrouper_patient_case
+    - body += @webgrouper_patient_case.to_s
+  - else
+    - body += request.url
+  = mail_to "webgrouper@swissdrg.com", "Contact", :encode => "javascript", :body => body
   = link_to "About", "about"
