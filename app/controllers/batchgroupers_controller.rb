@@ -16,10 +16,10 @@ class BatchgroupersController < ApplicationController
     @batchgrouper = Batchgrouper.new(params[:batchgrouper])
     if params[:batchgrouper][:file]
       begin
-        # @batchgrouper.preprocess_file
+        @batchgrouper.preprocess_file
         BatchgrouperQuery.create(:ip => request.remote_ip, 
                       :filename => @batchgrouper.file.original_filename,
-                      :first_line => @batchgrouper.first_line, 
+                      :second_line => @batchgrouper.second_line, 
                       :line_count => @batchgrouper.line_count,
                       :time => Time.now,
                       :client => request.env['HTTP_USER_AGENT'])

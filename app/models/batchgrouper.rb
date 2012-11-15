@@ -3,7 +3,7 @@ class Batchgrouper
   include ActiveModel::Conversion
   extend ActiveModel::Naming
   
-  attr_accessor :file, :system_id, :single_group, :house, :first_line, :line_count
+  attr_accessor :file, :system_id, :single_group, :house, :second_line, :line_count
   
   def initialize(attributes = {})
     self.system_id = DEFAULT_SYSTEM
@@ -16,9 +16,20 @@ class Batchgrouper
   end
   
   def preprocess_file
+    encoding_options = {
+      :invalid           => :replace,  # Replace invalid byte sequences
+      :undef             => :replace,  # Replace anything not defined in ASCII
+      :replace           => '',        # Use a blank for those replacements
+      :universal_newline => true       # Always break lines with \n
+    }
     lines_of_file = file.read.split("\n")
-    self.first_line = lines_of_file[0]
     self.line_count = lines_of_file.size
+    # assuming the first line is a header line, save the second line of the querry.
+    if self.line_count > 1
+      self.second_line = lines_of_file[1].encode Encoding.find('ASCII'), encoding_options
+    else 
+      self.second_line = lines_of_file[0].encode Encoding.find('ASCII'), encoding_options
+    end
   end
   
   def persisted?
