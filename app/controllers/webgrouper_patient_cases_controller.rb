@@ -18,7 +18,7 @@ class WebgrouperPatientCasesController < ApplicationController
   def create_query
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
     @webgrouper_patient_case.manual_submission = !params[:commit].nil?
-    Query.create(params[:webgrouper_patient_case].merge({:valid => @webgrouper_patient_case.valid?, :time => Time.now}))
+    @webgrouper_patient_case.id = Query.create(params[:webgrouper_patient_case].merge({:valid => @webgrouper_patient_case.valid?, :time => Time.now})).id.to_s
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
     else
