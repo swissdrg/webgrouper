@@ -95,7 +95,11 @@ class WebgrouperPatientCase < PatientCase
   end
   
   def to_s
-    self.id + super.to_s
+    if self.id
+      self.id + super.to_s
+    else 
+      'empty' + super.to_s
+    end
   end
   
   private

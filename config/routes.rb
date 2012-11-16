@@ -6,6 +6,7 @@ Webgrouper::Application.routes.draw do
       get :autocomplete_Chop_code, :on => :collection
     end
     post 'create_query'  => 'webgrouper_patient_cases#create_query'
+    get 'create_query'  => 'webgrouper_patient_cases#create_query'
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
     get 'about' => 'static_pages#about'
