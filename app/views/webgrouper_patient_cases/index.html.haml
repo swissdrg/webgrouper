@@ -1,6 +1,6 @@
 = render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case 
 
-= simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :get do |f|
+= simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :post do |f|
   = render "shared/system", :f => f, :system_id => @webgrouper_patient_case.system_id, :house => @webgrouper_patient_case.house
   .on-row
     %fieldset#stay.left
