@@ -7,9 +7,9 @@
  */
 
 /** Some bindings */
-$(document).on("change focus", "#webgrouper_patient_case_birth_date", computeAge);
-$(document).on("change focus", ".calc_los", computeLos);
-$(document).on("change", '#webgrouper_patient_case_age_mode_decoy', set_age_mode);
+$(document).on("change focus blur", "#webgrouper_patient_case_birth_date", computeAge);
+$(document).on("change focus blur", ".calc_los", computeLos);
+$(document).on("change focus blur", '#webgrouper_patient_case_age_mode_decoy', set_age_mode);
 
 /**
  * Lets the id "admWeight" disappear according to the
