@@ -42,6 +42,10 @@ When /^I select "([^"]*)" as sex$/ do |sex|
   step %{I select in "webgrouper_patient_case_sex" "#{sexString}"}
 end
 
+When /^I select birthhouse as care taker$/ do
+  step %{I select in "webgrouper_patient_case_house" "Geburtshaus"}
+end
+
 # General:
 
 When /^(?:|I )select in "([^"]*)" "([^"]*)"$/ do |field, value|
