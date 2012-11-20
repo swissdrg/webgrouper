@@ -31,7 +31,7 @@ class WebgrouperPatientCasesController < ApplicationController
 		get_supplements(patient_case)
 		GROUPER.load(spec_path(patient_case.system_id))
 		@result = GROUPER.group(patient_case)
-		@weighting_relation = WebgrouperWeightingRelation.new(Drg.find_by_code(patient_case.system_id, @result.drg))
+		@weighting_relation = WebgrouperWeightingRelation.new(@result.drg, patient_case.house, patient_case.system_id)
 		@factor = @weighting_relation.factor
 		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)		
 		@los_chart = LosDataTable.new(patient_case.los, @cost_weight,
