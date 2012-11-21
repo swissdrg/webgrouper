@@ -10,6 +10,10 @@ class Mdc
   index :text => 1, :version => 1
   
   def self.get_description_for(system_id, search_code)
-    in_system(system_id).where(:code => search_code).first.text
+    begin
+      in_system(system_id).where(:code => search_code).first.text
+    rescue NoMethodError
+      ""
+    end
   end
 end
