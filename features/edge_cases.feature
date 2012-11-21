@@ -28,11 +28,11 @@ Feature: The edge cases should be handled correctly
 	  
 	
   # groupertest.java L 74
-  # Could not reproduce desired results in original grouper
-  @javascript @fails
+  @javascript
   Scenario: parse case pdx F03Z, should be inlier
 	  Given the form with initialized standard values
-	  When I parse "44364;55;;;W;01;01;15;;;I080;;;;E039;;I10;;I48;;I270;;I501;;F171;;E669;;E785;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3964;3961;9671;9390;8872;3995;3962;3512;3734;3533;3963;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
+	  When I select "Katalogversion 0.3 2008/2011" as system
+	  And I parse "44364;55;;;W;01;01;15;;;I080;;;;E039;;I10;;I48;;I270;;I501;;F171;;E669;;E785;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3964;3961;9671;9390;8872;3995;3962;3512;3734;3533;3963;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
 	  Then I should see "F03Z" in "grouping"
 	  And I should see "Normallieger" in "length-of-stay"
 
@@ -51,7 +51,7 @@ Feature: The edge cases should be handled correctly
 # 9359 is an invalid procedure, so removed it
 # & sanitized some diag codes
 # had to change expectations due to this
-  @javascript @fails
+  @javascript
   Scenario: parse with different dates
     Given the form with initialized standard values
     When I parse "53567;68;;;W;01;01;5;;;S068;;;;S4220;;S4240;;S066;;S065;;S501;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -72,7 +72,7 @@ Feature: The edge cases should be handled correctly
     Then I should see "B78C" in "grouping"
     
   # groupertest.java L 125
-  @javascript @fails
+  @javascript
   Scenario: parse with different systems
 	Given the form with initialized standard values
 	When I select "Planungsversion 0.3 2009/2011" as system
@@ -87,7 +87,7 @@ Feature: The edge cases should be handled correctly
    
 # TESTS FOR DATE EXCEPTIONS/LEAP YEARS
 # calcCostWeightTest.java L10
-  @javascript @fails
+  @javascript
   Scenario: calculate length of stay for normal year
     Given the form with initialized standard values
     When I parse "53567;10;;;U;01;01;50;0;0;B58.1;C83.7;E24.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
