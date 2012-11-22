@@ -4,12 +4,12 @@
     %tbody
       %tr
         %th
-          = t("result.length-of-stay.length-of-stay") + " (***)"
+          = t("result.length-of-stay.length-of-stay") + " (#{I18n.t('result.length-of-stay.length-of-stay-short')})"
         %td
           = @webgrouper_patient_case.los
       %tr
         %th
-          = t("result.length-of-stay.average_los") + " (avg)"
+          = t("result.length-of-stay.average_los") + " (Ø)"
         %td
           = @weighting_relation.avg_duration.to_f/@factor
       %tr
@@ -24,12 +24,12 @@
           = @weighting_relation.first_day_surcharge
       %tr
         %th
-          = t("result.length-of-stay.low_trim_point") + " (lo)"
+          = t("result.length-of-stay.low_trim_point")
         %td
           = @weighting_relation.first_day_discount + 1
       %tr
         %th
-          = t("result.length-of-stay.high_trim_point") + " (hi)"
+          = t("result.length-of-stay.high_trim_point")
         %td
           = @weighting_relation.first_day_surcharge - 1
       %tr.highlight
