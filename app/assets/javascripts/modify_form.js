@@ -121,5 +121,7 @@ function parseDate(str) {
 }
 
 function daydiff(first, second, leave_days) {
-		return Math.floor(((second-first)/(1000*60*60*24))-leave_days)
+		var diffMiliSec = second-first;
+		diffMiliSec+=2*1000*60*60 // plus to hours to account for Summer/Wintertime
+		return Math.floor((diffMiliSec/(1000*60*60*24))-leave_days)
 }
