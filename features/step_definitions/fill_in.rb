@@ -133,8 +133,6 @@ When /^I enter some random \(valid!\) data$/ do
   step %{I enter "B36.1" as diagnosis}
 end
 
-
-
 When /^I submit the form$/ do
   step %{I press on "Fall Gruppieren"}
 end

@@ -34,4 +34,9 @@ end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
+  id = "#" + find_field(field)[:id]
+  #needed for selenium driver to execute change event:
+  if find_field(field)[:class].include?("calc_los")
+    page.execute_script("$('#{id}').trigger('change');")
+  end
 end
