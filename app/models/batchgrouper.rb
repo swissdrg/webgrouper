@@ -63,7 +63,7 @@ class Batchgrouper
     pc = PatientCase.parse(line)
     pc.set_birth_house(2 == house)
     grouper_result = GROUPER.group(pc)
-    weighting_relation = WebgrouperWeightingRelation.new(Drg.find_by_code(system_id, grouper_result.drg))
+    weighting_relation = WebgrouperWeightingRelation.new(grouper_result.drg, house, system_id)
     ecw = GROUPER.calculateEffectiveCostWeight(pc, weighting_relation)
     return [pc.id, grouper_result.drg, grouper_result.mdc, 
                   flag_to_int(grouper_result.age_flag),
