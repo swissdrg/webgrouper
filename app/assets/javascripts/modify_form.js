@@ -17,7 +17,7 @@ $(document).on("change focus blur", '#webgrouper_patient_case_age_mode_decoy', s
  * @param fade_time the time used to fade it in/out
  */
 function admWeightControl(fade_time) {
-	if ($('[id$="age_mode_decoy"]').val() == "days") {
+	if ($("#webgrouper_patient_case_age_mode_decoy").val() == "days") {
 		$("#admWeight").show(fade_time);
 	}
 	else {
@@ -26,7 +26,7 @@ function admWeightControl(fade_time) {
 }
 
 function set_age_mode() {
-	var decoy_age_mode = $('#webgrouper_patient_case_age_mode_decoy').val();	  	
+	var decoy_age_mode = $('#webgrouper_patient_case_age_mode_decoy').val();
 	$('#webgrouper_patient_case_age_mode').val(decoy_age_mode);
 }
 
@@ -44,7 +44,8 @@ function computeLos() {
 		disableLosInput(true);
 	} else {
 		disableLosInput(false);
-	}	
+	}
+	computeAge();
 }
 
 
@@ -55,7 +56,10 @@ function computeAge() {
 		return;
 	}
 	var bd = parseDate($('#webgrouper_patient_case_birth_date').val());
-	var today = new Date();
+	var today = parseDate($('#webgrouper_patient_case_entry_date').val());
+	if (today == null || today == 'Invalid Date')
+		today = new Date();
+	
 	var year_diff = Math.floor(Math.ceil(today - bd) / (1000 * 60 * 60 * 24 * 365));
 	if (!(isNaN(year_diff)) && bd < today) {
 		if (year_diff >= 1) {
@@ -114,10 +118,7 @@ function disableAgeInput(doDisable) {
 	}
 }
 function parseDate(str) {
-	if (str == null)
-		return
-    var mdy = str.split('.')
-    return new Date(mdy[2], mdy[1]-1, mdy[0]-1);
+	return $.datepicker.parseDate("dd.mm.yy", str)
 }
 
 function daydiff(first, second, leave_days) {
