@@ -61,7 +61,7 @@ class Batchgrouper
     line = line.strip
     return nil if line.blank? # allows blank lines
     pc = PatientCase.parse(line)
-    pc.set_birth_house(2 == house)
+    pc.set_birth_house("2" == house)
     grouper_result = GROUPER.group(pc)
     weighting_relation = WebgrouperWeightingRelation.new(grouper_result.drg, house, system_id)
     ecw = GROUPER.calculateEffectiveCostWeight(pc, weighting_relation)

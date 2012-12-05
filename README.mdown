@@ -91,3 +91,11 @@ without use of the torquebox_remote_deploy gem.
 The connection to te ruby-gem site can not made with https, you need to change the address in the gemfile to http://...
 It also has to be said that the current configuration doesn't add the folder /lib/grouper_specs automatically. It has to be
 copied manually into the archive after staging.
+
+## Adding a new system
+
+Just add a new entry in the Systems table. You can either do this by hand or use the mongo-migration project 
+found in the closed repositories of SwissDRG. This migrates all data from the internal PostgreSQL database to the mongodb 
+used by the webgrouper. Systems can be set in the corresponding .csv file found in the project.
+
+In case you want to add a new Kernel, you need to change the initializer found in `config/initializers/load_grouper_kernel.rb`.
