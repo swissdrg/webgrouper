@@ -56,12 +56,11 @@ function computeAge() {
 		return;
 	}
 	var bd = parseDate($('#webgrouper_patient_case_birth_date').val());
-	var today = parseDate($('#webgrouper_patient_case_entry_date').val());
-	if (today == null || today == 'Invalid Date')
-		today = new Date();
 	
-	var year_diff = Math.floor(Math.ceil(today - bd) / (1000 * 60 * 60 * 24 * 365));
-	if (!(isNaN(year_diff)) && bd < today) {
+	var entry_date = parseDate($('#webgrouper_patient_case_entry_date').val());
+	
+	var year_diff = Math.floor(Math.ceil(entry_date - bd) / (1000 * 60 * 60 * 24 * 365));
+	if (!isNaN(year_diff)) {
 		if (year_diff >= 1) {
 			$('#webgrouper_patient_case_age_mode_decoy').val("years");
 			set_age_mode();
@@ -70,7 +69,7 @@ function computeAge() {
 		else {
 			$('#webgrouper_patient_case_age_mode_decoy').val("days");
 			set_age_mode();
-			$('#webgrouper_patient_case_age').val(daydiff(bd, today, 0));
+			$('#webgrouper_patient_case_age').val(daydiff(bd, entry_date, 0));
 		}
 		disableAgeInput(true);
 		admWeightControl(500);
@@ -122,7 +121,9 @@ function parseDate(str) {
 }
 
 function daydiff(first, second, leave_days) {
-		var diffMiliSec = second-first;
-		diffMiliSec+=2*1000*60*60 // plus to hours to account for Summer/Wintertime
-		return Math.floor((diffMiliSec/(1000*60*60*24))-leave_days)
+	if (first == null || second == null)
+		return NaN
+	var diffMiliSec = second-first;
+	diffMiliSec+=2*1000*60*60 // plus to hours to account for Summer/Wintertime
+	return Math.floor((diffMiliSec/(1000*60*60*24))-leave_days)
 }
