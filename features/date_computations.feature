@@ -49,3 +49,23 @@ Feature: Arbitrary dates entered in admission date/date of discharge/leave days 
     Then I should see "-1" as age
     And I should see "Geburtstag: muss am gleichen Datum oder vor" as error
 
+@javascript
+  Scenario: Only Birth date without entry date should leave age blank, throw error when grouping
+    Given the form with initialized standard values
+    And I fill in "webgrouper_patient_case_birth_date" with "27.03.2010"
+    And I enter "A000" as diagnosis
+    Then I should see "" as age
+    And I submit the form
+    Then I should see "" as age
+    And I should see "Alter: muss größer als 0 sein" as error
+    
+@javascript
+  Scenario: First entering birth date should have same result as entering entry date first
+    Given the form with initialized standard values
+    And I fill in "webgrouper_patient_case_birth_date" with "22.03.2010"
+    When I fill in "webgrouper_patient_case_entry_date" with "26.03.2010"
+    And I fill in "webgrouper_patient_case_exit_date" with "26.03.2011"
+    And I enter "A000" as diagnosis
+    And I submit the form
+    Then the grouping should succeed
+    And I should see "4" as age

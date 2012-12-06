@@ -12,7 +12,6 @@ Feature: The system should be changable in the form
   	And I submit the form
   	Then I should see "2.111" in "cost-weight"
   	
- 	@wip
   Scenario: Start with System 9 and change to System 12
   	Given the form with initialized standard values
   	When I select "Abrechnungsversion 1.0 2012/2012" as system
