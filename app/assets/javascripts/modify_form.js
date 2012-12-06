@@ -49,7 +49,6 @@ function computeLos() {
 }
 
 
-
 function computeAge() {
 	if ($('#webgrouper_patient_case_birth_date').val() == "") {
 		disableAgeInput(false);
@@ -59,17 +58,20 @@ function computeAge() {
 	
 	var entry_date = parseDate($('#webgrouper_patient_case_entry_date').val());
 	
-	var year_diff = Math.floor(Math.ceil(entry_date - bd) / (1000 * 60 * 60 * 24 * 365));
-	if (entry_date != null && bd != null) {
+	var year_diff = Math.floor(daydiff(bd, entry_date, 0)/365);
+	if (bd != null) {
 		if (year_diff >= 1) {
 			$('#webgrouper_patient_case_age_mode_decoy').val("years");
 			set_age_mode();
 			$('#webgrouper_patient_case_age').val(year_diff);
 		}
-		else {
+		else if (year_diff < 1) {
 			$('#webgrouper_patient_case_age_mode_decoy').val("days");
 			set_age_mode();
 			$('#webgrouper_patient_case_age').val(daydiff(bd, entry_date, 0));
+		} else {
+			//in case of NaN, fill with nothing
+			$('#webgrouper_patient_case_age').val("");
 		}
 		disableAgeInput(true);
 		admWeightControl(500);
