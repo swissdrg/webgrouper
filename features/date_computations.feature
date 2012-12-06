@@ -26,3 +26,26 @@ Feature: Arbitrary dates entered in admission date/date of discharge/leave days 
     And I enter "A000" as diagnosis
     And I submit the form
     Then I should see "365" in "length-of-stay"
+    
+@javascript
+  Scenario: Age in days should depend on birth date and entry date
+    Given the form with initialized standard values
+    When I fill in "webgrouper_patient_case_entry_date" with "26.03.2010"
+    And I fill in "webgrouper_patient_case_exit_date" with "26.03.2011"
+    And I fill in "webgrouper_patient_case_birth_date" with "22.03.2010"
+    And I enter "A000" as diagnosis
+    And I submit the form
+    Then the grouping should succeed
+    And I should see "4" as age
+    
+@javascript
+  Scenario: Entry date before birth date should be an error
+    Given the form with initialized standard values
+    When I fill in "webgrouper_patient_case_entry_date" with "26.03.2010"
+    And I fill in "webgrouper_patient_case_exit_date" with "26.03.2011"
+    And I fill in "webgrouper_patient_case_birth_date" with "27.03.2010"
+    And I enter "A000" as diagnosis
+    And I submit the form
+    Then I should see "-1" as age
+    And I should see "Geburtstag: muss am gleichen Datum oder vor" as error
+

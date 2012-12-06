@@ -8,11 +8,11 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
 end
 
 Then /^(?:|I )should see "([^"]*)" in "([^"]*)"$/ do |text, field|
-  find(:css, 'fieldset#' + field). should have_content(text)
+  find(:css, 'fieldset#' + field).should have_content(text)
 end
 
 Then /^(?:|I )should see "([^"]*)" in result$/ do |text|
-  find(:css, 'fieldset#grouping').should have_content?(text)
+  find(:css, 'fieldset#grouping').should have_content(text)
 end
 
 Then /^I should see (\d+) diagnoses fields$/ do |field_count|
@@ -37,6 +37,14 @@ end
 
 Then /^the grouping should succeed$/ do
   page.should_not have_css('.errorflash')
+end
+
+Then /^I should see "([^"]*)" as error$/ do |text|
+  find(:css, '.errorflash').should have_content(text)
+end
+
+Then /^I should see "(.*?)" as age$/ do |text|
+  find_field("webgrouper_patient_case_age").value.should == text
 end
 
 Then /^the form should stay the same$/ do
