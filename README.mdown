@@ -98,4 +98,6 @@ Just add a new entry in the Systems table. You can either do this by hand or use
 found in the closed repositories of SwissDRG. This migrates all data from the internal PostgreSQL database to the mongodb 
 used by the webgrouper. Systems can be set in the corresponding .csv file found in the project.
 
+All files needed for this version (specs, catalgue...) have to be coppied to the specs folder, into a subfolder named after the system_id.
+
 In case you want to add a new Kernel, you need to change the initializer found in `config/initializers/load_grouper_kernel.rb`.

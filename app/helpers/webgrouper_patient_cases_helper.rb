@@ -22,11 +22,11 @@ module WebgrouperPatientCasesHelper
   # valid types are: drgs, mdcs, adrgs, tables, icd_codes, chop_codes, functions
   # (given as strings)
   def link_to_online_definition_manual(code, type, system_id)
-    #right now, only Abrechnungsversion 1.0 is supported by medcode
-    if system_id != 9
+    manual_url = System.where(:system_id => system_id).first.manual_url
+    if manual_url
+      return link_to code, manual_url + type.to_s + "/name?code=" + code + "&locale=" + I18n.locale.to_s, :title => t('to_online_definition_manual')
+    else
       return code
     end
-    system_url = "http://apps.swissdrg.org/manual10/"
-    return link_to code, system_url + type.to_s + "/name?code=" + code + "&locale=" + I18n.locale.to_s, :title => t('to_online_definition_manual')
   end
 end

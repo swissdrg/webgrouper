@@ -21,6 +21,7 @@
   .small_field
     = f.label :diagnoses_catalog
     = text_field_tag :diagnoses_catalog, current_system.icd_version, :disabled => true
-  - if system_id == 9
+  - manual_url = System.where(:system_id => system_id).first.manual_url
+  - if manual_url
     = f.label "  "
-    = link_to t("online_definition_manual_for") + " #{current_system.description}", "http://apps.swissdrg.org/manual10", :class => "button"
+    = link_to t("online_definition_manual_for") + " #{current_system.description}", manual_url, :class => "button"

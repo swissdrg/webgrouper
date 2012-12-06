@@ -33,7 +33,7 @@ else
   file_extension = '.so.2.0.2'
 end
 
-DEFAULT_SYSTEM = 9
+DEFAULT_SYSTEM = 13
 
 # The real grouper:
 spec_path = spec_path(DEFAULT_SYSTEM)
