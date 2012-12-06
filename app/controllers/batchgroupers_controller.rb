@@ -29,7 +29,11 @@ class BatchgroupersController < ApplicationController
         render 'index'
       end
     else
-      @single_group_result = @batchgrouper.group_line(@batchgrouper.single_group) rescue t('batchgrouper.invalid_format')
+      begin
+        @single_group_result = @batchgrouper.group_line(@batchgrouper.single_group)
+      rescue Java::JavaLang::IllegalArgumentException => e
+        @single_group_result = t('batchgrouper.invalid_format') + " #{e}"
+      end
       render 'index'
     end
   end
