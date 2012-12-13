@@ -36,11 +36,7 @@ function computeLos() {
 	var leave_days = $('#webgrouper_patient_case_leave_days').val()
 	var diff = daydiff(first, second, leave_days);
 	if (!(isNaN(diff))){
-		if (diff == 0) {
-			$('#webgrouper_patient_case_los').val(1);
-		} else {
-			$('#webgrouper_patient_case_los').val(diff);
-		}
+		$('#webgrouper_patient_case_los').val(diff);
 		disableLosInput(true);
 	} else {
 		disableLosInput(false);
@@ -127,5 +123,11 @@ function daydiff(first, second, leave_days) {
 		return Number.NaN
 	var diffMiliSec = second-first;
 	diffMiliSec+=2*1000*60*60 // plus to hours to account for Summer/Wintertime
-	return Math.floor((diffMiliSec/(1000*60*60*24))-leave_days)
+	diffDays = Math.floor((diffMiliSec/(1000*60*60*24))-leave_days)
+	if (diffDays == 0) {
+		return 1
+	}
+	else {
+		return diffDays
+		}
 }
