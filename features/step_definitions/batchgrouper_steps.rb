@@ -5,7 +5,7 @@ Given /^the batchgrouper with initialized standard values$/ do
   else
     visit "http://77.95.120.68:8080" + context + "/de/batchgrouper"
   end
-  step %{I select in "webgrouper_patient_case_system_id" "Abrechnungsversion 1.0 2012/2012"}
+  step %{I select in "batchgrouper_system_id" "Abrechnungsversion 1.0 2012/2012"}
 end
 
 When /^I attach a file called "(.*?)"$/ do |arg1|

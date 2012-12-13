@@ -1,7 +1,20 @@
-Feature: Transfer should be handled correctly
-  A normal user
-  Should group without any conflicts and validation errors, when entering a valid case, even with transfer
+Feature: Any transfer case should be handled correctly
+  Any user
   
+  @wip
+  Scenario: Float precision shouldn't make troubles anymore
+  	Given the form with initialized standard values
+  	When I enter "I26.9" as diagnosis
+  	And I enter "1" as los
+  	And I submit the form
+  	Then I should see "3" in "cost-weight"
+  	And I should see "0.305" in "cost-weight"
+  	When I enter Transfered (los more than 24 hours) as admission mode
+  	And I submit the form
+  	Then I should see "Verlegungsabschlagspflichtig" in "length-of-stay"
+  	And I should see "0.2015" in "cost-weight"
+  	And I should see "10.5" in "cost-weight"
+  	
   Scenario: Strahlenzystis mit los 3 und Transfer
     Given the form with initialized standard values
 
