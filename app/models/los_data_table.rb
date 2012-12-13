@@ -58,7 +58,7 @@ class LosDataTable < GoogleVisualr::DataTable
         nil],
     [avg_duration, base_cost_rate, 'Ø',I18n.t('result.length-of-stay.average_los'),
         make_tooltip('average_los', avg_duration, base_cost_rate), 
-        avg_transfer_rate, 'avg', I18n.t('result.length-of-stay.average_los'),
+        avg_transfer_rate, 'Ø', I18n.t('result.length-of-stay.average_los'),
         make_tooltip('average_los', avg_duration, base_cost_rate)],
     [high_trim_point, base_cost_rate, nil , I18n.t('result.length-of-stay.high_trim_point'),
         make_tooltip('high_trim_point', high_trim_point, base_cost_rate), 

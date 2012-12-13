@@ -22,9 +22,18 @@
           = t "result.cost-weight.discount-rate-per-day"
         %td
           = @weighting_relation.discount_per_day.to_f/@factor
+      - if @cost_weight.case_flag == EffectiveCostWeight::CaseType::TRANSFERRED
+        %tr
+          %th
+            = t "result.cost-weight.transfer-flatrate"
+          %td
+            = @weighting_relation.transfer_flatrate.to_f/@factor
       %tr
         - surcharge_days = @webgrouper_patient_case.los - @weighting_relation.first_day_surcharge + 1
-        - discount_days = @weighting_relation.first_day_discount - @webgrouper_patient_case.los + 1
+        - if @cost_weight.case_flag == EffectiveCostWeight::CaseType::TRANSFERRED
+          - discount_days = @weighting_relation.avg_duration.to_f/@factor - @webgrouper_patient_case.los
+        - else
+          - discount_days = @weighting_relation.first_day_discount - @webgrouper_patient_case.los + 1
         - if surcharge_days > 0
           %th
             = t "result.cost-weight.number_of_days_for_surcharge"
