@@ -11,7 +11,6 @@ class Drg
   field :first_day_surcharge, type: Integer
   field :surcharge_per_day, type: Float
   field :transfer_flatrate, type: Float
-  field :transfer_flag, type: Boolean
   field :exception_from_reuptake, type: Boolean
   field :version, type: String
   
@@ -35,6 +34,10 @@ class Drg
     Rails.cache.fetch("drg:" + system_id.to_s + ':' + search_code) do
       in_system(system_id).where(code: search_code).first
     end
+  end
+  
+  def transfer_flag()
+    transfer_flatrate == 0
   end
   
   index :code => 1, :version => 1

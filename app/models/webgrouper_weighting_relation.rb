@@ -16,16 +16,21 @@ class WebgrouperWeightingRelation < WeightingRelation
 		if (house == "2" and drg.nil?) 
   		drg = Drg.find_by_code(system_id, drg_code)
     else
-      self.setCostWeight(drg.cost_weight*@factor)
-      self.setSurchargePerDay(drg.surcharge_per_day*@factor)
-      self.setDiscountPerDay(drg.discount_per_day*@factor)
-      self.setTransferFlatrate(drg.transfer_flatrate*@factor)
-      self.setUseTransferFlatrate(drg.transfer_flag)
+      self.setCostWeight(prepare_for_grouper(drg.cost_weight))
+      self.setSurchargePerDay(prepare_for_grouper(drg.surcharge_per_day))
+      self.setDiscountPerDay(prepare_for_grouper(drg.discount_per_day))
+      self.setTransferFlatrate(prepare_for_grouper(drg.transfer_flatrate))
+      #self.setUseTransferFlatrate(drg.transfer_flag)
     end
     # These values needs to be set in all cases
     self.setDrg(drg.code)
+    #probably needs rounding?
     self.setAvgDuration(drg.avg_duration*@factor)
     self.setFirstDayDiscount(drg.first_day_discount)
     self.setFirstDaySurcharge(drg.first_day_surcharge)
+	end
+	
+	def prepare_for_grouper(number)
+	  (number*@factor).round
 	end
 end
