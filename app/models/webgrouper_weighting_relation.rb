@@ -20,12 +20,13 @@ class WebgrouperWeightingRelation < WeightingRelation
       self.setSurchargePerDay(prepare_for_grouper(drg.surcharge_per_day))
       self.setDiscountPerDay(prepare_for_grouper(drg.discount_per_day))
       self.setTransferFlatrate(prepare_for_grouper(drg.transfer_flatrate))
-      #self.setUseTransferFlatrate(drg.transfer_flag)
+      
+      #This doesn't make sense bc it needs to be set to the inverse of what makes sense.
+      self.setUseTransferFlatrate(drg.transfer_flag)
     end
     # These values needs to be set in all cases
     self.setDrg(drg.code)
-    #probably needs rounding?
-    self.setAvgDuration(drg.avg_duration*@factor)
+    self.setAvgDuration((drg.avg_duration*@factor).round(1))
     self.setFirstDayDiscount(drg.first_day_discount)
     self.setFirstDaySurcharge(drg.first_day_surcharge)
 	end
