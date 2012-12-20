@@ -15,6 +15,8 @@ class Batchgrouper
     end
   end
   
+  #Saves the second line of the given file for logging purposes.
+  #It is required, that it contains only ASCII characters!
   def preprocess_file
     encoding_options = {
       :invalid           => :replace,  # Replace invalid byte sequences
@@ -22,6 +24,9 @@ class Batchgrouper
       :replace           => '',        # Use a blank for those replacements
       :universal_newline => true       # Always break lines with \n
     }
+    if file.read.include?("|")
+      raise ArgumentError, I18n.t("batchgrouper.detected_bfs")
+    end
     lines_of_file = file.read.split("\n")
     self.line_count = lines_of_file.size
     # assuming the first line is a header line, save the second line of the querry.

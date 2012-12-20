@@ -42,6 +42,7 @@ en:
       messages: *id001
       template: *id002
   batchgrouper:
+    detected_bfs: "Detected BFS/OFS format, please only submit files in SwissDRG format!"
     invalid_format: Invalid format!
     loading_hint: Please wait while the file is uploading and being processed. The
       result will download automatically.

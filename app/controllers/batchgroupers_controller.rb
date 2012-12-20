@@ -27,6 +27,9 @@ class BatchgroupersController < ApplicationController
       rescue *[ActionController::MissingFile, Encoding::UndefinedConversionError] => e
         @error = "Could not parse file. Only use text files in the swissdrg format, not eg .doc or .xls"
         render 'index'
+      rescue ArgumentError => e
+        @error = e.message + " " + view_context.link_to("Online Converter", "https://webapps.swissdrg.org/converter")
+        render 'index'
       end
     else
       begin
