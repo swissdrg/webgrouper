@@ -10,10 +10,6 @@ $(document).ready(function() {
 	addZebraStripes();
 });
 
-$("#webgrouper_patient_case_system_id").live("change", function () {
-	this.form.submit();
-});
-
 /**
  * Adds classes to the rows of the tables.
  * This is only a fix for IE < 9, but not used by other browsers.

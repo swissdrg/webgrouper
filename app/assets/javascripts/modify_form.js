@@ -11,6 +11,14 @@ $(document).on("change focus blur", "#webgrouper_patient_case_birth_date", compu
 $(document).on("change focus blur", ".calc_los", computeLos);
 $(document).on("change focus blur", '#webgrouper_patient_case_age_mode_decoy', set_age_mode);
 
+/** submit form if these values are changed */
+$(document).on("change", "#webgrouper_patient_case_system_id", function () {
+	this.form.submit();
+});
+$(document).on("change", "#webgrouper_patient_case_house", function () {
+	this.form.submit();
+});
+
 /**
  * Lets the id "admWeight" disappear according to the
  * settings in the field age_mode_decoy
