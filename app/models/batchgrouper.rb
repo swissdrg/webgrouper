@@ -24,10 +24,11 @@ class Batchgrouper
       :replace           => '',        # Use a blank for those replacements
       :universal_newline => true       # Always break lines with \n
     }
-    if file.read.include?("|")
+    file_content = file.read
+    if file_content.include?("|")
       raise ArgumentError, I18n.t("batchgrouper.detected_bfs")
     end
-    lines_of_file = file.read.split("\n")
+    lines_of_file = file_content.split("\n")
     self.line_count = lines_of_file.size
     # assuming the first line is a header line, save the second line of the querry.
     if self.line_count > 1
