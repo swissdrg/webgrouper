@@ -64,7 +64,6 @@ Capybara.default_selector = :css
 
 
 # upped timeout time because it kept dropping out on my computer
-Capybara.server_boot_timeout = 50
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how 

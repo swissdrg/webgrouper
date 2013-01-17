@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.7'
+gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -18,14 +18,14 @@ gem 'rails3-jquery-autocomplete', :git => "git://github.com/panmari/rails3-jquer
 
 # HTML Abstraction Markup Language 
 # Templating Engine, that allows a non-repetitive and more elegant way to structure xhtml/xml with embedded ruby.
-gem 'haml', '3.1.4'
-gem 'haml-rails', '0.3.4'
+gem 'haml'
+gem 'haml-rails'
 
 # Prettier forms. Similar to formtastic, but lightweight.
 gem 'simple_form'
 
 # Complete validation of dates, times and datetimes for Rails 3.x and ActiveModel.
-gem 'validates_timeliness', '3.0.2'
+gem 'validates_timeliness'
 
 # Wrapper around the Google Chart Tools that allows anyone to create the same beautiful charts with just plain Ruby
 gem 'google_visualr'
@@ -47,10 +47,10 @@ end
 
 group :development do
   gem "torquebox-server"
-  gem "torquebox-remote-deployer"
 end
 
 group :test do
+  gem 'test-unit'
   gem 'spork-rails'
   gem 'cucumber-rails'
   gem 'rspec-rails'
