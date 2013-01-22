@@ -1,9 +1,8 @@
 Given /^the batchgrouper with initialized standard values$/ do
-  context = ""
   if Rails.env == "test"
-    visit "http://localhost:8080"+ context + "/de/batchgrouper"
+    visit "http://localhost:8080/de/batchgrouper"
   else
-    visit "http://77.95.120.68:8080" + context + "/de/batchgrouper"
+    visit "http://webgrouper.swissdrg.org/de/batchgrouper"
   end
   step %{I select in "batchgrouper_system_id" "Abrechnungsversion 1.0 2012/2012"}
 end

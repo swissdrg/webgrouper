@@ -51,7 +51,8 @@ Feature: Batchgroupings page under test
   	Given the batchgrouper with initialized standard values
   	When I fill in "batchgrouper_single_group" with "583109;0;1;3540;M;01;00;6;;0;P221;;;;P201;;P081;;Z380;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897::20110719;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"
   	And I press on "Gruppieren"
-  	Then I should see "583109;P67D;15;1;0;00;0;2039;01"
+  	And I wait 1 seconds
+  	Then I should see "583109;P67D;15;1;0;00;0;2040;01"
 
   Scenario: Single group a case without enough columns
   	Given the batchgrouper with initialized standard values
@@ -64,3 +65,10 @@ Feature: Batchgroupings page under test
   	When I fill in "batchgrouper_single_group" with "Zomfg group my stuff plxplx"
   	And I press on "Gruppieren"
   	Then I should see "Invalides Format"
+  	
+  Scenario: BFS Format should be detected and give an error
+  	Given the batchgrouper with initialized standard values
+  	When I attach a file called "testdaten_pipe.csv"
+  	And I press on "Gruppieren"
+  	Then I should see "BFS Format erkannt. Bitte groupieren sie Dateien nur im SwissDRG Format."
+  	

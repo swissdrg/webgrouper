@@ -1,19 +1,17 @@
 Given /^the form with initialized standard values$/ do
-  context = ""
   if Rails.env == "test"
-    visit "http://localhost:8080" + context + "/de/webgrouper_patient_cases"
+    visit "http://localhost:8080/de/webgrouper_patient_cases"
   else
-    visit "http://77.95.120.68:8080" + context + "/de/webgrouper_patient_cases"
+    visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
   end
   step %{I select in "webgrouper_patient_case_system_id" "Abrechnungsversion 1.0 2012/2012"}
 end
 
 Given /^the form with initialized standard values and system 13$/ do
-  context = ""
   if Rails.env == "test"
-    visit "http://localhost:8080" + context + "/de/webgrouper_patient_cases"
+    visit "http://localhost:8080/de/webgrouper_patient_cases"
   else
-    visit "http://77.95.120.68:8080" + context + "/de/webgrouper_patient_cases"
+    visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
   end
 end
 
