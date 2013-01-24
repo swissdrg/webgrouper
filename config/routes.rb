@@ -13,6 +13,8 @@ Webgrouper::Application.routes.draw do
     post 'batchgrouper' => 'batchgroupers#group'
     get 'batchgrouper' => 'batchgroupers#index'
     get 'index' => 'webgrouper_patient_cases#index'
+    get 'parse' => 'webgrouper_patient_cases#parse'
+    post 'parse' => 'webgrouper_patient_cases#parse'
   end
   
   # This is for testing only and can be removed later on:
