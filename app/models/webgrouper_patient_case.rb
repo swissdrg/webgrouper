@@ -131,15 +131,21 @@ class WebgrouperPatientCase < PatientCase
       params[:diagnoses][number.to_s] = diagnosis unless diagnosis.blank?
     end
 
-    #TODO: test if this works with L/R and dates
     params[:procedures] = {}
     (0...100).each do |number|
       procedure = pc_array[number + 110]
       next if procedure.blank? #skip if no procedure given
       elements = procedure.split(':')
       params[:procedures][number.to_s] = {}
-      (0...3).each do |element_nr|
-        params[:procedures][number.to_s][element_nr.to_s] = elements[element_nr] || ''
+      (0..2).each do |element_nr|
+        #convert date to standard german format
+        if (element_nr == 2 and not elements[2].blank?)
+          element = "#{elements[2][6..7]}.#{elements[2][4..5]}.#{elements[2][0..3]}"
+        else
+          element = elements[element_nr] || ''
+        end
+        params[:procedures][number.to_s][element_nr.to_s] = element
+
       end
     end
     params.each do |key, value|
