@@ -83,7 +83,7 @@ class Batchgrouper
   private
   
   def flag_to_int(flag)
-        if flag.valid
+    if flag.valid
       if !flag.used
         return 0
       else

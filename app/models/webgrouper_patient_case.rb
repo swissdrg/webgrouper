@@ -101,6 +101,52 @@ class WebgrouperPatientCase < PatientCase
       'empty' + super.to_s
     end
   end
+
+  #takes a swissdrg-string as input and returns the complying WebgrouperPatientCase
+  def self.parse(pc_string)
+    params = {}
+    pc_array = pc_string.split(';')
+    params[:id] = pc_array[0]
+    params[:ageYears] = pc_array[1]
+    params[:ageDays] = pc_array[2]
+    if pc_array[1].blank?
+      params[:age] = params[:ageDays]
+      params[:age_mode_decoy] = params[:age_mode] = 'days'
+    else
+      params[:age] = params[:ageYears]
+      params[:age_mode_decoy] = params[:age_mode] = 'years'
+    end
+    params[:admWeight] = pc_array[3]
+    params[:sex] = pc_array[4]
+    params[:adm] = pc_array[5]
+    params[:sep] = pc_array[6]
+    params[:los] = pc_array[7]
+    params[:sdf] = pc_array[8]
+    params[:hmv] = pc_array[9]
+    params[:pdx] = pc_array[10]
+
+    params[:diagnoses] = {}
+    (1..99).each do |number|
+      diagnosis = pc_array[number + 10]
+      params[:diagnoses][number.to_s] = diagnosis unless diagnosis.blank?
+    end
+
+    #TODO: test if this works with L/R and dates
+    params[:procedures] = {}
+    (0...100).each do |number|
+      procedure = pc_array[number + 110]
+      next if procedure.blank? #skip if no procedure given
+      elements = procedure.split(':')
+      params[:procedures][number.to_s] = {}
+      (0...3).each do |element_nr|
+        params[:procedures][number.to_s][element_nr.to_s] = elements[element_nr] || ''
+      end
+    end
+    params.each do |key, value|
+        params.delete(key) if value.blank?
+    end
+    WebgrouperPatientCase.new(params)
+  end
   
   private
 

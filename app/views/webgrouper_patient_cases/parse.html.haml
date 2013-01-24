@@ -1,3 +1,6 @@
+%h2 Hey stranger!
+This page is for debugging purposes. If you found it by chance, better leave immediately (there be dragons!).
 = simple_form_for :pc, :url => :parse, :method => :post do |f|
-  = f.text_field :string
-  = f.submit :class => "button positive"
+  = f.text_field :string, :size => 140
+  .right
+    = f.submit :class => "button positive", :value => 'Submit'
