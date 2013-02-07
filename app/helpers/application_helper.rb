@@ -36,4 +36,8 @@ module ApplicationHelper
       return development_spec_folder
     end
   end
+
+  def batchgroupings_temp_folder
+    File.join("/tmp", "batchgroupings")
+  end
 end

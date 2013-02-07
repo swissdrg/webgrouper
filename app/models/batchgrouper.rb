@@ -46,7 +46,7 @@ class Batchgrouper
     file.rewind
     batchgrouper_exec = File.join(spec_folder, 'batchgrouper')
     # Use a temp directory: 
-    main_folder = File.join("/tmp", "batchgroupings")
+    main_folder = batchgroupings_temp_folder
     Dir.mkdir(main_folder) unless File.directory?(main_folder)
     work_path = Dir.mktmpdir(File.join(main_folder, "Temp"))
     
