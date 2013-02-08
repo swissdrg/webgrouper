@@ -22,9 +22,9 @@ in the project folder.
 Assuming you have properly downloaded the swissDRG webgrouper, you have to download also the 
 latest grouper and the appropriate specification files. 
 You can find them here: https://webapps.swissdrg.org/download/
-put the grouper (grouperkernel) into your lib/ and the spec files into your lib/specs directory.
+put the grouper (grouperkernel) into your lib/ and the spec files into your lib/grouperspecs directory.
 Care about missing specification files - you won't be able to group by them
-and get an error, if you chose them in the gui.
+and get an error, if you chose them in the gui. In production mode the specs folders are different.
 
 ### Configuring the database
 
@@ -61,30 +61,22 @@ You can still run some of them by entering:
 Most tests need to be run with the javascript webdriver. This will take some time, 
 because it has to run in an actual webbrowser. You can exclude these tests by running
 
+
     bundle exec cucumber -ct ~@javascript
-    
 If you want to test the deployed application, change the initial step in the step configuration
 file to point to any server you'd like.
 
 ## Deployment
 
-First, make sure that all assets are precompiled for production mode with (the mongoid gem needs 1.9 syntax): 
+There is a git repository set up on remote that automatically deploys the version that is pushed to it. Use
 
-	JRUBY_OPTS=--1.9 rake assets:precompile
-	
-This application was configured to be deployed with torquebox. The configuration can be changed in the file `config/torquebox_remote.rb` Run
+    git push deploy
 
-	rake torquebox:remote:stage       #important hint!
-	rake torquebox:remote:exec["bundle install --deployment --without test development"]
-	rake torquebox:remote:deploy
-	
-or something similar to deploy it. Of course you need a torquebox-server running (on the machine specified in the conf file) for that.
-
-When on remote, it can also be easily deployed with
+In case you changed any assets, you need additionally to precompile these on remote and publish
+your changes by executing
 
 	torquebox deploy --env=production
 
-without use of the torquebox_remote_deploy gem.
 
 ### Hints
 

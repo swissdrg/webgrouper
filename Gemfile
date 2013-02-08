@@ -8,11 +8,10 @@ gem 'rails'
 # mongoDB driver
 gem "mongoid"
 
-gem 'jruby-openssl'
 gem 'json'
 
 # Javascript-related:
-gem 'jquery-rails'
+gem 'jquery-rails', "~>2.1.0" #newer version break autocomplete!
 gem 'rails-asset-jqueryui'
 gem 'rails3-jquery-autocomplete', :git => "git://github.com/panmari/rails3-jquery-autocomplete.git"
 
