@@ -4,13 +4,15 @@ module Tasks
   class CleanBatchgroupings
 
     def run()
-      main_folder = batchgroupings_temp_folder
-      Dir.glob(main_folder).each do |folder|
+      folder_search_term = File.join(batchgroupings_temp_folder, "*")
+      count = 0;
+      Dir.glob(folder_search_term).each do |folder|
          if File.ctime(folder) < Time.now - 14.days
-           FileUtils.rm_r folder
+           FileUtils.rm_rf folder
+           count += 1
          end
       end
-      Rails.logger.info("Successfully removed old batchgroupings")
+      Rails.logger.info("Successfully removed #{count} old batchgroupings")
     end
 
     # Optionally implement this method to interrogate any exceptions

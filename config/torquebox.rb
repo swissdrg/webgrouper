@@ -11,7 +11,7 @@ TorqueBox.configure do
   end
 
   job Tasks::CleanBatchgroupings do
-    cron '0 * * */1 * ?'
+    cron '0 0 0 */1 * ?'
     # not supported yet
     #timeout '60s'
     #description 'Remove batchgroupings that are older than a week'
