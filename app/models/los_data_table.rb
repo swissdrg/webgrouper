@@ -10,7 +10,7 @@ class LosDataTable < GoogleVisualr::DataTable
                   {:type => 'string', :role => 'annotation'},
                   {:type => 'string', :role => 'annotationText'},
                   {:type => 'string', :role => 'tooltip'},
-                  {:type => 'number', :label => I18n.t('transferred')},
+                  {:type => 'number'},
                   {:type => 'string', :role => 'annotation'},
                   {:type => 'string', :role => 'annotationText'},
                   {:type => 'string', :role => 'tooltip'},]
