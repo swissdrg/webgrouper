@@ -5,12 +5,12 @@
     %meta{ :charset => "UTF-8" }
     = render 'layouts/stylesheets'
     = javascript_include_tag "application"
+    = content_for :header
     / Used for localisation in JS
     :javascript
-      var locale = "#{ I18n.locale }";
+      var locale = "#{I18n.locale}";
       I18n.defaultLocale = "#{I18n.default_locale}";
       I18n.locale = "#{I18n.locale}";
-    = javascript_include_tag 'https://www.google.com/jsapi'
     = csrf_meta_tags
     %title 
       = @title
