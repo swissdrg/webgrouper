@@ -84,4 +84,5 @@
 - if @result.nil? || @result.getGst.nil?         
   .bottom-spacer
 - else  
-  = render "result/main" 
+  = render "result/main"
+  = link_to t('Print results'), 'javascript:printResult()'
