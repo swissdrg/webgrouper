@@ -75,6 +75,9 @@
       = render "shared/procedures", :patient_case => @webgrouper_patient_case
   .buttons 
     .right
+      - if @result
+        = link_to image_tag('printer.png') + t('helpers.submit.webgrouper_patient_case.print_result'),
+                  'javascript:printResult()', :class => 'button'
       = link_to t("help.show_help"), help_url, :class => 'button', :method => :get
       = link_to t("helpers.submit.webgrouper_patient_case.clear_form"), 
               webgrouper_patient_cases_path, 
@@ -85,4 +88,4 @@
   .bottom-spacer
 - else  
   = render "result/main"
-  = link_to t('Print results'), 'javascript:printResult()'
+

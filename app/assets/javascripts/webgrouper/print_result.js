@@ -8,5 +8,5 @@ function toggleNonResult() {
     $('#stay').toggle();
     $('#patient-data').toggle();
     $('#drg-proc').toggle();
-    $('#buttons').toggle();
+    $('.buttons').toggle();
 }
