@@ -6,7 +6,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.ui.datepicker
+//= require jquery.ui.autocomplete
+//= require jquery.ui.accordion
 //= require autocomplete-rails
 //= require i18n
 //= require i18n/translations

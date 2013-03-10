@@ -12,7 +12,7 @@ gem 'json'
 
 # Javascript-related:
 gem 'jquery-rails', "~>2.1.0" #newer version break autocomplete!
-gem 'rails-asset-jqueryui'
+gem 'jquery-ui-rails'
 gem 'rails3-jquery-autocomplete', :git => "git://github.com/panmari/rails3-jquery-autocomplete.git"
 
 # HTML Abstraction Markup Language 
