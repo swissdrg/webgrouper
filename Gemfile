@@ -45,7 +45,7 @@ group :assets do
 end
 
 group :development do
-  gem "torquebox-server"
+  gem "torquebox-server", "~>2.2.0"
 end
 
 group :test do
@@ -76,5 +76,5 @@ end
 # gem 'ruby-debug'
 
 group :deployment do
-  gem "torquebox"
+  gem "torquebox", "~>2.2.0"
 end
