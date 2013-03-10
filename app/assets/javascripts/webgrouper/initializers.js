@@ -34,9 +34,15 @@ function initializeForm() {
  */
 function initializeAutocomplete() {
 	$('#webgrouper_patient_case_pdx:input').bind('railsAutocomplete.select', function(event, data){
-		splitPos = data.item.label.search(" ");
-  		event.target.value = data.item.label.substring(0, splitPos);
-  		event.target.title = data.item.label.substring(splitPos + 1);
+        if (data.item.label === "no existing match") {
+            event.target.value = "";
+            event.target.title = "";
+        }
+        else {
+            splitPos = data.item.label.search(" ");
+            event.target.value = data.item.label.substring(0, splitPos);
+            event.target.title = data.item.label.substring(splitPos + 1);
+        }
 	});
 }
 

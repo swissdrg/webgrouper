@@ -8,7 +8,9 @@
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require jquery.ui.autocomplete
+//= require jquery.ui.tabs
 //= require jquery.ui.accordion
+//= require jquery.ui.progressbar
 //= require autocomplete-rails
 //= require i18n
 //= require i18n/translations
