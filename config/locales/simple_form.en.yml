@@ -6,6 +6,7 @@ en:
       webgrouper_patient_case:
         clear_form: Clear form
         create: Group case
+        print_result: Print result
   simple_form:
     error_notification:
       default_message: 'There were problems with the following fields:'
