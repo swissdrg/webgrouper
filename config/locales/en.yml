@@ -211,7 +211,7 @@ en:
     precision:
       format:
         delimiter: null
-  online_definition_manual_for: null
+  online_definition_manual_for: Online definition manual for
   procedures: 'Procedures:'
   result:
     cost-weight:
