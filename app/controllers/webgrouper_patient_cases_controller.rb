@@ -43,6 +43,7 @@ class WebgrouperPatientCasesController < ApplicationController
 		get_supplements(patient_case)
 		GROUPER.load(spec_path(patient_case.system_id))
 		@result = GROUPER.group(patient_case)
+
 		@weighting_relation = WebgrouperWeightingRelation.new(@result.drg, patient_case.house, patient_case.system_id)
 		@factor = @weighting_relation.factor
 		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)		
@@ -55,6 +56,14 @@ class WebgrouperPatientCasesController < ApplicationController
   def get_autocomplete_items(parameters)
     items = super(parameters)
     items.send(:in_system, params[:system_id])
+  end
+
+  # For testing new systems, exclusive users are given this url. This activates the beta for the current session,
+  # then sends the user to the grouper interface
+  def activate_beta
+    session[:beta] = true
+    flash[:info] = "Activated beta for one session! After closing the browser, the beta won't be active again!"
+    redirect_to :action => 'index'
   end
 
   private

@@ -6,3 +6,7 @@
       - @webgrouper_patient_case.errors.each do |attr, msg|
         %li
           = t("simple_form.labels.defaults." + attr.to_s) + " " + msg
+
+- if flash[:info]
+  .info
+    = flash[:info]

@@ -21,6 +21,7 @@ Webgrouper::Application.routes.draw do
   get 'test404' => 'errors#error_404'
   get 'test500' => 'errors#error_500'
   get 'grouper' => 'batchgroupers#tos'
+  get 'activate_beta' => 'webgrouper_patient_cases#activate_beta'
   get 'batchgrouper' => 'batchgroupers#tos'
   get 'webgrouper' => 'webgrouper_patient_cases#tos'
   root :to => 'webgrouper_patient_cases#tos'

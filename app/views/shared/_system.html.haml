@@ -1,10 +1,15 @@
 - current_system = System.where(:system_id => system_id).first
+- if beta
+  - shown_systems = System.all.reverse
+- else
+  - shown_systems = System.where(:public => true).reverse
+
 %fieldset#system
   %legend= t("fieldsets.system")
   .sameline
     = f.input :system_id, 
               :as => :select,
-              :collection => System.all.reverse, 
+              :collection => shown_systems,
               :label_method => lambda { |el| el.description },
               :value_method => lambda { |el| el.system_id },
               :include_blank => false

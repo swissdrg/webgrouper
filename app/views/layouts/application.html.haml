@@ -1,5 +1,7 @@
 !!! 5
 - @title ||= 'Webgrouper'
+- if session[:beta]
+  - @title += " BETA"
 %html{:lang => I18n.locale}
   %head
     %meta{ :charset => "UTF-8" }
