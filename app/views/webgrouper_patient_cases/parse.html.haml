@@ -1,5 +1,7 @@
-%h2 Hey stranger!
-This page is for debugging purposes. If you found it by chance, better leave immediately (there be dragons!).
+%h2 Parse SwissDRG Strings
+This text field takes a SwissDRG string, parses it into the webgrouper form and
+automatically submits the case. This feature is not very well tested so far,
+please report any problems using the "contact" link below.
 = simple_form_for :pc, :url => :parse, :method => :post do |f|
   = f.text_field :string, :size => 140
   .right
