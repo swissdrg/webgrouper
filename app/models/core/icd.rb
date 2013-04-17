@@ -33,9 +33,7 @@ class Icd
   # Returns the entry of a certain code in a certain system and caches it into
   # the rails cache for faster querrying. 
   def self.get_code system_id, search_code
-    Rails.cache.fetch(system_id.to_s + ':' + search_code) do
-      in_system(system_id).where(code_short: self.short_code_of(search_code)).first
-    end
+    in_system(system_id).where(code_short: self.short_code_of(search_code)).first
   end
   
   # Returns true if the code exists in the database.

@@ -31,9 +31,7 @@ class Drg
   
   def self.find_by_code(system_id, search_code)
     raise 'No code given' if search_code.blank?
-    Rails.cache.fetch("drg:" + system_id.to_s + ':' + search_code) do
-      in_system(system_id).where(code: search_code).first
-    end
+    in_system(system_id).where(code: search_code).first
   end
   
   def transfer_flag()

@@ -29,7 +29,14 @@ and get an error, if you chose them in the gui. In production mode the specs fol
 ### Configuring the database
 
 The Project Mongo-Migration is used for populating the mongo-db with data. It can be found in the swissDRG private repositories.
-	
+
+#### Create indices
+
+So the queries are not dead slow, it is best to create indices with the following command:
+
+    rake db:mongoid:create_indexes RAILS_ENV=production
+
+
 ## Run
 
 You can start the project by typing
