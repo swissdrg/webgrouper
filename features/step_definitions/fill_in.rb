@@ -4,7 +4,7 @@ Given /^the form with initialized standard values$/ do
   else
     visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
   end
-  step %{I select in "webgrouper_patient_case_system_id" "Abrechnungsversion 1.0 2012/2012"}
+  step %{I select system 9}
 end
 
 Given /^the form with initialized standard values and system 13$/ do
@@ -12,6 +12,13 @@ Given /^the form with initialized standard values and system 13$/ do
     visit "http://localhost:8080/de/webgrouper_patient_cases"
   else
     visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
+  end
+end
+
+# this step doesnt work very well in non-selenium
+When /^I select system (\d+)$/ do |system_id|
+  within '#system' do
+    find("option[value='#{system_id}']").click
   end
 end
 

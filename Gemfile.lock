@@ -43,13 +43,12 @@ GEM
     autotest-standalone (4.5.11)
     blankslate (2.1.2.4)
     builder (3.0.4)
-    capybara (2.0.2)
+    capybara (2.1.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
-      selenium-webdriver (~> 2.0)
-      xpath (~> 1.0.0)
+      xpath (~> 2.0)
     childprocess (0.3.8)
       ffi (~> 1.0, >= 1.0.11)
     cucumber (1.2.1)
@@ -68,7 +67,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    ffi (1.4.0-java)
+    ffi (1.7.0-java)
     gherkin (2.11.6-java)
       json (>= 1.7.6)
     google_visualr (2.1.6)
@@ -99,15 +98,15 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.21)
+    mime-types (1.22)
     mongoid (3.1.1)
       activemodel (~> 3.2)
       moped (~> 1.4.2)
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
     moped (1.4.2)
-    multi_json (1.6.1)
-    nokogiri (1.5.6-java)
+    multi_json (1.7.2)
+    nokogiri (1.5.9-java)
     origin (1.0.11)
     parslet (1.4.0)
       blankslate (~> 2.0)
@@ -150,7 +149,7 @@ GEM
     rspec-rails (2.0.1)
       rspec (~> 2.0.0)
     rubyzip (0.9.9)
-    selenium-webdriver (2.30.0)
+    selenium-webdriver (2.32.1)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
       rubyzip
@@ -222,7 +221,7 @@ GEM
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
     websocket (1.0.7)
-    xpath (1.0.0)
+    xpath (2.0.0)
       nokogiri (~> 1.3)
 
 PLATFORMS
@@ -247,6 +246,7 @@ DEPENDENCIES
   rails
   rails3-jquery-autocomplete!
   rspec-rails
+  selenium-webdriver
   simple_form
   spork-rails
   test-unit

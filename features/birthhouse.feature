@@ -11,7 +11,7 @@ Feature: When birthhouse is entered as caretaker, the correct values should be c
     
   Scenario: Milzbrand in birthhouse should have result in V2.0
     Given the form with initialized standard values
-    When I select "SwissDRG 2.0 Planungsversion 2" as system
+    When I select system 12
     When I enter "A22.1" as diagnosis
     And I submit the form
     Then I should see "1.182" in "cost-weight"

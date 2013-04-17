@@ -52,6 +52,7 @@ group :test do
   gem 'test-unit'
   gem 'spork-rails'
   gem 'cucumber-rails'
+  gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'launchy'

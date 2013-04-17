@@ -4,7 +4,7 @@ Given /^the batchgrouper with initialized standard values$/ do
   else
     visit "http://webgrouper.swissdrg.org/de/batchgrouper"
   end
-  step %{I select in "batchgrouper_system_id" "Abrechnungsversion 1.0 2012/2012"}
+  step %{I select system 9}
 end
 
 When /^I attach a file called "(.*?)"$/ do |arg1|
