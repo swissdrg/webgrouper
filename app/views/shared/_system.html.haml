@@ -1,5 +1,5 @@
 - current_system = System.where(:system_id => system_id).first
-- if beta
+- if session[:beta]
   - shown_systems = System.all.reverse
 - else
   - shown_systems = System.where(:public => true).reverse
@@ -27,6 +27,6 @@
     = f.label :diagnoses_catalog
     = text_field_tag :diagnoses_catalog, current_system.icd_version, :disabled => true
   - manual_url = System.where(:system_id => system_id).first.manual_url
-  - if manual_url
+  - unless manual_url.blank?
     = f.label "  "
     = link_to t("online_definition_manual_for") + " #{current_system.description}", manual_url, :class => "button"
