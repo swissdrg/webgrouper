@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
   def set_locale
-    I18n.locale = params[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first || I18n.default_locale
+     I18n.locale = params[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first rescue I18n.default_locale
   end
   
   def default_url_options(options={})
