@@ -28,6 +28,11 @@ class WebgrouperPatientCasesController < ApplicationController
   end
   
   def create_query
+    # render index if called without arguments
+    if (!params[:webgrouper_patient_case])
+      redirect_to webgrouper_patient_cases_path and return
+    end
+
     @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
     @webgrouper_patient_case.manual_submission = !params[:commit].nil?
     @webgrouper_patient_case.id = Query.create(params[:webgrouper_patient_case].merge({:valid => @webgrouper_patient_case.valid?, :time => Time.now})).id.to_s

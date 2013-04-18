@@ -9,7 +9,6 @@ Webgrouper::Application.routes.draw do
     get 'create_query'  => 'webgrouper_patient_cases#create_query'
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
-    get 'about' => 'static_pages#about'
     post 'batchgrouper' => 'batchgroupers#group'
     get 'batchgrouper' => 'batchgroupers#index'
     get 'index' => 'webgrouper_patient_cases#index'
@@ -24,6 +23,8 @@ Webgrouper::Application.routes.draw do
   get 'activate_beta' => 'webgrouper_patient_cases#activate_beta'
   get 'batchgrouper' => 'batchgroupers#tos'
   get 'webgrouper' => 'webgrouper_patient_cases#tos'
+  get 'about' => 'static_pages#about'
+
   root :to => 'webgrouper_patient_cases#tos'
   
   unless Rails.application.config.consider_all_requests_local
