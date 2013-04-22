@@ -54,7 +54,7 @@ fr:
           ag9: Abrechnungsversion 1.0 2012/2012
       webgrouper_patient_case:
         adm:
-          adm00: normal
+          adm01: normal
           adm06: transféré (Séjour plus court que 24 heures dans l'hôpital transférant.)
           adm11: transféré (Séjour plus long que 24 heures dans l'hôpital transférant.)
           adm99: inconnu

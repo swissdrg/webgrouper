@@ -55,7 +55,7 @@ it:
           ag9: Abrechnungsversion 1.0 2012/2012
       webgrouper_patient_case:
         adm:
-          adm00: normale
+          adm01: normale
           adm06: trasferto (Soggiorno più corte che 24 ore nell'ospedale trasferente.)
           adm11: trasferto (Soggiorno più lungo che 24 ore nell'ospedale trasferente.)
           adm99: sconosciuto
