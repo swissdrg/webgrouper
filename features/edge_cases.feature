@@ -31,7 +31,7 @@ Feature: The edge cases should be handled correctly
   @javascript
   Scenario: parse case pdx F03Z, should be inlier
 	  Given the form with initialized standard values
-	  When I select "Katalogversion 0.3 2008/2011" as system
+	  When I select system 4
 	  And I parse "44364;55;;;W;01;01;15;;;I080;;;;E039;;I10;;I48;;I270;;I501;;F171;;E669;;E785;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3964;3961;9671;9390;8872;3995;3962;3512;3734;3533;3963;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
 	  Then I should see "F03Z" in "grouping"
 	  And I should see "Normallieger" in "length-of-stay"

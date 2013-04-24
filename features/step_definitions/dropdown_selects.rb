@@ -24,10 +24,6 @@ When /^I select "([^"]*)" as sep mode$/ do |sep|
 end
 
 When /^I select "([^"]*)" as adm mode$/ do |adm|
-  #fix for string parsing:
-  if adm.eql? "01"
-    adm = "00"
-  end
   string = I18n.t('simple_form.options.webgrouper_patient_case.adm.adm' + adm)
   step %{I select in "webgrouper_patient_case_adm" "#{string}"}
 end
