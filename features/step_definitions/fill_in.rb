@@ -15,11 +15,20 @@ Given /^the form with initialized standard values and system 13$/ do
   end
 end
 
+Given /^the beta form$/ do
+  if Rails.env == "test"
+    visit "http://localhost:8080/activate_beta"
+    visit "http://localhost:8080/de/webgrouper_patient_cases"
+  else
+    visit "https://webgrouper.swissdrg.org/activate_beta"
+    visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
+  end
+end
+
 # this step doesnt work very well in non-selenium
 When /^I select system (\d+)$/ do |system_id|
-  within '#system' do
-    find("option[value='#{system_id}']").click
-  end
+  system_desc = System.where(:system_id => system_id).first.description
+  select system_desc
 end
 
 # Needs the @javascript annotation

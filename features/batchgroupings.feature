@@ -54,7 +54,6 @@ Feature: Batchgroupings page under test
   	Then I should receive a file called "testdaten.csv.out"
   	And the MD5sum of it should be "20f5d435618204ec4c282fc5d307fc7f"
   	
-  @wip
   Scenario: Single group a valid case without any special characters
   	Given the batchgrouper with initialized standard values
   	When I fill in "batchgrouper_single_group" with "583109;0;1;3540;M;01;00;6;;0;P221;;;;P201;;P081;;Z380;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897::20110719;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"
