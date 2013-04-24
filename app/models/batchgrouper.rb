@@ -1,3 +1,4 @@
+
 class Batchgrouper
   include ActiveModel::Validations
   include ActiveModel::Conversion
@@ -63,22 +64,19 @@ class Batchgrouper
     File.rename(output_file, renamed_file)
     renamed_file
   end
-  
+
+  # This saves the line in a file, wraps it as uploaded file, then does a normal group
   def group_line(line)
-    line = line.strip
-    return nil if line.blank? # allows blank lines
-    pc = PatientCase.parse(line)
-    pc.set_birth_house("2" == house)
-    grouper_result = GROUPER.group(pc)
-    weighting_relation = WebgrouperWeightingRelation.new(grouper_result.drg, house, system_id)
-    ecw = GROUPER.calculateEffectiveCostWeight(pc, weighting_relation)
-    return [pc.id, grouper_result.drg, grouper_result.mdc, 
-                  flag_to_int(grouper_result.age_flag),
-                  flag_to_int(grouper_result.sex_flag), 
-                  "0" + grouper_result.gst.ordinal.to_s, 
-                  grouper_result.pccl,
-                  ecw.effective_cost_weight, 
-                  "0" + ecw.case_flag.ordinal.to_s].join(";")
+    line.strip!
+    f = Tempfile.new("single_group")
+    f.write(line)
+    # wrap around UploadFile class for easier handling
+    self.file = ActionDispatch::Http::UploadedFile.new( tempfile: f, filename: 'single_group.in')
+
+    output = group()
+    File.open(output, 'r') do |f|
+      f.readline()
+    end
   end
   
   private
