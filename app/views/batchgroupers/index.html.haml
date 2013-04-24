@@ -1,7 +1,7 @@
 = simple_form_for @batchgrouper, :url => "batchgrouper" do |f|
-  - if @error
+  - if flash[:error]
     .errorflash
-      = @error.html_safe
+      = flash[:error].html_safe
   = render 'batchgroupers/hint_documentation'
   = render "shared/system", :f => f, :system_id => @batchgrouper.system_id, :house => @batchgrouper.house
   %fieldset
