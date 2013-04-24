@@ -15,8 +15,8 @@ class Batchgrouper
     end
   end
   
-  #Saves the second line of the given file for logging purposes.
-  #It is required, that it contains only ASCII characters!
+  # Saves the second line of the given file for logging purposes.
+  # It is required, that it contains only ASCII characters!
   def preprocess_file
     encoding_options = {
       :invalid           => :replace,  # Replace invalid byte sequences
@@ -24,18 +24,18 @@ class Batchgrouper
       :replace           => '',        # Use a blank for those replacements
       :universal_newline => true       # Always break lines with \n
     }
-    file_content = file.read
-    if file_content.include?("|")
+    first_two_lines = file.tempfile.readline
+    first_two_lines += file.tempfile.readline unless file.tempfile.eof?
+
+    if first_two_lines.include?("|")
       raise ArgumentError, I18n.t("batchgrouper.detected_bfs")
     end
-    lines_of_file = file_content.split("\n")
-    self.line_count = lines_of_file.size
-    # assuming the first line is a header line, save the second line of the querry.
-    if self.line_count > 1
-      self.second_line = lines_of_file[1].encode Encoding.find('ASCII'), encoding_options
-    else 
-      self.second_line = lines_of_file[0].encode Encoding.find('ASCII'), encoding_options
-    end
+
+    file.tempfile.rewind
+    self.line_count = File.foreach(file.tempfile).inject(0) {|c, line| c+1}
+    # assuming the first line is a header line, save first and second line of the querry.
+    # TODO: refactor name of second_line
+    self.second_line =  first_two_lines.encode Encoding.find('ASCII'), encoding_options
   end
   
   def persisted?
@@ -43,7 +43,7 @@ class Batchgrouper
   end
   
   def group
-    file.rewind
+    file.tempfile.rewind
     batchgrouper_exec = File.join(spec_folder, 'batchgrouper')
     # Use a temp directory: 
     main_folder = batchgroupings_temp_folder
@@ -52,7 +52,7 @@ class Batchgrouper
 
     uploaded_file = File.join(work_path, "data.in")
     File.open(uploaded_file, "w") do |f| 
-      f.write(file.read)
+      f.write(file.read.strip)
       f.chmod(0666) # this should not be necessary, since rails also spawns the batchgrouper executable
     end
     output_file = File.join(work_path, "data.out")
