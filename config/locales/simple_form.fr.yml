@@ -41,17 +41,6 @@ fr:
         sep: 'Mode de sortie:'
         sex: 'Sexe:'
     options:
-      system:
-        active_grouper:
-          ag1: SwissDRG 0.1
-          ag2: SwissDRG 0.2
-          ag3: there is no system 3 >.<
-          ag4: Katalogversion 0.3 2008/2011
-          ag5: Planungsversion 0.3 2009/2011
-          ag6: Abrechnungsversion 0.3 2011/2011
-          ag7: Katalog/Planungsversion 1.0 2009-10/2012
-          ag8: Planungsversion 2 1.0 2011/2012
-          ag9: Abrechnungsversion 1.0 2012/2012
       webgrouper_patient_case:
         adm:
           adm01: normal
