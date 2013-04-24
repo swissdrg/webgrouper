@@ -7,7 +7,7 @@ Feature: Batchgroupings page under test
   	When I attach a file called "testdaten.csv"
   	And I press on "Gruppieren"
   	Then I should receive a file called "testdaten.csv.out"
-  	And the MD5sum of it should be "baea95d38f9871749eefaa6714499824"
+  	And the MD5sum of it should be "978eadd0a572d47014a4d14ed1cfacf0"
 
   @rack_test
   Scenario: testfile with umlaut in name should succeed
@@ -15,7 +15,7 @@ Feature: Batchgroupings page under test
     When I attach a file called "ümläüté.csv"
     And I press on "Gruppieren"
     Then I should receive a file called "ümläüté.csv.out"
-    And the MD5sum of it should be "baea95d38f9871749eefaa6714499824"
+    And the MD5sum of it should be "978eadd0a572d47014a4d14ed1cfacf0"
 
   @rack_test
   Scenario: testfile with "SwissDRG 2.0 Planungsversion 1"
@@ -24,7 +24,7 @@ Feature: Batchgroupings page under test
   	And I select system 11
   	And I press on "Gruppieren"
   	Then I should receive a file called "testdaten.csv.out"
-  	And the MD5sum of it should be "61336ed399cfe9994ca10a274ecf18a1"
+  	And the MD5sum of it should be "858fbfdc4014b262816ae4ef6e01ad6d"
 
   @rack_test
   Scenario: testfile with "SwissDRG 2.0 Planungsversion 2"
@@ -33,7 +33,7 @@ Feature: Batchgroupings page under test
     And I select system 12
   	And I press on "Gruppieren"
   	Then I should receive a file called "testdaten.csv.out"
-  	And the MD5sum of it should be "11b4f50adda87785714d9178b71ee6e5"
+  	And the MD5sum of it should be "e1ac57a7c0bb6059f2604aa2626b20ad"
 
   @rack_test
   Scenario: testfile grouped as "Geburtshaus"
@@ -43,7 +43,7 @@ Feature: Batchgroupings page under test
   	And I select in "batchgrouper_house" "Geburtshaus"
   	And I press on "Gruppieren"
   	Then I should receive a file called "testdaten.csv.out"
-  	And the MD5sum of it should be "410cf372e2cf5d9088a13aca35920d9a"
+  	And the MD5sum of it should be "3e9722303f459904fd390cafcde0cb28"
 
   @rack_test
   Scenario: testfile with system SwissDRG 2.0 Katalogversion
@@ -52,8 +52,9 @@ Feature: Batchgroupings page under test
     And I select system 10
   	And I press on "Gruppieren"
   	Then I should receive a file called "testdaten.csv.out"
-  	And the MD5sum of it should be "145ab9c219c4a2d9a0a738e4ea31320b"
-  	
+  	And the MD5sum of it should be "20f5d435618204ec4c282fc5d307fc7f"
+
+  @javascript
   Scenario: Single group a valid case without any special characters
   	Given the batchgrouper with initialized standard values
   	When I fill in "batchgrouper_single_group" with "583109;0;1;3540;M;01;00;6;;0;P221;;;;P201;;P081;;Z380;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897::20110719;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"

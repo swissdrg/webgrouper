@@ -51,9 +51,8 @@ class Batchgrouper
     work_path = Dir.mktmpdir(File.join(main_folder, "Temp"))
 
     uploaded_file = File.join(work_path, "data.in")
-    File.open(uploaded_file, "w") do |f| 
-      f.write(file.read.strip)
-      f.chmod(0666) # this should not be necessary, since rails also spawns the batchgrouper executable
+    File.open(uploaded_file, "w") do |f|
+      File.copy_stream(file.tempfile, f)
     end
     output_file = File.join(work_path, "data.out")
     additional_argument = "-bh " if house == '2'
