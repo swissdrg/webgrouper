@@ -215,7 +215,7 @@ en:
   procedures: 'Procedures:'
   result:
     cost-weight:
-      baserate: Baserate
+      baserate: Cost weight
       discount-rate-per-day: Discount rate per day
       effective-cost-weight: Effective cost weight
       legend: Cost weight
