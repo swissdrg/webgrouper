@@ -30,7 +30,7 @@ if java.lang.System.getProperty('os.name').downcase.include?('windows')
   file_extension = '.dll'
 else 
   lib_prequel = 'lib'
-  file_extension = '.so.2.0.2'
+  file_extension = '.so.3.0.0'
 end
 
 DEFAULT_SYSTEM = 13
