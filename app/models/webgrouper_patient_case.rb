@@ -107,14 +107,14 @@ class WebgrouperPatientCase < PatientCase
     params = {}
     pc_array = pc_string.split(';')
     params[:id] = pc_array[0]
-    params[:ageYears] = pc_array[1]
-    params[:ageDays] = pc_array[2]
-    if pc_array[1].blank?
-      params[:age] = params[:ageDays]
+    params[:age_years] = pc_array[1] unless pc_array[1] == '0'
+    params[:age_days] = pc_array[2] unless pc_array[2] == '0'
+    if params[:age_years].blank?
       params[:age_mode_decoy] = params[:age_mode] = 'days'
+      params[:age] = params[:age_days]
     else
-      params[:age] = params[:ageYears]
       params[:age_mode_decoy] = params[:age_mode] = 'years'
+      params[:age] = params[:age_years]
     end
     params[:admWeight] = pc_array[3]
     params[:sex] = pc_array[4]
