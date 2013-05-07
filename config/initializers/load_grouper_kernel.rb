@@ -21,5 +21,6 @@ DEFAULT_SYSTEM = 13
 spec_path = spec_path(DEFAULT_SYSTEM)
 
 grouper_path = File.join(spec_folder, 'libGrouperKernel64.so.3.0.0')
+Rails.logger.info("Loading grouper kernel from: #{grouper_path}")
 
 GROUPER = org.swissdrg.grouper.kernel.GrouperKernel.create(grouper_path, spec_path)
