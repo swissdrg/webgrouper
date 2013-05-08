@@ -2,16 +2,23 @@ Feature: The system 14 should work as intended. Right now this is not tested.
   Any user
 
   @javascript @wip
-  Scenario: Admission should make a difference for O80 with given values
+  Scenario: Admission should make a difference for deceased Einling
     Given the beta form
-    And I enter "O80" as diagnosis
+    And I enter "Z38.0" as diagnosis
     And I select "days" as age mode
     And I enter "1" as age
     And I enter "1" as los
-    And I select system 14
+    And I select "01" as adm mode
+    And I select "07" as sep mode
+    And I submit the form
+    Then I should see "P60A" in "grouping"
+    When I select system 14
+    And I submit the form
+    Then I should see "P60A" in "grouping"
+    When I select "11" as adm mode
     And I submit the form
     Then I should see "P60B" in "grouping"
-    When I select "diseased" as sep mode
+    When I select system 13
     And I submit the form
     Then I should see "P60A" in "grouping"
 
