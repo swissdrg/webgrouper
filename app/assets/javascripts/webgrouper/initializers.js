@@ -8,6 +8,28 @@ $(document).ready(function() {
 	initializeAutocomplete();
 	goToResult();
 	addZebraStripes();
+
+    /*
+     * Turns links with class jQueryBookmark into bookmarking-links
+     */
+    $("a.jQueryBookmark").click(function(e){
+        e.preventDefault(); // this will prevent the anchor tag from going the user off to the link
+        var bookmarkUrl = this.href;
+        var bookmarkTitle = this.title;
+
+        if (window.sidebar && window.sidebar.addPanel) { // For Mozilla Firefox Bookmark
+            window.sidebar.addPanel(bookmarkTitle, bookmarkUrl,"");
+        } else if( window.external && window.external.AddFavorite) { // For IE Favorite
+            window.external.AddFavorite( bookmarkUrl, bookmarkTitle);
+        } else if(window.opera && window.print) { // For Opera Browsers
+            $("a.jQueryBookmark").attr("href",bookmarkUrl);
+            $("a.jQueryBookmark").attr("title",bookmarkTitle);
+            $("a.jQueryBookmark").attr("rel","sidebar");
+        } else { // for other browsers which does not support
+            alert('Your browser does not support this bookmark action');
+            return false;
+        }
+    });
 });
 
 /**
