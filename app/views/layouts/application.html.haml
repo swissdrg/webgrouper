@@ -5,6 +5,7 @@
 %html{:lang => I18n.locale}
   %head
     %meta{ :charset => "UTF-8" }
+    = favicon_link_tag 'favicon.ico'
     = render 'layouts/stylesheets'
     = javascript_include_tag "application"
     = content_for :header
