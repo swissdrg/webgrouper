@@ -78,6 +78,9 @@
   .buttons 
     .right
       - if @result
+        = link_to 'Link to this case',
+                   parse_url + "?#{{:pc => {:string => @webgrouper_patient_case.to_s}}.to_query}",
+                   :class => 'button'
         = link_to image_tag('printer.png') + t('helpers.submit.webgrouper_patient_case.print_result'),
                   'javascript:printResult()', :class => 'button'
       = link_to t("help.show_help"), help_url, :class => 'button', :method => :get
