@@ -104,7 +104,7 @@ class WebgrouperPatientCase < PatientCase
     params = {}
     pc_array = pc_string.split(';')
     additional_data = pc_array[0].split('-')
-    if additional_data.size != 5 # for legacy support
+    if additional_data.size == 5 # for legacy support
       params[:system_id] = additional_data[0]
       params[:birth_date] = additional_data[1]
       params[:entry_date] = additional_data[2]
