@@ -19,14 +19,16 @@ $(document).ready(function() {
 
         if (window.sidebar && window.sidebar.addPanel) { // For Mozilla Firefox Bookmark
             window.sidebar.addPanel(bookmarkTitle, bookmarkUrl,"");
-        } else if( window.external && window.external.AddFavorite) { // For IE Favorite
+        } else if( window.external && document.all) { // For IE Favorite
             window.external.AddFavorite( bookmarkUrl, bookmarkTitle);
         } else if(window.opera && window.print) { // For Opera Browsers
             $("a.jQueryBookmark").attr("href",bookmarkUrl);
             $("a.jQueryBookmark").attr("title",bookmarkTitle);
             $("a.jQueryBookmark").attr("rel","sidebar");
         } else { // for other browsers which does not support
-            alert('Your browser does not support this bookmark action');
+            alert('Your browser does not support this bookmark action, ' +
+                'please add a bookmark manually by pressing ctrl + D');
+            window.location = bookmarkUrl;
             return false;
         }
     });

@@ -7,6 +7,7 @@ en:
         clear_form: Clear form
         create: Group case
         print_result: Print result
+        save_case_as_bookmark: Save case as bookmark
   simple_form:
     error_notification:
       default_message: 'There were problems with the following fields:'
