@@ -96,7 +96,7 @@ class WebgrouperPatientCase < PatientCase
 
   # The default swissdrg format with additional data in the id-field
   def to_s
-    [self.system_id, self.birth_date, self.entry_date, self.exit_date].join('-') + super.to_s
+    [self.system_id, self.birth_date, self.entry_date, self.exit_date, self.leave_days].join('-') + super.to_s
   end
 
   #takes a swissdrg-string as input and returns the complying WebgrouperPatientCase
@@ -104,14 +104,15 @@ class WebgrouperPatientCase < PatientCase
     params = {}
     pc_array = pc_string.split(';')
     additional_data = pc_array[0].split('-')
-    if additional_data.size > 1 # for legacy support
+    if additional_data.size != 5 # for legacy support
       params[:system_id] = additional_data[0]
       params[:birth_date] = additional_data[1]
       params[:entry_date] = additional_data[2]
       params[:exit_date] = additional_data[3]
-      params[:age_years] = pc_array[1] unless pc_array[1] == '0'
-      params[:age_days] = pc_array[2] unless pc_array[2] == '0'
+      params[:leave_days] = additional_data[4]
     end
+    params[:age_years] = pc_array[1] unless pc_array[1] == '0'
+    params[:age_days] = pc_array[2] unless pc_array[2] == '0'
     if params[:age_years].blank?
       params[:age_mode_decoy] = params[:age_mode] = 'days'
       params[:age] = params[:age_days]
