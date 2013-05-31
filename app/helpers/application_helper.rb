@@ -13,7 +13,8 @@ module ApplicationHelper
     # this doesn't work for 32 bits, but right now that's not an issue
     File.join(spec_folder, system_id.to_s, spec_file + "bit.bin")
   end
-  
+
+  #TODO: rewrite this for ruby
   def is_64bit?
     java.lang.System.getProperty('os.arch').include?('64')
   end
@@ -30,7 +31,7 @@ module ApplicationHelper
   def spec_folder
     production_spec_folder = File.join('/','home', 'tim', 'grouperspecs')
     development_spec_folder = File.join(Rails.root,'lib', 'grouperspecs')
-    if (File.directory?(production_spec_folder))
+    if File.directory?(production_spec_folder)
       return production_spec_folder
     else
       return development_spec_folder

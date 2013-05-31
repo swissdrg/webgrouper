@@ -66,6 +66,7 @@ class Batchgrouper
   end
 
   # This saves the line in a file, wraps it as uploaded file, then does a normal group
+  # TODO: clean up temp file?
   def group_line(line)
     line.strip!
     f = Tempfile.new("single_group")
