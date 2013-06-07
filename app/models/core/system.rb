@@ -9,4 +9,9 @@ class System
   field :manual_url, type: String
   
   index "system_id" => 1
+
+  def self.all_public
+    self.where(:public => true)
+  end
+
 end

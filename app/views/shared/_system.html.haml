@@ -2,7 +2,7 @@
 - if session[:beta]
   - shown_systems = System.all.reverse
 - else
-  - shown_systems = System.where(:public => true).reverse
+  - shown_systems = System.all_public.reverse
 
 %fieldset#system
   %legend= t("fieldsets.system")
