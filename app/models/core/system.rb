@@ -7,6 +7,7 @@ class System
   field :icd_version, type: String
   field :drg_version, type: String
   field :manual_url, type: String
+  field :public, type: Boolean
   
   index "system_id" => 1
 

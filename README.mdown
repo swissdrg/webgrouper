@@ -1,3 +1,5 @@
+# Deprecated, see dokuwiki
+
 # Welcome
 
 This is a new implementation in Ruby on Rails of the swissDRG webgrouper, 
