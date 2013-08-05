@@ -103,9 +103,8 @@ label.radio {
 }
 
 .field_with_errors input {
-	margin-top: 10px;
-	padding: 2px;
 	background-color: #FBE3E4;
+    border-color: #ff3928;
 	/* this breaks datepicker */
 	/* display: table; */
 }
