@@ -69,11 +69,13 @@
       = f.input :pdx, 
                 :url => autocomplete_Icd_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id), 
                 :as => :autocomplete
-      = f.label "diagnoses"
+      %label{:for => 'webgrouper_patient_case_diagnoses_0'}
+        = t('simple_form.labels.defaults.diagnoses')  # hardcoded, since its generated via js
       = render "shared/diagnoses", :patient_case => @webgrouper_patient_case
     %p
     #procedures
-      = f.label "procedures"
+      %label{:for => 'webgrouper_patient_case_procedures_0_0'}
+        = t('simple_form.labels.defaults.procedures')   # hardcoded, since its generated via js
       = render "shared/procedures", :patient_case => @webgrouper_patient_case
   .buttons 
     .right
