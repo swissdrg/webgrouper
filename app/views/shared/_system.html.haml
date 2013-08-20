@@ -14,8 +14,7 @@
               :value_method => lambda { |el| el.system_id },
               :include_blank => false
     .small_field
-      = f.label :procedures_catalog
-      = text_field_tag :procedures_catalog, current_system.chop_version, :disabled => true
+      = f.input :procedures_catalog, :input_html => {:value => current_system.chop_version }, :disabled => true
   .sameline
     - selected = house || 1
     = f.input :house, 
@@ -24,9 +23,8 @@
               :selected => selected,
               :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.house.house#{el.to_s}" }
   .small_field
-    = f.label :diagnoses_catalog
-    = text_field_tag :diagnoses_catalog, current_system.icd_version, :disabled => true
+    = f.input :diagnoses_catalog, :input_html => { :value =>  current_system.icd_version }, :disabled => true
   - manual_url = System.where(:system_id => system_id).first.manual_url
   - unless manual_url.blank?
-    = f.label "  "
+    %label{:class => 'simple_form'}
     = link_to t("online_definition_manual_for") + " #{current_system.description}", manual_url, :class => "button"
