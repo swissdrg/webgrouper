@@ -57,7 +57,7 @@ function initializeForm() {
  * It also adds the name as title, making it available to see in a tooltip.
  */
 function initializeAutocomplete() {
-	$('#webgrouper_patient_case_pdx:input').bind('railsAutocomplete.select', function(event, data){
+	$('.autocomplete:input').bind('railsAutocomplete.select', function(event, data){
         if (data.item.label === "no existing match") {
             event.target.value = "";
             event.target.title = "";
