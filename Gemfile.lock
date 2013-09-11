@@ -107,6 +107,7 @@ GEM
     moped (1.5.0)
     multi_json (1.7.4)
     nokogiri (1.5.9-java)
+    newrelic_rpm (3.6.7.152)
     origin (1.1.0)
     parslet (1.4.0)
       blankslate (~> 2.0)
@@ -241,6 +242,7 @@ DEPENDENCIES
   json
   launchy
   mongoid
+  newrelic_rpm
   rails (= 3.2.12)
   rails3-jquery-autocomplete!
   rspec-rails
