@@ -1,19 +1,26 @@
 TorqueBox.configure do
-  pool :web, :type => :shared
-  
+
   #Use 1.9 syntax
   ruby do
     version "1.9"
   end
   
   environment do
-    RAILS_ENV 'development'
+    RAILS_ENV 'production'
   end
 
   job Tasks::CleanBatchgroupings do
     cron '0 0 0 */1 * ?'
     # not supported yet
-    #timeout '60s'
-    #description 'Remove batchgroupings that are older than a week'
+    timeout '60s'
+    description 'Remove batchgroupings that are older than a week'
   end
+
+  # only one instance at a time to prevent nasty segfaults
+  pool :web do
+    type :bounded
+    min 1
+    max 1
+  end
+
 end
