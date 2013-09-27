@@ -94,16 +94,32 @@ class WebgrouperPatientCase < PatientCase
     procedures
   end
 
-  # The default swissdrg format with additional data in the id-field
+  # The default swissdrg format with additional data in the id-field, split by semicolon if readable is set to false
+  # and split by underscore if readable is set to true
   def to_s
-    [self.system_id, self.birth_date, self.entry_date, self.exit_date, self.leave_days].join('-') + super.to_s
+    # additional information from id field
+    s = [self.system_id, self.birth_date, self.entry_date, self.exit_date, self.leave_days].join('_')
+    # rest of string
+    s << super.to_s
+    s.gsub!(';','-')
+    return s
   end
 
-  #takes a swissdrg-string as input and returns the complying WebgrouperPatientCase
+  def to_swissdrg_s
+    to_s.gsub('-', ';')
+  end
+
+  # takes a swissdrg-string as input and returns the complying WebgrouperPatientCase.
+  # the swissdrg-string may also be split by underscores instead of semicolons
   def self.parse(pc_string)
     params = {}
-    pc_array = pc_string.split(';')
-    additional_data = pc_array[0].split('-')
+    if pc_string.include? (';')
+      pc_array = pc_string.split(';')
+    else
+      pc_array = pc_string.split('-')
+    end
+
+    additional_data = pc_array[0].split('_')
     if additional_data.size == 5 # for legacy support
       params[:system_id] = additional_data[0]
       params[:birth_date] = additional_data[1]
