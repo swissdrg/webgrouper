@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+#source 'http://torquebox.org/rubygems'
 
 # 3.2.13 has a bug with i18n-js (fixed already, waiting for release)
 gem 'rails', '3.2.12'
@@ -39,6 +40,11 @@ gem "i18n-js"
 # For retrieving gravatar pictures
 gem 'gravatar_image_tag'
 
+
+# for webapi parsing
+gem 'xml-simple'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -49,7 +55,7 @@ group :assets do
 end
 
 group :development do
-  gem "torquebox-server", "~>2.2.0"
+  gem "torquebox-server", "~>2.3.2"
 end
 
 group :test do
@@ -81,5 +87,5 @@ end
 # gem 'ruby-debug'
 
 group :deployment do
-  gem "torquebox", "~>2.2.0"
+  gem "torquebox", "~>2.3.2"
 end

@@ -15,4 +15,8 @@ class System
     self.where(:public => true)
   end
 
+  def self.exists?(id)
+    self.where(:system_id => id).exists?
+  end
+
 end

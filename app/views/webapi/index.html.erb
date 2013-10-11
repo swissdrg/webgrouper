@@ -1,0 +1,147 @@
+<div id="header">
+    <div id="header_inner" class="fixed">
+        <div id="logo"><h1>SwissDRG Grouper WebAPI</h1></div>
+        <div id="menu">
+
+        </div>
+    </div>
+</div>
+
+<div id="main">
+    <br class="clear" />
+    <div id="main_inner" class="fixed">
+        <div class="highlight">
+            <h2>UPDATE: Arrays</h2>
+            It is now possible to parse up to 1000 cases at once using any format. Accordingly, the syntax has changed as follows:
+            <h3>Swissdrg</h3>
+            The newline character is used to separate cases.
+            <h3>XML</h3>
+            The whole file has to be surrounded with &lt;Array&gt; ... &lt;/Array&gt;.
+            You may have an arbitrary number (under 1000) of &lt;PatientCase&gt; nodes inside. The structure of a single &lt;PatientCase&gt; node did not change.
+            <h3>JSON</h3>
+            The data must be passed as JSON array (meaning surrounded by [ .. ] ). You may have an arbitrary number (under 1000) json objects inside.
+            The structure of a single JSON object did not change.
+            <h3>Output</h3>
+            The output will also be returned as an array.
+        </div>
+        </br>
+        The WebAPI for the SwissDRG grouper consists of two actions (either GET or POST):<br/>
+        <ul>
+            <li><a href="webapi/systems.xml">webapi/systems (.xml|.json)</a> Get a list with all available systems.</li>
+            <li>
+                <a href="webapi/group.xml">webapi/group (.xml|.json)</a> Group a patient case. The parameters and the output are desrcibed bellow.
+            </li>
+        </ul>
+
+        <span style="font-weight:bold">Parameters for group:</span><br/>
+        system: (default: 9) system id as obtained from:<br/>
+        <a href="webapi/systems.xml">Overview Systems in XML</a><br/>
+        <a href="webapi/systems.json">Overview Systems in JSON</a>
+        <br/>
+        format: output format (<u>xml</u>|json)<br/>
+        input_format: input format (<u>swissdrg</u>|xml|json)<br/>
+        pc: patient case in the format specified in input_format<br/>
+        <br/>
+        <span style="font-weight:bold">Response:</span><br/>
+        The response is a nested hash containing an entry for "PatientCase" which is the input patient case with the calculated length of stay and age,
+        an entry for "GrouperResult" containing the grouping results (drg, mdc), an entry for the effective cost weight
+        and an entry with the id of the used system.<br/>
+        If your input is not valid json, xml or swissdrg or some information is missing, the response contains an "Error" entry describing the problem.<br/>
+
+        <form action="webapi/group.xml" method="post">
+            <p><b>SwissDRG Input, XML Output</b><br><textarea name="pc" cols="70" rows="10"></textarea>
+                <input type="hidden" name="input_format" value="swissdrg"/><input type="submit" value="Go"></p>
+        </form>
+        Example Input: See <a href="https://webgrouper.swissdrg.org/webapi/grouper-doku-de.pdf">Documentation for the SwissDRG Input Format</a><br/> for further information.
+        59;0;27;;W;11;01;48;;;P072;;;;P071;;;;R068;;R001;;P612;;H351;;P742;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;966;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        <br/><br/>
+        <form action="webapi/group.json" method="post">
+            <p><b>SwissDRG Input, JSON Output</b><br><textarea name="pc" cols="70" rows="10"></textarea>
+                <input type="hidden" name="input_format" value="swissdrg"/><input type="submit" value="Go"></p>
+        </form>
+
+        <form action="webapi/group.xml" method="post">
+            <p><b>JSON Input, XML Output</b><br><textarea name="pc" cols="70" rows="10" ></textarea>
+                <input type="hidden" name="input_format" value="json"/><input type="submit" value="Go"></p>
+        </form>
+        Example JSON Input:
+<pre>
+[{"id":"342559",
+ "entryDate":"00000000",
+ "exitDate":"00000000",
+ "birthDate":"00000000",
+ "leaveDays":0,
+ "ageYears":0,
+ "ageDays":27,
+ "admWeight":0,
+ "sex":"W",
+ "adm":"11",
+ "sep":"01",
+ "los":48,
+ "hmv":0,
+ "pdx":"P072",
+ "diagnoses":["P071","P920","R068","R001","P612","H351"],
+ "procedures":["966"]}
+
+
+ ]</pre>
+        <br/><br/>
+
+        <form action="webapi/group.json" method="post">
+            <p><b>JSON Input, JSON Output</b><br><textarea name="pc" cols="70" rows="10" ></textarea>
+                <input type="hidden" name="input_format" value="json"/>
+                <input type="submit" value="Go"></p>
+        </form>
+
+        <form action="webapi/group.xml" method="post">
+            <p><b>XML Input, XML Output</b><br><textarea name="pc" cols="70" rows="10" ></textarea>
+                <input type="hidden" name="input_format" value="xml"/>
+                <input type="submit" value="Go"></p>
+        </form>
+
+        Example XML Input:
+<pre>
+&lt;Array&gt;
+	&lt;PatientCase&gt;
+	    &lt;id&gt;3455259&lt;/id&gt;
+	    &lt;entryDate&gt;00000000&lt;/entryDate&gt;
+	    &lt;exitDate&gt;00000000&lt;/exitDate&gt;
+	    &lt;birthDate&gt;00000000&lt;/birthDate&gt;
+	    &lt;leaveDays type=&quot;integer&quot;&gt;0&lt;/leaveDays&gt;
+	    &lt;ageYears type=&quot;integer&quot;&gt;0&lt;/ageYears&gt;
+	    &lt;ageDays type=&quot;integer&quot;&gt;27&lt;/ageDays&gt;
+	    &lt;admWeight type=&quot;integer&quot;&gt;0&lt;/admWeight&gt;
+	    &lt;sex&gt;W&lt;/sex&gt;
+	    &lt;adm&gt;11&lt;/adm&gt;
+	    &lt;sep&gt;01&lt;/sep&gt;
+	    &lt;los type=&quot;integer&quot;&gt;48&lt;/los&gt;
+	    &lt;hmv type=&quot;integer&quot;&gt;0&lt;/hmv&gt;
+	    &lt;pdx&gt;P072&lt;/pdx&gt;
+	    &lt;diagnoses type=&quot;array&quot;&gt;
+	        &lt;diagnosis&gt;P071&lt;/diagnosis&gt;
+	        &lt;diagnosis&gt;P920&lt;/diagnosis&gt;
+	        &lt;diagnosis&gt;R068&lt;/diagnosis&gt;
+	        &lt;diagnosis&gt;R001&lt;/diagnosis&gt;
+	        &lt;diagnosis&gt;P612&lt;/diagnosis&gt;
+	        &lt;diagnosis&gt;P928&lt;/diagnosis&gt;
+	    &lt;/diagnoses&gt;
+	    &lt;procedures type=&quot;array&quot;&gt;
+	        &lt;procedure&gt;966&lt;/procedure&gt;
+	    &lt;/procedures&gt;
+	&lt;/PatientCase&gt;
+
+
+&lt;/Array&gt;
+</pre>
+        <br/><br/>
+
+        <form action="webapi/group.json" method="post">
+            <p><b>XML Input, JSON Output</b><br><textarea name="pc" cols="70" rows="10" ></textarea>
+                <input type="hidden" name="input_format" value="xml"/><input type="submit" value="Go"></p>
+        </form>
+    </div>
+    <br class="clear" />
+</div>
+<div id="footer" class="fixed">
+    Copyright &copy; 2011 SwissDRG AG.
+</div>

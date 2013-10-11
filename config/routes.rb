@@ -14,7 +14,15 @@ Webgrouper::Application.routes.draw do
     get 'index' => 'webgrouper_patient_cases#index'
     match 'parse' => 'webgrouper_patient_cases#parse'
   end
-  
+
+  scope 'webapi' do
+    get '/' => 'webapi#index'
+    match 'grouper/group' => 'webapi#group'
+    match 'grouper/systems' => 'webapi#systems'
+    match 'group' => 'webapi#group'
+    match 'systems' => 'webapi#systems'
+  end
+
   # This is for testing only and can be removed later on:
   get 'test404' => 'errors#error_404'
   get 'test500' => 'errors#error_500'
