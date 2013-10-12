@@ -1,5 +1,7 @@
 require 'json'
-require 'xmlsimple'
+require 'nokogiri'
+
+ARRAY_LIMIT = 1000
 
 class WebapiController < ApplicationController
 
@@ -22,18 +24,17 @@ class WebapiController < ApplicationController
       pcs.each do |pc|
         GROUPER.load(spec_path(system_id))
         result = GROUPER.group(pc)
-        wr =  WebgrouperWeightingRelation.new(result.drg, 0, system_id)    # lets hope this method is overloaded?
+        # Housing is always set to 0 -> no birthhouse stuff possible!
+        wr =  WebgrouperWeightingRelation.new(result.drg, 0, system_id)
         effective_cost_weight = GROUPER.calculateEffectiveCostWeight(pc, wr)
-        response << {:PatientCase => convert_patientcase(pc),
-                     :GrouperResult => convert_result(result, pc), :SystemId => system_id,
-                     :EffectiveCostWeight => convert_ecw(effective_cost_weight) }
+        response << { :PatientCase => convert_patientcase(pc),
+                      :GrouperResult => convert_result(result, pc), :SystemId => system_id,
+                      :EffectiveCostWeight => convert_ecw(effective_cost_weight) }
       end
     rescue Exception => e
       raise e if Rails.env == 'development' #dont catch in development mode
       response = {:Error => e.message}
     end
-
-
 
     respond_to do |format|
       format.xml {render :xml => response}
@@ -49,7 +50,7 @@ class WebapiController < ApplicationController
     end
   end
 
-
+  private
   def convert_patientcase pc
     pch = Hash.new
     pch[:id] = pc.id
@@ -130,7 +131,7 @@ class WebapiController < ApplicationController
 
   def parse_patientcase params
     pc_string = params[:pc] == nil ? "" : params[:pc]
-    format = params[:input_format] ||= nil
+    format = params[:input_format]
 
     pcs = []
     case format
@@ -144,7 +145,7 @@ class WebapiController < ApplicationController
 
   def parse_swissdrg string
     pcs = []
-    if(string == "")
+    if string.blank?
       pcs << org.swissdrg.grouper.PatientCase.new
     else
       string.each_line do |pc_string|
@@ -156,37 +157,36 @@ class WebapiController < ApplicationController
 
   def parse_xml string
     pcs = []
-    parser = XmlSimple.new
-    pchs = parser.parse_string string
-    throw :NoPatientCaseNode => "Couldn't find any nodes called \"PatientCase\"" if pchs["PatientCase"] == nil
-    throw :TooManyArguments => "The number Patient Cases that can be grouped at once is limited to #{ARRAY_LIMIT}" if pchs["PatientCase"].size > ARRAY_LIMIT
-    pchs["PatientCase"].each do |pch|
+    pchs = Nokogiri::XML(string).xpath("//PatientCase")
+    throw :NoPatientCaseNode => "Couldn't find any nodes called \"PatientCase\"" if pchs.size < 1
+    throw :TooManyArguments => "The number Patient Cases that can be grouped at once is limited to #{ARRAY_LIMIT}" if pchs.size > ARRAY_LIMIT
+    pchs.each do |pch|
       pc = org.swissdrg.grouper.PatientCase.new
 
-      pc.id = pch["id"][0] if pch["id"] != nil
-      pc.entryDate = pch["entryDate"][0] if pch["entryDate"] != nil
-      pc.exitDate = pch["exitDate"][0] if pch["exitDate"] != nil
-      pc.birthDate = pch["birthDate"][0] if pch["birthDate"] != nil
-      pc.leaveDays = pch["leaveDays"][0]["content"].to_i if pch["leaveDays"] != nil
-      pc.ageYears = pch["ageYears"][0]["content"].to_i if pch["ageYears"] != nil
-      pc.ageDays = pch["ageDays"][0]["content"].to_i if pch["ageDays"] != nil
-      pc.admWeight = pch["admWeight"][0]["content"].to_i if pch["admWeight"] != nil
-      pc.sex = pch["sex"][0] if pch["sex"] != nil
-      pc.adm = pch["adm"][0] if pch["adm"] != nil
-      pc.sep = pch["sep"][0] if pch["sep"] != nil
-      pc.los = pch["los"][0]["content"].to_i if pch["los"] != nil
-      pc.hmv = pch["hmv"][0]["content"].to_i if pch["hmv"] != nil
-      pc.pdx = pch["pdx"][0] if pch["pdx"] != nil
+      pc.id =  pch.xpath('.//id').text
+      pc.entryDate = pch.xpath('.//entryDate').text
+      pc.exitDate = pch.xpath('.//exitDate').text
+      pc.birthDate = pch.xpath('.//birthDate').text
+      pc.leaveDays = pch.xpath('.//leaveDays').text.to_i
+      pc.ageYears = pch.xpath('.//ageYears').text.to_i
+      pc.ageDays = pch.xpath('.//ageDays').text.to_i
+      pc.admWeight = pch.xpath('.//admWeight').text.to_i
+      pc.sex = pch.xpath('.//sex').text
+      pc.adm = pch.xpath('.//adm').text
+      pc.sep = pch.xpath('.//sep').text
+      pc.los = pch.xpath('.//los').text.to_i
+      pc.hmv = pch.xpath('.//hmv').text.to_i
+      pc.pdx = pch.xpath('.//pdx').text
 
-      if(pch["diagnoses"] != nil)
-        diagnoses = pch["diagnoses"][0]["diagnosis"].map {|d| d.to_s}
+      unless pch.xpath('.//diagnoses').empty?
+        diagnoses = pch.xpath('.//diagnoses//diagnosis').map { |d| d.text }
         @diagMax = diagnoses.size
-        (diagnoses.size..98).each {|i| diagnoses << nil}
+        (diagnoses.size..98).each {|_| diagnoses << nil}   # pad with nil
         pc.diagnoses = diagnoses
       end
-      if(pch["procedures"] != nil)
-        procedures = pch["procedures"][0]["procedure"].map { |p| p.to_s.gsub(".", "") }
-        (procedures.size..99).each {|i| procedures << nil}
+      unless pch.xpath('.//procedures').empty?
+        procedures = pch.xpath('.//procedures//procedure').map { |d| d.text.gsub('.', '') }
+        (procedures.size..99).each {|_| procedures << nil}   # pad with nil
         pc.procedures = procedures
       end
       pcs << pc
