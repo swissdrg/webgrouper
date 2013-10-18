@@ -1,6 +1,3 @@
-require 'patient_case_parser'
-
-
 class WebapiController < ApplicationController
 
   def index
@@ -25,9 +22,7 @@ class WebapiController < ApplicationController
         # Housing is always set to 0 -> no birthhouse stuff possible!
         wr =  WebgrouperWeightingRelation.new(result.drg, 0, system_id)
         effective_cost_weight = GROUPER.calculateEffectiveCostWeight(pc, wr)
-        response << { :PatientCase => convert_patientcase(pc),
-                      :GrouperResult => convert_result(result, pc), :SystemId => system_id,
-                      :EffectiveCostWeight => convert_ecw(effective_cost_weight) }
+        response << WebapiResponse.new(result, pc, effective_cost_weight, system_id).result
       end
     rescue Exception => e
       raise e if Rails.env == 'development' #dont catch in development mode
