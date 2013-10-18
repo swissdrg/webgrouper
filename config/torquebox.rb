@@ -19,8 +19,8 @@ TorqueBox.configure do
   # only one instance at a time to prevent nasty segfaults
   pool :web do
     type :bounded
-    min 1
-    max 1
+    min 4
+    max 4
   end
 
 end

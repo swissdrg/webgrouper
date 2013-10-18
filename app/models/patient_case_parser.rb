@@ -36,7 +36,8 @@ class PatientCaseParser
     return pcs
   end
 
-  # dead code, not in use
+  # Parses the whole xml document before processing. Not a very smart thing to do, bc it fills
+  # the memory pretty fas t.
   def parse_xml string
     pcs = []
     pchs = Nokogiri::XML(string).xpath("//PatientCase")
