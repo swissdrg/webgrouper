@@ -19,8 +19,8 @@ Webgrouper::Application.routes.draw do
     get '/' => 'webapi#index'
     match 'grouper/group' => 'webapi#group'
     match 'grouper/systems' => 'webapi#systems'
-    match 'group' => 'webapi#group'
-    match 'systems' => 'webapi#systems'
+    match 'group' => 'webapi#group', :as => :webapi_group
+    match 'systems' => 'webapi#systems', :as => :webapi_systems
   end
 
   # This is for testing only and can be removed later on:

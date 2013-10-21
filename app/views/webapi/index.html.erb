@@ -27,17 +27,18 @@
         </br>
         The WebAPI for the SwissDRG grouper consists of two actions (either GET or POST):<br/>
         <ul>
-            <li><a href="webapi/systems.xml">webapi/systems (.xml|.json)</a> Get a list with all available systems.</li>
             <li>
-                <a href="webapi/group.xml">webapi/group (.xml|.json)</a> Group a patient case. The parameters and the output are desrcibed bellow.
+              <%= link_to 'webapi/systems (.xml|.json)', webapi_systems_path(:format => 'xml') %>
+              Get a list with all available systems.
+              </li>
+            <li>
+              <%= link_to 'webapi/group (.xml|.json)', webapi_group_path(:format => 'xml') %>
+              Group a patient case. The parameters and the output are desrcibed bellow.
             </li>
         </ul>
 
         <span style="font-weight:bold">Parameters for group:</span><br/>
-        system: (default: 9) system id as obtained from:<br/>
-        <a href="webapi/systems.xml">Overview Systems in XML</a><br/>
-        <a href="webapi/systems.json">Overview Systems in JSON</a>
-        <br/>
+        system: (default: 9) id of system to group with <br/>
         format: output format (<u>xml</u>|json)<br/>
         input_format: input format (<u>swissdrg</u>|xml|json)<br/>
         pc: patient case in the format specified in input_format<br/>
@@ -48,19 +49,19 @@
         and an entry with the id of the used system.<br/>
         If your input is not valid json, xml or swissdrg or some information is missing, the response contains an "Error" entry describing the problem.<br/>
 
-        <form action="webapi/group.xml" method="post">
+        <form action="<%= webapi_group_path(:format => 'xml') %>" method="post">
             <p><b>SwissDRG Input, XML Output</b><br><textarea name="pc" cols="70" rows="10"></textarea>
                 <input type="hidden" name="input_format" value="swissdrg"/><input type="submit" value="Go"></p>
         </form>
         Example Input: See <a href="https://webgrouper.swissdrg.org/webapi/grouper-doku-de.pdf">Documentation for the SwissDRG Input Format</a><br/> for further information.
         59;0;27;;W;11;01;48;;;P072;;;;P071;;;;R068;;R001;;P612;;H351;;P742;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;966;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         <br/><br/>
-        <form action="webapi/group.json" method="post">
+        <form action="<%= webapi_group_path(:format => 'json') %>" method="post">
             <p><b>SwissDRG Input, JSON Output</b><br><textarea name="pc" cols="70" rows="10"></textarea>
                 <input type="hidden" name="input_format" value="swissdrg"/><input type="submit" value="Go"></p>
         </form>
 
-        <form action="webapi/group.xml" method="post">
+        <form action="<%= webapi_group_path(:format => 'xml') %>" method="post">
             <p><b>JSON Input, XML Output</b><br><textarea name="pc" cols="70" rows="10" ></textarea>
                 <input type="hidden" name="input_format" value="json"/><input type="submit" value="Go"></p>
         </form>
@@ -87,13 +88,13 @@
  ]</pre>
         <br/><br/>
 
-        <form action="webapi/group.json" method="post">
+        <form action="<%= webapi_group_path(:format => 'json') %>" method="post">
             <p><b>JSON Input, JSON Output</b><br><textarea name="pc" cols="70" rows="10" ></textarea>
                 <input type="hidden" name="input_format" value="json"/>
                 <input type="submit" value="Go"></p>
         </form>
 
-        <form action="webapi/group.xml" method="post">
+        <form action="<%= webapi_group_path(:format => 'xml') %>" method="post">
             <p><b>XML Input, XML Output</b><br><textarea name="pc" cols="70" rows="10" ></textarea>
                 <input type="hidden" name="input_format" value="xml"/>
                 <input type="submit" value="Go"></p>
@@ -135,7 +136,7 @@
 </pre>
         <br/><br/>
 
-        <form action="webapi/group.json" method="post">
+        <form action="<%= webapi_group_path(:format => 'json') %>" method="post">
             <p><b>XML Input, JSON Output</b><br><textarea name="pc" cols="70" rows="10" ></textarea>
                 <input type="hidden" name="input_format" value="xml"/><input type="submit" value="Go"></p>
         </form>
