@@ -7,9 +7,6 @@ gem 'rails', '3.2.12'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# for newrelic monitoring
-gem 'newrelic_rpm'
-
 # mongoDB driver
 gem "mongoid"
 
@@ -54,10 +51,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem "torquebox-server", "~>2.3.2"
-end
-
 group :test do
   gem 'test-unit'
   gem 'spork-rails'
@@ -85,7 +78,3 @@ end
 
 # To use debugger
 # gem 'ruby-debug'
-
-group :deployment do
-  gem "torquebox", "~>2.3.2"
-end
