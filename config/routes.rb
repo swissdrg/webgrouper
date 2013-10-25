@@ -24,8 +24,7 @@ Webgrouper::Application.routes.draw do
   end
 
   # This is for testing only and can be removed later on:
-  get 'test404' => 'errors#error_404'
-  get 'test500' => 'errors#error_500'
+  resources :systems
   get 'grouper' => 'batchgroupers#tos'
   get 'activate_beta' => 'webgrouper_patient_cases#activate_beta'
   get 'batchgrouper' => 'batchgroupers#tos'

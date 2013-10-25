@@ -8,7 +8,18 @@ class System
   field :drg_version, type: String
   field :manual_url, type: String
   field :public, type: Boolean
-  
+
+  # TODO: validate chop/drg/icd if it is an available valid version
+  validates :chop_version, :presence => true
+  validates :drg_version, :presence => true
+  validates :icd_version, :presence => true
+  validates :description, :presence => true
+  validates :system_id, :presence => true
+
+  before_validation(on: :create) do
+    self.system_id = System.last.system_id + 1
+  end
+
   index "system_id" => 1
 
   def self.all_public
