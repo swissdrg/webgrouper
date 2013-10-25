@@ -20,6 +20,8 @@ class System
     self.system_id = System.last.system_id + 1
   end
 
+  before_destroy :delete_specfile
+
   index "system_id" => 1
 
   def self.all_public
@@ -30,4 +32,13 @@ class System
     self.where(:system_id => id).exists?
   end
 
+  def delete_specfile
+    begin
+      path = File.join(spec_folder, self.system_id.to_s)
+      puts path
+      FileUtils.rm_r(path)
+    rescue Errno::ENOENT => e
+      Rails.logger.debug "Could not delete specfile in #{path}: #{e.message}"
+    end
+  end
 end
