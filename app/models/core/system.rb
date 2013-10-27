@@ -32,6 +32,33 @@ class System
     self.where(:system_id => id).exists?
   end
 
+  # uses the grouperc project to automatically compile a 64 bit spec.
+  # For linux compatability, the SPEC.ini file has to be changed to use linux style folder references.
+  # This method uses the linux tools sed and unzip.
+  #@param spec_zip, a zip file, consisting of a whole spec folder
+  def compile_64bit_spec(spec_zip)
+    path = File.join(spec_folder, self.system_id.to_s)
+    zip_file = File.join(path, 'spec_files.zip')
+    FileUtils.mkdir_p(path)
+    File.open(zip_file, 'wb') { |f| f.write(spec_zip.read) }
+
+    # unzips into spec folder
+    `unzip #{zip_file} -d #{path}`
+    FileUtils.mv(File.join(path, 'Spec.bin'), File.join(path, 'Spec32bit.bin'))
+    spec_ini = File.join(path, 'SPEC.ini')
+
+    # replace file separator to linux style slash
+    sed_arg = "'s/\\\\/\\//g'"   # without ugly escapes: 's/\\/\//g'
+    `sed -i #{sed_arg} #{spec_ini}`
+
+    # Syntax external call:
+    # grouperc {specs-ini} {output folder}
+    cmd_status = `lib/grouperc/gcc_port/Linux_x86/grouperc #{spec_ini} #{path}`
+    raise Exception("Spec compilation failed with #{cmd_status}") unless cmd_status.include?('Done! 0')
+    FileUtils.mv(File.join(path, 'Spec.bin'), File.join(path, 'Spec64bit.bin'))
+    # TODO: clean up remainders of zip file
+  end
+
   def delete_specfile
     begin
       path = File.join(spec_folder, self.system_id.to_s)

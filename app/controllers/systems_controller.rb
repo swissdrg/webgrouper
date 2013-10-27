@@ -16,14 +16,13 @@ class SystemsController < ApplicationController
       if s.errors.any?
         notice = s.errors.full_messages.join("\n")
       else
-        if params[:spec_file]
-          path = File.join(spec_folder, s.system_id.to_s, 'Spec64bit.bin')
-          FileUtils.mkdir(File.dirname(path))
-          File.open(path, 'wb') { |f| f.write(params[:spec_file].read) }
+        begin
+          s.compile_64bit_spec(params[:spec_files])
           notice = 'System erfolgreich hinzugefuegt'
           status = 200
-        else
-          notice = 'Kein Spezifikationsfile angehaengt, konnte nicht speichern'
+        rescue Exception => e
+          raise e if Rails.env == 'development'
+          notice = 'Konnte System nicht erstellen: ' + e.message
           s.destroy
         end
       end
