@@ -31,7 +31,8 @@ Webgrouper::Application.routes.draw do
   get 'webgrouper' => 'webgrouper_patient_cases#tos'
   get 'about' => 'static_pages#about'
 
-  root :to => 'webgrouper_patient_cases#tos'
+  # root of internal version is not TOS
+  root :to => 'webgrouper_patient_cases#index'
   
   unless Rails.application.config.consider_all_requests_local
     match '*not_found', :to => 'errors#error_404'
