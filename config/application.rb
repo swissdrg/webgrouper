@@ -17,9 +17,6 @@ module Webgrouper
   class Application < Rails::Application
     # Use TorqueBox::Infinispan::Cache for the Rails cache store
     config.cache_store = :torque_box_store
-
-    # only allow ssl:
-    config.force_ssl = true
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
