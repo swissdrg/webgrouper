@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-#source 'http://torquebox.org/rubygems'
+source 'http://torquebox.org/rubygems'
 
 # 3.2.13 has a bug with i18n-js (fixed already, waiting for release)
 gem 'rails', '3.2.12'
@@ -19,6 +19,8 @@ gem 'json'
 gem 'jquery-rails', "~>2.1.0" #newer version break autocomplete!
 gem 'jquery-ui-rails'
 gem 'rails3-jquery-autocomplete', :git => "git://github.com/panmari/rails3-jquery-autocomplete.git"
+# for date computation in JS
+gem 'momentjs-rails'
 
 # HTML Abstraction Markup Language 
 # Templating Engine, that allows a non-repetitive and more elegant way to structure xhtml/xml with embedded ruby.

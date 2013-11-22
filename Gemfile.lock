@@ -7,6 +7,7 @@ GIT
 
 GEM
   remote: http://rubygems.org/
+  remote: http://torquebox.org/rubygems/
   specs:
     actionmailer (3.2.12)
       actionpack (= 3.2.12)
@@ -104,6 +105,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.24)
     mini_portile (0.5.1)
+    momentjs-rails (2.4.0)
+      railties (>= 3.1)
     mongoid (3.1.4)
       activemodel (~> 3.2)
       moped (~> 1.4)
@@ -113,6 +116,8 @@ GEM
     multi_json (1.7.9)
     multi_test (0.0.2)
     newrelic_rpm (3.6.7.152)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     nokogiri (1.6.0-java)
       mini_portile (~> 0.5.0)
     origin (1.1.0)
@@ -249,6 +254,7 @@ DEPENDENCIES
   jquery-ui-rails
   json
   launchy
+  momentjs-rails
   mongoid
   newrelic_rpm
   nokogiri
