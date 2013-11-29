@@ -42,11 +42,12 @@ function set_age_mode() {
 }
 
 function computeLos() {
-	var first = parseDate($('#webgrouper_patient_case_entry_date').val())
-	var second = parseDate($('#webgrouper_patient_case_exit_date').val())
-	var leave_days = $('#webgrouper_patient_case_leave_days').val()
-	var diff = daydiff(first, second, leave_days);
-	if (!(isNaN(diff))){
+	var first = parseDate($('#webgrouper_patient_case_entry_date').val());
+	var second = parseDate($('#webgrouper_patient_case_exit_date').val());
+	var leave_days = $('#webgrouper_patient_case_leave_days').val();
+	var diff = mapZeroToOne(second.diff(first, 'days') - leave_days);
+
+	if (first.isValid() && second.isValid()){
 		$('#webgrouper_patient_case_los').val(diff);
 		disableLosInput(true);
 	} else {
@@ -65,8 +66,8 @@ function computeAge() {
 	
 	var entry_date = parseDate($('#webgrouper_patient_case_entry_date').val());
 	
-	var year_diff = Math.floor(daydiff(bd, entry_date, 0)/365);
-	if (bd != null) {
+	var year_diff = entry_date.diff(bd, 'years')
+	if (bd.isValid() && entry_date.isValid()) {
 		if (year_diff >= 1) {
 			$('#webgrouper_patient_case_age_mode_decoy').val("years");
 			set_age_mode();
@@ -75,7 +76,9 @@ function computeAge() {
 		else if (year_diff < 1) {
 			$('#webgrouper_patient_case_age_mode_decoy').val("days");
 			set_age_mode();
-			$('#webgrouper_patient_case_age').val(daydiff(bd, entry_date, 0));
+            //born on same day as entry => age 1
+            var age_days = mapZeroToOne(entry_date.diff(bd, 'days'));
+			$('#webgrouper_patient_case_age').val(age_days);
 		} else {
 			//in case of NaN, fill with nothing
 			$('#webgrouper_patient_case_age').val("");
@@ -125,20 +128,15 @@ function disableAgeInput(doDisable) {
 		$age_decoy.prop('title', "");
 	}
 }
+
 function parseDate(str) {
-	return $.datepicker.parseDate("dd.mm.yy", str)
+	return moment(str,"DD.MM.YYYY")
 }
 
-function daydiff(first, second, leave_days) {
-	if (first == null || second == null)
-		return Number.NaN
-	var diffMiliSec = second-first;
-	diffMiliSec+=2*1000*60*60 // plus to hours to account for Summer/Wintertime
-	diffDays = Math.floor((diffMiliSec/(1000*60*60*24))-leave_days)
-	if (diffDays == 0) {
-		return 1
-	}
-	else {
-		return diffDays
-		}
+function mapZeroToOne(value) {
+    if (value == 0) {
+        return 1;
+    } else {
+        return value;
+    }
 }

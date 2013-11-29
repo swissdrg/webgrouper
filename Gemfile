@@ -16,6 +16,8 @@ gem 'json'
 gem 'jquery-rails', "~>2.1.0" #newer version break autocomplete!
 gem 'jquery-ui-rails'
 gem 'rails3-jquery-autocomplete', :git => "git://github.com/panmari/rails3-jquery-autocomplete.git"
+# for date computation in JS
+gem 'momentjs-rails'
 
 # HTML Abstraction Markup Language 
 # Templating Engine, that allows a non-repetitive and more elegant way to structure xhtml/xml with embedded ruby.

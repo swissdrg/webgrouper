@@ -17,8 +17,6 @@ module Webgrouper
   class Application < Rails::Application
     config.cache_store = :memory_store
 
-    # only allow ssl:
-    config.force_ssl = false
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

@@ -89,10 +89,10 @@ class LosDataTable < GoogleVisualr::DataTable
   end
   
   #TODO: values should to be bold
-  # Gives back a formated string with the data given
+  # Gives back a formatted string with the data given
   def make_tooltip(x_value_caption, x_value, y_value)
-    "#{I18n.t('result.length-of-stay.' + x_value_caption)}: " + 
-        "#{I18n.t('datetime.distance_in_words.x_days', :count => x_value.to_s)} \\n" +
+    "#{I18n.t('result.length-of-stay.' + x_value_caption)}: " +
+        "#{I18n.t('datetime.distance_in_words.x_days', :count => x_value.to_s)} \n" +
         "#{I18n.t('result.cost-weight.legend')}: #{y_value.to_s}"
   end
 end

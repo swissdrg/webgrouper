@@ -69,3 +69,14 @@ Feature: Arbitrary dates entered in admission date/date of discharge/leave days 
     And I submit the form
     Then the grouping should succeed
     And I should see "4" as age
+
+@javascript @date
+  Scenario: Leap years should be handled in age computation
+    Given the form with initialized standard values
+    When I fill in "webgrouper_patient_case_entry_date" with "19.07.2013"
+    And I fill in "webgrouper_patient_case_exit_date" with "30.07.2013"
+    And I fill in "webgrouper_patient_case_birth_date" with "1.8.1943"
+    And I enter "A000" as diagnosis
+    And I submit the form
+    Then the grouping should succeed
+    And I should see "69" as age

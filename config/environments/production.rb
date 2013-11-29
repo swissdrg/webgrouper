@@ -1,6 +1,9 @@
 Webgrouper::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  # only allow ssl:
+  config.force_ssl = true
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
