@@ -12,6 +12,8 @@ gem 'newrelic_rpm'
 
 # mongoDB driver
 gem "mongoid"
+# For seeding mongodb with icd/chop
+gem 'pg_jruby'
 
 gem 'json'
 
