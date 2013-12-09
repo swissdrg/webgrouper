@@ -123,6 +123,7 @@ GEM
     origin (1.1.0)
     parslet (1.4.0)
       blankslate (~> 2.0)
+    pg_jruby (0.14.1.rc2-java)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -258,6 +259,7 @@ DEPENDENCIES
   mongoid
   newrelic_rpm
   nokogiri
+  pg_jruby
   rails (= 3.2.12)
   rails3-jquery-autocomplete!
   rspec-rails
