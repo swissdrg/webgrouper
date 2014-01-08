@@ -13,6 +13,7 @@ Given /^the form with initialized standard values and system 13$/ do
   else
     visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
   end
+  step %{I select system 13}
 end
 
 Given /^the beta form$/ do
