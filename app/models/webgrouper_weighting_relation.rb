@@ -26,12 +26,16 @@ class WebgrouperWeightingRelation < WeightingRelation
     end
     # These values needs to be set in all cases
     self.setDrg(drg.code)
-    self.setAvgDuration((drg.avg_duration*@factor).round(1))
+    self.setAvgDuration(prepare_for_grouper(drg.avg_duration, 1))
     self.setFirstDayDiscount(drg.first_day_discount)
     self.setFirstDaySurcharge(drg.first_day_surcharge)
 	end
 	
-	def prepare_for_grouper(number)
-	  (number*@factor).round
+	def prepare_for_grouper(number, ndigits=0)
+    if number
+	    (number*@factor).round(ndigits)
+    else
+      0
+    end
 	end
 end
