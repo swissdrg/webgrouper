@@ -2,6 +2,8 @@ include Java
 require 'app/helpers/application_helper'
 include ApplicationHelper
 
+DEFAULT_SYSTEM = 17
+
 # On mac: debugging only with mock-grouper
 if java.lang.System.getProperty('os.name').downcase.include?('mac')
   require 'lib/javawrapper/swissdrg-grouper-1.0.0-mock.jar'
