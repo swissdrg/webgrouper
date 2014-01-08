@@ -13,8 +13,7 @@
           = t("result.diagnoses.used")
         %th.medium-col
           = t("result.procedures.or-nor")
-      - counter = 0
-      - @webgrouper_patient_case.procedures.each do |proc|
+      - @webgrouper_patient_case.procedures.each_with_index do |proc, counter|
         - proc_code = proc.split(":")[0]
         %tr
           %td
@@ -27,4 +26,3 @@
             = t("result.procedures.procedure_flag.used." + @result.procedures_flags[counter].used.to_s)
           %td
             = t("result.procedures.procedure_flag.or-nor." + @result.procedures_flags[counter].por.to_s)
-        - counter = counter + 1

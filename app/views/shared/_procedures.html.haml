@@ -1,7 +1,5 @@
-- required_rows = (Float(@webgrouper_patient_case.procedures.count)/3).ceil
-- if required_rows == 0
-  - required_rows = 1
+- required_rows = [1, (@webgrouper_patient_case.procedures.count/3.0).ceil].max
 - required_rows.times do
   :javascript
     var json = "#{escape_javascript(@webgrouper_patient_case.procedures.to_json.html_safe)}";
-    add_fields("procedures", "#{escape_javascript(row('procedures'))}", json);
+    add_fields("procedures", "#{escape_javascript(render 'shared/procedures_row')}", json);

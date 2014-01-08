@@ -24,8 +24,7 @@
           = t("result.diagnoses.diagnosis_flag.used." + @result.pdx_diagnosis_flag.used.to_s + "_string")
         %td
           = @result.pdx_diagnosis_flag.ccl
-      - counter = 0
-      - @webgrouper_patient_case.diagnoses.each do |diag|
+      - @webgrouper_patient_case.diagnoses.each_with_index do |diag, counter|
         %tr
           %td
             = link_to_online_definition_manual(diag, :icd_codes, @webgrouper_patient_case.system_id)
@@ -37,4 +36,3 @@
             = t("result.diagnoses.diagnosis_flag.used." + @result.diagnoses_flags[counter].used.to_s + "_string")
           %td
             = @result.diagnoses_flags[counter].ccl
-        - counter = counter + 1
