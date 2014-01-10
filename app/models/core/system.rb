@@ -11,8 +11,11 @@ class System
   
   index "system_id" => 1
 
+  scope :public, lambda { where(:public => true) }
+
+  #TODO: use scope instead of helper method
   def self.all_public
-    self.where(:public => true)
+    self.public.all
   end
 
   def self.exists?(id)
