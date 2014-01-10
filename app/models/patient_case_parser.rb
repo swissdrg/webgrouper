@@ -1,6 +1,5 @@
 require 'json'
 require 'nokogiri'
-require 'xmlsimple'
 
 ARRAY_LIMIT = 1000
 
@@ -82,48 +81,6 @@ class PatientCaseParser
     parser = Nokogiri::XML::SAX::Parser.new(pc_doc)
     parser.parse(string)
     pc_doc.cases
-  end
-
-  #dead code, not in use
-  def parse_xml_xmlsimple string
-    puts 'using old parser!'
-    pcs = []
-    parser = XmlSimple.new
-    pchs = parser.parse_string string
-    throw :NoPatientCaseNode => "Couldn't find any nodes called \"PatientCase\"" if pchs["PatientCase"] == nil
-    throw :TooManyArguments => "The number Patient Cases that can be grouped at once is limited to #{ARRAY_LIMIT}" if pchs["PatientCase"].size > ARRAY_LIMIT
-    pchs["PatientCase"].each do |pch|
-      pc = org.swissdrg.grouper.PatientCase.new
-
-      pc.id = pch["id"][0] if pch["id"] != nil
-      pc.entryDate = pch["entryDate"][0] if pch["entryDate"] != nil
-      pc.exitDate = pch["exitDate"][0] if pch["exitDate"] != nil
-      pc.birthDate = pch["birthDate"][0] if pch["birthDate"] != nil
-      pc.leaveDays = pch["leaveDays"][0]["content"].to_i if pch["leaveDays"] != nil
-      pc.ageYears = pch["ageYears"][0]["content"].to_i if pch["ageYears"] != nil
-      pc.ageDays = pch["ageDays"][0]["content"].to_i if pch["ageDays"] != nil
-      pc.admWeight = pch["admWeight"][0]["content"].to_i if pch["admWeight"] != nil
-      pc.sex = pch["sex"][0] if pch["sex"] != nil
-      pc.adm = pch["adm"][0] if pch["adm"] != nil
-      pc.sep = pch["sep"][0] if pch["sep"] != nil
-      pc.los = pch["los"][0]["content"].to_i if pch["los"] != nil
-      pc.hmv = pch["hmv"][0]["content"].to_i if pch["hmv"] != nil
-      pc.pdx = pch["pdx"][0] if pch["pdx"] != nil
-
-      unless pch["diagnoses"].nil?
-        diagnoses = pch["diagnoses"][0]["diagnosis"].map { |d| d.to_s }
-        @diagMax = diagnoses.size
-        (diagnoses.size..98).each { |i| diagnoses << nil }
-        pc.diagnoses = diagnoses
-      end
-      unless pch["procedures"].nil?
-        procedures = pch["procedures"][0]["procedure"].map { |p| p.to_s.gsub(".", "") }
-        (procedures.size..99).each { |i| procedures << nil }
-        pc.procedures = procedures
-      end
-      pcs << pc
-    end
-    return pcs
   end
 
   def parse_json string
