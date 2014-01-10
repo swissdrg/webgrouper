@@ -20,7 +20,7 @@ describe 'Some parallel groupings' do
         end
         puts("Sending post for #{string[0]}. request")
         params = {:format => 'json', :input_format => 'swissdrg', :pc => all_pcs}
-        result = group_as_json(params, ENV_API)
+        result, duration = group_as_json(params, ENV_API)
         puts("Received results for #{string[0]}. request")
         assert_equal(100, result.size, "Failed with #{result}")
         parsed_results[string[0]] = result
@@ -32,21 +32,21 @@ describe 'Some parallel groupings' do
       assert_equal "1", r["PatientCase"]["id"]
       assert_equal "P67B", r["GrouperResult"]["drg"]
       assert_equal 40330, r["EffectiveCostWeight"]["effectiveCostWeight"]
-      assert_equal "9", r["SystemId"]
+      assert_equal 9, r["SystemId"]
     end
 
     parsed_results["2"].each do |r|
       assert_equal "2", r["PatientCase"]["id"]
       assert_equal "I68D", r["GrouperResult"]["drg"]
       assert_equal 5530, r["EffectiveCostWeight"]["effectiveCostWeight"]
-      assert_equal "9", r["SystemId"]
+      assert_equal 9, r["SystemId"]
     end
 
     parsed_results["3"].each do |r|
       assert_equal "3", r["PatientCase"]["id"]
       assert_equal "901D", r["GrouperResult"]["drg"]
       assert_equal 17490, r["EffectiveCostWeight"]["effectiveCostWeight"]
-      assert_equal "9", r["SystemId"]
+      assert_equal 9, r["SystemId"]
     end
   end
 
@@ -68,7 +68,7 @@ describe 'Some parallel groupings' do
         end
         puts("Sending post for #{string[0]}. request")
         params = {:format => 'json', :input_format => 'swissdrg', :pc => all_pcs, :system => system}
-        result = group_as_json(params, ENV_API)
+        result, duration = group_as_json(params, ENV_API)
         puts("Received results for #{string[0]}. request")
         assert_equal(100, result.size, "Failed with #{result}")
         parsed_results[string[0]] = result
@@ -80,21 +80,21 @@ describe 'Some parallel groupings' do
       assert_equal "1", r["PatientCase"]["id"]
       assert_equal "P67B", r["GrouperResult"]["drg"]
       assert_equal 40330, r["EffectiveCostWeight"]["effectiveCostWeight"]
-      assert_equal "9", r["SystemId"]
+      assert_equal 9, r["SystemId"]
     end
 
     parsed_results["2"].each do |r|
       assert_equal "2", r["PatientCase"]["id"]
       assert_equal "I68D", r["GrouperResult"]["drg"]
       assert_equal 5520, r["EffectiveCostWeight"]["effectiveCostWeight"]
-      assert_equal "10", r["SystemId"]
+      assert_equal 10, r["SystemId"]
     end
 
     parsed_results["3"].each do |r|
       assert_equal "3", r["PatientCase"]["id"]
       assert_equal "901D", r["GrouperResult"]["drg"]
       assert_equal 17490, r["EffectiveCostWeight"]["effectiveCostWeight"]
-      assert_equal "12", r["SystemId"]
+      assert_equal 12, r["SystemId"]
     end
   end
 end
