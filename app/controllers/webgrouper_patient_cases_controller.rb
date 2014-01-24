@@ -49,11 +49,15 @@ class WebgrouperPatientCasesController < ApplicationController
 		GROUPER.load(spec_path(patient_case.system_id))
 		@result = GROUPER.group(patient_case)
 
-		@weighting_relation = WebgrouperWeightingRelation.new(@result.drg, patient_case.house, patient_case.system_id)
-		@factor = @weighting_relation.factor
-		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)		
-		@los_chart = LosDataTable.new(patient_case.los, @cost_weight,
-		                              @weighting_relation, @factor).make_chart
+    begin
+      @weighting_relation = WebgrouperWeightingRelation.new(@result.drg, patient_case.house, patient_case.system_id)
+      @factor = @weighting_relation.factor
+      @cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
+      @los_chart = LosDataTable.new(patient_case.los, @cost_weight,
+                                    @weighting_relation, @factor).make_chart
+    rescue NoDrgException => e
+      flash.now[:error] = e.message
+    end
     render 'index'
   end
   
