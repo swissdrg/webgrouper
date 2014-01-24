@@ -7,8 +7,10 @@ class SystemsController < ApplicationController
   def create
     s = System.new(params[:system])
     if System.where(:description => s.description).exists?
-      render :json => {:text => 'System schon vorhanden',
-                       :system_id => System.where(:description => s.description).first.system_id }
+      existing_system = System.where(:description => s.description).first
+      existing_system.update_attributes!(params[:system])
+      render :json => {:text => 'System schon vorhanden, chop/icd/drg versions updated!',
+                       :system_id => existing_system.system_id }
     else
       s.public = true
       s.save
