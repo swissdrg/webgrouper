@@ -24,7 +24,6 @@
               :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.house.house#{el.to_s}" }
   .small_field
     = f.input :diagnoses_catalog, :input_html => { :value =>  current_system.icd_version }, :disabled => true
-  - manual_url = System.where(:system_id => system_id).first.manual_url
-  - unless manual_url.blank?
+  - unless current_system.manual_url.blank?
     %label{:class => 'simple_form'}
-    = link_to t("online_definition_manual_for") + " #{current_system.description}", manual_url, :class => "button"
+    = link_to t("online_definition_manual_for") + " #{current_system.description}", current_system.manual_url, :class => "button"

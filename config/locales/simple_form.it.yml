@@ -45,8 +45,8 @@ it:
       webgrouper_patient_case:
         adm:
           adm01: normale
-          adm06: trasferto (Soggiorno più corte che 24 ore nell'ospedale trasferente.)
-          adm11: trasferto (Soggiorno più lungo che 24 ore nell'ospedale trasferente.)
+          adm06: trasferto (Soggiorno più corte che 24 ore nell'ospedale medicina acuta trasferente.)
+          adm11: trasferto (Soggiorno più lungo che 24 ore nell'ospedale medicina acuta trasferente.)
           adm99: sconosciuto
         age_mode:
           days: giorni

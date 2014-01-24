@@ -44,8 +44,8 @@ fr:
       webgrouper_patient_case:
         adm:
           adm01: normal
-          adm06: transféré (Séjour plus court que 24 heures dans l'hôpital transférant.)
-          adm11: transféré (Séjour plus long que 24 heures dans l'hôpital transférant.)
+          adm06: transféré (Séjour plus court que 24 heures dans l'hôpital de soins aigus transférant.)
+          adm11: transféré (Séjour plus long que 24 heures dans l'hôpital de soins aigus transférant.)
           adm99: inconnu
         age_mode:
           days: Jours

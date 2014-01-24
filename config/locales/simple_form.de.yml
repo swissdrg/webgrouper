@@ -27,8 +27,8 @@ de:
           M: 'Männlich'
           W: 'Weiblich'
         adm:
-          adm11: 'Verlegt (Aufenthalt länger als 24 Stunden im verlegenden Spital)'
-          adm06: 'Verlegt (Aufenthalt kürzer als 24 Stunden im verlegenden Spital)'
+          adm11: 'Verlegt (Aufenthalt länger als 24 Stunden im verlegenden Akutspital)'
+          adm06: 'Verlegt (Aufenthalt kürzer als 24 Stunden im verlegenden Akutspital)'
           adm01: 'Normal'
           adm99: 'Unbekannt'
         sep:

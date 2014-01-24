@@ -4,7 +4,6 @@
 class WebgrouperPatientCase < PatientCase
   
   include ActAsValidGrouperQuery
-  
   attr_accessor :age, :age_mode, :age_mode_decoy, :house, :manual_submission, :system_id, :id
   # invokes super constructor of java class PatientCase
 	# prepares values of attribute hash for the ruby patient class.
@@ -13,13 +12,13 @@ class WebgrouperPatientCase < PatientCase
     # initialize attributes to display correct default values in view
     self.age = 40
     self.los = 10
-    self.birth_date = ""
-    self.entry_date = ""
-    self.exit_date = ""
+    self.birth_date = ''
+    self.entry_date = ''
+    self.exit_date = ''
     self.adm_weight = 4000
-	  self.adm = "99" #aka unknown
-    self.sep = "99" #aka unknown
-    self.pdx = ""
+	  self.adm = '99' #aka unknown
+    self.sep = '99' #aka unknown
+    self.pdx = ''
     self.system_id = DEFAULT_SYSTEM
     
     attributes.each do |name, value|

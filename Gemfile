@@ -2,18 +2,20 @@ source 'http://rubygems.org'
 #source 'http://torquebox.org/rubygems'
 
 # 3.2.13 has a bug with i18n-js (fixed already, waiting for release)
-gem 'rails', '3.2.12'
+gem 'rails', '~>3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # mongoDB driver
-gem "mongoid"
+gem 'mongoid'
+# For seeding mongodb with icd/chop
+gem 'pg_jruby'
 
 gem 'json'
 
 # Javascript-related:
-gem 'jquery-rails', "~>2.1.0" #newer version break autocomplete!
+gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails3-jquery-autocomplete', :git => "git://github.com/panmari/rails3-jquery-autocomplete.git"
 # for date computation in JS
@@ -41,7 +43,6 @@ gem 'gravatar_image_tag'
 
 
 # for webapi parsing
-gem 'xml-simple'
 gem 'nokogiri'
 
 # Gems used only for assets and not required

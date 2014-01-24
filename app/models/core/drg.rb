@@ -1,7 +1,6 @@
 class Drg
   include Mongoid::Document
   
-  field :code_short, type: String
   field :code, type: String
   field :text, type: String, localize: true
   field :cost_weight, type: Float
@@ -11,8 +10,9 @@ class Drg
   field :first_day_surcharge, type: Integer
   field :surcharge_per_day, type: Float
   field :transfer_flatrate, type: Float
-  field :exception_from_reuptake, type: Boolean
+  field :exception_from_reuptake_flag, type: Boolean
   field :version, type: String
+  field :partition, type: String
   
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version) }
 	scope :in_birthhouse_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version + "_birthhouse")}
