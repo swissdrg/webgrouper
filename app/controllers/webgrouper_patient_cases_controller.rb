@@ -21,7 +21,6 @@ class WebgrouperPatientCasesController < ApplicationController
       if @webgrouper_patient_case.valid?
         group(@webgrouper_patient_case)
       else
-        flash.now[:error] = @webgrouper_patient_case.errors.full_messages
         render 'index'
       end
     end
@@ -29,7 +28,7 @@ class WebgrouperPatientCasesController < ApplicationController
   
   def create_query
     # render index if called without arguments
-    if (!params[:webgrouper_patient_case])
+    if !params[:webgrouper_patient_case]
       redirect_to webgrouper_patient_cases_path and return
     end
 
@@ -43,12 +42,14 @@ class WebgrouperPatientCasesController < ApplicationController
       render 'index'
     end
   end
-  
+
+  # if @normal_group is false, only the DRG-section of the result is shown, since it is
+  # assumed that there is no cost weight etc. to show.
   def group(patient_case)
 		get_supplements(patient_case)
 		GROUPER.load(spec_path(patient_case.system_id))
 		@result = GROUPER.group(patient_case)
-
+    @normal_group = @result.gst == GrouperResult::GSTFlag::NORMAL_GROUP
     begin
       @weighting_relation = WebgrouperWeightingRelation.new(@result.drg, patient_case.house, patient_case.system_id)
       @factor = @weighting_relation.factor
@@ -56,7 +57,8 @@ class WebgrouperPatientCasesController < ApplicationController
       @los_chart = LosDataTable.new(patient_case.los, @cost_weight,
                                     @weighting_relation, @factor).make_chart
     rescue NoDrgException => e
-      flash.now[:error] = e.message
+      flash.now[:info] = e.message
+      @normal_group = false
     end
     render 'index'
   end

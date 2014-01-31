@@ -1,23 +1,23 @@
 # Acts as a wrapper class for superclass WeightingRelation
 # Has some special logic for System V1.0 and birthhouse DRGs
 class WebgrouperWeightingRelation < WeightingRelation
-	attr_accessor :factor	
+	attr_accessor :factor, :drg
 	def initialize(drg_code, house, system_id)
 		super()
 		@factor = 10000
     set_cost_weight_data = true
 		if (house == "2")
-		  drg = Drg.find_by_birthhouse_code(system_id, drg_code)
-      if drg.nil?
-        drg = Drg.find_by_code(system_id, drg_code)
+		  @drg = Drg.find_by_birthhouse_code(system_id, drg_code)
+      if @drg.nil?
+        @drg = Drg.find_by_code(system_id, drg_code)
         set_cost_weight_data = false
       end
 		else
-		  drg = Drg.find_by_code(system_id, drg_code)
+		  @drg = Drg.find_by_code(system_id, drg_code)
 		end
 
     # raise exception if no DRG could be found
-    raise NoDrgException("Could not find DRG for #{drg_code} in system with id #{system_id}") if drg.nil?
+    raise NoDrgException, "Could not find DRG for #{drg_code} in system \"#{System.find_by(:system_id => system_id).description}\"" if drg.nil?
 
     # a non birthhouse DRG in a birthhouse => cost-weight 0
 		# take all other information from normal DRG

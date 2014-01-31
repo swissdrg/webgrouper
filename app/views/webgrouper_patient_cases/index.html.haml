@@ -2,7 +2,7 @@
   = javascript_include_tag 'https://www.google.com/jsapi'
   = javascript_include_tag 'webgrouper'
 
-= render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
+= render 'error_messages', :webgrouper_patient_case => @webgrouper_patient_case
 
 = simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :post do |f|
   = render 'shared/system', :f => f,
