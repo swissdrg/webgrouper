@@ -1,4 +1,4 @@
-- required_rows = [1, (@webgrouper_patient_case.procedures.count/5.0).ceil].max
+- required_rows = [1, (@webgrouper_patient_case.diagnoses.count/5.0).ceil].max
 - required_rows.times do
   :javascript
     var json = "#{escape_javascript(@webgrouper_patient_case.diagnoses.to_json.html_safe)}";

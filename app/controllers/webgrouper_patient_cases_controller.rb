@@ -38,7 +38,6 @@ class WebgrouperPatientCasesController < ApplicationController
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
     else
-      flash.now[:error] = @webgrouper_patient_case.errors.full_messages
       render 'index'
     end
   end
@@ -95,15 +94,12 @@ class WebgrouperPatientCasesController < ApplicationController
       sup = Supplement.in_system(patient_case.system_id).where(:chop_code => p).first
       unless sup.nil?
         supplement = SupplementDescription.in_system(patient_case.system_id).where(:code => sup.supplement_code).first
-        code = supplement.code
-        amount = supplement.amount
-	     	description = supplement.text
-        @total_supplement_amount += amount
+        @total_supplement_amount += supplement.amount
 				
 				# count how many times the same proc appeared with same fee.
-				default_proc_count = 1
 				if @supplement_procedures[p].nil?
-					data = {:fee => code, :description => description, :amount => amount, :proc_count => default_proc_count}	
+					data = {:fee => supplement.code, :description => supplement.text,
+                  :amount => supplement.amount, :proc_count => 1}
 			  	@supplement_procedures[p] = data			
 				else
 					new_proc_count = @supplement_procedures[p][:proc_count] + 1
