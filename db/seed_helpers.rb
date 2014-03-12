@@ -22,7 +22,7 @@ module SeedHelpers
 
   # Saves the given code the the specified model. It will try to fix any text_{lang} columns it finds by turning it
   # into localized mongoid entries.
-  # In case saving fails, an exception is thronw
+  # In case saving fails, an exception is thrown
   def save_code(model, row)
     trans = fix_i18n(row)
     code = model.new(row)
