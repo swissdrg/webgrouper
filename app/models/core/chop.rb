@@ -41,5 +41,5 @@ class Chop
   end
   
   #index for faster searching:
-  index "code_short" => 1, "version" => 1
+  index({code_short: 1, version: 1}, {:unique => true})
 end

@@ -42,5 +42,5 @@ class Icd
     !get_code(system_id, search_code).nil?
   end
 
-  index "code_short" => 1, "version" => 1
+  index({code_short: 1, version: 1}, {:unique => true})
 end

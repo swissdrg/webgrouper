@@ -37,6 +37,7 @@ class Drg
   def transfer_flag()
     transfer_flatrate == 0
   end
-  
-  index :code => 1, :version => 1
+
+  index({code: 1, version: 1}, {:unique => true})
+
 end
