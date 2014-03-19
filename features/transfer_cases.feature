@@ -1,7 +1,6 @@
 Feature: Any transfer case should be handled correctly
   Any user
   
-  @wip
   Scenario: Float precision shouldn't make troubles anymore
   	Given the form with initialized standard values
   	When I enter "I26.9" as diagnosis

@@ -1,9 +1,9 @@
-Feature: The system 14 should work as intended. Right now this is not tested.
+Feature: The system 14 should work as intended.
   Any user
 
-  @javascript @wip
+  @javascript
   Scenario: Admission should make a difference for deceased Einling
-    Given the beta form
+    Given the form with initialized standard values and system 13
     And I enter "Z38.0" as diagnosis
     And I select "days" as age mode
     And I enter "1" as age
@@ -22,9 +22,9 @@ Feature: The system 14 should work as intended. Right now this is not tested.
     And I submit the form
     Then I should see "P60A" in "grouping"
 
-  @javascript @wip
+  @javascript
   Scenario: The kernel of version 3 should be in use
-    Given the beta form
+    Given the form with initialized standard values and system 13
     And I select birthhouse as care taker
     And I enter "A01.2" as diagnosis
     And I select "days" as age mode

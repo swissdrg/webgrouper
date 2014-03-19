@@ -67,7 +67,7 @@ class WebgrouperPatientCasesController < ApplicationController
   # then sends the user to the grouper interface
   def activate_beta
     session[:beta] = true
-    flash[:info] = "Activated beta for one session! After closing the browser, the beta won't be active anymore!"
+    flash[:info] = "Activated beta for this session. After closing the browser, the beta won't be active anymore!"
     redirect_to :action => 'index'
   end
 

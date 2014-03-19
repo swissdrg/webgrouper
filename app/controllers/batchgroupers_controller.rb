@@ -25,7 +25,7 @@ class BatchgroupersController < ApplicationController
                       :client => request.env['HTTP_USER_AGENT'])
         send_file @batchgrouper.group 
       rescue *[ActionController::MissingFile, Encoding::UndefinedConversionError] => e
-        flash[:error] = 'Could not parse file. Only use text files in the swissdrg format, not eg .doc or .xls'
+        flash[:error] = 'Could not parse file. Only use text files in the swissdrg format, not .doc or .xls'
         render 'index'
       rescue ArgumentError => e
         flash[:error] = e.message + " " + view_context.link_to("Online Converter", "https://webapps.swissdrg.org/converter")

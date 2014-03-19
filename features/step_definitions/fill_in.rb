@@ -18,11 +18,9 @@ end
 
 Given /^the beta form$/ do
   if Rails.env == "test"
-    visit "http://localhost:8080/activate_beta"
-    visit "http://localhost:8080/de/webgrouper_patient_cases"
+    visit "http://localhost:8080/activate_beta?locale=de"
   else
-    visit "https://webgrouper.swissdrg.org/activate_beta"
-    visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
+    visit "https://webgrouper.swissdrg.org/?locale=de"
   end
 end
 
