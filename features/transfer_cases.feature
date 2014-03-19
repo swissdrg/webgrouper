@@ -29,6 +29,6 @@ Feature: Any transfer case should be handled correctly
     And I should see "Normale Gruppierung" in "grouping"
     And I should see "0.68" in "cost-weight"
     And I should see "0.4616" in "cost-weight"
-    And I should see "Strahlenzystitis" in "diagnoses"
-    And I should see "N30.4" in "diagnoses"
+    And I should see "Strahlenzystitis" in "result-diagnoses"
+    And I should see "N30.4" in "result-diagnoses"
     And I should see "Verlegungsabschlagspflichtig" in "length-of-stay"

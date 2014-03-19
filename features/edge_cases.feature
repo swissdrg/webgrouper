@@ -137,7 +137,7 @@ Feature: The edge cases should be handled correctly
     Then I should see "E74Z" in "grouping"
     And I should see "0.811" in "cost-weight"
   	And I should see "Unterer Outlier" in "length-of-stay"
-  	And I should see "Berylliose" in "diagnoses"
+  	And I should see "Berylliose" in "result-diagnoses"
   	
 
   # calcCostWeightTest.java L21

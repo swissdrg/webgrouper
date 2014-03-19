@@ -45,7 +45,10 @@ When /^I parse "([^"]*)" as input for the form$/ do |caseString|
   end
   step %{I select "#{caseArray[4]}" as sex}
   step %{I select "#{caseArray[5]}" as adm mode}
-  step %{I select "#{caseArray[6]}" as sep mode}
+  # sep_mode might need some fixing, bc 01 doesn't exist (anymore)
+  sep_mode = caseArray[6]
+  sep_mode = '00' unless %w(06 04 00 07 99).include? sep_mode
+  step %{I select "#{sep_mode}" as sep mode}
   step %{I enter "#{caseArray[7]}" as los}
   #todo: same_day flag: 8
   step %{I enter "#{caseArray[9]}" as hmv}

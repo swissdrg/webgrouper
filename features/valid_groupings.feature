@@ -41,8 +41,8 @@ Feature: Grouping a valid patient case should return right results
     And I should see "3.276" in "cost-weight"
     And I should see "30" in "cost-weight"
     And I should see "0.09" in "cost-weight"
-    And I should see "Penisfraktur" in "diagnoses"
-    And I should see "S39.80" in "diagnoses"
+    And I should see "Penisfraktur" in "result-diagnoses"
+    And I should see "S39.80" in "result-diagnoses"
     
   @javascript
   Scenario: Autocomplete should find right things
@@ -53,7 +53,7 @@ Feature: Grouping a valid patient case should return right results
   	And I submit the form
   	
   	Then the grouping should succeed
-  	And I should see "A22.0" in "diagnoses"
+  	And I should see "A22.0" in "result-diagnoses"
   	
   @javascript
   Scenario: Changing age should have an effect
