@@ -24,15 +24,15 @@ Webgrouper::Application.routes.draw do
   end
 
   # This is for testing only and can be removed later on:
-  get 'test404' => 'errors#error_404'
-  get 'test500' => 'errors#error_500'
+  resources :systems
   get 'grouper' => 'batchgroupers#tos'
   get 'activate_beta' => 'webgrouper_patient_cases#activate_beta'
   get 'batchgrouper' => 'batchgroupers#tos'
   get 'webgrouper' => 'webgrouper_patient_cases#tos'
   get 'about' => 'static_pages#about'
 
-  root :to => 'webgrouper_patient_cases#tos'
+  # root of internal version is not TOS
+  root :to => 'webgrouper_patient_cases#index'
   
   unless Rails.application.config.consider_all_requests_local
     match '*not_found', :to => 'errors#error_404'

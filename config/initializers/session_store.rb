@@ -3,5 +3,5 @@
 if ENV['TORQUEBOX_APP_NAME']
   Webgrouper::Application.config.session_store :torquebox_store
 else
-  Webgrouper::Application.config.session_store :cookie_store, :key => '_CHANGEME_session'
+  Webgrouper::Application.config.session_store :cookie_store, :key => '_WebgrouperdKasldkuo29404200+tdbpjwered_session'
 end  

@@ -1,0 +1,3 @@
+[submodule "lib/grouperc"]
+	path = lib/grouperc
+	url = git@github.com:timmbo/grouperc

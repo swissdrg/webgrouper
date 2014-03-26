@@ -16,8 +16,9 @@ class Drg
   
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version) }
 	scope :in_birthhouse_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version + "_birthhouse")}
+
 	def self.get_description_for(system_id, search_code)
-    find_by_code(system_id, search_code).text
+    find_by_code(system_id, search_code).text rescue I18n.t('no_description_available')
   end
   
   def self.reuptake_exception?(system_id, search_code)

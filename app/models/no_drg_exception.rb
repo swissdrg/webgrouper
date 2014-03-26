@@ -1,0 +1,2 @@
+class NoDrgException < Exception
+end
