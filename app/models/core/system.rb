@@ -39,7 +39,7 @@ class System
   # For linux compatability, the SPEC.ini file has to be changed to use linux style folder references.
   # This method uses the linux tools sed and unzip. The uploaded zip will remain in the specfolder.
   #@param spec_zip, a zip file, consisting of a whole spec folder
-  def compile_64bit_spec(spec_zip)
+  def compile_64bit_spec(spec_zip, system_details)
     path = File.join(spec_folder, self.system_id.to_s)
     tmp_path = File.join(path, 'tmp')
     zip_file = File.join(path, 'spec_files.zip')
@@ -61,6 +61,10 @@ class System
     raise Exception("Spec compilation failed with #{cmd_status}") unless cmd_status.include?('Done! 0')
     FileUtils.mv(File.join(path, 'Spec.bin'), File.join(path, 'Spec64bit.bin'))
     FileUtils.rm_r(tmp_path)
+
+    File.open(File.join(path, 'description.json'), 'w') do |f|
+      f.write(JSON.pretty_generate(system_details))
+    end
   end
 
   def delete_specfile

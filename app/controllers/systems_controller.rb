@@ -19,7 +19,7 @@ class SystemsController < ApplicationController
         notice = s.errors.full_messages.join("\n")
       else
         begin
-          s.compile_64bit_spec(params[:spec_files])
+          s.compile_64bit_spec(params[:spec_files], params[:system])
           notice = 'System erfolgreich hinzugefuegt'
           status = 200
         rescue Exception => e
