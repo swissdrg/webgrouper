@@ -42,6 +42,11 @@ When /^I select birthhouse as care taker$/ do
   step %{I select in "webgrouper_patient_case_house" "Geburtshaus"}
 end
 
+When /^I select hospital as care taker$/ do
+  step %{I select in "webgrouper_patient_case_house" "Akutspital"}
+end
+
+
 # General:
 
 When /^(?:|I )select in "([^"]*)" "([^"]*)"$/ do |field, value|
