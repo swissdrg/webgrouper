@@ -29,4 +29,10 @@ module SeedHelpers
     code.text_translations = trans if code.fields.include?('text')
     code.save!
   end
+
+  def make_progress_bar(table_name)
+    count = conn.exec("SELECT COUNT(*) from classifications.#{table_name}").first['count'].to_i
+    return ProgressBar.create(:title => table_name, :starting_at => 0, :total => count,
+				   :throttle_rate => 1, :format => '%t: |%B| %P%%')
+  end
 end

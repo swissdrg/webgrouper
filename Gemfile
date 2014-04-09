@@ -12,8 +12,11 @@ gem 'newrelic_rpm'
 
 # mongoDB driver
 gem 'mongoid'
-# For seeding mongodb with icd/chop
+
+# For seeding mongodb with icd/chop/drg
 gem 'pg_jruby'
+# progress bar for visualizing progress of seeding
+gem 'ruby-progressbar'
 
 gem 'json'
 
@@ -68,6 +71,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'database_cleaner'
+  gem 'capybara-webkit'
   gem 'launchy'
   gem 'autotest-standalone'
   gem 'autotest-fsevent'
