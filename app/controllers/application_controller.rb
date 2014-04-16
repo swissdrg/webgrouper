@@ -15,28 +15,16 @@ class ApplicationController < ActionController::Base
   end
   
   unless Rails.application.config.consider_all_requests_local
-    rescue_from Exception, :with => :render_500
-    rescue_from ActionController::RoutingError, :with => :render_404
-    rescue_from ActionController::UnknownController, :with => :render_404
-    rescue_from ActionController::UnknownAction, :with => :render_404
-    #TODO: change to mongoid
-    #rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+    rescue_from Exception, with: lambda { |exception| render_error 500, exception }
+    rescue_from ActionController::RoutingError, ActionController::UnknownController, ::AbstractController::ActionNotFound, with: lambda { |exception| render_error 404, exception }
   end
 
   private
-  def render_404(exception)
-    @not_found_path = exception.message
+  def render_error(status, exception)
+    logger.warn exception
     respond_to do |format|
-      format.html { render :template => 'errors/error_404', :layout => 'layouts/application', :status => 404 }
-      format.all { render :nothing => true, :status => 404 }
-    end
-  end
-
-  def render_500(exception)
-    @error = exception
-    respond_to do |format|
-      format.html { render :template => 'errors/error_500', :layout => 'layouts/application', :status => 500 }
-      format.all { render :nothing => true, :status => 500}
+      format.html { render template: "errors/error_#{status}", layout: 'layouts/application', status: status }
+      format.all { render nothing: true, status: status }
     end
   end
   
