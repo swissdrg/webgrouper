@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-source 'http://torquebox.org/rubygems'
 
 # 3.2.13 has a bug with i18n-js (fixed already, waiting for release)
 gem 'rails', '~>3.2.12'
@@ -60,8 +59,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+
 group :development do
-  gem "torquebox-server", "~>2.3.2"
+  # in development, we usually want torquebox installed as gem
+  gem "torquebox-server"
 end
 
 group :test do
@@ -93,6 +94,4 @@ end
 # To use debugger
 # gem 'ruby-debug'
 
-group :deployment do
-  gem "torquebox", "~>2.3.2"
-end
+gem "torquebox"

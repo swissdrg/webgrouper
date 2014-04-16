@@ -17,7 +17,7 @@ java_import Java::org.swissdrg.grouper.GrouperResult
 java_import Java::org.swissdrg.grouper.WeightingRelation
 java_import Java::org.swissdrg.grouper.EffectiveCostWeight
 
-grouper_path = File.join(spec_folder, 'libGrouperKernel64.so.3.1.0')
+grouper_path = File.join(spec_folder, 'libGrouperKernel64.so.4.0.0')
 Rails.logger.info("Loading grouper kernel from: #{grouper_path}")
 
 unless File.exist?(grouper_path)
