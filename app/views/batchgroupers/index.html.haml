@@ -1,3 +1,5 @@
+= content_for :header do
+  = javascript_include_tag 'batchgrouper'
 = simple_form_for @batchgrouper, :url => "batchgrouper" do |f|
   - if flash[:error]
     .errorflash

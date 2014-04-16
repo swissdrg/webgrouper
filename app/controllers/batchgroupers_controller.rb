@@ -23,6 +23,7 @@ class BatchgroupersController < ApplicationController
                       :line_count => @batchgrouper.line_count,
                       :time => Time.now,
                       :client => request.env['HTTP_USER_AGENT'])
+        cookies[:download_finished] = true
         send_file @batchgrouper.group 
       rescue *[ActionController::MissingFile, Encoding::UndefinedConversionError] => e
         flash[:error] = 'Could not parse file. Only use text files in the swissdrg format, not .doc or .xls'
@@ -40,4 +41,5 @@ class BatchgroupersController < ApplicationController
       render 'index'
     end
   end
+
 end

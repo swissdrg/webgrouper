@@ -7,6 +7,7 @@ module SeedHelpers
     PG.connect(host: config['host'], port: 5432, dbname: config['dbname'],
                       user: config['user'], password: config['password'])
   end
+
   # assembles text => { 'de' => .., 'fr' => ....} from text_de, text_fr etc
   def fix_i18n(row)
     texts = {}
