@@ -16,11 +16,11 @@ TorqueBox.configure do
     description 'Remove batchgroupings that are older than a week'
   end
 
-  # only one instance at a time to prevent nasty segfaults
   pool :web do
     type :bounded
-    min 4
-    max 4
+    
+    min 3
+    max 3
   end
 
 end
