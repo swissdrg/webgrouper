@@ -1,10 +1,10 @@
 # Acts as a wrapper class for superclass WeightingRelation
 # Has some special logic for System V1.0 and birthhouse DRGs
 class WebgrouperWeightingRelation < WeightingRelation
-	attr_accessor :factor	
+	attr_accessor :factor, :has_first_day_discount, :has_first_day_surcharge
 	def initialize(drg_code, house, system_id)
 		super()
-		@factor = 10000
+		self.factor = 10000
 		if (house == "2")
 		  drg = Drg.find_by_birthhouse_code(system_id, drg_code)
 		else
@@ -27,7 +27,10 @@ class WebgrouperWeightingRelation < WeightingRelation
     # These values needs to be set in all cases
     self.setDrg(drg.code)
     self.setAvgDuration(prepare_for_grouper(drg.avg_duration, 1))
+    # by assigning it to java floats, nil gets mapped to zero. We need to preserve information, if it was nil
+    self.has_first_day_discount = drg.first_day_discount != nil
     self.setFirstDayDiscount(drg.first_day_discount)
+    self.has_first_day_surcharge = drg.first_day_surcharge != nil
     self.setFirstDaySurcharge(drg.first_day_surcharge)
 	end
 	

@@ -16,22 +16,34 @@
         %th
           = t("result.length-of-stay.first-day-with-discount")
         %td
-          = @weighting_relation.first_day_discount
+          - if @weighting_relation.has_first_day_discount
+            = @weighting_relation.first_day_discount
+          - else
+            \-
       %tr
         %th
           = t("result.length-of-stay.first-day-with-surcharge")
         %td
-          = @weighting_relation.first_day_surcharge
+          - if @weighting_relation.has_first_day_surcharge
+            = @weighting_relation.first_day_surcharge
+          - else
+            \-
       %tr
         %th
           = t("result.length-of-stay.low_trim_point")
         %td
-          = @weighting_relation.first_day_discount + 1
+          - if @weighting_relation.has_first_day_discount
+            = @weighting_relation.first_day_discount + 1
+          - else
+            \-
       %tr
         %th
           = t("result.length-of-stay.high_trim_point")
         %td
-          = @weighting_relation.first_day_surcharge - 1
+          - if @weighting_relation.has_first_day_surcharge
+            = @weighting_relation.first_day_surcharge - 1
+          - else
+            \-
       %tr.highlight
         %th{:colspan => 2}
           = t("result.length-of-stay.case_flag_modes." + @cost_weight.case_flag.to_s)

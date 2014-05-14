@@ -25,7 +25,8 @@ class LosDataTable < GoogleVisualr::DataTable
     surcharge_per_day = weighting_relation.surcharge_per_day.to_f/factor
 
     one_day_cost_rate = base_cost_rate - discount_per_day*(low_trim_point - 1)
-    many_days = [high_trim_point, actual_los].max + 5
+    # avg duration is needed here for drgs without high trim point
+    many_days = [high_trim_point, actual_los, avg_duration].max + 5
     many_days_cost_rate = base_cost_rate + surcharge_per_day*(many_days - high_trim_point)
    
     rows = []
@@ -51,20 +52,25 @@ class LosDataTable < GoogleVisualr::DataTable
     rows.push [1, one_day_cost_rate, nil, nil, 
         nil, 
         one_day_transfer_rate, nil, nil, 
-        nil],
-    [low_trim_point, base_cost_rate, nil , I18n.t('result.length-of-stay.low_trim_point'),
+        nil]
+    if weighting_relation.has_first_day_discount
+      rows.push [low_trim_point, base_cost_rate, nil , I18n.t('result.length-of-stay.low_trim_point'),
         make_tooltip('low_trim_point', low_trim_point, base_cost_rate), 
         nil, nil, nil, 
-        nil],
-    [avg_duration, base_cost_rate, 'Ø',I18n.t('result.length-of-stay.average_los'),
+        nil]
+    end
+    rows.push [avg_duration, base_cost_rate, 'Ø',I18n.t('result.length-of-stay.average_los'),
         make_tooltip('average_los', avg_duration, base_cost_rate), 
         avg_transfer_rate, 'Ø', I18n.t('result.length-of-stay.average_los'),
-        make_tooltip('average_los', avg_duration, base_cost_rate)],
-    [high_trim_point, base_cost_rate, nil , I18n.t('result.length-of-stay.high_trim_point'),
-        make_tooltip('high_trim_point', high_trim_point, base_cost_rate), 
-        nil, nil, nil, 
-        nil],
-    [many_days, many_days_cost_rate, nil, nil, 
+        make_tooltip('average_los', avg_duration, base_cost_rate)]
+    # in case there is no first_day_surcharge, high trim point will be -1 here
+    if weighting_relation.has_first_day_surcharge
+      rows.push [high_trim_point, base_cost_rate, nil , I18n.t('result.length-of-stay.high_trim_point'),
+          make_tooltip('high_trim_point', high_trim_point, base_cost_rate),
+          nil, nil, nil,
+          nil]
+    end
+    rows.push [many_days, many_days_cost_rate, nil, nil,
         nil, 
         nil, nil, nil, 
         nil]
