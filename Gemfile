@@ -48,7 +48,7 @@ gem 'gravatar_image_tag'
 
 
 # for webapi parsing
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.6.1.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
