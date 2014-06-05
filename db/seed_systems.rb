@@ -1,5 +1,7 @@
 require 'csv'
 
+System.destroy_all
+
 CSV.foreach('db/systems.csv', :headers => true, :converters => :all, :col_sep => ';') do |row|
   s = System.find_or_create_by(:system_id => row[0])
   s.description_translations = {'de' => row[1], 'fr' => row[2], 'it' => row[3]}
