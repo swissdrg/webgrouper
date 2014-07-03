@@ -33,9 +33,10 @@ class Drg
     raise 'No code given' if search_code.blank?
     in_system(system_id).where(code: search_code).first
   end
-  
+
+  # Returns true if there is no transfer flatrate
   def transfer_flag()
-    transfer_flatrate == 0
+    transfer_flatrate.nil? or transfer_flatrate == 0
   end
 
   index({code: 1, version: 1}, {:unique => true})
