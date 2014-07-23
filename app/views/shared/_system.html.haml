@@ -1,8 +1,4 @@
 - current_system = System.where(:system_id => system_id).first
-- if session[:beta]
-  - shown_systems = System.all.reverse
-- else
-  - shown_systems = System.all_public.reverse
 
 %fieldset#system
   %legend= t("fieldsets.system")
