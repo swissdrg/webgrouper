@@ -55,6 +55,7 @@ class Batchgrouper
     File.open(uploaded_file, "w") do |f|
       File.copy_stream(file.tempfile, f)
     end
+    file.tempfile.close(true)
     output_file = File.join(work_path, "data.out")
     additional_argument = "-bh " if house == '2'
     cmd = "#{batchgrouper_exec} #{additional_argument}'#{spec_path(self.system_id)}' '#{catalogue_path(self.system_id, self.house)}' '#{uploaded_file}' '#{output_file}'"
