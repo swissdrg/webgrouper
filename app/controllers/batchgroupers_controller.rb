@@ -23,6 +23,7 @@ class BatchgroupersController < ApplicationController
                       :line_count => @batchgrouper.line_count,
                       :time => Time.now,
                       :system_id => @batchgrouper.system_id,
+                      :house => @batchgrouper.house,
                       :client => request.env['HTTP_USER_AGENT'])
         cookies[:download_finished] = true
         return send_file @batchgrouper.group
