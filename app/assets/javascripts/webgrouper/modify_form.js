@@ -15,12 +15,6 @@ $(document).on("change focus blur", '#webgrouper_patient_case_age_mode_decoy', s
 $(document).on("change", "#webgrouper_patient_case_system_id", function () {
 	this.form.submit();
 });
-$(document).on("change", "#batchgrouper_system_id", function () {
-	this.form.submit();
-});
-$(document).on("change", "#webgrouper_patient_case_house", function () {
-	this.form.submit();
-});
 
 /**
  * Lets the id "admWeight" disappear according to the

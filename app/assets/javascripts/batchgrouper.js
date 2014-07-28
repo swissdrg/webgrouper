@@ -36,3 +36,8 @@ $(document).ready(function() {
     })
 
 });
+
+/** submit form if these values are changed */
+$(document).on("change", "#batchgrouper_system_id", function () {
+    this.form.submit();
+});

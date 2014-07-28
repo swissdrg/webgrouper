@@ -14,7 +14,7 @@ class BatchgroupersController < ApplicationController
   def group
     @title = 'Batchgrouper'
     @batchgrouper = Batchgrouper.new(params[:batchgrouper])
-    if params[:batchgrouper][:file]
+    if @batchgrouper.file
       begin
         @batchgrouper.preprocess_file
         BatchgrouperQuery.create(:ip => request.remote_ip, 
@@ -25,22 +25,20 @@ class BatchgroupersController < ApplicationController
                       :system_id => @batchgrouper.system_id,
                       :client => request.env['HTTP_USER_AGENT'])
         cookies[:download_finished] = true
-        send_file @batchgrouper.group 
+        return send_file @batchgrouper.group
       rescue *[ActionController::MissingFile, Encoding::UndefinedConversionError] => e
         flash[:error] = 'Could not parse file. Only use text files in the swissdrg format, not .doc or .xls'
-        render 'index'
       rescue ArgumentError => e
         flash[:error] = e.message + " " + view_context.link_to("Online Converter", "https://webapps.swissdrg.org/converter")
-        render 'index'
       end
-    else
+    elsif not @batchgrouper.single_group.blank?
       begin
         @single_group_result = @batchgrouper.group_line(@batchgrouper.single_group)
       rescue Java::JavaLang::IllegalArgumentException => e
         @single_group_result = "#{t'batchgrouper.invalid_format'} #{e}"
       end
-      render 'index'
     end
+    render 'index'
   end
 
 end
