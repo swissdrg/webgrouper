@@ -30,7 +30,7 @@ class BatchgroupersController < ApplicationController
       rescue *[ActionController::MissingFile, Encoding::UndefinedConversionError] => e
         flash[:error] = 'Could not parse file. Only use text files in the swissdrg format, not .doc or .xls'
       rescue ArgumentError => e
-        flash[:error] = e.message + " " + view_context.link_to("Online Converter", "https://webapps.swissdrg.org/converter")
+        flash[:error] = e.message + " " + view_context.link_to("Online Converter", "https://apps.swissdrg.org/converter")
       end
     elsif not @batchgrouper.single_group.blank?
       begin
