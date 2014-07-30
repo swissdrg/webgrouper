@@ -71,5 +71,7 @@ module Webgrouper
     
     #set timeliness to Euro    
     Timeliness.use_euro_formats
+    # GC Profiling for newrelic
+    GC::Profiler.enable
   end
 end
