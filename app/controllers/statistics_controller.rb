@@ -1,6 +1,7 @@
 class StatisticsController < ApplicationController
   def index
     params[:last_n_months] ||= 3
+    params[:binned] ||= '1'
     from = params[:last_n_months].to_i.months.ago
     to = Time.now
     @queries = Query.where(:time.gt => from, :time.lt => to)

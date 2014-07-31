@@ -14,8 +14,9 @@ Webgrouper::Application.routes.draw do
     get 'index' => 'webgrouper_patient_cases#index'
     match 'parse' => 'webgrouper_patient_cases#parse'
   end
-  match 'webgrouper_stats' => 'statistics#webgrouper_stats'
-
+  scope 'statistics' do
+    match '/' => 'statistics#index'
+  end
   scope 'webapi' do
     get '/' => 'webapi#index'
     match 'grouper/group' => 'webapi#group'
