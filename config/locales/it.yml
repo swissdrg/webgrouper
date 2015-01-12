@@ -315,6 +315,10 @@ it:
       legend: Diagnosi
       no_additional_fees: Nessun compenso supplementare
       reuptake_hint: null
+      count: Quantità
+      constraints: Zusatzbedingungen
+      age_constraint: Patient muss jünger als %{age} Jahre sein
+      constraint_reminder: 'Diese Zusatzbedingungen müssen erfüllt sein, damit eine Abrechnung des entsprechenden Zusatzentgeltes möglich ist'
   support:
     array:
       last_word_connector: ' e '

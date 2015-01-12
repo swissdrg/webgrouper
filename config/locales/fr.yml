@@ -305,6 +305,10 @@ fr:
       legend: Note explicative pour la facturation
       no_additional_fees: Pas de rémunérations supplémentaires
       reuptake_hint: Le regroupement de cas du DRG %{drg} est exclu lors d'une réadmission.
+      count: Nombre
+      constraints: Zusatzbedingungen
+      age_constraint: Patient muss jünger als %{age} Jahre sein
+      constraint_reminder: 'Diese Zusatzbedingungen müssen erfüllt sein, damit eine Abrechnung des entsprechenden Zusatzentgeltes möglich ist'
   support:
     array:
       last_word_connector: ' et '

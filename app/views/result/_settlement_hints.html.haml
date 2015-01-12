@@ -1,4 +1,5 @@
 %fieldset#settlement_hints.result
+  - has_supplement_constraints = @supplement_procedures.select { |k,v| v[:age_max] != nil and v[:age_max] != '' }.any?
   %legend= t "result.settlement_hints.legend"
   %table
     %tbody
@@ -10,6 +11,9 @@
             = t("result.settlement_hints.additional_fees")
             %th
               = t("result.settlement_hints.count")
+            - if has_supplement_constraints
+              %th
+                = t('result.settlement_hints.constraints') + '*'
       - @supplement_procedures.each do |ops_code, data|
         - fee = data[:fee]
         - description = data[:description]
@@ -22,7 +26,14 @@
             = " (" + ops_code.to_s + ") "
           %td
             = count.to_s
+          - if data[:age_max]
+            %td
+              = t('result.settlement_hints.age_constraint', age: data[:age_max])
       - if Drg.reuptake_exception?(@webgrouper_patient_case.system_id, @result.drg)
         %tr
           %th
             = t("result.settlement_hints.reuptake_hint", :drg => @result.drg)
+  - if has_supplement_constraints
+    %hr
+    %p
+      = '*) ' + t('result.settlement_hints.constraint_reminder')

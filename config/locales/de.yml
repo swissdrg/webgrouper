@@ -86,7 +86,10 @@ de:
       no_additional_fees: Keine Zusatzentgelte
       additional_fees: 'Zusatzentgelte:'
       reuptake_hint: Die DRG %{drg} ist von einer Fallzusammenführung bei Wiederaufnahme ausgeschlossen.
-      
+      count: Anzahl
+      constraints: Zusatzbedingungen
+      age_constraint: Patient muss jünger als %{age} Jahre sein
+      constraint_reminder: 'Diese Zusatzbedingungen müssen erfüllt sein, damit eine Abrechnung des entsprechenden Zusatzentgeltes möglich ist'
     length-of-stay:
       legend: Verweildauer
       length-of-stay: Aktuelle Verweildauer
