@@ -1,12 +1,18 @@
 Webgrouper::Application.routes.draw do
 
+  scope 'statistics' do
+    get 'webgrouper' => 'statistics#webgrouper'
+    get 'batchgrouper' => 'statistics#batchgrouper'
+    get 'webapi' => 'statistics#webapi'
+  end
+
   scope "/:locale" do
     resources :webgrouper_patient_cases do
       get :autocomplete_Icd_code, :on => :collection
       get :autocomplete_Chop_code, :on => :collection
     end
-    post 'create_query'  => 'webgrouper_patient_cases#create_query'
-    get 'create_query'  => 'webgrouper_patient_cases#create_query'
+    post 'create_query' => 'webgrouper_patient_cases#create_query'
+    get 'create_query' => 'webgrouper_patient_cases#create_query'
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
     post 'batchgrouper' => 'batchgroupers#group'
@@ -14,9 +20,8 @@ Webgrouper::Application.routes.draw do
     get 'index' => 'webgrouper_patient_cases#index'
     match 'parse' => 'webgrouper_patient_cases#parse'
   end
-  scope 'statistics' do
-    match '/' => 'statistics#index'
-  end
+
+
   scope 'webapi' do
     get '/' => 'webapi#index'
     match 'grouper/group' => 'webapi#group'
