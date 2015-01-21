@@ -1,0 +1,11 @@
+= render 'header'
+
+%h3 Webgrouper
+In the given period, there were
+= @queries.count
+webgrouper queries.
+#system_chart
+= render_chart @system_chart, 'system_chart'
+
+#house_chart
+= render_chart @house_chart, 'house_chart'

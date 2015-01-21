@@ -1,0 +1,11 @@
+= content_for :header do
+  = javascript_include_tag 'https://www.google.com/jsapi'
+
+%h2 Stats!
+%p
+  = form_tag({}, { method: :get}) do
+    = label_tag :last_n_months, 'Over the last n months, n ='
+    = number_field_tag :last_n_months,  params[:last_n_months]
+    = label_tag :binned, 'Make bins for batchgrouper queries'
+    = check_box_tag :binned, '1', params[:binned]
+    = submit_tag 'Submit', class: 'right'

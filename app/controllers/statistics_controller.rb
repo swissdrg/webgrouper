@@ -1,23 +1,30 @@
 class StatisticsController < ApplicationController
-  def index
-    params[:last_n_months] ||= 3
+
+  before_filter :default_params
+
+  def batchgrouper
     params[:binned] ||= '1'
-    from = params[:last_n_months].to_i.months.ago
-    to = Time.now
-    @queries = Query.where(:time.gt => from, :time.lt => to)
-
-    @system_chart = make_system_chart(@queries)
-    @house_chart = make_house_chart(@queries)
-
-    @bg_queries = BatchgrouperQuery.where(:time.gt => from, :time.lt => to)
+    @bg_queries = BatchgrouperQuery.where(:time.gt => @from, :time.lt => @to)
     @bg_system_chart = make_system_chart(@bg_queries)
     @bg_house_chart = make_house_chart(@bg_queries)
     bins = 100 if params[:binned]
-    @bg_size_chart = make_size_chart(@bg_queries, bins)
+    @bg_size_chart = make_size_chart(@bg_queries, :line_count, bins)
+  end
+
+  def webgrouper
+    @queries = Query.where(:time.gt => @from, :time.lt => @to)
+    @system_chart = make_system_chart(@queries)
+    @house_chart = make_house_chart(@queries)
   end
 
 
   private
+
+  def default_params
+    params[:last_n_months] ||= 3
+    @from = params[:last_n_months].to_i.months.ago
+    @to = Time.now
+  end
 
   def make_system_chart(queries)
     system_data = GoogleVisualr::DataTable.new
@@ -43,29 +50,29 @@ class StatisticsController < ApplicationController
   end
 
   # Ignores queries that only occurred once
-  def make_size_chart(queries, bins=nil)
+  def make_size_chart(queries, attribute, bins=nil)
     data_table = GoogleVisualr::DataTable.new
     rows = if bins.nil?
-             data_table.new_column('number', 'Line Count')
-             queries.distinct(:line_count).sort.map do |line_count|
-               [line_count, queries.where(line_count: line_count).count]
+             data_table.new_column('number', 'Patient cases')
+             queries.distinct(attribute).sort.map do |attr_count|
+               [attr_count, queries.where(attribute => attr_count).count]
               end
            else
-             data_table.new_column('string', 'Line Count')
-             max_line_count = queries.max(:line_count)
+             data_table.new_column('string', 'Patient cases')
+             max_line_count = queries.max(attribute)
              step_size = 10**Math::log10(max_line_count/bins).round
              min = 0
              max = step_size
              r = []
              while max < max_line_count
-               r << ["#{min}-#{max}", queries.where(:line_count.gt => min, :line_count.lte => max).count]
+               r << ["#{min}-#{max}", queries.between(attribute => Range.new(min, max)).count]
                min, max = max, max + step_size
              end
              r
            end
     data_table.new_column('number', 'Number of queries')
     data_table.add_rows(rows)
-    opts   = { title: 'Size of batchgroupings', hAxis: {title: 'Line count'},
+    opts   = { title: 'Size', hAxis: {title: 'Number of patient cases in query'},
                vAxis: {title: 'Number of queries', logScale: true}, legend: {position: 'none' } }
     GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
   end
