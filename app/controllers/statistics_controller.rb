@@ -15,6 +15,17 @@ class StatisticsController < ApplicationController
     @wa_queries = WebapiQuery.where(:start_time.gt => @from, :start_time.lt => @to)
     bins = 100 if params[:binned]
     @wa_size_chart = make_size_chart(@wa_queries, :nr_cases, bins)
+
+    @agg = WebapiQuery.collection.aggregate([{'$match' => {start_time: {'$gt' => @from, '$lt' => @to}}},
+                                             {'$project' => {ip: 1,
+                                                             nr_cases: 1,
+                                                             input_format: 1,
+                                                             output_format: 1,
+                                                             error: 1,
+                                                             full_duration: {'$subtract' => ['$end_time', '$start_time']},
+                                                             parse_duration: {'$subtract' => ['$finished_parsing_time', '$start_time']}}},
+                                             {'$sort' => {full_duration: -1}},
+                                             {'$limit' => 10}])
   end
 
   def webgrouper

@@ -10,7 +10,6 @@ class WebapiController < ApplicationController
       system_id = 9
     end
 
-    # TODO: How correctly read out format?
     log_entry = WebapiQuery.create!(ip: request.remote_ip, system_id: system_id,
                                     input_format: params[:input_format], output_format: request.format,
                                     start_time: Time.now, user_agent: request.env['HTTP_USER_AGENT'])

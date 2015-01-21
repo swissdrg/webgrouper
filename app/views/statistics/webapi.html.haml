@@ -5,7 +5,36 @@ In the given period, there were
 = @wa_queries.count
 with
 = @wa_queries.sum(:nr_cases)
-cases altogether.
+cases altogether. The 10 slowest queries in this period:
+%table
+  %thead
+    %th
+      Total time in ms
+    %th
+      Parse Time in ms
+    %th
+      Nr cases
+    %th
+      ip
+    %th
+      input format
+    %th
+      output format
+  %tbody
+    - @agg.each do |agg|
+      %tr
+        %td
+          = agg['full_duration']
+        %td
+          = agg['parse_duration']
+        %td
+          = agg['nr_cases']
+        %td
+          = agg['ip']
+        %td
+          = agg['input_format']
+        %td
+          = agg['output_format']
 
 #wa_size_chart
 = render_chart @wa_size_chart, 'wa_size_chart'
