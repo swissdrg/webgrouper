@@ -95,7 +95,13 @@ class WebgrouperPatientCasesController < ApplicationController
 				# count how many times the same proc appeared with same fee.
 				default_proc_count = 1
 				if supplement_procedures[p].nil?
-					data = {:fee => code, :description => description, :amount => amount, :proc_count => default_proc_count}	
+					data = {
+              :fee => code,
+              :description => description,
+              :amount => amount,
+              :proc_count => default_proc_count,
+              :age_max => sup.age_max
+          }
 			  	supplement_procedures[p] = data
 				else
 					supplement_procedures[p][:proc_count] += 1

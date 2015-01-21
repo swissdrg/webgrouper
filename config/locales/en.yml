@@ -315,6 +315,10 @@ en:
       legend: Settlement hints
       no_additional_fees: No additional fees
       reuptake_hint: The DRG %{drg} is excluded from reuptake.
+      count: Count
+      constraints: Additional Constraints
+      age_constraint: Patient must be younger than %{age}
+      constraint_reminder: 'Diese Zusatzbedingungen müssen erfüllt sein, damit eine Abrechnung des entsprechenden Zusatzentgeltes möglich ist'
   support:
     array:
       last_word_connector: ', and '
