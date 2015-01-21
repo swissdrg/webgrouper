@@ -17,6 +17,9 @@ class StatisticsController < ApplicationController
     @house_chart = make_house_chart(@queries)
   end
 
+  def webapi
+    @wa_queries = WebapiQuery.where(:start_time.gt => @from, :start_time.lt => @to)
+  end
 
   private
 

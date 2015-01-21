@@ -1,0 +1,10 @@
+= render 'header'
+
+%h3 Webapi
+In the given period, there were
+= @wa_queries.count
+with
+= @wa_queries.sum(:nr_cases)
+cases altogether.
+
+TODO: show stuff!

@@ -1,3 +1,4 @@
+# For logging queries to the batchgrouper
 class BatchgrouperQuery
   include Mongoid::Document
   
