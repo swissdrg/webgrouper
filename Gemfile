@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
-# 3.2.13 has a bug with i18n-js (fixed already, waiting for release)
-gem 'rails', '~>3.2.12'
+gem 'rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -48,7 +47,8 @@ gem 'gravatar_image_tag'
 
 
 # for webapi parsing
-gem 'nokogiri', '~> 1.6.1.0'
+# 1.6.2.1 is buggy, see https://github.com/sparklemotion/nokogiri/issues/1114
+gem 'nokogiri', '~>1.6.1.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -72,7 +72,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'database_cleaner'
-  gem 'capybara-webkit'
+#  gem 'capybara-webkit'
   gem 'launchy'
   gem 'autotest-standalone'
   gem 'autotest-fsevent'
