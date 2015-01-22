@@ -1,6 +1,6 @@
 class StatisticsController < ApplicationController
 
-  before_filter :default_params
+  before_filter :default_params, :authenticate
 
   def batchgrouper
     params[:binned] ||= '1'
@@ -35,6 +35,13 @@ class StatisticsController < ApplicationController
   end
 
   private
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == 'admin' and Digest::SHA512.hexdigest('MeinSalzy' + password) ==
+          '6945495f4d245f16989e2bc3d79a68f202235007bb96d6594ef65a6e58df8f9f0dc7e0f44237ed701e9c981793d44d80b97f9b40655a37b1ae28acd690387e8c'
+    end
+  end
 
   def default_params
     params[:last_n_months] ||= 3
