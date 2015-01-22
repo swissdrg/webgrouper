@@ -1,9 +1,9 @@
 Webgrouper::Application.routes.draw do
 
   scope 'statistics' do
-    get 'webgrouper' => 'statistics#webgrouper'
-    get 'batchgrouper' => 'statistics#batchgrouper'
-    get 'webapi' => 'statistics#webapi'
+    get 'webgrouper_stats' => 'statistics#webgrouper'
+    get 'batchgrouper_stats' => 'statistics#batchgrouper'
+    get 'webapi_stats' => 'statistics#webapi'
   end
 
   scope "/:locale" do
