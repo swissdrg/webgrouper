@@ -7,6 +7,10 @@
         %li
           = t("simple_form.labels.defaults." + attr.to_s) + " " + msg
 
-- if flash[:info]
+- if flash[:error].present?
+  .errorflash
+    = flash[:error]
+
+- if flash[:info].present?
   .info
     = flash[:info]
