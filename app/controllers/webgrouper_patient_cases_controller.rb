@@ -38,11 +38,7 @@ class WebgrouperPatientCasesController < ApplicationController
     query_attributes = params[:webgrouper_patient_case].merge({:valid_case => @webgrouper_patient_case.valid?, :time => Time.now}).permit!
     @webgrouper_patient_case.id = Query.create(query_attributes).id.to_s
     if @webgrouper_patient_case.valid?
-      begin
-        group(@webgrouper_patient_case)
-      rescue Exception => e
-        flash[:error] = e.message
-      end
+      group(@webgrouper_patient_case)
     end
     render 'index'
   end
@@ -64,15 +60,19 @@ class WebgrouperPatientCasesController < ApplicationController
   private
 
   def group(patient_case)
-    @supplement_procedures, @total_supplement_amount = get_supplements(patient_case)
-    GROUPER.load(spec_path(patient_case.system_id))
-    @result = GROUPER.group(patient_case)
+    begin
+      @supplement_procedures, @total_supplement_amount = get_supplements(patient_case)
+      GROUPER.load(spec_path(patient_case.system_id))
+      @result = GROUPER.group(patient_case)
 
-    @weighting_relation = WebgrouperWeightingRelation.new(@result.drg, patient_case.house, patient_case.system_id)
-    @factor = @weighting_relation.factor
-    @cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
-    @los_chart = LosDataTable.new(patient_case.los, @cost_weight,
-                                  @weighting_relation, @factor).make_chart
+      @weighting_relation = WebgrouperWeightingRelation.new(@result.drg, patient_case.house, patient_case.system_id)
+      @factor = @weighting_relation.factor
+      @cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
+      @los_chart = LosDataTable.new(patient_case.los, @cost_weight,
+                                    @weighting_relation, @factor).make_chart
+    rescue Exception => e
+      flash[:error] = e.message
+    end
   end
 
   # Creates a hash which contains, if there are any, procedures relevant for zusatzentgelte
