@@ -22,6 +22,7 @@ class StatisticsController < ApplicationController
                                                              input_format: 1,
                                                              output_format: 1,
                                                              error: 1,
+                                                             start_time: 1,
                                                              full_duration: {'$subtract' => ['$end_time', '$start_time']},
                                                              parse_duration: {'$subtract' => ['$finished_parsing_time', '$start_time']}}},
                                              {'$sort' => {full_duration: -1}},

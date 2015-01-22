@@ -13,6 +13,8 @@ cases altogether. The 10 slowest queries in this period:
     %th
       Parse Time in ms
     %th
+      Start time
+    %th
       Nr cases
     %th
       ip
@@ -27,6 +29,8 @@ cases altogether. The 10 slowest queries in this period:
           = agg['full_duration']
         %td
           = agg['parse_duration']
+        %td
+          = localize agg['start_time'], format: :short
         %td
           = agg['nr_cases']
         %td
