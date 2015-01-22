@@ -1,10 +1,10 @@
 module WebgrouperPatientCasesHelper
   def link_to_add_fields(name, kind)  
-    link_to_function(image_tag(name), "add_fields(\"#{kind}\", \"#{escape_javascript(render "shared/#{kind}_row")}\", \"\")", :id => "add_#{kind}")
+    link_to(image_tag(name), '#', onclick: "add_fields(\"#{kind}\", \"#{escape_javascript(render "shared/#{kind}_row")}\", \"\")", :id => "add_#{kind}")
   end
   
   def link_to_remove_fields(name, kind)
-    link_to_function(image_tag(name), "remove_fields(\"#{kind}\")", :id => "remove_#{kind}")
+    link_to(image_tag(name), '#', onclick: "remove_fields(\"#{kind}\")", :id => "remove_#{kind}")
   end
   
   def add_button(kind)
