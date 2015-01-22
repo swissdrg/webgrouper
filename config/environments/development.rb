@@ -35,4 +35,8 @@ Webgrouper::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # For making translations available for JavaScript. In production mode, this is not necessary
+  # since the files get precompiled.
+  config.middleware.use I18n::JS::Middleware
 end
