@@ -16,20 +16,20 @@ class WebgrouperPatientCasesController < ApplicationController
   end
 
   def parse
-    if(params[:pc])
+    if params[:pc].present?
       @webgrouper_patient_case = WebgrouperPatientCase.parse(params[:pc][:string])
       if @webgrouper_patient_case.valid?
         group(@webgrouper_patient_case)
       else
         flash.now[:error] = @webgrouper_patient_case.errors.full_messages
-        render 'index'
       end
+      render 'index'
     end
   end
   
   def create_query
     # render index if called without arguments
-    if (!params[:webgrouper_patient_case])
+    unless params[:webgrouper_patient_case].present?
       redirect_to webgrouper_patient_cases_path and return
     end
 
@@ -38,23 +38,12 @@ class WebgrouperPatientCasesController < ApplicationController
     query_attributes = params[:webgrouper_patient_case].merge({:valid_case => @webgrouper_patient_case.valid?, :time => Time.now}).permit!
     @webgrouper_patient_case.id = Query.create(query_attributes).id.to_s
     if @webgrouper_patient_case.valid?
-      group(@webgrouper_patient_case)
-    else
-      flash.now[:error] = @webgrouper_patient_case.errors.full_messages
-      render 'index'
+      begin
+        group(@webgrouper_patient_case)
+      rescue Exception => e
+        flash[:error] = e.message
+      end
     end
-  end
-  
-  def group(patient_case)
-    @supplement_procedures, @total_supplement_amount = get_supplements(patient_case)
-		GROUPER.load(spec_path(patient_case.system_id))
-		@result = GROUPER.group(patient_case)
-
-		@weighting_relation = WebgrouperWeightingRelation.new(@result.drg, patient_case.house, patient_case.system_id)
-		@factor = @weighting_relation.factor
-		@cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)		
-		@los_chart = LosDataTable.new(patient_case.los, @cost_weight,
-		                              @weighting_relation, @factor).make_chart
     render 'index'
   end
   
@@ -73,11 +62,23 @@ class WebgrouperPatientCasesController < ApplicationController
   end
 
   private
-  
-	# creates the a hash which contains, if there are any, procedures relevant for zusatzentgelte
-	# the hash contains the appropriate fee, description, amount of the fee, and the number of apperiances
+
+  def group(patient_case)
+    @supplement_procedures, @total_supplement_amount = get_supplements(patient_case)
+    GROUPER.load(spec_path(patient_case.system_id))
+    @result = GROUPER.group(patient_case)
+
+    @weighting_relation = WebgrouperWeightingRelation.new(@result.drg, patient_case.house, patient_case.system_id)
+    @factor = @weighting_relation.factor
+    @cost_weight = GROUPER.calculateEffectiveCostWeight(patient_case, @weighting_relation)
+    @los_chart = LosDataTable.new(patient_case.los, @cost_weight,
+                                  @weighting_relation, @factor).make_chart
+  end
+
+  # Creates a hash which contains, if there are any, procedures relevant for zusatzentgelte
+	# the hash contains the appropriate fee, description, amount of the fee, and the number of appearances
 	# of the same procedure which entered the user as values and as key a procedure code.
-	# futhermore this method calculates also the total supplement amount (summed up). 
+	# furthermore this method calculates also the total supplement amount (summed up).
   def get_supplements(patient_case)
     supplement_procedures = {}
     total_supplement_amount = 0
