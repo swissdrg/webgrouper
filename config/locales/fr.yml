@@ -225,6 +225,8 @@ fr:
       number_of_days_for_surcharge: Nombre de jours avec supplément
       surcharge-rate-per-day: Augmentation du CW par jour
     diagnoses:
+      code: Code
+      name: Description
       CCL: CCL
       diagnosis_flag:
         used:

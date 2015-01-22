@@ -43,6 +43,8 @@ de:
       used: Benutzt
       valid: Gültigkeit
       CCL: CCL
+      code: Code
+      name: Beschreibung
       diagnosis_flag:
         used:
           false_string: Nein

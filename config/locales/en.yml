@@ -225,6 +225,8 @@ en:
       surcharge-rate-per-day: Surcharge rate per day
     diagnoses:
       CCL: CCL
+      code: Code
+      name: Description
       diagnosis_flag:
         used:
           false_string: false
