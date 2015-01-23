@@ -12,7 +12,8 @@ gem 'newrelic_rpm'
 gem 'mongoid'
 
 # For seeding mongodb with icd/chop/drg
-gem 'pg_jruby'
+gem 'pg_jruby', platforms: :jruby
+
 # progress bar for visualizing progress of seeding
 gem 'ruby-progressbar'
 
@@ -54,7 +55,7 @@ gem 'nokogiri', '~>1.6.1.0'
 # in production environments by default.
 group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyrhino'
+  gem 'therubyrhino', platforms: :jruby
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -62,7 +63,7 @@ end
 
 group :development do
   # in development, we usually want torquebox installed as gem
-  gem "torquebox-server"
+  gem "torquebox-server", platforms: :jruby
 end
 
 group :test do
@@ -71,8 +72,9 @@ group :test do
   gem 'cucumber-rails'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
-  gem 'database_cleaner'
-#  gem 'capybara-webkit'
+  # Version 1.4.0 causes issues: https://github.com/DatabaseCleaner/database_cleaner/issues/323
+  gem 'database_cleaner', '< 1.4.0'
+  gem 'capybara-webkit', platforms: :ruby
   gem 'launchy'
   gem 'autotest-standalone'
   gem 'autotest-fsevent'
@@ -94,4 +96,4 @@ end
 # To use debugger
 # gem 'ruby-debug'
 
-gem "torquebox"
+gem "torquebox", platforms: :jruby

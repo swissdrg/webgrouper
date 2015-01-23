@@ -62,8 +62,11 @@ require 'cucumber/autocomplete'
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
 
-
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = if RUBY_ENGINE == 'jruby'
+                               :selenium
+                             else
+                               :webkit
+                             end
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how 
