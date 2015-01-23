@@ -39,4 +39,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Necessary for i18n-js to work.
+  config.assets.initialize_on_precompile = true
 end
