@@ -97,7 +97,7 @@ end
 #
 #   Before('@no-txn,@selenium,@culerity,@celerity,@javascript') do
 #     # { :except => [:widgets] } may not do what you expect here
-#     # as tCucumber::Rails::Database.javascript_strategy overrides
+#     # as Cucumber::Rails::Database.javascript_strategy overrides
 #     # this setting.
 #     DatabaseCleaner.strategy = :truncation
 #   end
@@ -110,7 +110,5 @@ end
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
-
-# truncation doesn't work with mysql, so use transaction!
-Cucumber::Rails::Database.javascript_strategy = :transaction
+Cucumber::Rails::Database.javascript_strategy = :truncation
 
