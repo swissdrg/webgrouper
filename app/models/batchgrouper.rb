@@ -19,6 +19,7 @@ class Batchgrouper
   # Saves the second line of the given file for logging purposes.
   # It is required, that it contains only ASCII characters!
   def preprocess_file
+    file.tempfile.rewind
     encoding_options = {
       :invalid           => :replace,  # Replace invalid byte sequences
       :undef             => :replace,  # Replace anything not defined in ASCII
@@ -66,16 +67,16 @@ class Batchgrouper
     renamed_file
   end
 
-  # This saves the line in a file, wraps it as uploaded file, then does a normal group
-  # TODO: clean up temp file?
+  # This saves the line in a file, wraps it as uploaded file, then does a normal group.
+  # Tempfiles are cleaned up every through a torquebox job.
   def group_line(line)
     line.strip!
     f = Tempfile.new("single_group")
     f.write(line)
     # wrap around UploadFile class for easier handling
     self.file = ActionDispatch::Http::UploadedFile.new( tempfile: f, filename: 'single_group.in')
-
-    output = group()
+    self.preprocess_file
+    output = self.group
     File.open(output, 'r') do |f|
       f.readline()
     end
