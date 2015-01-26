@@ -62,8 +62,11 @@ end
 
 
 group :development do
-  # in development, we usually want torquebox installed as gem
+  # In development, we usually want torquebox installed as gem.
   gem "torquebox-server", platforms: :jruby
+  # For rubymine debug mode:
+  gem 'ruby-debug-base'
+  gem 'ruby-debug-ide'
 end
 
 group :test do
@@ -72,6 +75,7 @@ group :test do
   gem 'cucumber-rails'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
+  gem 'poltergeist' # This needs phantomjs installed, use apt-get to install it.
   # Version 1.4.0 causes issues: https://github.com/DatabaseCleaner/database_cleaner/issues/323
   gem 'database_cleaner', '< 1.4.0'
   gem 'capybara-webkit', platforms: :ruby
