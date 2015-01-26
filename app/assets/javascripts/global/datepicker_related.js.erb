@@ -1,6 +1,6 @@
 /**
  * Everything related to the datepicker goes here.
- * The javascript of the datepicker itself can be found under vendor/assets/javascripts
+ * The javascript of the datepicker is included as gem.
  */
 
 /**
@@ -31,6 +31,9 @@ function addDatePicker(id) {
 		buttonImageOnly: true
 		}
 	);
-	$("#"+id).datepicker("option", $.datepicker.regional[ locale ]);
+    // We need to map locale to the matching locale in datepicker.
+    var regionals = {'de': 'de', 'fr': 'fr-CH', 'en': 'en-GB', 'it': 'it' }
+    var regional =  regionals[locale];
+	$("#"+id).datepicker("option", $.datepicker.regional[regional]);
 }
 
