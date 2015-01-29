@@ -75,7 +75,6 @@ group :test do
   gem 'cucumber-rails'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
-  gem 'poltergeist' # This needs phantomjs installed, use apt-get to install it.
   # Version 1.4.0 causes issues: https://github.com/DatabaseCleaner/database_cleaner/issues/323
   gem 'database_cleaner', '< 1.4.0'
   gem 'capybara-webkit', platforms: :ruby

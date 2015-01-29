@@ -62,8 +62,16 @@ require 'cucumber/autocomplete'
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
 
+# Use chrome for testing. (firefox buggy right now), see
+# https://code.google.com/p/selenium/issues/detail?id=8387
+# Needs chromedriver installed, e.g. via `sudo apt-get install chromium-chromedriver`
+# Then execute `chromedriver` before running the tests.
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
 Capybara.javascript_driver = if RUBY_ENGINE == 'jruby'
-                               :selenium
+                               :chrome
                              else
                                :webkit
                              end

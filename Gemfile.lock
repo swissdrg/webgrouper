@@ -64,7 +64,6 @@ GEM
       json
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
-    cliver (0.3.2)
     connection_pool (2.1.1)
     cucumber (1.3.18)
       builder (>= 2.1.2)
@@ -154,11 +153,6 @@ GEM
     parslet (1.4.0)
       blankslate (~> 2.0)
     pg_jruby (0.14.1.rc2-java)
-    poltergeist (1.5.1)
-      capybara (~> 2.1)
-      cliver (~> 0.3.1)
-      multi_json (~> 1.0)
-      websocket-driver (>= 0.2.0)
     power_assert (0.2.2)
     rack (1.6.0)
     rack-test (0.6.3)
@@ -291,11 +285,6 @@ GEM
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
     websocket (1.2.1)
-    websocket-driver (0.5.1)
-      websocket-extensions (>= 0.1.0)
-    websocket-driver (0.5.1-java)
-      websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -324,7 +313,6 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri (~> 1.6.1.0)
   pg_jruby
-  poltergeist
   rails
   rails3-jquery-autocomplete!
   rspec-rails

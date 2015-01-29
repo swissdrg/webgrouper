@@ -27,7 +27,7 @@ Feature: Users can add and remove fields for secondary diagnoses and procedures 
     When I add the maximum number of "procedures" fields
     And I should not see 101 procedures fields
     
-  @mac @javascript @debug
+  @mac @javascript
   Scenario: Submit the form with invalid secondary diagnoses
     Given the form with initialized standard values
     When I enter the secondary diagnoses " ", "bar", "bat", "dani", "randy", "", "hallo", "yeeah"
@@ -53,15 +53,15 @@ Feature: Users can add and remove fields for secondary diagnoses and procedures 
     And I should see "Prozeduren: hallo"
     And I should see "Prozeduren: yeeah"
   
-    @mac @javascript
-    Scenario: I can enter up to 94 diagnoses
-      Given the form with initialized standard values
-      When I enter "A000" as diagnosis
-      And I enter the secondary diagnoses "A000" 95 times
-      And I press on "Fall Gruppieren"
-      Then the grouping should succeed
+  @mac @javascript @slow
+  Scenario: I can enter up to 94 diagnoses
+    Given the form with initialized standard values
+    When I enter "A000" as diagnosis
+    And I enter the secondary diagnoses "A000" 95 times
+    And I press on "Fall Gruppieren"
+    Then the grouping should succeed
       
-  @mac @javascript
+  @mac @javascript @slow
   Scenario: I can enter up to 99 procedures
     Given the form with initialized standard values
     When I enter "A000" as diagnosis
