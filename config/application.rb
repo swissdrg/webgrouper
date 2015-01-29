@@ -39,5 +39,7 @@ module Webgrouper
     Timeliness.use_euro_formats
     # GC Profiling for newrelic.
     GC::Profiler.enable
+    # Necessary for i18n-js to work.
+    config.assets.initialize_on_precompile = true
   end
 end
