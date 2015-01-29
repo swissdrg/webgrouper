@@ -6,4 +6,7 @@ class BatchgrouperQuery
   field :ip, type: String
   field :first_line, type: String
   field :line_count, type: Integer
+  field :time, type: Time
+
+  index time: 1
 end

@@ -16,5 +16,6 @@ class Supplement
 
   scope :in_system, lambda { |system_id| where(:version => System.find_by(:system_id => system_id ).drg_version) }
 
-  index :chop_code => 1, :version => 1
+  # This is strangely enough not unique.
+  index({:chop_code => 1, :version => 1})
 end

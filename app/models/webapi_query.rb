@@ -12,4 +12,6 @@ class WebapiQuery
   field :end_time, type: Time
   field :nr_cases, type: Integer
   field :error, type: String
+
+  index :start_time => 1
 end

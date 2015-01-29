@@ -39,7 +39,7 @@ class Chop
   def self.get_code system_id, search_code
     in_system(system_id).where(code_short: self.short_code_of(search_code)).first
   end
-  
-  #index for faster searching:
-  index({code_short: 1, version: 1}, {:unique => true})
+
+  # This is strangely enough not unique for CHOP 2011.
+  index({code_short: 1, version: 1})
 end

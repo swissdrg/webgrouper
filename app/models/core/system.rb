@@ -9,7 +9,6 @@ class System
   field :manual_url, type: String
   field :public, type: Boolean
   
-  index "system_id" => 1
 
   scope :public, lambda { where(:public => true) }
 
@@ -22,4 +21,5 @@ class System
     self.where(:system_id => id).exists?
   end
 
+  index({"system_id" => 1}, unique: true)
 end

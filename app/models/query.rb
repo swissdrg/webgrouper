@@ -4,4 +4,6 @@ class Query
 
   field :valid_case, type: Boolean
   field :time, type: Time
+
+  index :time => 1
 end
