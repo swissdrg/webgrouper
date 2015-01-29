@@ -5,16 +5,16 @@ class StatisticsController < ApplicationController
   def batchgrouper
     params[:binned] ||= '1'
     @bg_queries = BatchgrouperQuery.where(:time.gt => @from, :time.lt => @to)
-    @bg_system_chart = make_system_chart(@bg_queries)
+    @bg_system_chart = make_system_chart(BatchgrouperQuery)
     @bg_house_chart = make_house_chart(@bg_queries)
-    bins = 100 if params[:binned]
-    @bg_size_chart = make_size_chart(@bg_queries, :line_count, bins)
+    bins = 100 if params[:binned] == '1'
+    @bg_size_chart = make_size_chart(BatchgrouperQuery, :line_count, bins)
   end
 
   def webapi
     @wa_queries = WebapiQuery.where(:start_time.gt => @from, :start_time.lt => @to)
     bins = 100 if params[:binned]
-    @wa_size_chart = make_size_chart(@wa_queries, :nr_cases, bins)
+    @wa_size_chart = make_size_chart(WebapiQuery, :nr_cases, bins)
 
     @agg = WebapiQuery.collection.aggregate([{'$match' => {start_time: {'$gt' => @from, '$lt' => @to}}},
                                              {'$project' => {ip: 1,
@@ -31,7 +31,7 @@ class StatisticsController < ApplicationController
 
   def webgrouper
     @queries = Query.where(:time.gt => @from, :time.lt => @to)
-    @system_chart = make_system_chart(@queries)
+    @system_chart = make_system_chart(Query)
     @house_chart = make_house_chart(@queries)
   end
 
@@ -50,14 +50,14 @@ class StatisticsController < ApplicationController
     @to = Time.now
   end
 
-  def make_system_chart(queries)
+  def make_system_chart(model)
     system_data = GoogleVisualr::DataTable.new
     system_data.new_column('string', 'System')
     system_data.new_column('number', 'Groupings')
-    rows = []
-    System.each do |s|
-      rows << [s.description, queries.where(system_id: s.system_id).count]
-    end
+    agg = model.collection.aggregate([{'$match' => {time: {'$gt' => @from, '$lt' => @to}}},
+                                      {'$group' => {_id: "$system_id", count: {'$sum' => 1}}},
+                                      {'$sort' => {_id: 1}}])
+    rows = agg.inject([]) { |list, hash| list << [System.find_by(system_id: hash['_id']).description, hash['count']] }
     system_data.add_rows(rows)
     options = {title: 'Used systems'}
     GoogleVisualr::Interactive::PieChart.new(system_data, options)
@@ -74,25 +74,27 @@ class StatisticsController < ApplicationController
   end
 
   # Ignores queries that only occurred once
-  def make_size_chart(queries, attribute, bins=nil)
+  def make_size_chart(model, attribute, bins=nil)
     data_table = GoogleVisualr::DataTable.new
     rows = if bins.nil?
              data_table.new_column('number', 'Patient cases')
-             queries.distinct(attribute).sort.map do |attr_count|
-               [attr_count, queries.where(attribute => attr_count).count]
-             end
+             agg = BatchgrouperQuery.collection.aggregate([{'$match' => {time: {'$gt' => @from, '$lt' => @to}}},
+                                                           {'$group' => {_id: "$#{attribute}", count: {'$sum' => 1}}},
+                                                           {'$sort' => {_id: 1}}])
+             agg.inject([]) { | list, hash| list << [hash['_id'], hash['count']] }
            else
-             data_table.new_column('string', 'Patient cases')
-             max_line_count = queries.max(attribute)
+             data_table.new_column('number', 'Patient cases')
+             max_line_count = model.where(:time.gt => @from, :time.lt => @to).max(attribute)
              step_size = 10**Math::log10(max_line_count/bins).round
-             min = 0
-             max = step_size
-             r = []
-             while max < max_line_count
-               r << ["#{min}-#{max}", queries.between(attribute => Range.new(min, max)).count]
-               min, max = max, max + step_size
+             agg = model.collection.aggregate([{'$match' => {time: {'$gt' => @from, '$lt' => @to}}},
+                                               {'$project' => {step: {'$divide' => ["$#{attribute}", step_size]}}},
+                                               {'$project' => {bin: {'$subtract' => ["$step", '$mod' => ['$step', 1]]}}},
+                                               {'$group' => {_id: '$bin', count: {'$sum' => 1}}},
+                                               {'$sort' => {_id: 1}}])
+             agg.inject([]) do |list, hash|
+               min = hash[:_id] * step_size
+               list << [min, hash['count']]
              end
-             r
            end
     data_table.new_column('number', 'Number of queries')
     data_table.add_rows(rows)
