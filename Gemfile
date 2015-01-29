@@ -5,8 +5,8 @@ gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-# for newrelic monitoring this possibly causes a bug together with i18n-js in production.
-# gem 'newrelic_rpm'
+# for newrelic monitoring
+gem 'newrelic_rpm'
 
 # mongoDB driver
 gem 'mongoid'
