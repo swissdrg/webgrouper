@@ -2,20 +2,19 @@ class StatisticsController < ApplicationController
 
   before_filter :default_params, :authenticate
 
+  def index
+  end
+
   def batchgrouper
-    params[:binned] ||= '1'
     @bg_queries = BatchgrouperQuery.where(:time.gt => @from, :time.lt => @to)
     @bg_system_chart = make_system_chart(BatchgrouperQuery)
     @bg_house_chart = make_house_chart(@bg_queries)
-    bins = 100 if params[:binned] == '1'
-    @bg_size_chart = make_size_chart(BatchgrouperQuery, :line_count, bins)
+    @bg_size_chart = make_size_chart(BatchgrouperQuery, :line_count, @bins)
   end
 
   def webapi
     @wa_queries = WebapiQuery.where(:start_time.gt => @from, :start_time.lt => @to)
-    bins = 100 if params[:binned]
-    @wa_size_chart = make_size_chart(WebapiQuery, :nr_cases, bins)
-
+    @wa_size_chart = make_size_chart(WebapiQuery, :nr_cases, nil)
     @agg = WebapiQuery.collection.aggregate([{'$match' => {start_time: {'$gt' => @from, '$lt' => @to}}},
                                              {'$project' => {ip: 1,
                                                              nr_cases: 1,
@@ -45,6 +44,8 @@ class StatisticsController < ApplicationController
   end
 
   def default_params
+    params[:binned] ||= '1'
+    @bins = 100 if params[:binned] == '1'
     params[:last_n_months] ||= 3
     @from = params[:last_n_months].to_i.months.ago
     @to = Time.now
@@ -81,7 +82,7 @@ class StatisticsController < ApplicationController
              agg = BatchgrouperQuery.collection.aggregate([{'$match' => {time: {'$gt' => @from, '$lt' => @to}}},
                                                            {'$group' => {_id: "$#{attribute}", count: {'$sum' => 1}}},
                                                            {'$sort' => {_id: 1}}])
-             agg.inject([]) { | list, hash| list << [hash['_id'], hash['count']] }
+             agg.inject([]) { | list, hash| list << [hash['_id'].to_i, hash['count']] }
            else
              data_table.new_column('number', 'Patient cases')
              max_line_count = model.where(:time.gt => @from, :time.lt => @to).max(attribute)
@@ -93,7 +94,7 @@ class StatisticsController < ApplicationController
                                                {'$sort' => {_id: 1}}])
              agg.inject([]) do |list, hash|
                min = hash[:_id] * step_size
-               list << [min, hash['count']]
+               list << [min.to_i, hash['count']]
              end
            end
     data_table.new_column('number', 'Number of queries')
