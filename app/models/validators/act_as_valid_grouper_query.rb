@@ -16,7 +16,7 @@ module ActAsValidGrouperQuery
     base.validates      :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 125}, :unless => :age_mode_days?
     base.validates      :age,             :presence => true, :numericality => { :only_integer => true, :greater_than => 0, :less_than => 367}, :if => :age_mode_days?
     # Admission weight
-    base.validates      :adm_weight,      :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 250, :less_than_or_equal_to => 20000 }, :if => :age_mode_days?
+    base.validates      :adm_weight,      :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 125, :less_than_or_equal_to => 20000 }, :if => :age_mode_days?
     # Admission mode
     base.validates      :adm,             :presence => true
     # Separation mode
