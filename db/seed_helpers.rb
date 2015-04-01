@@ -1,11 +1,13 @@
 module SeedHelpers
   require 'pg'
 
+  PG_SEARCH_PATH = 'public'
+
   # Returns a connection to a postgress database, defind in db/pg_config.yml (environment dependent!)
   def conn
     config = YAML.load_file('db/pg_config.yml')[Rails.env]
     PG.connect(host: config['host'], port: 5432, dbname: config['dbname'],
-                      user: config['user'], password: config['password'])
+               user: config['user'], password: config['password'])
   end
 
   # assembles text => { 'de' => .., 'fr' => ....} from text_de, text_fr etc
@@ -31,9 +33,15 @@ module SeedHelpers
     code.save!
   end
 
+  def iterate_table(table_name)
+    conn.exec("SELECT * FROM #{PG_SEARCH_PATH}.#{table_name}").each do |row|
+      yield row
+    end
+  end
+
   def make_progress_bar(table_name)
-    count = conn.exec("SELECT COUNT(*) from classifications.#{table_name}").first['count'].to_i
+    count = conn.exec("SELECT COUNT(*) from #{PG_SEARCH_PATH}.#{table_name}").first['count'].to_i
     return ProgressBar.create(:title => table_name, :starting_at => 0, :total => count,
-				   :throttle_rate => 1, :format => '%t: |%B| %P%%')
+                              :throttle_rate => 1, :format => '%t: |%B| %P%%')
   end
 end

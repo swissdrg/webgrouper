@@ -2,7 +2,7 @@ require 'db/seed_helpers'
 include SeedHelpers
 bar = make_progress_bar('drgs')
 Drg.delete_all
-conn.exec("SELECT * FROM classifications.drgs").each do |row|
+iterate_table('drgs') do |row|
   # rename some attributes
   row['avg_duration'] = row.delete 'average_stay_duration'
   row['transfer_flatrate'] = row.delete 'transfer_discount'

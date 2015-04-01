@@ -3,7 +3,7 @@ include SeedHelpers
 bar = make_progress_bar('chops')
 
 Chop.delete_all
-conn.exec("SELECT * FROM classifications.chops").each do |row|
+iterate_table('chops') do |row|
   save_code(Chop, row)
   bar.increment
 end
