@@ -349,3 +349,11 @@ it:
     privacy: Protezione dei dati
     responsibility: Garanzia / responsabilità
     terminatory: Disposizioni conclusive
+  flash:
+    beta_not_available:
+      title: BETA Versions not available
+      body: |
+        BETA Versions are not available at this time. Please check again later...
+    beta:
+      title: Activated Beta Version
+      body: Activated beta for this session. After closing the browser, the beta won't be active anymore!

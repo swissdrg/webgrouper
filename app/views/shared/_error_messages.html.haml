@@ -14,3 +14,7 @@
 - if flash[:info].present?
   .info
     = flash[:info]
+
+- if flash[:popup].present?
+  .flash-popup{ title: flash[:popup][:title]}
+    = simple_format flash[:popup][:body]

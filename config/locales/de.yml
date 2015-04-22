@@ -329,4 +329,17 @@ de:
     responsibility: Gewährleistung / Haftung
     terminatory:    Schlussbestimmungen
     accept:         "Ja, ich akzeptiere die allgemeinen Geschäftsbedingungen"
+  flash:
+    beta_not_available:
+      title: BETA Versionen nicht verfügbar
+      body: |
+        Zur Zeit sind keine BETA Versionen verfügbar.
+
+        Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut...
+    beta:
+      title: Vorversion aktiviert
+      body: |
+        Sie haben nun Zugriff auf Vorversionen von SwissDRG Systemen.
+
+        Der Zugriff auf Vorabversionen verfällt, sobald das Fenster geschlossen wird.
                     

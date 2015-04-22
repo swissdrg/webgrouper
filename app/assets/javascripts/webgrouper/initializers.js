@@ -32,6 +32,20 @@ $(document).ready(function() {
             return false;
         }
     });
+
+    // Capture flash popup and display as Jquery UI Dialog
+    $( ".flash-popup" ).dialog({
+        dialogClass: "no-close",
+        modal: true,
+        buttons: [
+            {
+                text: "OK",
+                click: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        ]
+    });
 });
 
 /**
