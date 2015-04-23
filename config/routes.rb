@@ -32,7 +32,6 @@ Webgrouper::Application.routes.draw do
 
   get 'grouper' => 'batchgroupers#tos'
   get 'activate_beta' => 'webgrouper_patient_cases#activate_beta'
-  get 'activate_beta_hidden' => 'webgrouper_patient_cases#activate_beta_hidden'
   get 'batchgrouper' => 'batchgroupers#tos'
   get 'webgrouper' => 'webgrouper_patient_cases#tos'
   get 'about' => 'static_pages#about'

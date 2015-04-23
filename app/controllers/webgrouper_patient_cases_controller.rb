@@ -53,13 +53,6 @@ class WebgrouperPatientCasesController < ApplicationController
   # then sends the user to the grouper interface
   def activate_beta
     # Uncommment this once beta is allowed to be public again
-    #session[:beta] = true
-    flash[:popup] = { body: I18n.t('flash.beta_not_available.body'), title: I18n.t('flash.beta_not_available.title') }
-    redirect_to :action => 'index'
-  end
-
-  # This is a temporary action, not public until issues with 5.0 are resolved
-  def activate_beta_hidden
     session[:beta] = true
     flash[:popup] = { body: I18n.t('flash.beta.body'), title: I18n.t('flash.beta.title') }
     redirect_to :action => 'index'
