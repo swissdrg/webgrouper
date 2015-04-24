@@ -17,7 +17,7 @@ a:focus img, a:focus img {
 }
 
 #system select {
-	width: 240px;
+	width: 260px;
 }
 
 #system legend {
@@ -30,6 +30,9 @@ a:focus img, a:focus img {
 
 #system .small_field input {
 	width: 11em;
+}
+#system a.button {
+    width: 545px;
 }
 
 .spacer {
@@ -71,7 +74,7 @@ select#webgrouper_patient_case_age_mode {
 }
 
 .simple_form select {
-	max-width: 240px;
+	max-width: 260px;
 }
 
 /** fix for FF */
