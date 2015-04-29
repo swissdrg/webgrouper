@@ -108,8 +108,9 @@ class WebgrouperPatientCase < PatientCase
     to_s.gsub('-', ';')
   end
 
-  # takes a swissdrg-string as input and returns the complying WebgrouperPatientCase.
-  # the swissdrg-string may also be split by underscores instead of semicolons
+  # Takes a SwissDRG-string as input and returns the complying WebgrouperPatientCase.
+  # the swissdrg-string may also be split by dashes instead of semicolons.
+  # The ID field is further used to encode data usually not contained in a SwissDRG string.
   def self.parse(pc_string)
     params = {}
     if pc_string.include? (';')
