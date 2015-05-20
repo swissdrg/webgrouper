@@ -34,11 +34,11 @@ function append_diagnoses_row() {
     // Prepend an empty label for layout.
     $(new_row).prepend("<label></label>");
 
-    // Update id's:
+    // Update ids and delete values:
     $(new_row).find($('input.diagnosis')).each(function() {
         last_id_number++;
         $(this).attr("id", id_without_number + last_id_number);
-        console.log(id_without_number + last_id_number);
+        $(this).attr("value", "");
     });
 
     initialize_buttons(new_row);
