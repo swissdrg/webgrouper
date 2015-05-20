@@ -30,7 +30,7 @@ function append_diagnoses_row() {
     var id_without_number = 'webgrouper_patient_case_diagnoses_';
     var last_id_number = Math.max.apply(Math, ids);
 
-    var new_row = prototype_diagnoses_row.clone().insertAfter(prototype_diagnoses_row);
+    var new_row = prototype_diagnoses_row.clone().insertAfter( $('.diagnoses_row').last());
     // Prepend an empty label for layout.
     $(new_row).prepend("<label></label>");
 
