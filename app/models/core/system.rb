@@ -21,5 +21,29 @@ class System
     self.where(:system_id => id).exists?
   end
 
+  def workspace
+    File.join(spec_folder, system_id, 'workspace')
+  end
+
+  def catalogue
+    File.join(spec_folder, system_id, 'catalogue-acute.csv')
+  end
+
+  def birthhouse_catalogue
+    File.join(spec_folder, system_id, 'catalogue-birthhouses.csv')
+  end
+
+  private
+
+  def spec_folder
+    production_spec_folder = File.join('/','home', 'tim', 'grouperspecs')
+    development_spec_folder = File.join(Rails.root,'lib', 'grouperspecs')
+    if File.directory?(production_spec_folder)
+      production_spec_folder
+    else
+      development_spec_folder
+    end
+  end
+
   index({"system_id" => 1}, unique: true)
 end

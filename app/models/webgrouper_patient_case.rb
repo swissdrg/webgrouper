@@ -51,6 +51,7 @@ class WebgrouperPatientCase
   # Takes a SwissDRG-string as input and returns the complying WebgrouperPatientCase.
   # the swissdrg-string may also be split by dashes instead of semicolons.
   # The ID field is further used to encode data usually not contained in a SwissDRG string.
+  # TODO: rewrite
   def self.parse(pc_string)
     params = {}
     if pc_string.include? (';')
@@ -128,6 +129,64 @@ class WebgrouperPatientCase
   def today
     Time.now
   end
+
+  def group
+    begin
+      @supplement_procedures, @total_supplement_amount = get_supplements
+      # TODO: make java object
+      pc = self;
+      GROUPERS[system_id].groupByReference(pc)
+      @result = GROUPER.group(patient_case)
+      gr = pc.getGrouperResult();
+      cw = CATALOGUES[system_id].get(gr.getDrg())
+      EffectiveCostWeight ecw = grouper.calculateEffectiveCostWeight(pc, cw);
+
+      @los_chart = LosDataTable.new(patient_case.los, exw,
+                                    @weighting_relation, @factor).make_chart
+    rescue Exception => e
+      flash[:error] = e.message
+    end
+  end
+
+  # Creates a hash which contains, if there are any, procedures relevant for zusatzentgelte
+  # the hash contains the appropriate fee, description, amount of the fee, and the number of appearances
+  # of the same procedure which entered the user as values and as key a procedure code.
+  # furthermore this method calculates also the total supplement amount (summed up).
+  def get_supplements
+    supplement_procedures = {}
+    total_supplement_amount = 0
+    self.procedures.each do |p|
+      # cleanup: we just want the procedure code (no seitigkeit or date)
+      p = p['c']
+      # if there is an a row in supplementops which has a column equals the given procedure value
+      # prepare hash for a new value
+      sup = Supplement.in_system(self.system_id).where(:chop_atc_code => p).first
+      unless sup.nil?
+        code = sup.supplement_code
+        amount = sup.amount
+        description = sup.text
+        total_supplement_amount += amount
+
+        # count how many times the same proc appeared with same fee.
+        default_proc_count = 1
+        if supplement_procedures[p].nil?
+          data = {
+              :fee => code,
+              :description => description,
+              :amount => amount,
+              :proc_count => default_proc_count,
+              :age_max => sup.age_max
+          }
+          supplement_procedures[p] = data
+        else
+          supplement_procedures[p][:proc_count] += 1
+        end
+
+      end
+    end
+    return supplement_procedures, total_supplement_amount
+  end
+
 
   private
 

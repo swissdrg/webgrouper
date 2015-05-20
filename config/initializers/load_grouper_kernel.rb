@@ -1,27 +1,24 @@
 include Java 
-require 'app/helpers/application_helper'
-include ApplicationHelper
 
-DEFAULT_SYSTEM = 22
+DEFAULT_SYSTEM = 12
 
-# On mac: debugging only with mock-grouper
-if java.lang.System.getProperty('os.name').downcase.include?('mac')
-  require 'lib/javawrapper/swissdrg-grouper-1.0.0-mock.jar'
-else
-  require 'lib/javawrapper/swissdrg-grouper-2.0.0.jar'
-  require 'lib/javawrapper/jna.jar'
+require 'lib/grouper-0.3.0-jar-with-dependencies.jar'
+
+def spec_folder
+  production_spec_folder = File.join('/','home', 'tim', 'grouperspecs')
+  development_spec_folder = File.join(Rails.root,'lib', 'grouperspecs')
+  if File.directory?(production_spec_folder)
+    production_spec_folder
+  else
+    development_spec_folder
+  end
 end
 
-java_import Java::org.swissdrg.grouper.PatientCase
-java_import Java::org.swissdrg.grouper.GrouperResult
-java_import Java::org.swissdrg.grouper.WeightingRelation
-java_import Java::org.swissdrg.grouper.EffectiveCostWeight
-
-grouper_path = File.join(spec_folder, 'libGrouperKernel64.so.4.0.0')
-Rails.logger.info("Loading grouper kernel from: #{grouper_path}")
-
-unless File.exist?(grouper_path)
-  raise 'Grouper does not exist in ' + grouper_path
+GROUPERS = System.all.each_with_object({}) do |s, hash|
+  hash[s.system_id] = new XMLWorkspaceReader().readWorkspace(s.workspace)
 end
 
-GROUPER = org.swissdrg.grouper.kernel.GrouperKernel.create(grouper_path)
+# TODO: Catalogues, need change in grouper first.
+CATALOGUES = System.all.each_with_object({}) do |s, hash|
+  hash[s.system_id] = new XMLWorkspaceReader().readWorkspace(s.workspace)
+end
