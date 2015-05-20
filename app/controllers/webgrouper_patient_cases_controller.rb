@@ -81,7 +81,7 @@ class WebgrouperPatientCasesController < ApplicationController
     total_supplement_amount = 0
     patient_case.procedures.each do |p|
 			# cleanup: we just want the procedure code (no seitigkeit or date)
-      p = p.match(/(\S*)\:(\w*)\:(\w*)/)[1]
+      p = p['c']
 			# if there is an a row in supplementops which has a column equals the given procedure value
 			# prepare hash for a new value
       sup = Supplement.in_system(patient_case.system_id).where(:chop_atc_code => p).first

@@ -1,24 +1,25 @@
-.procedures_row
-  .sameline
-  - (0..2).each do |i|
-    %span.field
-      = autocomplete_field_tag 'webgrouper_patient_case[procedures][][0]',
-                             '',
-                             autocomplete_Chop_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id),
-                             :class => 'autocomplete small_field',
-                             :id => "webgrouper_patient_case_diagnoses_#{i}_0"
-      = select_tag 'webgrouper_patient_case[procedures][][1]',
-                        options_for_select(["", "R", "L", "B"]),
-                        :class => 'tiny_field',
-                        :id => "webgrouper_patient_case_diagnoses_#{i}_1"
-      = text_field_tag 'webgrouper_patient_case[procedures][][2]',
-                       '',
-                       :class => 'small_field date_picker',
-                       :id => "webgrouper_patient_case_diagnoses_#{i}_2"
+- necessary_rows = [(@webgrouper_patient_case.procedures.size.to_f / 3).ceil, 1].max
+- count = 0
+- necessary_rows.times do |row|
+  .procedures_row
+    .sameline
+    - 3.times do |i|
+      %span.field
+        - procedure_hash = @webgrouper_patient_case.procedures[count]
+        = autocomplete_field_tag 'webgrouper_patient_case[procedures][][c]',
+                               procedure_hash['c'],
+                               autocomplete_Chop_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id),
+                               :class => 'autocomplete small_field',
+                               :id => "webgrouper_patient_case_diagnoses_#{count}_0"
+        = select_tag 'webgrouper_patient_case[procedures][][l]',
+                          options_for_select(["", "R", "L", "B"], procedure_hash['l']),
+                          :class => 'tiny_field',
+                          :id => "webgrouper_patient_case_diagnoses_#{count}_1"
+        = text_field_tag 'webgrouper_patient_case[procedures][][d]',
+                         procedure_hash['d'],
+                         :class => 'small_field date_picker',
+                         :id => "webgrouper_patient_case_diagnoses_#{count}_2"
+        - count += 1
 
-    %span.spacer
-    %span.splitter
-
-:javascript
-  var procedures_array = #{@webgrouper_patient_case.procedures.to_json};
-  initialize_procedures(procedures_array);
+      %span.spacer
+      %span.splitter
