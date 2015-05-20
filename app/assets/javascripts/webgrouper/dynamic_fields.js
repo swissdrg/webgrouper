@@ -16,12 +16,29 @@ $(document).ready(function () {
     initialize_buttons();
 });
 
-function pop_diagnoses_row(){
-    rows = $('.diagnoses_row');
+/**
+ * Initializes add/remove buttons for diagnoses and procedures.
+ */
+function initialize_buttons() {
+    $("img.add_diagnoses_row").on("click", append_diagnoses_row);
+    $("img.remove_diagnoses_row").on("click", remove_last_diagnoses_row);
+
+    $("img.add_procedures_row").on("click", append_procedures_row);
+    $("img.remove_procedures_row").on("click", remove_last_procedures_row);
+}
+
+function remove_last_row(rows) {
     if (rows.length > 1) {
         rows.last().remove();
-        $('.diagnoses_row').last().find('img').show();
     }
+}
+
+function remove_last_diagnoses_row(){
+    remove_last_row($('.diagnoses_row'));
+}
+
+function remove_last_procedures_row(){
+    remove_last_row($('.procedures_row'));
 }
 
 function append_diagnoses_row() {
@@ -46,10 +63,3 @@ function append_diagnoses_row() {
     initializeAutocomplete();
 }
 
-/**
- * Initializes add/remove buttons for diagnoses in the children of the given node.
- */
-function initialize_buttons() {
-    $("img.add_diagnoses_row").on("click", append_diagnoses_row);
-    $("img.remove_diagnoses_row").on("click", pop_diagnoses_row);
-}

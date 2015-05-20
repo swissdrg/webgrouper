@@ -3,23 +3,25 @@
 - necessary_rows.times do |row|
   .procedures_row
     .sameline
-    - 3.times do |i|
-      %span.field
-        - procedure_hash = @webgrouper_patient_case.procedures[count]
-        = autocomplete_field_tag 'webgrouper_patient_case[procedures][][c]',
-                               procedure_hash['c'],
-                               autocomplete_Chop_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id),
-                               :class => 'autocomplete small_field',
-                               :id => "webgrouper_patient_case_diagnoses_#{count}_0"
-        = select_tag 'webgrouper_patient_case[procedures][][l]',
-                          options_for_select(["", "R", "L", "B"], procedure_hash['l']),
-                          :class => 'tiny_field',
-                          :id => "webgrouper_patient_case_diagnoses_#{count}_1"
-        = text_field_tag 'webgrouper_patient_case[procedures][][d]',
-                         procedure_hash['d'],
-                         :class => 'small_field date_picker',
-                         :id => "webgrouper_patient_case_diagnoses_#{count}_2"
-        - count += 1
-
-      %span.spacer
-      %span.splitter
+      - 3.times do
+        %span.field
+          - procedure_hash = @webgrouper_patient_case.procedures[count] || {}
+          = autocomplete_field_tag 'webgrouper_patient_case[procedures][][c]',
+                                 procedure_hash['c'],
+                                 autocomplete_Chop_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id),
+                                 :class => 'autocomplete small_field',
+                                 :id => "webgrouper_patient_case_diagnoses_#{count}_0"
+          = select_tag 'webgrouper_patient_case[procedures][][l]',
+                            options_for_select(["", "R", "L", "B"], procedure_hash['l']),
+                            :class => 'tiny_field',
+                            :id => "webgrouper_patient_case_diagnoses_#{count}_1"
+          = text_field_tag 'webgrouper_patient_case[procedures][][d]',
+                           procedure_hash['d'],
+                           :class => 'small_field date_picker',
+                           :id => "webgrouper_patient_case_diagnoses_#{count}_2"
+          - count += 1
+      - if row == 0
+        .spacer
+        .procedures_buttons
+          = image_tag('bullet_toggle_plus.png',  class: 'add_procedures_row')
+          = image_tag('bullet_toggle_minus.png', class: 'procedures_diagnoses_row')

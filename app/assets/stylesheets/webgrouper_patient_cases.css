@@ -114,3 +114,8 @@ fieldset#los-chart {
 fieldset#length-of-stay {
 	width: 260px;
 }
+
+.procedures_buttons,.diagnoses_buttons img {
+  cursor: pointer;
+  cursor: hand;
+}
