@@ -3,10 +3,9 @@ class ExistingChopValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     error_happened = false
     value.each do |v|
-      procedure_regex = /(\S*)\:(\w*)\:(\S*)/
-      short_code = v.match(procedure_regex)[1].gsub(/\./, "").strip
-      laterality = v.match(procedure_regex)[2]
-      date = v.match(procedure_regex)[3]
+      short_code = v['0'].gsub('.', '').strip
+      laterality = v['1']
+      date = v['2']
       if no_code_entered?(short_code, laterality, date)
         record.errors[attribute] << I18n.t("errors.messages.no_code")
         record.errors[attribute][0] += " #{laterality}" unless laterality.blank?

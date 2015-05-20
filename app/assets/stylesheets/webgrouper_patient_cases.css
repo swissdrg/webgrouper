@@ -114,8 +114,3 @@ fieldset#los-chart {
 fieldset#length-of-stay {
 	width: 260px;
 }
-
-fieldset.result {
-	/*background: white url(<%= asset_data_uri "stripe_2.png" %>);
-	background-repeat: repeat; */
-}

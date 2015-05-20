@@ -1,97 +1,38 @@
-# WebgrouperPatientCase holds all input variables for a certain patient case
-# you can find in either the entry date, the exit date and the number of leave days. 
-# WebgrouperPatientCase inherits from the java class PatientCase
-class WebgrouperPatientCase < PatientCase
-  
+class WebgrouperPatientCase
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  after_initialize :trim_arrays
+
+  # System
+  field :system_id, type: Integer, default: DEFAULT_SYSTEM
+  field :house, type: Integer
+
+  # Stay
+  field :entry_date, type: Date
+  field :exit_date, type: Date
+  field :leave_days, type: Integer, default: 0
+  field :adm, type: String, default: '99' # aka unknown
+  field :sep, type: String, default: '99' # aka unknown
+  field :los, type: Integer, default: 10
+
+  # Patient data
+  field :sex, type: String
+  field :birth_date, type: Date
+  field :age, type: Integer, default: 40
+  field :adm_weight, type: Integer, default: 4000
+  field :hmv, type: Integer
+
+  # Diagnoses and procedures
+  field :pdx, type: String
+  field :diagnoses, type: Array, default: []
+  field :procedures, type: Array, default: []
+
+  # Additional stuff:
+  field :valid_case, type: Boolean
+
   include ActAsValidGrouperQuery
-  attr_accessor :age, :age_mode, :age_mode_decoy, :house, :manual_submission, :system_id, :id
-  # invokes super constructor of java class PatientCase
-	# prepares values of attribute hash for the ruby patient class.
-  def initialize(attributes = {})
-    super()  
-    # initialize attributes to display correct default values in view
-    self.age = 40
-    self.los = 10
-    self.birth_date = ''
-    self.entry_date = ''
-    self.exit_date = ''
-    self.adm_weight = 4000
-	  self.adm = '99' #aka unknown
-    self.sep = '99' #aka unknown
-    self.pdx = ''
-    self.system_id = DEFAULT_SYSTEM
-    
-    attributes.each do |name, value|
-      value = value.to_i if send(name).is_a? Fixnum
-      send("#{name}=", value) 
-    end
-
-    age_mode_days? ? self.age_days = self.age : self.age_years = self.age
-    self.birth_house = care_taker_birth_house?
-  end
-
-  # Always returns false since this model is not persisted (saved in a database).
-  # The method is necessary for this model to be treated like an active record model
-  # in certain circumstances; when building forms, for instance.
-  def persisted?
-    false
-  end
-  
-  # Custom setter for pdx (main diagnosis)
-  # Makes sure that the variable pdx only references a short code representation of an 
-  # icd code by filtering out periods and whitespace.
-  def pdx=(pdx)
-    super(Icd.short_code_of(pdx))
-  end
-  
-  # Custom getter for pdx
-  # Makes sure that it appears in the form as pretty code
-  def pdx
-    Icd.pretty_code_of(system_id, super) rescue get_pdx
-  end
-
-  def diagnoses=(diagnoses)
-	  set_diagnoses hash_to_java_array(diagnoses, 99, true)
-  end
-  
-  def diagnoses
-    diagnoses = []
-    get_diagnoses.each do |d|
-      unless d.nil?
-        begin
-          diagnoses << Icd.pretty_code_of(system_id, d)
-        rescue
-          diagnoses << d
-        end
-      end
-    end
-    diagnoses
-  end
-
-  def procedures=(procedures)
-		set_procedures hash_to_java_array(procedures, 100, false)
-  end
-  
-  def procedures
-    procedures = []
-    get_procedures.each do |p|
-      unless p.nil?
-        regex = /(\S*)\:(\w*)\:(\w*)/
-        short_code = p.match(regex)[1]
-        laterality = p.match(regex)[2]
-        date = p.match(regex)[3]
-        begin
-          code = Chop.pretty_code_of(system_id, short_code)
-        rescue
-          code = short_code
-        end
-        parsed_date = "#{date[6..7]}.#{date[4..5]}.#{date[0..3]}"
-        p = "#{code}:#{laterality}:#{parsed_date}"
-        procedures << p
-      end
-    end
-    procedures
-  end
+  attr_accessor :age_mode, :age_mode_decoy, :house, :manual_submission, :id
 
   # The default swissdrg format with additional data in the id-field, split by semicolon if readable is set to false
   # and split by underscore if readable is set to true
@@ -99,8 +40,7 @@ class WebgrouperPatientCase < PatientCase
     # additional information from id field
     s = [self.system_id, self.birth_date, self.entry_date, self.exit_date, self.leave_days].join('_')
     # rest of string
-    s << super.to_s
-    s.gsub!(';','-')
+    # TODO
     return s
   end
 
@@ -165,7 +105,6 @@ class WebgrouperPatientCase < PatientCase
           element = elements[element_nr] || ''
         end
         params[:procedures][number.to_s][element_nr.to_s] = element
-
       end
     end
     params.each do |key, value|
@@ -173,75 +112,6 @@ class WebgrouperPatientCase < PatientCase
     end
     WebgrouperPatientCase.new(params)
   end
-  
-  private
-
-	# convert a given ruby hash to a java array of fixed size
-	# either of size 99 (i.e. diagnoses) or 100 (i.e. procedures)
-	# and fill resulting java array with given inpuit which is stored in the arguemnt hash
-  def hash_to_java_array(hash, length, is_diagnoses)
-    empty_ruby_array = []
-    tmp_ruby_array = []
-    length.times {empty_ruby_array << nil}
-    java_array = empty_ruby_array.to_java(:string)
-    
-    if is_diagnoses   
-    	hash.each do |key, value| 
-      	tmp_ruby_array << value.gsub(/\./, "").strip unless value.blank?
-      end
-    else
-			fill_and_filter_java_array(hash, tmp_ruby_array)
-    end
-  
-    tmp_java_array = tmp_ruby_array.to_java(:string)
-		# since indicess start at 0 the last index of an array with n elements is (n-1)
-	  # therefore this each block
-    (0..(tmp_java_array.size-1)).each {|i| java_array[i] = tmp_java_array[i]}
-    java_array
-  end
-	
-	# helper method for the method hash_to_java_array
-	# in the case we are considering not diagnoses,
-	# i.e. we are considering procedures.
-	# filters given input(and adds : delimiter)
-	# and stores it in a java_array.
-	# a procedure is a tripple (A:B:C) which has as first element
-	# a procedure as 2nd element a seitigkeit, and as 
-  # 3rd element a data for the given procedure.
-	# remark: B and C may be empty string for a given A
-	# filter all the . out of an A to get its short code
-	# rearange the date since the date format of the grouper is yyyy.mm.dd
-	def fill_and_filter_java_array(hash, tmp_ruby_array)
-		hash.each do |tripple_key, tripple| 
-    	# tmp_procedure contains the current procedure value
-      tmp_procedure = ""
-			     
-			# a tripple element is either a procedure code, laterality or a date
-			# except procedure code(i.e. counter == 0) all other tripple elements may be blank
-      tripple.each do |element_key, tripple_element|
-				counter = element_key.to_i
-		    # we use ":" as our string delimiter symbol
-		    if counter == 0 && !tripple_element.blank?
-		    	tmp_procedure += tripple_element.gsub(/\./, "").strip
-		    elsif counter == 2 && !tripple_element.blank?
-		      regexed_date = tripple_element.match(/(.*)\.(.*)\.(.*)/) 
-		      unless regexed_date.nil?
-		      	tmp_procedure += regexed_date[3] + regexed_date[2] + regexed_date[1] 
-		      else
-		        tmp_procedure += tripple_element
-		      end
-		    else 
-		      tmp_procedure += tripple_element
-		    end
-
-		    if counter < 2
-		    	tmp_procedure += ":"
-		    end
-		    
-			end
-    	tmp_ruby_array << tmp_procedure unless tmp_procedure == "::"
-		end	
-	end
 
   # 'age_mode' is chosen in the form and can be
   # either 'days' or 'years'.
@@ -258,5 +128,12 @@ class WebgrouperPatientCase < PatientCase
   def today
     Time.now
   end
-  
+
+  private
+
+  # Removes empty values from arrays.
+  def trim_arrays
+    self.diagnoses.reject! &:blank?
+    self.procedures.reject! &:blank?
+  end
 end

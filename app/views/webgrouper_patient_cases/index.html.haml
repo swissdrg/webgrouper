@@ -2,7 +2,7 @@
   = javascript_include_tag 'https://www.google.com/jsapi'
   = javascript_include_tag 'webgrouper'
 
-= render "shared/error_messages", :webgrouper_patient_case => @webgrouper_patient_case
+= render "error_messages", :webgrouper_patient_case => @webgrouper_patient_case
 
 = simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :post do |f|
   = render 'shared/system', :f => f,
@@ -62,21 +62,18 @@
 
   %fieldset#drg-proc
     %legend= t("fieldsets.diagnoses_procedures")
-    :javascript
-      set_diagnoses_buttons("#{escape_javascript(add_button('diagnoses'))}", "#{escape_javascript(remove_button('diagnoses'))}")
-      set_procedures_buttons("#{escape_javascript(add_button('procedures'))}", "#{escape_javascript(remove_button('procedures'))}")
     #diagnoses
       = f.input :pdx, 
                 :url => autocomplete_Icd_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id), 
                 :as => :autocomplete
       %label{:for => 'webgrouper_patient_case_diagnoses_0'}
         = t('simple_form.labels.defaults.diagnoses')  # hardcoded, since its generated via js
-      = render "shared/diagnoses", :patient_case => @webgrouper_patient_case
+      = render "diagnoses", :patient_case => @webgrouper_patient_case
     %p
     #procedures
       %label{:for => 'webgrouper_patient_case_procedures_0_0'}
         = t('simple_form.labels.defaults.procedures')   # hardcoded, since its generated via js
-      = render "shared/procedures", :patient_case => @webgrouper_patient_case
+      = render "procedures", :patient_case => @webgrouper_patient_case
   .buttons 
     .right
       - if @result

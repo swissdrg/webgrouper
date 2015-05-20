@@ -19,5 +19,4 @@ class ExistingIcdValidator < ActiveModel::EachValidator
     end
   end
 
-
 end

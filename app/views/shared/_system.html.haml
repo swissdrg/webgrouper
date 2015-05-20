@@ -1,4 +1,4 @@
-- current_system = System.where(:system_id => system_id).first
+- current_system = System.find_by(:system_id => system_id)
 
 %fieldset#system
   %legend= t("fieldsets.system")

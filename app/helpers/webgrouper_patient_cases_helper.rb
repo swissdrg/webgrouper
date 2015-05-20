@@ -1,20 +1,4 @@
 module WebgrouperPatientCasesHelper
-  def link_to_add_fields(name, kind)  
-    link_to(image_tag(name), '#', onclick: "add_fields(\"#{kind}\", \"#{escape_javascript(render "shared/#{kind}_row")}\", \"\")", :id => "add_#{kind}")
-  end
-  
-  def link_to_remove_fields(name, kind)
-    link_to(image_tag(name), '#', onclick: "remove_fields(\"#{kind}\")", :id => "remove_#{kind}")
-  end
-  
-  def add_button(kind)
-    render "shared/add_button", :kind => kind
-  end
-  
-  def remove_button(kind)
-    render "shared/remove_button", :kind => kind
-  end
-  
   # valid types are: drgs, mdcs, adrgs, tables, icd_codes, chop_codes, functions
   # (given as strings)
   def link_to_online_definition_manual(code, type, system_id)

@@ -1,0 +1,24 @@
+.procedures_row
+  .sameline
+  - (0..2).each do |i|
+    %span.field
+      = autocomplete_field_tag 'webgrouper_patient_case[procedures][][0]',
+                             '',
+                             autocomplete_Chop_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id),
+                             :class => 'autocomplete small_field',
+                             :id => "webgrouper_patient_case_diagnoses_#{i}_0"
+      = select_tag 'webgrouper_patient_case[procedures][][1]',
+                        options_for_select(["", "R", "L", "B"]),
+                        :class => 'tiny_field',
+                        :id => "webgrouper_patient_case_diagnoses_#{i}_1"
+      = text_field_tag 'webgrouper_patient_case[procedures][][2]',
+                       '',
+                       :class => 'small_field date_picker',
+                       :id => "webgrouper_patient_case_diagnoses_#{i}_2"
+
+    %span.spacer
+    %span.splitter
+
+:javascript
+  var procedures_array = #{@webgrouper_patient_case.procedures.to_json};
+  initialize_procedures(procedures_array);

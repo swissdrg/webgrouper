@@ -26,17 +26,14 @@ class WebgrouperPatientCasesController < ApplicationController
       render 'index'
     end
   end
-  
+
   def create_query
     # render index if called without arguments
     unless params[:webgrouper_patient_case].present?
       redirect_to webgrouper_patient_cases_path and return
     end
 
-    @webgrouper_patient_case = WebgrouperPatientCase.new(params[:webgrouper_patient_case])
-    @webgrouper_patient_case.manual_submission = !params[:commit].nil?
-    query_attributes = params[:webgrouper_patient_case].merge({:valid_case => @webgrouper_patient_case.valid?, :time => Time.now}).permit!
-    @webgrouper_patient_case.id = Query.create(query_attributes).id.to_s
+    @webgrouper_patient_case = WebgrouperPatientCase.create(params[:webgrouper_patient_case].permit!)
     if @webgrouper_patient_case.valid?
       group(@webgrouper_patient_case)
     end
@@ -52,7 +49,6 @@ class WebgrouperPatientCasesController < ApplicationController
   # For testing new systems, exclusive users are given this url. This activates the beta for the current session,
   # then sends the user to the grouper interface
   def activate_beta
-    # Uncommment this once beta is allowed to be public again
     session[:beta] = true
     flash[:popup] = { body: I18n.t('flash.beta.body'), title: I18n.t('flash.beta.title') }
     redirect_to :action => 'index'
