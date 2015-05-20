@@ -1,4 +1,4 @@
-- necessary_rows = [(@webgrouper_patient_case.diagnoses.size / 5).ceil, 1].max
+- necessary_rows = [(@webgrouper_patient_case.diagnoses.size.to_f / 5).ceil, 1].max
 - count = 0
 - necessary_rows.times do |row|
   .diagnoses_row
@@ -16,6 +16,7 @@
           %span.spacer
           %span.splitter
       .spacer
-      .diagnoses_buttons
-        = image_tag('bullet_toggle_plus.png',  id: 'add_diagnoses_row')
-        = image_tag('bullet_toggle_minus.png', id: 'remove_diagnoses_row')
+      - if row == 0
+        .diagnoses_buttons
+          = image_tag('bullet_toggle_plus.png',  class: 'add_diagnoses_row')
+          = image_tag('bullet_toggle_minus.png', class: 'remove_diagnoses_row')
