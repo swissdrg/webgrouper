@@ -77,7 +77,7 @@ function initializeAutocomplete() {
             event.target.title = "";
         }
         else {
-            splitPos = data.item.label.search(" ");
+            var splitPos = data.item.label.search(" ");
             event.target.value = data.item.label.substring(0, splitPos);
             event.target.title = data.item.label.substring(splitPos + 1);
         }

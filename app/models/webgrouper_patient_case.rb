@@ -134,6 +134,6 @@ class WebgrouperPatientCase
   # Removes empty values from arrays.
   def trim_arrays
     self.diagnoses.reject! &:blank?
-    self.procedures.reject! &:blank?
+    self.procedures.reject! {|p| p.values.all? &:blank? }
   end
 end

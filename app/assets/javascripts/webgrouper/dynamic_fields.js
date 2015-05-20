@@ -41,25 +41,42 @@ function remove_last_procedures_row(){
     remove_last_row($('.procedures_row'));
 }
 
-function append_diagnoses_row() {
-    prototype_diagnoses_row = $('.diagnoses_row').first();
+function append_row(rows) {
+    prototype_row = rows.first();
 
-    // Retrieve number in id of last diagnosis input.
-    var ids = jQuery.map($('input.diagnosis'), function(e, i) { return parseInt(e.id.match(/\d+$/i))});
-    var id_without_number = 'webgrouper_patient_case_diagnoses_';
+    // Retrieve number in id of last input. We assume there is only one number in the whole id string.
+    var ids = jQuery.map(rows.find('input'), function(e, i) { return parseInt(e.id.match(/\d+/i))});
     var last_id_number = Math.max.apply(Math, ids);
 
-    var new_row = prototype_diagnoses_row.clone().insertAfter($('.diagnoses_row').last());
+    var new_row = prototype_row.clone().insertAfter(rows.last());
     // Prepend an empty label for layout.
     $(new_row).prepend("<label></label>");
 
-    // Update ids and delete values.
-    $(new_row).find($('input.diagnosis')).each(function() {
+    // Remove unused autocomplete stuff, buttons
+    $(new_row).find('.ui-helper-hidden-accessible').remove();
+    $(new_row).find('.dynamic_field_buttons').remove();
+
+    // Update ids and delete values, titles.
+    // TODO: this does not fully work for procedures, since 3 inputs have the same id, but causes no issues right now.
+    $(new_row).find('input, select').each(function () {
+        var e = $(this);
         last_id_number++;
-        $(this).attr("id", id_without_number + last_id_number);
-        $(this).attr("value", "");
+        var new_id = e.attr('id').replace(/\d+/i, last_id_number);
+        e.attr("id", new_id);
+        e.val('');
+        e.attr("title", "");
     });
-    $(new_row).find('.diagnoses_buttons').remove();
+    $(new_row).find(".date_picker").each(function() {
+        addDatePicker(this.id);
+    });
     initializeAutocomplete();
+}
+
+function append_diagnoses_row() {
+    append_row($('.diagnoses_row'));
+}
+
+function append_procedures_row() {
+    append_row($('.procedures_row'));
 }
 

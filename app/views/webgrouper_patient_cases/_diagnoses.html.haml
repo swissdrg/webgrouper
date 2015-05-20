@@ -2,8 +2,8 @@
 - count = 0
 - necessary_rows.times do |row|
   .diagnoses_row
+    = row > 0 ? content_tag(:label, '') : ''
     .sameline
-      = row > 0 ? content_tag(:label, '') : ''
       - 5.times do
         %span.field
           = autocomplete_field_tag "webgrouper_patient_case[diagnoses][]",
@@ -15,6 +15,6 @@
         .spacer
       .spacer
       - if row == 0
-        .diagnoses_buttons
+        .dynamic_field_buttons
           = image_tag('bullet_toggle_plus.png',  class: 'add_diagnoses_row')
           = image_tag('bullet_toggle_minus.png', class: 'remove_diagnoses_row')
