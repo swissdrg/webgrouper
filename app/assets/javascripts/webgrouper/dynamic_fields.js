@@ -16,41 +16,6 @@ $(document).ready(function () {
     initialize_buttons($('.diagnoses_row'));
 });
 
-/**
- * Fills the given diagnoses into the input fields in the form.
- * @param diagnoses_array
- */
-function initialize_diagnoses(diagnoses_array) {
-    var i = 0;
-    $('input.diagnosis').each(function() {
-        if (i < diagnoses_array.length) {
-            this.value = diagnoses_array[i];
-        }
-        else {
-            this.value = '';
-        }
-        i++;
-    });
-}
-
-var regex = /^(.*)(\d)+$/i;
-var cloneIndex = $(".clonedInput").length;
-
-function clone(){
-    $(this).parents(".clonedInput").clone()
-        .appendTo("body")
-        .attr("id", "clonedInput" +  cloneIndex)
-        .find("*")
-        .each(function() {
-            var id = this.id || "";
-            var match = id.match(regex) || [];
-            if (match.length == 3) {
-                this.id = match[1] + (cloneIndex);
-            }
-        })
-    cloneIndex++;
-}
-
 function pop_diagnoses_row(){
     rows = $('.diagnoses_row');
     if (rows.length > 1)
