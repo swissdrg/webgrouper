@@ -229,9 +229,11 @@ it:
       CCL: CCL
       diagnosis_flag:
         used:
-          false_string: 'No'
-          true_string: Sì
+          "false": 'No'
+          "true": Sì
         valid:
+          "false": 'No'
+          "true": Sì
           AGE_CONFLICT: Conflitto con l'età
           ALREADY_IN_PDX: Già utilizzato come diagnostico principale
           INVALID_DIAGNOSIS: Codice ICD non valido

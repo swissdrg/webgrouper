@@ -47,9 +47,11 @@ de:
       name: Beschreibung
       diagnosis_flag:
         used:
-          false_string: Nein
-          true_string: Ja
+          "false": Nein
+          "true": Ja
         valid:
+          "false": Nein
+          "true": Ja
           AGE_CONFLICT: Konflikt mit Alter
           ALREADY_IN_PDX: Bereits als Hauptdiagnose vermerkt
           INVALID_DIAGNOSIS: Ungültiger ICD-Code

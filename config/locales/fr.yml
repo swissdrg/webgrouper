@@ -230,9 +230,11 @@ fr:
       CCL: CCL
       diagnosis_flag:
         used:
-          false_string: Non
-          true_string: Oui
+          "false": Non
+          "true": Oui
         valid:
+          "false": Non
+          "true": Oui
           AGE_CONFLICT: Conflit d'âge
           ALREADY_IN_PDX: Déjà employé comme diagnostic principal
           INVALID_DIAGNOSIS: Code CIM invalide
