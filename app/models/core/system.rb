@@ -22,20 +22,23 @@ class System
   end
 
   def workspace
-    File.join(spec_folder, system_id, 'workspace')
+    File.join(folder, 'workspace')
   end
 
   def catalogue
-    File.join(spec_folder, system_id, 'catalogue-acute.csv')
+    File.join(folder, 'catalogue-acute.csv')
   end
 
   def birthhouse_catalogue
-    File.join(spec_folder, system_id, 'catalogue-birthhouses.csv')
+    File.join(folder, 'catalogue-birthhouses.csv')
   end
 
+  def folder
+    File.join(spec_folder, system_id.to_s)
+  end
   private
 
-  def spec_folder
+  def self.spec_folder
     production_spec_folder = File.join('/','home', 'tim', 'grouperspecs')
     development_spec_folder = File.join(Rails.root,'lib', 'grouperspecs')
     if File.directory?(production_spec_folder)

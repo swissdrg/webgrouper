@@ -229,9 +229,11 @@ en:
       name: Description
       diagnosis_flag:
         used:
-          false_string: false
-          true_string: true
+          "false": false
+          "true": true
         valid:
+          "false": false
+          "true": true
           AGE_CONFLICT: Conflicts with given age
           ALREADY_IN_PDX: Already given as primary diagnosis
           INVALID_DIAGNOSIS: Invalid diagnosis

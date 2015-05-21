@@ -53,4 +53,29 @@ class WebgrouperPatientCasesController < ApplicationController
     flash[:popup] = { body: I18n.t('flash.beta.body'), title: I18n.t('flash.beta.title') }
     redirect_to :action => 'index'
   end
+
+  private
+
+  def group(patient_case)
+    begin
+      @factor = 1000
+      @supplement_procedures, @total_supplement_amount = patient_case.get_supplements
+      @pc = patient_case.to_java
+      grouper = ::GROUPERS[patient_case.system_id]
+      grouper.groupByReference(@pc)
+      @result = @pc.getGrouperResult()
+      @weighting_relation = ::CATALOGUES[patient_case.system_id].get(@result.drg)
+      @weighting_relation.extend(WeightingRelation)
+
+      @cost_weight = grouper.calculateEffectiveCostWeight(@pc, @weighting_relation);
+
+      @los_chart = LosDataTable.new(@pc.los, @cost_weight, @weighting_relation, @factor).make_chart
+    rescue Exception => e
+      flash[:error] = e.message
+      if Rails.env == 'development'
+        raise e
+      end
+    end
+  end
+
 end

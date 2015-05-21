@@ -13,4 +13,10 @@ module WebgrouperPatientCasesHelper
   def current_case_url
     parse_url + '?' + {:pc => {:string => @webgrouper_patient_case.to_s}}.to_query
   end
+
+  java_import org.swissdrg.grouper.GrouperResult
+
+  def normal_group?
+    @result.gst == GrouperResult::GSTFlag::NORMAL_GROUP
+  end
 end

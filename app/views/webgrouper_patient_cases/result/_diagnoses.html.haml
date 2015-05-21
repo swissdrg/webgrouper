@@ -19,20 +19,20 @@
         %td
           = Icd.get_description_for(@webgrouper_patient_case.system_id, @webgrouper_patient_case.pdx)
         %td
-          = t("result.diagnoses.diagnosis_flag.valid." + @result.pdx_diagnosis_flag.valid.to_s)
+          = t("result.diagnoses.diagnosis_flag.valid." + @pc.pdx.valid.to_s)
         %td
-          = t("result.diagnoses.diagnosis_flag.used." + @result.pdx_diagnosis_flag.used.to_s + "_string")
+          = t("result.diagnoses.diagnosis_flag.used." + @pc.pdx.used.to_s)
         %td
-          = @result.pdx_diagnosis_flag.ccl
-      - @webgrouper_patient_case.diagnoses.each_with_index do |diag, counter|
+          = @pc.pdx.ccl
+      - @pc.diagnoses.each do |d|
         %tr
           %td
-            = link_to_online_definition_manual(diag, :icd_codes, @webgrouper_patient_case.system_id)
+            = link_to_online_definition_manual(d.code, :icd_codes, @webgrouper_patient_case.system_id)
           %td
-            = Icd.get_description_for(@webgrouper_patient_case.system_id, diag)
+            = Icd.get_description_for(@webgrouper_patient_case.system_id, d.code)
           %td
-            = t("result.diagnoses.diagnosis_flag.valid." + @result.diagnoses_flags[counter].valid.to_s)
+            = t("result.diagnoses.diagnosis_flag.valid." + d.valid.to_s)
           %td
-            = t("result.diagnoses.diagnosis_flag.used." + @result.diagnoses_flags[counter].used.to_s + "_string")
+            = t("result.diagnoses.diagnosis_flag.used." + d.used.to_s)
           %td
-            = @result.diagnoses_flags[counter].ccl
+            = d.ccl

@@ -1,4 +1,6 @@
 # encoding: UTF-8
+java_import org.swissdrg.grouper.EffectiveCostWeight
+
 # This class is used for creating a data chart containing all the
 # length of stay data computed through the grouper.
 # This uses a big deal of the google chart API
@@ -53,7 +55,7 @@ class LosDataTable < GoogleVisualr::DataTable
         nil, 
         one_day_transfer_rate, nil, nil, 
         nil]
-    if weighting_relation.has_first_day_discount
+    if weighting_relation.has_first_day_discount?
       rows.push [low_trim_point, base_cost_rate, nil , I18n.t('result.length-of-stay.low_trim_point'),
         make_tooltip('low_trim_point', low_trim_point, base_cost_rate), 
         nil, nil, nil, 
@@ -64,7 +66,7 @@ class LosDataTable < GoogleVisualr::DataTable
         avg_transfer_rate, 'Ø', I18n.t('result.length-of-stay.average_los'),
         make_tooltip('average_los', avg_duration, base_cost_rate)]
     # in case there is no first_day_surcharge, high trim point will be -1 here
-    if weighting_relation.has_first_day_surcharge
+    if weighting_relation.has_first_day_surcharge?
       rows.push [high_trim_point, base_cost_rate, nil , I18n.t('result.length-of-stay.high_trim_point'),
           make_tooltip('high_trim_point', high_trim_point, base_cost_rate),
           nil, nil, nil,

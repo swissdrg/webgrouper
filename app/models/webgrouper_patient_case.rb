@@ -130,22 +130,41 @@ class WebgrouperPatientCase
     Time.now
   end
 
-  def group
-    begin
-      @supplement_procedures, @total_supplement_amount = get_supplements
-      # TODO: make java object
-      pc = self;
-      GROUPERS[system_id].groupByReference(pc)
-      @result = GROUPER.group(patient_case)
-      gr = pc.getGrouperResult();
-      cw = CATALOGUES[system_id].get(gr.getDrg())
-      EffectiveCostWeight ecw = grouper.calculateEffectiveCostWeight(pc, cw);
+  java_import org.swissdrg.grouper.PatientCase
+  java_import org.swissdrg.grouper.Diagnosis
+  java_import org.swissdrg.grouper.Procedure
 
-      @los_chart = LosDataTable.new(patient_case.los, exw,
-                                    @weighting_relation, @factor).make_chart
-    rescue Exception => e
-      flash[:error] = e.message
+  GROUPER_DATE_FORMAT = "yyyyMMdd"
+
+  # Turns this instance of a webgrouper patient case into a java patient case that can be grouped by the java grouper.
+  def to_java
+    pc = PatientCase.new
+    pc.birth_house = care_taker_birth_house?
+
+    # Stay
+    pc.entry_date = entry_date.strftime(GROUPER_DATE_FORMAT) unless entry_date.blank?
+    pc.exit_date = exit_date.strftime(GROUPER_DATE_FORMAT) unless entry_date.blank?
+    pc.leave_days = leave_days
+    pc.adm = adm
+    pc.sep = sep
+    pc.los = los
+
+    # Patient data
+    pc.sex = sex
+    pc.birth_date = exit_date.strftime(GROUPER_DATE_FORMAT) unless entry_date.blank?
+    if age_mode_days?
+      pc.age_days = age
+    else
+      pc.age_years = age
     end
+    pc.adm_weight = adm_weight
+    pc.hmv = hmv
+
+    # Diagnoses and procedures
+    pc.pdx = Diagnosis.new(pdx)
+    pc.diagnoses = diagnoses.map { |d| Diagnosis.new(d) }
+    pc.procedures = procedures.map {|p| Procedure.new(p.values.join(':')) }
+    pc
   end
 
   # Creates a hash which contains, if there are any, procedures relevant for zusatzentgelte
@@ -195,4 +214,5 @@ class WebgrouperPatientCase
     self.diagnoses.reject! &:blank?
     self.procedures.reject! {|p| p.values.all? &:blank? }
   end
+
 end
