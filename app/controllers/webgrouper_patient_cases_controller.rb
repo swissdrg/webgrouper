@@ -58,7 +58,7 @@ class WebgrouperPatientCasesController < ApplicationController
 
   def group(patient_case)
     begin
-      @factor = 1000
+      @factor = 10000
       @supplement_procedures, @total_supplement_amount = patient_case.get_supplements
       @pc = patient_case.to_java
       grouper = ::GROUPERS[patient_case.system_id]
