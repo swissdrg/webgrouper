@@ -162,8 +162,8 @@ class WebgrouperPatientCase
 
     # Diagnoses and procedures
     pc.pdx = Diagnosis.new(pdx)
-    pc.diagnoses = diagnoses.map { |d| Diagnosis.new(d) }
-    pc.procedures = procedures.map {|p| Procedure.new(p.values.join(':')) }
+    pc.diagnoses = diagnoses
+    pc.procedures = procedures.map {|p| p.values.join(':') }
     pc
   end
 
