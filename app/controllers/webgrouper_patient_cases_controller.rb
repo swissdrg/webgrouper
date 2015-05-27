@@ -58,18 +58,22 @@ class WebgrouperPatientCasesController < ApplicationController
 
   def group(patient_case)
     begin
+      start = Time.now
       @factor = 10000
       @supplement_procedures, @total_supplement_amount = patient_case.get_supplements
       @pc = patient_case.to_java
-      grouper = ::GROUPERS[patient_case.system_id]
+      #grouper, catalogue = System.find_by(system_id: patient_case.system_id).grouper_and_catalogue
+      grouper = SystemProvider.instance.groupers[patient_case.system_id]
+      catalogue = SystemProvider.instance.catalogues[patient_case.system_id]
       grouper.groupByReference(@pc)
       @result = @pc.getGrouperResult()
-      @weighting_relation = ::CATALOGUES[patient_case.system_id].get(@result.drg)
+      @weighting_relation = catalogue.get(@result.drg)
       @weighting_relation.extend(WeightingRelation)
 
-      @cost_weight = grouper.calculateEffectiveCostWeight(@pc, @weighting_relation);
+      @cost_weight = grouper.calculateEffectiveCostWeight(@pc, @weighting_relation)
 
       @los_chart = LosDataTable.new(@pc.los, @cost_weight, @weighting_relation, @factor).make_chart
+      Rails.logger.debug("Grouped patient case in #{Time.now - start}")
     rescue Exception => e
       flash[:error] = e.message
       if Rails.env == 'development'

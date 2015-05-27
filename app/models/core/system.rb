@@ -21,6 +21,15 @@ class System
     self.where(:system_id => id).exists?
   end
 
+  java_import org.swissdrg.grouper.batchgrouper.Catalogue
+  java_import org.swissdrg.grouper.xml.XMLWorkspaceReader
+
+  def grouper_and_catalogue
+    g = XMLWorkspaceReader.new.readWorkspace(workspace)
+    c = Catalogue.createFrom(catalogue)
+    return g, c
+  end
+
   def workspace
     File.join(folder, 'workspace')
   end
@@ -36,9 +45,10 @@ class System
   def folder
     File.join(spec_folder, system_id.to_s)
   end
+
   private
 
-  def self.spec_folder
+  def spec_folder
     production_spec_folder = File.join('/','home', 'tim', 'grouperspecs')
     development_spec_folder = File.join(Rails.root,'lib', 'grouperspecs')
     if File.directory?(production_spec_folder)
