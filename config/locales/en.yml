@@ -303,11 +303,15 @@ en:
           SRG_CONFLICT_CHOP: Neither OR nor NOR procedure
           SRG_CONFLICT_CHOP_DATE: Neither OR nor NOR procedure
         used:
+          "true": yes
+          "false": 'No'
           PROC_NOT_USED: 'No'
           PROC_USED: Yes
           USED_BOTH: Yes
           USED_FOR_CONDITION: Yes
         valid:
+          "true": yes
+          "false": 'No'
           PROC_AGE_CONFLICT: Conflict with age
           PROC_INVALID: Invalid CHOP code
           PROC_SEX_CONFLICT: Conflict with sex

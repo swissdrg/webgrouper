@@ -13,16 +13,16 @@
           = t("result.diagnoses.used")
         %th.medium-col
           = t("result.procedures.or-nor")
-      - @webgrouper_patient_case.procedures.each_with_index do |proc, counter|
-        - proc_code = proc.split(":")[0]
+      - @pc.procedures.each do |p|
         %tr
           %td
-            = link_to_online_definition_manual(proc_code, :chop_codes, @webgrouper_patient_case.system_id)
+            = link_to_online_definition_manual(p.code, :chop_codes, @webgrouper_patient_case.system_id)
           %td
-            = Chop.get_description_for(@webgrouper_patient_case.system_id, proc_code)
+            = Chop.get_description_for(@webgrouper_patient_case.system_id, p.code)
           %td
-            = t("result.procedures.procedure_flag.valid." + @result.procedures_flags[counter].valid.to_s)
+            = t("result.procedures.procedure_flag.valid." + p.valid.to_s)
           %td
-            = t("result.procedures.procedure_flag.used." + @result.procedures_flags[counter].used.to_s)
+            = t("result.procedures.procedure_flag.used." + p.used.to_s)
           %td
-            = t("result.procedures.procedure_flag.or-nor." + @result.procedures_flags[counter].por.to_s)
+            TODO
+            =# t("result.procedures.procedure_flag.or-nor." + p.por.to_s)
