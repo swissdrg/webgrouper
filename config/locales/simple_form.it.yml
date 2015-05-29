@@ -6,6 +6,7 @@ it:
       webgrouper_patient_case:
         clear_form: Svuotare la maschera
         create: Raggruppare
+        update: Raggruppare
         print_result: Stampare il risultato
   simple_form:
     error_notification:

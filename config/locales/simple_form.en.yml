@@ -5,6 +5,7 @@ en:
         create: Group
       webgrouper_patient_case:
         clear_form: Clear form
+        update: Group case
         create: Group case
         print_result: Print result
         save_case_as_bookmark: Save case as bookmark

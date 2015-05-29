@@ -77,6 +77,7 @@ de:
   helpers:
     submit:
       webgrouper_patient_case:
+        update: 'Fall Gruppieren'
         create: 'Fall Gruppieren'
         clear_form: Maske leeren
         print_result: Ergebnis drucken
