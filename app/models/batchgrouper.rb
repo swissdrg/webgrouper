@@ -1,5 +1,5 @@
-
 class Batchgrouper
+  include ApplicationHelper
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
@@ -46,8 +46,8 @@ class Batchgrouper
   
   def group
     file.tempfile.rewind
-    batchgrouper_exec = File.join(spec_folder, 'batchgrouper')
-    # Use a temp directory: 
+
+    # Use a temp directory:
     main_folder = batchgroupings_temp_folder
     Dir.mkdir(main_folder) unless File.directory?(main_folder)
     work_path = Dir.mktmpdir(File.join(main_folder, "Temp"))
@@ -58,10 +58,9 @@ class Batchgrouper
     end
     file.tempfile.close(true)
     output_file = File.join(work_path, "data.out")
-    additional_argument = "-bh " if house == '2'
-    cmd = "#{batchgrouper_exec} #{additional_argument}'#{spec_path(self.system_id)}' '#{catalogue_path(self.system_id, self.house)}' '#{uploaded_file}' '#{output_file}'"
-    proc_status = `#{cmd}`
-    puts "#{cmd}, terminated with: #{proc_status}"
+    # TODO: run batchgrouper
+    return uploaded_file
+
     renamed_file = File.join(work_path, file.original_filename + ".out")
     File.rename(output_file, renamed_file)
     renamed_file
@@ -79,24 +78,6 @@ class Batchgrouper
     output = self.group
     File.open(output, 'r') do |f|
       f.readline()
-    end
-  end
-  
-  private
-  
-  def flag_to_int(flag)
-    if flag.valid
-      if !flag.used
-        return 0
-      else
-        return 1
-      end
-    else
-      if !flag.used
-        return 2
-      else
-        return 3
-      end
     end
   end
 end
