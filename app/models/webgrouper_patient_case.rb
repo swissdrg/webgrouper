@@ -136,7 +136,7 @@ class WebgrouperPatientCase
   java_import org.swissdrg.grouper.Diagnosis
   java_import org.swissdrg.grouper.Procedure
 
-  GROUPER_DATE_FORMAT = "yyyyMMdd"
+  GROUPER_DATE_FORMAT = "%Y%m%d"
 
   # Turns this instance of a webgrouper patient case into a java patient case that can be grouped by the java grouper.
   def to_java
@@ -145,7 +145,7 @@ class WebgrouperPatientCase
 
     # Stay
     pc.entry_date = entry_date.strftime(GROUPER_DATE_FORMAT) unless entry_date.blank?
-    pc.exit_date = exit_date.strftime(GROUPER_DATE_FORMAT) unless entry_date.blank?
+    pc.exit_date = exit_date.strftime(GROUPER_DATE_FORMAT) unless exit_date.blank?
     pc.leave_days = leave_days
     pc.adm = adm
     pc.sep = sep
@@ -153,7 +153,7 @@ class WebgrouperPatientCase
 
     # Patient data
     pc.sex = sex
-    pc.birth_date = exit_date.strftime(GROUPER_DATE_FORMAT) unless entry_date.blank?
+    pc.birth_date = exit_date.strftime(GROUPER_DATE_FORMAT) unless birth_date.blank?
     if age_mode_days?
       pc.age_days = age
     else

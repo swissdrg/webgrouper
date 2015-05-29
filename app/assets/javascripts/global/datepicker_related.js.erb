@@ -18,7 +18,12 @@ function initializeDatePickers() {
  * @param id the id of the field you want to add a datepicker
  */
 function addDatePicker(id) {
-	$("#"+id).datepicker({ 
+    // We need to map locale to the matching locale in datepicker.
+    var regionals = {'de': 'de', 'fr': 'fr-CH', 'en': 'en-GB', 'it': 'it' }
+    var regional =  regionals[locale];
+    $("#"+id).datepicker("option", $.datepicker.regional[regional]);
+
+	$("#"+id).datepicker({
 		minDate: "-124Y", 
 		maxDate: "+0D",
 		firstDay: 1,
@@ -31,9 +36,5 @@ function addDatePicker(id) {
 		buttonImageOnly: true
 		}
 	);
-    // We need to map locale to the matching locale in datepicker.
-    var regionals = {'de': 'de', 'fr': 'fr-CH', 'en': 'en-GB', 'it': 'it' }
-    var regional =  regionals[locale];
-	$("#"+id).datepicker("option", $.datepicker.regional[regional]);
 }
 
