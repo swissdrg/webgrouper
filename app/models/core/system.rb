@@ -25,8 +25,12 @@ class System
   java_import org.swissdrg.grouper.xml.XMLWorkspaceReader
 
   def grouper_and_catalogue
-    g = XMLWorkspaceReader.new.readWorkspace(workspace)
-    c = Catalogue.createFrom(catalogue)
+    g = Rails.cache.fetch("#{system_id}_grouper", expires_in: 2.days) do
+      XMLWorkspaceReader.new.readWorkspace(workspace)
+    end
+    c = Rails.cache.fetch("#{system_id}_catalogue", expires_in: 2.days) do
+      Catalogue.createFrom(catalogue)
+    end
     return g, c
   end
 

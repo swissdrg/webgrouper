@@ -1,5 +1,3 @@
-require 'java'
-require 'lib/grouper.jar'
 require 'singleton'
 
 class SystemProvider

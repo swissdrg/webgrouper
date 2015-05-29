@@ -2,6 +2,8 @@ class WebgrouperPatientCase
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  belongs_to :system, primary_key: :system_id
+
   after_initialize :trim_arrays
 
   # System

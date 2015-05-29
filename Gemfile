@@ -62,8 +62,6 @@ end
 
 
 group :development do
-  # In development, we usually want torquebox installed as gem.
-  gem "torquebox-server", platforms: :jruby
   # For rubymine debug mode:
   gem 'ruby-debug-base'
   gem 'ruby-debug-ide'
@@ -84,19 +82,5 @@ group :test do
   gem 'autotest-growl'
 end
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug'
-
-gem "torquebox", platforms: :jruby
+# For caching
+gem 'jruby-ehcache-rails3'
