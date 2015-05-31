@@ -1,6 +1,6 @@
 Given /^the batchgrouper with initialized standard values$/ do
   if Rails.env == "test"
-    visit "http://localhost:8080/de/batchgrouper"
+    visit "http://localhost:3000/de/batchgrouper"
   else
     visit "http://webgrouper.swissdrg.org/de/batchgrouper"
   end

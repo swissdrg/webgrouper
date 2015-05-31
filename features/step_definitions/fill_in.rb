@@ -1,6 +1,6 @@
 Given /^the form with initialized standard values$/ do
   if Rails.env == "test"
-    visit "http://localhost:8080/de/webgrouper_patient_cases"
+    visit "http://localhost:3000/de/webgrouper_patient_cases"
   else
     visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
   end

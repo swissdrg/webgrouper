@@ -62,20 +62,6 @@ require 'cucumber/autocomplete'
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
 
-# Use chrome for testing. (firefox buggy right now), see
-# https://code.google.com/p/selenium/issues/detail?id=8387
-# Needs chromedriver installed, e.g. via `sudo apt-get install chromium-chromedriver`
-# Then execute `chromedriver` before running the tests.
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
-
-Capybara.javascript_driver = if RUBY_ENGINE == 'jruby'
-                               :chrome
-                             else
-                               :webkit
-                             end
-
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how 
 # your application behaves in the production environment, where an error page will 
