@@ -23,11 +23,14 @@ class BatchgroupersController < ApplicationController
                       :system_id => @batchgrouper.system_id,
                       :house => @batchgrouper.house,
                       :client => request.env['HTTP_USER_AGENT'])
+        output_file = @batchgrouper.group
         cookies[:download_finished] = true
-        return send_file @batchgrouper.group
+        return send_file output_file
       rescue *[ActionController::MissingFile, Encoding::UndefinedConversionError] => e
+        Rails.logger.info(e)
         flash[:error] = 'Could not parse file. Only use text files in the swissdrg format, not .doc or .xls'
       rescue ArgumentError => e
+        Rails.logger.info(e)
         flash[:error] = e.message + " " + view_context.link_to("Online Converter", "https://apps.swissdrg.org/converter")
       end
     elsif not @batchgrouper.single_group.blank?
