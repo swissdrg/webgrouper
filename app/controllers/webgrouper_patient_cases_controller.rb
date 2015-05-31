@@ -63,8 +63,6 @@ class WebgrouperPatientCasesController < ApplicationController
       @supplement_procedures, @total_supplement_amount = patient_case.get_supplements
       @pc = patient_case.to_java
       grouper, catalogue = patient_case.system.grouper_and_catalogue
-      #grouper = SystemProvider.instance.groupers[patient_case.system_id]
-      #catalogue = SystemProvider.instance.catalogues[patient_case.system_id]
       grouper.groupByReference(@pc)
       @result = @pc.getGrouperResult()
       @webgrouper_patient_case.drg = @result.drg
