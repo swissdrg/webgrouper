@@ -7,9 +7,9 @@
  * Adds date pickers to every input field of the class "date_picker"
  */
 function initializeDatePickers() {
-	$(".date_picker").each(function() {
-		addDatePicker(this.id);
-	});
+    $(".date_picker").each(function () {
+        addDatePicker(this.id);
+    });
 }
 
 /**
@@ -19,22 +19,26 @@ function initializeDatePickers() {
  */
 function addDatePicker(id) {
     // We need to map locale to the matching locale in datepicker.
-    var regionals = {'de': 'de', 'fr': 'fr-CH', 'en': 'en-GB', 'it': 'it' }
-    var regional =  regionals[locale];
-    $("#"+id).datepicker("option", $.datepicker.regional[regional]);
+    var regionals = {'de': 'de', 'fr': 'fr-CH', 'en': 'en-GB', 'it': 'it'}
+    var regional = regionals[locale];
 
-	$("#"+id).datepicker({
-		minDate: "-124Y", 
-		maxDate: "+0D",
-		firstDay: 1,
-		dateFormat: "dd.mm.yy",
-		changeYear: true,
-		yearRange: "-124:+0",
-		showOn: "both",
-		buttonImage: "<%= asset_data_uri 'cal.gif' %>",
-		buttonText: I18n.t("simple_form.hints.webgrouper_patient_case.pick_date"),
-		buttonImageOnly: true
-		}
-	);
+    // Use regionalized datepicker, but override certain attributes
+    var datepicker_options = $.extend(
+            {},
+            $.datepicker.regional[regional],
+            {
+                minDate: "-124Y",
+                maxDate: "+0D",
+                firstDay: 1,
+                dateFormat: "dd.mm.yy",
+                changeYear: true,
+                yearRange: "-124:+0",
+                showOn: "both",
+                buttonImage: "<%= asset_data_uri 'cal.gif' %>",
+                buttonText: I18n.t("simple_form.hints.webgrouper_patient_case.pick_date"),
+                buttonImageOnly: true
+            });
+    // Instantiate the datepicker.
+    $("#" + id).datepicker(datepicker_options);
 }
 
