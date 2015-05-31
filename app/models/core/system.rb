@@ -15,12 +15,7 @@ class System
   has_many :mdcs, primary_key: :drg_version, foreign_key: :version
   has_many :supplements, primary_key: :drg_version, foreign_key: :version
 
-  scope :public, lambda { where(:public => true) }
-
-  #TODO: use scope instead of helper method
-  def self.all_public
-    self.public.all
-  end
+  scope :all_public, lambda { where(:public => true) }
 
   def self.exists?(id)
     self.where(:system_id => id).exists?
