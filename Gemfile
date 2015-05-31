@@ -83,4 +83,4 @@ group :test do
 end
 
 # For caching
-gem 'jruby-ehcache-rails3'
+gem 'dalli'

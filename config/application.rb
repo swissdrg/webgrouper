@@ -11,7 +11,10 @@ Bundler.require(*Rails.groups)
 
 module Webgrouper
   class Application < Rails::Application
-    config.cache_store = :ehcache_store
+    # Configure cache, set maximum size of value to 10 MB.
+    # This needs also to be set in /etc/memcached.conf by adding the following line:
+    # -I 10m
+    config.cache_store = :dalli_store, { value_max_bytes: 10*1024*1024 }
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
