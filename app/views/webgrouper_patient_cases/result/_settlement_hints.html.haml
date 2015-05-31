@@ -29,7 +29,7 @@
           - if data[:age_max]
             %td
               = t('result.settlement_hints.age_constraint', age: data[:age_max])
-      - if Drg.reuptake_exception?(@webgrouper_patient_case.system_id, @result.drg)
+      - if @webgrouper_patient_case.drg.exception_from_reuptake?
         %tr
           %th
             = t("result.settlement_hints.reuptake_hint", :drg => @result.drg)

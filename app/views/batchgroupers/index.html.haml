@@ -5,7 +5,7 @@
     .errorflash
       = flash[:error].html_safe
   = render 'batchgroupers/hint_documentation'
-  = render "shared/system", :f => f, :system_id => @batchgrouper.system_id, :house => @batchgrouper.house
+  = render "shared/system", :f => f, :current_system => @batchgrouper.system, :house => @batchgrouper.house
   %fieldset
     %legend Data
     = f.input :file, :as => :file

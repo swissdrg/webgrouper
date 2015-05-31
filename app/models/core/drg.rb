@@ -21,9 +21,9 @@ class Drg
 	def self.get_description_for(system_id, search_code)
     find_by_code(system_id, search_code).text
   end
-  
-  def self.reuptake_exception?(system_id, search_code)
-    find_by_code(system_id, search_code).exception_from_reuptake_flag
+
+  def exception_from_reuptake?
+    exception_from_reuptake_flag
   end
   
   def self.find_by_birthhouse_code(system_id, search_code)

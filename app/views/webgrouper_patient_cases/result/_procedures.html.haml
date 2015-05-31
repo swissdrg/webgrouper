@@ -13,12 +13,12 @@
           = t("result.diagnoses.used")
         %th.medium-col
           = t("result.procedures.or-nor")
-      - @pc.procedures.each do |p|
+      - @webgrouper_patient_case.chops.zip(@pc.procedures).each do |chop, p|
         %tr
           %td
-            = link_to_online_definition_manual(p.code, :chop_codes, @webgrouper_patient_case.system_id)
+            = link_to_online_definition_manual(chop.code, :chop_codes, @webgrouper_patient_case.system)
           %td
-            = Chop.get_description_for(@webgrouper_patient_case.system_id, p.code)
+            = chop.text
           %td
             = t("result.procedures.procedure_flag.valid." + p.valid.to_s)
           %td

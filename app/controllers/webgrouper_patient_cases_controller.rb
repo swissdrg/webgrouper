@@ -34,7 +34,7 @@ class WebgrouperPatientCasesController < ApplicationController
     end
 
     @webgrouper_patient_case = WebgrouperPatientCase.create(params[:webgrouper_patient_case].permit!)
-    if @webgrouper_patient_case.valid?
+    if @webgrouper_patient_case.errors.empty?
       group(@webgrouper_patient_case)
     end
     render 'index'
@@ -67,6 +67,7 @@ class WebgrouperPatientCasesController < ApplicationController
       #catalogue = SystemProvider.instance.catalogues[patient_case.system_id]
       grouper.groupByReference(@pc)
       @result = @pc.getGrouperResult()
+      @webgrouper_patient_case.drg = @result.drg
       @weighting_relation = catalogue.get(@result.drg)
       @weighting_relation.extend(WeightingRelation)
 

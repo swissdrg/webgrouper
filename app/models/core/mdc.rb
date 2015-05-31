@@ -9,13 +9,5 @@ class Mdc
 
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version) }
 
-  def self.get_description_for(system_id, search_code)
-    begin
-      in_system(system_id).where(:code => search_code).first.text
-    rescue NoMethodError
-      ""
-    end
-  end
-
   index({code: 1, version: 1}, {:unique => true})
 end

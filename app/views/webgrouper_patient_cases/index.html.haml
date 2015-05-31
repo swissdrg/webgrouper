@@ -6,7 +6,7 @@
 
 = simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :post do |f|
   = render 'shared/system', :f => f,
-                            :system_id => @webgrouper_patient_case.system_id,
+                            :current_system => @webgrouper_patient_case.system,
                             :house => @webgrouper_patient_case.house
   .on-row
     %fieldset#stay.left

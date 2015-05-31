@@ -6,16 +6,16 @@
         %th
           MDC
         %td
-          = link_to_online_definition_manual(@result.mdc, :mdcs, @webgrouper_patient_case.system_id)
+          = link_to_online_definition_manual(@result.mdc, :mdcs, @webgrouper_patient_case.system)
         %td
-          = Mdc.get_description_for(@webgrouper_patient_case.system_id, @result.mdc)
+          = @webgrouper_patient_case.system.mdcs.find_by(code: @result.mdc).text
       %tr
         %th
           DRG
         %td
-          = link_to_online_definition_manual(@result.drg, :drgs, @webgrouper_patient_case.system_id)
+          = link_to_online_definition_manual(@result.drg, :drgs, @webgrouper_patient_case.system)
         %td
-          = Drg.get_description_for(@webgrouper_patient_case.system_id, @result.drg)
+          = @webgrouper_patient_case.drg.text
       %tr
         %th
           PCCL

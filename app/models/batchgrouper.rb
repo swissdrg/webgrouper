@@ -22,6 +22,10 @@ class Batchgrouper
     false
   end
 
+  def system
+    System.find_by(system_id: system_id)
+  end
+
   # Saves the second line of the given file for logging purposes.
   # It is required, that it contains only ASCII characters!
   def preprocess_file

@@ -7,7 +7,6 @@ class WebgrouperPatientCase
   after_initialize :trim_arrays
 
   # System
-  field :system_id, type: Integer, default: DEFAULT_SYSTEM
   field :house, type: Integer
 
   # Stay
@@ -34,6 +33,10 @@ class WebgrouperPatientCase
   field :valid_case, type: Boolean
 
   include ActAsValidGrouperQuery
+
+  embeds_many :icds
+  embeds_many :chops
+  belongs_to :drg, primary_key: :code, foreign_key: :drg_code
   attr_accessor :age_mode, :age_mode_decoy, :house, :manual_submission, :id
 
   # The default swissdrg format with additional data in the id-field, split by semicolon if readable is set to false
@@ -181,7 +184,7 @@ class WebgrouperPatientCase
       p = p['c']
       # if there is an a row in supplementops which has a column equals the given procedure value
       # prepare hash for a new value
-      sup = Supplement.in_system(self.system_id).where(:chop_atc_code => p).first
+      sup = system.supplements.where(:chop_atc_code => p).first
       unless sup.nil?
         code = sup.supplement_code
         amount = sup.amount
@@ -207,12 +210,12 @@ class WebgrouperPatientCase
     end
     return supplement_procedures, total_supplement_amount
   end
-
-
+  
   private
 
   # Removes empty values from arrays.
   def trim_arrays
+    self.system_id ||= DEFAULT_SYSTEM
     self.diagnoses.reject! &:blank?
     self.procedures.reject! {|p| p.values.all? &:blank? }
   end

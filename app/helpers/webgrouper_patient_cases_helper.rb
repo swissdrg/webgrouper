@@ -1,8 +1,8 @@
 module WebgrouperPatientCasesHelper
   # valid types are: drgs, mdcs, adrgs, tables, icd_codes, chop_codes, functions
   # (given as strings)
-  def link_to_online_definition_manual(code, type, system_id)
-    manual_url = System.where(:system_id => system_id).first.manual_url
+  def link_to_online_definition_manual(code, type, system)
+    manual_url = system.manual_url
     if manual_url.blank?
       code
     else

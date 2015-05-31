@@ -1,7 +1,7 @@
 #Validates if an ops code can be found in the database.
 class ExistingChopValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    value.each do |v|
+    value.each_with_index do |v, i|
       code = v['c']
       short_code = Chop.short_code_of(code)
       laterality = v['l']
@@ -11,8 +11,13 @@ class ExistingChopValidator < ActiveModel::EachValidator
         record.errors[attribute][0] += " #{laterality}" unless laterality.blank?
         record.errors[attribute][0] += " #{date}" unless date.gsub('.', '').blank?
       end     
-      if !short_code.blank? && !record.system.chops.where(code_short: short_code).exists?
-        record.errors[attribute] << "#{code} invalid"
+      if !short_code.blank?
+        begin
+          chop = record.system.chops.find_by(code_short: short_code)
+          record.chops[i] = chop
+        rescue Mongoid::Errors::DocumentNotFound => e
+          record.errors[attribute] << "#{code} invalid"
+        end
       end
     end
   end

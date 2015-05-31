@@ -15,21 +15,21 @@
           = t("result.diagnoses.CCL")
       %tr#pdx
         %td
-          = link_to_online_definition_manual(@webgrouper_patient_case.pdx, :icd_codes, @webgrouper_patient_case.system_id)
+          = link_to_online_definition_manual(@webgrouper_patient_case.pdx, :icd_codes, @webgrouper_patient_case.system)
         %td
-          = Icd.get_description_for(@webgrouper_patient_case.system_id, @webgrouper_patient_case.pdx)
+          = @webgrouper_patient_case.icds[0].text
         %td
           = t("result.diagnoses.diagnosis_flag.valid." + @pc.pdx.valid.to_s)
         %td
           = t("result.diagnoses.diagnosis_flag.used." + @pc.pdx.used.to_s)
         %td
           = @pc.pdx.ccl
-      - @pc.diagnoses.each do |d|
+      - @webgrouper_patient_case.icds[1..-1].zip(@pc.diagnoses).each do |icd, d|
         %tr
           %td
-            = link_to_online_definition_manual(d.code, :icd_codes, @webgrouper_patient_case.system_id)
+            = link_to_online_definition_manual(icd.code, :icd_codes, @webgrouper_patient_case.system)
           %td
-            = Icd.get_description_for(@webgrouper_patient_case.system_id, d.code)
+            = icd.text
           %td
             = t("result.diagnoses.diagnosis_flag.valid." + d.valid.to_s)
           %td

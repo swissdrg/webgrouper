@@ -12,6 +12,8 @@ class System
   has_many :chops, primary_key: :chop_version, foreign_key: :version
   has_many :icds, primary_key: :icd_version, foreign_key: :version
   has_many :drgs, primary_key: :drg_version, foreign_key: :version
+  has_many :mdcs, primary_key: :drg_version, foreign_key: :version
+  has_many :supplements, primary_key: :drg_version, foreign_key: :version
 
   scope :public, lambda { where(:public => true) }
 
