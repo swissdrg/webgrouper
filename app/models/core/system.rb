@@ -8,7 +8,10 @@ class System
   field :drg_version, type: String
   field :manual_url, type: String
   field :public, type: Boolean
-  
+
+  has_many :chops, primary_key: :chop_version, foreign_key: :version
+  has_many :icds, primary_key: :icd_version, foreign_key: :version
+  has_many :drgs, primary_key: :drg_version, foreign_key: :version
 
   scope :public, lambda { where(:public => true) }
 

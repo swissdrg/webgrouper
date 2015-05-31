@@ -13,7 +13,9 @@ class Drg
   field :exception_from_reuptake_flag, type: Boolean
   field :version, type: String
   field :partition, type: String
-  
+
+  belongs_to :system, primary_key: :drg_version, foreign_key: :version
+
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version) }
 	scope :in_birthhouse_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version + "_birthhouse")}
 	def self.get_description_for(system_id, search_code)

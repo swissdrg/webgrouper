@@ -5,11 +5,13 @@ class Icd
   field :code, type: String
   field :text, type: String, localize: true
   field :version, type: String
-  
+
+  belongs_to :system, primary_key: :icd_version, foreign_key: :version
+
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.icd_version) }
 		
   def self.short_code_of(value)
-    value.gsub(/\./, "").strip.upcase
+    value.gsub('.', '').strip.upcase
   end
   
   # Returns the value as pretty code if it is available in the db.

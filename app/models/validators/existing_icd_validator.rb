@@ -3,20 +3,19 @@ class ExistingIcdValidator < ActiveModel::EachValidator
   #will automatically be called if one should validate existing_icd as true
   def validate_each(record, attribute, value)
     unless value.blank?
-      value.is_a?(String) ? validate_pdx(record, attribute, value) : validate_diagnoses(record, attribute, value)
+      if value.is_a?(String)
+        validate_diagnoses(record, attribute, value)
+      else
+        value.each {|v| validate_diagnoses(record, attribute, v) }
+      end
     end
   end
 
   private
 
-  def validate_pdx(record, attribute, value)
-    record.errors[attribute] << "invalid" unless Icd.exists?(record.system_id, value)
-  end
-
   def validate_diagnoses(record, attribute, value)
-    value.each do |v|
-      record.errors[attribute] << "#{v} invalid" unless Icd.exists?(record.system_id, v)
-    end
+    short_code = Icd.short_code_of(value)
+    record.errors[attribute] << "#{value} invalid" unless record.system.icds.where(code_short: short_code).exists?
   end
 
 end

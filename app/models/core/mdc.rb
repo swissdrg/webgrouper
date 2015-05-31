@@ -4,7 +4,9 @@ class Mdc
   field :text, type: String, localize: true
   field :version, type: String
   field :prefix, type: String
-  
+
+  belongs_to :system, primary_key: :drg_version, foreign_key: :version
+
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version) }
 
   def self.get_description_for(system_id, search_code)
