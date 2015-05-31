@@ -22,12 +22,12 @@ gem 'json'
 # Javascript-related:
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~>4.0'
-gem 'rails3-jquery-autocomplete', :git => "https://github.com/panmari/rails3-jquery-autocomplete.git"
+gem 'rails-jquery-autocomplete'
 # for date computation in JS
 gem 'momentjs-rails'
 
 # HTML Abstraction Markup Language 
-# Templating Engine, that allows a non-repetitive and more elegant way to structure xhtml/xml with embedded ruby.
+# Templating Engine, that allows a non-repetitive and more elegant way tqo structure xhtml/xml with embedded ruby.
 gem 'haml'
 gem 'haml-rails'
 

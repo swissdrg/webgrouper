@@ -4,7 +4,7 @@
 
 = render "error_messages", :webgrouper_patient_case => @webgrouper_patient_case
 
-= simple_form_for @webgrouper_patient_case, :url => :create_query, :method => :post do |f|
+= simple_form_for @webgrouper_patient_case, url: webgrouper_patient_cases_path do |f|
   = render 'shared/system', :f => f,
                             :current_system => @webgrouper_patient_case.system,
                             :house => @webgrouper_patient_case.house
@@ -64,7 +64,7 @@
     %legend= t("fieldsets.diagnoses_procedures")
     #diagnoses
       = f.input :pdx, 
-                :url => autocomplete_Icd_code_webgrouper_patient_cases_path(:system_id => @webgrouper_patient_case.system_id), 
+                :url => autocomplete_icd_code_path(:system_id => @webgrouper_patient_case.system_id),
                 :as => :autocomplete
       %label{:for => 'webgrouper_patient_case_diagnoses_0'}
         = t('simple_form.labels.defaults.diagnoses')  # hardcoded, since its generated via js

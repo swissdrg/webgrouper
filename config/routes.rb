@@ -8,17 +8,16 @@ Webgrouper::Application.routes.draw do
   end
 
   scope "/:locale" do
-    resources :webgrouper_patient_cases do
-      get :autocomplete_Icd_code, :on => :collection
-      get :autocomplete_Chop_code, :on => :collection
+    resources :webgrouper_patient_cases, only: [:new, :create] do
+      patch '/' => 'webgrouper_patient_cases#create', on: :collection
     end
-    match 'create_query' => 'webgrouper_patient_cases#create_query', via: [:get, :post]
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
     post 'batchgrouper' => 'batchgroupers#group'
     get 'batchgrouper' => 'batchgroupers#index'
-    get 'index' => 'webgrouper_patient_cases#index'
     match 'parse' => 'webgrouper_patient_cases#parse', via: [:get, :post]
+    get 'autocomplete_icd_code' => 'webgrouper_patient_cases#autocomplete_icd_code'
+    get 'autocomplete_chop_code' => 'webgrouper_patient_cases#autocomplete_chop_code'
   end
 
 

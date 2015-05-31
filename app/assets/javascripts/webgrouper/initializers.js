@@ -77,9 +77,8 @@ function initializeAutocomplete() {
             event.target.title = "";
         }
         else {
-            var splitPos = data.item.label.search(" ");
-            event.target.value = data.item.label.substring(0, splitPos);
-            event.target.title = data.item.label.substring(splitPos + 1);
+            event.target.value = data.item.code;
+            event.target.title = data.item.text;
         }
 	});
 }

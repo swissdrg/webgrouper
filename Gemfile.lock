@@ -1,10 +1,3 @@
-GIT
-  remote: https://github.com/panmari/rails3-jquery-autocomplete.git
-  revision: 9f12face2e218040e36bf53767d49a4b3d64aaa8
-  specs:
-    rails3-jquery-autocomplete (1.0.12)
-      rails (>= 3.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -173,6 +166,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-jquery-autocomplete (1.0.0)
+      rails (>= 4.0)
     railties (4.2.1)
       actionpack (= 4.2.1)
       activesupport (= 4.2.1)
@@ -277,7 +272,7 @@ DEPENDENCIES
   nokogiri (~> 1.6.1.0)
   pg_jruby
   rails
-  rails3-jquery-autocomplete!
+  rails-jquery-autocomplete
   rspec-rails
   ruby-debug-base
   ruby-debug-ide

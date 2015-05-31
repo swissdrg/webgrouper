@@ -1,18 +1,33 @@
 class WebgrouperPatientCasesController < ApplicationController
-  
-  autocomplete :Icd, [:code, :code_short, :text], :full => true,
-                              :display_value => :autocomplete_result,
-                              :extra_data => [:text]
-  autocomplete :Chop, [:code, :code_short, :text], :full => true,
-                              :display_value => :autocomplete_result,
-                              :extra_data => [:text]
+
+  def autocomplete_code(type)
+    term = params[:term]
+    system_id = params[:system_id]
+    # Find 10 matching codes, either by matching text, code or code_short
+    codes = System.find_by(system_id: system_id).
+        send(type).
+        any_of({text: /#{term}/i}, {code: /^#{term}/i}, {code_short: /^#{term}/i}).
+        order_by(:code.asc).
+        limit(10)
+    render :json => codes.map { |icd| {:label => "#{icd.code} #{icd.text}", :code => icd.code, text: icd.text} }
+  end
+
+  def autocomplete_icd_code
+    autocomplete_code('icds')
+  end
+
+  def autocomplete_chop_code
+    autocomplete_code('chops')
+  end
+
   def tos
-    @link = webgrouper_patient_cases_path
+    @link = new_webgrouper_patient_case_path
     render 'static_pages/tos'
   end
   
-  def index
-    @webgrouper_patient_case = WebgrouperPatientCase.new()
+  def new
+    @webgrouper_patient_case = WebgrouperPatientCase.new
+    render 'form'
   end
 
   def parse
@@ -23,11 +38,11 @@ class WebgrouperPatientCasesController < ApplicationController
       else
         flash.now[:error] = @webgrouper_patient_case.errors.full_messages
       end
-      render 'index'
+      render 'form'
     end
   end
 
-  def create_query
+  def create
     # render index if called without arguments
     unless params[:webgrouper_patient_case].present?
       redirect_to webgrouper_patient_cases_path and return
@@ -37,13 +52,7 @@ class WebgrouperPatientCasesController < ApplicationController
     if @webgrouper_patient_case.errors.empty?
       group(@webgrouper_patient_case)
     end
-    render 'index'
-  end
-  
-  # Reduces autocomplete results to the system specified in the form
-  def get_autocomplete_items(parameters)
-    items = super(parameters)
-    items.send(:in_system, params[:system_id])
+    render 'form'
   end
 
   # For testing new systems, exclusive users are given this url. This activates the beta for the current session,
@@ -65,7 +74,7 @@ class WebgrouperPatientCasesController < ApplicationController
       grouper, catalogue = patient_case.system.grouper_and_catalogue
       grouper.groupByReference(@pc)
       @result = @pc.getGrouperResult()
-      @webgrouper_patient_case.drg = @result.drg
+      @webgrouper_patient_case.drg_code = @result.drg
       @weighting_relation = catalogue.get(@result.drg)
       @weighting_relation.extend(WeightingRelation)
 
