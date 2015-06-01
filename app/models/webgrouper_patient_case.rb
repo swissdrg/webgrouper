@@ -29,15 +29,12 @@ class WebgrouperPatientCase
   field :diagnoses, type: Array, default: []
   field :procedures, type: Array, default: []
 
-  # Additional stuff:
-  field :valid_case, type: Boolean
-
   include ActAsValidGrouperQuery
 
   embeds_many :icds
   embeds_many :chops
   belongs_to :drg, primary_key: :code, foreign_key: :drg_code
-  attr_accessor :age_mode, :age_mode_decoy, :house, :manual_submission, :id
+  attr_accessor :age_mode, :age_mode_decoy, :id
 
   # The default swissdrg format with additional data in the id-field, split by semicolon if readable is set to false
   # and split by underscore if readable is set to true
@@ -53,10 +50,10 @@ class WebgrouperPatientCase
     to_s.gsub('-', ';')
   end
 
+  FORM_DATE_FORMAT = "%d.%m.%Y"
   # Takes a SwissDRG-string as input and returns the complying WebgrouperPatientCase.
   # the swissdrg-string may also be split by dashes instead of semicolons.
   # The ID field is further used to encode data usually not contained in a SwissDRG string.
-  # TODO: rewrite
   def self.parse(pc_string)
     params = {}
     if pc_string.include? (';')
@@ -73,16 +70,16 @@ class WebgrouperPatientCase
       params[:exit_date] = additional_data[3]
       params[:leave_days] = additional_data[4]
     end
-    params[:age_years] = pc_array[1] unless pc_array[1] == '0'
-    params[:age_days] = pc_array[2] unless pc_array[2] == '0'
+    age_years = pc_array[1]
+    age_days = pc_array[2]
     if params[:age_years].blank?
       params[:age_mode_decoy] = params[:age_mode] = 'days'
-      params[:age] = params[:age_days]
+      params[:age] = age_days
     else
       params[:age_mode_decoy] = params[:age_mode] = 'years'
-      params[:age] = params[:age_years]
+      params[:age] = age_years
     end
-    params[:admWeight] = pc_array[3]
+    params[:adm_weight] = pc_array[3]
     params[:sex] = pc_array[4]
     params[:adm] = pc_array[5]
     params[:sep] = pc_array[6]
@@ -91,28 +88,13 @@ class WebgrouperPatientCase
     params[:hmv] = pc_array[9]
     params[:pdx] = pc_array[10]
 
-    params[:diagnoses] = {}
-    (1..99).each do |number|
-      diagnosis = pc_array[number + 10]
-      params[:diagnoses][number.to_s] = diagnosis unless diagnosis.blank?
-    end
-
-    params[:procedures] = {}
-    (0...100).each do |number|
-      procedure = pc_array[number + 110]
-      next if procedure.blank? #skip if no procedure given
-      elements = procedure.split(':')
-      params[:procedures][number.to_s] = {}
-      (0..2).each do |element_nr|
-        #convert date to standard german format
-        if (element_nr == 2 and not elements[2].blank?)
-          element = "#{elements[2][6..7]}.#{elements[2][4..5]}.#{elements[2][0..3]}"
-        else
-          element = elements[element_nr] || ''
-        end
-        params[:procedures][number.to_s][element_nr.to_s] = element
-      end
-    end
+    params[:diagnoses] = pc_array[(11...(11+99))].reject &:blank?
+    params[:procedures] = pc_array[110...(110+100)]
+                              .reject(&:blank?)
+                              .map{ |p| p.split(':') }
+                              .map{ |p_arry| { 'c' => p_arry[0],
+                                               'l' => (p_arry[1] || '').upcase,
+                                               'd' => (Date.strptime(p_arry[2], GROUPER_DATE_FORMAT).strftime(FORM_DATE_FORMAT) rescue '')}}
     params.each do |key, value|
         params.delete(key) if value.blank?
     end

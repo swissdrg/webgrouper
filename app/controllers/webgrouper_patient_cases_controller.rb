@@ -35,8 +35,6 @@ class WebgrouperPatientCasesController < ApplicationController
       @webgrouper_patient_case = WebgrouperPatientCase.parse(params[:pc][:string])
       if @webgrouper_patient_case.valid?
         group(@webgrouper_patient_case)
-      else
-        flash.now[:error] = @webgrouper_patient_case.errors.full_messages
       end
       render 'form'
     end
