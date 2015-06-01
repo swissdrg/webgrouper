@@ -6,14 +6,14 @@ Feature: Grouping a valid patient case should return right results
   Scenario: Submit the form without a primary diagnosis
     Given the form with initialized standard values
     When I press on "Fall Gruppieren"
-    Then I should see "Hauptdiagnose: muss ausgefüllt werden"
+    Then I should see "Ungültige oder fehlende Hauptdiagnose"
     
   @mac
   Scenario: Submit the form with invalid primary diagnosis
     Given the form with initialized standard values
     When I enter "foo" as diagnosis
     And I press on "Fall Gruppieren"
-    Then I should see "Hauptdiagnose: invalid"
+    Then I should see "Hauptdiagnose: foo invalid"
     
   @mac @javascript
   Scenario: Submit the form with invalid secondary diagnosis

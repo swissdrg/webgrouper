@@ -8,7 +8,6 @@ Feature: The edge cases should be handled correctly
   	And I submit the form
   	Then I should see "Die DRG F43C ist von einer Fallzusammenführung bei Wiederaufnahme ausgeschlossen." in "settlement_hints"
   
-  @javascript
   Scenario: Case for additional fee
   	Given the form with initialized standard values
   	When I enter "B72" as diagnosis
@@ -20,10 +19,9 @@ Feature: The edge cases should be handled correctly
   
 # TESTS FOR RIGHT DRG
   # groupertest.java L67
-  @javascript
   Scenario: parse case pdx P67D
 	  Given the form with initialized standard values
-	  When I parse "38853;0;1;3620;W;01;01;5;;;Q181;;;;P153;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897;;;;;;;;;;;;;;;;;;;;;" as input for the form
+	  When I parse "38853;0;1;3620;W;01;01;5;;;Q181;P153;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;897;;;;;;;;;;;;;;;;;;;;;" as input for the form
 	  Then I should see "P67D" in "grouping"
 	  
 	
@@ -37,7 +35,6 @@ Feature: The edge cases should be handled correctly
 	  And I should see "Normallieger" in "length-of-stay"
 
   # groupertest.java L 81
-  @javascript
   Scenario: parse case pdx H63C (low CC) and H63B (high CC)
     Given the form with initialized standard values
     When I parse "53567;10;;;U;01;01;50;0;0;B58.1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -72,13 +69,12 @@ Feature: The edge cases should be handled correctly
     Then I should see "B78C" in "grouping"
     
   # groupertest.java L 125
-  @javascript
   Scenario: parse with different systems
 	Given the form with initialized standard values
 	When I select system 5
 	And I parse "56;10;0;;2;01;00;3;0;;S424;" as input for the form
 	And I enter the procedures with seitigkeit and date "7911::20080307"
-    Then I should see "Hauptdiagnose: invalid"
+    Then I should see "Hauptdiagnose: S424 invalid"
 	  
     When  I select system 4
 	And I submit the form
@@ -111,7 +107,6 @@ Feature: The edge cases should be handled correctly
 #TESTS FOR MEDICAL FLAGS
 
   # calcCostWeightTest.java L10
-  @javascript
   Scenario: calculate length of stay for leap year
     Given the form with initialized standard values
     When I parse "53567;15;;;M;01;01;10;;;R509;BLAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -121,7 +116,6 @@ Feature: The edge cases should be handled correctly
 
 # TESTS FOR LENGTH OF STAY
   # calcCostWeightTest.java L10
-  @javascript
   Scenario: Case for transfer patient
     Given the form with initialized standard values
     When I parse "12;28;;;U;99;06;2;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -130,7 +124,6 @@ Feature: The edge cases should be handled correctly
   	And I should see "Verlegungsabschlagspflichtig" in "length-of-stay"
   	
   # calcCostWeightTest.java L15
-  @javascript
   Scenario: Case for lower outlier
     Given the form with initialized standard values
     When I parse "12;28;;;U;99;00;2;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -141,7 +134,6 @@ Feature: The edge cases should be handled correctly
   	
 
   # calcCostWeightTest.java L21
-  @javascript
   Scenario: Case for inlier
     Given the form with initialized standard values
     When I parse "12;28;;;U;99;00;22;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -159,7 +151,6 @@ Feature: The edge cases should be handled correctly
   	And I should see "Oberer Outlier" in "length-of-stay"
   	
   # calcCostWeightTest.java L33
-  @javascript
   Scenario: Case for unweighted DRG
     Given the form with initialized standard values
     When I parse "12;28;;;U;99;00;22;0;0;Z85.6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -168,7 +159,6 @@ Feature: The edge cases should be handled correctly
   	
   	
   # calcCostWeightTest.java L39
-  @javascript
   Scenario: Case for upper outlier
     Given the form with initialized standard values
     When I parse "12;28;;;U;99;00;9999;0;0;J632;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;" as input for the form
@@ -176,7 +166,6 @@ Feature: The edge cases should be handled correctly
     And I should see "769.41" in "cost-weight"
   	And I should see "Oberer Outlier" in "length-of-stay"
   	
-  @javascript
   Scenario: Test case for B78C
   	Given the form with initialized standard values
   	When I enter "S06.1" as diagnosis

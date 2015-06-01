@@ -57,7 +57,7 @@ Feature: Arbitrary dates entered in admission date/date of discharge/leave days 
     Then I should see "" as age
     And I submit the form
     Then I should see "" as age
-    And I should see "Alter: muss größer als 0 sein" as error
+    And I should see "Alter: muss ausgefüllt werden" as error
     
 @javascript
   Scenario: First entering birth date should have same result as entering entry date first

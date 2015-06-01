@@ -22,7 +22,7 @@ end
 
 # Needs the @javascript annotation
 When /^I enter "([^"]*)" as procedure$/ do |proc|
-  step %{I fill in "webgrouper_patient_case_procedures_0_0" with "#{proc}"}
+  step %{I fill in "webgrouper_patient_case_procedures_0_c" with "#{proc}"}
 end
 
 # Needs the @javascript annotation

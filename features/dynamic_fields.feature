@@ -6,13 +6,13 @@ Feature: Users can add and remove fields for secondary diagnoses and procedures 
   @mac @javascript
   Scenario: I can add secondary diagnoses fields
     Given the form with initialized standard values
-    When I follow "add_diagnoses"
+    When I add more "diagnoses" fields
     Then I should see 10 diagnoses fields
     
   @mac @javascript
   Scenario: I can add procedures fields
   Given the form with initialized standard values
-  When I follow "add_procedures"
+  When I add more "procedures" fields
   Then I should see 6 procedures fields
   
   @mac @javascript

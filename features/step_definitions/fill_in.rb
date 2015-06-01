@@ -1,15 +1,15 @@
 Given /^the form with initialized standard values$/ do
   if Rails.env == "test"
-    visit "http://localhost:3000/de/webgrouper_patient_cases"
+    visit "http://localhost:3000/de/webgrouper_patient_cases/new"
   else
-    visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
+    visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases/new"
   end
   step %{I select system 9}
 end
 
 Given /^the form with initialized standard values and system 13$/ do
   if Rails.env == "test"
-    visit "http://localhost:8080/de/webgrouper_patient_cases"
+    visit "http://localhost:3000/de/webgrouper_patient_cases"
   else
     visit "https://webgrouper.swissdrg.org/de/webgrouper_patient_cases"
   end
@@ -18,7 +18,7 @@ end
 
 Given /^the beta form$/ do
   if Rails.env == "test"
-    visit "http://localhost:8080/activate_beta?locale=de"
+    visit "http://localhost:3000/activate_beta?locale=de"
   else
     visit "https://webgrouper.swissdrg.org/activate_beta?locale=de"
   end
@@ -106,18 +106,18 @@ end
 When /^I enter the procedures "([^"]*)" (\d+) times$/ do |code, count|
   (0..(count.to_i - 1)).each do |field_index|
     step %{I add more "procedures" fields} if field_index != 0 && field_index % 3 == 0
-    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_0" with "#{code}"}
+    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_c" with "#{code}"}
   end
 end
 
 # Needs the @javascript annotation
 When /^I add more "([^"]*)" fields$/ do |kind|
-  step %{I follow "add_#{kind}"}
+  find("img.add_#{kind}_row").click
 end
 
 # Needs the @javascript annotation
 When /^I add the maximum number of "([^"]*)" fields$/ do |kind|
-  while (page.has_selector?("a#add_#{kind}")) do
+  while (page.has_selector?("img#add_#{kind}_row")) do
     step %{I add more "#{kind}" fields}
   end
 end
@@ -125,9 +125,9 @@ end
 # Needs the @javascript annotation
 When /^I enter the procedures (".+")$/ do |procedures|
   procedures = procedures.scan(/"([^"]*?)"/).flatten
-  (0..procedures.count).each do |field_index|
+  procedures.each_with_index do |proc, field_index|
     step %{I add more "procedures" fields} if field_index != 0 && field_index % 3 == 0
-    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_0" with "#{procedures[field_index]}"}
+    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_c" with "#{proc}"}
   end
 end
 
@@ -138,9 +138,9 @@ When /^I enter the procedures with seitigkeit and date (".+")$/ do |procedures|
     procedure = procedures[field_index-1]
     procedure_parts = procedure.split(":")
     step %{I add more "procedures" fields} if field_index != 0 && field_index % 3 == 0
-    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_0" with "#{procedure_parts[0]}"}
-    step %{I select in "webgrouper_patient_case_procedures_#{field_index}_1" "#{procedure_parts[1]}"}
-    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_2" with "#{procedure_parts[2]}"}
+    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_c" with "#{procedure_parts[0]}"}
+    step %{I select in "webgrouper_patient_case_procedures_#{field_index}_l" "#{procedure_parts[1]}"}
+    step %{fill in "webgrouper_patient_case_procedures_#{field_index}_d" with "#{procedure_parts[2]}"}
   end
 end
 
