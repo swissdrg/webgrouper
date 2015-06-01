@@ -71,12 +71,12 @@
       = render "diagnoses", :patient_case => @webgrouper_patient_case
     %p
     #procedures
-      %label{:for => 'webgrouper_patient_case_procedures_0_0'}
+      %label{:for => 'webgrouper_patient_case_procedures_0_c'}
         = t('simple_form.labels.defaults.procedures')   # hardcoded, since its generated via js
       = render "procedures", :patient_case => @webgrouper_patient_case
   .buttons 
     .right
-      - if @result
+      - unless @result.nil?
         = link_to t('helpers.submit.webgrouper_patient_case.save_case_as_bookmark'), current_case_url,
                    :class => 'button jQueryBookmark',
                    :title => "Webgrouper: #{@webgrouper_patient_case.pdx} #{Drg.get_description_for(@webgrouper_patient_case.system_id, @result.drg)}"
@@ -91,5 +91,18 @@
 - if @result.nil? || @result.getGst.nil?         
   .bottom-spacer
 - else  
-  = render "webgrouper_patient_cases/result/main"
+  #result
+    .on-row
+      = render "webgrouper_patient_cases/result/grouping"
+      - if normal_group?
+        = render "webgrouper_patient_cases/result/cost_weight"
+    - if normal_group?
+      = render "webgrouper_patient_cases/result/diagnoses"
+      = render "webgrouper_patient_cases/result/procedures"
+      = render "webgrouper_patient_cases/result/settlement_hints"
+      .on-row
+        = render "webgrouper_patient_cases/result/length_of_stay"
+        = render "webgrouper_patient_cases/result/los_chart"
+    #bottom
+
 
