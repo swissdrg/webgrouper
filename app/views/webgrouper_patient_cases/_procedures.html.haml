@@ -11,15 +11,15 @@
                                  procedure_hash['c'],
                                  autocomplete_chop_code_path(:system_id => @webgrouper_patient_case.system_id),
                                  :class => 'autocomplete small_field',
-                                 :id => "webgrouper_patient_case_diagnoses_#{count}_c"
+                                 :id => "webgrouper_patient_case_procedures_#{count}_c"
           = select_tag 'webgrouper_patient_case[procedures][][l]',
                             options_for_select(["", "R", "L", "B"], procedure_hash['l']),
                             :class => 'tiny_field',
-                            :id => "webgrouper_patient_case_diagnoses_#{count}_l"
+                            :id => "webgrouper_patient_case_procedures_#{count}_l"
           = text_field_tag 'webgrouper_patient_case[procedures][][d]',
                            procedure_hash['d'],
                            :class => 'small_field date_picker',
-                           :id => "webgrouper_patient_case_diagnoses_#{count}_d"
+                           :id => "webgrouper_patient_case_procedures_#{count}_d"
           - count += 1
       - if row == 0
         .spacer
