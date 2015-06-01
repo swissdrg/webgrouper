@@ -8,7 +8,7 @@
         %td
           = link_to_online_definition_manual(@result.mdc, :mdcs, @webgrouper_patient_case.system)
         %td
-          = @webgrouper_patient_case.system.mdcs.find_by(code: @result.mdc).text
+          = @webgrouper_patient_case.system.mdcs.find_by(code: @result.mdc).text rescue ''
       %tr
         %th
           DRG
