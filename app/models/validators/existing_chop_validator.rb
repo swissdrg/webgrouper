@@ -15,6 +15,8 @@ class ExistingChopValidator < ActiveModel::EachValidator
         begin
           chop = record.system.chops.find_by(code_short: short_code)
           record.chops[i] = chop
+          # Replace code with pretty code
+          v['c'] = chop.code
         rescue Mongoid::Errors::DocumentNotFound => e
           record.errors[attribute] << "#{code} invalid"
         end
