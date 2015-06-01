@@ -1,7 +1,7 @@
 module SeedHelpers
   require 'pg'
 
-  PG_SEARCH_PATH = 'public'
+  PG_SEARCH_PATH = 'classifications'
 
   # Returns a connection to a postgress database, defind in db/pg_config.yml (environment dependent!)
   def conn
@@ -26,7 +26,8 @@ module SeedHelpers
   # Saves the given code the the specified model. It will try to fix any text_{lang} columns it finds by turning it
   # into localized mongoid entries.
   # In case saving fails, an exception is thrown
-  def save_code(model, row)
+  def save_code(model, row, filter=true)
+    row.select!{|k,_| /^(text|code|version)/.match(k)} if filter
     trans = fix_i18n(row)
     code = model.new(row)
     code.text_translations = trans if code.fields.include?('text')
