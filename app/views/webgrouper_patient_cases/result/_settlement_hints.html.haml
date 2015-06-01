@@ -1,5 +1,5 @@
 %fieldset#settlement_hints.result
-  - has_supplement_constraints = @supplement_procedures.select { |k,v| v[:age_max] != nil and v[:age_max] != '' }.any?
+  - has_supplement_constraints = @supplement_procedures.reject { |s| s[:age_max].blank? }.any?
   %legend= t "result.settlement_hints.legend"
   %table
     %tbody
@@ -14,18 +14,15 @@
             - if has_supplement_constraints
               %th
                 = t('result.settlement_hints.constraints') + '*'
-      - @supplement_procedures.each do |ops_code, data|
-        - fee = data[:fee]
-        - description = data[:description]
-        - count = data[:proc_count]
+      - @supplement_procedures.each do |data|
         %tr
           %td
             %strong
-              = fee.to_s + ": "
-            = description
-            = " (" + ops_code.to_s + ") "
+              = data[:fee] + ": "
+            = data[:description]
+            = " (" + data[:chop_code] + ") "
           %td
-            = count.to_s
+            = data[:proc_count].to_s
           - if data[:age_max]
             %td
               = t('result.settlement_hints.age_constraint', age: data[:age_max])

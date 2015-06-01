@@ -159,40 +159,24 @@ class WebgrouperPatientCase
   # of the same procedure which entered the user as values and as key a procedure code.
   # furthermore this method calculates also the total supplement amount (summed up).
   def get_supplements
-    supplement_procedures = {}
-    total_supplement_amount = 0
-    self.procedures.each do |p|
-      # cleanup: we just want the procedure code (no seitigkeit or date)
-      p = p['c']
-      # if there is an a row in supplementops which has a column equals the given procedure value
-      # prepare hash for a new value
-      sup = system.supplements.where(:chop_atc_code => p).first
-      unless sup.nil?
-        code = sup.supplement_code
-        amount = sup.amount
-        description = sup.text
-        total_supplement_amount += amount
-
-        # count how many times the same proc appeared with same fee.
-        default_proc_count = 1
-        if supplement_procedures[p].nil?
-          data = {
-              :fee => code,
-              :description => description,
-              :amount => amount,
-              :proc_count => default_proc_count,
-              :age_max => sup.age_max
-          }
-          supplement_procedures[p] = data
-        else
-          supplement_procedures[p][:proc_count] += 1
-        end
-
-      end
+    # We just want the procedure code (no seitigkeit or date)
+    procedures_codes = procedures.map {|p| p['c'] }
+    supplements = system.supplements.where(:chop_atc_code.in => procedures_codes )
+    supplement_procedures = supplements.map do |sup|
+      # count how many times the same proc appeared with same fee.
+      proc_count = procedures_codes.select { |p| p == sup.chop_atc_code }.count
+      {
+          :chop_code => sup.chop_atc_code,
+          :fee => sup.supplement_code,
+          :description => sup.text,
+          :amount => sup.amount * proc_count,
+          :proc_count => proc_count,
+          :age_max => sup.age_max
+      }
     end
-    return supplement_procedures, total_supplement_amount
+    return supplement_procedures
   end
-  
+
   private
 
   # Removes empty values from arrays.
