@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:panmari/rails-jquery-autocomplete.git
+  remote: https://github.com/panmari/rails-jquery-autocomplete.git
   revision: fc179d04971f5d3783a55cf6957919a5b6f5ce5a
   specs:
     rails-jquery-autocomplete (1.0.0)

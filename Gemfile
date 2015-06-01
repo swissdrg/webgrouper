@@ -22,7 +22,7 @@ gem 'json'
 # Javascript-related:
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~>4.0'
-gem 'rails-jquery-autocomplete', git: 'git@github.com:panmari/rails-jquery-autocomplete.git'
+gem 'rails-jquery-autocomplete', git: 'https://github.com/panmari/rails-jquery-autocomplete.git'
 # for date computation in JS
 gem 'momentjs-rails'
 
