@@ -96,7 +96,6 @@ class LosDataTable < GoogleVisualr::DataTable
     GoogleVisualr::Interactive::LineChart.new(self, options)
   end
   
-  #TODO: values should to be bold
   # Gives back a formatted string with the data given
   def make_tooltip(x_value_caption, x_value, y_value)
     "#{I18n.t('result.length-of-stay.' + x_value_caption)}: " +
