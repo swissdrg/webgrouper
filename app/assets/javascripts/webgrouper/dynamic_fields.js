@@ -57,11 +57,15 @@ function append_row(rows) {
     $(new_row).find('.dynamic_field_buttons').remove();
 
     // Update ids and delete values, titles.
-    // TODO: this does not fully work for procedures, since 3 inputs have the same id, but causes no issues right now.
     $(new_row).find('input, select').each(function () {
         var e = $(this);
-        last_id_number++;
-        var new_id = e.attr('id').replace(/\d+/i, last_id_number);
+        var old_id = e.attr('id')
+        // Diagnoses fields all need an increment, but procedures consist of 3 fields and only need an increment
+        // if a code field is encountered.
+        if (/diagnoses/i.test(old_id) || /procedures_.*_c/.test(old_id)) {
+            last_id_number++;
+        }
+        var new_id = old_id.replace(/\d+/i, last_id_number);
         e.attr("id", new_id);
         e.val('');
         e.attr("title", "");
