@@ -26,9 +26,9 @@ module ActAsValidGrouperQuery
     # Artificial respiration time
     base.validates      :hmv,             :numericality => { :only_integer => true, :greater_than_or_equal_to => 0 }, :allow_blank => true
     # Main diagnosis
-    base.validates      :pdx,             :presence => true, :existing_icd => true, :if => lambda{ |wpc| wpc.manual_submission || !wpc.pdx.blank? || !wpc.diagnoses.blank? || !wpc.procedures.blank? }
-    base.validates      :diagnoses,       :existing_icd => true
-    base.validates      :procedures,      :existing_chop => true
+    base.validates      :pdx,             :presence => true, :existing_icd => true
+    base.validates      :diagnoses,       :existing_icd => true, :length => { :maximum => 99 }
+    base.validates      :procedures,      :existing_chop => true, :length => { :maximum => 100 }
   end
 
 end
