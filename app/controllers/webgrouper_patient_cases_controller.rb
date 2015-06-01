@@ -4,12 +4,12 @@ class WebgrouperPatientCasesController < ApplicationController
     term = params[:term]
     system_id = params[:system_id]
     # Find 10 matching codes, either by matching text, code or code_short
-    codes = System.find_by(system_id: system_id).
-        send(type).
-        any_of({text: /#{term}/i}, {code: /^#{term}/i}, {code_short: /^#{term}/i}).
-        order_by(:code.asc).
-        limit(10)
-    render :json => codes.map { |icd| {:label => "#{icd.code} #{icd.text}", :code => icd.code, text: icd.text} }
+    codes = System.find_by(system_id: system_id)
+                .send(type)
+                .any_of({text: /#{term}/i}, {code: /^#{term}/i}, {code_short: /^#{term}/i})
+                .order_by(:code.asc)
+                .limit(10)
+    render :json => codes.map { |code| {:label => "#{code.code} #{code.text}", :code => code.code, text: code.text} }
   end
 
   def autocomplete_icd_code
@@ -33,7 +33,7 @@ class WebgrouperPatientCasesController < ApplicationController
   def parse
     if params[:pc].present?
       @webgrouper_patient_case = WebgrouperPatientCase.parse(params[:pc][:string])
-      if @webgrouper_patient_case.valid?
+      if @webgrouper_patient_case.save
         group(@webgrouper_patient_case)
       end
       render 'form'
