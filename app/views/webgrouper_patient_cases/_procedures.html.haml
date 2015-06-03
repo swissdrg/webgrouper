@@ -9,7 +9,7 @@
           - procedure_hash = @webgrouper_patient_case.procedures[count] || {}
           = autocomplete_field_tag 'webgrouper_patient_case[procedures][][c]',
                                  procedure_hash['c'],
-                                 autocomplete_chop_code_path(:system_id => @webgrouper_patient_case.system_id),
+                                 autocomplete_chop_code_path(version: @webgrouper_patient_case.system.chop_version),
                                  :class => 'autocomplete small_field',
                                  :id => "webgrouper_patient_case_procedures_#{count}_c"
           = select_tag 'webgrouper_patient_case[procedures][][l]',

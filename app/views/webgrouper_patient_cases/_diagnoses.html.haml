@@ -8,7 +8,7 @@
         %span.field
           = autocomplete_field_tag "webgrouper_patient_case[diagnoses][]",
                             @webgrouper_patient_case.diagnoses[count],
-                            autocomplete_icd_code_path(system_id: @webgrouper_patient_case.system_id),
+                            autocomplete_icd_code_path(version: @webgrouper_patient_case.system.icd_version),
                             class: 'autocomplete small_field diagnosis',
                             id: "webgrouper_patient_case_diagnoses_#{count}"
           - count += 1

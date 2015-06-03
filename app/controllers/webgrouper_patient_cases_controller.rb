@@ -1,11 +1,10 @@
 class WebgrouperPatientCasesController < ApplicationController
 
-  def autocomplete_code(type)
+  def autocomplete_code(model)
     term = params[:term]
-    system_id = params[:system_id]
+    version = params[:version]
     # Find 10 matching codes, either by matching text, code or code_short
-    codes = System.find_by(system_id: system_id)
-                .send(type)
+    codes = model.where(version: version)
                 .any_of({text: /#{term}/i}, {code: /^#{term}/i}, {code_short: /^#{term}/i})
                 .order_by(:code.asc)
                 .limit(10)
@@ -13,11 +12,11 @@ class WebgrouperPatientCasesController < ApplicationController
   end
 
   def autocomplete_icd_code
-    autocomplete_code('icds')
+    autocomplete_code(Icd)
   end
 
   def autocomplete_chop_code
-    autocomplete_code('chops')
+    autocomplete_code(Chop)
   end
 
   def tos

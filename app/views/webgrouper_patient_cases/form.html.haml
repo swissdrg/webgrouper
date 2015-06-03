@@ -65,7 +65,7 @@
     %legend= t("fieldsets.diagnoses_procedures")
     #diagnoses
       = f.input :pdx, 
-                :url => autocomplete_icd_code_path(:system_id => @webgrouper_patient_case.system_id),
+                :url => autocomplete_icd_code_path(version: @webgrouper_patient_case.system.icd_version),
                 :as => :autocomplete
       %label{:for => 'webgrouper_patient_case_diagnoses_0'}
         = t('simple_form.labels.defaults.diagnoses')  # hardcoded, since its generated via js
