@@ -18,4 +18,5 @@ system_id--int;description.de;description.fr;description.it;chop_version;icd_ver
 20;v4.0 Planungsversion 1: 2013/2015;v4.0 Version de planification 1: 2013/2015;v4.0 Versione pianificazione 1: 2013/2015;CHOP 2013;ICD10-GM-2012;V4.0;;TRUE
 21;v4.0 Planungsversion 2: 2014/2015;v4.0 Version de planification 2: 2014/2015;v4.0 Versione pianificazione 2: 2014/2015;CHOP 2014;ICD10-GM-2012;V4.0;;TRUE
 22;v4.0 Abrechnungsversion: 2015/2015;v4.0 Version de tarification: 2015/2015;v4.0 Versione tariffazione: 2015/2015;CHOP 2015;ICD10-GM-2014;V4.0;http://apps.swissdrg.org/manual40/;TRUE
-23;v5.0 Katalogversion mit ANK: 2013/2016;v5.0 Version catalogue avec ANK: 2013/2016;v5.0 Versione catalogo con ANK: 2013/2016;CHOP 2013;ICD10-GM-2012;V5.0;;FALSE
+23;v5.0 Katalogversion mit ANK: 2013/2016;v5.0 Version catalogue avec ANK: 2013/2016;v5.0 Versione catalogo con ANK: 2013/2016;CHOP 2013;ICD10-GM-2012;V5.0;;TRUE
+24;v5.0 Planungsversion 1: 2014/2016;v5.0 Version de planification 1: 2014/2016;v5.0 Versione pianificazione 1: 2014/2016;CHOP 2014;ICD10-GM-2012;V5.0;;TRUE
