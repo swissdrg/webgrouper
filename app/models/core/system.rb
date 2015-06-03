@@ -35,15 +35,21 @@ class System
   end
 
   def workspace
-    File.join(folder, 'workspace')
+    w = File.join(folder, 'workspace')
+    raise 'Could not find workspace in ' + w unless File.exist? w
+    w
   end
 
   def catalogue
-    File.join(folder, 'catalogue-acute.csv')
+    c = File.join(folder, 'catalogue-acute.csv')
+    raise 'Could not find catalogue in ' + c unless File.exist? c
+    c
   end
 
   def birthhouse_catalogue
-    File.join(folder, 'catalogue-birthhouses.csv')
+    c = File.join(folder, 'catalogue-birthhouses.csv')
+    raise 'Could not find catalogue in ' + c unless File.exist? c
+    c
   end
 
   def folder
@@ -54,7 +60,7 @@ class System
 
   def spec_folder
     production_spec_folder = File.join('/','home', 'tim', 'grouperspecs')
-    development_spec_folder = File.join(Rails.root,'lib', 'grouperspecs')
+    development_spec_folder = File.join(Rails.root, 'lib', 'grouperspecs')
     if File.directory?(production_spec_folder)
       production_spec_folder
     else
