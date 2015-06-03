@@ -1,9 +1,10 @@
-require 'db/seed_helpers'
+load 'db/seed_helpers.rb'
 include SeedHelpers
 bar = make_progress_bar('drgs')
 Drg.delete_all
-iterate_table('drgs') do |row|
+PsqlDrg.find_each do |row|
   # rename some attributes
+  row = row.attributes
   row['avg_duration'] = row.delete 'average_stay_duration'
   row['transfer_flatrate'] = row.delete 'transfer_discount'
   row['exception_from_reuptake_flag'] = row.delete 'exception_from_reuptake'

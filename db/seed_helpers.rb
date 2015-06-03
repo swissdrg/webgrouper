@@ -1,14 +1,46 @@
-module SeedHelpers
-  require 'pg'
+require 'active_record'
 
-  PG_SEARCH_PATH = 'classifications'
-
-  # Returns a connection to a postgress database, defind in db/pg_config.yml (environment dependent!)
-  def conn
+# Active Record Models for psql database
+module PsqlModel
+  def self.included(base)
     config = YAML.load_file('db/pg_config.yml')[Rails.env]
-    PG.connect(host: config['host'], port: 5432, dbname: config['dbname'],
-               user: config['user'], password: config['password'])
+    base.establish_connection(
+        :adapter  => 'jdbcpostgresql',
+        :host     => config['host'],
+        :username => config['user'],
+        :password => config['password'],
+        :database => config['dbname'],
+        :schema_search_path => 'classifications'
+    )
   end
+end
+
+class PsqlSupplement < ActiveRecord::Base
+  include PsqlModel
+  self.table_name = 'supplements'
+end
+
+class PsqlMdc < ActiveRecord::Base
+  include PsqlModel
+  self.table_name = 'mdcs'
+end
+
+class PsqlDrg < ActiveRecord::Base
+  include PsqlModel
+  self.table_name = 'drgs'
+end
+
+class PsqlIcd < ActiveRecord::Base
+  include PsqlModel
+  self.table_name = 'icds'
+end
+
+class PsqlChop < ActiveRecord::Base
+  include PsqlModel
+  self.table_name = 'chops'
+end
+
+module SeedHelpers
 
   # assembles text => { 'de' => .., 'fr' => ....} from text_de, text_fr etc
   def fix_i18n(row)
@@ -34,14 +66,9 @@ module SeedHelpers
     code.save!
   end
 
-  def iterate_table(table_name)
-    conn.exec("SELECT * FROM #{PG_SEARCH_PATH}.#{table_name}").each do |row|
-      yield row
-    end
-  end
-
   def make_progress_bar(table_name)
-    count = conn.exec("SELECT COUNT(*) from #{PG_SEARCH_PATH}.#{table_name}").first['count'].to_i
+    model = ('psql_' + table_name).classify.constantize
+    count = model.count
     return ProgressBar.create(:title => table_name, :starting_at => 0, :total => count,
                               :throttle_rate => 1, :format => '%t: |%B| %P%%')
   end

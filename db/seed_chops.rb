@@ -3,7 +3,7 @@ include SeedHelpers
 bar = make_progress_bar('chops')
 
 Chop.delete_all
-iterate_table('chops') do |row|
+PsqlChop.find_each do |row|
   save_code(Chop, row)
   bar.increment
 end

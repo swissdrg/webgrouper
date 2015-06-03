@@ -3,8 +3,8 @@ include SeedHelpers
 bar = make_progress_bar('icds')
 Icd.delete_all
 
-iterate_table('icds') do |row|
-  save_code(Icd, row)
+PsqlIcd.find_each do |row|
+  save_code(Icd, row.attributes)
   bar.increment
 end
 

@@ -12,7 +12,7 @@ gem 'newrelic_rpm'
 gem 'mongoid'
 
 # For seeding mongodb with icd/chop/drg
-gem 'pg_jruby', platforms: :jruby
+gem 'activerecord-jdbcpostgresql-adapter', require: false
 
 # progress bar for visualizing progress of seeding
 gem 'ruby-progressbar'
