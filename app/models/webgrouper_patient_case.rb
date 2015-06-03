@@ -38,19 +38,15 @@ class WebgrouperPatientCase
 
   # The default swissdrg format with additional data in the id-field,
   # split by underscore.
-  def to_s
+  def to_url_string
     # additional information from id field
     s = [self.system_id,
-         self.birth_date.strftime(FORM_DATE_FORMAT),
-         self.entry_date.strftime(FORM_DATE_FORMAT),
-         self.exit_date.strftime(FORM_DATE_FORMAT),
+         (self.birth_date.strftime(FORM_DATE_FORMAT) rescue ''),
+         (self.entry_date.strftime(FORM_DATE_FORMAT) rescue ''),
+         (self.exit_date.strftime(FORM_DATE_FORMAT) rescue ''),
          self.leave_days].join('_')
     # rest of string
-    return s + to_swissdrg_s.gsub(';', '-')
-  end
-
-  def to_swissdrg_s
-    to_java.to_s
+    return s + to_java.to_s.gsub(';', '-')
   end
 
   FORM_DATE_FORMAT = "%d.%m.%Y"

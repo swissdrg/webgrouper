@@ -1,6 +1,6 @@
 #about
   - body =  "\n\n ---------------------------------------------- \n" + "Please insert your inquery above this line \n" 
-  - if @webgrouper_patient_case
+  - if @result
     - body += current_case_url
   - else
     - body += request.url
