@@ -30,6 +30,8 @@ gem 'momentjs-rails'
 # Templating Engine, that allows a non-repetitive and more elegant way tqo structure xhtml/xml with embedded ruby.
 gem 'haml'
 gem 'haml-rails'
+gem 'slim'
+gem "slim-rails"
 
 # Prettier forms. Similar to formtastic, but lightweight.
 gem 'simple_form'

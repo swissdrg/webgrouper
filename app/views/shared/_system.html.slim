@@ -1,0 +1,28 @@
+fieldset#system
+  legend = t("fieldsets.system")
+  .sameline
+    == f.input :system_id,
+               :as => :select,
+               :collection => shown_systems,
+               :label_method => lambda { |el| el.description },
+               :value_method => lambda { |el| el.system_id },
+               :include_blank => false
+    .small_field
+      == label_tag :procedures_catalogue
+      == text_field_tag :procedures_catalogue, current_system.chop_version, disabled: true
+  .sameline
+    - selected = house || 1
+    == f.input :house,
+               :as => :select,
+               :collection => [1, 2],
+               :selected => selected,
+               :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.house.house#{el.to_s}" }
+  .small_field
+    == label_tag :diagnoses_catalog
+    == text_field_tag :diagnoses_catalog, current_system.icd_version, disabled: true
+  - unless current_system.manual_url.blank?
+    label.simple_form
+    == link_to t("online_definition_manual_for") + " #{current_system.description}", current_system.manual_url, :class => "button"
+
+
+

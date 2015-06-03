@@ -4,7 +4,8 @@
 
 = render "error_messages", :webgrouper_patient_case => @webgrouper_patient_case
 
-= simple_form_for @webgrouper_patient_case, url: webgrouper_patient_cases_path do |f|
+= simple_form_for @webgrouper_patient_case, url: webgrouper_patient_cases_path,
+                  defaults: { placeholder: false, hint: false } do |f|
   = render 'shared/system', :f => f,
                             :current_system => @webgrouper_patient_case.system,
                             :house => @webgrouper_patient_case.house
