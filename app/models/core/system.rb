@@ -68,5 +68,6 @@ class System
     end
   end
 
-  index({"system_id" => 1}, unique: true)
+  index({system_id: 1}, unique: true)
+  index({public: 1 })
 end
