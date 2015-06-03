@@ -36,18 +36,21 @@ class WebgrouperPatientCase
   belongs_to :drg, primary_key: :code, foreign_key: :drg_code
   attr_accessor :age_mode, :age_mode_decoy, :id
 
-  # The default swissdrg format with additional data in the id-field, split by semicolon if readable is set to false
-  # and split by underscore if readable is set to true
+  # The default swissdrg format with additional data in the id-field,
+  # split by underscore.
   def to_s
     # additional information from id field
-    s = [self.system_id, self.birth_date, self.entry_date, self.exit_date, self.leave_days].join('_')
+    s = [self.system_id,
+         self.birth_date.strftime(FORM_DATE_FORMAT),
+         self.entry_date.strftime(FORM_DATE_FORMAT),
+         self.exit_date.strftime(FORM_DATE_FORMAT),
+         self.leave_days].join('_')
     # rest of string
-    # TODO
-    return s
+    return s + to_swissdrg_s.gsub(';', '-')
   end
 
   def to_swissdrg_s
-    to_s.gsub('-', ';')
+    to_java.to_s
   end
 
   FORM_DATE_FORMAT = "%d.%m.%Y"
@@ -72,7 +75,8 @@ class WebgrouperPatientCase
     end
     age_years = pc_array[1]
     age_days = pc_array[2]
-    if params[:age_years].blank?
+    # If age_years blank or 0, we assume it's not given.
+    if age_years.to_i == 0
       params[:age_mode_decoy] = params[:age_mode] = 'days'
       params[:age] = age_days
     else
@@ -84,7 +88,8 @@ class WebgrouperPatientCase
     params[:adm] = pc_array[5]
     params[:sep] = pc_array[6]
     params[:los] = pc_array[7]
-    params[:sdf] = pc_array[8]
+    # This is not used.
+    # params[:sdf] = pc_array[8]
     params[:hmv] = pc_array[9]
     params[:pdx] = pc_array[10]
 
