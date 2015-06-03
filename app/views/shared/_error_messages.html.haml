@@ -1,9 +1,9 @@
-- if @webgrouper_patient_case.errors.any?
+- if patient_case.errors.any?
   .errorflash
     %h2
       = t 'errors.template.body'
     %ul
-      - @webgrouper_patient_case.errors.each do |attr, msg|
+      - patient_case.errors.each do |attr, msg|
         %li
           = t("simple_form.labels.defaults." + attr.to_s) + " " + msg
 
