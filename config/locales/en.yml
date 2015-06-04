@@ -152,6 +152,7 @@ en:
     patient_data: Patient data
     stay: Stay
     system: System
+    assessments: Assessments
   found_errors: 'Found the following errors:'
   help:
     back: Back

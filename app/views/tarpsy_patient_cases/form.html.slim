@@ -1,0 +1,50 @@
+== content_for :header do
+  == javascript_include_tag 'https://www.google.com/jsapi'
+  == javascript_include_tag 'webgrouper'
+
+== render "shared/error_messages", :patient_case => @tarpsy_patient_case
+
+== simple_form_for @tarpsy_patient_case, url: tarpsy_patient_cases_path,
+                   defaults: {placeholder: false, hint: false} do |f|
+  .on-row
+    fieldset#stay.left
+      legend = t("fieldsets.stay")
+      == f.input :entry_date,
+                 :input_html => {:title => t("simple_form.hints.webgrouper_patient_case.date"), :class => "date_picker calc_los"}
+      == f.input :exit_date,
+                 :input_html => {:title => t("simple_form.hints.webgrouper_patient_case.date"), :class => "date_picker calc_los"}
+      == f.input :leave_days,
+                 :input_html => {:class => "calc_los numeric"}
+      == f.input :los,
+                 :input_html => {:class => "numeric"}
+  fieldset#drg-proc
+    legend= t("fieldsets.diagnoses_procedures")
+    #diagnoses
+      == f.input :pdx,
+                 :url => autocomplete_icd_code_path(:version => @tarpsy_patient_case.system.icd_version),
+                 :as => :autocomplete
+
+  fieldset#assessments
+    legend = t('fieldsets.assessments')
+    - necessary_rows = @tarpsy_patient_case.assessments.size + 1
+    - necessary_rows.times do |row|
+      - assessment_hash = @tarpsy_patient_case.assessments[row] || {}
+      .sameline.assessment
+        == label_tag :assessment
+        == text_field_tag 'tarpsy_patient_case[assessments][][date]',
+                          assessment_hash['date'],
+                          :class => 'small_field date_picker',
+                          :id => "tarpsy_patient_case_procedures_#{row}_date"
+        - 12.times do |item|
+          .assessment-item
+            == select_tag "tarpsy_patient_case[assessments][][#{item}]",
+                          options_for_select(%w(0 1 2 3 4 9), assessment_hash[item.to_s]),
+                          include_blank: true,
+                          id: "tarpsy_patient_case_procedures_#{row}_#{item}"
+  .buttons
+    .right
+      == link_to t("helpers.submit.webgrouper_patient_case.clear_form"),
+                 tarpsy_patient_cases_path,
+                 :class => "button negative",
+                 :method => :get
+      == f.submit :class => "button positive"

@@ -11,6 +11,10 @@ Webgrouper::Application.routes.draw do
     resources :webgrouper_patient_cases, only: [:new, :create] do
       patch '/' => 'webgrouper_patient_cases#create', on: :collection
     end
+    resources :tarpsy_patient_cases, only: [:new, :create] do
+      patch '/' => 'tarpsy_patient_cases#create', on: :collection
+    end
+
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
     post 'batchgrouper' => 'batchgroupers#group'
