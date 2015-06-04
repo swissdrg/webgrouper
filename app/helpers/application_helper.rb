@@ -11,4 +11,13 @@ module ApplicationHelper
     end
     shown_systems.order_by(:id.desc)
   end
+
+  def link_to_language_change(label, locale)
+    url = url_for(:locale => locale)
+    if @webgrouper_patient_case || @tarpsy_patient_case
+      link_to label, '#', class: 'button', onclick: "submitFormTo('#{url}');"
+    else
+      link_to label, url, class: 'button'
+    end
+  end
 end
