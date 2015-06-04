@@ -139,7 +139,7 @@ class WebgrouperPatientCase
 
     # Patient data
     pc.sex = sex
-    pc.birth_date = exit_date.strftime(GROUPER_DATE_FORMAT) unless birth_date.blank?
+    pc.birth_date = birth_date.strftime(GROUPER_DATE_FORMAT) unless birth_date.blank?
     if age_mode_days?
       pc.age_days = age
     else
