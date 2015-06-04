@@ -40,11 +40,6 @@ class WebgrouperPatientCasesController < ApplicationController
   end
 
   def create
-    # render index if called without arguments
-    unless params[:webgrouper_patient_case].present?
-      redirect_to webgrouper_patient_cases_path and return
-    end
-
     @webgrouper_patient_case = WebgrouperPatientCase.create(webgrouper_patient_case_params)
     if @webgrouper_patient_case.errors.empty?
       group(@webgrouper_patient_case)

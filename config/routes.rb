@@ -9,9 +9,11 @@ Webgrouper::Application.routes.draw do
 
   scope "/:locale" do
     resources :webgrouper_patient_cases, only: [:new, :create] do
+      get '/' => 'webgrouper_patient_cases#new', on: :collection
       patch '/' => 'webgrouper_patient_cases#create', on: :collection
     end
     resources :tarpsy_patient_cases, only: [:new, :create] do
+      get '/' => 'tarpsy_patient_cases#new', on: :collection
       patch '/' => 'tarpsy_patient_cases#create', on: :collection
     end
 
