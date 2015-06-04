@@ -16,7 +16,7 @@ class TarpsyPatientCasesController < ApplicationController
       redirect_to webgrouper_patient_cases_path and return
     end
 
-    @tarpsy_patient_case = TarpsyPatientCase.create(params[:tarpsy_patient_case].permit!)
+    @tarpsy_patient_case = TarpsyPatientCase.create(tarpsy_patient_case_params)
     if @tarpsy_patient_case.errors.empty?
       group(@tarpsy_patient_case)
     end
@@ -24,6 +24,11 @@ class TarpsyPatientCasesController < ApplicationController
   end
 
   private
+
+  def tarpsy_patient_case_params
+    params[:tarpsy_patient_case].permit(:system_id, :entry_date, :exit_date, :leave_days,
+                                        :los, :pdx, assessments: [:date] + 12.times.map(&:to_s))
+  end
 
   def group(patient_case)
     begin
