@@ -45,7 +45,7 @@ class WebgrouperPatientCasesController < ApplicationController
       redirect_to webgrouper_patient_cases_path and return
     end
 
-    @webgrouper_patient_case = WebgrouperPatientCase.create(params[:webgrouper_patient_case].permit!)
+    @webgrouper_patient_case = WebgrouperPatientCase.create(webgrouper_patient_case_params)
     if @webgrouper_patient_case.errors.empty?
       group(@webgrouper_patient_case)
     end
@@ -61,6 +61,13 @@ class WebgrouperPatientCasesController < ApplicationController
   end
 
   private
+
+  def webgrouper_patient_case_params
+    params[:webgrouper_patient_case].permit(:system_id, :house, :entry_date, :exit_date, :leave_days,
+                                            :adm, :sep, :los, :sex, :birth_date, :age, :adm_weight,
+                                            :hmv, :pdx, :age_mode, :age_mode_decoy,
+                                            diagnoses: [], procedures: [:c, :l, :d])
+  end
 
   def group(patient_case)
     begin
