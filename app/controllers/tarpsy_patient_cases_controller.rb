@@ -31,7 +31,10 @@ class TarpsyPatientCasesController < ApplicationController
   def group(patient_case)
     begin
       start = Time.now
-      pc = patient_case.to_java
+      @pc = patient_case.to_java
+      grouper = patient_case.system.grouper
+      grouper.group(@pc)
+      @result = @pc.getGrouperResult()
       Rails.logger.debug("Grouped patient case in #{Time.now - start}")
     rescue Exception => e
       flash[:error] = e.message

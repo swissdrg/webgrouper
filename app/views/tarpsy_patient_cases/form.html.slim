@@ -6,21 +6,26 @@
 
 == simple_form_for @tarpsy_patient_case, url: tarpsy_patient_cases_path,
                    defaults: {placeholder: false, hint: false} do |f|
+  fieldset#system
+    legend = t('fieldsets.system')
+    = f.association :system, label_method: :description, value_method: :system_id, include_blank: false
+    = label_tag :diagnoses_catalog
+    = text_field_tag :diagnoses_catalog, @tarpsy_patient_case.system.icd_version, disabled: true
   .on-row
     fieldset#stay.left
       legend = t("fieldsets.stay")
-      == f.input :entry_date,
+      = f.input :entry_date,
                  :input_html => {:title => t("simple_form.hints.webgrouper_patient_case.date"), :class => "date_picker calc_los"}
-      == f.input :exit_date,
+      = f.input :exit_date,
                  :input_html => {:title => t("simple_form.hints.webgrouper_patient_case.date"), :class => "date_picker calc_los"}
-      == f.input :leave_days,
+      = f.input :leave_days,
                  :input_html => {:class => "calc_los numeric"}
-      == f.input :los,
+      = f.input :los,
                  :input_html => {:class => "numeric"}
   fieldset#drg-proc
     legend= t("fieldsets.diagnoses_procedures")
     #diagnoses
-      == f.input :pdx,
+      = f.input :pdx,
                  :url => autocomplete_icd_code_path(:version => @tarpsy_patient_case.system.icd_version),
                  :as => :autocomplete
 
@@ -40,3 +45,5 @@
                  :class => "button negative",
                  :method => :get
       = f.submit :class => "button positive"
+- if @result
+  = @result.inspect
