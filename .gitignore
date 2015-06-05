@@ -77,5 +77,6 @@ public/assets
 # torquebox deployment
 *.knob
 /lib/grouperspecs
+/lib/tarpsy
 # ignore testfiles:
 /features/*.csv

@@ -1,5 +1,5 @@
 class AssessmentItem
-  VALID_VALUES = [0, 1, 2, 3, 4, 5, 9]
+  VALID_VALUES = [0, 1, 2, 3, 4, 9]
   include Mongoid::Document
 
   embedded_in :assessment
