@@ -17,4 +17,12 @@ class Assessment
     c = assessment_items.size
     (12 - c).times { assessment_items.build }
   end
+
+  java_import org.swissdrg.grouper.tarpsy.HoNOSAssessment
+  def to_java
+    ha = HoNOSAssessment.new
+    ha.date = date.strftime(TarpsyPatientCase::GROUPER_DATE_FORMAT)
+    assessment_items.each_with_index {|item, idx| ha.setItem(idx, item.value)}
+    ha
+  end
 end

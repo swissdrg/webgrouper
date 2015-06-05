@@ -20,22 +20,21 @@ class TarpsyPatientCase
 
 
   java_import org.swissdrg.grouper.tarpsy.TARPSYPatientCase
-  java_import org.swissdrg.grouper.tarpsy.HoNOSAssessment
   java_import org.swissdrg.grouper.Diagnosis
+
+  GROUPER_DATE_FORMAT = "%Y%m%d"
 
   def to_java
     pc = TARPSYPatientCase.new
-    pc.entry_date = entry_date
-    pc.exit_date = exit_date
+    pc.entry_date = entry_date.strftime(GROUPER_DATE_FORMAT) unless entry_date.blank?
+    pc.exit_date = exit_date.strftime(GROUPER_DATE_FORMAT) unless exit_date.blank?
     pc.pdx = Diagnosis.new(pdx)
 
     # Turn each assessment hash into an assessment object and add it to pc.
     assessments.each do |a|
-      ha = HoNOSAssessment.new
-      ha.date = a['date']
-      12.times { |i| ha.item(i, a[i.to_s]) }
-      pc.add_assessment(ha)
+      pc.add_assessment(a.to_java)
     end
+    pc
   end
 
   private
