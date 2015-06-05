@@ -7,6 +7,7 @@ class TarpsyPatientCasesController < ApplicationController
   
   def new
     @tarpsy_patient_case = TarpsyPatientCase.new
+    @tarpsy_patient_case.assessments.build
     render 'form'
   end
 
@@ -15,6 +16,7 @@ class TarpsyPatientCasesController < ApplicationController
     if @tarpsy_patient_case.errors.empty?
       group(@tarpsy_patient_case)
     end
+    @tarpsy_patient_case.assessments.build
     render 'form'
   end
 
@@ -22,12 +24,14 @@ class TarpsyPatientCasesController < ApplicationController
 
   def tarpsy_patient_case_params
     params[:tarpsy_patient_case].permit(:system_id, :entry_date, :exit_date, :leave_days,
-                                        :los, :pdx, assessments: [:date] + 12.times.map(&:to_s))
+                                        :los, :pdx, assessments_attributes: [:date,
+                                                                             assessment_items_attributes: [:value]])
   end
 
   def group(patient_case)
     begin
       start = Time.now
+      pc = patient_case.to_java
       Rails.logger.debug("Grouped patient case in #{Time.now - start}")
     rescue Exception => e
       flash[:error] = e.message

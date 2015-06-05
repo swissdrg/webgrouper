@@ -2,7 +2,7 @@
   == javascript_include_tag 'https://www.google.com/jsapi'
   == javascript_include_tag 'webgrouper'
 
-== render "shared/error_messages", :patient_case => @tarpsy_patient_case
+== render "shared/error_messages", :errors => @tarpsy_patient_case.errors
 
 == simple_form_for @tarpsy_patient_case, url: tarpsy_patient_cases_path,
                    defaults: {placeholder: false, hint: false} do |f|
@@ -26,25 +26,17 @@
 
   fieldset#assessments
     legend = t('fieldsets.assessments')
-    - necessary_rows = @tarpsy_patient_case.assessments.size + 1
-    - necessary_rows.times do |row|
-      - assessment_hash = @tarpsy_patient_case.assessments[row] || {}
+    = f.simple_fields_for :assessments do |a|
+      == render_assessment_errors(a.object)
       .sameline.assessment
-        == label_tag :assessment
-        == text_field_tag 'tarpsy_patient_case[assessments][][date]',
-                          assessment_hash['date'],
-                          :class => 'small_field date_picker',
-                          :id => "tarpsy_patient_case_procedures_#{row}_date"
-        - 12.times do |item|
-          .assessment-item
-            == select_tag "tarpsy_patient_case[assessments][][#{item}]",
-                          options_for_select(%w(0 1 2 3 4 9), assessment_hash[item.to_s]),
-                          include_blank: true,
-                          id: "tarpsy_patient_case_procedures_#{row}_#{item}"
+        = a.input :date, error: false, input_html: { class: 'date_picker small_field' }
+        .assessment-item
+          = a.simple_fields_for :assessment_items do |i|
+            = i.input :value, label: false, :error => false, collection: AssessmentItem::VALID_VALUES
   .buttons
     .right
-      == link_to t("helpers.submit.webgrouper_patient_case.clear_form"),
+      = link_to t("helpers.submit.webgrouper_patient_case.clear_form"),
                  tarpsy_patient_cases_path,
                  :class => "button negative",
                  :method => :get
-      == f.submit :class => "button positive"
+      = f.submit :class => "button positive"

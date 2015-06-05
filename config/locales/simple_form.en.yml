@@ -23,6 +23,7 @@ en:
         file: 'File:'
         single_group: 'Test individual case for format:'
       defaults:
+        assessments: 'Assessments:'
         active_grouper: 'Active Grouper:'
         adm: 'Admission mode:'
         adm_weight: 'Admission weight:'

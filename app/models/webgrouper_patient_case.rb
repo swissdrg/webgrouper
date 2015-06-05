@@ -120,7 +120,6 @@ class WebgrouperPatientCase
 
   java_import org.swissdrg.grouper.PatientCase
   java_import org.swissdrg.grouper.Diagnosis
-  java_import org.swissdrg.grouper.Procedure
 
   GROUPER_DATE_FORMAT = "%Y%m%d"
 
