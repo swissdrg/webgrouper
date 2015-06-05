@@ -1,7 +1,7 @@
 #about
   - body =  "\n\n ---------------------------------------------- \n" + "Please insert your inquery above this line \n" 
   - if @result
-    - body += current_case_url
+    - body += parse_url_for(@webgrouper_patient_case || @tarpsy_patient_case)
   - else
     - body += request.url
   = mail_to "webgrouper@swissdrg.com", "Contact", :encode => "javascript", :body => body

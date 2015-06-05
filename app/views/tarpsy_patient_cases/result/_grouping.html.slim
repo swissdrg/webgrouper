@@ -1,0 +1,39 @@
+fieldset#grouping.result.left
+  legend = t "result.grouping.legend"
+  table
+    tbody
+      tr
+        th PCG
+        td
+          = @result.pcg
+          = @result.pcg_index
+        td PCG text?
+      tr
+        th Message
+        td = @result.message
+        td
+fieldset#phases.result
+  legend = 'TODO'
+  table
+    tbody
+      tr
+        th
+        th PCG
+        th level
+        th los_prediction
+        th cost_weight_per_day
+        th los
+        th lump_sum
+        th total_cost_weight
+      - @result.get_number_of_phases.times do |idx|
+        - phase = @result.phase(idx)
+        tr
+          th
+            | Phase #{idx}
+          td = phase.pcg
+          td = phase.level
+          td = phase.los_prediction
+          td = phase.cost_weight_per_day
+          td = phase.los
+          td = phase.lump_sum
+          td = phase.total_cost_weight

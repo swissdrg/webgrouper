@@ -10,8 +10,8 @@ module WebgrouperPatientCasesHelper
     end
   end
 
-  def current_case_url
-    parse_url(:pc => {:string => @webgrouper_patient_case.to_url_string})
+  def parse_url_for(patient_case)
+    parse_url(:pc => {:string => patient_case.to_url_string})
   end
 
   java_import org.swissdrg.grouper.GrouperResult
