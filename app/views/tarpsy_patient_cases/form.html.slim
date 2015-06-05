@@ -31,12 +31,12 @@
 
   fieldset#assessments
     legend = t('fieldsets.assessments')
-    = f.simple_fields_for :assessments do |a|
+    = f.simple_fields_for :assessments, {include_id: false} do |a|
       == render_assessment_errors(a.object)
       .sameline.assessment
         = a.input :date, error: false, input_html: { class: 'date_picker small_field' }
         .assessment-item
-          = a.simple_fields_for :assessment_items do |i|
+          = a.simple_fields_for :assessment_items, {include_id: false} do |i|
             = i.input :value, label: false, :error => false, collection: AssessmentItem::VALID_VALUES
   .buttons
     .right
