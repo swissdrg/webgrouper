@@ -35,6 +35,7 @@ class TarpsyPatientCasesController < ApplicationController
       grouper = patient_case.system.grouper
       grouper.group(@pc)
       @result = @pc.getTarpsyGrouperResult()
+      @los_chart = TarpsyDataTable.new(@result).make_chart
       Rails.logger.debug("Grouped patient case in #{Time.now - start}")
     rescue Exception => e
       flash[:error] = e.message

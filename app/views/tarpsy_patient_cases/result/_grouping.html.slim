@@ -7,11 +7,13 @@ fieldset#grouping.result.left
         td
           = @result.pcg
           = @result.pcg_index
-        td PCG text?
       tr
-        th Message
-        td = @result.message
-        td
+        th Description
+        td Some description for PCG...
+fieldset#los-chart.result.right
+  legend Chart
+  #los_chart
+  = render_chart(@los_chart, 'los_chart')
 fieldset#phases.result
   legend = 'TODO'
   table
