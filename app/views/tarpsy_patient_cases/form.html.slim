@@ -46,4 +46,8 @@
                  :method => :get
       = f.submit :class => "button positive"
 - if @result
-  = render 'tarpsy_patient_cases/result/grouping'
+  - if @result.message
+    .errorflash
+      = simple_format @result.message
+  - else
+    = render 'tarpsy_patient_cases/result/grouping'

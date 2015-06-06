@@ -16,7 +16,11 @@ class TarpsyPatientCase
   after_initialize :set_defaults
 
   validates_presence_of :pdx, :entry_date
+  validates_date :entry_date, on_or_before: :today
+  validates_date :exit_date, on_or_after: :entry_date,
+                             on_or_before: :today
 
+  validates :assessments, assessments: true
   java_import org.swissdrg.grouper.tarpsy.TARPSYPatientCase
   java_import org.swissdrg.grouper.Diagnosis
 
