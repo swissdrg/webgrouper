@@ -38,9 +38,12 @@ class TarpsyPatientCasesController < ApplicationController
       @los_chart = TarpsyDataTable.new(@result).make_chart
       Rails.logger.debug("Grouped patient case in #{Time.now - start}")
     rescue Exception => e
-      flash[:error] = e.message
       if Rails.env == 'development'
         raise e
+      else
+        flash[:error] = e.message
+        Rails.logger.error(e.message)
+        Rails.logger.error(e.backtrace.join("\n"))
       end
     end
   end
