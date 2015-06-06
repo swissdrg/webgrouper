@@ -20,7 +20,7 @@ class TarpsyPatientCase
   validates_date :exit_date, on_or_after: :entry_date,
                              on_or_before: :today
 
-  validates :assessments, assessments: true
+  validates :assessments, assessments: true, unless: lambda { entry_date.blank? }
   java_import org.swissdrg.grouper.tarpsy.TARPSYPatientCase
   java_import org.swissdrg.grouper.Diagnosis
 
