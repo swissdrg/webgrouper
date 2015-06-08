@@ -2,33 +2,34 @@ class TarpsyDataTable < GoogleVisualr::DataTable
 
   def initialize(tarpsy_result)
     super()
-    new_columns [{:type => 'number'}, # los
-                 {:type => 'number'} # cost weight
+    new_columns [{type: 'number', label: I18n.t('result.length-of-stay.length-of-stay')}, # los
+                 {type: 'number', label: I18n.t('result.cost-weight.legend') }, # cost weight
+                 {type: 'string', role: 'annotation'}
                 ]
     rows = []
-    rows.push [0, 0]
+    # Goes always through zero
+    rows.push [0, 0, nil]
+    # The effective cost weight on the effective length of stay
+    rows.push [tarpsy_result.length_of_stay, tarpsy_result.effective_cost_weight,
+               I18n.t('result.length-of-stay.length-of-stay-short')]
+    # Phase 0
     phase_0 = tarpsy_result.phase(0)
-    rows.push [7, phase_0.total_cost_weight]
+    rows.push [7, phase_0.total_cost_weight, nil]
     phase_1 = tarpsy_result.phase(1)
-    if phase_1.nil?
-      # TODO
-    else
-      rows.push [7, phase_0.total_cost_weight + phase_1.lump_sum]
+    # Phase 1, if available
+    unless phase_1.nil?
+      rows.push [7, phase_0.total_cost_weight + phase_1.lump_sum, nil]
       phase_2 = tarpsy_result.phase(2)
-      if phase_2.nil?
-        # TODO: Double check how this should be handled.
-        los_shown = [7, tarpsy_result.length_of_stay].max + 10
-        cw_shown = phase_1.lump_sum + (los_shown - 7) * phase_1.cost_weight_per_day
-        rows.push [los_shown, cw_shown]
-      else
+      # Phase 2, if available
+      unless phase_2.nil?
         total = phase_1.total_cost_weight + phase_2.total_cost_weight
-        rows.push [60, total]
+        rows.push [60, total, nil]
         last_los_shown = [60, tarpsy_result.length_of_stay].max + 10
         cw_last_los_shown = total + (last_los_shown - 60)*phase_2.cost_weight_per_day
-        rows.push [last_los_shown, cw_last_los_shown]
+        rows.push [last_los_shown, cw_last_los_shown, nil]
       end
     end
-    add_rows(rows)
+    add_rows(rows.sort_by!(&:first))
   end
 
   def make_chart
