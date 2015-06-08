@@ -34,7 +34,8 @@ class WebgrouperPatientCase
   embeds_many :icds
   embeds_many :chops
   belongs_to :drg, primary_key: :code, foreign_key: :drg_code
-  attr_accessor :age_mode, :age_mode_decoy, :id
+  attr_accessor :age_mode, :age_mode_decoy
+  attr_accessor :diagnoses_errors, :procedures_errors
 
   # The default swissdrg format with additional data in the id-field,
   # split by underscore.
@@ -184,6 +185,8 @@ class WebgrouperPatientCase
     self.system_id ||= DEFAULT_SYSTEM
     self.diagnoses.reject! &:blank?
     self.procedures.reject! {|p| p.values.all? &:blank? }
+    self.diagnoses_errors = []
+    self.procedures_errors = []
   end
 
 end

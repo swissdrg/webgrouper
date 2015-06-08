@@ -5,7 +5,7 @@
     = row > 0 ? content_tag(:label, '') : ''
     .sameline
       - 5.times do
-        %span.field
+        %span.field{class: ('field_with_errors' if @webgrouper_patient_case.diagnoses_errors[count])}
           = autocomplete_field_tag "webgrouper_patient_case[diagnoses][]",
                             @webgrouper_patient_case.diagnoses[count],
                             autocomplete_icd_code_path(version: @webgrouper_patient_case.system.icd_version),

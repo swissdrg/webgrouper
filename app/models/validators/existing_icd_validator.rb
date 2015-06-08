@@ -10,8 +10,13 @@ class ExistingIcdValidator < ActiveModel::EachValidator
       else
         value.each_with_index do |v, i|
           icd = validate_diagnoses(record, attribute, v, i + 1)
-          # Set diagnosis to pretty code if exists.
-          record.send(attribute).send("[]=", i, icd.code) unless icd.nil?
+          if icd.nil?
+            # Remember error for later highlighting
+            record.send("#{attribute}_errors").send("[]=", i, true)
+          else
+            # Set diagnosis to pretty code if exists.
+            record.send(attribute).send("[]=", i, icd.code) unless icd.nil?
+          end
         end
       end
     end

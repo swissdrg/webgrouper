@@ -1,18 +1,6 @@
 /** This file contains all JS functions required for adding and removing new fields for both secondary diagnoses and procedures
 */
-
 $(document).ready(function () {
-	if ($(".errorflash").is(":visible")) {
-		var kinds = ["diagnoses", "procedures"]
-		for (var i=0; i < kinds.length; i++) {
-			var kind = kinds[i];
-			$("#"+kind+" > .sameline > ."+kind+"_row:visible:last :input*").each(function () {
-				if ($(this).val() != "" && $(".errorflash > ul >li:contains("+$(this).val()+")").length > 0) {
-					$(this).css("background-color", "#FBE3E4");
-				}
-			});
-		}
-	}
     initialize_buttons();
 });
 
@@ -55,7 +43,7 @@ function append_row(rows) {
     // Remove unused autocomplete stuff, buttons
     $(new_row).find('.ui-helper-hidden-accessible').remove();
     $(new_row).find('.dynamic_field_buttons').remove();
-
+    $(new_row).find('.field_with_errors').removeClass('field_with_errors');
     // Update ids and delete values, titles.
     $(new_row).find('input, select').each(function () {
         var e = $(this);

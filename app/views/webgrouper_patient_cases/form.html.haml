@@ -78,7 +78,8 @@
   .buttons 
     .right
       - unless @result.nil?
-        = link_to t('helpers.submit.webgrouper_patient_case.save_case_as_bookmark'), current_case_url,
+        = link_to t('helpers.submit.webgrouper_patient_case.save_case_as_bookmark'),
+                   parse_url_for(@webgrouper_patient_case),
                    :class => 'button jQueryBookmark',
                    :title => "Webgrouper: #{@webgrouper_patient_case.pdx} #{Drg.get_description_for(@webgrouper_patient_case.system_id, @result.drg)}"
         = link_to image_tag('printer.png') + t('helpers.submit.webgrouper_patient_case.print_result'),
