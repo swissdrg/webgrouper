@@ -36,9 +36,30 @@ function addDatePicker(id) {
                 showOn: "both",
                 buttonImage: "<%= asset_data_uri 'cal.gif' %>",
                 buttonText: I18n.t("simple_form.hints.webgrouper_patient_case.pick_date"),
-                buttonImageOnly: true
+                buttonImageOnly: true,
+                onSelect: function () { this.focus(); }
             });
     // Instantiate the datepicker.
     $("#" + id).datepicker(datepicker_options);
 }
 
+
+/**
+ * Disables or enables the input field for length of stay.
+ * @param boolean doDisable
+ */
+function disableLosInput(doDisable) {
+    var tooltip = I18n.t("simple_form.hints.webgrouper_patient_case.disabled_los");
+    var $los = $("input[id$='_patient_case_los']")
+    if (doDisable) {
+        $los.prop('readonly', 'readonly');
+        $los.prop('title', tooltip);
+    } else {
+        $los.prop('readonly', false);
+        $los.prop('title', "");
+    }
+}
+
+function parseDate(str) {
+    return moment(str,"DD.MM.YYYY")
+}

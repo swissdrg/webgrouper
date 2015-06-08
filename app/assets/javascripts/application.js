@@ -20,4 +20,6 @@
 //= require jquery.ui.datepicker-fr-CH
 //= require jquery.ui.datepicker-it
 //= require jquery.cookie
+//= require jquery.numeric
+//= require moment
 //= require_tree ./global

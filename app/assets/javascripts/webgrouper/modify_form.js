@@ -87,22 +87,6 @@ function computeAge() {
 }
 
 /**
- * Disables or enables the input field for length of stay.
- * @param boolean doDisable
- */
-function disableLosInput(doDisable) {
-	var tooltip = I18n.t("simple_form.hints.webgrouper_patient_case.disabled_los");
-	var $los = $('#webgrouper_patient_case_los')
-	if (doDisable) {
-		$los.prop('readonly', 'readonly');
-		$los.prop('title', tooltip);
-	} else {
-		$los.prop('readonly', false);
-		$los.prop('title', "");
-	}
-}
-
-/**
  * Disables or enables the input of the two fields concerning age.
  * @param boolean doDisable
  */
@@ -121,10 +105,6 @@ function disableAgeInput(doDisable) {
 		$age_decoy.prop('disabled', false);
 		$age_decoy.prop('title', "");
 	}
-}
-
-function parseDate(str) {
-	return moment(str,"DD.MM.YYYY")
 }
 
 function mapZeroToOne(value) {
