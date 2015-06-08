@@ -14,6 +14,14 @@ $(document).on("change focus blur", ".calc_los", computeTarpsyLos);
 function initializeForm() {
     $(".numeric").numeric({decimal: false, negative: false});
     computeTarpsyLos();
+
+    $('#assessments')
+        .on('cocoon:after-insert', function(_, added_task) {
+            added_task.find(".date_picker").each(function() {
+                addDatePicker(this.id);
+            });
+    })
+
 }
 
 $(document).on("change", "#tarpsy_patient_case_system_id", function () {

@@ -31,13 +31,11 @@
 
   fieldset#assessments
     legend = t('fieldsets.assessments')
-    = f.simple_fields_for :assessments, {include_id: false} do |a|
-      == render_assessment_errors(a.object)
-      .sameline.assessment
-        = a.input :date, error: false, input_html: { class: 'date_picker small_field' }
-        .assessment-item
-          = a.simple_fields_for :assessment_items, {include_id: false} do |i|
-            = i.input :value, label: false, :error => false, collection: AssessmentItem::VALID_VALUES
+    = link_to_add_association image_tag('bullet_toggle_plus.png', class: 'right'), f, :assessments,
+    'data-association-insertion-node' => '#new_assessment_location'
+    = f.simple_fields_for :assessments, {include_id: false} do |assessment|
+      = render 'assessment_fields', :f => assessment
+    #new_assessment_location
   .buttons
     .right
       = link_to t("helpers.submit.webgrouper_patient_case.clear_form"),

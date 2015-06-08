@@ -37,6 +37,8 @@ gem "slim-rails"
 
 # Prettier forms. Similar to formtastic, but lightweight.
 gem 'simple_form'
+# For easier building nested forms.
+gem 'cocoon'
 
 # Complete validation of dates, times and datetimes for Rails 3.x and ActiveModel.
 gem 'validates_timeliness'

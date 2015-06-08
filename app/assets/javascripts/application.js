@@ -22,4 +22,5 @@
 //= require jquery.cookie
 //= require jquery.numeric
 //= require moment
+//= require cocoon
 //= require_tree ./global
