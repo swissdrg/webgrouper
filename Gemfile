@@ -90,3 +90,5 @@ end
 
 # For caching
 gem 'dalli'
+# For minifying css
+gem 'yui-compressor'

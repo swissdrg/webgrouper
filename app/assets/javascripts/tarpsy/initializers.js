@@ -20,8 +20,7 @@ function initializeForm() {
             added_task.find(".date_picker").each(function() {
                 addDatePicker(this.id);
             });
-    })
-
+    });
 }
 
 $(document).on("change", "#tarpsy_patient_case_system_id", function () {
