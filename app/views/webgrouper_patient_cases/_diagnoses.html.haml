@@ -9,7 +9,7 @@
           = autocomplete_field_tag "webgrouper_patient_case[diagnoses][]",
                             @webgrouper_patient_case.diagnoses[count],
                             autocomplete_icd_code_path(version: @webgrouper_patient_case.system.icd_version),
-                            class: 'autocomplete small_field diagnosis',
+                            class: 'autocomplete small_field diagnosis inc_clone_id',
                             id: "webgrouper_patient_case_diagnoses_#{count}"
           - count += 1
         .spacer

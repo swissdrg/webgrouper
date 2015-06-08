@@ -1,20 +1,6 @@
-/** This file contains all JS functions required for adding and removing new fields for both secondary diagnoses and procedures
-*/
-$(document).ready(function () {
-    initialize_buttons();
-});
-
 /**
- * Initializes add/remove buttons for diagnoses and procedures.
+ * This file contains all JS functions required for adding and removing new fields for both secondary diagnoses and procedures
  */
-function initialize_buttons() {
-    $("img.add_diagnoses_row").on("click", append_diagnoses_row);
-    $("img.remove_diagnoses_row").on("click", remove_last_diagnoses_row);
-
-    $("img.add_procedures_row").on("click", append_procedures_row);
-    $("img.remove_procedures_row").on("click", remove_last_procedures_row);
-}
-
 function remove_last_row(rows) {
     if (rows.length > 1) {
         rows.last().remove();
@@ -50,7 +36,7 @@ function append_row(rows) {
         var old_id = e.attr('id')
         // Diagnoses fields all need an increment, but procedures consist of 3 fields and only need an increment
         // if a code field is encountered.
-        if (/diagnoses/i.test(old_id) || /procedures_.*_c/.test(old_id)) {
+        if (e.hasClass('inc_clone_id')) {
             last_id_number++;
         }
         var new_id = old_id.replace(/\d+/i, last_id_number);

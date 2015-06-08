@@ -8,6 +8,7 @@ $(document).ready(function() {
 	initializeAutocomplete();
 	goToResult();
 	addZebraStripes();
+    initialize_buttons();
 
     /*
      * Turns links with class jQueryBookmark into bookmarking-links
@@ -64,6 +65,17 @@ function initializeForm() {
 	$(".numeric").numeric({ decimal: false, negative: false });
 	computeAge();
 	computeLos();
+}
+
+/**
+ * Initializes add/remove buttons for diagnoses and procedures.
+ */
+function initialize_buttons() {
+    $("img.add_diagnoses_row").on("click", append_diagnoses_row);
+    $("img.remove_diagnoses_row").on("click", remove_last_diagnoses_row);
+
+    $("img.add_procedures_row").on("click", append_procedures_row);
+    $("img.remove_procedures_row").on("click", remove_last_procedures_row);
 }
 
 /**
