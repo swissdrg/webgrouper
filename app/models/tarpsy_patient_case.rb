@@ -10,6 +10,7 @@ class TarpsyPatientCase
   field :los, type: Integer, default: 10
   field :pdx, type: String
   embeds_many :assessments
+  embeds_many :icds
   belongs_to :system, class_name: 'TarpsySystem', primary_key: :system_id
 
   accepts_nested_attributes_for :assessments
@@ -19,6 +20,7 @@ class TarpsyPatientCase
   validates_date :entry_date, on_or_before: :today
   validates_date :exit_date, on_or_after: :entry_date,
                              on_or_before: :today
+  validates :pdx, existing_icd: true
   validates :assessments, assessments: true, unless: lambda { entry_date.blank? || assessments.blank? }
   java_import org.swissdrg.grouper.tarpsy.TARPSYPatientCase
   java_import org.swissdrg.grouper.Diagnosis
