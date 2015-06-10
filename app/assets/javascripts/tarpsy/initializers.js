@@ -16,11 +16,21 @@ function initializeForm() {
     computeTarpsyLos();
 
     $('#assessments')
-        .on('cocoon:after-insert', function(_, added_task) {
-            added_task.find(".date_picker").each(function() {
+        .on('cocoon:after-insert', function (_, added_item) {
+            var input_selector = "input[id^=tarpsy_patient_case_assessments_attributes_][id$=_date]";
+            var previous_date = parseDate(added_item.prev().find(input_selector).val());
+            if (previous_date.isValid()) {
+                var new_estimated_date = previous_date.add(14, 'days');
+                added_item.find(input_selector).val(formatDate(new_estimated_date));
+            }
+
+            added_item.find(".date_picker").each(function () {
                 addDatePicker(this.id);
             });
-    });
+        }).on('cocoon:after-remove', function (_, removed_item) {
+            // Fully remove removed items. Default behavior would be to send them to backend with _destroy attribute.
+            removed_item.remove();
+        });
 }
 
 $(document).on("change", "#tarpsy_patient_case_system_id", function () {
@@ -30,6 +40,7 @@ $(document).on("change", "#tarpsy_patient_case_system_id", function () {
 function computeTarpsyLos() {
     var entry = parseDate($('#tarpsy_patient_case_entry_date').val());
     var exit = parseDate($('#tarpsy_patient_case_exit_date').val());
+    // TODO: possibly use leave_days.
     var leave_days = $('#tarpsy_patient_case_leave_days').val();
     var diff = exit.diff(entry, 'days') + 1;
 

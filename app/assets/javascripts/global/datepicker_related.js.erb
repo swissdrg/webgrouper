@@ -60,6 +60,13 @@ function disableLosInput(doDisable) {
     }
 }
 
+var DATE_FORMAT = "DD.MM.YYYY";
 function parseDate(str) {
-    return moment(str,"DD.MM.YYYY")
+    return moment(str, DATE_FORMAT)
 }
+
+function formatDate(date) {
+    return date.format(DATE_FORMAT)
+}
+
+

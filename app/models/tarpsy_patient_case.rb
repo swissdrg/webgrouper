@@ -15,12 +15,11 @@ class TarpsyPatientCase
   accepts_nested_attributes_for :assessments
   after_initialize :set_defaults
 
-  validates_presence_of :pdx, :entry_date
+  validates_presence_of :pdx, :entry_date, :assessments
   validates_date :entry_date, on_or_before: :today
   validates_date :exit_date, on_or_after: :entry_date,
                              on_or_before: :today
-
-  validates :assessments, assessments: true, unless: lambda { entry_date.blank? }
+  validates :assessments, assessments: true, unless: lambda { entry_date.blank? || assessments.blank? }
   java_import org.swissdrg.grouper.tarpsy.TARPSYPatientCase
   java_import org.swissdrg.grouper.Diagnosis
 
@@ -50,7 +49,8 @@ class TarpsyPatientCase
 
   def set_defaults
     self.system_id ||= TARPSY_DEFAULT_SYSTEM
-    self.assessments.reject! { |a| a.date.blank? and a.assessment_items.all? &:blank? }.sort_by! &:date
+    self.assessments.reject! { |a| a.date.blank? and a.assessment_items.all? &:blank? }
+    self.assessments.sort_by! &:date unless assessments.blank?
   end
 
 end
