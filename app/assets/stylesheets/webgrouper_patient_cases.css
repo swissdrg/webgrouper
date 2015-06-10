@@ -80,11 +80,6 @@ fieldset#grouping {
 	border-width: 3px;
 }
 
-fieldset#drg-proc, fieldset#system, fieldset#result-procedures, fieldset#result-diagnoses {
-	display:block;
-	clear: both;
-}
-
 fieldset legend {
 	margin: 0 1.5em;
 	padding: 8px;

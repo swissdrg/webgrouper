@@ -22,14 +22,14 @@
                  :input_html => {:class => "calc_los numeric"}
       = f.input :los,
                  :input_html => {:class => "numeric"}
-  fieldset#drg-proc
-    legend= t("fieldsets.diagnoses_procedures")
-    #diagnoses
-      = f.input :pdx,
-                 :url => autocomplete_icd_code_path(:version => @tarpsy_patient_case.system.icd_version),
-                 :as => :autocomplete
+    fieldset#drg-proc.right
+      legend= t("fieldsets.diagnoses_procedures")
+      #diagnoses
+        = f.input :pdx,
+                   :url => autocomplete_icd_code_path(:version => @tarpsy_patient_case.system.icd_version),
+                   :as => :autocomplete
 
-  fieldset#assessments
+  fieldset#assessments.clear
     legend = t('fieldsets.assessments')
     = link_to_add_association image_tag('bullet_toggle_plus.png', class: 'right'), f, :assessments,
     'data-association-insertion-node' => '#new_assessment_location'
