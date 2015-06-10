@@ -32,6 +32,22 @@ RSpec.describe TarpsyPatientCase, type: :model do
       expect(patient_case).to_not be_valid
       expect(patient_case.errors[:pdx]).to_not be_empty
     end
+
+    it 'should fail without entry_date' do
+      patient_case = TarpsyPatientCase.new(@attr.merge(entry_date: ''))
+      expect(patient_case).to_not be_valid
+      expect(patient_case.errors[:entry_date]).to_not be_empty
+    end
+
+    it 'should fail if an assessment item has an invalid value' do
+      items = create_valid_assessment_items
+      items['0'][:value] = 7
+      assessments = { assessments_attributes: { '0' => {date: '02.01.2015', assessment_items_attributes: items }}}
+      patient_case = TarpsyPatientCase.new(@attr.merge(assessments))
+      expect(patient_case).to_not be_valid
+      expect(patient_case.errors[:assessments]).to_not be_empty
+    end
+    
   end
 
 end
