@@ -4,7 +4,7 @@ class AssessmentItem
 
   embedded_in :assessment
 
-  field :value, type: Integer
+  field :value, type: Integer, default: 9
 
   validates_presence_of :value
   # Only apply this validation if value is not nil (so only one error will show up).

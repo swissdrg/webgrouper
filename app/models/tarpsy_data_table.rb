@@ -18,7 +18,7 @@ class TarpsyDataTable < GoogleVisualr::DataTable
     phase_1 = tarpsy_result.phase(1)
     # Phase 1, if available
     unless phase_1.nil?
-      rows.push [7, phase_0.total_cost_weight + phase_1.lump_sum, nil]
+      rows.push [8, phase_0.total_cost_weight + phase_1.lump_sum, nil]
       phase_2 = tarpsy_result.phase(2)
       # Phase 2, if available
       unless phase_2.nil?

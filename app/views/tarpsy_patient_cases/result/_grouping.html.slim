@@ -31,11 +31,11 @@ fieldset#phases.result
         - phase = @result.phase(idx)
         tr
           th
-            | Phase #{idx}
+            | Phase #{idx + 1}
           td = phase.pcg
           td = phase.level
           td = phase.los_prediction
-          td = phase.cost_weight_per_day
+          td = phase.cost_weight_per_day.round(2)
           td = phase.los
           td = phase.lump_sum
-          td = phase.total_cost_weight
+          td = phase.total_cost_weight.round(2)

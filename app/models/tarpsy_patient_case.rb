@@ -51,8 +51,8 @@ class TarpsyPatientCase
 
   def set_defaults
     self.system_id ||= TARPSY_DEFAULT_SYSTEM
-    self.assessments.reject! { |a| a.date.blank? and a.assessment_items.all? &:blank? }
-    self.assessments.sort_by! &:date unless assessments.blank?
+    self.assessments.reject! { |a| a.date.blank? and a.assessment_items.all? { |i| i.blank? || i.value == 9 } }
+    self.assessments.sort! {|a,b| a.date && b.date ? a.date <=> b.date : a.date ? -1 : 1 }
   end
 
 end

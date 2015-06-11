@@ -64,6 +64,19 @@ de:
         pdx: 'Hauptdiagnose:'
         diagnoses: 'Nebendiagnosen:'
         procedures: 'Prozeduren:'
+      assessment:
+        "0": H1 Aggressives Verhalten
+        "1": H2 Selbstverletzung
+        "2": H3 Problematischer Alkohol- oder Drogenkonsum
+        "3": H4 Kognitive Probleme
+        "4": H5 Körperliche Erkrankung/Behinderung
+        "5": H6 Wahnvorstellungen/Halluzinationen
+        "6": H7 Gedrückte Stimmung
+        "7": H8 Andere (Freitext)
+        "8": H9 Probleme mit Beziehungen
+        "9": H10 Probleme mit alltäglichen Aktivitäten
+        "10": H11 Probleme mit Wohnbedingungen
+        "11": H12 Probleme mit Beruf und Alltag
       batchgrouper:
         file: 'Datei:'
         single_group: 'Einzelfall um Format zu testen :'
