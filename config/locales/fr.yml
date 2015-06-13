@@ -77,9 +77,9 @@ fr:
     - vendredi
     - samedi
     formats:
-      default: '%d.%m.%Y'
-      long: '%e %B %Y'
-      short: '%e %b'
+      default: ! '%d.%m.%Y'
+      long: ! '%e. %B %Y'
+      short: ! '%e. %b'
     month_names:
     - null
     - janvier

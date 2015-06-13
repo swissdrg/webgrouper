@@ -12,10 +12,8 @@
   .on-row
     %fieldset#stay.left
       %legend= t("fieldsets.stay")
-      = f.input :entry_date, 
-                :input_html => { :title => t("simple_form.hints.webgrouper_patient_case.date"), :class => "date_picker calc_los" }
-      = f.input :exit_date, 
-                :input_html => { :title => t("simple_form.hints.webgrouper_patient_case.date"), :class => "date_picker calc_los" }
+      = f.input :entry_date, as: :date_picker, input_html: { :class => "calc_los" }
+      = f.input :exit_date, as: :date_picker, input_html: { :class => "calc_los" }
       = f.input :leave_days, 
                 :input_html => { :class => "calc_los numeric" }
       = f.input :adm, 
@@ -30,15 +28,14 @@
                 :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.sep.sep#{el}" }
       = f.input :los,
                 :input_html => { :class => "numeric" }
-  
+
     %fieldset#patient-data.right
       %legend= t("fieldsets.patient_data")
       = f.input :sex, 
                 :collection => [:M , :W, :U], 
                 :checked => :U, 
                 :include_blank => false
-      = f.input :birth_date, 
-                :input_html => { :title => t("simple_form.hints.webgrouper_patient_case.date"), :class => "date_picker" }
+      = f.input :birth_date, as: :date_picker
       .sameline
         = f.input :age,
                   :input_html => { :class => "numeric" }
@@ -75,7 +72,7 @@
       %label{:for => 'webgrouper_patient_case_procedures_0_c'}
         = t('simple_form.labels.defaults.procedures')   # hardcoded, since its generated via js
       = render "procedures", :patient_case => @webgrouper_patient_case
-  .buttons 
+  .buttons
     .right
       - unless @result.nil?
         = link_to t('helpers.submit.webgrouper_patient_case.save_case_as_bookmark'),
