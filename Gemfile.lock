@@ -287,7 +287,7 @@ DEPENDENCIES
   haml-rails
   i18n-js
   jquery-rails
-  jquery-ui-rails (~> 4.0)
+  jquery-ui-rails
   json
   launchy
   momentjs-rails
