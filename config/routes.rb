@@ -13,8 +13,11 @@ Webgrouper::Application.routes.draw do
       patch '/' => 'webgrouper_patient_cases#create', on: :collection
     end
     resources :tarpsy_patient_cases, only: [:new, :create] do
-      get '/' => 'tarpsy_patient_cases#new', on: :collection
-      patch '/' => 'tarpsy_patient_cases#create', on: :collection
+      collection do
+        get '/' => 'tarpsy_patient_cases#new'
+        patch '/' => 'tarpsy_patient_cases#create'
+        get 'generate_random' => 'tarpsy_patient_cases#generate_random'
+      end
     end
 
     get 'help' => 'static_pages#help'

@@ -4,7 +4,34 @@ class TarpsyPatientCasesController < ApplicationController
     @link = new_tarpsy_patient_case_path
     render 'static_pages/tos'
   end
-  
+
+  def generate_random
+    @tarpsy_patient_case = TarpsyPatientCase.new
+    # Any icd that starts with F is valid.
+    possible_pdxs = @tarpsy_patient_case.system.icds.where(code: /^F/)
+    @tarpsy_patient_case.pdx = possible_pdxs.skip(rand(possible_pdxs.count)).first.code
+    @tarpsy_patient_case.entry_date = 1.year.ago.to_date
+    @tarpsy_patient_case.exit_date = 1.year.ago.to_date + rand(5..100).days
+    # First assessment has to be within 3 days of entry date.
+    assessment_date = @tarpsy_patient_case.entry_date + rand(3).days
+    # Generate assessments until exit, at maximum 14 days apart of each other.
+    while @tarpsy_patient_case.exit_date > assessment_date
+      a = Assessment.new(date: assessment_date)
+      a.assessment_items.each do |i|
+        # TODO: Make sure at least two items should be > 2
+        # (probabilistically, we're good, since the chance of it happening is pretty low:
+        # (2/5)^12 + (2/5)^11 + (2/5)^10 = 0.00016357785)
+        i.value = rand(5)
+      end
+      @tarpsy_patient_case.assessments << a
+      assessment_date += rand(10..14).days
+    end
+    if @tarpsy_patient_case.save
+      group(@tarpsy_patient_case)
+    end
+    render 'form'
+  end
+
   def new
     @tarpsy_patient_case = TarpsyPatientCase.new
     @tarpsy_patient_case.assessments.build
