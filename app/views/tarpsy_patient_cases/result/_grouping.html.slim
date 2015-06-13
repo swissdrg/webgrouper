@@ -7,9 +7,12 @@ fieldset#grouping.result.left
         td
           = @result.pcg
           = @result.pcg_index
-      tr
-        th Description
         td Some description for PCG...
+      tr
+        th Main diagnosis
+        - pdx = @tarpsy_patient_case.icds[0]
+        td = pdx.code
+        td = pdx.text
 fieldset#los-chart.result.right
   legend Chart
   #los_chart

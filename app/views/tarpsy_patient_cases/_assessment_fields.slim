@@ -4,6 +4,6 @@
     = f.input :date, error: false, input_html: {class: 'date_picker small_field inc_clone_id'}
     = f.simple_fields_for :assessment_items, {include_id: false} do |i|
       .assessment-item
-        = i.input :value, label: false, error: false, collection: AssessmentItem::VALID_VALUES,
+        = i.input :value, label: false, error: false, collection: AssessmentItem::VALID_VALUES, include_blank: false,
                   input_html: { title: t("simple_form.labels.assessment.#{i.index}") }
     = link_to_remove_association image_tag('bullet_toggle_minus.png'), f
