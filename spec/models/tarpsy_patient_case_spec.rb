@@ -47,7 +47,7 @@ RSpec.describe TarpsyPatientCase, type: :model do
       expect(patient_case).to_not be_valid
       expect(patient_case.errors[:assessments]).to_not be_empty
     end
-    
+
   end
 
 end

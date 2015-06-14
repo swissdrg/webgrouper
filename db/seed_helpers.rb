@@ -5,8 +5,8 @@ module PsqlModel
   def self.included(base)
     config = YAML.load_file('db/pg_config.yml')[Rails.env]
     base.establish_connection(
-        :adapter  => 'jdbcpostgresql',
-        :host     => config['host'],
+        :adapter => 'jdbcpostgresql',
+        :host => config['host'],
         :username => config['user'],
         :password => config['password'],
         :database => config['dbname'],
@@ -59,7 +59,7 @@ module SeedHelpers
   # into localized mongoid entries.
   # In case saving fails, an exception is thrown
   def save_code(model, row, filter=true)
-    row.select!{|k,_| /^(text|code|version)/.match(k)} if filter
+    row.select! { |k, _| /^(text|code|version)/.match(k) } if filter
     trans = fix_i18n(row)
     code = model.new(row)
     code.text_translations = trans if code.fields.include?('text')
