@@ -64,6 +64,8 @@ group :assets do
   gem 'therubyrhino', platforms: :jruby
 
   gem 'uglifier', '>= 1.0.3'
+  # For minifying css
+  gem 'yui-compressor'
 end
 
 
@@ -74,8 +76,7 @@ group :development do
 end
 
 group :test do
-  gem 'test-unit'
-  gem 'spork-rails'
+  gem 'theine'
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
   gem 'rspec-rails'
@@ -83,12 +84,7 @@ group :test do
   gem 'database_cleaner', '< 1.4.0'
   gem 'capybara-webkit', platforms: :ruby
   gem 'launchy'
-  gem 'autotest-standalone'
-  gem 'autotest-fsevent'
-  gem 'autotest-growl'
 end
 
 # For caching
 gem 'dalli'
-# For minifying css
-gem 'yui-compressor'

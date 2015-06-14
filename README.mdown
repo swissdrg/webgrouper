@@ -5,100 +5,41 @@
 This is a new implementation in Ruby on Rails of the swissDRG webgrouper, 
 found at https://webgrouper.swissdrg.org/ . For further information, see [The PSE-Page](http://pym.unibe.ch/pse/wiki/doku.php?id=pse1:home).
 
-## Installation
-
-The easiest way to get Ruby on Rails running is by using rvm, downloadable from https://rvm.beginrescueend.com/
-
-We use jRuby 1.6.7.2, which can be installed by typing
-
-	rvm install jruby-1.6.7.2
-	
-Install the needed gems by running
-
-	bundle install
-	
-in the project folder.
-
-### System components
-
-Assuming you have properly downloaded the swissDRG webgrouper, you have to download also the 
-latest grouper and the appropriate specification files. 
-You can find them here: https://webapps.swissdrg.org/download/
-put the grouper (grouperkernel) into your lib/ and the spec files into your lib/grouperspecs directory.
-Care about missing specification files - you won't be able to group by them
-and get an error, if you chose them in the gui. In production mode the specs folders are different.
-
 ### Configuring the database
 
-The Project Mongo-Migration is used for populating the mongo-db with data. It can be found in the swissDRG private repositories.
+Use the standard `rake db:create` to get started, then make sure that you have a valid configuration for
+a postgresql database seeded with the `classifications-parser` project in `db/pg_config.yml`.
+Then you can run the task `rake db:seed` to fill the database with all classifications necesary.
 
 #### Create indices
 
 So the queries are not dead slow, it is best to create indices with the following command:
 
-    rake db:mongoid:create_indexes RAILS_ENV=production
-
-
-## Run
-
-You can start the project by typing
-	
-	torquebox run
-	torquebox deploy
-
-in the project folder. Be aware, that jruby & the bundle must be installed/active for this.
+    RAILS_ENV=production rake db:mongoid:create_indexes
 
 ## Run tests
 
 You can run our specs by entering the following:
 
-For rspec:
+If you just want to run tests once, it is enough to run rspec by itself
 
-	bundle exec autotest
+	bundle exec rspec spec/
 
-For cucumber:
+If you need to repeatedly run the tests, you are advised to have a rails instance running in the background for testing
+by executing
 
-	bundle exec cucumber -c
-	
-Be aware, that jruby & the gems must be installed/active for this.
+    theine_server
 
-If you, for some reason, don't have the kernel on your machine, most of the cucumber tests will fail.
-You can still run some of them by entering:
-  
-  	bundle exec cucumber -ct @mac
-  	
-Most tests need to be run with the javascript webdriver. This will take some time, 
-because it has to run in an actual webbrowser. You can exclude these tests by running
+The tests can then be executed much faster by executing them on the theine instances via
 
-
-    bundle exec cucumber -ct ~@javascript
-If you want to test the deployed application, change the initial step in the step configuration
-file to point to any server you'd like.
-
-## Deployment
-
-There is a git repository set up on remote that automatically deploys the version that is pushed to it. Use
-
-    git push deploy
-
-In case you changed any assets, you need additionally to precompile these on remote and publish
-your changes by executing
-
-	torquebox deploy --env=production
-
-
-### Hints
-
-The connection to te ruby-gem site can not made with https, you need to change the address in the gemfile to http://...
-It also has to be said that the current configuration doesn't add the folder /lib/grouper_specs automatically. It has to be
-copied manually into the archive after staging.
+    theine rspec spec/
 
 ## Adding a new system
 
-Just add a new entry in the Systems table. You can either do this by hand or use the mongo-migration project 
-found in the closed repositories of SwissDRG. This migrates all data from the internal PostgreSQL database to the mongodb 
-used by the webgrouper. Systems can be set in the corresponding .csv file found in the project.
+Just add a new entry in the Systems table. You can either do this by hand (in the rails console)
+update the file `db/systems.csv` and then use the script `db/seed_systems.rb`.
 
-All files needed for this version (specs, catalgue...) have to be coppied to the specs folder, into a subfolder named after the system_id.
+All files needed for this version (specs, catalgue...) have to be coppied to the specs folder,
+into a subfolder named after the system_id.
 
 In case you want to add a new Kernel, you need to change the initializer found in `config/initializers/load_grouper_kernel.rb`.
