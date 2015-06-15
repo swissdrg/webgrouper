@@ -3,7 +3,7 @@ class TarpsyDataTable < GoogleVisualr::DataTable
   def initialize(tarpsy_result)
     super()
     new_columns [{type: 'number', label: I18n.t('result.length-of-stay.length-of-stay')}, # los
-                 {type: 'number', label: I18n.t('result.cost-weight.legend') }, # cost weight
+                 {type: 'number', label: I18n.t('result.cost-weight.legend')}, # cost weight
                  {type: 'string', role: 'annotation'}
                 ]
     rows = []
@@ -14,19 +14,22 @@ class TarpsyDataTable < GoogleVisualr::DataTable
                I18n.t('result.length-of-stay.length-of-stay-short')]
     # Phase 0
     phase_0 = tarpsy_result.phase(0)
-    rows.push [7, phase_0.total_cost_weight, nil]
+    cw_day_7 = 7 * phase_0.cost_weight_per_day
+    rows.push [7, cw_day_7, nil]
     phase_1 = tarpsy_result.phase(1)
     # Phase 1, if available
     unless phase_1.nil?
-      rows.push [8, phase_0.total_cost_weight + phase_1.lump_sum + phase_1.cost_weight_per_day, nil]
+      # For day 8, we add the lump sum and cost weight for one day
+      cw_day_8 = cw_day_7 + phase_1.lump_sum + phase_1.cost_weight_per_day
+      rows.push [8, cw_day_8, nil]
+      cw_day_60 = cw_day_8 + (60 - 8) * phase_1.cost_weight_per_day
+      rows.push [60, cw_day_60, nil]
       phase_2 = tarpsy_result.phase(2)
       # Phase 2, if available
       unless phase_2.nil?
-        total = phase_1.total_cost_weight + phase_2.total_cost_weight
-        rows.push [60, total, nil]
         last_los_shown = [60, tarpsy_result.length_of_stay].max + 10
-        cw_last_los_shown = total + (last_los_shown - 60)*phase_2.cost_weight_per_day
-        rows.push [last_los_shown, cw_last_los_shown, nil]
+        cw_last_day_shown = cw_day_60 + (last_los_shown - 60)*phase_2.cost_weight_per_day
+        rows.push [last_los_shown, cw_last_day_shown, nil]
       end
     end
     add_rows(rows.sort_by!(&:first))
