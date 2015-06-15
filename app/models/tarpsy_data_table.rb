@@ -32,6 +32,8 @@ class TarpsyDataTable < GoogleVisualr::DataTable
         rows.push [last_los_shown, cw_last_day_shown, nil]
       end
     end
+    # Round every cost weight to two digit precision
+    rows.each{|i| i[1] = i[1].round(2)}
     add_rows(rows.sort_by!(&:first))
   end
 
