@@ -77,14 +77,3 @@ function initialize_buttons() {
     $("img.add_procedures_row").on("click", append_procedures_row);
     $("img.remove_procedures_row").on("click", remove_last_procedures_row);
 }
-
-/**
- * Mainly used for submitting the form in another language
- * @param url
- */
-function submitFormTo(url) {
-    var form = $('form');
-    form.attr('action', url)
-    form.submit()
-}
-
