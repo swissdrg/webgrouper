@@ -1,5 +1,9 @@
 class TarpsyPatientCasesController < ApplicationController
 
+  def index
+    redirect_to action: :new
+  end
+
   def tos
     @link = new_tarpsy_patient_case_path
     render 'static_pages/tos'

@@ -8,13 +8,13 @@ Webgrouper::Application.routes.draw do
   end
 
   scope "/:locale" do
-    resources :webgrouper_patient_cases, only: [:new, :create] do
-      get '/' => 'webgrouper_patient_cases#new', on: :collection
-      patch '/' => 'webgrouper_patient_cases#create', on: :collection
-    end
-    resources :tarpsy_patient_cases, only: [:new, :create] do
+    resources :webgrouper_patient_cases, only: [:index, :new, :create] do
       collection do
-        get '/' => 'tarpsy_patient_cases#new'
+        patch '/' => 'webgrouper_patient_cases#create'
+      end
+    end
+    resources :tarpsy_patient_cases, only: [ :index, :new, :create] do
+      collection do
         patch '/' => 'tarpsy_patient_cases#create'
         get 'generate_random' => 'tarpsy_patient_cases#generate_random'
       end

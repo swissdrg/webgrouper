@@ -19,6 +19,10 @@ class WebgrouperPatientCasesController < ApplicationController
     autocomplete_code(Chop)
   end
 
+  def index
+    redirect_to action: :new
+  end
+
   def tos
     @link = new_webgrouper_patient_case_path
     render 'static_pages/tos'
