@@ -6,7 +6,7 @@ class TarpsySystem
   field :system_id, type: Integer
   field :description, type: String, localize: true
   field :icd_version, type: String
-  field :lump_sum_type, type: String
+  field :per_case_payment_type, type: String
   field :public, type: Boolean
 
   has_many :icds, primary_key: :icd_version, foreign_key: :version
@@ -15,11 +15,11 @@ class TarpsySystem
   index({public: 1 })
 
   java_import org.swissdrg.grouper.tarpsy.kernel.TARPSYPrototypeParser
-  java_import org.swissdrg.grouper.tarpsy.ITARPSYGrouperKernel::LumpSumType
+  java_import org.swissdrg.grouper.tarpsy.ITARPSYGrouperKernel::PerCasePaymentType
 
   def grouper
     Rails.cache.fetch("#{system_id}_tarpsy_grouper", expires_in: 2.days) do
-      lst = LumpSumType.valueOf(self.lump_sum_type)
+      lst = PerCasePaymentType.valueOf(self.per_case_payment_type)
       TARPSYPrototypeParser.new.parse(workspace, lst)
     end
   end

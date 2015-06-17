@@ -20,7 +20,7 @@ class TarpsyDataTable < GoogleVisualr::DataTable
     # Phase 1, if available
     unless phase_1.nil?
       # For day 8, we add the lump sum and cost weight for one day
-      cw_day_8 = cw_day_7 + phase_1.lump_sum + phase_1.cost_weight_per_day
+      cw_day_8 = cw_day_7 + phase_1.per_case_payment + phase_1.cost_weight_per_day
       rows.push [8, cw_day_8, nil]
       cw_day_60 = cw_day_8 + (60 - 8) * phase_1.cost_weight_per_day
       rows.push [60, cw_day_60, nil]
