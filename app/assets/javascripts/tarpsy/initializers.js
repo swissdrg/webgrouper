@@ -28,7 +28,8 @@ function initializeForm() {
                 addDatePicker(this.id);
             });
         }).on('cocoon:after-remove', function (_, removed_item) {
-            // Fully remove removed items. Default behavior would be to send them to backend with _destroy attribute.
+            // Fully remove removed items. Default behavior would be to send them to backend with _destroy attribute
+            // set to true.
             removed_item.remove();
         });
 }
