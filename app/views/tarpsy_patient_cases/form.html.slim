@@ -6,11 +6,7 @@
 
 == simple_form_for @tarpsy_patient_case, url: tarpsy_patient_cases_path,
                    defaults: {placeholder: false, hint: false} do |f|
-  fieldset#system
-    legend = t('fieldsets.system')
-    = f.association :system, label_method: :description, value_method: :system_id, include_blank: false
-    = label_tag :diagnoses_catalog
-    = text_field_tag :diagnoses_catalog, @tarpsy_patient_case.system.icd_version, disabled: true
+  = render 'shared/tarpsy_system', f: f
   .on-row
     fieldset#stay.left
       legend = t("fieldsets.stay")

@@ -2,8 +2,6 @@ class TarpsyPatientCase
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  TARPSY_DEFAULT_SYSTEM = 1
-
   field :entry_date, type: Date
   field :exit_date, type: Date
   field :leave_days, type: Integer, default: 0
@@ -50,7 +48,7 @@ class TarpsyPatientCase
   private
 
   def set_defaults
-    self.system_id ||= TARPSY_DEFAULT_SYSTEM
+    self.system_id ||= TarpsySystem::DEFAULT_SYSTEM_ID
     self.assessments.reject! { |a| a.date.blank? and a.assessment_items.all? { |i| i.blank? || i.value == 9 } }
     self.assessments.sort! {|a,b| a.date && b.date ? a.date <=> b.date : a.date ? -1 : 1 }
   end

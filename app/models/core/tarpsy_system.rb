@@ -34,4 +34,5 @@ class TarpsySystem
     Rails.root.join('lib', 'tarpsy', system_id.to_s)
   end
 
+  DEFAULT_SYSTEM_ID = 1
 end
