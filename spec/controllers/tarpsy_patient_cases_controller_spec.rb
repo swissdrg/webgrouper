@@ -7,7 +7,7 @@ RSpec.describe TarpsyPatientCasesController, type: :controller do
       get :generate_random, locale: :de
       pc = assigns(:tarpsy_patient_case)
       expect(pc).to be_valid
-      expect(pc.assessments.count).to be > 1
+      expect(pc.assessments.count).to be >= 1
     end
 
     it 'should render the form' do

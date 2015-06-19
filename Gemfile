@@ -78,7 +78,7 @@ end
 group :test do
   gem 'theine'
   gem 'cucumber-rails', require: false
-  gem 'selenium-webdriver'
+  gem 'poltergeist'
   gem 'rspec-rails'
   # Version 1.4.0 causes issues: https://github.com/DatabaseCleaner/database_cleaner/issues/323
   gem 'database_cleaner', '< 1.4.0'

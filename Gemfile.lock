@@ -292,13 +292,13 @@ DEPENDENCIES
   mongoid
   newrelic_rpm
   nokogiri (~> 1.6.1.0)
+  poltergeist
   rails
   rails-jquery-autocomplete!
   rspec-rails
   ruby-debug-base
   ruby-debug-ide
   ruby-progressbar
-  selenium-webdriver
   simple_form
   slim
   slim-rails
