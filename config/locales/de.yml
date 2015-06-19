@@ -116,15 +116,15 @@ de:
   tarpsy:
     result:
       diagnosis_group:
-        PSY_1: F0 Demenz
-        PSY_2: F10 Alkohol
-        PSY_3: F11-F19 Drogen
-        PSY_4: F2 Schizophrenie
-        PSY_5: F3-M Manie (F30-F31, exklusive F31.3-F31.5)
-        PSY_6: F3-D Depression (F32-F39, plus F31.3-F31.5)
-        PSY_7: F4 Neurotische- und Belastungsstörungen
-        PSY_8: F5, F7-F9 Körperliche-, Intelligenz- und Entwicklungsstörungen
-        PSY_9: F6 Persönlichkeits- und Verhaltensstörungen
+        PSY_01: F0 Demenz
+        PSY_02: F10 Alkohol
+        PSY_03: F11-F19 Drogen
+        PSY_04: F2 Schizophrenie
+        PSY_05: F3-M Manie (F30-F31, exklusive F31.3-F31.5)
+        PSY_06: F3-D Depression (F32-F39, plus F31.3-F31.5)
+        PSY_07: F4 Neurotische- und Belastungsstörungen
+        PSY_08: F5, F7-F9 Körperliche-, Intelligenz- und Entwicklungsstörungen
+        PSY_09: F6 Persönlichkeits- und Verhaltensstörungen
         PSY_10: Non-F Keine F-Diagnose vorhanden in Hauptdiagnose, Zusatz und Nebendiagnose
         PSY_ERROR: Fehlgruppierung
         PSY_CONFLATED: Zusammengeführter Fall (sollte im Webgrouper nie vorkommen)
