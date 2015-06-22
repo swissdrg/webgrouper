@@ -1,5 +1,5 @@
 fieldset#system
   legend = t('fieldsets.system')
   = f.association :system, label_method: :description, value_method: :system_id, include_blank: false
-  = label_tag :diagnoses_catalog
+  = label_tag :diagnoses_catalog, t('simple_form.labels.defaults.diagnoses_catalog')
   = text_field_tag :diagnoses_catalog, f.object.system.icd_version, disabled: true

@@ -8,11 +8,11 @@ fieldset#grouping.result.left
           = @result.pcg
           = @result.pcg_index
       tr
-        th Diagnosis group
+        th = t('tarpsy.result.diagnosis_group')
         td = @result.diagnosis_group
-        td = t("tarpsy.result.diagnosis_group.#{@result.diagnosis_group}")
+        td = t("tarpsy.result.diagnosis_group_values.#{@result.diagnosis_group}")
       tr
-        th Main diagnosis
+        th = t('simple_form.labels.defaults.pdx')
         - pdx = @tarpsy_patient_case.icds[0]
         td = pdx.code
         td = pdx.text
@@ -21,17 +21,17 @@ fieldset#los-chart.result.right
   #los_chart
   = render_chart(@los_chart, 'los_chart')
 fieldset#phases.result
-  legend = 'TODO'
+  legend = t('tarpsy.result.phases')
   table
     tbody
       tr
         th
-        th level
-        th los_prediction
-        th cost_weight_per_day
-        th los
-        th per_case_payment
-        th total_cost_weight
+        th = t('tarpsy.result.level')
+        th = t('tarpsy.result.los_prediction')
+        th = t('tarpsy.result.cost_weight_per_day')
+        th = t('tarpsy.result.los')
+        th = t('tarpsy.result.per_case_payment')
+        th = t('tarpsy.result.total_cost_weight')
       - @result.get_number_of_phases.times do |idx|
         - phase = @result.phase(idx)
         tr

@@ -13,7 +13,8 @@ de:
     system: 'System'
     stay: 'Aufenthalt'
     diagnoses_procedures: 'Diagnosen und Prozeduren'
-    patient_data: 'Patientendaten'        
+    patient_data: 'Patientendaten'
+    assessments: 'HoNOS Erhebungen'
   result:
     grouping: 
       legend: Gruppierung
@@ -115,7 +116,15 @@ de:
 
   tarpsy:
     result:
-      diagnosis_group:
+      phases: Phasen
+      level: Level
+      los_prediction: Verweildauervorhersage
+      cost_weight_per_day: Kostengewicht pro Tag
+      los: Verweildauer
+      per_case_payment: Fallauszahlung
+      total_cost_weight: Totales Kostengewicht
+      diagnosis_group: Diagnosen Gruppe
+      diagnosis_group_values:
         PSY_01: F0 Demenz
         PSY_02: F10 Alkohol
         PSY_03: F11-F19 Drogen

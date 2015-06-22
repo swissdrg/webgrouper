@@ -56,7 +56,8 @@ de:
         procedures: 'Prozeduren:'
         mb_input: 'MB-Datensatz:'
         honos_input: 'HoNOS-Datensatz:'
-      assessment:
+      assessments:
+        date: Erhebungsdatum
         "0": H1 Aggressives Verhalten
         "1": H2 Selbstverletzung
         "2": H3 Problematischer Alkohol- oder Drogenkonsum
