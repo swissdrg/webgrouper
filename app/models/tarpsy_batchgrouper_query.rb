@@ -16,8 +16,8 @@ class TarpsyBatchgrouperQuery
   before_destroy :delete_output
 
   def group
-    # Remove non-number characters, e. g. p0 -> 0.
     update_attribute(:output_file_path, mb_input.file.path + '.out')
+    # Remove non-number characters, e. g. p0 -> 0.
     pcp_percentage = system.per_case_payment_type.gsub /[^\d]/, ''
     cmd = "java -jar lib/tarpsy-grouper.jar"
     cmd << " --percasepayment-percentage #{pcp_percentage}"

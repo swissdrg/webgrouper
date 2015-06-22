@@ -21,7 +21,7 @@ class TarpsyBatchgrouperQueriesController < ApplicationController
         Rails.logger.info(hint)
         cookies[:missing_fid] = hint
         cookies[:download_finished] = true
-        send_file(@tarpsy_batchgrouper_query.output_file)
+        send_file(@tarpsy_batchgrouper_query.output_file_path, content_type: Mime::CSV)
       else
         flash[:error] = output
         render 'form'
