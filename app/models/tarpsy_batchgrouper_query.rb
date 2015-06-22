@@ -28,10 +28,6 @@ class TarpsyBatchgrouperQuery
     `#{cmd} 2>&1`
   end
 
-  def output_file
-    File.new(output_file_path)
-  end
-
   private
 
   def set_defaults
@@ -39,6 +35,8 @@ class TarpsyBatchgrouperQuery
   end
 
   def delete_output
-    FileUtils.rm self.output_file_path, force: true
+    if output_file_path and File.exists?(output_file_path)
+      FileUtils.rm self.output_file_path
+    end
   end
 end
