@@ -45,6 +45,6 @@ into a subfolder named after the system_id.
 In case you want to add a new Kernel, you need to change the initializer found in `config/initializers/load_grouper_kernel.rb`.
 Make sure to empty the cache using
 
-    RAILS_ENV=production bundle exec rake tmp:cache:clear
+    RAILS_ENV=production bundle exec rake memcached:flush
 
 Since, the new kernel would not be used otherwise (only the cached, old one).
