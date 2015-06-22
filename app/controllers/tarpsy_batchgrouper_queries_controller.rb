@@ -15,7 +15,7 @@ class TarpsyBatchgrouperQueriesController < ApplicationController
       render 'form'
     else
       output = @tarpsy_batchgrouper_query.group
-      Rails.logger.info(output)
+      Rails.logger.debug(output)
       if File.exists?(@tarpsy_batchgrouper_query.output_file_path)
         hint = "Could not find patient cases with following FIDs: #{output.scan(/Could not find patient case with FID: (\d+)/).flatten.uniq.join(', ')}"
         Rails.logger.info(hint)
