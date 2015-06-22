@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'rails_helper'
 
+# TODO: cleanup batchgroupings after test.
 RSpec.describe 'submitting a tarpsy batchgrouper query', type: :feature do
 
   it 'should render an error when submitting the default form' do
@@ -22,6 +23,7 @@ RSpec.describe 'submitting a tarpsy batchgrouper query', type: :feature do
   end
 
   it 'should show a download started hint when receiving the file', js: true do
+    # Important: path must be specified with host.
     visit 'http://localhost:3000/de/tarpsy_batchgrouper_queries/new'
     attach_file 'tarpsy_batchgrouper_query[mb_input]', 'test/testdaten_mb.txt'
     attach_file 'tarpsy_batchgrouper_query[honos_input]', 'test/testdaten_ph.txt'

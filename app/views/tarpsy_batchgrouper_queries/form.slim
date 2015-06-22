@@ -1,5 +1,9 @@
 = content_for :header do
   = javascript_include_tag 'tarpsy_batchgrouper_query'
+
+| See also
+= link_to 'documentation', '/DokumentationTarpsy0.2Batchgrouper'
+
 == render "shared/error_messages", :errors => @tarpsy_batchgrouper_query.errors
 
 = simple_form_for @tarpsy_batchgrouper_query, url: tarpsy_batchgrouper_queries_path,
