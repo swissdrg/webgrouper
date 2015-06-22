@@ -1,3 +1,5 @@
+= content_for :header do
+  = javascript_include_tag 'tarpsy_batchgrouper_query'
 == render "shared/error_messages", :errors => @tarpsy_batchgrouper_query.errors
 
 = simple_form_for @tarpsy_batchgrouper_query, url: tarpsy_batchgrouper_queries_path,
@@ -8,6 +10,9 @@
     = f.input :mb_input
     br
     = f.input :honos_input
+  #loading
+    = t "batchgrouper.loading_hint"
+    #loading-bar
   .buttons
     .right
       = f.submit :class => "button positive"

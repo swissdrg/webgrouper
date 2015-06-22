@@ -17,6 +17,10 @@ class TarpsyBatchgrouperQueriesController < ApplicationController
       output = @tarpsy_batchgrouper_query.group
       Rails.logger.info(output)
       if File.exists?(@tarpsy_batchgrouper_query.output_file_path)
+        hint = "Could not find patient cases with following FIDs: #{output.scan(/Could not find patient case with FID: (\d+)/).flatten.uniq.join(', ')}"
+        Rails.logger.info(hint)
+        cookies[:missing_fid] = hint
+        cookies[:download_finished] = true
         send_file(@tarpsy_batchgrouper_query.output_file)
       else
         flash[:error] = output
