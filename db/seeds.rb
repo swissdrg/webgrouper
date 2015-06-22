@@ -4,6 +4,7 @@
 # the outside, eg with:
 # ssh sm@webgrouper.swissdrg.org -L 27017:77.95.120.68:27017 -N
 start = Time.now
+load 'db/seed_tarpsy_systems.rb'
 load 'db/seed_systems.rb'
 load 'db/seed_icds.rb'
 load 'db/seed_chops.rb'

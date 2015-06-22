@@ -1,9 +1,14 @@
-# Deprecated, see dokuwiki
+# SwissDRG Webgrouper
 
-# Welcome
+A jruby project that acts as web frontend for the grouper produced by SwissDRG. Deployed on webgrouper.swissdrg.org.
 
-This is a new implementation in Ruby on Rails of the swissDRG webgrouper, 
-found at https://webgrouper.swissdrg.org/ . For further information, see [The PSE-Page](http://pym.unibe.ch/pse/wiki/doku.php?id=pse1:home).
+## Getting started
+
+Make sure you have mongodb and memcached installed:
+
+    sudo apt-get install memcached mongodb
+
+This project only runs on Jruby, so make sure to install all gems on a compatible ruby version.
 
 ### Configuring the database
 
@@ -16,6 +21,21 @@ Then you can run the task `rake db:seed` to fill the database with all classific
 So the queries are not dead slow, it is best to create indices with the following command:
 
     RAILS_ENV=production rake db:mongoid:create_indexes
+
+### Binaries
+
+#### Grouper
+Place the binary for the normal grouper in `lib/grouper.jar`. The systems are placed in `lib/grouperspecs/{system_id}`.
+This folder should contain
+
+* A folder named `workspace` containing the workspace of this system
+* A csv-file called `catalogue-acute.csv` (for the batchgrouper, hospital data)
+* A csv-file called `catalogue-birthhouses.csv` (for the batchgrouper, birthhouse data)
+
+#### Tarpsy
+Place the binary in `lib/tarpsy-grouper.jar`.
+The systems for tarpsy are expected to be in `lib/tarpsy/{system_id}/workspace`. Each individual system needs its own
+folder. If you want two systems to use the same folder here, use symlinks.
 
 ## Run tests
 
