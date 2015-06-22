@@ -51,7 +51,7 @@ Webgrouper::Application.routes.draw do
 
   # Visitors of tarps.swissdrg.org should be redirected to tarpsy form.
   constraints subdomain: 'tarpsy' do
-    get '/' => 'tarpsy_patient_cases#new'
+    get '/' => 'tarpsy_patient_cases#tos'
   end
 
   root :to => 'webgrouper_patient_cases#tos'
