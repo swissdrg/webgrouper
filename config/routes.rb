@@ -49,6 +49,11 @@ Webgrouper::Application.routes.draw do
   get 'webgrouper' => 'webgrouper_patient_cases#tos'
   get 'about' => 'static_pages#about'
 
+  # Visitors of tarps.swissdrg.org should be redirected to tarpsy form.
+  constraints subdomain: 'tarpsy' do
+    get '/' => 'tarpsy_patient_case#new'
+  end
+
   root :to => 'webgrouper_patient_cases#tos'
 
   unless Rails.application.config.consider_all_requests_local
