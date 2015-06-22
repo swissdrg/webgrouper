@@ -1,0 +1,10 @@
+== render "shared/error_messages", :errors => @tarpsy_batchgrouper_query.errors
+
+= simple_form_for @tarpsy_batchgrouper_query, url: tarpsy_batchgrouper_queries_path,
+                  defaults: {placeholder: false, hint: false}, html: {class: :dropzone} do |f|
+  = render 'shared/tarpsy_system', f: f
+  fieldset
+    legend Data
+    = f.input :mb_input
+    = f.input :honos_input
+  = f.submit

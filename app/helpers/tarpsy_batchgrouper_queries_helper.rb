@@ -1,0 +1,2 @@
+module TarpsyBatchgrouperQueriesHelper
+end

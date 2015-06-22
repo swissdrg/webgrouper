@@ -13,13 +13,18 @@ Webgrouper::Application.routes.draw do
         patch '/' => 'webgrouper_patient_cases#create'
       end
     end
-    resources :tarpsy_patient_cases, only: [ :index, :new, :create] do
+    resources :tarpsy_patient_cases, only: [:index, :new, :create] do
       collection do
         patch '/' => 'tarpsy_patient_cases#create'
         get 'generate_random' => 'tarpsy_patient_cases#generate_random'
       end
     end
 
+    resources :tarpsy_batchgrouper_queries, only: [:index, :new, :create] do
+      collection do
+        patch '/' => 'tarpsy_batchgrouper_queries#create'
+      end
+    end
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
     post 'batchgrouper' => 'batchgroupers#group'
@@ -45,7 +50,7 @@ Webgrouper::Application.routes.draw do
   get 'about' => 'static_pages#about'
 
   root :to => 'webgrouper_patient_cases#tos'
-  
+
   unless Rails.application.config.consider_all_requests_local
     match '*not_found', :to => 'errors#error_404', via: [:get, :post]
   end

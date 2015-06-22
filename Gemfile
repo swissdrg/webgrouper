@@ -39,6 +39,9 @@ gem "slim-rails"
 gem 'simple_form'
 # For easier building nested forms.
 gem 'cocoon'
+# For uploading files
+gem 'carrierwave'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 # Complete validation of dates, times and datetimes for Rails 3.x and ActiveModel.
 gem 'validates_timeliness'
@@ -62,7 +65,7 @@ gem 'nokogiri', '~>1.6.1.0'
 group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyrhino', platforms: :jruby
-
+  gem 'sass'
   gem 'uglifier', '>= 1.0.3'
   # For minifying css
   gem 'yui-compressor'

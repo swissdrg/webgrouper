@@ -35,6 +35,7 @@ de:
     # Labels
     labels:
       defaults:
+        base: 'Allgemein'
         active_grouper: 'Aktiver Grouper:'
         house: 'Leistungserbringer:'
         diagnoses_catalog: 'Diagnosenkatalog:'
