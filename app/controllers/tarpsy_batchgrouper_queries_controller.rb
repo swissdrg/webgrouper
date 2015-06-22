@@ -15,14 +15,14 @@ class TarpsyBatchgrouperQueriesController < ApplicationController
       render 'form'
     else
       output = @tarpsy_batchgrouper_query.group
-      Rails.logger.debug(output)
       if File.exists?(@tarpsy_batchgrouper_query.output_file_path)
+        Rails.logger.debug(output)
         hint = "Could not find patient cases with following FIDs: #{output.scan(/Could not find patient case with FID: (\d+)/).flatten.uniq.join(', ')}"
-        Rails.logger.info(hint)
         cookies[:missing_fid] = hint
         cookies[:download_finished] = true
         send_file(@tarpsy_batchgrouper_query.output_file_path, content_type: Mime::CSV)
       else
+        Rails.logger.info(output)
         flash[:error] = output
         render 'form'
       end
