@@ -54,6 +54,8 @@ de:
         pdx: 'Hauptdiagnose:'
         diagnoses: 'Nebendiagnosen:'
         procedures: 'Prozeduren:'
+        mb_input: 'MB-Datensatz:'
+        honos_input: 'HoNOS-Datensatz:'
       assessment:
         "0": H1 Aggressives Verhalten
         "1": H2 Selbstverletzung
@@ -79,6 +81,9 @@ de:
   # Buttons
   helpers:
     submit:
+      tarpsy_batchgrouper_query:
+        update: 'Gruppieren'
+        create: 'Gruppieren'
       tarpsy_patient_case:
         update: 'Fall Gruppieren'
         create: 'Fall Gruppieren'

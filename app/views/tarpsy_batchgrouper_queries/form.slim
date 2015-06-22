@@ -6,5 +6,8 @@
   fieldset
     legend Data
     = f.input :mb_input
+    br
     = f.input :honos_input
-  = f.submit
+  .buttons
+    .right
+      = f.submit :class => "button positive"
