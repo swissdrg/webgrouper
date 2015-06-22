@@ -1,8 +1,8 @@
 = content_for :header do
   = javascript_include_tag 'tarpsy_batchgrouper_query'
 
-| See also
-= link_to 'documentation', '/DokumentationTarpsy0.2Batchgrouper'
+h2 = t('tarpsy.batchgrouper.title')
+= raw t('tarpsy.batchgrouper.documentation')
 
 == render "shared/error_messages", :errors => @tarpsy_batchgrouper_query.errors
 
@@ -10,7 +10,7 @@
                   defaults: {placeholder: false, hint: false} do |f|
   = render 'shared/tarpsy_system', f: f
   fieldset
-    legend Data
+    legend = t('tarpsy.batchgrouper.data')
     = f.input :mb_input
     br
     = f.input :honos_input
