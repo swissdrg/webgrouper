@@ -4,9 +4,15 @@ fieldset#grouping.result.left
     tbody
       tr
         th PCG
-        td{colspan: 2}
+        td
           = @result.pcg
           = @result.pcg_index
+        td
+      tr
+        th = t('result.cost-weight.effective-cost-weight')
+        td
+          = @result.effective_cost_weight.round(2)
+        td
       tr
         th = t('tarpsy.result.diagnosis_group')
         td = @result.diagnosis_group
