@@ -20,12 +20,13 @@ $(document).ready(function() {
             if (finished === "true") {
                 $("#loading").hide();
                 download_started_hint.show(100);
-                download_started_hint.after('<div id="additional_hint" class="info">' +
-                    $.cookie("missing_fid") + '</div>');
-
+                if($.cookie("missing_fid") != null) {
+                    download_started_hint.after('<div id="additional_hint" class="info">' +
+                        $.cookie("missing_fid") + '</div>');
+                    $.removeCookie('missing_fid', {path: '/'});
+                }
                 //clean up
                 $.removeCookie('download_finished', {path: '/'});
-                $.removeCookie('missing_fid', {path: '/'});
                 window.clearInterval(downloadTimer);
             }
         }, 100);
