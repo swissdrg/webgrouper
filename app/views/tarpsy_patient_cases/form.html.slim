@@ -1,7 +1,7 @@
 == content_for :header do
   == javascript_include_tag 'https://www.google.com/jsapi'
   == javascript_include_tag 'tarpsy'
-- content_for :title, 'Tarpsy Webgrouper'
+- content_for :title, 'TARPSY Webgrouper'
 == render "shared/error_messages", :errors => @tarpsy_patient_case.errors
 
 == simple_form_for @tarpsy_patient_case, url: tarpsy_patient_cases_path,
