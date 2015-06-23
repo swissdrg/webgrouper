@@ -140,8 +140,8 @@ de:
         PSY_CONFLATED: Zusammengeführter Fall (sollte im Webgrouper nie vorkommen)
         PSY_NOT_APPLICABLE: Ausserhalb des Anwendungsbereich
     batchgrouper:
-      title: Tarpsy 0.2 Batchgrouper
-      documentation: "Bitte beachten Sie die <a href='/DokumentationTarpsy0.2Batchgrouper'>Dokumentation</a> zum Tarpsy 0.2 Batchgrouper. Hier sind die Ein- und Ausgabeformate beschrieben."
+      title: TARPSY 0.2 Batchgrouper
+      documentation: "Bitte beachten Sie die <a href='/DokumentationTarpsy0.2Batchgrouper'>Dokumentation</a> zum >TARPSY 0.2 Batchgrouper. Hier sind die Ein- und Ausgabeformate beschrieben."
       data: Eingabedateien
 
   found_errors: "Folgende Fehler wurden gefunden:"
