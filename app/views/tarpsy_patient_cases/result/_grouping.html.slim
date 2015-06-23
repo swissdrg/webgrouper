@@ -6,7 +6,6 @@ fieldset#grouping.result.left
         th PCG
         td
           = @result.pcg
-          = @result.pcg_index
         td
       tr
         th = t('result.cost-weight.effective-cost-weight')
@@ -31,7 +30,7 @@ fieldset#phases.result
   table
     tbody
       tr
-        th
+        th.medium-col
         th = t('tarpsy.result.level')
         th = t('tarpsy.result.los_prediction')
         th = t('tarpsy.result.cost_weight_per_day')
