@@ -19,7 +19,7 @@ class BatchgrouperQueriesController < ApplicationController
     unless @batchgrouper_query.errors.any?
       @batchgrouper_query.group
       cookies[:download_finished] = true
-      return send_file @batchgrouper_query.output_file_path
+      return send_file @batchgrouper_query.output_file_path, content_type: Mime::CSV
     end
     render 'form'
   end
