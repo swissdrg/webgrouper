@@ -14,7 +14,7 @@ de:
     stay: 'Aufenthalt'
     diagnoses_procedures: 'Diagnosen und Prozeduren'
     patient_data: 'Patientendaten'
-    assessments: 'HoNOS Erhebungen'
+    assessments: 'HoNOS Assessments'
   result:
     grouping: 
       legend: Gruppierung
@@ -116,14 +116,15 @@ de:
 
   tarpsy:
     result:
-      phases: Phasen
-      level: Level
-      los_prediction: Verweildauervorhersage
+      chart: Erlösgrafik
+      phases: Gruppierung nach Phasen
+      level: Schweregrad nach HoNOS
+      los_prediction: Verweildauervorhersage nach HoNOS
       cost_weight_per_day: Kostengewicht pro Tag
       los: Verweildauer
-      per_case_payment: Fallauszahlung
-      total_cost_weight: Totales Kostengewicht
-      diagnosis_group: Diagnosen Gruppe
+      per_case_payment: Fallpauschale
+      total_cost_weight: Kostengewicht ganze Phase
+      diagnosis_group: Diagnosengruppe
       diagnosis_group_values:
         PSY_01: F0 Demenz
         PSY_02: F10 Alkohol
@@ -138,6 +139,10 @@ de:
         PSY_ERROR: Fehlgruppierung
         PSY_CONFLATED: Zusammengeführter Fall (sollte im Webgrouper nie vorkommen)
         PSY_NOT_APPLICABLE: Ausserhalb des Anwendungsbereich
+    batchgrouper:
+      title: Tarpsy 0.2 Batchgrouper
+      documentation: "Bitte beachten Sie die <a href='/DokumentationTarpsy0.2Batchgrouper'>Dokumentation</a> zum Tarpsy 0.2 Batchgrouper. Hier sind die Ein- und Ausgabeformate beschrieben."
+      data: Eingabedateien
 
   found_errors: "Folgende Fehler wurden gefunden:"
   date:
