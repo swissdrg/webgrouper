@@ -1,16 +1,16 @@
 - content_for :header do
-  = javascript_include_tag 'batchgrouper'
+  = javascript_include_tag 'batchgrouper_query'
 - content_for :title, 'Batchgrouper'
-= simple_form_for @batchgrouper, :url => "batchgrouper" do |f|
+= simple_form_for @batchgrouper_query, :url => batchgrouper_queries_path do |f|
   - if flash[:error]
     .errorflash
       = flash[:error].html_safe
-  = render 'batchgroupers/hint_documentation'
-  = render "shared/system", :f => f, :current_system => @batchgrouper.system, :house => @batchgrouper.house
+  = render 'batchgrouper_queries/hint_documentation'
+  = render "shared/system", :f => f, :current_system => @batchgrouper_query.system, :house => @batchgrouper_query.house
   %fieldset
     %legend Data
-    = f.input :file, :as => :file
-    = f.input :single_group
+    = f.input :input
+    /= f.input :single_group
     - if @single_group_result
       #single_group_result
         = @single_group_result

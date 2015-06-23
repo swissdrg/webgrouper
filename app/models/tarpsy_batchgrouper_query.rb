@@ -43,6 +43,8 @@ class TarpsyBatchgrouperQuery
     save!
   end
 
+  index created_at: 1
+
   private
 
   def set_defaults

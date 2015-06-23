@@ -17,6 +17,8 @@ class System
 
   scope :all_public, lambda { where(:public => true) }
 
+  DEFAULT_SYSTEM_ID = 17
+
   def self.exists?(id)
     self.where(:system_id => id).exists?
   end

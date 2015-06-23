@@ -95,6 +95,7 @@ de:
         clear_form: Maske leeren
         print_result: Ergebnis drucken
         save_case_as_bookmark: Fall als Lesezeichen speichern
-      batchgrouper:
+      batchgrouper_query:
         create: 'Gruppieren'
+        update: 'Gruppieren'
 

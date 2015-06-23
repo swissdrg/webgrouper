@@ -20,7 +20,7 @@ $(document).ready(function() {
     download_finished_hint.hide();
 
     var downloadTimer;
-    $("#new_batchgrouper").bind("submit", function(event) {
+    $("form").bind("submit", function(event) {
   			toggleLoading();
             downloadTimer = window.setInterval( function() {
                 var finished = $.cookie("download_finished");

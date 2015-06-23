@@ -19,16 +19,18 @@ Webgrouper::Application.routes.draw do
         get 'generate_random' => 'tarpsy_patient_cases#generate_random'
       end
     end
-
     resources :tarpsy_batchgrouper_queries, only: [:index, :new, :create] do
       collection do
         patch '/' => 'tarpsy_batchgrouper_queries#create'
       end
     end
+    resources :batchgrouper_queries, only: [:index, :new, :create] do
+      collection do
+        patch '/' => 'batchgrouper_queries#create'
+      end
+    end
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
-    post 'batchgrouper' => 'batchgroupers#group'
-    get 'batchgrouper' => 'batchgroupers#index'
     match 'parse' => 'webgrouper_patient_cases#parse', via: [:get, :post]
     get 'autocomplete_icd_code' => 'webgrouper_patient_cases#autocomplete_icd_code'
     get 'autocomplete_chop_code' => 'webgrouper_patient_cases#autocomplete_chop_code'
@@ -43,9 +45,9 @@ Webgrouper::Application.routes.draw do
     match 'systems' => 'webapi#systems', :as => :webapi_systems, via: [:get, :post]
   end
 
-  get 'grouper' => 'batchgroupers#tos'
+  get 'grouper' => 'batchgrouper_queries#tos'
   get 'activate_beta' => 'webgrouper_patient_cases#activate_beta'
-  get 'batchgrouper' => 'batchgroupers#tos'
+  get 'batchgrouper' => 'batchgrouper_queries#tos'
   get 'webgrouper' => 'webgrouper_patient_cases#tos'
   get 'about' => 'static_pages#about'
 
