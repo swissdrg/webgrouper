@@ -4,13 +4,16 @@ class TarpsyBatchgrouperQuery
   include Mongoid::Timestamps
 
   field :output_file_path, type: String
+  # Request specific attributes
+  field :ip, type: String
+  field :line_count, type: Integer # TODO: log size
 
   mount_uploader :mb_input, TarpsyBatchgrouperInputUploader
   mount_uploader :honos_input, TarpsyBatchgrouperInputUploader
 
   belongs_to :system, class_name: 'TarpsySystem', primary_key: :system_id
 
-  validates_presence_of :mb_input, :honos_input, :system_id
+  validates_presence_of :mb_input, :honos_input, :system_id, :ip
 
   after_initialize :set_defaults
   before_destroy :delete_output
