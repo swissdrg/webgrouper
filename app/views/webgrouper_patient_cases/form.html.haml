@@ -1,7 +1,7 @@
 = content_for :header do
   = javascript_include_tag 'https://www.google.com/jsapi'
   = javascript_include_tag 'webgrouper'
-
+- content_for :title, 'Webgrouper'
 = render "shared/error_messages", :errors => @webgrouper_patient_case.errors
 
 = simple_form_for @webgrouper_patient_case, url: webgrouper_patient_cases_path,

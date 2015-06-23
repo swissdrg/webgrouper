@@ -5,12 +5,10 @@ class BatchgroupersController < ApplicationController
   end
   
   def index
-    @title = 'Batchgrouper'
     @batchgrouper = Batchgrouper.new()
   end
   
   def group
-    @title = 'Batchgrouper'
     @batchgrouper = Batchgrouper.new(params[:batchgrouper])
     if @batchgrouper.file
       begin

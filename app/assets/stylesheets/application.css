@@ -14,3 +14,7 @@
  *= require_self
  *= require_tree . 
 */
+
+.header h1 {
+    max-width: 360px;
+}
