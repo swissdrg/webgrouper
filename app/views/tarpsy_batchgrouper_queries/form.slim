@@ -1,7 +1,7 @@
 = content_for :header do
   = javascript_include_tag 'tarpsy_batchgrouper_query'
 
-h2 = t('tarpsy.batchgrouper.title')
+= content_for :title, t('tarpsy.batchgrouper.title')
 = raw t('tarpsy.batchgrouper.documentation')
 
 == render "shared/error_messages", :errors => @tarpsy_batchgrouper_query.errors

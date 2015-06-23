@@ -10,7 +10,8 @@ class TarpsyBatchgrouperQueriesController < ApplicationController
   end
 
   def create
-    @tarpsy_batchgrouper_query = TarpsyBatchgrouperQuery.create(tarpsy_batchgrouper_query_params)
+    @tarpsy_batchgrouper_query = TarpsyBatchgrouperQuery.create(
+        tarpsy_batchgrouper_query_params.merge(ip: request.remote_ip))
     if @tarpsy_batchgrouper_query.errors.any?
       render 'form'
     else

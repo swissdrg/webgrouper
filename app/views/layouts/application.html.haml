@@ -1,12 +1,16 @@
 !!! 5
-- @title ||= 'Webgrouper'
+- title = content_for(:title) || 'Webgrouper'
 - if session[:beta]
-  - @title += " BETA"
+  - title += " BETA"
 %html{:lang => I18n.locale}
   %head
     %meta{ :charset => "UTF-8" }
     = favicon_link_tag 'favicon.ico'
-    = render 'layouts/stylesheets'
+    /[if lt IE 9]
+      %script{:type => "text/javascript", :src => "https://html5.shiv.googlecode.com/svn/trunk/html5.js"}
+    = stylesheet_link_tag 'application', :media => 'screen, print'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'blueprint/ie'
     = javascript_include_tag "application"
     = content_for :header
     / Used for localisation in JS
@@ -27,9 +31,9 @@
       })();
     = csrf_meta_tags
     %title 
-      = @title
+      = title
   %body
     .container
-      = render 'layouts/header', :title => @title
+      = render 'layouts/header', :title => title
       = yield
       = render 'layouts/footer'
