@@ -7,7 +7,7 @@ class StatisticsController < ApplicationController
 
   def batchgrouper_queries
     @bg_queries = BatchgrouperQuery.where(:created_at.gt => @from, :created_at.lt => @to)
-    @bg_system_chart = make_system_chart(BatchgrouperQuery)
+    @bg_system_chart = make_aggregate_chart(BatchgrouperQuery)
     @bg_house_chart = make_house_chart(@bg_queries)
     @bg_size_chart = make_size_chart(BatchgrouperQuery, :line_count, @bins)
   end
@@ -30,19 +30,19 @@ class StatisticsController < ApplicationController
 
   def webgrouper_patient_cases
     @queries = WebgrouperPatientCase.where(:created_at.gt => @from, :created_at.lt => @to)
-    @system_chart = make_system_chart(WebgrouperPatientCase)
+    @system_chart = make_aggregate_chart(WebgrouperPatientCase)
     @house_chart = make_house_chart(@queries)
   end
 
   def tarpsy_patient_cases
     @queries = TarpsyPatientCase.where(:created_at.gt => @from, :created_at.lt => @to)
-    @system_chart = make_system_chart(TarpsyPatientCase, TarpsySystem)
-    render 'webgrouper_patient_cases'
+    @system_chart = make_aggregate_chart(TarpsyPatientCase, :system_id, TarpsySystem)
+    @ip_chart = make_aggregate_chart(TarpsyPatientCase, :ip, TarpsySystem)
   end
 
   def tarpsy_batchgrouper_queries
     @bg_queries = TarpsyBatchgrouperQuery.where(:created_at.gt => @from, :created_at.lt => @to)
-    @bg_system_chart = make_system_chart(TarpsyBatchgrouperQuery, TarpsySystem)
+    @bg_system_chart = make_aggregate_chart(TarpsyBatchgrouperQuery, :system_id, TarpsySystem)
     render 'batchgrouper_queries'
   end
 
@@ -63,16 +63,21 @@ class StatisticsController < ApplicationController
     @to = Time.now
   end
 
-  def make_system_chart(model, system_model=System)
+  def make_aggregate_chart(model, aggregate_field=:system_id, system_model=System)
     system_data = GoogleVisualr::DataTable.new
     system_data.new_column('string', 'System')
     system_data.new_column('number', 'Groupings')
     agg = model.collection.aggregate([{'$match' => {created_at: {'$gt' => @from, '$lt' => @to}}},
-                                      {'$group' => {_id: "$system_id", count: {'$sum' => 1}}},
+                                      {'$group' => {_id: "$#{aggregate_field}", count: {'$sum' => 1}}},
                                       {'$sort' => {_id: 1}}])
-    rows = agg.inject([]) { |list, hash| list << [system_model.find_by(system_id: hash['_id']).description, hash['count']] }
+    # Add labels for systems
+    if aggregate_field == :system_id
+      rows = agg.map { |hash| [system_model.find_by(system_id: hash['_id']).description, hash['count']] }
+    else
+      rows = agg.map { |hash| [hash['_id'], hash['count']] }
+    end
     system_data.add_rows(rows)
-    options = {title: 'Used systems'}
+    options = {}
     GoogleVisualr::Interactive::PieChart.new(system_data, options)
   end
 

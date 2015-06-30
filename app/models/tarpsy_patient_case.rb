@@ -7,6 +7,11 @@ class TarpsyPatientCase
   field :leave_days, type: Integer, default: 0
   field :los, type: Integer, default: 10
   field :pdx, type: String
+
+  # For logging
+  field :ip, type: String
+  field :randomly_generated, type: Boolean, default: false
+
   embeds_many :assessments
   embeds_many :icds
   belongs_to :system, class_name: 'TarpsySystem', primary_key: :system_id

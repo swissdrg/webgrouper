@@ -10,7 +10,7 @@ class TarpsyPatientCasesController < ApplicationController
   end
 
   def generate_random
-    @tarpsy_patient_case = TarpsyPatientCase.new
+    @tarpsy_patient_case = TarpsyPatientCase.new(ip: request.remote_ip, randomly_generated: true)
     # Any icd that starts with F is valid.
     possible_pdxs = @tarpsy_patient_case.system.icds.where(code: /^F/)
     @tarpsy_patient_case.pdx = possible_pdxs.skip(rand(possible_pdxs.count)).first.code
@@ -43,7 +43,7 @@ class TarpsyPatientCasesController < ApplicationController
   end
 
   def create
-    @tarpsy_patient_case = TarpsyPatientCase.create(tarpsy_patient_case_params)
+    @tarpsy_patient_case = TarpsyPatientCase.create(tarpsy_patient_case_params.merge(ip: request.remote_ip))
     if @tarpsy_patient_case.errors.empty?
       group(@tarpsy_patient_case)
     end

@@ -1,0 +1,9 @@
+= render 'header'
+
+h3 Tarpsy Webgrouper
+| In the given period, there were #{@queries.count} tarpsy webgrouper queries.
+#system_chart
+= render_chart @system_chart, 'system_chart'
+
+#ip_chart
+= render_chart @ip_chart, 'ip_chart'
