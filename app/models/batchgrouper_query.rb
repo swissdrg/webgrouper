@@ -21,6 +21,7 @@ class BatchgrouperQuery
   mount_uploader :input, BatchgrouperInputUploader
 
   after_initialize :set_defaults
+  before_destroy :delete_output
 
   index created_at: 1
 
@@ -53,10 +54,23 @@ class BatchgrouperQuery
     # TODO
   end
 
+  def archive!
+    delete_output
+    remove_input!
+    self.archived = true
+    save!
+  end
+
 
   private
 
   def set_defaults
     self.system_id ||= System::DEFAULT_SYSTEM_ID
+  end
+
+  def delete_output
+    if output_file_path and File.exists?(output_file_path)
+      FileUtils.rm self.output_file_path
+    end
   end
 end

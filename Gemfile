@@ -91,3 +91,5 @@ end
 
 # For caching
 gem 'dalli'
+# For recurring jobs, e. g. cleaning batchgroupings.
+gem 'whenever', :require => false
