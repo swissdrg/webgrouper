@@ -8,8 +8,10 @@ batchgrouper queries.
 #bg_system_chart
 = render_chart @bg_system_chart, 'bg_system_chart'
 
-#bg_house_chart
-= render_chart @bg_house_chart, 'bg_house_chart'
+- if @bg_house_chart
+  #bg_house_chart
+  = render_chart @bg_house_chart, 'bg_house_chart'
 
-#bg_size_chart
-= render_chart @bg_size_chart, 'bg_size_chart'
+- if @bg_size_chart
+  #bg_size_chart
+  = render_chart @bg_size_chart, 'bg_size_chart'

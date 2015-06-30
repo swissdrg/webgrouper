@@ -5,14 +5,14 @@ class StatisticsController < ApplicationController
   def index
   end
 
-  def batchgrouper
-    @bg_queries = BatchgrouperQuery.where(:time.gt => @from, :time.lt => @to)
+  def batchgrouper_queries
+    @bg_queries = BatchgrouperQuery.where(:created_at.gt => @from, :created_at.lt => @to)
     @bg_system_chart = make_system_chart(BatchgrouperQuery)
     @bg_house_chart = make_house_chart(@bg_queries)
     @bg_size_chart = make_size_chart(BatchgrouperQuery, :line_count, @bins)
   end
 
-  def webapi
+  def webapi_queries
     @wa_queries = WebapiQuery.where(:start_time.gt => @from, :start_time.lt => @to)
     @wa_size_chart = make_size_chart(WebapiQuery, :nr_cases, nil)
     @agg = WebapiQuery.collection.aggregate([{'$match' => {start_time: {'$gt' => @from, '$lt' => @to}}},
@@ -28,10 +28,22 @@ class StatisticsController < ApplicationController
                                              {'$limit' => 10}])
   end
 
-  def webgrouper
-    @queries = Query.where(:time.gt => @from, :time.lt => @to)
-    @system_chart = make_system_chart(Query)
+  def webgrouper_patient_cases
+    @queries = WebgrouperPatientCase.where(:created_at.gt => @from, :created_at.lt => @to)
+    @system_chart = make_system_chart(WebgrouperPatientCase)
     @house_chart = make_house_chart(@queries)
+  end
+
+  def tarpsy_patient_cases
+    @queries = TarpsyPatientCase.where(:created_at.gt => @from, :created_at.lt => @to)
+    @system_chart = make_system_chart(TarpsyPatientCase, TarpsySystem)
+    render 'webgrouper_patient_cases'
+  end
+
+  def tarpsy_batchgrouper_queries
+    @bg_queries = TarpsyBatchgrouperQuery.where(:created_at.gt => @from, :created_at.lt => @to)
+    @bg_system_chart = make_system_chart(TarpsyBatchgrouperQuery, TarpsySystem)
+    render 'batchgrouper_queries'
   end
 
   private
@@ -51,14 +63,14 @@ class StatisticsController < ApplicationController
     @to = Time.now
   end
 
-  def make_system_chart(model)
+  def make_system_chart(model, system_model=System)
     system_data = GoogleVisualr::DataTable.new
     system_data.new_column('string', 'System')
     system_data.new_column('number', 'Groupings')
-    agg = model.collection.aggregate([{'$match' => {time: {'$gt' => @from, '$lt' => @to}}},
+    agg = model.collection.aggregate([{'$match' => {created_at: {'$gt' => @from, '$lt' => @to}}},
                                       {'$group' => {_id: "$system_id", count: {'$sum' => 1}}},
                                       {'$sort' => {_id: 1}}])
-    rows = agg.inject([]) { |list, hash| list << [System.find_by(system_id: hash['_id']).description, hash['count']] }
+    rows = agg.inject([]) { |list, hash| list << [system_model.find_by(system_id: hash['_id']).description, hash['count']] }
     system_data.add_rows(rows)
     options = {title: 'Used systems'}
     GoogleVisualr::Interactive::PieChart.new(system_data, options)
@@ -79,15 +91,15 @@ class StatisticsController < ApplicationController
     data_table = GoogleVisualr::DataTable.new
     rows = if bins.nil?
              data_table.new_column('number', 'Patient cases')
-             agg = BatchgrouperQuery.collection.aggregate([{'$match' => {time: {'$gt' => @from, '$lt' => @to}}},
+             agg = BatchgrouperQuery.collection.aggregate([{'$match' => {created_at: {'$gt' => @from, '$lt' => @to}}},
                                                            {'$group' => {_id: "$#{attribute}", count: {'$sum' => 1}}},
                                                            {'$sort' => {_id: 1}}])
              agg.inject([]) { | list, hash| list << [hash['_id'].to_i, hash['count']] }
            else
              data_table.new_column('number', 'Patient cases')
-             max_line_count = model.where(:time.gt => @from, :time.lt => @to).max(attribute)
+             max_line_count = model.where(:created_at.gt => @from, :created_at.lt => @to).max(attribute)
              step_size = 10**Math::log10(max_line_count/bins).round
-             agg = model.collection.aggregate([{'$match' => {time: {'$gt' => @from, '$lt' => @to}}},
+             agg = model.collection.aggregate([{'$match' => {created_at: {'$gt' => @from, '$lt' => @to}}},
                                                {'$project' => {step: {'$divide' => ["$#{attribute}", step_size]}}},
                                                {'$project' => {bin: {'$subtract' => ["$step", '$mod' => ['$step', 1]]}}},
                                                {'$group' => {_id: '$bin', count: {'$sum' => 1}}},

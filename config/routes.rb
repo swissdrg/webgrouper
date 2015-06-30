@@ -1,10 +1,13 @@
 Webgrouper::Application.routes.draw do
 
-  scope 'statistics' do
-    get '/' => 'statistics#index'
-    get 'webgrouper_stats' => 'statistics#webgrouper'
-    get 'batchgrouper_stats' => 'statistics#batchgrouper'
-    get 'webapi_stats' => 'statistics#webapi'
+  resources :statistics, only: :index do
+    collection do
+      get 'webgrouper_patient_cases'
+      get 'batchgrouper_queries'
+      get 'webapi_queries'
+      get 'tarpsy_patient_cases'
+      get 'tarpsy_batchgrouper_queries'
+    end
   end
 
   scope "/:locale" do
