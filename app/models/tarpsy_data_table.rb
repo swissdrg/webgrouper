@@ -38,7 +38,7 @@ class TarpsyDataTable < GoogleVisualr::DataTable
   end
 
   def make_chart
-    options = {:width => 475, :height => 170,
+    options = {:width => '100%', :height => 170,
                :legend => 'none',
                :interpolateNulls => true,
                :hAxis => {:gridlines => {:count => 10},

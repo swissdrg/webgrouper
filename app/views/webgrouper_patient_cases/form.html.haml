@@ -6,11 +6,12 @@
 
 = simple_form_for @webgrouper_patient_case, url: webgrouper_patient_cases_path,
                   defaults: { placeholder: false, hint: false } do |f|
-  = render 'shared/system', :f => f,
-                            :current_system => @webgrouper_patient_case.system,
-                            :house => @webgrouper_patient_case.house
-  .on-row
-    %fieldset#stay.left
+  .span-24
+    = render 'shared/system', :f => f,
+                              :current_system => @webgrouper_patient_case.system,
+                              :house => @webgrouper_patient_case.house
+  .span-12
+    %fieldset#stay
       %legend= t("fieldsets.stay")
       = f.input :entry_date, as: :date_picker, input_html: { :class => "calc_los" }
       = f.input :exit_date, as: :date_picker, input_html: { :class => "calc_los" }
@@ -28,50 +29,50 @@
                 :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.sep.sep#{el}" }
       = f.input :los,
                 :input_html => { :class => "numeric" }
-
-    %fieldset#patient-data.right
+  .span-12.last
+    %fieldset#patient-data
       %legend= t("fieldsets.patient_data")
-      = f.input :sex, 
-                :collection => [:M , :W, :U], 
-                :checked => :U, 
+      = f.input :sex,
+                :collection => [:M , :W, :U],
+                :checked => :U,
                 :include_blank => false
       = f.input :birth_date, as: :date_picker
       .sameline
         = f.input :age,
                   :input_html => { :class => "numeric" }
         = f.input :age_mode_decoy,
-                  :as => :select, 
+                  :as => :select,
                   :collection => [:years, :days],
-                  :include_blank => false, 
+                  :include_blank => false,
                   :input_html => { :onchange => "admWeightControl(80)"},
                   :label => false
         / hidden field which contains the real value for age_mode in case age_mode_decoy is disabled
         = f.input :age_mode,
-                  :as => :hidden, 
+                  :as => :hidden,
                   :collection => [:years, :days],
-                  :include_blank => false, 
+                  :include_blank => false,
                   :input_html => { :onchange => "admWeightControl(80)"},
                   :label => false
       = f.input :hmv,
                 :input_html => { :class => "numeric" }
-      #admWeight
-        = f.input :adm_weight,
-                  :input_html => { :class => "numeric" }
-
-  %fieldset#drg-proc.clear
-    %legend= t("fieldsets.diagnoses_procedures")
-    #diagnoses
-      = f.input :pdx, 
-                :url => autocomplete_icd_code_path(version: @webgrouper_patient_case.system.icd_version),
-                :as => :autocomplete
-      %label{:for => 'webgrouper_patient_case_diagnoses_0'}
-        = t('simple_form.labels.defaults.diagnoses')  # hardcoded, since its generated via js
-      = render "diagnoses", :patient_case => @webgrouper_patient_case
-    %p
-    #procedures
-      %label{:for => 'webgrouper_patient_case_procedures_0_c'}
-        = t('simple_form.labels.defaults.procedures')   # hardcoded, since its generated via js
-      = render "procedures", :patient_case => @webgrouper_patient_case
+    #admWeight
+      = f.input :adm_weight,
+                :input_html => { :class => "numeric" }
+  .span-24
+    %fieldset#drg-proc
+      %legend= t("fieldsets.diagnoses_procedures")
+      #diagnoses
+        = f.input :pdx,
+                  :url => autocomplete_icd_code_path(version: @webgrouper_patient_case.system.icd_version),
+                  :as => :autocomplete
+        %label{:for => 'webgrouper_patient_case_diagnoses_0'}
+          = t('simple_form.labels.defaults.diagnoses')  # hardcoded, since its generated via js
+        = render "diagnoses", :patient_case => @webgrouper_patient_case
+      %p
+      #procedures
+        %label{:for => 'webgrouper_patient_case_procedures_0_c'}
+          = t('simple_form.labels.defaults.procedures')   # hardcoded, since its generated via js
+        = render "procedures", :patient_case => @webgrouper_patient_case
   .buttons
     .right
       - unless @result.nil?
@@ -91,16 +92,21 @@
   .bottom-spacer
 - else  
   #result
-    .on-row
+    .span-15
       = render "webgrouper_patient_cases/result/grouping"
+    .span-9.last
       - if normal_group?
         = render "webgrouper_patient_cases/result/cost_weight"
     - if normal_group?
-      = render "webgrouper_patient_cases/result/diagnoses"
-      = render "webgrouper_patient_cases/result/procedures"
-      = render "webgrouper_patient_cases/result/settlement_hints"
-      .on-row
+      .span-24
+        = render "webgrouper_patient_cases/result/diagnoses"
+      .span-24
+        = render "webgrouper_patient_cases/result/procedures"
+      .span-24
+        = render "webgrouper_patient_cases/result/settlement_hints"
+      .span-8
         = render "webgrouper_patient_cases/result/length_of_stay"
+      .span-16.last
         = render "webgrouper_patient_cases/result/los_chart"
     #bottom
 

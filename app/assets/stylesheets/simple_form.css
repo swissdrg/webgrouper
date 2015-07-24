@@ -38,7 +38,7 @@ a:focus img, a:focus img {
 }
 
 #drg-proc input.small_field {
-	width: 75px;
+	width: 70px;
 }
 
 #drg-proc input.tiny_field {
@@ -72,7 +72,7 @@ select#webgrouper_patient_case_age_mode {
 }
 
 .simple_form select {
-	max-width: 240px;
+	max-width: 230px;
 }
 
 /** fix for FF */

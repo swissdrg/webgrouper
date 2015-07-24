@@ -1,50 +1,53 @@
-fieldset#grouping.result.left
-  legend = t "result.grouping.legend"
-  table
-    tbody
-      tr
-        th PCG
-        td
-          = @result.pcg
-        td
-      tr
-        th = t('result.cost-weight.effective-cost-weight')
-        td
-          = @result.effective_cost_weight.round(2)
-        td
-      tr
-        th = t('tarpsy.result.diagnosis_group')
-        td = @result.diagnosis_group
-        td = t("tarpsy.result.diagnosis_group_values.#{@result.diagnosis_group}")
-      tr
-        th = t('simple_form.labels.defaults.pdx')
-        - pdx = @tarpsy_patient_case.icds[0]
-        td = pdx.code
-        td = pdx.text
-fieldset#los-chart.result.right
-  legend = t('tarpsy.result.chart')
-  #los_chart
-  = render_chart(@los_chart, 'los_chart')
-fieldset#phases.result
-  legend = t('tarpsy.result.phases')
-  table
-    tbody
-      tr
-        th.medium-col
-        th = t('tarpsy.result.level')
-        th = t('tarpsy.result.los_prediction')
-        th = t('tarpsy.result.cost_weight_per_day')
-        th = t('tarpsy.result.los')
-        th = t('tarpsy.result.per_case_payment')
-        th = t('tarpsy.result.total_cost_weight')
-      - @result.get_number_of_phases.times do |idx|
-        - phase = @result.phase(idx)
+div.span-12
+  fieldset#grouping.result
+    legend = t "result.grouping.legend"
+    table
+      tbody
         tr
-          th
-            | Phase #{idx + 1}
-          td = phase.level
-          td = phase.los_prediction
-          td = phase.cost_weight_per_day.round(2)
-          td = phase.los
-          td = phase.per_case_payment
-          td = phase.total_cost_weight.round(2)
+          th PCG
+          td
+            = @result.pcg
+          td
+        tr
+          th = t('result.cost-weight.effective-cost-weight')
+          td
+            = @result.effective_cost_weight.round(2)
+          td
+        tr
+          th = t('tarpsy.result.diagnosis_group')
+          td = @result.diagnosis_group
+          td = t("tarpsy.result.diagnosis_group_values.#{@result.diagnosis_group}")
+        tr
+          th = t('simple_form.labels.defaults.pdx')
+          - pdx = @tarpsy_patient_case.icds[0]
+          td = pdx.code
+          td = pdx.text
+div.span-12.last
+  fieldset#los-chart.result
+    legend = t('tarpsy.result.chart')
+    #los_chart
+    = render_chart(@los_chart, 'los_chart')
+div.span-24
+  fieldset#phases.result
+    legend = t('tarpsy.result.phases')
+    table
+      tbody
+        tr
+          th.medium-col
+          th = t('tarpsy.result.level')
+          th = t('tarpsy.result.los_prediction')
+          th = t('tarpsy.result.cost_weight_per_day')
+          th = t('tarpsy.result.los')
+          th = t('tarpsy.result.per_case_payment')
+          th = t('tarpsy.result.total_cost_weight')
+        - @result.get_number_of_phases.times do |idx|
+          - phase = @result.phase(idx)
+          tr
+            th
+              | Phase #{idx + 1}
+            td = phase.level
+            td = phase.los_prediction
+            td = phase.cost_weight_per_day.round(2)
+            td = phase.los
+            td = phase.per_case_payment
+            td = phase.total_cost_weight.round(2)

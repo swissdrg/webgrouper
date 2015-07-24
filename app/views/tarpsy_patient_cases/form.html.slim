@@ -7,8 +7,8 @@
 == simple_form_for @tarpsy_patient_case, url: tarpsy_patient_cases_path,
                    defaults: {placeholder: false, hint: false} do |f|
   = render 'shared/tarpsy_system', f: f
-  .on-row
-    fieldset#stay.left
+  .span-12
+    fieldset#stay
       legend = t("fieldsets.stay")
       = f.input :entry_date, as: :date_picker, input_html: {:class => "calc_los"}
       = f.input :exit_date, as: :date_picker, input_html: {:class => "calc_los"}
@@ -16,19 +16,20 @@
                 :input_html => {:class => "calc_los numeric"}
       = f.input :los,
                 :input_html => {:class => "numeric"}
-    fieldset#drg-proc.right
+  .span-12.last
+    fieldset#drg-proc
       legend= t("fieldsets.diagnoses_procedures")
       #diagnoses
         = f.input :pdx, :as => :autocomplete,
                   :url => autocomplete_icd_code_path(:version => @tarpsy_patient_case.system.icd_version)
-
-  fieldset#assessments.clear
-    legend = t('fieldsets.assessments')
-    = link_to_add_association image_tag('bullet_toggle_plus.png', class: 'right'), f, :assessments,
-                              'data-association-insertion-node' => '#new_assessment_location'
-    = f.simple_fields_for :assessments, {include_id: false} do |assessment|
-      = render 'assessment_fields', :f => assessment
-    #new_assessment_location
+  .span-24
+    fieldset#assessments
+      legend = t('fieldsets.assessments')
+      = link_to_add_association image_tag('bullet_toggle_plus.png', class: 'right'), f, :assessments,
+                                'data-association-insertion-node' => '#new_assessment_location'
+      = f.simple_fields_for :assessments, {include_id: false} do |assessment|
+        = render 'assessment_fields', :f => assessment
+      #new_assessment_location
   .buttons
     .right
       = link_to t("helpers.submit.webgrouper_patient_case.clear_form"),

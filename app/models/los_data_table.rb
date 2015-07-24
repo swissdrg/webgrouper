@@ -84,8 +84,8 @@ class LosDataTable < GoogleVisualr::DataTable
   end
   
   # Gives back a chart, using the data filled in this instance.
-  def make_chart()
-    options = { :width => 650, :height => 170,
+  def make_chart
+    options = { :width => '100%', :height => 170,
                 :legend => 'none',
                 :interpolateNulls => true,
                 #:chartArea => { :width => "100%", :height => "100%" },

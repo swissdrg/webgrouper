@@ -1,3 +1,7 @@
 .assessment-item {
     margin-left: 5px;
 }
+
+.tarpsy_patient_case_assessments_assessment_items_value select {
+    min-width: 3.5%;
+}

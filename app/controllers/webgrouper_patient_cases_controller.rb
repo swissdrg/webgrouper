@@ -74,7 +74,6 @@ class WebgrouperPatientCasesController < ApplicationController
       @factor = 10000
       @supplement_procedures = patient_case.get_supplements
       @pc = patient_case.to_java
-      Rails.logger.debug(@pc.to_s)
       grouper, catalogue = patient_case.system.grouper_and_catalogue
       grouper.groupByReference(@pc)
       @result = @pc.getGrouperResult()
