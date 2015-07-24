@@ -30,7 +30,7 @@
       = f.simple_fields_for :assessments, {include_id: false} do |assessment|
         = render 'assessment_fields', :f => assessment
       #new_assessment_location
-  .buttons
+  .span-24.buttons
     .right
       = link_to t("helpers.submit.webgrouper_patient_case.clear_form"),
                 tarpsy_patient_cases_path,
