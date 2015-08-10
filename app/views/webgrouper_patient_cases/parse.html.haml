@@ -1,7 +1,6 @@
-%h2 Parse SwissDRG Strings
-This text field takes a SwissDRG string, parses it into the webgrouper form and
-automatically submits the case. This feature is not very well tested so far,
-please report any problems using the "contact" link below.
+%h2
+  = t '.parse_patient_cases'
+= t '.parse_patient_cases_description'
 = simple_form_for @webgrouper_patient_case_parsing, :url => parse_webgrouper_patient_cases_path, :method => :post do |f|
   = f.input :parse_string, label: false, input_html: { style: 'width: 100%;'}
   .right

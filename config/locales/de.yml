@@ -1,4 +1,10 @@
 de:
+  webgrouper_patient_cases:
+    parse:
+      parse_patient_cases: 'Einlesen von Fällen'
+      parse_patient_cases_description: 'In dieses Feld können einzelne Zeilen im Batchgrouper-Format eingefügt werden.
+      Nach Abschicken des Formulars wird automatisch eine Validierung durchegeführt und,
+      falls möglich, das Resultat im Webgrouper angezeigt.'
   batchgrouper:
     detected_bfs: "BFS Format erkannt. Bitte groupieren sie Dateien nur im SwissDRG Format."
     invalid_format: 'Invalides Format!'
