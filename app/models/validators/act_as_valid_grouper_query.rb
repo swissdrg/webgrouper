@@ -1,7 +1,7 @@
 # This module validates the attributes submitted by the form.
 module ActAsValidGrouperQuery
   def self.included(base)
-    base.validates :sex, :presence => true, inclusion: {in: lambda { |obj| WebgrouperPatientCase::SEX_MODES }}
+    base.validates :sex, :presence => true, inclusion: {in: lambda { |_| WebgrouperPatientCase::SEX_MODES }}
     base.validates_date :entry_date, :on_or_before => :today, :allow_blank => true
     base.validates_date :exit_date, :on_or_before => :today, :on_or_after => :entry_date, :allow_blank => true
     base.validates_date :birth_date, :on_or_before => :entry_date, :allow_blank => true
@@ -11,9 +11,9 @@ module ActAsValidGrouperQuery
     # Admission weight
     base.validates :adm_weight, :presence => true, :numericality => {:only_integer => true, :greater_than_or_equal_to => 125, :less_than_or_equal_to => 20000}, :if => :age_mode_days?
     # Admission mode
-    base.validates :adm, :presence => true, inclusion: {in: lambda { |obj| WebgrouperPatientCase::ADMISSION_MODES }}
+    base.validates :adm, :presence => true, inclusion: {in: lambda { |_| WebgrouperPatientCase::ADMISSION_MODES }}
     # Separation mode
-    base.validates :sep, :presence => true, inclusion: {in: lambda { |obj| WebgrouperPatientCase::SEPARATION_MODES }}
+    base.validates :sep, :presence => true, inclusion: {in: lambda { |_| WebgrouperPatientCase::SEPARATION_MODES }}
     # Length of stay
     base.validates :los, :presence => true, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0}
     # Artificial respiration time
