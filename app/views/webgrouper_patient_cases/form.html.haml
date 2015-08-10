@@ -20,12 +20,12 @@
       = f.input :adm, 
                 :as => :select, 
                 :include_blank => false,
-                :collection => ["11", "01", "06", "99"],
+                :collection => WebgrouperPatientCase::ADMISSION_MODES,
                 :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.adm.adm#{el}" }
       = f.input :sep, 
                 :as => :select, 
                 :include_blank => false,
-                :collection => ["06","04","00","07","99"],
+                :collection => WebgrouperPatientCase::SEPARATION_MODES,
                 :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.sep.sep#{el}" }
       = f.input :los,
                 :input_html => { :class => "numeric" }
@@ -33,9 +33,9 @@
     %fieldset#patient-data
       %legend= t("fieldsets.patient_data")
       = f.input :sex,
-                :collection => [:M , :W, :U],
-                :checked => :U,
-                :include_blank => false
+                :collection => WebgrouperPatientCase::SEX_MODES,
+                :include_blank => false,
+                :label_method => lambda { |el| t "simple_form.options.webgrouper_patient_case.sex.#{el}" }
       = f.input :birth_date, as: :date_picker
       .sameline
         = f.input :age,

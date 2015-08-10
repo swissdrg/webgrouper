@@ -37,6 +37,10 @@ class WebgrouperPatientCase
   attr_accessor :age_mode, :age_mode_decoy
   attr_accessor :diagnoses_errors, :procedures_errors
 
+  ADMISSION_MODES = %w(11 01 06 99)
+  SEPARATION_MODES = %w(06 04 00 07 99)
+  SEX_MODES = %w(M W U)
+
   # The default swissdrg format with additional data in the id-field,
   # split by underscore.
   def to_url_string
