@@ -11,7 +11,7 @@ module WebgrouperPatientCasesHelper
   end
 
   def parse_url_for(patient_case)
-    parse_url(:pc => {:string => patient_case.to_url_string})
+    parse_webgrouper_patient_cases_url(webgrouper_patient_case_parsing: {parse_string: patient_case.to_url_string})
   end
 
   java_import org.swissdrg.grouper.GrouperResult

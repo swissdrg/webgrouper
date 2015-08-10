@@ -80,6 +80,8 @@ de:
         disabled_los: 'Löschen oder ändern sie eines der hierfür relevanten Felder, um diesen Wert zu verändern'
         pick_date: "Datumauswahl"
         date: "Im Format dd.mm.yyyy, zB 19.05.1988"
+      webgrouper_patient_case_parsing:
+        parse_string: 'Z. B. 123;40;0;4000;M;99;99;8;;0;S550;B373;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6602;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'
   # Buttons
   helpers:
     submit:

@@ -91,3 +91,7 @@ fieldset#los-chart {
   cursor: pointer;
   cursor: hand;
 }
+
+form#new_webgrouper_patient_case_parsing.simple_form .hint {
+    margin-left: 0;
+}

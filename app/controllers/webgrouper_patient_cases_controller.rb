@@ -34,12 +34,17 @@ class WebgrouperPatientCasesController < ApplicationController
   end
 
   def parse
-    if params[:pc].present?
-      @webgrouper_patient_case = WebgrouperPatientCase.parse(params[:pc][:string])
-      if @webgrouper_patient_case.save
-        group(@webgrouper_patient_case)
+    if params[:webgrouper_patient_case_parsing].present?
+      @webgrouper_patient_case_parsing = WebgrouperPatientCaseParsing.new(params[:webgrouper_patient_case_parsing])
+      if @webgrouper_patient_case_parsing.valid?
+        @webgrouper_patient_case = @webgrouper_patient_case_parsing.to_patient_case
+        if @webgrouper_patient_case.valid?
+          group(@webgrouper_patient_case)
+        end
+        render 'form'
       end
-      render 'form'
+    else
+      @webgrouper_patient_case_parsing = WebgrouperPatientCaseParsing.new
     end
   end
 

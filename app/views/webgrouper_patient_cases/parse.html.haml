@@ -2,7 +2,7 @@
 This text field takes a SwissDRG string, parses it into the webgrouper form and
 automatically submits the case. This feature is not very well tested so far,
 please report any problems using the "contact" link below.
-= simple_form_for :pc, :url => :parse, :method => :post do |f|
-  = f.text_field :string, :size => 140
+= simple_form_for @webgrouper_patient_case_parsing, :url => parse_webgrouper_patient_cases_path, :method => :post do |f|
+  = f.input :parse_string, label: false, input_html: { style: 'width: 100%;'}
   .right
     = f.submit :class => "button positive", :value => 'Submit'

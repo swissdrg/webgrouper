@@ -266,6 +266,7 @@ de:
       too_short: ist zu kurz (nicht weniger als %{count} Zeichen)
       wrong_length: hat die falsche Länge (muss genau %{count} Zeichen haben)
       no_code: kein code eingegeben
+      wrong_number_of_split_characters: muss genau %{count} Trennzeichen haben.
     template:
       body: ! 'Bitte überprüfen Sie die folgenden Felder:'
       header:

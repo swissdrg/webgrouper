@@ -46,65 +46,12 @@ class WebgrouperPatientCase
   def to_url_string
     # additional information from id field
     s = [self.system_id,
-         (self.birth_date.strftime(FORM_DATE_FORMAT) rescue ''),
-         (self.entry_date.strftime(FORM_DATE_FORMAT) rescue ''),
-         (self.exit_date.strftime(FORM_DATE_FORMAT) rescue ''),
+         self.birth_date.try(:strftime, WebgrouperPatientCaseParsing::FORM_DATE_FORMAT),
+         self.entry_date.try(:strftime, WebgrouperPatientCaseParsing::FORM_DATE_FORMAT),
+         self.exit_date.try(:strftime, WebgrouperPatientCaseParsing::FORM_DATE_FORMAT),
          self.leave_days].join('_')
     # rest of string
-    return s + to_java.to_s.gsub(';', '-')
-  end
-
-  FORM_DATE_FORMAT = "%d.%m.%Y"
-  # Takes a SwissDRG-string as input and returns the complying WebgrouperPatientCase.
-  # the swissdrg-string may also be split by dashes instead of semicolons.
-  # The ID field is further used to encode data usually not contained in a SwissDRG string.
-  def self.parse(pc_string)
-    params = {}
-    if pc_string.include? (';')
-      pc_array = pc_string.split(';')
-    else
-      pc_array = pc_string.split('-')
-    end
-
-    additional_data = pc_array[0].split('_')
-    if additional_data.size == 5 # for legacy support
-      params[:system_id] = additional_data[0]
-      params[:birth_date] = additional_data[1]
-      params[:entry_date] = additional_data[2]
-      params[:exit_date] = additional_data[3]
-      params[:leave_days] = additional_data[4]
-    end
-    age_years = pc_array[1]
-    age_days = pc_array[2]
-    # If age_years blank or 0, we assume it's not given.
-    if age_years.to_i == 0
-      params[:age_mode_decoy] = params[:age_mode] = 'days'
-      params[:age] = age_days
-    else
-      params[:age_mode_decoy] = params[:age_mode] = 'years'
-      params[:age] = age_years
-    end
-    params[:adm_weight] = pc_array[3]
-    params[:sex] = pc_array[4]
-    params[:adm] = pc_array[5]
-    params[:sep] = pc_array[6]
-    params[:los] = pc_array[7]
-    # This is not used.
-    # params[:sdf] = pc_array[8]
-    params[:hmv] = pc_array[9]
-    params[:pdx] = pc_array[10]
-
-    params[:diagnoses] = pc_array[(11...(11+99))].reject &:blank?
-    params[:procedures] = pc_array[110...(110+100)]
-                              .reject(&:blank?)
-                              .map{ |p| p.split(':') }
-                              .map{ |p_arry| { 'c' => p_arry[0],
-                                               'l' => (p_arry[1] || '').upcase,
-                                               'd' => (Date.strptime(p_arry[2], GROUPER_DATE_FORMAT).strftime(FORM_DATE_FORMAT) rescue '')}}
-    params.each do |key, value|
-        params.delete(key) if value.blank?
-    end
-    WebgrouperPatientCase.new(params)
+    s + to_java.to_s.gsub(';', '-')
   end
 
   # 'age_mode' is chosen in the form and can be
@@ -179,7 +126,6 @@ class WebgrouperPatientCase
           :age_max => sup.age_max
       }
     end
-    return supplement_procedures
   end
 
   private

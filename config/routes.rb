@@ -14,6 +14,7 @@ Webgrouper::Application.routes.draw do
     resources :webgrouper_patient_cases, only: [:index, :new, :create] do
       collection do
         patch '/' => 'webgrouper_patient_cases#create'
+        match 'parse', via: [:get, :post]
       end
     end
     resources :tarpsy_patient_cases, only: [:index, :new, :create] do
@@ -34,7 +35,6 @@ Webgrouper::Application.routes.draw do
     end
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
-    match 'parse' => 'webgrouper_patient_cases#parse', via: [:get, :post]
     get 'autocomplete_icd_code' => 'webgrouper_patient_cases#autocomplete_icd_code'
     get 'autocomplete_chop_code' => 'webgrouper_patient_cases#autocomplete_chop_code'
   end
