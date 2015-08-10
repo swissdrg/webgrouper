@@ -11,11 +11,13 @@ Bundler.require(*Rails.groups)
 
 module Webgrouper
   class Application < Rails::Application
+    # Use dalli, a front end to memcached. Can be shared among rails instances. Takes about 0.35 s for grouping.
     # Configure cache, set maximum size of value to 10 MB.
     # This needs also to be set in /etc/memcached.conf by adding the following line:
     # -I 10m
     #config.cache_store = :dalli_store, { value_max_bytes: 10*1024*1024 }
-    # If you want a faster cache that caches per-instance, use memory_store:
+
+    # If you want a faster cache that caches per-instance, use memory_store (about 0.05 s for grouping):
     config.cache_store = :memory_store, { size: 64.megabytes }
 
     # Settings in config/environments/* take precedence over those specified here.
