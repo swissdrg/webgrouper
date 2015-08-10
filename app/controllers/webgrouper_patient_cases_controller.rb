@@ -89,7 +89,7 @@ class WebgrouperPatientCasesController < ApplicationController
       @cost_weight = grouper.calculateEffectiveCostWeight(@pc, @weighting_relation)
 
       @los_chart = LosDataTable.new(@pc.los, @cost_weight, @weighting_relation, @factor).make_chart
-      Rails.logger.debug("Grouped patient case in #{Time.now - start}")
+      Rails.logger.info("Grouped patient case in #{Time.now - start}")
     rescue Exception => e
       flash[:error] = e.message
       if Rails.env == 'development'
