@@ -1,7 +1,7 @@
 en:
   helpers:
     submit:
-      batchgrouper:
+      batchgrouper_query:
         create: Group
       webgrouper_patient_case:
         clear_form: Clear form
@@ -19,9 +19,9 @@ en:
         disabled_los: To change this value, change or delete one of the relevant fields
         pick_date: Pick a date
     labels:
-      batchgrouper:
-        file: 'File:'
-        single_group: 'Test individual case for format:'
+      batchgrouper_query:
+        input: 'File'
+        single_group: 'Test individual case for format'
       defaults:
         assessments: 'Assessments:'
         active_grouper: 'Active Grouper:'

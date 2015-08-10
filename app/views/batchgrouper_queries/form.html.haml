@@ -9,11 +9,10 @@
   = render "shared/system", :f => f, :current_system => @batchgrouper_query.system, :house => @batchgrouper_query.house
   %fieldset
     %legend Data
-    = f.input :input
-    /= f.input :single_group
-    - if @single_group_result
-      #single_group_result
-        = @single_group_result
+    .span-18
+      = f.input :input
+    .span-5.last
+      = link_to t('simple_form.labels.batchgrouper_query.single_group'), parse_webgrouper_patient_cases_path
   #loading
     = t "batchgrouper.loading_hint"
     #loading-bar

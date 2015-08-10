@@ -71,9 +71,9 @@ de:
         "9": H10 Probleme mit alltäglichen Aktivitäten
         "10": H11 Probleme mit Wohnbedingungen
         "11": H12 Probleme mit Beruf und Alltag
-      batchgrouper:
-        file: 'Datei:'
-        single_group: 'Einzelfall um Format zu testen :'
+      batchgrouper_query:
+        input: 'Datei'
+        single_group: 'Einzelfall um Format zu testen'
     hints: 
       webgrouper_patient_case:
         disabled_age: 'Löschen oder ändern sie das Geburtsdatum, um diesen Wert zu verändern.'

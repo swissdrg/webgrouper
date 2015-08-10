@@ -1,7 +1,7 @@
 it:
   helpers:
     submit:
-      batchgrouper:
+      batchgrouper_query:
         create: Raggruppare
       webgrouper_patient_case:
         clear_form: Svuotare la maschera
@@ -20,9 +20,9 @@ it:
           questo valore.
         pick_date: Scelta della data
     labels:
-      batchgrouper:
-        file: 'File:'
-        single_group: 'Caso singolo per testare il formato:'
+      batchgrouper_query:
+        input: 'File'
+        single_group: 'Caso singolo per testare il formato'
       defaults:
         active_grouper: 'Grouper:'
         adm: 'Modo di ricovero:'

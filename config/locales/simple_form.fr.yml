@@ -1,7 +1,7 @@
 fr:
   helpers:
     submit:
-      batchgrouper:
+      batchgrouper_query:
         create: Grouper
       webgrouper_patient_case:
         clear_form: Vider le masque
@@ -19,9 +19,9 @@ fr:
           l'une des cases qui s'y rapporte.
         pick_date: Choix de la date
     labels:
-      batchgrouper:
-        file: 'Fichier :'
-        single_group: 'Cas unique pour tester le format:'
+      batchgrouper_query:
+        input: 'Fichier'
+        single_group: 'Cas unique pour tester le format'
       defaults:
         active_grouper: 'Grouper:'
         adm: 'Mode d''admission:'
