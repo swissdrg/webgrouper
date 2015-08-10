@@ -13,9 +13,9 @@ class WebgrouperPatientCaseParsing
   def to_patient_case
     params = {}
     if parse_string.include? (';')
-      pc_array = parse_string.split(';')
+      pc_array = parse_string.split(';', 211)
     else
-      pc_array = parse_string.split('-')
+      pc_array = parse_string.split('-', 211)
     end
 
     additional_data = pc_array[0].split('_')
