@@ -9,12 +9,10 @@
   = render "shared/system", :f => f, :current_system => @batchgrouper_query.system, :house => @batchgrouper_query.house
   %fieldset
     %legend Data
-    .span-18
-      = f.input :input
-    .span-5.last
-      = link_to t('simple_form.labels.batchgrouper_query.single_group'), parse_webgrouper_patient_cases_path
+    = f.input :input
   #loading
     = t "batchgrouper.loading_hint"
     #loading-bar
+  = link_to t('simple_form.labels.batchgrouper_query.single_group'), parse_webgrouper_patient_cases_path
   .right
     = f.submit :class => "button positive"
