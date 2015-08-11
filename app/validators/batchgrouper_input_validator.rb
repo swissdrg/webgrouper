@@ -33,8 +33,8 @@ class BatchgrouperInputValidator < ActiveModel::Validator
     File.open(value.file.path) do |f|
       line = f.readline
       if line.include?('|')
-        record.errors.add(@field_name, raw(I18n.t("batchgrouper.detected_bfs") +
-                                               '<a href="https://apps.swissdrg.org/converter">Online Converter</a>'))
+        record.errors.add(@field_name, (I18n.t('batchgrouper.detected_bfs') + ' ' +
+                                         '<a href="https://apps.swissdrg.org/converter">Online Converter</a>').html_safe)
       end
     end
   end
