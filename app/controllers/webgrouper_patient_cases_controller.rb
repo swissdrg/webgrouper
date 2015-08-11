@@ -92,7 +92,8 @@ class WebgrouperPatientCasesController < ApplicationController
       Rails.logger.info("Grouped patient case in #{Time.now - start}")
     rescue Exception => e
       flash[:error] = e.message
-      Rails.logger.error(e.backtrace)
+      Rails.logger.error e.message
+      Rails.logger.error e.backtrace.join("\n")
       if Rails.env == 'development'
         raise e
       end
