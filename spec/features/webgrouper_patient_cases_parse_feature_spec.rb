@@ -21,6 +21,17 @@ RSpec.describe WebgrouperPatientCase, type: :feature do
       expect(find('span.error')).to have_content('muss genau 210 Trennzeichen haben.')
     end
 
+    it 'should give an error when submitting a string in pseudo bfs format' do
+      visit 'de/webgrouper_patient_cases/parse'
+      fill_in 'webgrouper_patient_case_parsing[parse_string]',
+              with: 'test|atasf|asdf|'
+
+      find("input[type='submit']").click
+
+      expect(find('span.error')).to have_content('BFS Format erkannt. Bitte groupieren sie Dateien nur im SwissDRG Format.')
+    end
+
+
     it 'should redirect to the correctly filled out form when submitting a valid string' do
       visit 'de/webgrouper_patient_cases/parse'
       fill_in 'webgrouper_patient_case_parsing[parse_string]',
