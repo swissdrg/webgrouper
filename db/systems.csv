@@ -1,8 +1,4 @@
 system_id--int;description.de;description.fr;description.it;chop_version;icd_version;drg_version;manual_url;public--bool
-2;v0.2 SwissDRG;v0.2 SwissDRG;v0.2 SwissDRG;CHOP 8-10;ICD10-GM-2008;V0.2;;TRUE
-4;v0.3 Katalogversion: 2008/2011;v0.3 Version catalogue: 2008/2011;v0.3 Versione catalogo: 2008/2011;CHOP 10;ICD10-WHO;V0.3;;TRUE
-5;v0.3 Planungsversion: 2009/2011;v0.3 Version de planification: 2009/2011;v0.3 Versione pianificazione 2009/2011;CHOP 11;ICD10-GM-2008;V0.3;;TRUE
-6;v0.3 Abrechnungsversion: 2011/2011;v0.3 Version de tarification: 2011/2011;v0.3 Versione tariffazione: 2011/2011;CHOP 2011;ICD10-GM-2010;V0.3;;TRUE
 7;v1.0 Katalog/Planungsversion: 2009-10/2012;v1.0 Version catalogue/planification: 2009-10/2012;v1.0 Versione catalogo/pianificazione 2009-10/2012;CHOP 11;ICD10-GM-2008;V1.0;;TRUE
 8;v1.0 Planungsversion: 2011/2012;v1.0 Version de planification: 2011/2012;v1.0 Versione pianificazione 2011/2012;CHOP 2011;ICD10-GM-2010;V1.0;;TRUE
 9;v1.0 Abrechnungsversion: 2012/2012;v1.0 Version de tarification: 2012/2012;v1.0 Versione tariffazione: 2012/2012;CHOP 2012;ICD10-GM-2010;V1.0;http://apps.swissdrg.org/manual10/;TRUE
