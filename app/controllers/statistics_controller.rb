@@ -58,7 +58,7 @@ class StatisticsController < ApplicationController
     agg = model.collection.aggregate([{'$match' => {time: {'$gt' => @from, '$lt' => @to}}},
                                       {'$group' => {_id: "$system_id", count: {'$sum' => 1}}},
                                       {'$sort' => {_id: 1}}])
-    rows = agg.inject([]) { |list, hash| list << [System.find_by(system_id: hash['_id']).description, hash['count']] }
+    rows = agg.map { |hash| [(System.find_by(system_id: hash['_id']).description rescue hash['_id'].to_s), hash['count']] }
     system_data.add_rows(rows)
     options = {title: 'Used systems'}
     GoogleVisualr::Interactive::PieChart.new(system_data, options)
