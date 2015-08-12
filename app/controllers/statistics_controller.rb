@@ -72,7 +72,7 @@ class StatisticsController < ApplicationController
                                       {'$sort' => {_id: 1}}])
     # Add labels for systems
     if aggregate_field == :system_id
-      rows = agg.map { |hash| [system_model.find_by(system_id: hash['_id']).description, hash['count']] }
+      rows = agg.map { |hash| [(system_model.find_by(system_id: hash['_id']).description rescue hash['_id'].to_s) , hash['count']] }
     else
       rows = agg.map { |hash| [hash['_id'], hash['count']] }
     end
