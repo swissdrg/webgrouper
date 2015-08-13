@@ -41,7 +41,7 @@ Webgrouper::Application.routes.draw do
 
   resources :webapi_queries, path: 'webapi', as: 'webapi', only: [:index, :create] do
     collection do
-      post 'group'
+      match 'group', via: [:get, :post]
       match 'systems', via: [:get, :post]
     end
   end
