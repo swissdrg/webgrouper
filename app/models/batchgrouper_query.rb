@@ -14,6 +14,7 @@ class BatchgrouperQuery
 
   validates_presence_of :input, unless: :archived
   validates_presence_of :house, :ip, :system_id
+  validates_inclusion_of :house, in: [1, 2]
   validates_with BatchgrouperInputValidator, field_name: :input
 
   belongs_to :system, primary_key: :system_id
@@ -33,7 +34,7 @@ class BatchgrouperQuery
             'output-file' => output_file_path,
     }
     # Depending house variable, use catalogue for birthhouses or hospitals
-    if house == "1"
+    if house == 1
       args.merge!('drg-catalogue' => self.system.catalogue)
     else
       args.merge!('birthouse' => nil, 'drg-catalogue' => self.system.birthhouse_catalogue)
