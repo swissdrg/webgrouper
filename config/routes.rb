@@ -39,13 +39,11 @@ Webgrouper::Application.routes.draw do
     get 'autocomplete_chop_code' => 'webgrouper_patient_cases#autocomplete_chop_code'
   end
 
-
-  scope 'webapi' do
-    get '/' => 'webapi#index'
-    match 'grouper/group' => redirect('/webapi/group'), via: [:get, :post]
-    match 'grouper/systems' => redirect('/webapi/systems'), via: [:get, :post]
-    match 'group' => 'webapi#group', :as => :webapi_group, via: [:get, :post]
-    match 'systems' => 'webapi#systems', :as => :webapi_systems, via: [:get, :post]
+  resources :webapi_queries, path: 'webapi', as: 'webapi', only: [:index, :create] do
+    collection do
+      post 'group'
+      match 'systems', via: [:get, :post]
+    end
   end
 
   get 'grouper' => 'batchgrouper_queries#tos'

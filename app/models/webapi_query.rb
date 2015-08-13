@@ -1,6 +1,7 @@
 # For logging queries to the webapi
 class WebapiQuery
   include Mongoid::Document
+  belongs_to :system, primary_key: :system_id
 
   field :ip, type: String
   field :system_id, type: Integer

@@ -1,10 +1,13 @@
-class WebapiController < ApplicationController
+class WebapiQueriesController < ApplicationController
 
   def index
-    render 'webapi/index'
   end
 
   def group
+    redirect_to webapi_index_path, params
+  end
+
+  def create
     system_id = params[:system] ||= 9
     unless System.exists?(system_id)
       system_id = 9
@@ -18,11 +21,11 @@ class WebapiController < ApplicationController
       pcs = PatientCaseParser.new(params).result
       log_entry.update_attributes!(nr_cases: pcs.size, finished_parsing_time: Time.now)
       pcs.each do |pc|
-        GROUPER.load(spec_path(system_id))
-        result = GROUPER.group(pc)
-        # Housing is always set to 0 -> no birthhouse stuff possible!
-        wr =  WebgrouperWeightingRelation.new(result.drg, 0, system_id)
-        effective_cost_weight = GROUPER.calculateEffectiveCostWeight(pc, wr)
+        grouper, catalogue = log_entry.system.grouper_and_catalogue
+        grouper.groupByReference(pc)
+        result = pc.getGrouperResult()
+        wr = catalogue.get(result.drg)
+        effective_cost_weight = grouper.calculateEffectiveCostWeight(pc, wr)
         response << WebapiResponse.new(result, pc, effective_cost_weight, system_id).result
       end
     rescue Exception => e
@@ -43,12 +46,5 @@ class WebapiController < ApplicationController
       format.xml {render :xml => systems_hash}
       format.json {render :json => systems_hash}
     end
-  end
-
-  def log params
-    input_format = params[:input_format] ||= nil
-
-    log = Log.new({:message => input_format, :user_ip => request.remote_ip, :user_agent => request.env['HTTP_USER_AGENT']})
-    log.save
   end
 end

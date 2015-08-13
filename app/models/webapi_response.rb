@@ -24,11 +24,11 @@ class WebapiResponse
     pch[:sep] = pc.sep
     pch[:los] = pc.los
     pch[:hmv] = pc.hmv
-    pch[:pdx] = pc.pdx
+    pch[:pdx] = pc.pdx.to_s
 
     # TODO: possibly refactor to blank checks?
-    pch[:diagnoses] = pc.diagnoses.select {|e| e != nil}# && !"".eql?(e)}
-    pch[:procedures] = pc.procedures.select {|e| e != nil}# && !"".eql?(e)}
+    pch[:diagnoses] = pc.diagnoses.map &:to_s
+    pch[:procedures] = pc.procedures.map &:to_s
 
     return pch
   end
@@ -39,22 +39,22 @@ class WebapiResponse
     rh[:mdc] = result.mdc
     rh[:pccl] = result.pccl
     rh[:gst] = result.gst.to_s
-    rh[:ageFlag] = convert_flag(result.ageFlag)
-    rh[:weightFlag] = convert_weight_flag(result.admWeightFlag)
-    rh[:sexFlag] = convert_flag(result.sexFlag)
-    rh[:admFlag] = convert_flag(result.admFlag)
-    rh[:sepFlag] = convert_flag(result.sepFlag)
-    rh[:losFlag] = convert_flag(result.losFlag)
-    rh[:sdfFlag] = convert_flag(result.sdfFlag)
-    rh[:hmvFlag] = convert_flag(result.hmvFlag)
-    rh[:pdxFlag] = result.pdxFlag.to_s
-    rh[:pdxDiagnosisFlag] = convert_diagnosis_flag(result.pdxDiagnosisFlag)
+    rh[:ageFlag] = convert_flag(pc.ageFlag)
+    rh[:weightFlag] = convert_weight_flag(pc.admWeightFlag)
+    rh[:sexFlag] = convert_flag(pc.sexFlag)
+    rh[:admFlag] = convert_flag(pc.admFlag)
+    rh[:sepFlag] = convert_flag(pc.sepFlag)
+    rh[:losFlag] = convert_flag(pc.losFlag)
+    # sdf flag does not exist anymore in the new grouper
+    #rh[:sdfFlag] = convert_flag(pc.sdfFlag)
+    rh[:hmvFlag] = convert_flag(pc.hmvFlag)
+    # Contained in pdxDiagnosis flag below
+    #rh[:pdxFlag] = convert_flag(pc.pdx)
+    rh[:pdxDiagnosisFlag] = convert_diagnosis_flag(pc.pdx)
     i = -1
-    rh[:diagnosesFlags] = result.diagnosesFlags.select{|d|i = i + 1; d!= nil && pc.diagnoses[i] != nil}.
-        map{|d| convert_diagnosis_flag(d)}
+    rh[:diagnosesFlags] = pc.diagnoses.map{|d| convert_diagnosis_flag(d)}
     i = -1
-    rh[:proceduresFlags] = result.proceduresFlags.select{|d|i = i + 1; d!= nil && pc.procedures[i] != nil}.
-        map{|d| convert_procedure_flag(d)}
+    rh[:proceduresFlags] = pc.procedures.map{|d| convert_flag(d)}
 
     return rh
   end
@@ -68,20 +68,14 @@ class WebapiResponse
 
   def convert_weight_flag flag
     fh = Hash.new
-    fh[:valid] = flag.valid.to_s
-    fh[:used] = flag.used.to_s
-    return fh
-  end
-
-  def convert_procedure_flag flag
-    fh = convert_weight_flag flag
-    fh[:por] = flag.por.to_s
+    fh[:valid] = flag.valid
+    fh[:used] = flag.used
     return fh
   end
 
   def convert_diagnosis_flag flag
     fh = Hash.new
-    fh[:valid] = flag.valid.to_s
+    fh[:valid] = flag.valid
     fh[:used] = flag.used
     fh[:ccl] = flag.ccl
     return fh

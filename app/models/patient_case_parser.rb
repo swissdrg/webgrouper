@@ -25,53 +25,13 @@ class PatientCaseParser
 
   def parse_swissdrg string
     pcs = []
+    parser = org.swissdrg.grouper.pcparsers.BatchgrouperPatientCaseParser.new
     if string.blank?
-      pcs << org.swissdrg.grouper.PatientCase.new
+      pcs << parser.parse(pc_string)
     else
       string.each_line do |pc_string|
-        pcs << org.swissdrg.grouper.PatientCase.parse(pc_string)
+        pcs << parser.parse(pc_string)
       end
-    end
-    return pcs
-  end
-
-  # Parses the whole xml document before processing. Not a very smart thing to do, bc it fills
-  # the memory pretty fas t.
-  def parse_xml string
-    pcs = []
-    pchs = Nokogiri::XML(string).xpath("//PatientCase")
-    throw :NoPatientCaseNode => "Couldn't find any nodes called \"PatientCase\"" if pchs.size < 1
-    throw :TooManyArguments => "The number Patient Cases that can be grouped at once is limited to #{ARRAY_LIMIT}" if pchs.size > ARRAY_LIMIT
-    pchs.each do |pch|
-      pc = org.swissdrg.grouper.PatientCase.new
-
-      pc.id = pch.xpath('id').text
-      pc.entryDate = pch.xpath('entryDate').text
-      pc.exitDate = pch.xpath('exitDate').text
-      pc.birthDate = pch.xpath('birthDate').text
-      pc.leaveDays = pch.xpath('leaveDays').text.to_i
-      pc.ageYears = pch.xpath('ageYears').text.to_i
-      pc.ageDays = pch.xpath('ageDays').text.to_i
-      pc.admWeight = pch.xpath('admWeight').text.to_i
-      pc.sex = pch.xpath('sex').text
-      pc.adm = pch.xpath('adm').text
-      pc.sep = pch.xpath('sep').text
-      pc.los = pch.xpath('los').text.to_i
-      pc.hmv = pch.xpath('hmv').text.to_i
-      pc.pdx = pch.xpath('pdx').text
-
-      unless pch.xpath('diagnoses').empty?
-        diagnoses = pch.xpath('diagnoses').xpath('diagnosis').map { |d| d.text }
-        @diagMax = diagnoses.size
-        (diagnoses.size..98).each { |_| diagnoses << nil } # pad with nil
-        pc.diagnoses = diagnoses
-      end
-      unless pch.xpath('procedures').empty?
-        procedures = pch.xpath('procedures').xpath('procedure').map { |d| d.text.gsub('.', '') }
-        (procedures.size..99).each { |_| procedures << nil } # pad with nil
-        pc.procedures = procedures
-      end
-      pcs << pc
     end
     pcs
   end
@@ -102,7 +62,7 @@ class PatientCaseParser
       pc.sep = pch["sep"]
       pc.los = pch["los"]
       pc.hmv = pch["hmv"]
-      pc.pdx = pch["pdx"]
+      pc.pdx = org.swissdrg.grouper.Diagnosis.new(pch["pdx"])
 
       diagnoses = pch["diagnoses"]
       (diagnoses.size..98).each { |i| diagnoses << nil }
@@ -134,10 +94,8 @@ class PatientCaseDocument < Nokogiri::XML::SAX::Document
   def start_element(name, attributes =[])
     if name == 'PatientCase'
       @pc = org.swissdrg.grouper.PatientCase.new
-      @diagnoses = Array.new(99)
-      @procedures = Array.new(100)
-      @diagnoses_count = 0
-      @procedures_count = 0
+      @diagnoses = Array.new
+      @procedures = Array.new
     else
       @is_integer = %w(leaveDays ageYears ageDays admWeight los hmv).include?(name)
       @current_method = "#{name}=".to_sym
@@ -157,12 +115,12 @@ class PatientCaseDocument < Nokogiri::XML::SAX::Document
     if not @pc.nil? and not string.blank?
       string.strip!
       begin
-        if :diagnosis= == @current_method
-          @diagnoses[@diagnoses_count] = string
-          @diagnoses_count += 1
+        if :pdx= == @current_method
+          @pc.send @current_method, org.swissdrg.grouper.Diagnosis.new(string)
+        elsif :diagnosis= == @current_method
+          @diagnoses << string unless string.blank?
         elsif :procedure= == @current_method
-          @procedures[@procedures_count] = string.gsub('.', '')
-          @procedures_count += 1
+          @procedures << string.gsub('.', '') unless string.blank?
         elsif @is_integer
           @pc.send @current_method, string.to_i
         else
