@@ -3,8 +3,9 @@ class WebapiQueriesController < ApplicationController
   def index
   end
 
+  # Legacy, just do create action.
   def group
-    redirect_to webapi_index_path, params
+    create
   end
 
   def create
