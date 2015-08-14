@@ -11,7 +11,7 @@ class WebgrouperPatientCaseParsing
 
   def initialize(attributes = {})
     super(attributes)
-    self.system_id ||= WebgrouperPatientCase::DEFAULT_SYSTEM
+    self.system_id ||= DEFAULT_SYSTEM
   end
 
   def system
