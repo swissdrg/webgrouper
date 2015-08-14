@@ -7,14 +7,13 @@ RSpec.describe 'The webapi handles multiple queries in parallel', type: :feature
   ]
 
   specify "three parallel groupings with same system" do
-    threads = []
     parsed_results = {}
     puts "Trying with 300 SwissDRG format on same system"
-    pc_strings.each do |string|
-      threads << Thread.new(string) do |pc|
+    threads = pc_strings.map do |string|
+      Thread.new(string) do |pc|
         all_pcs = ""
-        (1..100).each do
-          all_pcs += pc + "\n"
+        100.times do
+          all_pcs << pc + "\n"
         end
         puts("Sending post for #{string[0]}. request")
         params = {:format => 'json', :input_format => 'swissdrg', :pc => all_pcs}
