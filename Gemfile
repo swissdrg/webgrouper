@@ -57,8 +57,7 @@ gem 'gravatar_image_tag'
 
 
 # for webapi parsing
-# 1.6.2.1 is buggy, see https://github.com/sparklemotion/nokogiri/issues/1114
-gem 'nokogiri', '~>1.6.1.0'
+gem 'nokogiri'
 
 # Gems used only for assets and not required
 # in production environments by default.

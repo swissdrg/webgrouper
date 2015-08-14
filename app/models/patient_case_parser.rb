@@ -97,6 +97,7 @@ class PatientCaseDocument < Nokogiri::XML::SAX::Document
       @diagnoses = Array.new
       @procedures = Array.new
     else
+      @current_string = ''
       @is_integer = %w(leaveDays ageYears ageDays admWeight los hmv).include?(name)
       @current_method = "#{name}=".to_sym
     end
@@ -108,28 +109,31 @@ class PatientCaseDocument < Nokogiri::XML::SAX::Document
       @pc.procedures = @procedures
       @cases << @pc
       @pc = nil
+    else
+      if not @pc.nil? and not @current_string.blank?
+        @current_string.strip!
+        begin
+          if :pdx= == @current_method
+            @pc.send @current_method, org.swissdrg.grouper.Diagnosis.new(@current_string)
+          elsif :diagnosis= == @current_method
+            @diagnoses << @current_string
+          elsif :procedure= == @current_method
+            @procedures << @current_string.gsub('.', '')
+          elsif @is_integer
+            @pc.send @current_method, @current_string.to_i
+          else
+            @pc.send @current_method, @current_string
+          end
+        rescue NoMethodError => e
+          Rails.logger.debug "Ignored the node with title: #{@current_method}, entry: #{string}"
+          raise e if Rails.environment == 'development'
+        end
+      end
     end
   end
 
   def characters string
-    if not @pc.nil? and not string.blank?
-      string.strip!
-      begin
-        if :pdx= == @current_method
-          @pc.send @current_method, org.swissdrg.grouper.Diagnosis.new(string)
-        elsif :diagnosis= == @current_method
-          @diagnoses << string unless string.blank?
-        elsif :procedure= == @current_method
-          @procedures << string.gsub('.', '') unless string.blank?
-        elsif @is_integer
-          @pc.send @current_method, string.to_i
-        else
-          @pc.send @current_method, string
-        end
-      rescue NoMethodError => e
-        Rails.logger.debug "Ignored the node with title: #{@current_method}, entry: #{string}"
-        raise e if Rails.environment == 'development'
-      end
-    end
+    @current_string << string
   end
+
 end

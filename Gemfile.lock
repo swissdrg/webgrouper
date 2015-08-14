@@ -102,7 +102,7 @@ GEM
       activesupport (>= 4.1.0)
     google_visualr (2.4.0)
     gravatar_image_tag (1.2.0)
-    haml (4.0.6)
+    haml (4.0.7)
       tilt
     haml-rails (0.9.0)
       actionpack (>= 4.0.1)
@@ -140,7 +140,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.6.1)
-    mini_portile (0.5.3)
+    mini_portile (0.6.2)
     minitest (5.8.0)
     momentjs-rails (2.10.3)
       railties (>= 3.1)
@@ -158,11 +158,10 @@ GEM
       optionable (~> 0.2.0)
     multi_json (1.11.2)
     multi_test (0.1.2)
-    newrelic_rpm (3.12.1.298)
-    nokogiri (1.6.1)
-      mini_portile (~> 0.5.0)
-    nokogiri (1.6.1-java)
-      mini_portile (~> 0.5.0)
+    newrelic_rpm (3.13.0.299)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
+    nokogiri (1.6.6.2-java)
     optionable (0.2.0)
     origin (2.1.1)
     poltergeist (1.6.0)
@@ -250,7 +249,7 @@ GEM
     slop (3.6.0)
     spoon (0.0.4)
       ffi
-    sprockets (3.2.0)
+    sprockets (3.3.0)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
       actionpack (>= 3.0)
@@ -310,7 +309,7 @@ DEPENDENCIES
   momentjs-rails
   mongoid
   newrelic_rpm
-  nokogiri (~> 1.6.1.0)
+  nokogiri
   poltergeist
   rails
   rails-jquery-autocomplete!
