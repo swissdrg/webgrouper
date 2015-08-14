@@ -2,6 +2,10 @@
   = t '.parse_patient_cases'
 = t '.parse_patient_cases_description'
 = simple_form_for @webgrouper_patient_case_parsing, :url => parse_webgrouper_patient_cases_path, :method => :post do |f|
-  = f.input :parse_string, label: false, input_html: { style: 'width: 100%;'}
+  = render 'shared/system', f: f, current_system: @webgrouper_patient_case_parsing.system,
+  house: @webgrouper_patient_case_parsing.house
+  %fieldset
+    %legend Input
+    = f.input :parse_string, label: false, input_html: { style: 'width: 100%;'}
   .right
     = f.submit :class => "button positive", :value => 'Submit'

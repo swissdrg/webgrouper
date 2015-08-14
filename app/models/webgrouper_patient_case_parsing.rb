@@ -1,12 +1,23 @@
 class WebgrouperPatientCaseParsing
   include ActiveModel::Model
   attr_accessor :parse_string
+  attr_accessor :system_id
+  attr_accessor :house
 
   validates_presence_of :parse_string
   validates_with ParseStringValidator
 
   FORM_DATE_FORMAT = "%d.%m.%Y"
-  
+
+  def initialize(attributes = {})
+    super(attributes)
+    self.system_id ||= WebgrouperPatientCase::DEFAULT_SYSTEM
+  end
+
+  def system
+    System.find_by(system_id: self.system_id)
+  end
+
   # Takes a SwissDRG-string as input and returns the complying WebgrouperPatientCase.
   # the swissdrg-string may also be split by dashes instead of semicolons.
   # The ID field is further used to encode data usually not contained in a SwissDRG string.
@@ -26,6 +37,8 @@ class WebgrouperPatientCaseParsing
       params[:exit_date] = additional_data[3]
       params[:leave_days] = additional_data[4]
     end
+    params[:system_id] ||= self.system_id
+    params[:house] ||= self.house
     age_years = pc_array[1]
     age_days = pc_array[2]
     # If age_years blank or 0, we assume it's not given.
