@@ -65,5 +65,23 @@ RSpec.describe WebgrouperPatientCase, type: :feature do
       expect(find_field('webgrouper_patient_case[leave_days]').value).to eq('1')
       expect(find_field('webgrouper_patient_case[system_id]').value).to eq('11')
     end
+
+    it 'should use the selected system' do
+      visit 'de/webgrouper_patient_cases/parse'
+      fill_in 'webgrouper_patient_case_parsing[parse_string]',
+              with: '123-0-6-3000-M-99-99-1--0-S550-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
+      select('v4.0 Planungsversion 1: 2013/2015', from: 'webgrouper_patient_case_parsing[system_id]')
+      find("input[type='submit']").click
+      expect(find_field('webgrouper_patient_case[system_id]').value).to eq('20')
+    end
+
+    it 'should use the selected house' do
+      visit 'de/webgrouper_patient_cases/parse'
+      fill_in 'webgrouper_patient_case_parsing[parse_string]',
+              with: '123-0-6-3000-M-99-99-1--0-S550-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
+      select('Geburtshaus', from: 'webgrouper_patient_case_parsing[house]')
+      find("input[type='submit']").click
+      expect(find_field('webgrouper_patient_case[house]').value).to eq('2')
+    end
   end
 end
