@@ -11,8 +11,8 @@ class ParseStringValidator < ActiveModel::Validator
                             else
                               record.parse_string.scan('-').count
                             end
-    if split_character_count != 210
-      record.errors.add(:parse_string, I18n.t('errors.messages.wrong_number_of_split_characters', count: 210))
+    if split_character_count != 209
+      record.errors.add(:parse_string, I18n.t('errors.messages.wrong_number_of_split_characters', count: 209))
     end
   end
 end
