@@ -8,17 +8,14 @@ RSpec.describe 'The webapi handles multiple queries in parallel', type: :feature
 
   specify "three parallel groupings with same system" do
     parsed_results = {}
-    puts "Trying with 300 SwissDRG format on same system"
     threads = pc_strings.map do |string|
       Thread.new(string) do |pc|
         all_pcs = ""
         100.times do
           all_pcs << pc + "\n"
         end
-        puts("Sending post for #{string[0]}. request")
         params = {:format => 'json', :input_format => 'swissdrg', :pc => all_pcs}
         result, duration = group_as_json(params, ENV_API)
-        puts("Received results for #{string[0]}. request")
         assert_equal(100, result.size, "Failed with #{result}")
         parsed_results[string[0]] = result
       end
@@ -51,17 +48,14 @@ RSpec.describe 'The webapi handles multiple queries in parallel', type: :feature
     systems = ["9", "10", "12"]
     threads = []
     parsed_results = {}
-    puts "Trying with 300 SwissDRG format on different systems"
     pc_strings.zip(systems).each do |string, system|
       threads << Thread.new(string) do |pc|
         all_pcs = ""
         (1..100).each do
           all_pcs += pc + "\n"
         end
-        puts("Sending post for #{string[0]}. request")
         params = {:format => 'json', :input_format => 'swissdrg', :pc => all_pcs, :system => system}
         result, duration = group_as_json(params, ENV_API)
-        puts("Received results for #{string[0]}. request")
         assert_equal(100, result.size, "Failed with #{result}")
         parsed_results[string[0]] = result
       end
