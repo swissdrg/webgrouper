@@ -14,11 +14,11 @@ RSpec.describe WebgrouperPatientCase, type: :feature do
     it 'should give an error when submitting a string with the wrong number of separating characters' do
       visit 'de/webgrouper_patient_cases/parse'
       fill_in 'webgrouper_patient_case_parsing[parse_string]',
-              with: '123;40;0;4000;M;99;99;8;;0;S550;B373;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6602;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'
+              with: '123;40;0;4000;M;99;99;8;;0;S550;B373;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6602;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'
 
       find("input[type='submit']").click
 
-      expect(find('span.error')).to have_content('muss genau 210 Trennzeichen haben.')
+      expect(find('span.error')).to have_content('muss genau 209 Trennzeichen haben.')
     end
 
     it 'should give an error when submitting a string in pseudo bfs format' do
@@ -35,7 +35,7 @@ RSpec.describe WebgrouperPatientCase, type: :feature do
     it 'should redirect to the correctly filled out form when submitting a valid string' do
       visit 'de/webgrouper_patient_cases/parse'
       fill_in 'webgrouper_patient_case_parsing[parse_string]',
-              with: '123;40;0;4000;M;99;99;8;;0;S550;B373;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6602;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'
+              with: '123;40;0;4000;M;99;99;8;;0;S550;B373;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6602;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'
       find("input[type='submit']").click
 
       expect(find_field('webgrouper_patient_case[pdx]').value).to eq('S55.0')
@@ -46,7 +46,7 @@ RSpec.describe WebgrouperPatientCase, type: :feature do
     it 'should redirect to the correctly filled out form when submitting a valid string separated with dashes' do
       visit 'de/webgrouper_patient_cases/parse'
       fill_in 'webgrouper_patient_case_parsing[parse_string]',
-              with: '123-40-0-4000-M-99-99-8--0-S550-B373---------------------------------------------------------------------------------------------------6602----------------------------------------------------------------------------------------------------'
+              with: '123-40-0-4000-M-99-99-8--0-S550-B373---------------------------------------------------------------------------------------------------6602---------------------------------------------------------------------------------------------------'
       find("input[type='submit']").click
 
       expect(find_field('webgrouper_patient_case[pdx]').value).to eq('S55.0')
@@ -57,7 +57,7 @@ RSpec.describe WebgrouperPatientCase, type: :feature do
     it 'should fill in additional fields from the id column' do
       visit 'de/webgrouper_patient_cases/parse'
       fill_in 'webgrouper_patient_case_parsing[parse_string]',
-              with: '11_01.08.2015_07.08.2015_09.08.2015_1-0-6-3000-M-99-99-1--0-S550--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
+              with: '11_01.08.2015_07.08.2015_09.08.2015_1-0-6-3000-M-99-99-1--0-S550-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
       find("input[type='submit']").click
       expect(find_field('webgrouper_patient_case[entry_date]').value).to eq('07.08.2015')
       expect(find_field('webgrouper_patient_case[exit_date]').value).to eq('09.08.2015')
