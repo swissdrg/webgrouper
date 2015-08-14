@@ -34,6 +34,10 @@ class WebgrouperPatientCasesController < ApplicationController
   end
 
   def parse
+    # For legacy reasons, we build valid params from this (still used in fallabfrage):
+    if params[:pc]
+      params[:webgrouper_patient_case_parsing] = { parse_string: params[:pc][:string]}
+    end
     if params[:webgrouper_patient_case_parsing].present?
       @webgrouper_patient_case_parsing = WebgrouperPatientCaseParsing.new(params[:webgrouper_patient_case_parsing])
       if @webgrouper_patient_case_parsing.valid?

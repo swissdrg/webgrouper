@@ -33,6 +33,7 @@ Webgrouper::Application.routes.draw do
         patch '/' => 'batchgrouper_queries#create'
       end
     end
+    match 'parse' => 'webgrouper_patient_cases#parse', via: [:get, :post]
     get 'help' => 'static_pages#help'
     get 'tos' => 'static_pages#tos'
     get 'autocomplete_icd_code' => 'webgrouper_patient_cases#autocomplete_icd_code'
