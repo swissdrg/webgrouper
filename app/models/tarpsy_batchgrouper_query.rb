@@ -1,4 +1,6 @@
 require 'shellwords'
+require 'open3'
+
 class TarpsyBatchgrouperQuery
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -32,7 +34,8 @@ class TarpsyBatchgrouperQuery
     cmd << " #{Shellwords.escape(system.workspace)}"
     cmd << " #{Shellwords.escape(self.mb_input.file.path)}"
     cmd << " #{Shellwords.escape(self.honos_input.file.path)}"
-    `#{cmd} 2>&1`
+    Rails.logger.debug(cmd)
+    Open3.capture3(cmd)
   end
 
   def archive!
