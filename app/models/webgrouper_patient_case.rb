@@ -110,22 +110,9 @@ class WebgrouperPatientCase
   # the hash contains the appropriate fee, description, amount of the fee, and the number of appearances
   # of the same procedure which entered the user as values and as key a procedure code.
   # furthermore this method calculates also the total supplement amount (summed up).
+  # TODO: Supplements are disabled for now, need to be reimplemented with supplements grouper when it's ready.
   def get_supplements
-    # We just want the procedure code (no seitigkeit or date)
-    procedures_codes = procedures.map {|p| p['c'] }
-    supplements = system.supplements.where(:chop_atc_code.in => procedures_codes )
-    supplement_procedures = supplements.map do |sup|
-      # count how many times the same proc appeared with same fee.
-      proc_count = procedures_codes.select { |p| p == sup.chop_atc_code }.count
-      {
-          :chop_code => sup.chop_atc_code,
-          :fee => sup.supplement_code,
-          :description => sup.text,
-          :amount => sup.amount * proc_count,
-          :proc_count => proc_count,
-          :age_max => sup.age_max
-      }
-    end
+    Hash.new
   end
 
   private
