@@ -81,37 +81,7 @@ class WebgrouperPatientCasesController < ApplicationController
 	# of the same procedure which entered the user as values and as key a procedure code.
 	# furthermore this method calculates also the total supplement amount (summed up).
   def get_supplements(patient_case)
-    supplement_procedures = {}
-    total_supplement_amount = 0
-    patient_case.procedures.each do |p|
-			# cleanup: we just want the procedure code (no seitigkeit or date)
-      p = p.match(/(\S*)\:(\w*)\:(\w*)/)[1]
-			# if there is an a row in supplementops which has a column equals the given procedure value
-			# prepare hash for a new value
-      sup = Supplement.in_system(patient_case.system_id).where(:chop_atc_code => p).first
-      unless sup.nil?
-        code = sup.supplement_code
-        amount = sup.amount
-	     	description = sup.text
-        total_supplement_amount += amount
-				
-				# count how many times the same proc appeared with same fee.
-				default_proc_count = 1
-				if supplement_procedures[p].nil?
-					data = {
-              :fee => code,
-              :description => description,
-              :amount => amount,
-              :proc_count => default_proc_count,
-              :age_max => sup.age_max
-          }
-			  	supplement_procedures[p] = data
-				else
-					supplement_procedures[p][:proc_count] += 1
-				end				
-        
-      end
-    end
-    return supplement_procedures, total_supplement_amount
+    # TODO: Removed computation of supplements, needs reimplementation after supplements grouper is finished.
+    return Hash.new, 0
   end
 end

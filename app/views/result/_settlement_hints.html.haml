@@ -5,9 +5,7 @@
     %tbody
       %tr
         %th
-          - if @supplement_procedures.empty?
-            = t("result.settlement_hints.no_additional_fees")
-          - else
+          - unless  @supplement_procedures.empty?
             = t("result.settlement_hints.additional_fees")
             %th
               = t("result.settlement_hints.count")
