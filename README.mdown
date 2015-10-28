@@ -6,7 +6,7 @@ A jruby project that acts as web frontend for the grouper produced by SwissDRG. 
 
 Make sure you have mongodb and memcached installed:
 
-    sudo apt-get install memcached mongodb
+    sudo apt-get install mongodb
 
 This project only runs on Jruby, so make sure to install all gems on a compatible ruby version.
 
