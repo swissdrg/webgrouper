@@ -81,7 +81,8 @@ class WebgrouperPatientCasesController < ApplicationController
     begin
       start = Time.now
       @factor = 10000
-      @supplement_procedures = patient_case.get_supplements
+      # Supplements computation is disabled for now.
+      @supplement_procedures = Hash.new
       @pc = patient_case.to_java
       grouper, catalogue = patient_case.system.grouper_and_catalogue
       grouper.groupByReference(@pc)
