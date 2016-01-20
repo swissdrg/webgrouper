@@ -18,7 +18,7 @@ class Assessment
     (12 - c).times { assessment_items.build }
   end
 
-  java_import org.swissdrg.grouper.tarpsy.HoNOSAssessment
+  java_import org.swissdrg.tarpsy.HoNOSAssessment
   def to_java
     ha = HoNOSAssessment.new
     ha.date = date.strftime(TarpsyPatientCase::GROUPER_DATE_FORMAT)

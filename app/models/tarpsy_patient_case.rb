@@ -25,8 +25,8 @@ class TarpsyPatientCase
                              on_or_before: :today
   validates :pdx, existing_icd: true
   validates :assessments, assessments: true, unless: lambda { entry_date.blank? || assessments.blank? }
-  java_import org.swissdrg.grouper.tarpsy.TARPSYPatientCase
-  java_import org.swissdrg.grouper.Diagnosis
+  java_import org.swissdrg.tarpsy.TARPSYPatientCase
+  java_import org.swissdrg.tarpsy.Diagnosis
 
   GROUPER_DATE_FORMAT = "%Y%m%d"
 

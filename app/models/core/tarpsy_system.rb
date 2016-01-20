@@ -14,8 +14,8 @@ class TarpsySystem
   index({system_id: 1}, unique: true)
   index({public: 1 })
 
-  java_import org.swissdrg.grouper.tarpsy.kernel.TARPSYPrototypeParser
-  java_import org.swissdrg.grouper.tarpsy.ITARPSYGrouperKernel::PerCasePaymentType
+  java_import org.swissdrg.tarpsy.kernel.TARPSYPrototypeParser
+  java_import org.swissdrg.tarpsy.ITARPSYGrouperKernel::PerCasePaymentType
 
   def grouper
     Rails.cache.fetch("#{system_id}_tarpsy_grouper", expires_in: 2.days) do
