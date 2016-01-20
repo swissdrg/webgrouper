@@ -102,7 +102,7 @@ class StatisticsController < ApplicationController
              agg.inject([]) { | list, hash| list << [hash['_id'].to_i, hash['count']] }
            else
              data_table.new_column('number', 'Patient cases')
-             max_line_count = model.where(:created_at.gt => @from, :created_at.lt => @to).max(attribute)
+             max_line_count = model.where(:created_at.gt => @from, :created_at.lt => @to).max(attribute) || bins
              step_size = 10**Math::log10(max_line_count/bins).round
              agg = model.collection.aggregate([{'$match' => {created_at: {'$gt' => @from, '$lt' => @to}}},
                                                {'$project' => {step: {'$divide' => ["$#{attribute}", step_size]}}},
