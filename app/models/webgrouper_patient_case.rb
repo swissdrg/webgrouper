@@ -100,7 +100,7 @@ class WebgrouperPatientCase
     pc.hmv = hmv
 
     # Diagnoses and procedures
-    pc.pdx = Diagnosis.new(pdx)
+    pc.pdx = pdx
     pc.diagnoses = diagnoses
     pc.procedures = procedures.map {|p| p.values.join(':') }
     pc

@@ -28,7 +28,7 @@ class System
 
   def grouper_and_catalogue
     g = Rails.cache.fetch("#{system_id}_grouper", expires_in: 2.days) do
-      XMLWorkspaceReader.new.readWorkspace(workspace)
+      XMLWorkspaceReader.new.loadGrouper(workspace)
     end
     c = Rails.cache.fetch("#{system_id}_catalogue", expires_in: 2.days) do
       Catalogue.createFrom(catalogue)
