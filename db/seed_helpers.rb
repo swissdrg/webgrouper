@@ -1,7 +1,7 @@
 module SeedHelpers
   require 'pg'
 
-  PG_SEARCH_PATH = 'public'
+  PG_SEARCH_PATH = 'classifications'
 
   # Returns a connection to a postgress database, defind in db/pg_config.yml (environment dependent!)
   def conn

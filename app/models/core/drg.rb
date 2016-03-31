@@ -13,6 +13,8 @@ class Drg
   field :exception_from_reuptake_flag, type: Boolean
   field :version, type: String
   field :partition, type: String
+  field :birthhouse, type: Boolean
+  field :nonvaluated, type: Boolean
   
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version) }
 	scope :in_birthhouse_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version + "_birthhouse")}
