@@ -15,6 +15,7 @@ class Drg
   field :partition, type: String
   field :birthhouse, type: Boolean
   field :nonvaluated, type: Boolean
+  field :drg_type, type: Integer
   
   scope :in_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version) }
 	scope :in_birthhouse_system, lambda { |system_id| where(:version => System.where(:system_id => system_id ).first.drg_version + "_birthhouse")}
