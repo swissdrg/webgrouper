@@ -2,7 +2,7 @@ include Java
 require 'app/helpers/application_helper'
 include ApplicationHelper
 
-DEFAULT_SYSTEM = 26
+DEFAULT_SYSTEM = 27
 
 # On mac: debugging only with mock-grouper
 if java.lang.System.getProperty('os.name').downcase.include?('mac')
