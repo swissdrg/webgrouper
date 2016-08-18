@@ -23,3 +23,5 @@ system_id--int;description.de;description.fr;description.it;chop_version;icd_ver
 25;v5.0 Planungsversion 2: 2015/2016;v5.0 Version de planification 2: 2015/2016;v5.0 Versione pianificazione 2: 2015/2016;CHOP 2015;ICD10-GM-2014;V5.0;;TRUE
 26;v5.0 Abrechnungsversion: 2016/2016;v5.0 Version de tarification: 2016/2016;v5.0 Versione tariffazione: 2016/2016;CHOP 2016;ICD10-GM-2014;V5.0;;TRUE
 27;v6.0 Katalogversion mit ANK: 2014/2017;v6.0 Version catalogue avec ANK: 2014/2017;v6.0 Versione catalogo con ANK: 2014/2017;CHOP 2014;ICD10-GM-2012;V6.0;;TRUE
+28;v6.0 Planungsversion 1 mit ANK: 2015/2017;v6.0 Version de planification 1 avec ANK: 2015/2017;v6.0 Versione pianificazione 1 con ANK: 2015/2017;CHOP 2015;ICD10-GM-2014;V6.0;;TRUE
+29;v6.0 Planungsversion 2 mit ANK: 2016/2017;v6.0 Version de planification 2 avec ANK: 2016/2017;v6.0 Versione pianificazione 2 con ANK: 2016/2017;CHOP 2016;ICD10-GM-2014;V6.0;;FALSE
