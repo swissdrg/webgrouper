@@ -27,8 +27,8 @@ class WebgrouperPatientCase < PatientCase
     end
 
     age_mode_days? ? self.age_days = self.age : self.age_years = self.age
-    self.birth_house = care_taker_birth_house?
   end
+
 
   # Always returns false since this model is not persisted (saved in a database).
   # The method is necessary for this model to be treated like an active record model
